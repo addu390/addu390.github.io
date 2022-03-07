@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Deploying Django Application on AWS EC2 and Docker"
-date: 2022-02-22
+date: 2022-02-17
 tags:
   - Django
   - AWS

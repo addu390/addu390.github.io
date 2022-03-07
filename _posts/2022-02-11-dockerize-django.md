@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dockerizing Django Application — Gunicorn and Nginx"
-date: 2022-02-22
+date: 2022-02-11
 tags:
   - Django
   - AWS
@@ -48,8 +48,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get install python3.9 -y
 RUN apt-get install python3-pip -y
 RUN python3.9 -m pip install --upgrade setuptools
-RUN apt-get install sudo ufw build-essential libpq-dev python3.9-dev -y
-RUN libmysqlclient-dev default-libmysqlclient-dev libpython3.9-dev -y
+RUN apt-get install sudo ufw build-essential libpq-dev python3.9-dev libmysqlclient-dev default-libmysqlclient-dev libpython3.9-dev -y
 RUN python3.9 -m pip install -r requirements.txt
 RUN python3.9 -m pip install psycopg2-binary
 RUN sudo ufw allow 8000

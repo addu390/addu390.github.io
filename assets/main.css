@@ -558,6 +558,10 @@ a.black-button:hover {
   background-color: #E8E8E8;
 }
 
+pre {
+  overflow-x: auto;
+}
+
 code {
   color: #222;
 }
