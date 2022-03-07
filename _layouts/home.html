@@ -52,6 +52,7 @@ layout: default
                         <em>{{ post.content | strip_html | escape | truncate: 300}}</em>
                     </p>
                 </div>
+                <a href="{{ post.url | relative_url }}" class="black-button">Read more</a>
             </section>
         {%- endfor -%}
     </div>
