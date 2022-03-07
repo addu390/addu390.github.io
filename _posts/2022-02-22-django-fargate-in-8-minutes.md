@@ -15,7 +15,7 @@ category: Django Rango 🚀
 <img src="./assets/featured/aws-fargate-django.png" /> 
 <p style="text-align: center;">Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django).</p>
 
-So far, we have seen how to dockerize the Django application and deploy the application on EC2.
+So far, we have seen how to [dockerize the Django application](https://pyblog.medium.com/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f) and [deploy the application on EC2](https://pyblog.medium.com/deploying-django-application-on-aws-ec2-and-docker-10a1f7c29573).
 
 Installing Docker Engine on every EC2 instance and running the Dockerized Django application does not scale and make it harder to maintain ⚠️. However, it’s probably the right choice for a staging environment or an application with 1–2 EC2 instances.
 
@@ -30,19 +30,17 @@ That said, let’s get to it 😎
 
 ## Step 1: Install AWS and ECS CLI
 
-- Install AWS CLI: AWS does an amazing job with documentation; follow the instructions to install AWS CLI.
-- Install ECS CLI: Instructions to install ECS CLI
+- Install AWS CLI: AWS does an amazing job with documentation; [follow the instructions to install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+- Install ECS CLI: [Instructions to install ECS CLI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html)
 
 I have seen quite a bit of confusion on this one; all you need to do is:
 Download and set the right permissions:
 
-```
-sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
-chmod +x /usr/local/bin/ecs-cli
-```
+- `sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest`
+- `chmod +x /usr/local/bin/ecs-cli`
+- Verify the installation: `ecs-cli --version`
 
-Verify the installation: `ecs-cli --version`
-To Configure Fragate Cluster, Task Definition, and Service: The original post by AWS: Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI.
+To Configure Fragate Cluster, Task Definition, and Service: The original post by AWS: [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-fargate.html).
 
 But I guarantee you that you’d see no hiccups if you follow along with this post instead as I make the extra effort to fill in the gaps.
 
@@ -155,9 +153,9 @@ version: '3'services:
 ```
 
 - Notice that the logging section in the nginx service; change the awslogs-group and awslogs-region
-- Include the environmental variables required by the application as shown in the above `docker-compose.yml` file. However, a better practice is to use AWS System Manager Parameter Store.
+- Include the environmental variables required by the application as shown in the above `docker-compose.yml` file. However, a better practice is to use [AWS System Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html).
 
-To create a `docker-compose.yml` for a Django application, refer: dockerize the Django application
+To create a `docker-compose.yml` for a Django application, refer: [dockerize the Django application](https://pyblog.medium.com/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f)
 
 The Dockerfile for service web:
 

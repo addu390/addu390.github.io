@@ -3,7 +3,6 @@ layout: post
 title: "Stockpile — Store Request and Response"
 date: 2022-01-19
 tags:
-  - Django
   - Dropwizard
   - Java
 author: Adesh Nalpet Adimurthy
