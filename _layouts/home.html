@@ -17,6 +17,10 @@ layout: default
 
         {%- for post in posts -%}
             <section class="post">
+                <div>
+                    <img class="center-image crop"  src="{{ post.feature }}" alt="Featured Image"/>
+                </div>
+                
                 <header class="feed-header">
                     <img width="48" height="48" alt="{{post.author}}'s Avatar'" class="post-avatar" src="{{site.url}}/{{post.avatar}}"/>
                     <h2 class="post-title">
