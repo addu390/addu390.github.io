@@ -334,7 +334,7 @@ footer .pure-menu-link:hover {
 
   .sidebar-info {
     margin: 5% 2em 0;
-    text-align: right;
+    text-align: center;
   }
 
   .brand-photo {
@@ -343,7 +343,7 @@ footer .pure-menu-link:hover {
 
   .brand-title,
   .brand-tagline {
-    text-align: right;
+    text-align: center;
   }
 
   .sidebar {

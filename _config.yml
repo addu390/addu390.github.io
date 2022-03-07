@@ -22,7 +22,7 @@ title: "The Next Big Project"
 email: 390.adesh@gmail.com
 donate_link: https://www.buymeacoffee.com/pyblog
 description: >- # this means to ignore newlines until "baseurl:"
-  ⭐ Software Developer ⭐ On a mission to make software development easy and fun for everyone.
+  On a mission to make software development easy and fun
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://addu390.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 repository: addu390/addu390.github.io
