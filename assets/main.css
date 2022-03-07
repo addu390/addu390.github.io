@@ -553,3 +553,11 @@ a.black-button:hover {
   margin:0.4em auto;
   }
 }
+
+.highlighter-rouge {
+  background-color: #E8E8E8;
+}
+
+code {
+  color: #222;
+}

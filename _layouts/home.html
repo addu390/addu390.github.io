@@ -18,7 +18,7 @@ layout: default
         {%- for post in posts -%}
             <section class="post">
                 <div>
-                    <img class="center-image crop"  src="{{ post.feature }}" alt="Featured Image"/>
+                    <img class="center-image crop"  src="{{site.url}}/{{ post.feature }}" alt="Featured Image"/>
                 </div>
                 
                 <header class="feed-header">
@@ -66,9 +66,7 @@ layout: default
 
                 {%- if paginator.previous_page %}
                     <li class="pure-menu-item">
-                        <a href="{{ paginator.previous_page_path | relative_url }}">
-                            🡐
-                                                                        Previous</a>
+                        <a href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
                     </li>
                 {%- else %}
                     <li class="pure-menu-item">#</li>
@@ -83,9 +81,7 @@ layout: default
 
                 {%- if paginator.next_page %}
                     <li class="pure-menu-item">
-                        <a href="{{ paginator.next_page_path | relative_url }}" class="next-page">Next
-                                                                        🡒
-                        </a>
+                        <a href="{{ paginator.next_page_path | relative_url }}" class="next-page">Next</a>
                     </li>
                 {%- else %}
                     <li class="pure-menu-item">#</li>
