@@ -75,7 +75,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  color: #666;
+  color: black;
 }
 
 th {
