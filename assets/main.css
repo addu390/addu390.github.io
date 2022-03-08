@@ -565,3 +565,7 @@ pre {
 code {
   color: #222;
 }
+
+.center-align {
+  text-align: center;
+}

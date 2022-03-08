@@ -4,6 +4,17 @@ title: Adesh Nalpet Adimurthy
 permalink: /about/
 ---
 
+<div class="center-align">
+    <subtitle class="font-weight-bold text-muted">
+        <span style="color: orangered;">
+            <i class="fas fa-map-pin" aria-hidden="true"></i>
+        </span> For Hire &nbsp; &nbsp;
+        <span style="color: dodgerblue;">
+            <i class="ml-4 fas fa-map-marked-alt" aria-hidden="true"></i>
+        </span> Anywhere in Canada
+    </subtitle>
+</div>
+
 Hey 👋 I'm a computer science graduate student at Dalhousie University, a budding illustrator, and previously a backend engineer at Walmart's PhonePe and YC ClearTax, here to share my experiences, tutorials, and projects.
 
 ## Stuff I work on
@@ -18,7 +29,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 - Other Technologies: Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka
 
 ## Schooling so far
-- Master of Applied Computer Science, Dalhousie University - Halifax, NS
+- Master of Applied Computer Science, Dalhousie University - Halifax, NS 🇨🇦
 
 - Bachelor of Engineering: Electronics And Communication, Visvesvaraya Technological University - Karnataka, India
 
