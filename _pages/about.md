@@ -20,7 +20,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 ## Stuff I work on
 - Programming languages: Java, Javascript and Python
 
-- Databases: MySQL, AeroSpike, ElasticSearch, AWS Redshift, Athena
+- Databases: MySQL, MongoDB, AeroSpike, ElasticSearch, Redis,AWS Redshift, Athena
 
 - Frameworks: Dropwizard, Django, Flask, Angular, Ionic
 
@@ -72,7 +72,9 @@ Licensing as a Service: Developed a service for monetizing and limiting user exp
 
 - Currently enrolled in the Dal Innovates Collide Exploring Entrepreneurship - Mentorship Program
 
-- Won the "Halifax Innovation Challenge, Extra Mile Award" sponsored by RBC and IBM. Certified in "Business Communications for Researchers" by Path2Innovation.
+- Won the "Halifax Innovation Challenge, Extra Mile Award" sponsored by RBC and IBM. 
+
+- Certified in "Business Communications for Researchers" by Path2Innovation.
 
 - Rated as 'Exceptional Performer' (July 2020 and April 2021) at PhonePe and 'Out Performer (OP)' in the performance reviews at ClearTax (October 2018 and April 2019). 
 
