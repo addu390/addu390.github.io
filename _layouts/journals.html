@@ -3,36 +3,54 @@ layout: default
 ---
 {{ content }}
 
-{% assign journals = site.journals %}
+{% assign journals = site.journals | reverse %}
 
-<div class="journals">
-    <h2 class="content-subhead">Recent Projects</h2>
+<div class="posts">
+    <h2 class="content-subhead">Recent Journals</h2>
 
     <h2>Page under constructions (Migration in progress) ⚠️</h2>
 
     {%- if journals.size > 0 -%}
         {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
 
-        {%- for journal in journals -%}
-            <section class="journal">
+        {%- for post in journals -%}
+            <section class="post">
                 <div>
-                    <img class="center-image crop"  src="{{site.url}}/{{ journal.feature }}" alt="Featured Image"/>
+                    <img class="center-image crop"  src="{{site.url}}/{{ post.feature }}" alt="Featured Image"/>
                 </div>
-                <header class="journal-header">
-                    <small>
-                        <h2 class="post-title">
-                            <a href="{{ journal.url | relative_url }}">
-                                {{ journal.title | escape }}
-                            </a>
-                        </h2>
-                    </small>
+                
+                <header class="feed-header">
+                    <img width="48" height="48" alt="{{post.author}}'s Avatar'" class="post-avatar" src="{{site.url}}/{{post.avatar}}"/>
+                    <h2 class="post-title">
+                        <a href="{{ post.url | relative_url }}">
+                            {{ post.title | escape }}
+                        </a>
+                    </h2>
+                    <p class="post-meta">
+                        Posted:
+                        {{ post.date | date: date_format }}
+                        |
+                        <br class="sm-display"/>
+                        By
+                        <a class="post-author" href="/about">{{ post.author }}</a>
+                        under
+                        <span>
+                            {% for tag in post.tags %}
+                                <a href="/tags/#{{ tag }}">{{ tag }}</a>
+                            {% endfor %}
+                        </span>
+                    </p>
                 </header>
 
-                <div class="journal-description">
-                    <p>
-                        <em>{{ journal.expert | strip_html | escape | truncate: 300}}</em>
+                <div class="post-description">
+                    <p class="md-display">
+                        <em>{{ post.expert | strip_html | escape | truncate: 400}}</em>
+                    </p>
+                    <p class="sm-display">
+                        <em>{{ post.expert | strip_html | escape | truncate: 300}}</em>
                     </p>
                 </div>
+                <a href="{{ post.url | relative_url }}" class="black-button">Read more</a>
             </section>
         {%- endfor -%}
     </div>
