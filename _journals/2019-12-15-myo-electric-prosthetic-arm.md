@@ -9,10 +9,13 @@ author: Adesh Nalpet Adimurthy
 feature: assets/featured/ironman-myro.png
 avatar: assets/profile.jpeg
 category: Leisure Seizure 🤪
+expert: MYRO initially started as a wearable motion tracking unit, which eventually evolved to use it with prosthetics (Final year project at Dayananda Sagar College of Engineering) — I launched MYRO (Myro Labz Pvt Ltd) back in August 2017. For more details regarding the project ...
 ---
 
-<img src="./assets/featured/ironman-myro.png" /> 
+<img src="../assets/featured/ironman-myro.png" /> 
 <p style="text-align: center;">MYRO 2.0 — Ironman with Prosthetics 🤪</p>
+
+# Deprecated ⛔️
 
 ## Resources
 
@@ -92,11 +95,11 @@ To keep the vision alive and resume my work on the project, I recently got the [
 
 Top View          |  Front View
 :-------------------------:|:-------------------------:
-![](./assets/posts/myro/myo-top-view.jpeg)  |  ![](./assets/posts/myro/myo-front-view.jpeg)
+![](../assets/posts/myro/myo-top-view.jpeg)  |  ![](../assets/posts/myro/myo-front-view.jpeg)
 
 Side View          |  Front View - 2
 :-------------------------:|:-------------------------:
-![](./assets/posts/myro/myo-side-view.jpeg)  |  ![](./assets/posts/myro/myo-front-view-2.jpeg)
+![](../assets/posts/myro/myo-side-view.jpeg)  |  ![](../assets/posts/myro/myo-front-view-2.jpeg)
 
 Compared to the first version of MYRO, the 3D printed ARM had 5 DOF (Degree Of Freedom) DC motors for individual finger movement (spools and gears). The [InMoov arm](https://inmoov.fr/hand-and-forarm/), on the other hand, is heavier and uses servo motors and strings as the driver, which isn't very reliable.
 Furthermore, MYRO 1.0 was primarily based on Myography, which used a combination of surface EMG sensors, a gyroscope, and an accelerometer (6 Axis motion tracking). The more refined version of the project used the [MYO Band](https://www.amazon.com/Thalmic-Labs-Gesture-Control-Presentations/dp/B00VHWBH02) (9 Axis motion tracking) from Thalmic labs. Unfortunately, project MYO was canceled and is now called [byNorth](https://www.bynorth.com/) (Acquired by Google).
@@ -106,17 +109,17 @@ While looking for other alternatives to Myo Band in the market, I came across [K
 
 Kai Controller Box         |  Kai Controller - 1
 :-------------------------:|:-------------------------:
-![](./assets/posts/myro/kai-controller.jpeg)  |  ![](./assets/posts/myro/kai-controller-1.jpeg)
+![](../assets/posts/myro/kai-controller.jpeg)  |  ![](../assets/posts/myro/kai-controller-1.jpeg)
 
 Kai Controller Inside - 2         |  Kai Controller Inside - 3
 :-------------------------:|:-------------------------:
-![](./assets/posts/myro/kai-controller-2.jpeg)  |  ![](./assets/posts/myro/kai-controller-3.jpeg)
+![](../assets/posts/myro/kai-controller-2.jpeg)  |  ![](../assets/posts/myro/kai-controller-3.jpeg)
 
 The plan is to use a combination of Surface EMG sensors and KAI (Gyroscope, Accelerometer, and Magnetometer).
 
 3D Printed Prosthetic Improvements - 1         |  3D Printed Prosthetic Improvements - 2
 :-------------------------:|:-------------------------:
-![](./assets/posts/myro/myo-servo-1.jpeg)  |  ![](./assets/posts/myro/myo-servo-2.jpeg)
+![](../assets/posts/myro/myo-servo-1.jpeg)  |  ![](../assets/posts/myro/myo-servo-2.jpeg)
 
 - Servo motors (Amazon purchase links): [MG995](https://www.amazon.in/Easy-Electronics-Set-TowerPro-MG995/dp/B07M5NJT2L) and [MG996R](https://www.amazon.in/TowerPro-MG996R-Torque-Robotics-Arduino/dp/B072KGJL9H)
 
@@ -130,7 +133,7 @@ The plan is to use a combination of Surface EMG sensors and KAI (Gyroscope, Acce
 
 3D Printed Upper Prosthetic Arm - 1         |  3D Printed Upper Prosthetic Arm - 2
 :-------------------------:|:-------------------------:
-![](./assets/posts/myro/myo-fingers-1.jpeg)  |  ![](./assets/posts/myro/myo-fingers-2.jpeg)
+![](../assets/posts/myro/myo-fingers-1.jpeg)  |  ![](../assets/posts/myro/myo-fingers-2.jpeg)
 
 - [Adafruit 9 DOF IMU Fusion Breakout](https://www.tenettech.com/product/adafruit-9-dof-orientation-imu-fusion-breakout-bno085-bno080-stemma-qt-qwiic) — The best in class 9 Axis motion tracker.
 
