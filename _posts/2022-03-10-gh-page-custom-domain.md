@@ -5,12 +5,12 @@ date: 2022-03-10
 tags:
   - Github
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/gh-llama.png
+feature: assets/featured/gh-llama-2.png
 avatar: assets/profile.jpeg
 category: Code on the Road 🤖
 ---
 
-<img src="./assets/featured/gh-llama.png" /> 
+<img src="./assets/featured/gh-llama-2.png" /> 
 <p style="text-align: center;">Let's get the website up! — Drama llama.</p>
 
 ## Configuration
