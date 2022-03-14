@@ -31,6 +31,24 @@ An Convex Hull incremental algorithm maintains the current convex hull (`CH`) of
 
 An instance of violating the correctness properties of the algorithm. Consider a sequence: `p1, p2, p3, . . .` of points such that the first three points form a counter-clockwise triangle, and the insertion of some later point leads to a violation of a correctness property (because of floating-point). The examples that resulted in a violation always involve nearly or truly collinear points; to be clear, sufficiently non-collinear points did not cause any problems. Although this may seem that the examples are unrealistic, it mostly depends on the requirement of tolerable rounding errors as point sets may contain nearly collinear points or truly collinear points, which become nearly collinear by conversion to floating-point representation.
 
+## Geometry of Float-Orientation
+
+Three points `p = (px, py)`, `q = (qx, qy)`, and `r = (rx, ry)` in the plane lie on a same line or form a left or right turn.
+
+The orientation of the triple `(p, q, r)` is defined by:
+
+```
+orientation(p, q, r) = sign((qx − px)(ry − py)−(qy − py)(rx − px)).
+```
+
+However, for floating-point arithmetic, because of the possible round-off errors, there are three ways in which the result of `float_orient` could differ from the correct orientation:
+
+- Rounding to zero: Misclassify `+` or `−` as `0`
+- Perturbed zero: Misclassify `0` as `+` or `−`
+- Sign inversion: Misclassify `+` as `−` or vice-versa.
+
+`float_orient`, in other words, triple points are classified as left-turns, right-turns, or collinear.
+
 ## Failure 1: A point outside the current hull sees no edge of the current convex hull
 
 Consider the set of points:
@@ -107,7 +125,7 @@ float orient(p3, p1, p4) < 0 (??)
 ```
 
 <img src="./assets/posts/convex-hull-failure-2.png" /> 
-<p style="text-align: center;">Figure 2: Schematic view of Failure 3: The point `p4` sees all edges of the triangle `(p1, p2, p3)`</p>
+<p style="text-align: center;">Figure 2: Schematic view of Failure 3: The point p4 sees all edges of the triangle (p1, p2, p3)</p>
 
 The first three points form a counterclockwise oriented triangle, and according to `float_orient`, the algorithm believes that `p4` can see all edges of the triangle.
 
