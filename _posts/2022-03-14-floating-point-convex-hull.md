@@ -33,7 +33,7 @@ An instance of violating the correctness properties of the algorithm. Consider a
 
 ## Geometry of Float-Orientation
 
-Three points `p = (px, py)`, `q = (qx, qy)`, and `r = (rx, ry)` in the plane lie on a same line or form a left or right turn.
+Three points `p = (px, py)`, `q = (qx, qy)`, and `r = (rx, ry)` in the plane lie on the same line or form a left or right turn.
 
 The orientation of the triple `(p, q, r)` is defined by:
 
