@@ -61,6 +61,8 @@ In order to verify the performance of the hybrid tree structures to retrieve spa
 
 However, the project is a WORK IN PROGRESS ⚠️, and stay tuned for more updates 🚀
 
+<hr>
+
 ## References:
 
 [1] Zhang, X, and Du, Z. (2017). Spatial Indexing. The Geographic Information Science & Technology Body of Knowledge (4th Quarter 2017 Edition), John P. Wilson (ed). DOI: 10.22224/gistbok/2017.4.12
