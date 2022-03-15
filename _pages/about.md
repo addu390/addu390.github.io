@@ -20,7 +20,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 ## Stuff I work on
 - Programming languages: Java, Javascript and Python
 
-- Databases: MySQL, MongoDB, AeroSpike, ElasticSearch, Redis,AWS Redshift, Athena
+- Databases: MySQL, MongoDB, AeroSpike, ElasticSearch, Redis, AWS Redshift, Athena
 
 - Frameworks: Dropwizard, Django, Flask, Angular, Ionic
 
@@ -60,7 +60,8 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 - Database Sharding Bundle: Developed a Java Dropwizard library for application-level horizontal sharding for relational databases, with support for atomicity of transactions, handling nested UnitOfWork and checkpointing.
 
 - Xander: Built a wrapper around simple workflows (AWS SWF) with a decision layer for APIs to be synchronous or asynchronous, primarily to run SQL queries in batches for the enterprise users.
-Licensing as a Service: Developed a service for monetizing and limiting user exploitation of the application utilizing Python Django to float the application and Redis for database caching.
+
+- Licensing as a Service: Developed a service for monetizing and limiting user exploitation of the application utilizing Python Django to float the application and Redis for database caching.
 
 ### Full Stack Developer; Techleet Infosystems, Bengaluru, Karnataka (2017-11 - 2018-07)
 
