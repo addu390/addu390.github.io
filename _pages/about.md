@@ -12,6 +12,9 @@ permalink: /about/
         <span style="color: dodgerblue;">
             <i class="ml-4 fas fa-map-marked-alt" aria-hidden="true"></i>
         </span> Anywhere in Canada
+        <span> &nbsp; &nbsp;
+            <a href="{{site.url}}/assets/resume.pdf" download>Download Resume</a>
+        </span>
     </subtitle>
 </div>
 
