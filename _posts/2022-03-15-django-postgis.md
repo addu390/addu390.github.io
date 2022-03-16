@@ -183,6 +183,10 @@ Finally, head to `http://localhost:8000/admin`, enter the username and password,
 To search for trips for `source_location` within a radius
 
 ```
+from django.contrib.gis.geos import Point
+from django.contrib.gis.measure import Distance
+from .models import Trip
+
 def get_trips(latitude, longitude, radius):
     point = Point(latitude, longitude)
     trips = Trip.objects.filter(source_location__distance_lt=(point, Distance(km=radius)))
