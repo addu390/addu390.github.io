@@ -1,4 +1,6 @@
 ---
+title: "ETL Pipeline"
+layout: post
 tags: ETL
 ---
 

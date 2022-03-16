@@ -1,4 +1,6 @@
 ---
+title: "Meme Copyrights"
+layout: post
 tags: Copyright
 ---
 

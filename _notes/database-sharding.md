@@ -1,4 +1,6 @@
 ---
+title: "Database Sharding"
+layout: post
 tags: Database
 ---
 

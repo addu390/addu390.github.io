@@ -1,4 +1,5 @@
 ---
+title: "Anomaly Detection"
 layout: post
 tags: Monitoring
 ---

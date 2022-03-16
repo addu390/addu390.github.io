@@ -1,4 +1,6 @@
 ---
+title: "Jenkins Test Pipeline"
+layout: post
 tags: Testing
 ---
 
