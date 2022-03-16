@@ -15,11 +15,15 @@ category: Django Rango
 <img src="./assets/featured/geo-django-popeye.png" /> 
 <p style="text-align: center;">One spatial point to an other — Popeye the Sailor.</p>
 
-In a prior post, the experiment on hybrid spatial-index to find spatial data points is worth exploring, but the in-memory implementations and the lack of ability to scale make it almost pointless to use it in real-world applications.
+In a prior post, the experiment on [hybrid spatial-index](https://www.pyblog.xyz/hybrid-spatial-index) to find spatial data points is worth exploring, but the in-memory implementations and the lack of ability to scale make it almost pointless to use it in real-world applications.
 
 In a web application that requires storage and accessing spatial data (co-ordinates), a combination of Django, PostgreSQL (PostGIS), GeoDjango, and Leaflet (or Google Maps) solves most of the preliminary use cases.
 
 ## The Local Set-up
+
+- Install Dependencies
+- Start PostgreSQL Server
+- Configure Django Application
 
 ### Install virtualenv
 
@@ -79,6 +83,8 @@ and replace `<database-username>` and `<database-password>`, `<database-name>` a
 
 ## Django Project Set-up
 
+Configure PostGIS database, INSTALLED_APPS, and Leaflet in `settings.py`
+
 ### DATABASES
 
 Assuming that you already have a Django project handy, in `settings.py`, the `database`:
@@ -127,6 +133,8 @@ Lastly, Leaflet might need `static`; make sure to add the path in `settings.py`:
 
 ### STATIC
 
+`static` file(s) relative path from the root directory:
+
 ```
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -155,24 +163,14 @@ class TripAdmin(LeafletGeoAdmin):
 admin.site.register(Trip, TripAdmin)
 ```
 
-### Run migrations
+### Run migrations, Create a superuser and Start the development server
 
 ```
 python3 manage.py makemigrations
 python3 manage.py migrate
-```
 
-### Create a superuser
-
-```
 python3 manage.py createsuperuser
-```
 
-and enter the username and password
-
-### Start the development server
-
-```
 python3 manage.py runserver
 ```
 
