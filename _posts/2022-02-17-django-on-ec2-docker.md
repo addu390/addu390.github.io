@@ -9,7 +9,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/aws-ec2-django.png
 avatar: assets/profile.jpeg
-category: Django Rango 🚀
+category: Django Rango
 ---
 
 <img src="./assets/featured/aws-ec2-django.png" /> 

@@ -255,7 +255,7 @@ footer .pure-menu-link:hover {
 }
 
 .post-meta a {
-  font-weight: bold;
+  /* font-weight: bold; */
   color: #006eb8;
 }
 
@@ -296,8 +296,10 @@ footer .pure-menu-link:hover {
 }
 
 .archive-links a,
+.post-entry a,
+.archives a,
 .tags a {
-  color: #0086e0;
+  color: #006eb8;
 }
 
 /* AUTHOR */

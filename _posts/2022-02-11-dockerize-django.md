@@ -9,7 +9,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/docker-django.png
 avatar: assets/profile.jpeg
-category: Django Rango 🚀
+category: Django Rango
 ---
 
 <img src="./assets/featured/docker-django.png" /> 

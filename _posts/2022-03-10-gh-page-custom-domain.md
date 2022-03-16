@@ -7,7 +7,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/gh-llama.png
 avatar: assets/profile.jpeg
-category: Code on the Road 🤖
+category: Code on the Road
 ---
 
 <img src="./assets/featured/gh-llama.png" /> 

@@ -9,7 +9,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/hybrid-spatial-index-totoro.png
 avatar: assets/profile.jpeg
-category: Code on the Road 🤖
+category: Code on the Road
 ---
 
 <img src="./assets/featured/hybrid-spatial-index-totoro.png" /> 

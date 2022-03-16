@@ -9,7 +9,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/popeye-convex-hull.png
 avatar: assets/profile.jpeg
-category: Code on the Road 🤖
+category: Code on the Road
 ---
 
 <img src="./assets/featured/popeye-convex-hull.png" /> 

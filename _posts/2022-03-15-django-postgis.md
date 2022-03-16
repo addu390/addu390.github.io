@@ -9,7 +9,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/geo-django-popeye.png
 avatar: assets/profile.jpeg
-category: Code on the Road 🤖
+category: Django Rango
 ---
 
 <img src="./assets/featured/geo-django-popeye.png" /> 

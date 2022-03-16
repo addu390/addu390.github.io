@@ -8,7 +8,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/bob-mdc.png
 avatar: assets/profile.jpeg
-category: Java Lava 🏝
+category: Java Lava
 ---
 
 <img src="./assets/featured/bob-mdc.png" /> 
