@@ -41,7 +41,7 @@ source env/bin/activate
 python3 -m pip install -r requirements.txt
 ```
 
-The `requirements.txt`:
+The contents of `requirements.txt`:
 
 ```
 Django==4.0.2
