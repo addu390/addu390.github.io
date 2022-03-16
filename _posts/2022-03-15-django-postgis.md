@@ -178,6 +178,17 @@ python3 manage.py runserver
 
 Finally, head to `http://localhost:8000/admin`, enter the username and password, and navigate to the model (`Trip`), which has the location fields, to create an entry.
 
+### Code Snippet
+
+To search for trips for `source_location` within a radius
+
+```
+def get_trips(latitude, longitude, radius):
+    point = Point(latitude, longitude)
+    trips = Trip.objects.filter(source_location__distance_lt=(point, Distance(km=radius)))
+    return trips
+```
+
 That's about it! While this is not a complete list of features of GeoDjango, refer to the documentation here: [https://docs.djangoproject.com/en/4.0/ref/contrib/gis/tutorial/#](https://docs.djangoproject.com/en/4.0/ref/contrib/gis/tutorial/#) for more details.
 
 As always, the reference code: [https://github.com/addu390/dedo](https://github.com/addu390/dedo)
