@@ -1,10 +1,10 @@
 title: "PYBLOG"
 email: 390.adesh@gmail.com
 donate_link: https://www.buymeacoffee.com/pyblog
-description: >- # this means to ignore newlines until "baseurl:"
+description: >- 
   On a mission to make software development easy and fun
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://pyblog.xyz" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: ""
+url: "https://pyblog.xyz" 
 repository: addu390/addu390.github.io
 twitter: gooshi_addu
 github: addu390
@@ -30,7 +30,6 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# Build settings
 theme: null
 plugins:
   - jekyll-feed
@@ -40,8 +39,8 @@ permalink: /:title
 
 defaults:
   - scope:
-      path: "" # an empty string here means all files in the project
-      type: "posts" # previously `post` in Jekyll 2.2.
+      path: ""
+      type: "posts"
     values:
       layout: "post"
       author: Adesh Nalpet Adimurthy
@@ -59,8 +58,6 @@ defaults:
       layout: journal-entry
       content-type: journals
 
-# Allows all pages to be put into `_pages` folder
-# for easier navigation and better SEO.
 collections:
   pages:
     output: true
@@ -72,7 +69,6 @@ collections:
     output: true
     permalink: /journals/:title
 
-# Exclude from processing.
 exclude:
   - ".jekyll-cache"
   - "Gemfile"

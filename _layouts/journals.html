@@ -44,10 +44,10 @@ layout: default
 
                 <div class="post-description">
                     <p class="md-display">
-                        <em>{{ post.expert | strip_html | escape | truncate: 400}}</em>
+                        <em>{{ post.excerpt | strip_html | escape | truncate: 400}}</em>
                     </p>
                     <p class="sm-display">
-                        <em>{{ post.expert | strip_html | escape | truncate: 300}}</em>
+                        <em>{{ post.excerpt | strip_html | escape | truncate: 300}}</em>
                     </p>
                 </div>
                 <a href="{{ post.url | relative_url }}" class="black-button">Read more</a>

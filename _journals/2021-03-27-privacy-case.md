@@ -9,7 +9,7 @@ author: Adesh Nalpet Adimurthy
 feature: assets/featured/3d-print-privacy-case.png
 avatar: assets/profile.jpeg
 category: Leisure Seizure 🤪
-expert: As an individual, even if I’m convinced to cover your smartphone camera, there are not many alternatives available in the market to cover both the front and rear cameras of the smartphone. One way is to use a camera patch/slider and a rear camera protection caset ...
+excerpt: As an individual, even if I’m convinced to cover your smartphone camera, there are not many alternatives available in the market to cover both the front and rear cameras of the smartphone. One way is to use a camera patch/slider and a rear camera protection caset ...
 ---
 
 <img src="../assets/featured/3d-print-privacy-case.png" /> 
