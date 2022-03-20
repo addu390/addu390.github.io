@@ -7,7 +7,7 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/popeye/luffy-popeye.png
 avatar: assets/profile.jpeg
-category: Django Rango
+category: Comics
 ---
 
 <img src="./assets/featured/popeye/luffy-popeye.png" /> 
