@@ -5,18 +5,18 @@ date: 2022-03-20
 tags:
   - Popeye
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/django-luffy-popeye.png
+feature: assets/featured/popeye/luffy-popeye.png
 avatar: assets/profile.jpeg
 category: Django Rango
 ---
 
-<img src="./assets/featured/django-luffy-popeye.png" /> 
+<img src="./assets/featured/popeye/luffy-popeye.png" /> 
 <p style="text-align: center;">Luffy vs Popeye.</p>
 
-<img src="./assets/featured/hulk-popeye.png" /> 
+<img src="./assets/featured/popeye/hulk-popeye.png" /> 
 <p style="text-align: center;">Hulk vs Popeye.</p>
 
-<img src="./assets/featured/superman-popeye.png" /> 
+<img src="./assets/featured/popeye/superman-popeye.png" /> 
 <p style="text-align: center;">Superman vs Popeye.</p>
 
 
