@@ -13,7 +13,7 @@ category: Comics
 <img src="./assets/featured/popeye/luffy-popeye.png" /> 
 <p style="text-align: center;">Luffy vs Popeye.</p>
 
-<img src="./assets/featured/popeye/one-punch-popeye.png" /> 
+<img src="./assets/featured/popeye/saitama-popeye.png" /> 
 <p style="text-align: center;">Saitama vs Popeye.</p>
 
 <img src="./assets/featured/popeye/goku-popeye.png" /> 
