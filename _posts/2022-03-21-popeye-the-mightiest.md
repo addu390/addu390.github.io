@@ -13,6 +13,9 @@ category: Comics
 <img src="./assets/featured/popeye/luffy-popeye.png" /> 
 <p style="text-align: center;">Luffy vs Popeye.</p>
 
+<img src="./assets/featured/popeye/goku-popeye.png" /> 
+<p style="text-align: center;">Goku vs Popeye.</p>
+
 <img src="./assets/featured/popeye/hulk-popeye.png" /> 
 <p style="text-align: center;">Hulk vs Popeye.</p>
 
