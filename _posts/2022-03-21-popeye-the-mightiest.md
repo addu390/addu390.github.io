@@ -22,7 +22,7 @@ category: Comics
 <img src="./assets/featured/popeye/wb/goku-popeye.png" /> 
 <p style="text-align: center;">Goku vs Popeye.</p>
 
-<img src="./assets/featured/popeye/hulk-popeye.png" /> 
+<img src="./assets/featured/popeye/wb/hulk-popeye.png" /> 
 <p style="text-align: center;">Hulk vs Popeye.</p>
 
 <img src="./assets/featured/popeye/wb/superman-popeye.png" /> 
