@@ -10,22 +10,22 @@ avatar: assets/profile.jpeg
 category: Comics
 ---
 
-<img src="./assets/featured/popeye/luffy-popeye.png" /> 
+<img src="./assets/featured/popeye/wb/luffy-popeye.png" /> 
 <p style="text-align: center;">Luffy vs Popeye.</p>
 
-<img src="./assets/featured/popeye/ben-grimm-popeye.png" /> 
+<img src="./assets/featured/popeye/wb/ben-grimm-popeye.png" /> 
 <p style="text-align: center;">Ben Grimm vs Popeye.</p>
 
-<img src="./assets/featured/popeye/saitama-popeye.png" /> 
+<img src="./assets/featured/popeye/wb/saitama-popeye.png" /> 
 <p style="text-align: center;">Saitama vs Popeye.</p>
 
-<img src="./assets/featured/popeye/goku-popeye.png" /> 
+<img src="./assets/featured/popeye/wb/goku-popeye.png" /> 
 <p style="text-align: center;">Goku vs Popeye.</p>
 
 <img src="./assets/featured/popeye/hulk-popeye.png" /> 
 <p style="text-align: center;">Hulk vs Popeye.</p>
 
-<img src="./assets/featured/popeye/superman-popeye.png" /> 
+<img src="./assets/featured/popeye/wb/superman-popeye.png" /> 
 <p style="text-align: center;">Superman vs Popeye.</p>
 
 
