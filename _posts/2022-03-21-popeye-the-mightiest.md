@@ -13,6 +13,9 @@ category: Comics
 <img src="./assets/featured/popeye/wb/luffy-popeye.png" /> 
 <p style="text-align: center;">Luffy vs Popeye.</p>
 
+<img src="./assets/featured/popeye/wb/ralph-popeye.png" /> 
+<p style="text-align: center;">Wreck it Ralph vs Popeye.</p>
+
 <img src="./assets/featured/popeye/wb/ben-grimm-popeye.png" /> 
 <p style="text-align: center;">Ben Grimm vs Popeye.</p>
 
