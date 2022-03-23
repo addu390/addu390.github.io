@@ -31,6 +31,9 @@ category: Comics
 <img src="./assets/featured/popeye/wb/superman-popeye.png" /> 
 <p style="text-align: center;">Superman vs Popeye.</p>
 
+<img src="./assets/featured/popeye/wb/bluto-popeye.png" /> 
+<p style="text-align: center;">Bluto vs Popeye.</p>
+
 
 Work In Progress.
 Until then, who do you think is going to win? 🤔
