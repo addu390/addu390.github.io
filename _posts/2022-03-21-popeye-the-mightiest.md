@@ -6,7 +6,6 @@ tags:
   - Popeye
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/popeye/luffy-popeye.png
-avatar: assets/profile.jpeg
 category: Comics
 ---
 

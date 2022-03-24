@@ -8,7 +8,6 @@ tags:
   - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/geo-django-popeye.png
-avatar: assets/profile.jpeg
 category: Django Rango
 ---
 

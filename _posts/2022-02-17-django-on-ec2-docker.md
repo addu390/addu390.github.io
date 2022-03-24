@@ -8,7 +8,6 @@ tags:
   - Docker
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/aws-ec2-django.png
-avatar: assets/profile.jpeg
 category: Django Rango
 ---
 

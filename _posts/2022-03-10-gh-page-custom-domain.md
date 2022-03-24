@@ -6,7 +6,6 @@ tags:
   - Github
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/gh-llama.png
-avatar: assets/profile.jpeg
 category: Code on the Road
 ---
 

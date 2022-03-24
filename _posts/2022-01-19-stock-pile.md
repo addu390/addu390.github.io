@@ -7,7 +7,6 @@ tags:
   - Java
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/stock-pile.png
-avatar: assets/profile.jpeg
 category: Java Lava
 ---
 

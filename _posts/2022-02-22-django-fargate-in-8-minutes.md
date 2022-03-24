@@ -9,7 +9,6 @@ tags:
   - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/aws-fargate-django.png
-avatar: assets/profile.jpeg
 category: Django Rango
 ---
 

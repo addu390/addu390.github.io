@@ -8,7 +8,6 @@ tags:
   - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/external-sorting-totoro.png
-avatar: assets/profile.jpeg
 category: Code on the Road
 ---
 
