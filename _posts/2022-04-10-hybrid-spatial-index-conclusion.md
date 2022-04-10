@@ -103,7 +103,7 @@ Note: The above improvement or reduction percentages depend on the input dataset
 
 After conducting the experiments for several scenarios for varying densities and different quantities of points and rectangles, some of the noticeable results are as follows:
 
-#### 5.3.1 Points
+### 5.3.1 Points
 
 <img src="./assets/posts/spatial-index/5-20000.png" /> 
 <p style="text-align: center;">Figure 2: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 100 to 20,000 points.</p>
@@ -116,27 +116,27 @@ After conducting the experiments for several scenarios for varying densities and
 <img src="./assets/posts/spatial-index/d-5-25000.png" /> 
 <p style="text-align: center;">Figure 4: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 25,000 points with densities from 0 to 10.</p>
 
-#### 5.3.2 Rectangles
+### 5.3.2 Rectangles
 
 When the spatial data has only rectangles, r-kd and quad-kd trees are a mere representation of r-tree and quad-tree, respectively. Hence, for rectangles, the comparison is between quad and r-tree without hybrid trees.
 
 <img src="./assets/posts/spatial-index/2-80000.jpg" /> 
 <p style="text-align: center;">Figure 5: Comparison of search and construct/insert performance of quad-tree and r-tree containing 100 to 80,000 rectangles.</p>
 
-#### 5.3.3 Points and Rectangles
+### 5.3.3 Points and Rectangles
 
 Because of the known complexities of implementing kd-trees for polygons, the kd-tree is omitted from the comparison when the spatial data contains rectangles.
 
 Note: For hybrid trees (quad-kd and r-kd), the points are within ~32 bounding rectangles spread across the area.
 
 <img src="./assets/posts/spatial-index/4-20000.png" /> 
-<p style="text-align: center;">Figure 6: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 100 to 20,000 points and rectangles.</p>
+<p style="text-align: center;">Figure 6: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 100 to 20,000 points and rectangles.</p>
 
 <img src="./assets/posts/spatial-index/4-80000.png" /> 
-<p style="text-align: center;">Figure 7: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 100 to 80,000 points and rectangles.</p>
+<p style="text-align: center;">Figure 7: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 100 to 80,000 points and rectangles.</p>
 
 <img src="./assets/posts/spatial-index/d-4-50000.png" /> 
-<p style="text-align: center;">Figure 8: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 50,000 points with densities from 0 to 10.</p>
+<p style="text-align: center;">Figure 8: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 50,000 points with densities from 0 to 10.</p>
 
 Note: After trial and error, the pre-defined maximum capacity for bounding rectangles for quad and r trees is ~450, and a depth of 150 levels for quad-trees.
 
@@ -149,7 +149,7 @@ A high-level overview of a series of tasks completed for the project:
 - Implementing tree data structures: quad-tree, r-tree, and kd-tree and the hybrid trees: quad-kd and r-kd trees.
 - Generating the input dataset to compare all the five tree structures for different scenarios, some of the prominent input parameters are:
     - Quantity of spatial data (Number of points and rectangles).
-    - Density of spatial data (how closely the data points to each other).
+    - Density of spatial data (how closely the data points are to each other).
     - Number of bounding rectangles within the given area in hybrid trees.
     - Maximum capacity of bounding rectangle/quadrant (branching factor) to decide when to split.
 - Integrating with a lightweight plotting library to visualize the results. 
