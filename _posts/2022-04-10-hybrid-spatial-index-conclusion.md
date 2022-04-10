@@ -38,7 +38,7 @@ KD-trees are space partitioning data structures; despite the varying density of 
 
 A hybrid tree is a combination of spatial data structures that combines the features of two or more spatial structures for the best interest of improving the performance. 
 
-In the real world, the spatial objects are not evenly scattered; instead, the spatial objects are a combination of complex polygons and points concentrated in some areas (varying density). Hence, one possible approach to improve the search performance is using a combination of spatial data structures (hybrid trees) that perform well with polygons and points. So far, we know that quad-trees and r-trees perform well for polygons, and kd-trees perform the best with points. Hence, using quad/r-tree for polygons and kd-tree for points is a viable option to explore. However, the worst-case time complexity is nearly linear and depends on the branching factor, the number of points and polygons, the depth of the region tree, and the dimension.
+In the real world, the spatial objects are not evenly scattered; instead, the spatial objects are a combination of complex polygons and points concentrated in some areas (varying density). Hence, one possible approach to improve the search performance is using a combination of spatial data structures (hybrid trees) that perform well with polygons and points. So far, we know that quad-trees and r-trees perform well for polygons, and kd-trees perform the best with points. Hence, using quad/r-tree for polygons and kd-tree for points is a viable option to explore with search time complexity, a combination of r-tree/quad-tree (from 2.1 and 2.2) to search for a polygon/bounding rectangle and an additional search time of kd-tree (from 2.3) for points.
 
 The rest of the paper compares the search and construction performance of the r-tree, quad-tree, and kd-tree, then introduces and discusses the hybrid spatial data structures, quad-kd tree, and r-kd tree.
 
@@ -47,12 +47,11 @@ The rest of the paper compares the search and construction performance of the r-
 
 ## 3. Known results
 
-Section 2.1 to 2.3 discusses the properties of the quad, kd, and r trees, which form the base for the project survey.
-The experimental results comparing quad, kd, and quad-kd trees for ten points and ten polygons in different areas in the GIS map:
-
-- For points: The search time in the quad-kd tree is reduced by 56.6% compared to kd-tree and 45% compared to quad-tree.
-- For polygons: The search time in the quad-kd tree is reduced by 71.4% compared to quad-tree and 55.6% compared to kd-tree.
-- For points and polygons from a GIS map: The search time in the quad-kd tree is reduced by 67.47% compared to kd-tree and 51.3% compared to quad-tree.
+- Sections 2.1 to 2.4 discusses the properties of the quad, kd, and r trees, which form the base for the project survey.
+- The experimental results comparing quad, kd, and quad-kd trees for ten points and ten polygons in different areas in the GIS map:
+  - For points: The search time in the quad-kd tree is reduced by 56.6% compared to kd-tree and 45% compared to quad-tree.
+  - For polygons: The search time in the quad-kd tree is reduced by 71.4% compared to quad-tree and 55.6% compared to kd-tree.
+  - For points and polygons from a GIS map: The search time in the quad-kd tree is reduced by 67.47% compared to kd-tree and 51.3% compared to quad-tree.
 - Quad-tree, r-tree and qr-tree are found to deplete search performance when the overlapping of the data increases.
 - k-d-trees are elegant when bulk-loaded, and modifying or rebalancing a kd-tree is non-trivial; however, r and quad trees do not suffer from this.
 
