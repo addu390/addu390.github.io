@@ -30,6 +30,9 @@ category: Comics
 <img src="./assets/featured/popeye/wb/superman-popeye.png" /> 
 <p style="text-align: center;">Superman vs Popeye.</p>
 
+<img src="./assets/featured/popeye/wb/asterix-popeye.png" /> 
+<p style="text-align: center;">Asterix vs Popeye.</p>
+
 <img src="./assets/featured/popeye/wb/bluto-popeye.png" /> 
 <p style="text-align: center;">Bluto vs Popeye.</p>
 
