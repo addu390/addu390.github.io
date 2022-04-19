@@ -8,7 +8,6 @@ tags:
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/ironman-myro.png
 category: Leisure Seizure 🤪
-excerpt: MYRO initially started as a wearable motion tracking unit, which eventually evolved to use it with prosthetics (Final year project at Dayananda Sagar College of Engineering) — I launched MYRO (Myro Labz Pvt Ltd) back in August 2017. For more details regarding ...
 ---
 
 <img src="../assets/featured/ironman-myro.png" /> 
