@@ -4,10 +4,10 @@ permalink: /archive
 title: Archive of All Collections
 ---
 
-**Note:** This page contains all materials in `posts`, `notes`, and `projects`.
+**Note:** This page contains all materials in `posts` and `notes`.
 
 {% for collection in site.collections %}
-{% if collection.label != "pages" %}
+{% if collection.label != "pages" and collection.label != "journals" %}
 
   <h2>Entries from {{ collection.label | capitalize }}</h2>
   <ul>
