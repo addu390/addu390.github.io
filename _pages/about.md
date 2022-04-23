@@ -20,7 +20,7 @@ permalink: /about/
 
 Hey 👋 I'm a computer science graduate student at Dalhousie University, a budding illustrator, and previously a backend engineer at Walmart's PhonePe and YC ClearTax, here to share my experiences, tutorials, and projects.
 
-## Tools and Technologies
+## Skills
 - Programming languages: Java, Javascript and Python
 
 - Databases: MySQL, MongoDB, AeroSpike, ElasticSearch, Redis, AWS Redshift, Athena
@@ -31,12 +31,12 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Other Technologies: Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka
 
-## Schooling so far
+## Education
 - Master of Applied Computer Science, Dalhousie University - Halifax, NS 🇨🇦
 
 - Bachelor of Engineering: Electronics And Communication, Visvesvaraya Technological University - Karnataka, India
 
-## Missions
+## Work History
 
 ### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University (2022-04 - Present)
 ### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University (2021-12 - 2022-04)
@@ -67,13 +67,13 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Licensing as a Service: Developed a service for monetizing and limiting user exploitation of the application utilizing Python Django to float the application and Redis for database caching.
 
-### Full Stack Developer; Techleet Infosystems, Bengaluru, Karnataka (2017-11 - 2018-07)
+### Full Stack Developer Intern; Techleet Infosystems, Bengaluru, Karnataka (2017-11 - 2018-07)
 
 - Ribbn (Uber for Ambulance): Developed an Ionic-Angular-Django application to book an ambulance and fulfill post-hospitalization services such as doctor's consultation and home-nursing along with location analytics for efficient fleet management and cost optimization.
 
 - Xeta Logistics: Built a logistics billing and goods tracking application with provision for GST E-way bill generation leveraging Laravel-Angular and Computer Vision techniques for text extraction and redaction of documents.
 
-## Reasons to Be Proud of
+## Accomplishments
 
 - Successfully completed the Dal Innovates Collide - Exploring Entrepreneurship (Mentorship Program)
 
