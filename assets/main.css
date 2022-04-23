@@ -206,6 +206,11 @@ footer .pure-menu-link:hover {
   padding: 2em 1em 0;
 }
 
+.posts {
+  margin: 0 auto;
+  max-width: 80%;
+}
+
 .post,
 .post-entry {
   padding-bottom: 2em;
