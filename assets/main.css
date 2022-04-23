@@ -450,8 +450,18 @@ footer ul {
 /* NAVIGATION */
 
 .menu {
-  margin: 20px auto;
+  padding: 15px 15px 0px 15px;
   text-align: center;
+  position: fixed;
+  background-color: #fff;
+  width: 66.67%;
+}
+
+.menu > div
+{
+    text-align:center;
+    display:inline-block;    
+    margin-bottom: 10px;
 }
 
 .menu a {
@@ -509,6 +519,10 @@ footer ul {
 }
 
 /* SEARCH */
+
+#search {
+  padding-top: 50px;
+}
 
 #search,
 .search_res p,
