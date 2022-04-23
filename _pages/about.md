@@ -20,7 +20,7 @@ permalink: /about/
 
 Hey 👋 I'm a computer science graduate student at Dalhousie University, a budding illustrator, and previously a backend engineer at Walmart's PhonePe and YC ClearTax, here to share my experiences, tutorials, and projects.
 
-## Stuff I work on
+## Tools and Technologies
 - Programming languages: Java, Javascript and Python
 
 - Databases: MySQL, MongoDB, AeroSpike, ElasticSearch, Redis, AWS Redshift, Athena
@@ -38,9 +38,10 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ## Missions
 
-### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University (2021-10 - Current)
+### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University (2022-04 - Present)
+### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University (2021-12 - 2022-04)
 
-- Lab Instructions: Developing lab instructions relevant to the topics covered in the class for graduate and undergraduate students, primarily divided into two sections: algorithm development and analysis.
+- Developed lab instructions relevant to the topics covered in the class for graduate and undergraduate students, primarily divided into two sections: algorithm development and analysis.
 
 - Conducted weekly labs and office hours to assist with lab procedures and assignments. Lastly, marking the assignments with feedback covering areas of improvement and strengths.
 
@@ -74,7 +75,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ## Reasons to Be Proud of
 
-- Currently enrolled in the Dal Innovates Collide Exploring Entrepreneurship - Mentorship Program
+- Successfully completed the Dal Innovates Collide - Exploring Entrepreneurship (Mentorship Program)
 
 - Won the "Halifax Innovation Challenge, Extra Mile Award" sponsored by RBC and IBM. 
 
