@@ -51,7 +51,7 @@ Disclaimer: SDK(s) to manage wrkflows could be present already, but I could not 
 
 To have better control over the different components and processes in a product, one of the must-have and go-to approaches is "as-code" (example: infrastructure as code), which translates to version control, review process, and ownership.
 
-Let's take an example of "Claims & Request Processing" in Java with an additional change to demonstrate parallel workflow:
+Let's take an example of [Claims & Request Processing](https://wrk.com/wrkflows/claims-and-request-processing/) in Java with an additional change to demonstrate parallel workflow:
 
 ```
 WrkFlow wrkflow = SequentialWrkflow()
@@ -69,7 +69,7 @@ WrkFlow wrkflow = SequentialWrkflow()
         .build();
 ```
 
-Where `VerifyEligibility`, `VerifyAmount`, `ClassifyExpense`, `EmailToFinance` and `EmailToEmployee` are activities, the building block of a wrkflow, an activity by itself can be a wrkflow. These activities extend a predefined activity, which is one of the pre-configured wrk-actions. Furthermore, workflow definitions can be YML or JSON files instead of java objects.
+Where `VerifyEligibility`, `VerifyAmount`, `ClassifyExpense`, `EmailToFinance` and `EmailToEmployee` are activities/actions, the building block of a wrkflow, an activity by itself can be a wrkflow. These activities extend a predefined activity, which is one of the pre-configured wrk-actions. Furthermore, wrkflow definitions can be YML or JSON files instead of java objects.
 
 ## 3. Why work at Wrk?
 
@@ -77,9 +77,9 @@ Working in a company is a two-way street, the main reason why I want to work at 
 
 <b>Addressing the right problem</b>: With more and more companies coming into the digital space and existing companies giving at most importance to customer experience, "automation" is the way to scale and solve. Every company out there has a workflow. The no-code/less-code approach to defining these workflow(s) so companies can work towards the betterment of the kernel of their product is the way forward for many.
 
-That said, the need for innovation and skilling-up at Wrk goes unsaid. A checklist of Fast-growing, customer-first, remote-first - Wrk tops them all.
+That said, the need for constant innovation and skilling-up at Wrk goes unsaid. A checklist of Fast-growing, customer-first, remote-first - Wrk tops them all.
 
-## 4. Bio
+## 4. About me
 
 - Resume: [pyblog.xyz/about](https://pyblog.xyz/about)
 - Github: [@addu390](https://github.com/addu390)
