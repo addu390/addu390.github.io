@@ -47,11 +47,13 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ### Software Engineer; PhonePe Private Limited (Acquired by Walmart), Bengaluru, Karnataka (2019-12 - 2021-07)
 
-- User Personalization and Platformization: Built a Dropwizard framework to enable dynamic screens with server-driven UI, thereby taking away the need for frequent mobile application releases. Extended the project to allow A/B testing and user personalization.
-
 - E-Nach (Automated Payment Services): Developed the Systematic Investment Plan (SIP) feature to schedule automated payments through E-Nach and UPI mandates or set-up reminders for investments, and handle over 1.2 lakh transactions per day.
 
 - Know Your Customer (KYC) Verification: Rewrote KYC submission state-machine for user identity verification by parsing proof documents such as Drivers License, Aadhar Card, and Bank Statements, along with a selfie video verification which reduced false negatives from 4% to 0.3%
+
+- Platformization: Built a Dropwizard framework to enable dynamic screens with serverdriven UI, thereby taking away the need for frequent mobile application releases and extended the project to facilitate A/B testing
+
+- User Personalization: Developed a lightweight rules engine to evaluate conditions and execute actions based on user profile and activity, resulting in a ~45% increase in conversion to invest in systematic plan schemes.
 
 ### Software Engineer II; Clear (Formerly ClearTax), Bengaluru, Karnataka (2018-07 - 2019-12)
 
