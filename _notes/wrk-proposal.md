@@ -1,6 +1,7 @@
 ---
 title: "Work at Wrk"
 layout: post
+tags: Internship
 ---
 
 Hey 👋 I'm a Computer Science graduate student looking for a <b>full-time internship in Backend Engineering from August 2022</b>. I previously worked as a Backend Engineer in Walmart's PhonePe and YC ClearTax. For a better representation of my skills and experiences, my resume: [pyblog.xyz/about](https://pyblog.xyz/about).
