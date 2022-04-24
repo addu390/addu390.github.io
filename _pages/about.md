@@ -38,12 +38,18 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ## Work History
 
-### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University (2022-04 - Present)
-### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University (2021-12 - 2022-04)
+### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University, Halifax, NS (2022-04 - Present)
+### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University, Halifax, NS (2021-12 - 2022-04)
 
 - Developed lab instructions relevant to the topics covered in the class for graduate and undergraduate students, primarily divided into two sections: algorithm development and analysis.
 
 - Conducted weekly labs and office hours to assist with lab procedures and assignments. Lastly, marking the assignments with feedback covering areas of improvement and strengths.
+
+### Computer Science Tutor; SuperProf, Halifax, NS (2021-10 - 2021-12)
+
+- Subject(s): CSCI 3110 - Design and Analysis of Algorithms.
+
+- I closely worked with 3 students to improve their hold on Data Structures and Algorithms. But, with all honesty, it was a 2-way street, where I got to learn a lot too.
 
 ### Software Engineer; PhonePe Private Limited (Acquired by Walmart), Bengaluru, Karnataka (2019-12 - 2021-07)
 
