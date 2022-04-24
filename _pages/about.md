@@ -49,7 +49,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Subject(s): CSCI 3110 - Design and Analysis of Algorithms.
 
-- I closely worked with 3 students to improve their hold on Data Structures and Algorithms. But, with all honesty, it was a 2-way street, where I got to learn a lot too.
+- I closely worked with 3 students to improve their hold on Data Structures and Algorithms. But, with all honesty, it was a 2-way street, where I learned a lot too, both DSA and effective communication.
 
 ### Software Engineer; PhonePe Private Limited (Acquired by Walmart), Bengaluru, Karnataka (2019-12 - 2021-07)
 
