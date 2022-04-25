@@ -63,15 +63,15 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ### Software Engineer II; Clear (Formerly ClearTax), Bengaluru, Karnataka (2018-07 - 2019-12)
 
-- Load Test Framework: Developed a framework to capture and replay HTTP traffic at a higher speed in a test environment and published performance results with Grafana and Spinnaker dashboards.
+- Load Test Framework: Developed a framework to capture and replay HTTP traffic at a higher speed in a test environment and published performance results to Grafana and Spinnaker dashboards, reducing the set-up time from >60 minutes to ~10 minutes
 
-- Parallel Test Framework: Reduced test execution time from 65 minutes to 14 minutes using Jenkins and AWS Spot Fleet with ANT scripts to aggregate test results, thereby reducing deployment time and cost from $300 to ~$20 a month.
+- Parallel Test Framework: Reduced test execution time from 65 minutes to ~14 minutes using Jenkins and AWS Spot Fleet with ANT scripts to aggregate test results, reducing deployment time and cost from $300 to $20 a month.
 
-- ETL (Extract, Transform, and Load) Pipeline: Set-up a pipeline to combine data across multiple database shards by streaming MySQL bin logs using Kafka and offload data to Hive-on-HBase for Business analytics and reports.
+- ETL (Extract, Transform, and Load) Pipeline: Set up a pipeline to combine data across multiple database shards by streaming MySQL bin logs using Kafka, leading to a 60%+ improvement in query-time.
 
-- Database Sharding Bundle: Developed a Java Dropwizard library for application-level horizontal sharding for relational databases, with support for atomicity of transactions, handling nested UnitOfWork and checkpointing.
+- Database Sharding Bundle: Developed a Java Dropwizard library for application-level horizontal sharding for relational databases, with support for atomicity of transactions, handling nested UnitOfWork, and checkpointing.
 
-- Xander: Built a wrapper around simple workflows (AWS SWF) with a decision layer for APIs to be synchronous or asynchronous, primarily to run SQL queries in batches for the enterprise users.
+- Xander: Built a wrapper around simple workflows (AWS SWF) with a decision layer for APIs to be synchronous or asynchronous, reducing failure rate from ~20% to NIL.
 
 - Licensing as a Service: Developed a service for monetizing and limiting user exploitation of the application utilizing Python Django to float the application and Redis for database caching.
 
