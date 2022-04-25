@@ -4,22 +4,20 @@ layout: post
 tags: Internship
 ---
 
-Hey 👋 I'm a Computer Science graduate student looking for a <b>full-time internship in Backend Engineering from August 2022</b>. I previously worked as a Backend Engineer in Walmart's PhonePe and YC ClearTax. For a better representation of my skills and experiences, my resume: [pyblog.xyz/about](https://pyblog.xyz/about).
+Hey 👋 I'm a Computer Science graduate student looking for a <b>full-time internship as a Backend Engineer from August 2022</b>. I previously worked as a Backend Engineer in Walmart's PhonePe and YC ClearTax. For a better representation of my skills and experiences, my resume: [pyblog.xyz/about](https://pyblog.xyz/about).
 
 ## 1. Reasons to hire me
 
-- I have the <b>skill and experience</b> to work in fast-growth and high-scale environments. For instance, at PhonePe, handling a scale to serve over [370+ million](https://www.phonepe.com/pulse/explore/transaction/2021/4/) B2C and B2B users in the fintech space primarily meant automating the legacy processes, managing 1000s of servers, and working with over a dozen micro-services among the 300+
+- I have the <b>skill and experience</b> to work in a fast-growth high-scale work environment. For instance, at PhonePe, handling a scale to serve over [370+ million](https://www.phonepe.com/pulse/explore/transaction/2021/4/) B2C and B2B users in the fintech space primarily meant automating the legacy processes, managing 1000s of servers, and working with over a dozen micro-services among the 300+
 - I am open to working <b>anywhere in Canada</b> or remotely.
 - While improving technical skills goes unsaid, I constantly work towards my <b>soft skills</b> (Certified in "Business Communications for Researchers" and recently completed the "Exploring Entrepreneurship - Mentorship Program").
-- I'm a budding <b>open source contributor</b>; one of the most recent projects is "Building a World Cartogram" for "Our World in Data." The prototype: [population cartogram](https://www.pyblog.xyz/population-cartogram/).
+- I'm a budding <b>open source contributor</b> and strictly abide by writing clean code. One of the most recent open source projects is "Building a World Cartogram" for "Our World in Data." The prototype: [population cartogram](https://www.pyblog.xyz/population-cartogram/).
 
 ## 2. The Proposal
 
 After understanding Wrk as an outsider, I came up with a proposal to simplify integration with Wrk; Sections <b>2.1 and 2.2</b>
 
 ### 2.1. Software Development Kit (SDK)
-
-Disclaimer: SDK(s) to manage wrkflows could be present already, but I could not find resources to affirm the same. 
 
 To have better control over the different components and processes in a product, one of the must-have and go-to approaches is "as-code" (example: infrastructure as code), which translates to version control, review process, and ownership.
 
@@ -50,9 +48,9 @@ WrkFlow wrkflow = SequentialWrkFlow()
 Where `VerifyEligibilityWrkAction`, `VerifyAmountWrkAction`, `EmailWrkAction` and `ClassifyExpenseWrkAction` are activities/actions, the building block of a wrkflow and extends the pre-configured wrk-actions such as `ApiWrkAction` and `EmailWrkAction`, in this context an activity/action by itself can be a Wrkflow. The `WrkAction` internally makes API calls to the Wrk server with the required parameters (The typical SDK way of making API calls).
 
 <b>2.1.1. Advantages</b>:
-- Offers easy maintenance of Wrkflows (to clients).
+- Offers easy maintenance of Wrkflows (for clients).
 - Integration with existing systems is easier (as simple as adding a dependency and defining workflows).
-- Clients can have a layer of abstraction on Wrkflows, thereby giving better flexibility to choose a different provider (although this sounds counter-intuitive, it always works in favor).
+- Clients can have a layer of abstraction on Wrkflows, thereby giving better flexibility to choose a different provider later on if necessary (although this sounds counter-intuitive, it always works in favor).
 
 <b>2.1.2. Disadvantages</b>:
 - Requires constant development, support, and maintenance.
@@ -86,7 +84,7 @@ Note:
 
 Alex is more than happy to know that the finance team is in complete control to do what's best for the customers, while the engineering team dedicates their bandwidth to what makes them stand out, their proprietary reconciliation tool.
 
-The above example is not limited to a cloud provider or a specific workflow management tool but rather an example of how integrating existing workflows with Wrk can be easy, secure, and fast.
+The above proposal is not limited to a cloud provider or a specific workflow management tool but rather an example of how integrating existing workflows with Wrk can be easy, secure, and fast.
 
 <b>2.2.1. Advantages</b>:
 - Lower network bandwidth for clients using the same cloud provider.
@@ -98,11 +96,11 @@ The above example is not limited to a cloud provider or a specific workflow mana
 
 ## 3. Conclusion
 
-The main reason why I want to work at Wrk:
+Both 2.1 and 2.2 have their pros and cons. But, more importantly, it depends on who the current target customers are and who are the potential new audience for these features.
 
-<b>Addressing the right problem</b>: With more and more companies coming into the digital space and existing companies giving at most importance to customer experience, "automation" is the way to scale and solve. Every company out there has a workflow. The no-code/less-code approach to defining these workflow(s) so companies can work towards the betterment of the kernel of their product is the way forward for many.
+The main reason why I want to work at Wrk is that it addresses the right problem: With more and more companies coming into the digital space and existing companies giving at most importance to customer experience, "automation" is the way to scale and solve. Every company out there has a workflow. The no-code/less-code approach to defining these workflow(s) so companies can work towards the betterment of the kernel of their product is the way forward for many.
 
-That said, the need for constant innovation and skilling-up at Wrk goes unsaid. A checklist of Fast-growing, customer-first, remote-first - Wrk tops them all.
+Lastly, with the quest to explore Wrk, I'm now more interested than before to know about the architecture and the user journey to create workflows (Maybe a dashboard for freemium users with a limit on the number of wrk-actions?).
 
 ## 4. Links (About me)
 
