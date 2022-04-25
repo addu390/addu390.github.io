@@ -112,6 +112,6 @@ Lastly, with the quest to explore Wrk, I'm now more interested than before to kn
 - Twitter: [@gooshi_addu](https://twitter.com/gooshi_addu)
 - LinkTree: [thenextbigproject.com](http://thenextbigproject.com/)
 
-Fun fact: I have now added "Wrk" to my dictionary.
+Fun fact: I have now added "Wrk" to my auto-correct dictionary.
 
 

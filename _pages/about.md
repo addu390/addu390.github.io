@@ -41,9 +41,9 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 ### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University, Halifax, NS (2022-04 - Present)
 ### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University, Halifax, NS (2021-12 - 2022-04)
 
-- Developed lab instructions relevant to the topics covered in the class for graduate and undergraduate students, primarily divided into two sections: algorithm development and analysis.
+- Developed lab instructions relevant to the topics covered in the class to put theory into practice in the real world, such as the effect of rounding errors in geometric algorithms.
 
-- Conducted weekly labs and office hours to assist with lab procedures and assignments. Lastly, marking the assignments with feedback covering areas of improvement and strengths.
+- Conducted weekly labs and office hours to assist with lab procedures and assignments. Followed by marking the assignments with feedback covering areas of improvement and strengths.
 
 ### Computer Science Tutor; SuperProf, Halifax, NS (2021-10 - 2021-12)
 
