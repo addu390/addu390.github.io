@@ -6,15 +6,16 @@ tags: Internship
 
 Hey 👋 I'm a Computer Science graduate student looking for a <b>full-time internship in Backend Engineering from August 2022</b>. I previously worked as a Backend Engineer in Walmart's PhonePe and YC ClearTax. For a better representation of my skills and experiences, my resume: [pyblog.xyz/about](https://pyblog.xyz/about).
 
-## 1. Five Reasons to hire me?
+## 1. Reasons to hire me
 
-- Actions over words: after understanding Wrk as a black box as an outsider, I came up with a proposal to simplify integration with Wrk; Refer to the Sections <b>2.1 and 2.2</b>
 - I have the <b>skill and experience</b> to work in fast-growth and high-scale environments. For instance, at PhonePe, handling a scale to serve over [370+ million](https://www.phonepe.com/pulse/explore/transaction/2021/4/) B2C and B2B users in the fintech space primarily meant automating the legacy processes, managing 1000s of servers, and working with over a dozen micro-services among the 300+
 - I am open to working <b>anywhere in Canada</b> or remotely.
 - While improving technical skills goes unsaid, I constantly work towards my <b>soft skills</b> (Certified in "Business Communications for Researchers" and recently completed the "Exploring Entrepreneurship - Mentorship Program").
 - I'm a budding <b>open source contributor</b>; one of the most recent projects is "Building a World Cartogram" for "Our World in Data." The prototype: [population cartogram](https://www.pyblog.xyz/population-cartogram/).
 
 ## 2. The Proposal
+
+After understanding Wrk as an outsider, I came up with a proposal to simplify integration with Wrk; Sections <b>2.1 and 2.2</b>
 
 ### 2.1. Software Development Kit (SDK)
 
@@ -95,9 +96,9 @@ The above example is not limited to a cloud provider or a specific workflow mana
 - Not limited to a workflow orchestration tool or a cloud provider. However, a better way to decide is based on contracts with the potential premium client(s).
 - Higher cost and maintenance of additional resources.
 
-## 3. Why work at Wrk?
+## 3. Conclusion
 
-Working in a company is a two-way street, the main reason why I want to work at Wrk:
+The main reason why I want to work at Wrk:
 
 <b>Addressing the right problem</b>: With more and more companies coming into the digital space and existing companies giving at most importance to customer experience, "automation" is the way to scale and solve. Every company out there has a workflow. The no-code/less-code approach to defining these workflow(s) so companies can work towards the betterment of the kernel of their product is the way forward for many.
 
