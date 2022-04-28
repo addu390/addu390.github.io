@@ -15,6 +15,11 @@ permalink: /about/
         <span> &nbsp; &nbsp;
             <a href="{{site.url}}/assets/resume.pdf" download>Download Resume</a>
         </span>
+        <span> &nbsp; &nbsp;
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+            <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pyblog'});return false;">Schedule time with me</a>            
+        </span>
     </subtitle>
 </div>
 
