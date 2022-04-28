@@ -33,7 +33,9 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ## Featured Projects
 - Topology/shape preserved world cartogram: [www.pyblog.xyz/population-cartogram](www.pyblog.xyz/population-cartogram)
+
 - Hybrid Spatial Data Structures: [www.github.com/addu390/hybrid-spatial-index](www.github.com/addu390/hybrid-spatial-index)
+
 - Licensing as a Platform: [www.github.com/addu390/licensing-as-a-platform](www.github.com/addu390/licensing-as-a-platform)
 
 ## Education
