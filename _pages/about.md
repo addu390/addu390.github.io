@@ -31,6 +31,11 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Other Technologies: Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka
 
+## Featured Projects
+- Topology/shape preserved world cartogram: [www.pyblog.xyz/population-cartogram](www.pyblog.xyz/population-cartogram)
+- Hybrid Spatial Data Structures: [www.github.com/addu390/hybrid-spatial-index](www.github.com/addu390/hybrid-spatial-index)
+- Licensing as a Platform: [www.github.com/addu390/licensing-as-a-platform](www.github.com/addu390/licensing-as-a-platform)
+
 ## Education
 - Master of Applied Computer Science, Dalhousie University - Halifax, NS 🇨🇦
 
@@ -43,7 +48,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Developed lab instructions relevant to the topics covered in the class to put theory into practice in the real world, such as the effect of rounding errors in geometric algorithms.
 
-- Conducted weekly labs and office hours to assist with lab procedures and assignments. Followed by marking the assignments with feedback covering areas of improvement and strengths.
+- Conducted weekly labs and office hours to assist with lab procedures and assignments for a class of 25 students. Followed by marking the assignments with feedback covering areas of improvement and strengths.
 
 ### Computer Science Tutor; SuperProf, Halifax, NS (2021-10 - 2021-12)
 
