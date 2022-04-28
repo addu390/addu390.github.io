@@ -13,7 +13,7 @@ permalink: /about/
             <i class="ml-4 fas fa-map-marked-alt" aria-hidden="true"></i>
         </span> Anywhere in Canada
         <span> &nbsp; &nbsp;
-            <a href="{{site.url}}/assets/resume.pdf" download>Download Resume</a>
+            <a href="{{site.url}}/assets/adesh-nalpet-adimurthy-resume.pdf" download>Download Resume</a>
         </span>
         <span> &nbsp; &nbsp;
             <a href="https://calendly.com/pyblog" target="_blank">Schedule time with me</a>
@@ -35,11 +35,11 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 - Other Technologies: Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka
 
 ## Featured Projects
-- Topology/shape preserved world cartogram: [www.pyblog.xyz/population-cartogram](www.pyblog.xyz/population-cartogram)
+- Topology/shape preserved world cartogram: <a href="https://www.pyblog.xyz/population-cartogram" target="_blank">pyblog.xyz/population-cartogram</a>
 
-- Hybrid Spatial Data Structures: [www.github.com/addu390/hybrid-spatial-index](www.github.com/addu390/hybrid-spatial-index)
+- Hybrid Spatial Data Structures: <a href="https://github.com/addu390/hybrid-spatial-index" target="_blank">github.com/addu390/hybrid-spatial-index</a>
 
-- Licensing as a Platform: [www.github.com/addu390/licensing-as-a-platform](www.github.com/addu390/licensing-as-a-platform)
+- Licensing as a Platform: <a href="https://github.com/addu390/licensing-as-a-platform" target="_blank">github.com/addu390/licensing-as-a-platform</a>
 
 ## Education
 - Master of Applied Computer Science, Dalhousie University - Halifax, NS 🇨🇦
