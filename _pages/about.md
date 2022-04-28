@@ -13,7 +13,7 @@ permalink: /about/
             <i class="ml-4 fas fa-map-marked-alt" aria-hidden="true"></i>
         </span> Anywhere in Canada
         <span> &nbsp; &nbsp;
-            <a href="{{site.url}}/assets/adesh-nalpet-adimurthy-resume.pdf" download>Download Resume</a>
+            <a href="{{site.url}}/assets/adesh-nalpet-adimurthy-resume.pdf" download target="_blank">Download Resume</a>
         </span>
         <span> &nbsp; &nbsp;
             <a href="https://calendly.com/pyblog" target="_blank">Schedule time with me</a>
