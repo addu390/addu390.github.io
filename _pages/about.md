@@ -41,11 +41,6 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Licensing as a Platform: <a href="https://github.com/addu390/licensing-as-a-platform" target="_blank">github.com/addu390/licensing-as-a-platform</a>
 
-## Education
-- Master of Applied Computer Science, Dalhousie University - Halifax, NS 🇨🇦
-
-- Bachelor of Engineering: Electronics And Communication, Visvesvaraya Technological University - Karnataka, India
-
 ## Work History
 
 ### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University, Halifax, NS (2022-04 - Present)
@@ -61,7 +56,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - I closely worked with 3 students to improve their hold on Data Structures and Algorithms. But, with all honesty, it was a 2-way street, where I learned a lot too, both DSA and effective communication.
 
-### Software Engineer; PhonePe Private Limited (Acquired by Walmart), Bengaluru, Karnataka (2019-12 - 2021-07)
+### Software Engineer; PhonePe Private Limited (Acquired by Walmart), Bengaluru, India (2019-12 - 2021-07)
 
 - E-Nach (Automated Payment Services): Developed the Systematic Investment Plan (SIP) feature to schedule automated payments through E-Nach and UPI mandates or set-up reminders for investments, and handle over 1.2 lakh transactions per day.
 
@@ -71,7 +66,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - User Personalization: Developed a lightweight rules engine to evaluate conditions and execute actions based on user profile and activity, resulting in a ~45% increase in conversion to invest in systematic plan schemes.
 
-### Software Engineer II; Clear (Formerly ClearTax), Bengaluru, Karnataka (2018-07 - 2019-12)
+### Software Engineer II; Clear (Formerly ClearTax), Bengaluru, India (2018-07 - 2019-12)
 
 - Load Test Framework: Developed a framework to capture and replay HTTP traffic at a higher speed in a test environment and published performance results to Grafana and Spinnaker dashboards, reducing the set-up time from >60 minutes to ~10 minutes
 
@@ -85,11 +80,16 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Licensing as a Service: Developed a service for monetizing and limiting user exploitation of the application utilizing Python Django to float the application and Redis for database caching.
 
-### Full Stack Developer Intern; Techleet Infosystems, Bengaluru, Karnataka (2017-11 - 2018-07)
+### Full Stack Developer Intern; Techleet Infosystems, Bengaluru, India (2017-11 - 2018-07)
 
 - Ribbn (Uber for Ambulance): Developed an Ionic-Angular-Django application to book an ambulance and fulfill post-hospitalization services such as doctor's consultation and home-nursing along with location analytics for efficient fleet management and cost optimization.
 
 - Xeta Logistics: Built a logistics billing and goods tracking application with provision for GST E-way bill generation leveraging Laravel-Angular and Computer Vision techniques for text extraction and redaction of documents.
+
+## Education
+- Master of Applied Computer Science, Dalhousie University - Halifax, NS 🇨🇦
+
+- Bachelor of Engineering: Electronics And Communication, Visvesvaraya Technological University - Karnataka, India
 
 ## Accomplishments
 
