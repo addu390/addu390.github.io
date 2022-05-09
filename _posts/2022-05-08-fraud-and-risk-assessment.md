@@ -72,7 +72,7 @@ Hence, the different **components** involved are as follows:
 - **Time-series data store (InfluxDB):** Datastore for application events. Rules are evaluated by querying the data.
 
 ### 2.5. Conclusion
-The applications of the Anomaly detector are endless as long as data is published to a time-series data store and have use cases across domains: abnormal queries on the database, frequency of APIs, usage of tools (Cloud Trail), change in user privileges, resource utilization spikes, and many more. The action items for detecting anomalies are open-ended, and lastly, the rule evaluation is not limited to a query on the time-series data store. The extension could be having an ML decision layer for the query data.
+The applications of the Anomaly detector are endless as long as data is published to a time-series data store and have use cases across domains: abnormal queries on the database, frequency of APIs, usage of tools (Cloud Trail), change in user privileges, resource utilization spikes, and many more. The action items after detecting anomalies are open-ended, and lastly, the rule evaluation is not limited to a query on the time-series data store. The extension could be having an ML decision layer for the query data.
 
 ## 3. Kill Switch Service
 
@@ -99,17 +99,17 @@ While implementing a simple rule engine for the given JSON is relatively easy, t
 
 The kill-switch service can store the ruleset in a key-value cache-store such as Redis with a longer TTL and update the cache when the rules are expired or modified.
 
-The application calling the kill-switch service still has to bear the network latency to make the API call, possibly in backend APIs. Using another layer of Redis is a bad idea, given the TTL may have to be seconds. A better approach is to load the kill-switch rules relevant to the integrated application at run-time for a predefined frequency, using a scheduler + queue combination.
+The application calling the kill-switch service still has to bear the network latency to make the API call, possibly for most backend APIs. Using another layer of Redis is a bad idea, given the TTL may have to be seconds. A better approach is to load the kill-switch rules relevant to the integrated application at run-time for a predefined frequency, using a scheduler + queue combination.
 
 The barebone implementation of KS: [https://github.com/addu390/django-kill-switch](https://github.com/addu390/django-kill-switch)
 
-The different components involved are as follows:
+The different **components** involved are as follows:
 
 <img src="./assets/posts/ks-system-design.png" /> 
 <p style="text-align: center;">Kill Switch Service System Design </p>
 
 - **Data Store (MySQL):** To validate and store the rule(s).
-- **Queue (RabbitMQ/Kafka):** (for Client application) Scheduler callback pushed to a queue to update the kill-switch rules (in-memory).
+- **Queue (RabbitMQ/Kafka):** (for Client application) Scheduler callback pushed to a queue to import the kill-switch rules (in-memory).
 - **Key-value Cache (Redis):** To cache the rules to facilitate low latency API calls.
 
 ### 3.4. Conclusion
