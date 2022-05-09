@@ -16,13 +16,11 @@ category: Security
 
 ## 1. Introduction
 The overview of the post is on building a system to detect potential anomalies and take immediate action(s). Hence primarily has two phases: Detect and Contain.
-
-To better understand the key concepts of the steps involved, the references for the blog post are majorly from Magnet Forensics, to name a few; the prominent ones are: [How EDR Complements DFIR](https://www.magnetforensics.com/blog/how-edr-complements-dfir/), Anatomy of [Data Exfiltration Investigation](https://www.magnetforensics.com/blog/anatomy-of-a-data-exfiltration-investigation/) and Anatomy of [Data Breach Investigation](https://www.magnetforensics.com/blog/anatomy-of-a-data-breach-investigation/)
-
 However, the post discusses the use case to detect and contain anomalies as a generic implementation detail.
 
 ### 1.1. Two main components:
 - **Anomaly Detection Service** (Detect): Define rules to detect abnormal incidents.
+
 - **Kill Switch Service** (Contain): Prioritize and evaluate rules to switch the application behavior.
 
 ## 2. Anomaly Detection Service
@@ -68,7 +66,9 @@ Hence, the different **components** involved are as follows:
 - **Key-value store (MongoDB):** 
     - A catalog to store the rule(s) and alert(s) data required for rule evaluation and alerts (A better option: use ElasticSearch to search for rules from time interval and window - necessary for the reconciliation of rule registration). 
     - For idempotency - to ensure the same rule is not evaluated more than once under the same time window and keep track of previous evaluation(s) status.
+
 - **Queue (RabbitMQ/Kafka):** To queue rule evaluation and alert requests.
+
 - **Time-series data store (InfluxDB):** Datastore for application events. Rules are evaluated by querying the data.
 
 ### 2.5. Conclusion
@@ -109,10 +109,18 @@ The different **components** involved are as follows:
 <p style="text-align: center;">Kill Switch Service System Design </p>
 
 - **Data Store (MySQL):** To validate and store the rule(s).
+
 - **Queue (RabbitMQ/Kafka):** (for Client application) Scheduler callback pushed to a queue to import the kill-switch rules (in-memory).
+
 - **Key-value Cache (Redis):** To cache the rules to facilitate low latency API calls.
 
 ### 3.4. Conclusion
 The use-case(s) of the kill-switch service spans across domains. All it takes is a set of key-value pairs and rule(s) to validate the key-value pairs, followed by an action item in complete control of the client. Be it temporarily blocking a workflow, a set of users, a tool, or even resources. However, it's important to use KS for its prime purpose and not force-fit to other use-cases like A/B testing.
 
 Both the services (AD and KS) work independently and are stand-alone applications. But go hand-in-hand. For instance, activating a kill switch can be an action item of the anomaly detector.
+
+## 4. References
+- How [EDR Complements DFIR](https://www.magnetforensics.com/blog/how-edr-complements-dfir/)
+- Anatomy of [Data Exfiltration Investigation](https://www.magnetforensics.com/blog/anatomy-of-a-data-exfiltration-investigation/)
+- Anatomy of [Data Breach Investigation](https://www.magnetforensics.com/blog/anatomy-of-a-data-breach-investigation/)
+- Anomaly Detection [Resources](https://github.com/yzhao062/anomaly-detection-resources)
