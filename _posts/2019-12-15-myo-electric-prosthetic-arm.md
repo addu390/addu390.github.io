@@ -7,7 +7,7 @@ tags:
   - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/ironman-myro.png
-category: Leisure Seizure 🤪
+category: Leisure Seizure
 ---
 
 <img src="../assets/featured/ironman-myro.png" /> 

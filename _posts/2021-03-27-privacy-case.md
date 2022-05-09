@@ -7,7 +7,7 @@ tags:
   - 3D Printing
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/3d-print-privacy-case.png
-category: Leisure Seizure 🤪
+category: Leisure Seizure
 ---
 
 <img src="../assets/featured/3d-print-privacy-case.png" /> 
