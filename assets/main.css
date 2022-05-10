@@ -390,6 +390,10 @@ footer .pure-menu-link:hover {
     max-width: 95%;
   }
 
+  .post .center-image {
+    width: 95%;
+  }
+
   .brand-title,
   .brand-tagline {
     margin: 0;
