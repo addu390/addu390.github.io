@@ -118,9 +118,3 @@ The different **components** involved are as follows:
 The use-case(s) of the kill-switch service spans across domains. All it takes is a set of key-value pairs and rule(s) to validate the key-value pairs, followed by an action item in complete control of the client. Be it temporarily blocking a workflow, a set of users, a tool, or even resources. However, it's important to use KS for its prime purpose and not force-fit to other use-cases like A/B testing.
 
 Both the services (AD and KS) work independently and are stand-alone applications. But go hand-in-hand. For instance, activating a kill switch can be an action item of the anomaly detector.
-
-## 4. References
-- How [EDR Complements DFIR](https://www.magnetforensics.com/blog/how-edr-complements-dfir/)
-- Anatomy of [Data Exfiltration Investigation](https://www.magnetforensics.com/blog/anatomy-of-a-data-exfiltration-investigation/)
-- Anatomy of [Data Breach Investigation](https://www.magnetforensics.com/blog/anatomy-of-a-data-breach-investigation/)
-- Anomaly Detection [Resources](https://github.com/yzhao062/anomaly-detection-resources)
