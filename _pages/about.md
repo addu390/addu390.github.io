@@ -23,6 +23,8 @@ permalink: /about/
 
 Hey 👋 I'm a computer science graduate student at Dalhousie University, a budding illustrator, and previously a backend engineer at Walmart's PhonePe and YC ClearTax, here to share my experiences, tutorials, and projects.
 
+<img src="../assets/featured/for-hire.png" /> 
+
 ## Skills
 - Programming languages: Java, Javascript and Python
 
