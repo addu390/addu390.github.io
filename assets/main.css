@@ -23,7 +23,7 @@ ul,
 ol,
 li,
 a {
-  font-family: "Lora", serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 a {
@@ -144,7 +144,6 @@ footer .pure-menu-link:hover {
 .brand-tagline,
 .nav {
   margin: 0;
-  margin-right: -20px;
 }
 
 .brand-title {
@@ -154,6 +153,7 @@ footer .pure-menu-link:hover {
 
 .brand-title a {
   color: white;
+  text-decoration: none;
 }
 
 .brand-tagline {
@@ -346,11 +346,12 @@ footer .pure-menu-link:hover {
 
   .content {
     padding: 2em 3em 0;
-    margin-left: 25%;
+    margin-left: 20%;
   }
 
   .sidebar-info {
-    margin: 5% 2em 0;
+    /* margin: 5% 2em 0; */
+    margin-top: 1em;
     text-align: center;
   }
 
@@ -369,7 +370,7 @@ footer .pure-menu-link:hover {
   }
 
   .post-entry {
-    width: 70%;
+    width: 80%;
   }
 
   .tags {
@@ -383,6 +384,10 @@ footer .pure-menu-link:hover {
 
 @media screen and (max-width: 48em) {
   .md-display {
+    display: none;
+  }
+
+  .sidebar-list {
     display: none;
   }
 
@@ -606,4 +611,37 @@ code {
 
 .center-align {
   text-align: center;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  width: 20%;
+  padding: 0px;
+  position: fixed;
+  z-index: 0;
+}
+
+.sidebar-list * {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+.sidebar-list li {
+  padding-top:1em;
+  padding-bottom:1em;
+  padding-left: 3em;
+  color: #fff;
+}
+
+.sidebar-list li a {
+  color: #fff;
+  text-decoration: none
+}
+
+.featured {
+  background-color: #0d0d0d;
+}
+
+.low-featured {
+  background-color: #333333;
 }
