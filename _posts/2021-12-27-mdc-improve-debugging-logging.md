@@ -10,7 +10,7 @@ feature: assets/featured/bob-mdc.png
 category: Java Lava
 ---
 
-<img src="./assets/featured/bob-mdc.png" /> 
+<img class="center-image" src="./assets/featured/bob-mdc.png" /> 
 <p style="text-align: center;">Bob the builder, agrees!</p>
 
 Construct your logs as good as Bob the Builder!

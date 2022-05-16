@@ -11,7 +11,7 @@ feature: assets/featured/popeye/wb/ben-grimm-popeye.png
 category: Code on the Road
 ---
 
-<img src="./assets/featured/popeye/wb/ben-grimm-popeye.png" /> 
+<img class="center-image" src="./assets/featured/popeye/wb/ben-grimm-popeye.png" /> 
 <p style="text-align: center;">Quad-KD vs R-KD trees</p>
 
 ## 1. Abstract

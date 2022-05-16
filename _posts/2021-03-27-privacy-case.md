@@ -10,7 +10,7 @@ feature: assets/featured/3d-print-privacy-case.png
 category: Leisure Seizure
 ---
 
-<img src="../assets/featured/3d-print-privacy-case.png" /> 
+<img class="center-image" src="../assets/featured/3d-print-privacy-case.png" /> 
 <p style="text-align: center;">You are being watched 🤨 — Totoro</p>
 
 “Should You Cover Your Smartphone Camera?” is a question trending since 2015 🤭

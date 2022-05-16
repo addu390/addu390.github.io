@@ -10,7 +10,7 @@ feature: assets/featured/stock-pile.png
 category: Java Lava
 ---
 
-<img src="./assets/featured/stock-pile.png" /> 
+<img class="center-image" src="./assets/featured/stock-pile.png" /> 
 <p style="text-align: center;">One Piece — Whaaaat? You don’t use Stock Pile?</p>
 
 For most applications, it is quite crucial to store the request and response of APIs, especially while integrating with external service providers.

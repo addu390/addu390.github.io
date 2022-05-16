@@ -11,7 +11,7 @@ feature: assets/featured/popeye-convex-hull.png
 category: Code on the Road
 ---
 
-<img src="./assets/featured/popeye-convex-hull.png" /> 
+<img class="center-image" src="./assets/featured/popeye-convex-hull.png" /> 
 <p style="text-align: center;">Eat Spinach and Build your Convex Hull — Popeye the Sailor.</p>
 
 ## Floating Point Precision in Geometric Algorithms

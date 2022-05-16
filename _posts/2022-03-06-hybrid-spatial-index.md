@@ -11,7 +11,7 @@ feature: assets/featured/hybrid-spatial-index-totoro.png
 category: Code on the Road
 ---
 
-<img src="./assets/featured/hybrid-spatial-index-totoro.png" /> 
+<img class="center-image" src="./assets/featured/hybrid-spatial-index-totoro.png" /> 
 <p style="text-align: center;">Let’s grow the trees! — Totoro.</p>
 
 ## What’s a Spatial Index?

@@ -11,7 +11,7 @@ feature: assets/featured/popeye-killswitch.png
 category: Security
 ---
 
-<img src="./assets/featured/popeye-killswitch.png" /> 
+<img class="center-image" src="./assets/featured/popeye-killswitch.png" /> 
 <p style="text-align: center;">Expect the Unexpected </p>
 
 ## 1. Introduction

@@ -11,7 +11,7 @@ feature: assets/featured/external-sorting-totoro.png
 category: Code on the Road
 ---
 
-<img src="./assets/featured/external-sorting-totoro.png" /> 
+<img class="center-image" src="./assets/featured/external-sorting-totoro.png" /> 
 <p style="text-align: center;">External Sorting — Totoro.</p>
 
 External sorting is a class of sorting algorithms that can handle massive amounts of data. External sorting is required when the data being sorted does not fit into the main memory of a computing device (RAM). Instead, they must reside in the slower external memory (Disk).

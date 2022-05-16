@@ -11,7 +11,7 @@ feature: assets/featured/aws-ec2-django.png
 category: Django Rango
 ---
 
-<img src="./assets/featured/aws-ec2-django.png" /> 
+<img class="center-image" src="./assets/featured/aws-ec2-django.png" /> 
 <p style="text-align: center;">Totoro — With logo colors (AWS, Nginx, Guinicorn, and Django)</p>
 
 If you are here, you are probably looking to deploy a Django project using AWS EC2 and docker without an orchestrator (ECS, EKS, or Docker Swarm – [don’t use swarm](https://www.mirantis.com/blog/mirantis-will-continue-to-support-and-develop-docker-swarm/)), you are at the right place.

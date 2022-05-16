@@ -10,7 +10,7 @@ feature: assets/featured/ironman-myro.png
 category: Leisure Seizure
 ---
 
-<img src="../assets/featured/ironman-myro.png" /> 
+<img class="center-image" src="../assets/featured/ironman-myro.png" /> 
 <p style="text-align: center;">MYRO 2.0 — Ironman with Prosthetics 🤪</p>
 
 # Deprecated ⛔️
