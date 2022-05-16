@@ -16,7 +16,7 @@ permalink: /about/
             <a href="{{site.url}}/assets/adesh-nalpet-adimurthy-resume.pdf" download target="_blank">Download Resume</a>
         </span>
         <span> &nbsp; &nbsp;
-            <a href="https://calendly.com/pyblog" target="_blank">Schedule time with me</a>
+            <a href="https://calendly.com/pyblog/30min" target="_blank">Schedule time with me</a>
         </span>
     </subtitle>
 </div>
