@@ -1,17 +1,18 @@
 ---
 layout: page
-title: Adesh Nalpet Adimurthy
+title: ""
 permalink: /about/
 ---
 
 <div class="center-align">
+<h1 style="display: inline-block; margin-top: 0px;">Adesh Nalpet Adimurthy</h1><span> (He/Him)</span><br>
     <subtitle class="font-weight-bold text-muted">
         <span style="color: orangered;">
             <i class="fas fa-map-pin" aria-hidden="true"></i>
         </span> For Hire &nbsp; &nbsp;
-        <span style="color: dodgerblue;">
-            <i class="ml-4 fas fa-map-marked-alt" aria-hidden="true"></i>
-        </span> Anywhere in Canada
+        <span>
+            🇨🇦 Anywhere in Canada
+        </span>
         <span> &nbsp; &nbsp;
             <a href="{{site.url}}/assets/adesh-nalpet-adimurthy-resume.pdf" download target="_blank">Download Resume</a>
         </span>
