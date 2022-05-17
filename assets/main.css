@@ -350,7 +350,6 @@ footer .pure-menu-link:hover {
   }
 
   .sidebar-info {
-    /* margin: 5% 2em 0; */
     margin-top: 1em;
     text-align: center;
   }
@@ -367,6 +366,7 @@ footer .pure-menu-link:hover {
   .sidebar {
     position: fixed;
     height: 100vh;
+    z-index: 2;
   }
 
   .post-entry {
@@ -540,7 +540,7 @@ footer ul {
 /* SEARCH */
 
 #search {
-  padding-top: 50px;
+  padding-top: 3em;
 }
 
 #search,
@@ -618,7 +618,8 @@ code {
   width: 20%;
   padding: 0px;
   position: fixed;
-  z-index: 0;
+  overflow-y: auto; 
+  height: 20em;
 }
 
 .sidebar-list * {
@@ -633,9 +634,14 @@ code {
   color: #fff;
 }
 
+.sidebar-list li:hover {
+  background:#404040;
+}
+
 .sidebar-list li a {
   color: #fff;
-  text-decoration: none
+  text-decoration: none;
+  display: block;
 }
 
 .featured {
