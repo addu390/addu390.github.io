@@ -46,6 +46,12 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ## Work History
 
+### Google Summer of Code Contributor; Google OSS, Our World in Data; Halifax, NS (2022-05 - Present)
+
+- Working on building a shape/topology preserved population-scaled world cartogram to better visualize the effect and gravity of metrics such as world hunger and poverty.
+
+- Proposal: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022); Prototype: [https://www.pyblog.xyz/population-cartogram](https://www.pyblog.xyz/population-cartogram)
+
 ### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University, Halifax, NS (2022-04 - Present)
 ### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University, Halifax, NS (2021-12 - 2022-04)
 
