@@ -95,7 +95,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 <p class="right"><b>2019-12 - 2021-07</b></p>
 
 ### Software Engineer
-<p class="nomad"><i>PhonePe Private Limited (Acquired by Walmart), Bengaluru, India</i></p>
+<p class="nomad"><i>PhonePe Private Limited (Acquired by Walmart), Bengaluru, KA, India</i></p>
 
 - E-Nach (Automated Payment Services): Developed the Systematic Investment Plan (SIP) feature to schedule automated payments through E-Nach and UPI mandates or set-up reminders for investments, and handle over 1.2 lakh transactions per day.
 
@@ -110,7 +110,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 <p class="right"><b>2018-07 - 2019-12</b></p>
 
 ### Software Engineer II
-<p class="nomad"><i>Clear (Formerly ClearTax), Bengaluru, India</i></p>
+<p class="nomad"><i>Clear (Formerly ClearTax), Bengaluru, KA, India</i></p>
 
 - Load Test Framework: Developed a framework to capture and replay HTTP traffic at a higher speed in a test environment and published performance results to Grafana and Spinnaker dashboards, reducing the set-up time from >60 minutes to ~10 minutes
 
@@ -129,7 +129,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 <p class="right"><b>2017-11 - 2018-07</b></p>
 
 ### Full Stack Developer Intern
-<p class="nomad"><i>Techleet Infosystems, Bengaluru, India</i></p>
+<p class="nomad"><i>Techleet Infosystems, Bengaluru, KA, India</i></p>
 
 - Ribbn (Uber for Ambulance): Developed an Ionic-Angular-Django application to book an ambulance and fulfill post-hospitalization services such as doctor's consultation and home-nursing along with location analytics for efficient fleet management and cost optimization.
 
@@ -149,7 +149,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 <p class="right"><b>2013-07 - 2017-08</b></p>
 
 ### Bachelor of Engineering: Electronics And Communication
-<p class="nomad"><i>Visvesvaraya Technological University - Karnataka, India</i></p>
+<p class="nomad"><i>Visvesvaraya Technological University - Bengaluru, KA, India</i></p>
 
 ## Accomplishments
 
