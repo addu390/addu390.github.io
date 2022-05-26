@@ -27,17 +27,23 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 <img src="../assets/featured/for-hire.png" /> 
 
 ## Skills
-- Programming languages: Java, Javascript and Python
 
-- Databases: MySQL, MongoDB, AeroSpike, ElasticSearch, Redis, AWS Redshift, Athena
+<hr>
 
-- Frameworks: Dropwizard, Django, Flask, Angular, Ionic
+- **Programming languages:** Java, Javascript and Python
 
-- CI/CD: Jenkins, Spinnaker, Docker, Terraform, Gitlab CI, Marathon and Mesos
+- **Databases:** MySQL, MongoDB, AeroSpike, ElasticSearch, Redis, Redshift, Athena
 
-- Other Technologies: Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka
+- **Frameworks:** Dropwizard, Django, Flask, Angular, Ionic
+
+- **CI/CD:** Jenkins, Spinnaker, Docker, Terraform, Gitlab CI, Marathon and Mesos
+
+- **Other Technologies:** Docker, Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka
 
 ## Featured Projects
+
+<hr>
+
 - Topology/shape preserved world cartogram: <a href="https://www.pyblog.xyz/population-cartogram" target="_blank">pyblog.xyz/population-cartogram</a>
 
 - Hybrid Spatial Data Structures: <a href="https://github.com/addu390/hybrid-spatial-index" target="_blank">github.com/addu390/hybrid-spatial-index</a>
@@ -46,26 +52,50 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 ## Work History
 
-### Google Summer of Code Contributor; Google OSS, Our World in Data; Halifax, NS (2022-05 - Present)
+<hr>
+
+<p class="right"><b>2022-05 - Current</b></p>
+
+### Google Summer of Code Contributor
+<p class="nomad"><i>Google OSS, Our World in Data, Halifax, NS, Canada </i></p>
 
 - Working on building a shape/topology preserved population-scaled world cartogram to better visualize the effect and gravity of metrics such as world hunger and poverty.
 
 - Proposal: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022); Prototype: [https://www.pyblog.xyz/population-cartogram](https://www.pyblog.xyz/population-cartogram)
 
-### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development; Dalhousie University, Halifax, NS (2022-04 - Present)
-### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering; Dalhousie University, Halifax, NS (2021-12 - 2022-04)
+<hr class="hr">
+
+<p class="right"><b>2022-04 - Current</b></p>
+
+### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development
+<p class="nomad"><i>Dalhousie University, Halifax, NS, Canada</i></p>
+
+<p class="right"><b>2021-12 - 2022-04</b></p>
+
+### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering
+<p class="nomad"><i>Dalhousie University, Halifax, NS, Canada</i></p>
 
 - Developed lab instructions relevant to the topics covered in the class to put theory into practice in the real world, such as the effect of rounding errors in geometric algorithms.
 
 - Conducted weekly labs and office hours to assist with lab procedures and assignments for a class of 25 students. Followed by marking the assignments with feedback covering areas of improvement and strengths.
 
-### Computer Science Tutor; SuperProf, Halifax, NS (2021-10 - 2021-12)
+<hr class="hr">
+
+<p class="right"><b>2021-10 - 2021-12</b></p>
+
+### Computer Science Tutor
+<p class="nomad"><i>SuperProf, Halifax, NS, Canada</i></p>
 
 - Subject(s): CSCI 3110 - Design and Analysis of Algorithms.
 
 - I closely worked with 3 students to improve their hold on Data Structures and Algorithms. But, with all honesty, it was a 2-way street, where I learned a lot too, both DSA and effective communication.
 
-### Software Engineer; PhonePe Private Limited (Acquired by Walmart), Bengaluru, India (2019-12 - 2021-07)
+<hr class="hr">
+
+<p class="right"><b>2019-12 - 2021-07</b></p>
+
+### Software Engineer
+<p class="nomad"><i>PhonePe Private Limited (Acquired by Walmart), Bengaluru, India</i></p>
 
 - E-Nach (Automated Payment Services): Developed the Systematic Investment Plan (SIP) feature to schedule automated payments through E-Nach and UPI mandates or set-up reminders for investments, and handle over 1.2 lakh transactions per day.
 
@@ -75,7 +105,12 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - User Personalization: Developed a lightweight rules engine to evaluate conditions and execute actions based on user profile and activity, resulting in a ~45% increase in conversion to invest in systematic plan schemes.
 
-### Software Engineer II; Clear (Formerly ClearTax), Bengaluru, India (2018-07 - 2019-12)
+<hr class="hr">
+
+<p class="right"><b>2018-07 - 2019-12</b></p>
+
+### Software Engineer II
+<p class="nomad"><i>Clear (Formerly ClearTax), Bengaluru, India</i></p>
 
 - Load Test Framework: Developed a framework to capture and replay HTTP traffic at a higher speed in a test environment and published performance results to Grafana and Spinnaker dashboards, reducing the set-up time from >60 minutes to ~10 minutes
 
@@ -89,18 +124,36 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Licensing as a Service: Developed a service for monetizing and limiting user exploitation of the application utilizing Python Django to float the application and Redis for database caching.
 
-### Full Stack Developer Intern; Techleet Infosystems, Bengaluru, India (2017-11 - 2018-07)
+<hr class="hr">
+
+<p class="right"><b>2017-11 - 2018-07</b></p>
+
+### Full Stack Developer Intern
+<p class="nomad"><i>Techleet Infosystems, Bengaluru, India</i></p>
 
 - Ribbn (Uber for Ambulance): Developed an Ionic-Angular-Django application to book an ambulance and fulfill post-hospitalization services such as doctor's consultation and home-nursing along with location analytics for efficient fleet management and cost optimization.
 
 - Xeta Logistics: Built a logistics billing and goods tracking application with provision for GST E-way bill generation leveraging Laravel-Angular and Computer Vision techniques for text extraction and redaction of documents.
 
 ## Education
-- Master of Applied Computer Science, Dalhousie University - Halifax, NS 🇨🇦
 
-- Bachelor of Engineering: Electronics And Communication, Visvesvaraya Technological University - Karnataka, India
+<hr>
+
+<p class="right"><b>2021-08 - Current</b></p>
+
+### Master of Applied Computer Science
+<p class="nomad"><i>Dalhousie University - Halifax, NS, Canada</i></p>
+
+<hr class="hr">
+
+<p class="right"><b>2021-08 - Current</b></p>
+
+### Bachelor of Engineering: Electronics And Communication
+<p class="nomad"><i>Visvesvaraya Technological University - Karnataka, India</i></p>
 
 ## Accomplishments
+
+<hr>
 
 - Successfully completed the Dal Innovates Collide - Exploring Entrepreneurship (Mentorship Program)
 

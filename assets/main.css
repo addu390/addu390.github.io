@@ -262,6 +262,10 @@ footer .pure-menu-link:hover {
   line-height: 1.8em;
 }
 
+.post-entry {
+  line-height: 1.5;
+}
+
 .post-meta {
   font-family: "Open Sans", sans-serif;
   color: #444;
@@ -654,4 +658,19 @@ code {
 
 .low-featured {
   background-color: #333333;
+}
+
+.nomad {
+  margin-top: 0px !important;
+}
+
+.hr {
+  background-color: #DCDCDC;
+  width: 80%;
+  height: 1px; border: 0;
+  margin-top: 1.5em;
+}
+
+.right {
+  float: right;
 }
