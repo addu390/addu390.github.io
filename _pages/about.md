@@ -146,7 +146,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 <hr class="hr">
 
-<p class="right"><b>2021-08 - Current</b></p>
+<p class="right"><b>2013-07 - 2017-08</b></p>
 
 ### Bachelor of Engineering: Electronics And Communication
 <p class="nomad"><i>Visvesvaraya Technological University - Karnataka, India</i></p>
