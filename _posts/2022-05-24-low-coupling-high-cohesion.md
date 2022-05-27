@@ -1,14 +1,12 @@
 ---
 layout: post
-title: "Customer Feedback Isn't Always Useful"
+title: "Low Coupling, High Cohesion"
 date: 2022-05-25
 tags:
-  - Python
-  - Cartogram
-  - GSoC
+  - Project
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/iphone-100x.png
-category: Code on the Road
+category: Leisure Seizure
 ---
 
 <img class="center-image" src="./assets/featured/iphone-100x.png" /> 
