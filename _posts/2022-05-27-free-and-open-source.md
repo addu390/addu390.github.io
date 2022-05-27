@@ -3,12 +3,10 @@ layout: post
 title: "Why Every Engineer Should Contribute More to Open Source"
 date: 2022-05-27
 tags:
-  - Python
-  - Cartogram
-  - GSoC
+  - Project
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/foss-thankyou.png
-category: Code on the Road
+category: Leisure Seizure
 ---
 
 <img class="center-image" src="./assets/featured/foss-thankyou.png" /> 
