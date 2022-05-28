@@ -20,6 +20,7 @@ You are working on a fast-growing, never-stopping product; 35 sprints and 600 co
 
 ### Don't Rebuild; Build the Right Things.
 (1) Striking the right balance between business needs and development time is beyond important, especially in an early-stage start-up, quantifying the need to follow best practices to write clean code with meaningful test cases can be harder than it looks. One of the go-to approaches is to retrospect the hotfixes/number of bugs/blockers to the original story. Have a process around merging code to pre-production/production:
+
 - Set a code coverage threshold, 
 - automatically tag pull/merge requests without review comments, or the classic "LGTM" (Looks Good To Me), 
 - link hotfixes to production to the original story/PR,
@@ -36,4 +37,21 @@ You are working on a fast-growing, never-stopping product; 35 sprints and 600 co
 Finally, it's time to get on to that IDE and start off with the low-level design: interfaces, entities, DTOs, request/response, etc, followed by the implementation backed with test cases (Test Driven Development).
 
 ### If it's a Stable Product, Don't Touch it
+(1) Do the very opposite! Just because the application is stable and doesn't have more features coming up anytime soon does not necessarily mean it goes untouched. Of course, it may not be the highest priority, but make sure to maintain the project and keep it up to date before it bites you back at a later stage:
+
+- Upgrade dependencies, at least the next major version, if not minor ones.
+- Keep it on par with the rest of the codebase/services, be it the architecture, conventions, or contracts.
+- Stable services are often forgotten or taken for granted; write detailed documentation.
+
+Again, from the business point of view, making any changes to a stable product has no ROI, at least in the short time, but it's services such as these that expose security vulnerabilities and have scalability issues in the longer run.
+
+### Refactoring is NOT a One-time Gig
+Despite extensive solutioning and following all the best practices, the product requirements, customer needs, and business goals aren't as predictable as we think and are likely to change drastically over time. Fortunately, the changes aren't overnight either; 
+
+- Revalidate the existing low-level design when you touch older sections of the codebase. 
+- Temporary hacks are great, but they eventually become the norm; these hacks should top the list of items to take up next.
+- Don't worry about "Ohh! That's too much code for a small use-case". For example, consider a finite state-machine of 5 states of 4 transitions, resulting in a state-machine orchestrator/engine class, four transitions classes, four listener classes (pub-sub), and classes/functions for API resource(s), transformations, DTOs, etc. For all you know, the same could have been written with a bunch of if-else conditions on states.
+- Don't be shy to use design patterns; don't go overboard with it either. The best site for design patterns [https://refactoring.guru/design-patterns](https://refactoring.guru/design-patterns)
+
+### Find ways to correlate the importance of refactoring to ROI.
 ...
