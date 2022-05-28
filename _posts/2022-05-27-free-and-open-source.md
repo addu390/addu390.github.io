@@ -10,15 +10,19 @@ category: Leisure Seizure
 ---
 
 <img class="center-image" src="./assets/featured/foss-thankyou.png" /> 
-<p style="text-align: center;">FOSS Developers :) </p>
+<p style="text-align: center;">FOSS Developers 💪🏻 </p>
 
 ## Free and Open Source Software
 "Free and open-source software (FOSS) is software that is both free software and open-source software where anyone is freely licensed to use, copy, study, and change the software in any way, and the source code is openly shared so that people are encouraged to voluntarily improve the design of the software"
 
 Most of the applications, softwares, and tools we use day-to-day are built by thousands and millions of people all over the globe. So to the extent that Free and Open Source Softwares define who we are as Engineers today. Be it a full-fledged product or technologies used to build one - languages, frameworks, databases, queues/buses, caching mechanisms, deployment tools, visualization dashboards, the list goes on; revolves around the OSS community. It's imperative to keep this community active and ever-growing.
 
+<hr class="hr">
+
 ## How to Contribute
 Broadly, one can contribute in two ways (ideally both): (1) **Sponsor** FOSS project(s), developer(s), organization(s). It can be <$5 to start with and consider being a monthly sponsorer. (2) **Do what you do best**. Build features, fix bugs, enhance the design, improve the documentation, test the software to find bugs and vulnerabilities.
+
+<hr class="hr">
 
 ## Key Motivators
 
