@@ -19,7 +19,7 @@ disqus: purelog-jekyll
 
 author: Adesh Nalpet Adimurthy
 author_bio: >-
-  Hey 👋 I'm a computer science graduate student, a budding illustrator, and previously a backend engineer at Walmart's PhonePe and YC ClearTax, here to share my experiences, tutorials, and projects. <br><br> If you find my posts interesting, don't forget to <a href="https://pyblog.medium.com/subscribe">subscribe</a>
+  Hey 👋 I'm a computer science graduate student, a budding illustrator, GSoC contributor, and previously a backend engineer at Walmart's PhonePe and YC ClearTax, here to share my experiences, tutorials, and projects. <br><br> If you find my posts interesting, don't forget to <a href="https://pyblog.medium.com/subscribe">subscribe</a>
 author_pic: assets/avatar.png
 paginate: 4
 paginate_path: "/:num/"
