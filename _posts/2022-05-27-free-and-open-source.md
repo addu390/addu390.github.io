@@ -13,7 +13,7 @@ category: Leisure Seizure
 <p style="text-align: center;">FOSS Developers 💪🏻 </p>
 
 ## Free and Open Source Software
-"Free and open-source software (FOSS) is software that is both free software and open-source software where anyone is freely licensed to use, copy, study, and change the software in any way, and the source code is openly shared so that people are encouraged to voluntarily improve the design of the software"
+"Free and open-source software (FOSS) is software that is both free software and open-source software where anyone is freely licensed to use, copy, study, and change the software in any way, and the source code is openly shared so that people are encouraged to voluntarily improve the design of the software" - Wikipedia
 
 Most of the applications, softwares, and tools we use day-to-day are built by thousands and millions of people all over the globe. So to the extent that Free and Open Source Softwares define who we are as Engineers today. Be it a full-fledged product or technologies used to build one - languages, frameworks, databases, queues/buses, caching mechanisms, deployment tools, visualization dashboards, the list goes on; revolves around the OSS community. It's imperative to keep this community active and ever-growing.
 
@@ -39,4 +39,3 @@ A lot of the companies out there are on a constant lookout to hire engineers, an
 
 ### Side Hustle
 A lot of creators out there have sponsors as their primary source of income. While that's not remotely easy to achieve, this could be your chance to have a side hustle or even consider starting a project of your own; it doesn't have to be a business plan and can be a simple library.
-

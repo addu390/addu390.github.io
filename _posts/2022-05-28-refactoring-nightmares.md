@@ -16,6 +16,8 @@ Hey 👋 it's a work in progress; stay tuned. [Subscribe](https://pyblog.medium.
 
 You are working on a fast-growing, never-stopping product; 35 sprints and 600 coffees later, you finally got to move on, and a new engineer steps in, or you realize sooner or later that you cannot keep up with the feature requests while ensuring code quality. Then, after raising the need for refactoring as blockers for a couple of features, finally! It's the day when your engineering team decides to dedicate bandwidth for refactoring - Sounds familiar? You are not alone.
 
+<hr class="hr">
+
 ## How to prevent the need for a major refactor
 
 ### Don't Rebuild; Build the Right Things.
@@ -48,10 +50,23 @@ Again, from the business point of view, making any changes to a stable product h
 ### Refactoring is NOT a One-time Gig
 Despite extensive solutioning and following all the best practices, the product requirements, customer needs, and business goals aren't as predictable as we think and are likely to change drastically over time. Fortunately, the changes aren't overnight either; 
 
+- The best way to avoid heavy refactoring is to do your refactoring a lot more often.
 - Revalidate the existing low-level design when you touch older sections of the codebase. 
-- Temporary hacks are great, but they eventually become the norm; these hacks should top the list of items to take up next.
+- Temporary hacks aren't too bad, but they eventually become the norm; these hacks should top the list of items to take up next.
 - Don't worry about "Ohh! That's too much code for a small use-case". For example, consider a finite state-machine of 5 states of 4 transitions, resulting in a state-machine orchestrator/engine class, four transitions classes, four listener classes (pub-sub), and classes/functions for API resource(s), transformations, DTOs, etc. For all you know, the same could have been written with a bunch of if-else conditions on states.
 - Don't be shy to use design patterns; don't go overboard with it either. The best site for design patterns [https://refactoring.guru/design-patterns](https://refactoring.guru/design-patterns)
 
+Also, if you have a story for refactoring under technical debt, it's a clear indicator that something isn't right.
+
 ### Find ways to correlate the importance of refactoring to ROI.
+Find ways to correlate the importance of refactoring to ROI.
+Alrighty, this is the last one. As mentioned earlier, it's not always easy to emphasize the importance of regular refactoring, which may seem like it's slowing you down.
+
+"[Think of it this way](https://www.linkedin.com/pulse/refactoring-nightmares-nicholas-iannone/): You're a code politician. Your stakeholders are your citizens, and they will expect you to not only make new laws but also to repeal laws that no one agrees with anymore. Refactoring is just as necessary as feature development, and developers tend to focus too much on adding new things. We can spend our time filling our rooms with new toys, clothes, and furniture, but we also need to clean our rooms and throw out old items from time to time."
+
+Head back to "Don't Rebuild; Build the Right Things" and come up with metrics to better justify the need for refactoring.
+
+<hr class="hr">
+
+## How to refactor
 ...
