@@ -28,7 +28,7 @@ You are working on a fast-growing, never-stopping product; 35 sprints and 600 co
 - link hotfixes to production to the original story/PR,
 - "code owners" for certain critical classes/modules, not everyone has access to merge changes to any file/module (important for a monolith codebase).
 
-(2) Almost never start a feature directly on your IDE, 
+(2) Almost never start working on a feature directly on your IDE, 
 - gather the requirements,
 - start a rough solutioning document, 
 - list down the different components, 
@@ -39,7 +39,7 @@ You are working on a fast-growing, never-stopping product; 35 sprints and 600 co
 Finally, it's time to get on to that IDE and start off with the low-level design: interfaces, entities, DTOs, request/response, etc, followed by the implementation backed with test cases (Test Driven Development).
 
 ### If it's a Stable Product, Don't Touch it
-(1) Do the very opposite! Just because the application is stable and doesn't have more features coming up anytime soon does not necessarily mean it goes untouched. Of course, it may not be the highest priority, but make sure to maintain the project and keep it up to date before it bites you back at a later stage:
+Do the very opposite! Just because the application is stable and doesn't have more features coming up anytime soon does not necessarily mean it goes untouched. Of course, it may not be the highest priority, but make sure to maintain the project and keep it up to date before it bites you back at a later stage:
 
 - Upgrade dependencies, at least the next major version, if not minor ones.
 - Keep it on par with the rest of the codebase/services, be it the architecture, conventions, or contracts.
