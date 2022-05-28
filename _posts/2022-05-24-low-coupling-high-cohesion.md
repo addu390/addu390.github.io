@@ -10,6 +10,6 @@ category: Leisure Seizure
 ---
 
 <img class="center-image" src="./assets/featured/iphone-100x.png" /> 
-<p style="text-align: center;">Keep it Simple. </p>
+<p style="text-align: center;">Complex is Simple. </p>
 
 Hey 👋 it's a work in progress; stay tuned. [Subscribe](https://pyblog.medium.com/subscribe) maybe?
