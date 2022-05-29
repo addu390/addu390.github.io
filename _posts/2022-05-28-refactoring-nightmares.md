@@ -69,4 +69,21 @@ Head back to "Don't Rebuild; Build the Right Things" and come up with metrics to
 <hr class="hr">
 
 ## How to refactor
-...
+
+### Pause new development while refactoring
+Imagine refactoring, and the other developers are also making changes or even refactoring the same class you are - leading to a merge-conflicts nightmare. So, communicate beforehand about the changes you plan on doing, and make sure to refactor in stages so that it doesn't end up being a blocker for too long.
+
+### Define the scope of your refactoring
+Refactoring is not different from working on a feature; start with
+- gathering context about the existing piece of code you are about to refactor,
+- scope the refactoring plan and decide on the classes/functions you'd refactor,
+- as always, don't start coding right away; start with the low-level design and come up with a rough sketch of what the results look like - more importantly, take solutioning-time into consideration while estimating the approximate time,
+- finally, prioritize and break down the refactoring task into smaller deployable chucks instead of raising that one mega-sized pull request expecting your peer to review it.
+
+### Test cases, Test cases, Test cases
+To start with, one shouldn't even refactor if there are minimal or no prior test cases. Always remember, if anything can go wrong, it will (murphy's law). I mean it! Maybe refactoring isn't the right choice at this moment. Instead, improve the code coverage, document the expected behavior, and visit back to refactor. Without a quantifiable metric to measure the correctness of the refactor, the repercussions can be brutal. If there are test cases with good code coverage already, follow TDD, add new test cases, and fix the older ones.
+
+<hr class="hr">
+
+All said, how deep is the mess you're in? Coming out of ugly legacy code is hard, and not many signup for it. The same old "prevention is better than cure" is the way to avoid ending up with the Refactoring Nightmare.
+
