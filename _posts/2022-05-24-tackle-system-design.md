@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Low Coupling, High Cohesion"
+title: "Anatomy of a System Design Interview"
 date: 2022-05-25
 tags:
   - Project
