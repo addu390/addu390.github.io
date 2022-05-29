@@ -59,7 +59,6 @@ Despite extensive solutioning and following all the best practices, the product 
 Also, if you have a story for refactoring under technical debt, it's a clear indicator that something isn't right.
 
 ### Find ways to correlate the importance of refactoring to ROI.
-Find ways to correlate the importance of refactoring to ROI.
 Alrighty, this is the last one. As mentioned earlier, it's not always easy to emphasize the importance of regular refactoring, which may seem like it's slowing you down.
 
 "[Think of it this way](https://www.linkedin.com/pulse/refactoring-nightmares-nicholas-iannone/): You're a code politician. Your stakeholders are your citizens, and they will expect you to not only make new laws but also to repeal laws that no one agrees with anymore. Refactoring is just as necessary as feature development, and developers tend to focus too much on adding new things. We can spend our time filling our rooms with new toys, clothes, and furniture, but we also need to clean our rooms and throw out old items from time to time."
