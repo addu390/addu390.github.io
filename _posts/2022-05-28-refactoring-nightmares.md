@@ -70,6 +70,9 @@ Head back to "Don't Rebuild; Build the Right Things" and come up with metrics to
 ### Pause new development while refactoring
 Imagine refactoring, and the other developers are also making changes or even refactoring the same class you are - leading to a merge-conflicts nightmare. So, communicate beforehand about the changes you plan on doing, and make sure to refactor in stages so that it doesn't end up being a blocker for too long.
 
+<img class="center-image" src="./assets/posts/merge-conflicts.png" /> 
+<p style="text-align: center;">Merge Wars </p>
+
 ### Define the scope of your refactoring
 Refactoring is not different from working on a feature; start with
 - gathering context about the existing piece of code you are about to refactor,
