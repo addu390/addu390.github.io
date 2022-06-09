@@ -97,9 +97,9 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 ### Software Engineer
 <p class="nomad"><i>PhonePe Private Limited (Acquired by Walmart), Bengaluru, KA, India</i></p>
 
-- E-Nach (Automated Payment Services): Developed the Systematic Investment Plan (SIP) feature to schedule automated payments through E-Nach and UPI mandates or set-up reminders for investments, and handle over 1.2 lakh transactions per day.
+- E-Nach (Automated Payment Services): Developed the Systematic Investment Plan (SIP) feature to schedule automated payments through E-Nach and UPI mandates or set-up reminders for investments, and handle over 3 million transactions per month.
 
-- Know Your Customer (KYC) Verification: Rewrote KYC submission state-machine for user identity verification by parsing proof documents such as Drivers License, Aadhar Card, and Bank Statements, along with a selfie video verification which reduced false negatives from 4% to 0.3%
+- Know Your Customer (KYC) Verification: Built the KYC submission state-machine for user identity verification by parsing proof documents such as Drivers License, Aadhar Card, and Bank Statements, along with a selfie video verification which reduced false negatives from 4% to 0.3%.
 
 - Platformization: Built a Dropwizard framework to enable dynamic screens with serverdriven UI, thereby taking away the need for frequent mobile application releases and extended the project to facilitate A/B testing
 
@@ -114,7 +114,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Load Test Framework: Developed a framework to capture and replay HTTP traffic at a higher speed in a test environment and published performance results to Grafana and Spinnaker dashboards, reducing the set-up time from >60 minutes to ~10 minutes
 
-- Parallel Test Framework: Reduced test execution time from 65 minutes to ~14 minutes using Jenkins and AWS Spot Fleet with ANT scripts to aggregate test results, reducing deployment time and cost from $300 to $20 a month.
+- Reduced test execution time from 65 minutes to ~14 minutes using Jenkins and AWS Spot Fleet with ANT scripts to aggregate test results, reducing deployment time and cost by 10x.
 
 - ETL (Extract, Transform, and Load) Pipeline: Set up a pipeline to combine data across multiple database shards by streaming MySQL bin logs using Kafka, leading to a 60%+ improvement in query-time.
 
