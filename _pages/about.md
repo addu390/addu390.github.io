@@ -99,7 +99,7 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - E-Nach (Automated Payment Services): Developed the Systematic Investment Plan (SIP) feature to schedule automated payments through E-Nach and UPI mandates or set-up reminders for investments, and handle over 3 million transactions per month.
 
-- Know Your Customer (KYC) Verification: Built the KYC submission state-machine for user identity verification by parsing proof documents such as Drivers License, Aadhar Card, and Bank Statements, along with a selfie video verification which reduced false negatives from 4% to 0.3%.
+- Know Your Customer (KYC) Verification: Rewrote KYC submission state-machine for user identity verification by parsing proof documents such as Drivers License, Aadhar Card, and Bank Statements, along with a selfie video verification which reduced false negatives from 4% to 0.3%.
 
 - Platformization: Built a Dropwizard framework to enable dynamic screens with serverdriven UI, thereby taking away the need for frequent mobile application releases and extended the project to facilitate A/B testing
 
