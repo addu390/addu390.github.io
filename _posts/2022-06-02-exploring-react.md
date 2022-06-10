@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Exploring React - The First Time Ever"
-date: 2023-06-02
+title: "React - Through the lens of a Backend Developer "
+date: 2022-06-02
 tags:
   - Project
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/tesla-cybertruck.png
-category: Leisure Seizure
+category: Comics
 ---
 
 <img class="center-image" src="./assets/featured/tesla-cybertruck.png" /> 
