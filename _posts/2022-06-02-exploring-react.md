@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "React - Through the lens of a Backend Developer "
-date: 2022-06-02
+date: 2022-06-10
 tags:
   - Project
 author: Adesh Nalpet Adimurthy
