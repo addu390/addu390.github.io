@@ -39,3 +39,5 @@ A lot of the companies out there are on a constant lookout to hire engineers, an
 
 ### Side Hustle
 A lot of creators out there have sponsors as their primary source of income. While that's not remotely easy to achieve, this could be your chance to have a side hustle or even consider starting a project of your own; it doesn't have to be a business plan and can be a simple library.
+
+Moreover, in a way, it's the right thing to do to give back to the community. About 3 years into my career as a Backend Engineer, an advice I would give to myself is to be a lot more involved with and contribute to open-source projects. I'm glad to be selected as a contributor for Google Summer of Code 2022 - working with Our World in Data is without a doubt a stepping stone towards the right direction :)
