@@ -306,11 +306,11 @@ function round(x, y, n) {
 }
 ```
 
-A complete implementation of the above:
+A complete implementation of the above (with additional features):
 - Prototype: [https://www.pyblog.xyz/population-cartogram](https://www.pyblog.xyz/population-cartogram/)
 - Github Repository: [https://github.com/owid/cartograms](https://github.com/owid/cartograms)
 
-However, this does not conclude meeting the requirement. The last pending piece is to generate a new cartogram/topojson after moving hex-cells. That's a work in progress; stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
+However, this does not conclude meeting the expected requirement(s). The last pending piece is to generate a new cartogram/topojson after moving hex-cells. That's a work in progress; stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
 <hr class="hr">
 
