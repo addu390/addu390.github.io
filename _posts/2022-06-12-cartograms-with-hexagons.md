@@ -25,7 +25,7 @@ It’s vital to ensure the shape or the outline of a region (Example: Country an
 While generating a cartogram algorithmically yields good results, the best cartograms out there are the ones that as designed artistically/manually. This boils down to finding a balance between using algorithms to generate cartograms and manually nitpicking fine details - that's where the grids come into the picture.
 
 <img src="./assets/posts/hex-grid-cartogram.png" /> 
-<p style="text-align: center;">Hex grid cartogram. </p>
+<p style="text-align: center;">Figure 1: Hex grid cartogram. </p>
 
 ## Choosing the right grid
 
@@ -45,6 +45,9 @@ One of the most commonly used grids is a square grid. It's simple, easy to work 
 
 ### Hexagon
 Hexagonal grids are the next commonly used grids, as they offer less distortion of distances than square grids because each hexagon has more non-diagonal neighbors than a square (diagonals distort grid distances). Moreover, hexagons have a pleasing appearance (the honeycomb is a good example). As for the grids, the position is either pointy tops and flat sides or flat tops and pointy sides.
+
+<img class="center-image" src="./assets/posts/hexagon-grid-details.png" /> 
+<p style="text-align: center;">Figure 2: Original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
 
 - Hexagons are 6-sided polygons. 
 - Regular hexagons have all the sides the same length. 
@@ -68,7 +71,7 @@ Hexagonal grids are the next commonly used grids, as they offer less distortion 
 - Better fit to curved surfaces: when dealing with large areas, where the curvature of the earth becomes important, hexagons are better able to fit this curvature than squares (this is why soccer balls are constructed of hexagonal panels).
 
 <img class="center-image" src="./assets/posts/hex-square-tessellation.png" /> 
-<p style="text-align: center;">Tessellation of the plane (Square and Hexagon). </p>
+<p style="text-align: center;">Figure 3: Tessellation of the plane (Square and Hexagon). </p>
 
 ### Hexagonal grid for Cartograms
 For a cartogram, the reasons to choose hexagons over squares are as follows:
