@@ -47,7 +47,7 @@ One of the most commonly used grids is a square grid. It's simple, easy to work 
 Hexagonal grids are the next commonly used grids, as they offer less distortion of distances than square grids because each hexagon has more non-diagonal neighbors than a square (diagonals distort grid distances). Moreover, hexagons have a pleasing appearance (the honeycomb is a good example). As for the grids, the position is either pointy tops and flat sides or flat tops and pointy sides.
 
 <img class="center-image" src="./assets/posts/hexagon-grid-details.png" /> 
-<p style="text-align: center;">Figure 2: Original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
+<p style="text-align: center;">Figure 2: Modified from original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
 
 - Hexagons are 6-sided polygons. 
 - Regular hexagons have all the sides the same length. 
