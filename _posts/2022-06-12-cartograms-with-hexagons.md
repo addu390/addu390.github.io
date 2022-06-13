@@ -103,6 +103,41 @@ A more details explanation of the proposal is here: [https://www.pyblog.xyz/gsoc
 
 <hr class="hr">
 
+### File: cartogram.js
+Refer to the research paper [An Algorithm to Construct Continous Area Cartograms](http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf). Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: 
+
+```
+For each polygon
+  Read and store PolygonValue (negative value illegal)
+  Sum PolygonValue into TotalValue
+```
+
+```
+For each iteration (user controls when done)
+  For each polygon
+	  Calculate area and centroid (using current boundaries)
+  Sum areas into TotalArea
+  For each polygon
+	  Desired = (TotalArea * (PolygonValuelTotaIValue))
+	  Radius = SquareRoot (Areah)
+	  Mass = SquareRoot (Desiredln) - SquareRoot (Areah)
+	  SizeError = Max(Area, Desired) / Min(Area, Desired)
+
+  ForceReductionFactor = 1 / (1 + Mean (SizeError))
+  For each boundary line; Read coordinate chain
+	  For each coordinate pair
+		  For each polygon centroid
+			  Find angle, Distance from centroid to coordinate
+			    If (Distance > Radius of polygon): Fij = Mas * (RadiWDistance)
+			    Else: Fij = Mass * (Distance A2 I Radius A2) * (4 - 3 * (Distance / Radius))
+		  Using Fij and angles, calculate vector sum
+		  Multiply by ForceReductionFactor
+		  Move coordinate accordingly
+	  Write distorted line to output and plot result
+```
+
+<hr class="hr">
+
 ### File: index.html
 ### Create a HTML `div` with a unique `id`
 To append SVG, i.e., the hexagonal grid and polygons/regions of the cartogram (derived from the topojson).
