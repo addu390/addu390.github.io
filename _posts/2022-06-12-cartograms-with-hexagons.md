@@ -344,6 +344,10 @@ function round(x, y, n) {
 }
 ```
 
+<hr class="hr">
+
+## Conclusion
+
 A complete implementation of the above (with additional features):
 - Prototype: [https://www.pyblog.xyz/population-cartogram](https://www.pyblog.xyz/population-cartogram/)
 - Github Repository: [https://github.com/owid/cartograms](https://github.com/owid/cartograms)
