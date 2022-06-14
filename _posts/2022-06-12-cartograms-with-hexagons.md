@@ -31,16 +31,22 @@ While generating a cartogram algorithmically yields good results, the best carto
 
 Grids are built from a repetition of simple shapes such as squares and hexagons. Grids have three types of parts: faces (tiles), edges, and vertices.
 - Each face is a two-dimensional surface enclosed by edges. 
+
 - Each edge is a one-dimensional line segment ending at two vertices. 
+
 - Each vertex is a zero-dimensional point
 
 ### Square
 One of the most commonly used grids is a square grid. It's simple, easy to work with, and maps nicely onto a computer screen. The location uses cartesian coordinates (x, y), and the axes are orthogonal. Not to mention, the coordinate system is the same even if the squares are angled in an isometric or axonometric projection.
 
 - Squares are 4-sided polygons. 
+
 - Squares have all the sides the same length. 
+
 - They have 4 sides and 4 corners.
+
 - Each side is shared by 2 squares. 
+
 - Each corner is shared by 4 squares.
 
 ### Hexagon
@@ -50,10 +56,15 @@ Hexagonal grids are the next commonly used grids, as they offer less distortion 
 <p style="text-align: center;">Figure 2: Modified from original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
 
 - Hexagons are 6-sided polygons. 
+
 - Regular hexagons have all the sides the same length. 
+
 - They have 6 sides and 6 corners.
+
 - Each side is shared by 2 hexagons. 
+
 - Each corner is shared by 3 hexagons.
+
 - Typically, the orientations for hex grids are vertical columns (flat-topped) and horizontal rows (pointy-topped).
 
 <hr class="hr">
@@ -62,12 +73,16 @@ Hexagonal grids are the next commonly used grids, as they offer less distortion 
 
 ### Square grids
 - Square grids are universally used in Raster datasets in GIS. 
+
 - Ease of definition and storage: the only explicit geographical information necessary to define a raster grid are the coordinates of the origin, cell size, and grid dimensions, i.e., the number of cells in each direction. The attribute data can be stored as an aspatial matrix, and the geographical location of any cell can be derived from the cell’s position relative to the origin - this makes data storage and retrieval easier since the coordinates of the vertices of each grid cell are not explicitly stored.
+
 - Ease of resampling to different spatial scales: increasing the spatial resolution of a square grid is just a matter of dividing each grid cell into four. Similarly, decreasing the spatial resolution only requires combining groups of four cells into one.
 
 ### Hexagonal grids
 - Reduced edge effects: a hexagonal grid gives the lowest perimeter to area ratio of any regular tessellation of the plane - this means that edge effects are minimized when working with hexagonal grids.
+
 - All neighbours are identical: square grids have two classes of neighbours, those in the cardinal directions that share an edge and those in diagonal directions that share a vertex. In contrast, a hexagonal grid cell has six identical neighboring cells, each sharing one of the six equal-length sides. Furthermore, the distance between centroids is the same for all neighbors.
+
 - Better fit to curved surfaces: when dealing with large areas, where the curvature of the earth becomes important, hexagons are better able to fit this curvature than squares (this is why soccer balls are constructed of hexagonal panels).
 
 <img class="center-image" src="./assets/posts/hex-square-tessellation.png" /> 
@@ -76,7 +91,9 @@ Hexagonal grids are the next commonly used grids, as they offer less distortion 
 ### Hexagonal grid for Cartograms
 For a cartogram, the reasons to choose hexagons over squares are as follows:
 - It's a better fit for curved surfaces, thereby supporting most geographic projections.
+
 - Representing a complex-shaped polygon by hexagons offers a lower error factor (tessellation of the plane), i.e., (the actual area of the polygon - Area formed by tiny tiles/hexagons) is lower as compared to that formed by squares.
+
 - They look badass! Without a doubt, hexagonal grids look way more impressive than square grids.
 
 <hr class="hr">
@@ -100,7 +117,9 @@ The `d` attribute in `<path></path>` defines the shape of the line.
 
 To render the map, the plan is to:
 - Loop through each country’s `GeoJSON` polygon
+
 - Create the `d` attribute string using the `d3.geopath` function
+
 - Create and append an SVG path element with the above `d` attribute
 
 ### Dependencies
@@ -114,13 +133,16 @@ To render the map, the plan is to:
 "topojson-simplify": "^3.0.3"
 ```
 
-### Project Structure
-- `index.html`: HTML page of the main screen.
-- `app.js`: The logic for loading, scaling, and generating the cartogram.
-- `app.css`: Styling for the index page and the SVG generated from input/scaled cartogram.
-- `cartogram.js`: Implementation of the algorithm to construct continuous area cartograms.
-
 <hr class="hr">
+
+## Project Structure
+- `index.html`: HTML page of the main screen.
+
+- `app.js`: The logic for loading, scaling, and generating the cartogram.
+
+- `app.css`: Styling for the index page and the SVG generated from input/scaled cartogram.
+
+- `cartogram.js`: Implementation of the algorithm to construct continuous area cartograms.
 
 ### File: cartogram.js
 Refer to the research paper [An Algorithm to Construct Continous Area Cartograms](http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf). Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: 
@@ -190,7 +212,7 @@ let pointGrid = d3.range(rows * cols).map(function (el, i) {
     };
 });
 ```
-<img class="center-image" style="width: 8%" src="./assets/posts/down-arrow.png" /> 
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Plot the hexagonal grid playground
 
@@ -219,7 +241,7 @@ svg.append('g').attr('id', 'hexes')
     .style('stroke-width', strokeWidth)
 ```
 
-<img class="center-image" style="width: 8%" src="./assets/posts/down-arrow.png" /> 
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Create the base cartogram
 Set the topojson properties and map the values (population count). In this example, the base cartogram is a population-scaled world map for the year 2018.
@@ -243,7 +265,7 @@ topo_cartogram.value(function (d) {
 });
 ```
 
-<img class="center-image" style="width: 8%" src="./assets/posts/down-arrow.png" /> 
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Flatten the features of the cartogram/topojson.
 
@@ -268,7 +290,7 @@ for (let i = 0; i < topoFeatures.length; i++) {
 }
 ```
 
-<img class="center-image" style="width: 8%" src="./assets/posts/down-arrow.png" /> 
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Fill the polygons/regions of the base cartogram with hexagons (tessellation)
 
@@ -303,7 +325,7 @@ for (let i = 0; i < features.length; i++) {
 }
 ```
 
-<img class="center-image" style="width: 8%" src="./assets/posts/down-arrow.png" /> 
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Drag and drop hexagons in the hex-grid
 Implement `start`, `drag`, and `end` - representing the states when the drag has start, in-flight and dropped to a hexagonal slot.
