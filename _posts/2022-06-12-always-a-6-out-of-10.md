@@ -6,7 +6,7 @@ tags:
   - Project
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/porco-rosso.png
-category: Comics
+category: Leisure Seizure
 ---
 
 <img class="center-image" src="./assets/featured/porco-rosso.png" /> 
