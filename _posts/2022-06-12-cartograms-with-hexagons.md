@@ -380,4 +380,7 @@ However, this does not conclude meeting the expected requirement(s). The last pe
 [1] “Amit’s Thoughts on Grids,” www-cs-students.stanford.edu. http://www-cs-students.stanford.edu/~amitp/game-programming/grids
 
 [2] M. Strimas-Mackey, “Fishnets and Honeycomb: Square vs. Hexagonal Spatial Grids,” Matt Strimas-Mackey, Jan. 14, 2016. https://strimas.com/post/hexagonal-grids
+
+[3] S. Kamani, “D3 Geo Projections Explained” www.sohamkamani.com. https://www.sohamkamani.com/blog/javascript/2019-02-18-d3-geo-projections-explained (accessed Jun. 14, 2022).
+‌
 ```
