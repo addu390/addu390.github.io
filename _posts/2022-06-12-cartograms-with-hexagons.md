@@ -93,7 +93,7 @@ Earth is round or more accurately, an ellipsoid. To show its features on a flat 
 D3 offers a range of built-in [projections](https://github.com/d3/d3-geo-projection); however, no projection accurately depicts all points in the globe, so it's important to choose the appropriate projection for the use case. The purpose is simple: translate the latitude and longitude pair to a pair of X and Y coordinates on SVG. Lastly, to fit the coordinates to the SVG element, the `fitExtent` and `rotate` are handly, as the projection has no knowledge of the size or extent of the SVG element.
 
 ### Geopath
-The projection function works well for converting points into X and Y coordinates but not lines. A typical map has regions represented by lines and not individual points. Hence to render the map, irregular lines are represented using the path element.
+The projection function works well for converting points into X and Y coordinates but not lines. A typical map has regions represented by lines and not individual points. Hence to render the map, irregular lines are represented using the [path](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) element.
 The `d` attribute in `<path></path>` defines the shape of the line.
 
 `const path = d3.geoPath().projection(projection)`, the `path` functions takes `GeoJSON` polygons, and returns a string which can directly be used as the `d` attribute of an SVG path.
