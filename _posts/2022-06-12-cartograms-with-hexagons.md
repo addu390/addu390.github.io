@@ -82,7 +82,26 @@ For a cartogram, the reasons to choose hexagons over squares are as follows:
 <hr class="hr">
 
 ## Building a shape preserved hexagonal grid cartogram
-A more details explanation of the proposal is here: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022)
+
+Initial Proposal: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022)
+
+Primary dependency: D3 is a Javascript library extensively used for drawing geographic visualizations. It uses [GeoJSON](https://geojson.org)/[TopoJSON](https://en.wikipedia.org/wiki/GeoJSON) for representing shapes on maps by converting them to rendered SVG element(s).
+
+### Projection
+Earth is round or more accurately, an ellipsoid. To show its features on a flat surface, it's not possible to accurately translate a sphere onto a plane, hence the need for projections. For instance, the Mercator projection is famously known to over-exaggerate the size of landmasses near the poles (No wonder Greenland looks massive). 
+
+D3 offers a range of built-in [projections](https://github.com/d3/d3-geo-projection); however, no projection accurately depicts all points in the globe, so it's important to choose the appropriate projection for the use case. The purpose is simple: translate the latitude and longitude pair to a pair of X and Y coordinates on SVG. Lastly, to fit the coordinates to the SVG element, the `fitExtent` and `rotate` are handly, as the projection has no knowledge of the size or extent of the SVG element.
+
+### Geopath
+The projection function works well for converting points into X and Y coordinates but not lines. A typical map has regions represented by lines and not individual points. Hence to render the map, irregular lines are represented using the path element.
+The `d` attribute in `<path></path>` defines the shape of the line.
+
+`const path = d3.geoPath().projection(projection)`, the `path` functions takes `GeoJSON` polygons, and returns a string which can directly be used as the `d` attribute of an SVG path.
+
+To render the map, the plan is to:
+- Loop through each country’s `GeoJSON` polygon
+- Create the `d` attribute string using the `d3.geopath` function
+- Create and append an SVG path element with the above `d` attribute
 
 ### Dependencies
 ```
