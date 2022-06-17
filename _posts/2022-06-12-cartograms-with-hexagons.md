@@ -96,21 +96,39 @@ The initial project proposal and the expectation along with the timeline:: [http
 Since the primary dependency is D3 - a Javascript library extensively used for drawing geographic visualizations and uses [GeoJSON](https://geojson.org)/[TopoJSON](https://en.wikipedia.org/wiki/GeoJSON) for representing shapes on maps by converting them to rendered SVG element(s); explanations are supported by implementation details in D3.
 
 ### Projection
-Earth is round or more accurately, an ellipsoid. To show its features on a flat surface, it's not possible to accurately translate a sphere onto a plane, hence the need for projections. For instance, the Mercator projection is famously known to over-exaggerate the size of landmasses near the poles (No wonder Greenland looks massive). 
 
 <img class="center-image" src="./assets/posts/cartograms/earth-projection.png" /> 
 <p style="text-align: center;">Figure 4: Mercator projection. </p>
 
+Earth is round or more accurately, an ellipsoid. To show its features on a flat surface, it's not possible to accurately translate a sphere onto a plane, hence the need for projections. For instance, the Mercator projection is famously known to over-exaggerate the size of landmasses near the poles (No wonder Greenland looks massive). 
+
 D3 offers a range of built-in [projections](https://github.com/d3/d3-geo-projection); however, no projection accurately depicts all points in the globe, so it's important to choose the appropriate projection for the use case. The purpose is simple: translate the latitude and longitude pair to a pair of X and Y coordinates on SVG. Lastly, to fit the coordinates to the SVG element, the `fitExtent` and `rotate` are handly, as the projection has no knowledge of the size or extent of the SVG element.
+
+<img style="text-align: center" src="./assets/posts/cartograms/projection-function.png" /> 
+<p style="text-align: center;">Figure 5: Projection function to map coordinate. </p>
 
 ### Geopath
 The projection function works well for converting points into X and Y coordinates but not lines. A typical map has regions represented by lines and not individual points. Hence to render the map, irregular lines are represented using the [path](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) element.
 The `d` attribute in `<path></path>` defines the shape of the line.
 
-`const path = d3.geoPath().projection(projection)`, the `path` functions takes `GeoJSON` polygons, and returns a string which can directly be used as the `d` attribute of an SVG path.
+```
+  <path
+    d="M732.4944016581658,608.9022205707863L727.1354648887938,
+    610.9411167803873L706.8155159265721,604.6447353677604L703.587646715891,
+    610.7806528270128L688.0319490712842,611.8868016539795L688.8280117925813, 
+    ......
+    ......
+    ......
+    600.4706783128443L788.2046582778905,605.2215195516151L781.7980088643487,
+    600.5439608373076L772.9856281618564,600.8681045994042L760.5726799028025,
+    607.2632255686299L744.3618779892297,607.9935254189165L742.5384536592165,
+    615.3237961667451Z"
+    stroke="white"
+    fill="rgb(211, 211, 211)"
+  </path>
+```
 
-<img src="./assets/posts/cartograms/projection-function.png" /> 
-<p style="text-align: center;">Figure 5: projection function to map coordinate. </p>
+Ussage in D3: `const path = d3.geoPath().projection(projection)`, the `path` functions takes `GeoJSON` polygons, and returns a string which can directly be used as the `d` attribute of an SVG path.
 
 To render the map, the plan is to:
 - Loop through each country’s `GeoJSON` polygon
@@ -119,6 +137,40 @@ To render the map, the plan is to:
 
 ### Tessellation
 A tessellation or tiling is a process of covering a surface or a plane, using one or more geometric shapes, called tiles, with no overlaps or gaps. Furthermore, a variant of symmetric tessellation has a fixed tile size and geometric shape.
+
+Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the tile/cell. However, with the tessellation of a polygon, only the tiles within the polygon are arranged in the same order. Whereas, when dealing with multiple polygons in the same grid, the arrangement of tiles has to be based on the nearest tile that fits in the grid.
+
+<img class="center-image" style="width: 50%" src="./assets/posts/cartograms/hex-grid-tessellation.png" /> 
+<p style="text-align: center;">Figure 6: Consistent Tessellation in a Grid. </p>
+
+### Tessellation of n polygons
+
+Putting it all together, 
+- the first step is forming a grid of points representing the center of the tile (hexagon/square). 
+- The next step is to draw the tile relative to each point in the grid - this forms the base playground. - Then, superimpose the set of polygons of the grid playground. 
+- Finally, tessellate each of the polygons by ensuring the tiles chosen are from the previously formed grid of tiles.
+
+<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid.png" /> 
+<p style="text-align: center;">Figure 7: Point grid for a (Width x Height). </p>
+
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
+
+<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-cell.png" /> 
+<p style="text-align: center;">Figure 8: Tessellate points with hexagons </p>
+
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
+
+<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-polygon.png" /> 
+<p style="text-align: center;">Figure 9: Draw a filled world-map cartogram (2018) on Canvas. </p>
+
+<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
+
+<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-hex-cartogram.png" /> 
+<p style="text-align: center;">Figure 10: Regularly tessellate the world-map with hexagons. </p>
+
+<hr class="hr">
+
+## Implementation
 
 ### Dependencies
 ```
