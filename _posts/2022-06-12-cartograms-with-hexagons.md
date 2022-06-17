@@ -24,7 +24,7 @@ It’s vital to ensure the shape or the outline of a region (Example: Country an
 
 While generating a cartogram algorithmically yields good results, the best cartograms out there are the ones that as designed artistically/manually. This boils down to finding a balance between using algorithms to generate cartograms and manually nitpicking fine details - that's where the grids come into the picture.
 
-<img src="./assets/posts/hex-grid-cartogram.png" /> 
+<img src="./assets/posts/cartograms/hex-grid-cartogram.png" /> 
 <p style="text-align: center;">Figure 1: Hex grid cartogram. </p>
 
 ## Choosing the right grid
@@ -52,7 +52,7 @@ One of the most commonly used grids is a square grid. It's simple, easy to work 
 ### Hexagon
 Hexagonal grids are the next commonly used grids, as they offer less distortion of distances than square grids because each hexagon has more non-diagonal neighbors than a square (diagonals distort grid distances). Moreover, hexagons have a pleasing appearance (the honeycomb is a good example). As for the grids, the position is either pointy tops and flat sides or flat tops and pointy sides.
 
-<img class="center-image" src="./assets/posts/hexagon-grid-details.png" /> 
+<img class="center-image" src="./assets/posts/cartograms/hexagon-grid-details.png" /> 
 <p style="text-align: center;">Figure 2: Modified from original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
 
 - Hexagons are 6-sided polygons. 
@@ -85,7 +85,7 @@ Hexagonal grids are the next commonly used grids, as they offer less distortion 
 
 - Better fit to curved surfaces: when dealing with large areas, where the curvature of the earth becomes important, hexagons are better able to fit this curvature than squares (this is why soccer balls are constructed of hexagonal panels).
 
-<img class="center-image" src="./assets/posts/hex-square-tessellation.png" /> 
+<img class="center-image" src="./assets/posts/cartograms/hex-square-tessellation.png" /> 
 <p style="text-align: center;">Figure 3: Tessellation of the plane (Square and Hexagon). </p>
 
 ### Hexagonal grid for Cartograms
@@ -100,12 +100,17 @@ For a cartogram, the reasons to choose hexagons over squares are as follows:
 
 ## Building a shape preserved hexagonal grid cartogram
 
-Initial Proposal: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022)
+The initial project proposal and the expectation along with the timeline:: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022)
 
-Primary dependency: D3 is a Javascript library extensively used for drawing geographic visualizations. It uses [GeoJSON](https://geojson.org)/[TopoJSON](https://en.wikipedia.org/wiki/GeoJSON) for representing shapes on maps by converting them to rendered SVG element(s).
+### Prerequisite terminologies to build cartograms
+
+Since the primary dependency is D3 - a Javascript library extensively used for drawing geographic visualizations and uses [GeoJSON](https://geojson.org)/[TopoJSON](https://en.wikipedia.org/wiki/GeoJSON) for representing shapes on maps by converting them to rendered SVG element(s); explanations are supported by implementation details in D3.
 
 ### Projection
 Earth is round or more accurately, an ellipsoid. To show its features on a flat surface, it's not possible to accurately translate a sphere onto a plane, hence the need for projections. For instance, the Mercator projection is famously known to over-exaggerate the size of landmasses near the poles (No wonder Greenland looks massive). 
+
+<img class="center-image" src="./assets/posts/cartograms/earth-projection.png" /> 
+<p style="text-align: center;">Figure 4: Mercator projection. </p>
 
 D3 offers a range of built-in [projections](https://github.com/d3/d3-geo-projection); however, no projection accurately depicts all points in the globe, so it's important to choose the appropriate projection for the use case. The purpose is simple: translate the latitude and longitude pair to a pair of X and Y coordinates on SVG. Lastly, to fit the coordinates to the SVG element, the `fitExtent` and `rotate` are handly, as the projection has no knowledge of the size or extent of the SVG element.
 
@@ -121,6 +126,9 @@ To render the map, the plan is to:
 - Create the `d` attribute string using the `d3.geopath` function
 
 - Create and append an SVG path element with the above `d` attribute
+
+### Tessellation
+A tessellation or tiling is a process of covering a surface or a plane, using one or more geometric shapes, called tiles, with no overlaps or gaps. Furthermore, a variant of symmetric tessellation has a fixed tile size and geometric shape.
 
 ### Dependencies
 ```
