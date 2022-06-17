@@ -31,22 +31,16 @@ While generating a cartogram algorithmically yields good results, the best carto
 
 Grids are built from a repetition of simple shapes such as squares and hexagons. Grids have three types of parts: faces (tiles), edges, and vertices.
 - Each face is a two-dimensional surface enclosed by edges. 
-
 - Each edge is a one-dimensional line segment ending at two vertices. 
-
 - Each vertex is a zero-dimensional point
 
 ### Square
 One of the most commonly used grids is a square grid. It's simple, easy to work with, and maps nicely onto a computer screen. The location uses cartesian coordinates (x, y), and the axes are orthogonal. Not to mention, the coordinate system is the same even if the squares are angled in an isometric or axonometric projection.
 
 - Squares are 4-sided polygons. 
-
 - Squares have all the sides the same length. 
-
 - They have 4 sides and 4 corners.
-
 - Each side is shared by 2 squares. 
-
 - Each corner is shared by 4 squares.
 
 ### Hexagon
@@ -56,15 +50,10 @@ Hexagonal grids are the next commonly used grids, as they offer less distortion 
 <p style="text-align: center;">Figure 2: Modified from original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
 
 - Hexagons are 6-sided polygons. 
-
 - Regular hexagons have all the sides the same length. 
-
 - They have 6 sides and 6 corners.
-
 - Each side is shared by 2 hexagons. 
-
 - Each corner is shared by 3 hexagons.
-
 - Typically, the orientations for hex grids are vertical columns (flat-topped) and horizontal rows (pointy-topped).
 
 <hr class="hr">
@@ -120,11 +109,12 @@ The `d` attribute in `<path></path>` defines the shape of the line.
 
 `const path = d3.geoPath().projection(projection)`, the `path` functions takes `GeoJSON` polygons, and returns a string which can directly be used as the `d` attribute of an SVG path.
 
+<img src="./assets/posts/cartograms/projection-function.png" /> 
+<p style="text-align: center;">Figure 5: projection function to map coordinate. </p>
+
 To render the map, the plan is to:
 - Loop through each country’s `GeoJSON` polygon
-
 - Create the `d` attribute string using the `d3.geopath` function
-
 - Create and append an SVG path element with the above `d` attribute
 
 ### Tessellation
