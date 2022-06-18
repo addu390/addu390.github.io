@@ -657,7 +657,12 @@ code {
 }
 
 .low-featured {
-  background-color: #333333;
+  background-color: #202020;
+}
+
+.high-featured {
+  background-color: #181818;
+  border-bottom: 2px solid #222;
 }
 
 .nomad {
