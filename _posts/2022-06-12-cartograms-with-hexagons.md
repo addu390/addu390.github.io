@@ -146,12 +146,12 @@ Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the t
 ### Tessellation of n polygons
 
 Putting it all together, 
-- the first step is forming a grid of points representing the center of the tile (hexagon/square). 
-- The next step is to draw the tile relative to each point in the grid - this forms the base playground. - Then, superimpose the set of polygons of the grid playground. 
+- the first step is forming a grid of points - each representing the center of the tile (hexagon/square). 
+- The next step is to draw the tile relative to each point in the grid - this forms the base playground. - Then, superimpose the set of polygons on the grid playground. 
 - Finally, tessellate each of the polygons by ensuring the tiles chosen are from the previously formed grid of tiles.
 
 <img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid.png" /> 
-<p style="text-align: center;">Figure 7: Point grid for a (Width x Height). </p>
+<p style="text-align: center;">Figure 7: Point grid of (Width x Height). </p>
 
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
@@ -161,12 +161,12 @@ Putting it all together,
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 <img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-polygon.png" /> 
-<p style="text-align: center;">Figure 9: Draw a filled world-map cartogram (2018) on Canvas. </p>
+<p style="text-align: center;">Figure 9: Draw a filled world-map cartogram (hand drawn sample) on Canvas. </p>
 
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 <img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-hex-cartogram.png" /> 
-<p style="text-align: center;">Figure 10: Regularly tessellate the world-map with hexagons. </p>
+<p style="text-align: center;">Figure 10: Regularly tessellate each country/polygon in the world-map with hexagons. </p>
 
 <hr class="hr">
 
