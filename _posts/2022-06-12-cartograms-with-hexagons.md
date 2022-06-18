@@ -138,7 +138,7 @@ To render the map, the plan is to:
 ### Tessellation
 A tessellation or tiling is a process of covering a surface or a plane, using one or more geometric shapes, called tiles, with no overlaps or gaps. Furthermore, a variant of symmetric tessellation has a fixed tile size and geometric shape.
 
-Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the tile/cell. However, with the tessellation of a polygon, only the tiles within the polygon are arranged in the same order. Whereas, when dealing with multiple polygons in the same grid, the arrangement of tiles has to be based on the nearest tile that fits in the grid.
+Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the tile/cell. However, with the tessellation of a polygon, only the tiles within the polygon are arranged in the same order. Whereas, when dealing with multiple polygons in the same grid, the arrangement of tiles has to be based on the nearest tile that fits in the grid - implying the need for a point grid.
 
 <img class="center-image" style="width: 50%" src="./assets/posts/cartograms/hex-grid-tessellation.png" /> 
 <p style="text-align: center;">Figure 6: Consistent Tessellation in a Grid. </p>
@@ -146,8 +146,8 @@ Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the t
 ### Tessellation of n polygons
 
 Putting it all together, 
-- the first step is forming a grid of points - each representing the center of the tile (hexagon/square). 
-- The next step is to draw the tile relative to each point in the grid - this forms the base playground. - Then, superimpose the set of polygons on the grid playground. 
+- the first step is forming a grid of points, where each point represents the center of the tile (hexagon/square). Figure 7 shows the point grid for hexagon tiles.
+- The next step is to draw the tile relative to each point in the grid (tessellate points), forming the base playground - Then, superimpose the set of polygons (Features in TopoJSON) on the grid playground. 
 - Finally, tessellate each of the polygons by ensuring the tiles chosen are from the previously formed grid of tiles.
 
 <img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid.png" /> 
@@ -161,7 +161,7 @@ Putting it all together,
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 <img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-polygon.png" /> 
-<p style="text-align: center;">Figure 9: Draw a filled world-map cartogram (hand drawn sample) on Canvas. </p>
+<p style="text-align: center;">Figure 9: Draw the TopoJSON on Canvas (the above TopoJSON is the world map scaled by population of 2018). </p>
 
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
