@@ -140,7 +140,7 @@ A tessellation or tiling is a process of covering a surface or a plane, using on
 
 Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the tile/cell. However, with the tessellation of a polygon, only the tiles within the polygon are arranged in the same order. Whereas, when dealing with multiple polygons in the same grid, the arrangement of tiles has to be based on the nearest tile that fits in the grid - implying the need for a point grid.
 
-<img class="center-image" style="width: 50%" src="./assets/posts/cartograms/hex-grid-tessellation.png" /> 
+<img class="center-image" src="./assets/posts/cartograms/hex-grid-tessellation.png" /> 
 <p style="text-align: center;">Figure 6: Consistent Tessellation in a Grid. </p>
 
 ### Tessellation of n polygons
