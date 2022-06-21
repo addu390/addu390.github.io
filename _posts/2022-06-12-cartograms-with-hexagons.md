@@ -210,8 +210,8 @@ For each iteration (user controls when done)
   Sum areas into TotalArea
   For each polygon
 	  Desired = (TotalArea * (PolygonValuelTotaIValue))
-	  Radius = SquareRoot (Area/π)
-	  Mass = SquareRoot (Desired/π) - SquareRoot (Area/π)
+	  Radius = SquareRoot (Area / π)
+	  Mass = SquareRoot (Desired / π) - SquareRoot (Area / π)
 	  SizeError = Max(Area, Desired) / Min(Area, Desired)
 
   ForceReductionFactor = 1 / (1 + Mean (SizeError))
@@ -219,7 +219,7 @@ For each iteration (user controls when done)
 	  For each coordinate pair
 		  For each polygon centroid
 			  Find angle, Distance from centroid to coordinate
-			    If (Distance > Radius of polygon): Fij = Mass * (Radius / WDistance)
+			    If (Distance > Radius of polygon): Fij = Mass * (Radius / Distance)
 			    Else: Fij = Mass * (Distance^2 / Radius^2) * (4 - 3 * (Distance / Radius))
 		  Using Fij and angles, calculate vector sum
 		  Multiply by ForceReductionFactor
