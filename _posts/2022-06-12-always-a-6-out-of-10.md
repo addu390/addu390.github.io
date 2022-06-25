@@ -3,7 +3,7 @@ layout: post
 title: "Not good enough as a software engineer? Me too"
 date: 2022-06-10
 tags:
-  - Project
+  - Storytelling
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/porco-rosso.png
 category: Leisure Seizure
