@@ -4,6 +4,7 @@ title: "Refactoring Nightmares"
 date: 2022-06-01
 tags:
   - Project
+  - Design Patterns
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/refactor-tomato.png
 category: Leisure Seizure

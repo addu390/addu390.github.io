@@ -3,7 +3,7 @@ layout: post
 title: "Why Every Engineer Should Contribute More to Open Source"
 date: 2022-05-27
 tags:
-  - Storytelling
+  - Open Source
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/foss-thankyou.png
 category: Leisure Seizure

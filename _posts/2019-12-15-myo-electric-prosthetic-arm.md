@@ -5,6 +5,7 @@ date: 2019-12-15
 tags:
   - Project
   - Python
+  - 3D Printing
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/ironman-myro.png
 category: Leisure Seizure

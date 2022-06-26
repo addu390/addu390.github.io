@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "Not good enough as a software engineer? Me too"
-date: 2022-06-10
+title: "System Design 101"
+date: 2022-06-26
 tags:
-  - Storytelling
+  - Design Patterns
+  - System Design
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/porco-rosso.png
-category: Leisure Seizure
+category: System Wisdom
 ---
 
 <img class="center-image" src="./assets/featured/porco-rosso.png" /> 

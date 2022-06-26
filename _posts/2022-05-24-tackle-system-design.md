@@ -4,9 +4,11 @@ title: "Anatomy of a System Design Interview: The example"
 date: 2022-05-25
 tags:
   - Project
+  - Database
+  - System Design
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/iphone-100x.png
-category: Leisure Seizure
+category: System Wisdom
 ---
 
 <img class="center-image" src="./assets/featured/iphone-100x.png" /> 

@@ -4,6 +4,10 @@ title: "Conceptualization of a Hexagonal Cartogram"
 date: 2022-06-12
 tags:
   - Project
+  - GSoC
+  - Cartogram
+  - Algorithms
+  - Open Source
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/hex-spiderman.png
 category: Comics

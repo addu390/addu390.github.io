@@ -3,7 +3,7 @@ layout: post
 title: "Popeye the Mightiest"
 date: 2022-03-20
 tags:
-  - Popeye
+  - Gallery
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/popeye/luffy-popeye.png
 category: Comics

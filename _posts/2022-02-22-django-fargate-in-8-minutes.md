@@ -225,6 +225,4 @@ Finally! it’s time to spin up the resources, run:
 - `ecs-cli compose --project-name <CLUSTER-NAME> service up --create-log-groups --cluster-config <CONFIG-NAME>`
 - `Check the status: ecs-cli compose --project-name <CLUSTER-NAME> service ps --cluster-config <CONFIG-NAME>`
 
-Figure 1: Successful Deployment
-
 Look for the IP address of the Nginx machine, as shown in Figure 1. Visit `http://<ip-address>/admin` to view the admin page of the Django application or hit an API of your application 🚀
