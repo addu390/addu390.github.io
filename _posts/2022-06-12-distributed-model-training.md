@@ -25,12 +25,12 @@ Typically, any scaling problem is broadly addressed by scaling-up or scaling-out
 
 ## Types of Distributed Training
 ### Data Parallelism 
-As the name suggests, the dataset is horizontally sharded and processed parallelly. Each worker node in the cluster trains a copy of the model on a different batch of training data, communicating the computation results to keep the model parameters and gradients in sync across all nodes. The computation results can be shared synchronously, i.e., at the end of each batch computation or asynchronously.
+As the name suggests, the dataset is horizontally/vertically sharded and processed parallelly. Each worker node in the cluster trains a copy of the model on a different batch of training data, communicating the computation results to keep the model parameters and gradients in sync across all nodes. The computation results can be shared synchronously, i.e., at the end of each batch computation or asynchronously.
 
 <img class="center-image" src="./assets/posts/machine-learning/data-parallel-training.png" /> 
 <p style="text-align: center;">Figure 1: Data-Parallel training. </p>
 
-**One-liner:** The entire model is deployed to multiple nodes of the cluster, and each node represents the horizontal split of the sharded dataset and the model.
+**One-liner:** The entire model is deployed to multiple nodes of the cluster, and each node represents the horizontal/vertical split of the sharded dataset and the model.
 
 ### Model Parallelism
 On the contrary, in model parallelism, the model itself is divided into parts/layers in situations where the model size is too large for a single worker; hence a set of layers are trained simultaneously across different worker nodes. The entire dataset is copied/available to all worker nodes, and they only share the global model parameters with other workers—typically just before forward or backward propagation. Furthermore, the layers can be partitioned vertically or horizontally.
