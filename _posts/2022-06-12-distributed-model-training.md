@@ -64,12 +64,12 @@ Note: All the workers produce different gradients as they are trained on differe
 ### Reduce Algorithm
 Following up on the reduce-algorithm mentioned in synchronous training, the idea behind the all-reduce algorithm is to share the load of storing and maintaining the global parameters to overcome the limitation of using the parameter server method. There are serval all-reduce algorithms that dictate how parameters are calculated and shared:
 
-<img class="center-image" style="width: 50%" src="./assets/posts/machine-learning/all-reduce.png" /> 
+<img class="center-image" style="width: 45%" src="./assets/posts/machine-learning/all-reduce.png" /> 
 <p style="text-align: center;">Figure 3: All Reduce: Aggregation task distributed to all nodes instead of a single node.</p>
 
 Like AllReduce, each node performs the aggregation task on a subset of parameters: machine A – parameter 1, machine B – parameter 2, etc. Instead of sending its version of parameters to all other nodes, each worker node sends its version to the next one.
 
-<img class="center-image" style="width: 50%" src="./assets/posts/machine-learning/ring-all-reduce.png" /> 
+<img class="center-image" style="width: 45%" src="./assets/posts/machine-learning/ring-all-reduce.png" /> 
 <p style="text-align: center;">Figure 4: Ring All Reduce</p>
 
 Similarly, in tree-all-reduce, parameters are shared via a tree structure. Irrespective of the topology, all-reduce algorithms reduce synchronization overhead and make it easier to scale horizontally.
@@ -110,3 +110,15 @@ On the flip side, In a de-centralized communication pattern, each worker node co
 
 ## Conclusion
 Deep learning models become more ambitious by the day, and their supporting infrastructures struggle to keep up. Employing distributed model training techniques is only a matter of time to solve the problem of training a complex machine learning model on huge datasets. Moreover, the advantages supersede the development time/bandwidth with better Fault tolerance and reliability, higher Efficiency,  horizontally scalable to handle massive scale, and cost-effective in the long run.
+
+<hr class="hr">
+
+## References
+
+```
+[1] “Distributed Training: Guide for Data Scientists,” neptune.ai, Jan. 19, 2022. https://neptune.ai/blog/distributed-training (accessed Jun. 23, 2022).
+
+[2] “Distributed Training,” www.run.ai. https://www.run.ai/guides/gpu-deep-learning/distributed-training (accessed Jun. 24, 2022).
+
+[3] “Distributed Training for Machine Learning – Amazon Web Services,” Amazon Web Services, Inc. https://aws.amazon.com/sagemaker/distributed-training/ (accessed Jun. 26, 2022).
+```
