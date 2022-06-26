@@ -59,17 +59,27 @@ Once again, taking the example of data parallelism, where we divide the data int
 Note: All the workers produce different gradients as they are trained on different subsets of data, and eventually, all workers have the same weight.
 
 ### Reduce Algorithm
+Typically, a single node is used to complete aggregation. For instance, in the case shown in Figure 3, the bandwidth for Machine A increases as the number of machines/parameters increases.
+
+<img class="center-image" style="width: 65%" src="./assets/posts/machine-learning/single-reduce.png" /> 
+<p style="text-align: center;">Figure 3: Single node aggregator.</p>
+
 Following up on the reduce-algorithm mentioned in synchronous training, the idea behind the all-reduce algorithm is to share the load of storing and maintaining the global parameters to overcome the limitation of using the parameter server method. There are serval all-reduce algorithms that dictate how parameters are calculated and shared:
 
 <img class="center-image" style="width: 45%" src="./assets/posts/machine-learning/all-reduce.png" /> 
-<p style="text-align: center;">Figure 3: All Reduce: Aggregation task distributed to all nodes instead of a single node.</p>
+<p style="text-align: center;">Figure 4: All Reduce: Aggregation task distributed to all nodes instead of a single node.</p>
 
 Like AllReduce, each node performs the aggregation task on a subset of parameters: machine A – parameter 1, machine B – parameter 2, etc. Instead of sending its version of parameters to all other nodes, each worker node sends its version to the next one.
 
 <img class="center-image" style="width: 45%" src="./assets/posts/machine-learning/ring-all-reduce.png" /> 
-<p style="text-align: center;">Figure 4: Ring All Reduce</p>
+<p style="text-align: center;">Figure 5: Ring All Reduce</p>
 
 Similarly, in tree-all-reduce, parameters are shared via a tree structure. Irrespective of the topology, all-reduce algorithms reduce synchronization overhead and make it easier to scale horizontally.
+
+<img class="center-image" style="width: 65%" src="./assets/posts/machine-learning/tree-all-reduce.png" /> 
+<p style="text-align: center;">Figure 6: Tree All Reduce</p>
+
+Each worker node holds a subset of data and computes the gradient(s); those values are passed up the tree and aggregated until a global aggregate value is calculated in the root node. Then, the global value is passed down to all other nodes. 
 
 ### Asynchronous training
 The evident problem with the synchronous approach is the lack of efficient resource usage since a worker must wait for all the other workers in the cluster to move forward in the pipeline. Furthermore, the problem amplifies when the computation time for workers is significantly different, which could be because of dataset or computation power variations - because of which the whole process is only as fast as the slowest worker in the cluster. Hence in asynchronous training, the workers work independently in such a way that a worker need not wait for any other worker in the cluster. One way to achieve this is by using a parameter server.
@@ -85,7 +95,7 @@ In distributed training, the cluster of workers performs just one task: training
 The parameter servers are responsible for holding the parameters of the model and are responsible for updating the global state of our model. At the same time, the training workers run the actual training loop and produce the gradients from the batch of data assigned to them.
 
 <img class="center-image" src="./assets/posts/machine-learning/centralized-data-parallel-training.png" /> 
-<p style="text-align: center;">Figure 5: Centralized training. </p>
+<p style="text-align: center;">Figure 7: Centralized training. </p>
 
 Hence the entire process for Centralized data-parallel training is as follows:
 - Replicate the model across the training worker nodes; each worker node uses a subset of the data.
@@ -101,7 +111,7 @@ Some known disadvantages are:
 On the flip side, In a de-centralized communication pattern, each worker node communicates with every other node to update the model parameters. The advantage of this approach is that peer-peer updates are faster, and there is no single point of failure.
 
 <img class="center-image" src="./assets/posts/machine-learning/decentralized-data-parallel-training.png" /> 
-<p style="text-align: center;">Figure 6: De-centralized training. </p>
+<p style="text-align: center;">Figure 8: De-centralized training. </p>
 
 <hr class="hr">
 
@@ -118,4 +128,6 @@ Deep learning models become more ambitious by the day, and their supporting infr
 [2] “Distributed Training,” www.run.ai. https://www.run.ai/guides/gpu-deep-learning/distributed-training (accessed Jun. 24, 2022).
 
 [3] “Distributed Training for Machine Learning – Amazon Web Services,” Amazon Web Services, Inc. https://aws.amazon.com/sagemaker/distributed-training/ (accessed Jun. 26, 2022).
+
+[4] “Distributed model training II: Parameter Server and AllReduce – Ju Yang.” http://www.juyang.co/distributed-model-training-ii-parameter-server-and-allreduce/ (accessed Jun. 26, 2022).
 ```
