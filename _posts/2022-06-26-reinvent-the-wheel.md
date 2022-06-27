@@ -22,3 +22,6 @@ Starting with the obvious, the wheel would still look like a big chunk of stone 
 
 <img src="./assets/posts/wheel-evolution.png" /> 
 <p style="text-align: center;">Evolution of Wheel! </p>
+
+<img class="center-image" src="./assets/posts/wheel-animal.png" /> 
+<p style="text-align: center;">Buer the wheel-like creature </p>
