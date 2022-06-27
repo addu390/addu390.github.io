@@ -14,3 +14,5 @@ category: System Wisdom
 
 Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
+<img src="./assets/posts/wheel-evolution.png" /> 
+<p style="text-align: center;">Evolution of Wheel! </p>
