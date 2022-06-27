@@ -18,7 +18,7 @@ As I get slightly older and slightly wiser - to me, it's more and more apparent 
 
 On these lines, it almost always gets to my core when someone overuses "Don't reinvent the wheel"—implying that a solution to the problem already exists. In most cases, to underplay the problem or assert an opinion before understanding the crux of the problem.
 
-Starting with the obvious, the wheel would still look like a big chunk of stone that rolls if we didn't reinvent the wheel. While some may say that it's an upgrade rather than reinvent, going by the definition "change (something) so much that it appears to be entirely new," reinvention is more than fair in this context.
+Starting with the obvious, the wheel would still look like a big chunk of stone that rolls if we didn't reinvent the wheel. While some may say that it's an upgrade rather than reinvention, going by the definition "change (something) so much that it appears to be entirely new," reinvention is more than fair in this context.
 
 <img src="./assets/posts/wheel-evolution.png" /> 
 <p style="text-align: center;">Evolution of Wheel! </p>
