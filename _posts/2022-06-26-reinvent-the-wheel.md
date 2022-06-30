@@ -40,17 +40,25 @@ I'm out of count - the number of times "don't reinvent the wheel" is overused in
 As a norm, avoiding reinventing the wheel goes unsaid. **If** the functionality exists in the standard built-in library of a language.
 However, if it comes down to using third-party libraries, it better be a hard judgment call, considering how widely the library is used and maintained. 
 
-Not too long ago, while I was a backend engineer in one of the biggest fintech firms, another developer added a dependency - a whole new math library to calculate [CAGR](https://en.wikipedia.org/wiki/Compound_annual_growth_rate), which had ~25 stars for a code base that's still on Java 8 in 2021 and it's in use in production till date 🥲
+Even if the library has an active community and is commonly used, it's still a third-party dependency created for a larger use case. Software engineers emphasizing the virtues of code reuse while glossing over the danger of dependencies are nothing but trouble. A project with too many third-party dependencies will likely fall apart in the long run and devolves into a [maintenance and refactoring nightmare](https://www.pyblog.xyz/refactoring-nightmares).
 
-Even if the library has an active community and is commonly used, it's still a third-party dependency created for a larger use case. Software engineers emphasizing the virtues of code reuse while glossing over the danger of dependencies is nothing but trouble. A project with too many third-party dependencies will likely fall apart in the long run and devolves into a [maintenance and refactoring nightmare](https://www.pyblog.xyz/refactoring-nightmares).
+Moreover, the existing wheel(s) either does way more than what's necessary and suffers from the [inner platform effect](https://en.wikipedia.org/wiki/Inner-platform_effect) and are unnecessarily complex, or they are missing some key feature and would be difficult to implement on top of what's already there.
 
-So, leveraging existing code is good - but dependencies are bad. While the two may seem to contradict each other, the key here is to find the right balance. 
+Furthermore, using existing wheels often adds constraints to the project:
+- The existing wheel requires a different language and/or programming style.
+- The existing wheel only works with the legacy language version (Example: Java 8 instead of Java 11).
+- Efficiency, flexibility, and simplicity: the existing wheel makes suboptimal choices. 
+- The existing wheel has tons of legacy cruft that make life difficult. For example, A Java library forcing to use container classes because it was written before generics, etc.).
+- The way the existing wheel models the problem is entirely different than what's convenient for the use case. 
+- The library adds a massive, brittle dependency that would be a major hassle when all that's needed is a small subset of its features. 
+
+So, leveraging existing code is good - but dependencies are bad. While the two may seem to contradict each other, the key here is to find the right balance:
 - Preference for standard built-in libraries, 
 - Choose acceptable libraries that have an active community and user base 
 - Choose an external library where at least half the features the library has to offer are useful to the project.
 - Lastly, a relatively unknown library only if you are familiar with the source code to maintain it yourself.
 
-It's all a balancing act. But the point is that just blindly saying, "Code reuse good! Reinventing wheel bad" is a dangerous attitude. The benefits of leveraging third-party code must be weighed against the disadvantages of introducing dependencies.
+It's all a balancing act. But the point is that just blindly saying, "Code reuse good! Reinventing wheel bad" is a dangerous and dogmatic. The benefits of leveraging third-party code must be weighed against the disadvantages of introducing dependencies.
 
 ## References
 
