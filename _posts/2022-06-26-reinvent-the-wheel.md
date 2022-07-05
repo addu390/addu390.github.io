@@ -58,7 +58,7 @@ So, leveraging existing code is good - but dependencies are bad. While the two m
 - Choose an external library where at least half the features the library has to offer are useful to the project.
 - Lastly, a relatively unknown library only if you are familiar with the source code to maintain it yourself.
 
-It's all a balancing act. But the point is that just blindly saying, "Code reuse good! Reinventing wheel bad" is a dangerous and dogmatic. The benefits of leveraging third-party code must be weighed against the disadvantages of introducing dependencies.
+It's all a balancing act. But the point is that just blindly saying, "Code reuse good! Reinventing wheel bad" is dangerous and dogmatic. The benefits of leveraging third-party code must be weighed against the disadvantages of introducing dependencies.
 
 ## References
 
