@@ -309,7 +309,8 @@ The playground of cells is as shown in Figure 8, where each point in the grid is
     .on("click", mclickBase);
 ```
 
-Once again, the transformation, SVG path, and binned data points (grid) are dependent on the cell-shape:
+Once again, the transformation, SVG path, and binned data points (grid) are dependent on the cell-shape.
+For hexagons, the library used: [d3-hexbin](https://github.com/d3/d3-hexbin)
 ```
   function getGridData(cellShape, bin, grid) {
     switch (cellShape) {
@@ -320,6 +321,9 @@ Once again, the transformation, SVG path, and binned data points (grid) are depe
     }
   }
 ```
+
+Translate is one of the support transformations (Translate, Rotate, Scale, and Skew). It moves the SVG elements inside the webpage and takes two values, `x` and `y`. The `x` value translates the SVG element along the x-axis, while `y` translates the SVG element along the y-axis. 
+For example: A single point in a point-grid represents the top-right corner of a square, which is moved by `length of the side/2` on the x and y-axis using `transform.translate(x, y)`
 
 ```
   function getTransformation(cellShape) {
@@ -354,25 +358,49 @@ To emphasize the ease of extending the solution for other cell shapes, notice th
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Create the base cartogram
-Set the topojson properties and map the values (population count). In this example, the base cartogram is a population-scaled world map for the year 2018.
+The algorithm for generating a cartogram is a variant of continuous area cartograms by James A. Dougenik, Nicholas R. Chrisman, and Duane R. Niemeyer. 
+
+The expectation of `Cartogram()` is to take the current topo-features of the map projection along with the source population count and target population count to return new topo-features (arcs for every polygon/country).
+
+In this example, the base cartogram is a population-scaled world map for the year 2018.
 
 ```
-var topo_cartogram = cartogram()
+  var topoCartogram = cartogram()
     .projection(null)
     .properties(function (d) {
-        return d.properties;
+      return d.properties;
     })
     .value(function (d) {
-        var currentValue = d.properties.count
-        return +currentValue
+      var currentValue = d.properties.count;
+      return +currentValue;
     });
+  topoCartogram.features(topo, topo.objects.tiles.geometries);
+  topoCartogram.value(function (d) {
+    var currentValue = populationJson[d.properties.id][year];
+    return +currentValue;
+  });
+```
 
-topo_cartogram.features(topo, topo.objects.tiles.geometries)
+As for the presentation, there are two types: `Fixed` and `Fluid`.
 
-topo_cartogram.value(function (d) {
-    var currentValue = populationJson[d.properties.id][yearInput.value]
-    return +currentValue
-});
+**Fixed:** The cell size is `fixed` across years. The cell size is the population count of each cell (a country with a population of 10 million has 20 cells when the cell size is 0.5 million). Irrespective of the year/total population, the cell size remains the same in the `Fixed` mode.
+
+<img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/cartogram-fixed.gif" /> 
+<p style="text-align: center;">Figure 11: Cartogram scaled from 1950 to 1990 in Fixed mode </p>
+
+**Fluid:** On the other hand, in the fluid mode, as the year/total population changes, the cell size is adjusted accordingly to best utilize the entire screen/container to display the cartogram. For example: A region with a total population of 20 million and a cell size of 0.5 million would have the same view when the total population is 40 million, and the cell size is 1 million.
+
+<img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/cartogram-fluid.gif" /> 
+<p style="text-align: center;">Figure 12: Cartogram scaled from 1950 to 1990 in Fluid mode </p>
+
+```
+  var topoFeatures = topoCartogram(
+    topo,
+    topo.objects.tiles.geometries,
+    cellDetails,
+    populationData, year,
+    populationFactor
+  ).features;
 ```
 
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
