@@ -201,6 +201,7 @@ Putting it all together,
 ### File: cartogram.js
 Refer to the research paper [An Algorithm to Construct Continous Area Cartograms](http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf). Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: 
 
+### Calculate Force Reduction Factor
 ```
 For each polygon
   Read and store PolygonValue (negative value illegal)
@@ -217,7 +218,9 @@ For each iteration (user controls when done)
 	  Radius = SquareRoot (Area / π)
 	  Mass = SquareRoot (Desired / π) - SquareRoot (Area / π)
 	  SizeError = Max(Area, Desired) / Min(Area, Desired)
-
+```
+### Move boundary co-ordinates
+```
   ForceReductionFactor = 1 / (1 + Mean (SizeError))
   For each boundary line; Read coordinate chain
 	  For each coordinate pair
@@ -247,52 +250,105 @@ To append SVG, i.e., the hexagonal grid and polygons/regions of the cartogram (d
 
 ### File: app.js
 ### Create a point grid
-A point grid is a matrix containing the centers of all the hexagons in the grid.
+A point grid is a matrix containing the centers of all the cells in the grid.
 
 ```
-const hexRadius = 5
-const margin = { top: 15, right: 10, bottom: 15, left: 10 };
-const width = 1350 - margin.left - margin.right;
-const height = 750 - margin.top - margin.bottom;
-
-let hexDistance = hexRadius * 1.5
-let cols = width / hexDistance
-let rows = Math.ceil(height / hexDistance);
-let pointGrid = d3.range(rows * cols).map(function (el, i) {
+  let cellRadius = cellDetails.radius;
+  let cellShape = cellDetails.shape;
+  
+  let shapeDistance = getRadius(cellRadius, cellShape);
+  let cols = width / shapeDistance;
+  let rows = height / shapeDistance;
+  let pointGrid = d3.range(rows * cols).map(function (el, i) {
     return {
-      x: Math.floor(i % cols) * hexDistance,
-      y: Math.floor(i / cols) * hexDistance,
-      datapoint: 0
+      x: Math.floor(i % cols) * shapeDistance,
+      y: Math.floor(i / cols) * shapeDistance,
+      datapoint: 0,
     };
-});
+  });
 ```
+
+The `shapeDistance` is different for different cell-shapes. For example:
+```
+  switch (cellShape) {
+      case cellPolygon.Hexagon:
+        shapeDistance = radius * 1.5;
+      case cellPolygon.Square:
+        shapeDistance = radius * 2;
+    }
+```
+
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Plot the hexagonal grid playground
+The playground of cells is as shown in Figure 8, where each point in the grid is tesselated with the respective cell shape. The playground also serves as the never-ending sea/ocean on the world map.
 
 ```
-let newHexbin = hexbin()
-    .radius(hexRadius)
-    .x(function (d) { return d.x; })
-    .y(function (d) { return d.y; })
+  d3.select("#container").selectAll("*").remove();
+    const svg = d3
+      .select("#container")
+      .append("svg")
+      .attr("width", width + margin.left + margin.top)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left} ${margin.top})`);
 
-const svg = d3.select('#container')
-    .append('svg')
-    .attr('width', width + margin.left + margin.top)
-    .attr('height', height + margin.top + margin.bottom)
-    .append('g')
-    .attr('transform', `translate(${margin.left} ${margin.top})`);
+  svg
+    .append("g")
+    .attr("id", "hexes")
+    .selectAll(".hex")
+    .data(getGridData(cellShape, newHexbin, pointGrid))
+    .enter()
+    .append("path")
+    .attr("class", "hex")
+    .attr("transform", getTransformation(cellShape))
+    .attr("d", getPath(cellShape, newHexbin, shapeDistance))
+    .style("fill", "#fff")
+    .style("stroke", "#e0e0e0")
+    .style("stroke-width", strokeWidth)
+    .on("click", mclickBase);
+```
 
-svg.append('g').attr('id', 'hexes')
-    .selectAll('.hex')
-    .data(newHexbin(pointGrid))
-    .enter().append('path')
-    .attr('class', 'hex')
-    .attr('transform', function (d) { return 'translate(' + d.x + ', ' + d.y + ')'; })
-    .attr('d', newHexbin.hexagon())
-    .style('fill', '#fff')
-    .style('stroke', '#e0e0e0')
-    .style('stroke-width', strokeWidth)
+Once again, the transformation, SVG path, and binned data points (grid) are dependent on the cell-shape:
+```
+  function getGridData(cellShape, bin, grid) {
+    switch (cellShape) {
+      case cellPolygon.Hexagon:
+        return bin(grid);
+      case cellPolygon.Square:
+        return grid;
+    }
+  }
+```
+
+```
+  function getTransformation(cellShape) {
+    switch (cellShape) {
+      case cellPolygon.Hexagon:
+        return function (d) {
+          return "translate(" + d.x + ", " + d.y + ")";
+        };
+      case cellPolygon.Square:
+        return function (d) {
+          return "translate(" + d.x / 2 + ", " + d.y / 2 + ")";
+        };
+    }
+  }
+```
+
+To emphasize the ease of extending the solution for other cell shapes, notice the `rightRoundedRect` that takes `borderRadius` (zero for a square/rectangle); however, setting it to 50% would result in circular cells.
+
+```
+  function getPath(cellShape, bin, distance) {
+    switch (cellShape) {
+      case cellPolygon.Hexagon:
+        return bin.hexagon();
+      case cellPolygon.Square:
+        return function (d) {
+          return rightRoundedRect(d.x / 2, d.y / 2, distance, distance, 0);
+        };
+    }
+  }
 ```
 
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
