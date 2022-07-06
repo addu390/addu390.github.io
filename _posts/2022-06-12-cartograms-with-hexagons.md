@@ -198,7 +198,7 @@ Putting it all together,
 
 - `cartogram.js`: Implementation of the algorithm to construct continuous area cartograms.
 
-### File: cartogram.js
+### File: [cartogram.js](https://github.com/owid/cartograms/blob/main/core/catogram.js)
 Refer to the research paper [An Algorithm to Construct Continous Area Cartograms](http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf). Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: 
 
 ### Calculate Force Reduction Factor
@@ -219,6 +219,7 @@ For each iteration (user controls when done)
 	  Mass = SquareRoot (Desired / π) - SquareRoot (Area / π)
 	  SizeError = Max(Area, Desired) / Min(Area, Desired)
 ```
+
 ### Move boundary co-ordinates
 ```
   ForceReductionFactor = 1 / (1 + Mean (SizeError))
@@ -236,7 +237,7 @@ For each iteration (user controls when done)
 
 <hr class="hr">
 
-### File: index.html
+### File: [index.html](https://github.com/owid/cartograms/blob/main/index.html)
 ### Create a HTML `div` with a unique `id`
 To append SVG, i.e., the hexagonal grid and polygons/regions of the cartogram (derived from the topojson).
 
@@ -248,7 +249,7 @@ To append SVG, i.e., the hexagonal grid and polygons/regions of the cartogram (d
 
 <hr class="hr">
 
-### File: app.js
+### File: [plot.js](https://github.com/owid/cartograms/blob/main/core/plot.js)
 ### Create a point grid
 A point grid is a matrix containing the centers of all the cells in the grid.
 
@@ -308,6 +309,8 @@ The playground of cells is as shown in Figure 8, where each point in the grid is
     .style("stroke-width", strokeWidth)
     .on("click", mclickBase);
 ```
+
+The [shaper.js](https://github.com/owid/cartograms/blob/main/core/shaper.js) has all the code snippets that depend on the cells shape. 
 
 Once again, the transformation, SVG path, and binned data points (grid) are dependent on the cell-shape.
 For hexagons, the library used: [d3-hexbin](https://github.com/d3/d3-hexbin)
@@ -403,28 +406,46 @@ As for the presentation, there are two types: `Fixed` and `Fluid`.
   ).features;
 ```
 
+The `populationFactor` is "1" in `FLUID` mode and is dependent on the ratio of source and target population in `FIXED` mode.
+
+```
+  populationFactor(selectedScale, populationData, year) {
+    switch (selectedScale) {
+      case cellScale.Fixed:
+        var factor =
+          getTotalPopulation(populationData, 2018) /
+          getTotalPopulation(populationData, year) /
+          1.6;
+        return factor;
+      case cellScale.Fluid:
+        return 1;
+    }
+  }
+```
+
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Flatten the features of the cartogram/topojson.
+A quick transformation to form a list of polygons irrespective of whether the feature is a `MultiPolygon` or a `MultiPolygon`.
 
 ```
-var topoFeatures = topo_cartogram(topo, topo.objects.tiles.geometries).features
-
-let features = []
-for (let i = 0; i < topoFeatures.length; i++) {
-    var tempFeatures = []
+function flattenFeatures(topoFeatures) {
+  let features = [];
+  for (let i = 0; i < topoFeatures.length; i++) {
+    var tempFeatures = [];
     if (topoFeatures[i].geometry.type == "MultiPolygon") {
-        for (let j = 0; j < topoFeatures[i].geometry.coordinates.length; j++) {
-        tempFeatures[j] = topoFeatures[i].geometry.coordinates[j][0]
-        }
-    }
-    else if (topoFeatures[i].geometry.type == "Polygon") {
-        tempFeatures[0] = topoFeatures[i].geometry.coordinates[0]
+      for (let j = 0; j < topoFeatures[i].geometry.coordinates.length; j++) {
+        tempFeatures[j] = topoFeatures[i].geometry.coordinates[j][0];
+      }
+    } else if (topoFeatures[i].geometry.type == "Polygon") {
+      tempFeatures[0] = topoFeatures[i].geometry.coordinates[0];
     }
     features[i] = {
-        "coordinates": tempFeatures,
-        "properties": topoFeatures[i].properties
-    }
+      coordinates: tempFeatures,
+      properties: topoFeatures[i].properties,
+    };
+  }
+  return features;
 }
 ```
 
@@ -432,95 +453,97 @@ for (let i = 0; i < topoFeatures.length; i++) {
 
 ### Fill the polygons/regions of the base cartogram with hexagons (tessellation)
 
-```
-let colors = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#34495e', '#16a085', '#27ae60', '#2980b9', '#8e44ad', '#2c3e50', '#f1c40f', '#e67e22', '#e74c3c', '#ecf0f1', '#95a5a6', '#f39c12', '#d35400', '#c0392b', '#bdc3c7', '#7f8c8d']
+This is the step where the polygons are tesselated, and the `d3.polygonContains` function checks for points in the point-grid within the polygon.
 
-for (let i = 0; i < features.length; i++) {
+```
+  let features = flattenFeatures(topoFeatures);
+  let cellCount = 0;
+  for (let i = 0; i < features.length; i++) {
     for (let j = 0; j < features[i].coordinates.length; j++) {
       var polygonPoints = features[i].coordinates[j];
 
-      let usPoints = pointGrid.reduce(function (arr, el) {
+      let tessellatedPoints = pointGrid.reduce(function (arr, el) {
         if (d3.polygonContains(polygonPoints, [el.x, el.y])) arr.push(el);
         return arr;
-      }, [])
+      }, []);
+      cellCount = cellCount + tessellatedPoints.length;
 
-      let hexPoints = newHexbin(usPoints)
-
-      svg.append('g')
-        .attr('id', 'hexes')
-        .selectAll('.hex')
-        .data(hexPoints)
-        .enter().append('path')
-        .attr('class', 'hex' + features[i].properties.id)
-        .attr('transform', function (d) { return 'translate(' + d.x + ', ' + d.y + ')'; })
-        .attr("x", function (d) { return d.x; })
-        .attr("y", function (d) { return d.y; })
-        .attr('d', newHexbin.hexagon())
-        .style('fill', colors[i % 19])
-        .style('stroke', '#000')
-        .style('stroke-width', strokeWidth);
+      svg
+        .append("g")
+        .attr("id", "hexes")
+        .selectAll(".hex")
+        .data(getGridData(cellShape, newHexbin, tessellatedPoints))
+        .append("path")
+        .attr("class", "hex" + features[i].properties.id)
+        .attr("transform", getTransformation(cellShape))
+        .attr("x", function (d) {
+          return d.x;
+        })
+        .attr("y", function (d) {
+          return d.y;
+        })
+        .attr("d", getPath(cellShape, newHexbin, shapeDistance))
+        . . .
+        .style("stroke-width", strokeWidth);
     }
-}
+  }
 ```
 
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
+### File: [events.js](https://github.com/owid/cartograms/blob/main/core/events.js)
 ### Drag and drop hexagons in the hex-grid
-Implement `start`, `drag`, and `end` - representing the states when the drag has start, in-flight and dropped to a hexagonal slot.
+Implement `start`, `drag`, and `end` - representing the states when the drag has start, in-flight and dropped to a cell-slot.
 
-In this case, it's important to ensure that a hexagonal cell can only be dragged to a hexagonal slot.
-
-```
-svg.append('g')
-... // same as above
-.call(d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended));
-```
+In this case, it's important to ensure that a cell can only be dragged to a cell-slot.
 
 ```
-function dragstarted(event, d) {
-  d.fixed = false
-  d3.select(this).raise()
-    .style('stroke-width', 1)
-    .style('stroke', '#000');
-}
+  svg.append('g')
+  ... // same as above
+  .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended));
+```
 
-function dragged(event, d) {
-  let hexRadius = radiusInput.value
-  var x = event.x
-  var y = event.y
-  var grids = round(x, y, hexRadius);
-  d3.select(this)
-    .attr("x", d.x = grids[0])
-    .attr("y", d.y = grids[1])
-    .attr('transform', function (d) { return 'translate(' + d.x + ', ' + d.y + ')'; })
-}
-
-function dragended(event, d) {
-  d.fixed = true
-  d3.select(this)
-    .style('stroke-width', strokeWidth)
-    .style('stroke', '#000');
-}
-
-function round(x, y, n) {
-  var gridx
-  var gridy
-  var factor = Math.sqrt(3) / 2
-  var d = n * 2
-  var sx = d * factor
-  var sy = n * 3
-  if (y % sy < n) {
-    gridy = y - (y % sy)
-    gridx = x - (x % sx)
-  } else {
-    gridy = y + (d - (n * factor) / 2) - (y % sy);
-    gridx = x + (n * factor) - (x % sx);
+```
+  function mover(d) {
+    d3.selectAll("." + this.getAttribute("class"))
+      .transition()
+      .duration(10)
+      .style("fill-opacity", 0.9);
   }
-  return [gridx, gridy]
-}
+
+  function mout(d) {
+    d3.selectAll("." + this.getAttribute("class"))
+      .transition()
+      .duration(10)
+      .style("fill-opacity", 1);
+  }
+```
+
+```
+  function dragstarted(event, d) {
+    d.fixed = false;
+    d3.select(this).raise().style("stroke-width", 1).style("stroke", "#000");
+  }
+
+  function dragged(event, d) {
+    let cellShape = document.querySelector("#cell-shape-option").value;
+    let hexRadius = document.querySelector("input#radius").value;
+    var x = event.x;
+    var y = event.y;
+    var grids = getNearestSlot(x, y, hexRadius, cellShape);
+    d3.select(this)
+      .attr("x", (d.x = grids[0]))
+      .attr("y", (d.y = grids[1]))
+      .attr("transform", getTransformation(cellShape));
+  }
+
+  function dragended(event, d) {
+    d.fixed = true;
+    d3.select(this).style("stroke-width", strokeWidth).style("stroke", "#000");
+  }
 ```
 
 <hr class="hr">
