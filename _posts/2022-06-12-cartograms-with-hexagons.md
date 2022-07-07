@@ -172,7 +172,7 @@ Putting it all together,
 <img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-hex-cartogram.png" /> 
 <p style="text-align: center;">Figure 10: Regularly tessellate each country/polygon in the world-map with hexagons. </p>
 
-<hr class="hr">
+<hr class="hr" id="implementation">
 
 ## Implementation
 
@@ -190,18 +190,38 @@ Putting it all together,
 <hr class="hr">
 
 ## Project Structure
-- `index.html`: HTML page of the main screen.
-
-- `app.js`: The logic for loading, scaling, and generating the cartogram.
-
-- `app.css`: Styling for the index page and the SVG generated from input/scaled cartogram.
+The `core` module:
+- `index.html`: HTML page of the main screen containing the root container and input form fields such as year, radius, scale mode, cell size, export format, and cell color selector.
 
 - `cartogram.js`: Implementation of the algorithm to construct continuous area cartograms.
 
+- `plot.js`: The logic for rendering the tessellated point-grid and plotting the cartogram based on the selected input fields.
+
+- `shaper.js`: Functions dependent on the cell shape; the common pattern followed is to take decisions based on the cell shape using a switch case.
+
+- `events.js`: All the mouse events in the application, such as single/double click, hover, and drag/drop.
+
+### File: [index.html](https://github.com/owid/cartograms/blob/main/index.html)
+### Create a HTML `div` with a unique `id`
+To append SVG, i.e., the hexagonal grid and polygons/regions of the cartogram (derived from the topojson).
+
+```
+<div class="container-fluid">
+    <div id="container"></div>
+</div>
+```
+
+<hr class="hr">
+
 ### File: [cartogram.js](https://github.com/owid/cartograms/blob/main/core/catogram.js)
-Refer to the research paper [An Algorithm to Construct Continous Area Cartograms](http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf). Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: 
+The algorithm for generating a cartogram is a variant of continuous area cartograms by James A. Dougenik, Nicholas R. Chrisman, and Duane R. Niemeyer. 
+
+The research paper: [An Algorithm to Construct Continous Area Cartograms](http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf). Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: 
 
 ### Calculate Force Reduction Factor
+
+The "force reduction factor" is a number less than 1, used to reduce the impact of cartogram forces in the early iterations of the procedure. The force reduction factor is the reciprocal of one plus the mean of the size error. The size error is calculated by the ratio of area over the desired area (if area is larger) or desired area over area in the other case.
+
 ```
 For each polygon
   Read and store PolygonValue (negative value illegal)
@@ -221,6 +241,9 @@ For each iteration (user controls when done)
 ```
 
 ### Move boundary co-ordinates
+
+The brute force method (fixed small number of polygons): the forces of all polygons/countries act upon every boundary coordinate. As long as the number of polygons is relatively small (under 500), distortions can be computed for a rather complex line work (thousands of points). Furthermore, the computation of force effects could be restricted by implementing a search limitation to exclude infinitesimal forces from far-away polygons.
+
 ```
   ForceReductionFactor = 1 / (1 + Mean (SizeError))
   For each boundary line; Read coordinate chain
@@ -233,18 +256,6 @@ For each iteration (user controls when done)
 		  Multiply by ForceReductionFactor
 		  Move coordinate accordingly
 	  Write distorted line to output and plot result
-```
-
-<hr class="hr">
-
-### File: [index.html](https://github.com/owid/cartograms/blob/main/index.html)
-### Create a HTML `div` with a unique `id`
-To append SVG, i.e., the hexagonal grid and polygons/regions of the cartogram (derived from the topojson).
-
-```
-<div class="container-fluid">
-    <div id="container"></div>
-</div>
 ```
 
 <hr class="hr">
@@ -309,8 +320,9 @@ The playground of cells is as shown in Figure 8, where each point in the grid is
     .style("stroke-width", strokeWidth)
     .on("click", mclickBase);
 ```
+### File: [shaper.js](https://github.com/owid/cartograms/blob/main/core/shaper.js)
 
-The [shaper.js](https://github.com/owid/cartograms/blob/main/core/shaper.js) has all the code snippets that depend on the cells shape. 
+The `shaper.js` has all the code snippets that depend on the cells shape. 
 
 Once again, the transformation, SVG path, and binned data points (grid) are dependent on the cell-shape.
 For hexagons, the library used: [d3-hexbin](https://github.com/d3/d3-hexbin)
@@ -361,8 +373,6 @@ To emphasize the ease of extending the solution for other cell shapes, notice th
 <img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
 
 ### Create the base cartogram
-The algorithm for generating a cartogram is a variant of continuous area cartograms by James A. Dougenik, Nicholas R. Chrisman, and Duane R. Niemeyer. 
-
 The expectation of `Cartogram()` is to take the current topo-features of the map projection along with the source population count and target population count to return new topo-features (arcs for every polygon/country).
 
 In this example, the base cartogram is a population-scaled world map for the year 2018.
@@ -483,7 +493,7 @@ This is the step where the polygons are tesselated, and the `d3.polygonContains`
           return d.y;
         })
         .attr("d", getPath(cellShape, newHexbin, shapeDistance))
-        . . .
+        ... // same as above
         .style("stroke-width", strokeWidth);
     }
   }
@@ -500,6 +510,8 @@ In this case, it's important to ensure that a cell can only be dragged to a cell
 ```
   svg.append('g')
   ... // same as above
+  .on("mouseover", mover)
+  .on("mouseout", mout)
   .call(d3.drag()
       .on("start", dragstarted)
       .on("drag", dragged)
@@ -551,10 +563,10 @@ In this case, it's important to ensure that a cell can only be dragged to a cell
 ## Conclusion
 
 A complete implementation of the above (with additional features):
-- Prototype: [https://www.pyblog.xyz/population-cartogram](https://www.pyblog.xyz/population-cartogram/)
+- Prototype: [https://owid.github.io/cartograms](https://owid.github.io/cartograms/)
 - Github Repository: [https://github.com/owid/cartograms](https://github.com/owid/cartograms)
 
-However, this does not conclude meeting the expected requirement(s). The last pending piece is to generate a new cartogram/topojson after moving hex-cells. That's a work in progress; stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
+However, this does not conclude meeting the expected requirement(s). The last pending piece is to generate a new cartogram/topojson after moving the cells. That's a work in progress; stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
 <hr class="hr">
 
