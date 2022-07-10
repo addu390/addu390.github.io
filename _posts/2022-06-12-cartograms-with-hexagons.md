@@ -416,7 +416,7 @@ As for the presentation, there are two types: `Fixed` and `Fluid`.
   ).features;
 ```
 
-The `populationFactor` is "1" in `FLUID` mode and is dependent on the ratio of source and target population in `FIXED` mode.
+**Population Factor:** The `populationFactor` is "1" in `FLUID` mode and depends on the source and target population ratio in `FIXED` mode, calculated using back-propagation, where the default `populationFactor` is 1.6 (mean of expected values across years) and increased/decreased in steps of 0.1 to reach the desired cell-size.
 
 ```
   populationFactor(selectedScale, populationData, year) {
@@ -463,7 +463,7 @@ function flattenFeatures(topoFeatures) {
 
 ### Fill the polygons/regions of the base cartogram with hexagons (tessellation)
 
-This is the step where the polygons are tesselated, and the `d3.polygonContains` function checks for points in the point-grid within the polygon.
+This is the step where the polygons are tesselated, and the `d3.polygonContains` function checks for points in the point-grid within the polygon as shown in figures 9 and 10. 
 
 ```
   let features = flattenFeatures(topoFeatures);
@@ -503,9 +503,67 @@ This is the step where the polygons are tesselated, and the `d3.polygonContains`
 
 ### File: [events.js](https://github.com/owid/cartograms/blob/main/core/events.js)
 ### Drag and drop hexagons in the hex-grid
-Implement `start`, `drag`, and `end` - representing the states when the drag has start, in-flight and dropped to a cell-slot.
 
-In this case, it's important to ensure that a cell can only be dragged to a cell-slot.
+Implementation of `start`, `drag`, and `end` - representing the states when the drag has started, in-flight, and dropped to a cell-slot.
+
+```
+  function dragstarted(event, d) {
+    d.fixed = false;
+    d3.select(this).raise().style("stroke-width", 1).style("stroke", "#000");
+  }
+
+  function dragged(event, d) {
+    let cellShape = document.querySelector("#cell-shape-option").value;
+    let hexRadius = document.querySelector("input#radius").value;
+    var x = event.x;
+    var y = event.y;
+    var grids = getNearestSlot(x, y, hexRadius, cellShape);
+    d3.select(this)
+      .attr("x", (d.x = grids[0]))
+      .attr("y", (d.y = grids[1]))
+      .attr("transform", getTransformation(cellShape));
+  }
+
+  function dragended(event, d) {
+    d.fixed = true;
+    d3.select(this).style("stroke-width", strokeWidth).style("stroke", "#000");
+  }
+```
+
+**Finding the nearest cell-slot:** It's vital to ensure that a cell can only be dragged to another cell-slot. From the x and y co-ordinate, calculate the nearest available slot. For example, a square of length 5 units at x co-ordinate of 102, `102 - (102 % 5) = 100` would be the position of the nearest slot on the x-axis, similarly on the y-axis. On the other hand, hexagons are a bit tricky, where the lengths of the hexagon are `radius * 2` and `apothem * 2`. Recommended read on hexagons and hex-grid: [https://www.redblobgames.com/grids/hexagons](https://www.redblobgames.com/grids/hexagons/)
+
+```
+  function getNearestSlot(x, y, n, cellShape) {
+    switch (cellShape) {
+      case cellPolygon.Hexagon:
+        var gridx;
+        var gridy;
+        var factor = Math.sqrt(3) / 2;
+        var d = n * 2;
+        var sx = d * factor;
+        var sy = n * 3;
+        if (y % sy < n) {
+          gridy = y - (y % sy);
+          gridx = x - (x % sx);
+        } else {
+          gridy = y + (d - (n * factor) / 2) - (y % sy);
+          gridx = x + n * factor - (x % sx);
+        }
+        return [gridx, gridy];
+      case cellPolygon.Square:
+        var gridx;
+        var gridy;
+        var sx = n * 2;
+        var sy = n * 2;
+        gridy = y - (y % sy);
+        gridx = x - (x % sx);
+        return [gridx, gridy];
+    }
+  }
+```
+
+### Mouse over and out in the hex-grid
+Similarly, a few other events include mouse over, mouse out, and mouse click.
 
 ```
   svg.append('g')
@@ -531,30 +589,6 @@ In this case, it's important to ensure that a cell can only be dragged to a cell
       .transition()
       .duration(10)
       .style("fill-opacity", 1);
-  }
-```
-
-```
-  function dragstarted(event, d) {
-    d.fixed = false;
-    d3.select(this).raise().style("stroke-width", 1).style("stroke", "#000");
-  }
-
-  function dragged(event, d) {
-    let cellShape = document.querySelector("#cell-shape-option").value;
-    let hexRadius = document.querySelector("input#radius").value;
-    var x = event.x;
-    var y = event.y;
-    var grids = getNearestSlot(x, y, hexRadius, cellShape);
-    d3.select(this)
-      .attr("x", (d.x = grids[0]))
-      .attr("y", (d.y = grids[1]))
-      .attr("transform", getTransformation(cellShape));
-  }
-
-  function dragended(event, d) {
-    d.fixed = true;
-    d3.select(this).style("stroke-width", strokeWidth).style("stroke", "#000");
   }
 ```
 
