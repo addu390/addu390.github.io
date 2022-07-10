@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Conceptualization of a Hexagonal Cartogram"
+title: "Documentation: Conceptualization of a Cartogram"
 date: 2022-07-02
 tags:
   - Project
@@ -16,107 +16,158 @@ category: Comics
 <img class="center-image" src="./assets/featured/hex-spiderman.png" /> 
 <p style="text-align: center;">Hex Spiderman. </p>
 
-## What is a cartogram?
-Simply put, a cartogram is a map. But a cartogram is a unique type of map that combines statistical information such as population with geographic location. Typically, physical or topographical maps show relative area and distance, but they do not provide any data about the inhabitants or the population of a place. For example, a quick and intuitive view of the world map in relation to population makes it easy for viewers to co-relate the effect and the relative measure's gravity. 
+# Explanation
 
-The basic idea is distorting the map by resizing the regions by population (or any other metric) since the population is among the most important aspects to consider; for example, if malnutrition is high in a vast country, then the severity is much worse than if malnutrition is high in a tiny country.
+<details><summary class="h3" id="whatisacartogram"> What is a cartogram?</summary>
 
-## How are grids related to cartograms?
-With an objective to plot a visually conclusive map by illustrating territories using a method for trading off shape and area.
+<p>Simply put, a cartogram is a map. But a cartogram is a unique type of map that combines statistical information such as population with geographic location. Typically, physical or topographical maps show relative area and distance, but they do not provide any data about the inhabitants or the population of a place. For example, a quick and intuitive view of the world map in relation to population makes it easy for viewers to co-relate the effect and the relative measure's gravity. </p>
 
-It’s vital to ensure the shape or the outline of a region (Example: Country and Province) is preserved, i.e., visualization steps have to be in place so that the resulting cartograms appear similar to the original world cartograms, such that the area is easily recognizable only by its appearance without the explicit need for labels and quickly understand the displayed data.
+<p>The basic idea is distorting the map by resizing the regions by population (or any other metric) since the population is among the most important aspects to consider; for example, if malnutrition is high in a vast country, then the severity is much worse than if malnutrition is high in a tiny country.</p>
 
-While generating a cartogram algorithmically yields good results, the best cartograms out there are the ones that as designed artistically/manually. This boils down to finding a balance between using algorithms to generate cartograms and manually nitpicking fine details - that's where the grids come into the picture.
+</details>
 
-<img src="./assets/posts/cartograms/hex-grid-cartogram.png" /> 
+<hr class="hr">
+
+<details><summary class="h3" id="howaregridsrelatedtocartograms"> How are grids related to cartograms?</summary>
+
+<p>With an objective to plot a visually conclusive map by illustrating territories using a method for trading off shape and area.</p>
+
+<p>It’s vital to ensure the shape or the outline of a region (Example: Country and Province) is preserved, i.e., visualization steps have to be in place so that the resulting cartograms appear similar to the original world cartograms, such that the area is easily recognizable only by its appearance without the explicit need for labels and quickly understand the displayed data.</p>
+
+<p>While generating a cartogram algorithmically yields good results, the best cartograms out there are the ones that as designed artistically/manually. This boils down to finding a balance between using algorithms to generate cartograms and manually nitpicking fine details - that's where the grids come into the picture.</p>
+
+<p><img src="./assets/posts/cartograms/hex-grid-cartogram.png" /> </p>
+
 <p style="text-align: center;">Figure 1: Hex grid cartogram. </p>
 
-## Choosing the right grid
+</details>
 
-Grids are built from a repetition of simple shapes such as squares and hexagons. Grids have three types of parts: faces (tiles), edges, and vertices.
-- Each face is a two-dimensional surface enclosed by edges. 
-- Each edge is a one-dimensional line segment ending at two vertices. 
-- Each vertex is a zero-dimensional point
+<hr class="hr">
 
-### Square
-One of the most commonly used grids is a square grid. It's simple, easy to work with, and maps nicely onto a computer screen. The location uses cartesian coordinates (x, y), and the axes are orthogonal. Not to mention, the coordinate system is the same even if the squares are angled in an isometric or axonometric projection.
+<details><summary class="h3" id="choosingtherightgrid"> Choosing the right grid</summary>
 
-- Squares are 4-sided polygons. 
-- Squares have all the sides the same length. 
-- They have 4 sides and 4 corners.
-- Each side is shared by 2 squares. 
-- Each corner is shared by 4 squares.
+<p>Grids are built from a repetition of simple shapes such as squares and hexagons. Grids have three types of parts: faces (tiles), edges, and vertices.</p>
 
-### Hexagon
-Hexagonal grids are the next commonly used grids, as they offer less distortion of distances than square grids because each hexagon has more non-diagonal neighbors than a square (diagonals distort grid distances). Moreover, hexagons have a pleasing appearance (the honeycomb is a good example). As for the grids, the position is either pointy tops and flat sides or flat tops and pointy sides.
+<ul>
+<li>Each face is a two-dimensional surface enclosed by edges. </li>
 
-<img class="center-image" src="./assets/posts/cartograms/hexagon-grid-details.png" /> 
+<li>Each edge is a one-dimensional line segment ending at two vertices. </li>
+
+<li>Each vertex is a zero-dimensional point</li>
+</ul>
+
+<h3 id="square">Square</h3>
+
+<p>One of the most commonly used grids is a square grid. It's simple, easy to work with, and maps nicely onto a computer screen. The location uses cartesian coordinates (x, y), and the axes are orthogonal. Not to mention, the coordinate system is the same even if the squares are angled in an isometric or axonometric projection.</p>
+
+<ul>
+<li>Squares are 4-sided polygons. </li>
+
+<li>Squares have all the sides the same length. </li>
+
+<li>They have 4 sides and 4 corners.</li>
+
+<li>Each side is shared by 2 squares. </li>
+
+<li>Each corner is shared by 4 squares.</li>
+</ul>
+
+<h3 id="hexagon">Hexagon</h3>
+
+<p>Hexagonal grids are the next commonly used grids, as they offer less distortion of distances than square grids because each hexagon has more non-diagonal neighbors than a square (diagonals distort grid distances). Moreover, hexagons have a pleasing appearance (the honeycomb is a good example). As for the grids, the position is either pointy tops and flat sides or flat tops and pointy sides.</p>
+
+<p><img class="center-image" src="./assets/posts/cartograms/hexagon-grid-details.png" /> </p>
+
 <p style="text-align: center;">Figure 2: Modified from original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
 
-- Hexagons are 6-sided polygons. 
-- Regular hexagons have all the sides the same length. 
-- They have 6 sides and 6 corners.
-- Each side is shared by 2 hexagons. 
-- Each corner is shared by 3 hexagons.
-- Typically, the orientations for hex grids are vertical columns (flat-topped) and horizontal rows (pointy-topped).
+<ul>
+<li>Hexagons are 6-sided polygons. </li>
+
+<li>Regular hexagons have all the sides the same length. </li>
+
+<li>They have 6 sides and 6 corners.</li>
+
+<li>Each side is shared by 2 hexagons. </li>
+
+<li>Each corner is shared by 3 hexagons.</li>
+
+<li>Typically, the orientations for hex grids are vertical columns (flat-topped) and horizontal rows (pointy-topped).</li>
+</ul>
+
+</details>
 
 <hr class="hr">
 
-## Hexagons vs Squares
+<details><summary class="h3" id="hexagonsvssquares"> Hexagons vs Squares</summary>
 
-### Square grids
-- Square grids are universally used in Raster datasets in GIS. 
+<h3 id="squaregrids">Square grids</h3>
 
-- Ease of definition and storage: the only explicit geographical information necessary to define a raster grid are the coordinates of the origin, cell size, and grid dimensions, i.e., the number of cells in each direction. The attribute data can be stored as an aspatial matrix, and the geographical location of any cell can be derived from the cell’s position relative to the origin - this makes data storage and retrieval easier since the coordinates of the vertices of each grid cell are not explicitly stored.
+<ul>
+<li><p>Square grids are universally used in Raster datasets in GIS. </p></li>
 
-- Ease of resampling to different spatial scales: increasing the spatial resolution of a square grid is just a matter of dividing each grid cell into four. Similarly, decreasing the spatial resolution only requires combining groups of four cells into one.
+<li><p>Ease of definition and storage: the only explicit geographical information necessary to define a raster grid are the coordinates of the origin, cell size, and grid dimensions, i.e., the number of cells in each direction. The attribute data can be stored as an aspatial matrix, and the geographical location of any cell can be derived from the cell’s position relative to the origin - this makes data storage and retrieval easier since the coordinates of the vertices of each grid cell are not explicitly stored.</p></li>
 
-### Hexagonal grids
-- Reduced edge effects: a hexagonal grid gives the lowest perimeter to area ratio of any regular tessellation of the plane - this means that edge effects are minimized when working with hexagonal grids.
+<li><p>Ease of resampling to different spatial scales: increasing the spatial resolution of a square grid is just a matter of dividing each grid cell into four. Similarly, decreasing the spatial resolution only requires combining groups of four cells into one.</p></li>
+</ul>
 
-- All neighbours are identical: square grids have two classes of neighbours, those in the cardinal directions that share an edge and those in diagonal directions that share a vertex. In contrast, a hexagonal grid cell has six identical neighboring cells, each sharing one of the six equal-length sides. Furthermore, the distance between centroids is the same for all neighbors.
+<h3 id="hexagonalgrids">Hexagonal grids</h3>
 
-- Better fit to curved surfaces: when dealing with large areas, where the curvature of the earth becomes important, hexagons are better able to fit this curvature than squares (this is why soccer balls are constructed of hexagonal panels).
+<ul>
+<li><p>Reduced edge effects: a hexagonal grid gives the lowest perimeter to area ratio of any regular tessellation of the plane - this means that edge effects are minimized when working with hexagonal grids.</p></li>
 
-<img class="center-image" src="./assets/posts/cartograms/hex-square-tessellation.png" /> 
+<li><p>All neighbours are identical: square grids have two classes of neighbours, those in the cardinal directions that share an edge and those in diagonal directions that share a vertex. In contrast, a hexagonal grid cell has six identical neighboring cells, each sharing one of the six equal-length sides. Furthermore, the distance between centroids is the same for all neighbors.</p></li>
+
+<li><p>Better fit to curved surfaces: when dealing with large areas, where the curvature of the earth becomes important, hexagons are better able to fit this curvature than squares (this is why soccer balls are constructed of hexagonal panels).</p></li>
+</ul>
+
+<p><img class="center-image" src="./assets/posts/cartograms/hex-square-tessellation.png" /> </p>
+
 <p style="text-align: center;">Figure 3: Tessellation of the plane (Square and Hexagon). </p>
 
-### Hexagonal grid for Cartograms
-For a cartogram, the reasons to choose hexagons over squares are as follows:
-- It's a better fit for curved surfaces, thereby supporting most geographic projections.
+<h3 id="hexagonalgridforcartograms">Hexagonal grid for Cartograms</h3>
 
-- Representing a complex-shaped polygon by hexagons offers a lower error factor (tessellation of the plane), i.e., (the actual area of the polygon - Area formed by tiny tiles/hexagons) is lower as compared to that formed by squares.
+<p>For a cartogram, the reasons to choose hexagons over squares are as follows:</p>
 
-- They look badass! Without a doubt, hexagonal grids look way more impressive than square grids.
+<ul>
+<li><p>It's a better fit for curved surfaces, thereby supporting most geographic projections.</p></li>
+
+<li><p>Representing a complex-shaped polygon by hexagons offers a lower error factor (tessellation of the plane), i.e., (the actual area of the polygon - Area formed by tiny tiles/hexagons) is lower as compared to that formed by squares.</p></li>
+
+<li><p>They look badass! Without a doubt, hexagonal grids look way more impressive than square grids.</p></li>
+</ul>
+
+</details>
 
 <hr class="hr">
 
-## Building a shape preserved hexagonal grid cartogram
+<details><summary class="h3" id="buildingashapepreservedhexagonalgridcartogram"> Building a shape preserved hexagonal grid cartogram</summary>
 
-The initial project proposal and the expectation along with the timeline:: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022)
+<p>Since the primary dependency is D3 - a Javascript library extensively used for drawing geographic visualizations and uses <a href="https://geojson.org">GeoJSON</a>/<a href="https://en.wikipedia.org/wiki/GeoJSON">TopoJSON</a> for representing shapes on maps by converting them to rendered SVG element(s); explanations are supported by implementation details in D3.</p>
 
-### Prerequisite terminologies to build cartograms
+<details><summary class="h4" id="projection"> Projection</summary>
 
-Since the primary dependency is D3 - a Javascript library extensively used for drawing geographic visualizations and uses [GeoJSON](https://geojson.org)/[TopoJSON](https://en.wikipedia.org/wiki/GeoJSON) for representing shapes on maps by converting them to rendered SVG element(s); explanations are supported by implementation details in D3.
+<p><img class="center-image" src="./assets/posts/cartograms/earth-projection.png" /> </p>
 
-### Projection
-
-<img class="center-image" src="./assets/posts/cartograms/earth-projection.png" /> 
 <p style="text-align: center;">Figure 4: Mercator projection. </p>
 
-Earth is round or more accurately, an ellipsoid. To show its features on a flat surface, it's not possible to accurately translate a sphere onto a plane, hence the need for projections. For instance, the Mercator projection is famously known to over-exaggerate the size of landmasses near the poles (No wonder Greenland looks massive). 
+<p>Earth is round or more accurately, an ellipsoid. To show its features on a flat surface, it's not possible to accurately translate a sphere onto a plane, hence the need for projections. For instance, the Mercator projection is famously known to over-exaggerate the size of landmasses near the poles (No wonder Greenland looks massive). </p>
 
-D3 offers a range of built-in [projections](https://github.com/d3/d3-geo-projection); however, no projection accurately depicts all points in the globe, so it's important to choose the appropriate projection for the use case. The purpose is simple: translate the latitude and longitude pair to a pair of X and Y coordinates on SVG. Lastly, to fit the coordinates to the SVG element, the `fitExtent` and `rotate` are handly, as the projection has no knowledge of the size or extent of the SVG element.
+<p>D3 offers a range of built-in <a href="https://github.com/d3/d3-geo-projection">projections</a>; however, no projection accurately depicts all points in the globe, so it's important to choose the appropriate projection for the use case. The purpose is simple: translate the latitude and longitude pair to a pair of X and Y coordinates on SVG. Lastly, to fit the coordinates to the SVG element, the <code>fitExtent</code> and <code>rotate</code> are handly, as the projection has no knowledge of the size or extent of the SVG element.</p>
 
-<img style="text-align: center" src="./assets/posts/cartograms/projection-function.png" /> 
+<p><img style="text-align: center" src="./assets/posts/cartograms/projection-function.png" /> </p>
+
 <p style="text-align: center;">Figure 5: Projection function to map coordinate. </p>
 
-### Geopath
-The projection function works well for converting points into X and Y coordinates but not lines. A typical map has regions represented by lines and not individual points. Hence to render the map, irregular lines are represented using the [path](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) element.
-The `d` attribute in `<path></path>` defines the shape of the line.
+</details>
 
-```
-  <path
+<hr class="hr">
+
+<details><summary class="h4" id="geopath"> Geopath</summary>
+
+<p>The projection function works well for converting points into X and Y coordinates but not lines. A typical map has regions represented by lines and not individual points. Hence to render the map, irregular lines are represented using the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">path</a> element.
+The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines the shape of the line.</p>
+
+<pre><code>  &lt;path
     d="M732.4944016581658,608.9022205707863L727.1354648887938,
     610.9411167803873L706.8155159265721,604.6447353677604L703.587646715891,
     610.7806528270128L688.0319490712842,611.8868016539795L688.8280117925813, 
@@ -129,56 +180,82 @@ The `d` attribute in `<path></path>` defines the shape of the line.
     615.3237961667451Z"
     stroke="white"
     fill="rgb(211, 211, 211)"
-  </path>
-```
+  &lt;/path&gt;
+</code></pre>
 
-Ussage in D3: `const path = d3.geoPath().projection(projection)`, the `path` functions takes `GeoJSON` polygons, and returns a string which can directly be used as the `d` attribute of an SVG path.
+<p>Ussage in D3: <code>const path = d3.geoPath().projection(projection)</code>, the <code>path</code> functions takes <code>GeoJSON</code> polygons, and returns a string which can directly be used as the <code>d</code> attribute of an SVG path.</p>
 
-To render the map, the plan is to:
-- Loop through each country’s `GeoJSON` polygon
-- Create the `d` attribute string using the `d3.geopath` function
-- Create and append an SVG path element with the above `d` attribute
+<p>To render the map, the plan is to:</p>
 
-### Tessellation
-A tessellation or tiling is a process of covering a surface or a plane, using one or more geometric shapes, called tiles, with no overlaps or gaps. Furthermore, a variant of symmetric tessellation has a fixed tile size and geometric shape.
+<ul>
+<li>Loop through each country’s <code>GeoJSON</code> polygon</li>
 
-Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the tile/cell. However, with the tessellation of a polygon, only the tiles within the polygon are arranged in the same order. Whereas, when dealing with multiple polygons in the same grid, the arrangement of tiles has to be based on the nearest tile that fits in the grid - implying the need for a point grid.
+<li>Create the <code>d</code> attribute string using the <code>d3.geopath</code> function</li>
 
-<img class="center-image" src="./assets/posts/cartograms/hex-grid-tessellation.png" /> 
+<li>Create and append an SVG path element with the above <code>d</code> attribute</li>
+</ul>
+
+</details>
+
+<hr class="hr">
+
+<details><summary class="h4" id="tessellation"> Tessellation</summary>
+
+<p>A tessellation or tiling is a process of covering a surface or a plane, using one or more geometric shapes, called tiles, with no overlaps or gaps. Furthermore, a variant of symmetric tessellation has a fixed tile size and geometric shape.</p>
+
+<p>Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the tile/cell. However, with the tessellation of a polygon, only the tiles within the polygon are arranged in the same order. Whereas, when dealing with multiple polygons in the same grid, the arrangement of tiles has to be based on the nearest tile that fits in the grid - implying the need for a point grid.</p>
+
+<p><img class="center-image" src="./assets/posts/cartograms/hex-grid-tessellation.png" /> </p>
+
 <p style="text-align: center;">Figure 6: Consistent Tessellation in a Grid. </p>
 
-### Tessellation of n polygons
+</details>
 
-Putting it all together, 
-- the first step is forming a grid of points, where each point represents the center of the tile (hexagon/square). Figure 7 shows the point grid for hexagon tiles.
-- The next step is to draw the tile relative to each point in the grid (tessellate points), forming the base playground - Then, superimpose the set of polygons (Features in TopoJSON) on the grid playground. 
-- Finally, tessellate each of the polygons by ensuring the tiles chosen are from the previously formed grid of tiles.
+<hr class="hr">
 
-<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid.png" /> 
+<details><summary class="h4" id="tessellationofnpolygons"> Tessellation of n polygons</summary>
+
+<p>Putting it all together, </p>
+
+<ul>
+<li>the first step is forming a grid of points, where each point represents the center of the tile (hexagon/square). Figure 7 shows the point grid for hexagon tiles.</li>
+
+<li>The next step is to draw the tile relative to each point in the grid (tessellate points), forming the base playground - Then, superimpose the set of polygons (Features in TopoJSON) on the grid playground. </li>
+
+<li>Finally, tessellate each of the polygons by ensuring the tiles chosen are from the previously formed grid of tiles.</li>
+</ul>
+
+<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid.png" /> </p>
+
 <p style="text-align: center;">Figure 7: Point grid of (Width x Height). </p>
 
-<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
+<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
 
-<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-cell.png" /> 
+<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-cell.png" /> </p>
+
 <p style="text-align: center;">Figure 8: Tessellate points with hexagons </p>
 
-<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
+<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
 
-<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-polygon.png" /> 
+<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-polygon.png" /> </p>
+
 <p style="text-align: center;">Figure 9: Draw the TopoJSON on Canvas (the above TopoJSON is the world map scaled by population of 2018). </p>
 
-<img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> 
+<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
 
-<img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-hex-cartogram.png" /> 
+<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-hex-cartogram.png" /> </p>
+
 <p style="text-align: center;">Figure 10: Regularly tessellate each country/polygon in the world-map with hexagons. </p>
 
-<hr class="hr" id="implementation">
+</details>
 
-## Implementation
+</details>
 
-<details><summary> Click to expand 🤖</summary>
+<br/>
 
-<h3 id="dependencies">Dependencies</h3>
+# Implementation
+
+<details><summary class="h3" id="dependencies"> Dependencies</summary>
 
 <pre><code>"d3": "^7.4.3",
 "d3-array": "^3.1.6",
@@ -189,9 +266,11 @@ Putting it all together,
 "topojson-simplify": "^3.0.3"
 </code></pre>
 
+</details>
+
 <hr class="hr">
 
-<h2 id="projectstructure">Project Structure</h2>
+<details><summary class="h3" id="project-structure"> Project Structure</summary>
 
 <p>The <code>core</code> module:</p>
 
@@ -207,7 +286,15 @@ Putting it all together,
 <li><p><code>events.js</code>: All the mouse events in the application, such as single/double click, hover, and drag/drop.</p></li>
 </ul>
 
-<h3>File: <a href="https://github.com/owid/cartograms/blob/main/index.html">index.html</a></h3>
+</details>
+
+<hr class="hr">
+
+<details><summary class="h3" id="project-files">Project Files</summary>
+
+<br/>
+
+<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/index.html">index.html</a></summary>
 
 <h3>Create a HTML <code>div</code> with a unique <code>id</code></h3>
 
@@ -218,9 +305,11 @@ Putting it all together,
 &lt;/div&gt;
 </code></pre>
 
+</details>
+
 <hr class="hr">
 
-<h3>File: <a href="https://github.com/owid/cartograms/blob/main/core/catogram.js">cartogram.js</a></h3>
+<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/catogram.js">cartogram.js</a></summary>
 
 <p>The algorithm for generating a cartogram is a variant of continuous area cartograms by James A. Dougenik, Nicholas R. Chrisman, and Duane R. Niemeyer. </p>
 
@@ -263,9 +352,11 @@ Putting it all together,
       Write distorted line to output and plot result
 </code></pre>
 
+</details>
+
 <hr class="hr">
 
-<h3>File: <a href="https://github.com/owid/cartograms/blob/main/core/plot.js">plot.js</a></h3>
+<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/plot.js">plot.js</a></summary>
 
 <h3 id="createapointgrid">Create a point grid</h3>
 
@@ -327,7 +418,11 @@ Putting it all together,
     .on("click", mclickBase);
 </code></pre>
 
-<h3>File: <a href="https://github.com/owid/cartograms/blob/main/core/shaper.js">shaper.js</a></h3>
+</details>
+
+<hr class="hr">
+
+<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/shaper.js">shaper.js</a></summary>
 
 <p>The <code>shaper.js</code> has all the code snippets that depend on the cells shape. </p>
 
@@ -503,9 +598,11 @@ For example: A single point in a point-grid represents the top-right corner of a
   }
 </code></pre>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+</details>
 
-<h3>File: <a href="https://github.com/owid/cartograms/blob/main/core/events.js">events.js</a></h3>
+<hr class="hr">
+
+<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/events.js">events.js</a></summary>
 
 <h3 id="draganddrophexagonsinthehexgrid">Drag and drop hexagons in the hex-grid</h3>
 
@@ -596,25 +693,39 @@ For example: A single point in a point-grid represents the top-right corner of a
 
 </details>
 
+</details>
+
+<br/>
+
+# Conclusion
+
+<details><summary class="h3" id="conclusion"> Pending items</summary>
+
+<p>A complete implementation of the above (with additional features):</p>
+
+<ul>
+<li>Prototype: <a href="https://owid.github.io/cartograms/">https://owid.github.io/cartograms</a></li>
+
+<li>Github Repository: <a href="https://github.com/owid/cartograms">https://github.com/owid/cartograms</a></li>
+</ul>
+
+<p>However, this does not conclude meeting the expected requirement(s). The last pending piece is to generate a new cartogram/topojson after moving the cells. That's a work in progress; stay tuned! <a href="https://pyblog.medium.com/subscribe">Subscribe</a> maybe?</p>
+
+</details>
+
 <hr class="hr">
 
-## Conclusion
-
-A complete implementation of the above (with additional features):
-- Prototype: [https://owid.github.io/cartograms](https://owid.github.io/cartograms/)
-- Github Repository: [https://github.com/owid/cartograms](https://github.com/owid/cartograms)
-
-However, this does not conclude meeting the expected requirement(s). The last pending piece is to generate a new cartogram/topojson after moving the cells. That's a work in progress; stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
-
-<hr class="hr">
-
-## References
-```
-[1] “Amit’s Thoughts on Grids,” www-cs-students.stanford.edu. http://www-cs-students.stanford.edu/~amitp/game-programming/grids
+<details><summary class="h3" id="references"> References</summary>
+<pre><code>[1] “Amit’s Thoughts on Grids,” www-cs-students.stanford.edu. http://www-cs-students.stanford.edu/~amitp/game-programming/grids
 
 [2] M. Strimas-Mackey, “Fishnets and Honeycomb: Square vs. Hexagonal Spatial Grids,” Matt Strimas-Mackey, Jan. 14, 2016. https://strimas.com/post/hexagonal-grids
 
 [3] S. Kamani, “D3 Geo Projections Explained” www.sohamkamani.com. https://www.sohamkamani.com/blog/javascript/2019-02-18-d3-geo-projections-explained (accessed Jun. 14, 2022).
 
 [4] “Markdown to HTML Converter - Markdown Editor - Online - Browserling Web Developer Tools,” www.browserling.com. https://www.browserling.com/tools/markdown-to-html (accessed Jul. 10, 2022).
-```
+</code></pre>
+
+</details>
+
+<br/>
+

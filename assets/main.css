@@ -679,3 +679,18 @@ code {
 .right {
   float: right;
 }
+
+.h4 {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.h2 {
+  font-size: 25px;
+  font-weight: 700;
+}
