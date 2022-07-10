@@ -605,7 +605,7 @@ a.black-button:hover {
   }
 }
 
-.highlighter-rouge {
+.highlighter-rouge, pre, code {
   background-color: #F5F5F5;
 }
 
