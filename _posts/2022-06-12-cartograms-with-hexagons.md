@@ -177,6 +177,7 @@ Putting it all together,
 ## Implementation
 
 ### Dependencies
+
 ```
 "d3": "^7.4.3",
 "d3-array": "^3.1.6",
@@ -190,6 +191,7 @@ Putting it all together,
 <hr class="hr">
 
 ## Project Structure
+
 The `core` module:
 - `index.html`: HTML page of the main screen containing the root container and input form fields such as year, radius, scale mode, cell size, export format, and cell color selector.
 
@@ -205,7 +207,7 @@ The `core` module:
 ### Create a HTML `div` with a unique `id`
 To append SVG, i.e., the hexagonal grid and polygons/regions of the cartogram (derived from the topojson).
 
-```
+```html
 <div class="container-fluid">
     <div id="container"></div>
 </div>
@@ -264,7 +266,7 @@ The brute force method (fixed small number of polygons): the forces of all polyg
 ### Create a point grid
 A point grid is a matrix containing the centers of all the cells in the grid.
 
-```
+```javascript
   let cellRadius = cellDetails.radius;
   let cellShape = cellDetails.shape;
   
@@ -281,7 +283,8 @@ A point grid is a matrix containing the centers of all the cells in the grid.
 ```
 
 The `shapeDistance` is different for different cell-shapes. For example:
-```
+
+```javascript
   switch (cellShape) {
       case cellPolygon.Hexagon:
         shapeDistance = radius * 1.5;
@@ -295,7 +298,7 @@ The `shapeDistance` is different for different cell-shapes. For example:
 ### Plot the hexagonal grid playground
 The playground of cells is as shown in Figure 8, where each point in the grid is tesselated with the respective cell shape. The playground also serves as the never-ending sea/ocean on the world map.
 
-```
+```javascript
   d3.select("#container").selectAll("*").remove();
     const svg = d3
       .select("#container")
@@ -326,7 +329,8 @@ The `shaper.js` has all the code snippets that depend on the cells shape.
 
 Once again, the transformation, SVG path, and binned data points (grid) are dependent on the cell-shape.
 For hexagons, the library used: [d3-hexbin](https://github.com/d3/d3-hexbin)
-```
+
+```javascript
   function getGridData(cellShape, bin, grid) {
     switch (cellShape) {
       case cellPolygon.Hexagon:
@@ -340,7 +344,7 @@ For hexagons, the library used: [d3-hexbin](https://github.com/d3/d3-hexbin)
 Translate is one of the support transformations (Translate, Rotate, Scale, and Skew). It moves the SVG elements inside the webpage and takes two values, `x` and `y`. The `x` value translates the SVG element along the x-axis, while `y` translates the SVG element along the y-axis. 
 For example: A single point in a point-grid represents the top-right corner of a square, which is moved by `length of the side/2` on the x and y-axis using `transform.translate(x, y)`
 
-```
+```javascript
   function getTransformation(cellShape) {
     switch (cellShape) {
       case cellPolygon.Hexagon:
@@ -357,7 +361,7 @@ For example: A single point in a point-grid represents the top-right corner of a
 
 To emphasize the ease of extending the solution for other cell shapes, notice the `rightRoundedRect` that takes `borderRadius` (zero for a square/rectangle); however, setting it to 50% would result in circular cells.
 
-```
+```javascript
   function getPath(cellShape, bin, distance) {
     switch (cellShape) {
       case cellPolygon.Hexagon:
@@ -377,7 +381,7 @@ The expectation of `Cartogram()` is to take the current topo-features of the map
 
 In this example, the base cartogram is a population-scaled world map for the year 2018.
 
-```
+```javascript
   var topoCartogram = cartogram()
     .projection(null)
     .properties(function (d) {
@@ -406,7 +410,7 @@ As for the presentation, there are two types: `Fixed` and `Fluid`.
 <img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/cartogram-fluid.gif" /> 
 <p style="text-align: center;">Figure 12: Cartogram scaled from 1950 to 1990 in Fluid mode </p>
 
-```
+```javascript
   var topoFeatures = topoCartogram(
     topo,
     topo.objects.tiles.geometries,
@@ -418,7 +422,7 @@ As for the presentation, there are two types: `Fixed` and `Fluid`.
 
 **Population Factor:** The `populationFactor` is "1" in `FLUID` mode and depends on the source and target population ratio in `FIXED` mode, calculated using back-propagation, where the default `populationFactor` is 1.6 (mean of expected values across years) and increased/decreased in steps of 0.1 to reach the desired cell-size.
 
-```
+```javascript
   populationFactor(selectedScale, populationData, year) {
     switch (selectedScale) {
       case cellScale.Fixed:
@@ -438,7 +442,7 @@ As for the presentation, there are two types: `Fixed` and `Fluid`.
 ### Flatten the features of the cartogram/topojson.
 A quick transformation to form a list of polygons irrespective of whether the feature is a `MultiPolygon` or a `MultiPolygon`.
 
-```
+```javascript
 function flattenFeatures(topoFeatures) {
   let features = [];
   for (let i = 0; i < topoFeatures.length; i++) {
@@ -465,7 +469,7 @@ function flattenFeatures(topoFeatures) {
 
 This is the step where the polygons are tesselated, and the `d3.polygonContains` function checks for points in the point-grid within the polygon as shown in figures 9 and 10. 
 
-```
+```javascript
   let features = flattenFeatures(topoFeatures);
   let cellCount = 0;
   for (let i = 0; i < features.length; i++) {
@@ -506,7 +510,7 @@ This is the step where the polygons are tesselated, and the `d3.polygonContains`
 
 Implementation of `start`, `drag`, and `end` - representing the states when the drag has started, in-flight, and dropped to a cell-slot.
 
-```
+```javascript
   function dragstarted(event, d) {
     d.fixed = false;
     d3.select(this).raise().style("stroke-width", 1).style("stroke", "#000");
@@ -532,7 +536,7 @@ Implementation of `start`, `drag`, and `end` - representing the states when the 
 
 **Finding the nearest cell-slot:** It's vital to ensure that a cell can only be dragged to another cell-slot. From the x and y co-ordinate, calculate the nearest available slot. For example, a square of length 5 units at x co-ordinate of 102, `102 - (102 % 5) = 100` would be the position of the nearest slot on the x-axis, similarly on the y-axis. On the other hand, hexagons are a bit tricky, where the lengths of the hexagon are `radius * 2` and `apothem * 2`. Recommended read on hexagons and hex-grid: [https://www.redblobgames.com/grids/hexagons](https://www.redblobgames.com/grids/hexagons/)
 
-```
+```javascript
   function getNearestSlot(x, y, n, cellShape) {
     switch (cellShape) {
       case cellPolygon.Hexagon:
@@ -565,7 +569,7 @@ Implementation of `start`, `drag`, and `end` - representing the states when the 
 ### Mouse over and out in the hex-grid
 Similarly, a few other events include mouse over, mouse out, and mouse click.
 
-```
+```javascript
   svg.append('g')
   ... // same as above
   .on("mouseover", mover)
@@ -576,7 +580,7 @@ Similarly, a few other events include mouse over, mouse out, and mouse click.
       .on("end", dragended));
 ```
 
-```
+```javascript
   function mover(d) {
     d3.selectAll("." + this.getAttribute("class"))
       .transition()
