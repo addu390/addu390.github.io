@@ -18,7 +18,7 @@ category: Comics
 
 # Explanation
 
-<details><summary class="h3" id="whatisacartogram"> What is a cartogram?</summary>
+<details open><summary class="h3" id="whatisacartogram"> 1. What is a cartogram?</summary>
 
 <p>Simply put, a cartogram is a map. But a cartogram is a unique type of map that combines statistical information such as population with geographic location. Typically, physical or topographical maps show relative area and distance, but they do not provide any data about the inhabitants or the population of a place. For example, a quick and intuitive view of the world map in relation to population makes it easy for viewers to co-relate the effect and the relative measure's gravity. </p>
 
@@ -28,7 +28,7 @@ category: Comics
 
 <hr class="hr">
 
-<details><summary class="h3" id="howaregridsrelatedtocartograms"> How are grids related to cartograms?</summary>
+<details><summary class="h3" id="howaregridsrelatedtocartograms"> 2. How are grids related to cartograms?</summary>
 
 <p>With an objective to plot a visually conclusive map by illustrating territories using a method for trading off shape and area.</p>
 
@@ -44,7 +44,7 @@ category: Comics
 
 <hr class="hr">
 
-<details><summary class="h3" id="choosingtherightgrid"> Choosing the right grid</summary>
+<details><summary class="h3" id="choosingtherightgrid"> 3. Choosing the right grid</summary>
 
 <p>Grids are built from a repetition of simple shapes such as squares and hexagons. Grids have three types of parts: faces (tiles), edges, and vertices.</p>
 
@@ -98,7 +98,7 @@ category: Comics
 
 <hr class="hr">
 
-<details><summary class="h3" id="hexagonsvssquares"> Hexagons vs Squares</summary>
+<details><summary class="h3" id="hexagonsvssquares"> 4. Hexagons vs Squares</summary>
 
 <h3 id="squaregrids">Square grids</h3>
 
@@ -140,11 +140,11 @@ category: Comics
 
 <hr class="hr">
 
-<details><summary class="h3" id="buildingashapepreservedhexagonalgridcartogram"> Building a shape preserved hexagonal grid cartogram</summary>
+<details><summary class="h3" id="buildingashapepreservedhexagonalgridcartogram"> 5. Building a shape preserved hexagonal grid cartogram</summary>
 
 <p>Since the primary dependency is D3 - a Javascript library extensively used for drawing geographic visualizations and uses <a href="https://geojson.org">GeoJSON</a>/<a href="https://en.wikipedia.org/wiki/GeoJSON">TopoJSON</a> for representing shapes on maps by converting them to rendered SVG element(s); explanations are supported by implementation details in D3.</p>
 
-<details><summary class="h4" id="projection"> Projection</summary>
+<details><summary class="h4" id="projection"> 5.1. Projection</summary>
 
 <p><img class="center-image" src="./assets/posts/cartograms/earth-projection.png" /> </p>
 
@@ -162,7 +162,7 @@ category: Comics
 
 <hr class="hr">
 
-<details><summary class="h4" id="geopath"> Geopath</summary>
+<details><summary class="h4" id="geopath"> 5.2. Geopath</summary>
 
 <p>The projection function works well for converting points into X and Y coordinates but not lines. A typical map has regions represented by lines and not individual points. Hence to render the map, irregular lines are represented using the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">path</a> element.
 The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines the shape of the line.</p>
@@ -199,7 +199,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h4" id="tessellation"> Tessellation</summary>
+<details><summary class="h4" id="tessellation"> 5.3. Tessellation</summary>
 
 <p>A tessellation or tiling is a process of covering a surface or a plane, using one or more geometric shapes, called tiles, with no overlaps or gaps. Furthermore, a variant of symmetric tessellation has a fixed tile size and geometric shape.</p>
 
@@ -213,7 +213,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h4" id="tessellationofnpolygons"> Tessellation of n polygons</summary>
+<details><summary class="h4" id="tessellationofnpolygons"> 5.4. Tessellation of n polygons</summary>
 
 <p>Putting it all together, </p>
 
@@ -255,7 +255,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 # Implementation
 
-<details><summary class="h3" id="dependencies"> Dependencies</summary>
+<details><summary class="h3" id="dependencies"> 6. Dependencies</summary>
 
 <pre><code>"d3": "^7.4.3",
 "d3-array": "^3.1.6",
@@ -270,7 +270,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h3" id="project-structure"> Project Structure</summary>
+<details open><summary class="h3" id="project-structure"> 7. Project Structure</summary>
 
 <p>The <code>core</code> module:</p>
 
@@ -290,11 +290,11 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h3" id="project-files">Project Files</summary>
+<details><summary class="h3" id="project-files">8. Project Files</summary>
 
 <br/>
 
-<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/index.html">index.html</a></summary>
+<details><summary class="h4" id="project-files">8.1. <a href="https://github.com/owid/cartograms/blob/main/index.html">index.html</a></summary>
 
 <h3>Create a HTML <code>div</code> with a unique <code>id</code></h3>
 
@@ -309,7 +309,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/catogram.js">cartogram.js</a></summary>
+<details><summary class="h4" id="project-files">8.2. <a href="https://github.com/owid/cartograms/blob/main/core/catogram.js">cartogram.js</a></summary>
 
 <p>The algorithm for generating a cartogram is a variant of continuous area cartograms by James A. Dougenik, Nicholas R. Chrisman, and Duane R. Niemeyer. </p>
 
@@ -356,7 +356,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/plot.js">plot.js</a></summary>
+<details><summary class="h4" id="project-files">8.3. <a href="https://github.com/owid/cartograms/blob/main/core/plot.js">plot.js</a></summary>
 
 <h3 id="createapointgrid">Create a point grid</h3>
 
@@ -422,7 +422,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/shaper.js">shaper.js</a></summary>
+<details><summary class="h4" id="project-files">8.4. <a href="https://github.com/owid/cartograms/blob/main/core/shaper.js">shaper.js</a></summary>
 
 <p>The <code>shaper.js</code> has all the code snippets that depend on the cells shape. </p>
 
@@ -602,7 +602,7 @@ For example: A single point in a point-grid represents the top-right corner of a
 
 <hr class="hr">
 
-<details><summary class="h4" id="project-files">File: <a href="https://github.com/owid/cartograms/blob/main/core/events.js">events.js</a></summary>
+<details><summary class="h4" id="project-files">8.5. <a href="https://github.com/owid/cartograms/blob/main/core/events.js">events.js</a></summary>
 
 <h3 id="draganddrophexagonsinthehexgrid">Drag and drop hexagons in the hex-grid</h3>
 
@@ -699,7 +699,7 @@ For example: A single point in a point-grid represents the top-right corner of a
 
 # Conclusion
 
-<details><summary class="h3" id="conclusion"> Pending items</summary>
+<details open><summary class="h3" id="conclusion"> 9. Pending items</summary>
 
 <p>A complete implementation of the above (with additional features):</p>
 
@@ -715,7 +715,7 @@ For example: A single point in a point-grid represents the top-right corner of a
 
 <hr class="hr">
 
-<details><summary class="h3" id="references"> References</summary>
+<details><summary class="h3" id="references"> 10. References</summary>
 <pre><code>[1] “Amit’s Thoughts on Grids,” www-cs-students.stanford.edu. http://www-cs-students.stanford.edu/~amitp/game-programming/grids
 
 [2] M. Strimas-Mackey, “Fishnets and Honeycomb: Square vs. Hexagonal Spatial Grids,” Matt Strimas-Mackey, Jan. 14, 2016. https://strimas.com/post/hexagonal-grids
