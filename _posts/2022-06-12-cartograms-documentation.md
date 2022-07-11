@@ -9,12 +9,11 @@ tags:
   - Algorithms
   - Open Source
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/hex-spiderman.png
+feature: assets/featured/solar-system-cartogram.png
 category: Comics
 ---
 
-<img class="center-image" src="./assets/featured/hex-spiderman.png" /> 
-<p style="text-align: center;">Hex Spiderman. </p>
+<img class="center-image" src="./assets/featured/solar-system-cartogram.png" /> 
 
 # Explanation
 
