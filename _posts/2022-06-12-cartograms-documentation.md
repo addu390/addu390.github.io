@@ -252,23 +252,33 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <details><summary class="h4" id="tessellationofnpolygons"> 5.5. Plotting a cartogram</summary>
 
+This section is a word in progress, stay tuned! 🤓
+
+<p>The algorithm for generating a cartogram is a variant of continuous area cartograms by James A. Dougenik, Nicholas R. Chrisman, and Duane R. Niemeyer. </p>
+
+<p>The research paper: <a href="http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf">An Algorithm to Construct Continous Area Cartograms</a>. Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: </p>
+
+<p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/world-map-centroids.png" /> </p>
+
+<p style="text-align: center;">Figure 11: Centroid of all polygons/countries. </p>
+
 </details>
 
 <hr class="hr">
 
-<details><summary class="h4" id="tessellationofnpolygons"> 5.6. Types of cartograms</summary>
+<details><summary class="h4" id="tessellationofnpolygons"> 5.6. Fixed vs Fluid mode</summary>
 
 <p><strong>Fixed:</strong> The cell size is <code>fixed</code> across years. The cell size is the population count of each cell (a country with a population of 10 million has 20 cells when the cell size is 0.5 million). Irrespective of the year/total population, the cell size remains the same in the <code>Fixed</code> mode.</p>
 
 <p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/cartogram-fixed.gif" /> </p>
 
-<p style="text-align: center;">Figure 11: Cartogram scaled from 1950 to 1990 in Fixed mode </p>
+<p style="text-align: center;">Figure 13: Cartogram scaled from 1950 to 1990 in Fixed mode </p>
 
 <p><strong>Fluid:</strong> On the other hand, in the fluid mode, as the year/total population changes, the cell size is adjusted accordingly to best utilize the entire screen/container to display the cartogram. For example: A region with a total population of 20 million and a cell size of 0.5 million would have the same view when the total population is 40 million, and the cell size is 1 million.</p>
 
 <p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/cartogram-fluid.gif" /> </p>
 
-<p style="text-align: center;">Figure 12: Cartogram scaled from 1950 to 1990 in Fluid mode </p>
+<p style="text-align: center;">Figure 14: Cartogram scaled from 1950 to 1990 in Fluid mode </p>
 
 </details>
 
@@ -334,9 +344,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <details><summary class="h4" id="project-files">8.2. <a target="_blank" href="https://github.com/owid/cartograms/blob/main/core/catogram.js">cartogram.js</a></summary>
 
-<p>The algorithm for generating a cartogram is a variant of continuous area cartograms by James A. Dougenik, Nicholas R. Chrisman, and Duane R. Niemeyer. </p>
-
-<p>The research paper: <a href="http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf">An Algorithm to Construct Continous Area Cartograms</a>. Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: </p>
+<p> Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: </p>
 
 <h3 id="calculateforcereductionfactor">Calculate Force Reduction Factor</h3>
 
@@ -517,7 +525,7 @@ For example: A single point in a point-grid represents the top-right corner of a
   });
 </code></pre>
 
-<p>As for the presentation, there are two types: <code>Fixed</code> and <code>Fluid</code>, as shown in Figures 11 and 12.</p>
+<p>As for the presentation, there are two types: <code>Fixed</code> and <code>Fluid</code>, as shown in Figures 13 and 14.</p>
 
 <p><strong>Population Factor:</strong> The <code>populationFactor</code> is "1" in <code>FLUID</code> mode and depends on the source and target population ratio in <code>FIXED</code> mode, calculated using back-propagation, where the default <code>populationFactor</code> is 1.6 (mean of expected values across years) and increased/decreased in steps of 0.1 to reach the desired cell-size.</p>
 
