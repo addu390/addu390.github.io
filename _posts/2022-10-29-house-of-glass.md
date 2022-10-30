@@ -34,7 +34,7 @@ Felt like I got knocked out, got picked up, just to get knocked out harder, agai
 I took a break from all the extra work I had been doing and planned all the changes I would need to bring in. I soon started playing my favorite sports, hitting the gym, and making meal preps; things just got better and better. Believe it or not, I lost over 25 pounds in a matter of two and half months, and I'm constantly working towards getting shredded (Work in Progress).
 
 <img src="./assets/posts/journey/stage_6.png" /> 
-So, what's the point of this post? Hit the gym! "gym" in this context is abstract. It could be playing a sport, dancing, or whatever; find yours and do it with all the love and discipline.
+So, what's the point of this post? Hit the gym! Physical health is strongly coupled with mental health. "gym" in this context is abstract, it could be playing a sport, dancing, or whatever; find yours and do it with all the love and discipline.
 
 <img style="width:42%" class="center-image" src="./assets/posts/journey/stage_7.png" /> 
 <p style="text-align: center">Yeah buddy, light weight baby</p>
