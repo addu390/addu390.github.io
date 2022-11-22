@@ -2,7 +2,7 @@ title: "PYBLOG"
 email: 390.adesh@gmail.com
 donate_link: https://www.buymeacoffee.com/pyblog
 description: >- 
-  On a mission to make software development easy and fun for everyone
+  How do you know which watermelon to pick?
 baseurl: ""
 url: "https://pyblog.xyz" 
 repository: addu390/addu390.github.io
@@ -11,7 +11,7 @@ github: addu390
 linkedin: adesh-nalpet-adimurthy
 medium: pyblog
 
-header_image: assets/profile-2.png
+header_image: assets/img/profile/2.png
 
 google_analytics:
 comments: true

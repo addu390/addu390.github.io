@@ -138,4 +138,4 @@ The plan is to use a combination of Surface EMG sensors and KAI (Gyroscope, Acce
 
 - [Seeed Studio EMG Grove](https://www.seeedstudio.com/Grove-EMG-Detector-p-1737.html)
 
-**Note:** MYRO 2.0 is no longer in active development. Drop me a [message](https://thenextbigproject.com/contact/) — With any questions about the project.
+**Note:** MYRO 2.0 is no longer in active development.
