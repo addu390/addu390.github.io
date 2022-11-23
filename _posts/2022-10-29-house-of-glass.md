@@ -6,6 +6,7 @@ tags:
   - Wisdom
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/rage.png
+category: Life
 ---
 
 <img class="center-image" src="./assets/featured/rage.png" /> 

@@ -8,7 +8,7 @@ tags:
   - Security
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/popeye-killswitch.png
-category: Security
+category: Code on the Road
 ---
 
 <img class="center-image" src="./assets/featured/popeye-killswitch.png" /> 
