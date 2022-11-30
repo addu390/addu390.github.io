@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Rewire stress resilience and unwind anxiety"
-date: 2022-11-21
+date: 2022-11-30
 tags:
   - Wisdom
 author: Adesh Nalpet Adimurthy
@@ -9,10 +9,12 @@ feature: assets/featured/alright.png
 category: Life
 ---
 
-<img class="center-image" src="./assets/featured/alright.png" /> 
+<img class="center-image" src="../assets/featured/alright.png" /> 
 <p style="text-align: center;">Hang in there! </p>
 
-It's funny how I want to start the post with "after the pandemic," although it's been a while since covid is no longer a significant concern, fair to say it has a long-lasting effect on our lives. Do you 
+It's funny how I want to start the post with "after the pandemic," although it's been a while since covid is no longer a significant concern, fair to say it has had a long-lasting effect on our lives. 
+
+Do you 
 - often worry about things that are very unlikely to happen? 
 - criticize yourself, but you are kind to others?
 - have a wave of negative thoughts that things will turn out badly?
@@ -20,6 +22,8 @@ It's funny how I want to start the post with "after the pandemic," although it's
 - have trouble sleeping because you can't stop thinking and get lost in the train of thoughts?
 
 If you answered yes to more than one of these, you are likely dealing with some level of stress and anxiety. Although that doesn't mean it's doomsday but rather uncomfortable and irritable.  
+
+And now, to break it down, identify the underlying problem, and look at probable solutions:
 
 <details><summary class="h3" id="anxiety-and-stress"> 1. Anxiety and Stress</summary>
 
@@ -44,6 +48,8 @@ If you answered yes to more than one of these, you are likely dealing with some 
 <hr class="hr">
 
 <details><summary class="h3" id="rewire-stress-resilience"> 2. Rewire stress resilience</summary>
+
+<p>To better understand `Stress Response`, a quick overview of fight-or-flight and feed-and-breed response is a must:</p>
 
 <p>The fight-or-flight response is an automatic physiological reaction to an event perceived as stressful or frightening (helps the body deal with threats). The perception of threat activates the sympathetic nervous system and triggers an acute stress response that prepares the body to fight or flee; the common signs are tense muscles, tight chest, pounding heart, cold sweats, the urge to run away/freeze, or just plain anger. </p>
 
@@ -103,7 +109,7 @@ If you answered yes to more than one of these, you are likely dealing with some 
 <hr class="hr">
 
 <details><summary class="h3" id="meditation"> 4. Meditation</summary>
-- Wait for it :P
+- Yet to add this section :P
 </details>
 
 <hr class="hr">
@@ -120,6 +126,6 @@ If you answered yes to more than one of these, you are likely dealing with some 
 
 </details>
 
-<p>This post is not intended to give medical advice and does not substitute professional help. It's based on my own research and personal experience that worked well for me, along with a bunch of friends and family :)</p>
+<p>This post is not intended to give medical advice and does not substitute professional help. It's based on my own research, understanding and personal experience that worked well for me, along with a bunch of friends and family :)</p>
 
 

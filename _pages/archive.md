@@ -4,10 +4,11 @@ permalink: /archive
 title: Archive of All Collections
 ---
 
-**Note:** This page contains all materials in `posts` and `notes`.
+**Note:** This page contains all material in anything in `_posts`, as well as all custom collections, such as `_notes`, and `_journals`, etc. with the only exception being `_pages`.
 
+<details><summary class="h3" id="all-posts">Everything</summary>
 {% for collection in site.collections %}
-{% if collection.label != "pages" and collection.label != "journals" %}
+{% if collection.label != "pages" %}
 
   <h2>Entries from {{ collection.label | capitalize }}</h2>
   <ul>
@@ -17,3 +18,42 @@ title: Archive of All Collections
   </ul>
   {% endif %}
 {% endfor %}
+</details>
+
+<hr class="hr">
+
+<details><summary class="h3" id="all-posts">By tags</summary>
+<div>
+    {% for tag in site.tags %}
+    <div class="pure-u-1 tags">
+        <h2 id="{{ tag | first }}">{{ tag | first | capitalize }}</h2>
+        <ul>
+        {% for post in tag.last %}
+            <li style="padding-bottom: 0.6em;"><a href="{{post.url}}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    <br/>
+    <br/>
+</div>
+</details>
+
+<hr class="hr">
+
+<details><summary class="h3" id="all-posts">By category</summary>
+<main>
+    {% for category in site.categories %}
+        <div class="pure-u-1 tags">
+        <h2 id="{{ category | first }}">{{ category | first  }}</h2>
+            <ul>
+            {% for post in category.last %}
+                <li id="category-content" style="padding-bottom: 0.6em;"><a href="{{post.url}}">{{ post.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+    <br/>
+    <br/>
+</main>
+</details>
