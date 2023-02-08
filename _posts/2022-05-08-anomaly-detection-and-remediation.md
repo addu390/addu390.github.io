@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anomaly Detection and Remediation"
-date: 2023-02-08
+date: 2022-04-17
 tags:
   - Python
   - Django
