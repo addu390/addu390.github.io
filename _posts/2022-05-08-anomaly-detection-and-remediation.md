@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anomaly Detection and Remediation"
-date: 2022-04-17
+date: 2023-02-08
 tags:
   - Python
   - Django
@@ -101,7 +101,7 @@ The kill-switch service can store the ruleset in a key-value cache-store such as
 
 The application calling the kill-switch service still has to bear the network latency to make the API call, possibly for most backend APIs. Using another layer of Redis is a bad idea, given the TTL may have to be seconds. A better approach is to load the kill-switch rules relevant to the integrated application at run-time for a predefined frequency, using a scheduler + queue combination.
 
-The barebone implementation of KS: [https://github.com/addu390/django-kill-switch](https://github.com/addu390/django-kill-switch)
+The barebone implementation of KS: [https://github.com/addu390/kill-switch](https://github.com/addu390/kill-switch)
 
 The different **components** involved are as follows:
 
