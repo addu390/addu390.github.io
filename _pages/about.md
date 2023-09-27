@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 <div class="center-align">
-<h1 style="display: inline-block; margin-top: 0px;">Adesh Nalpet Adimurthy</h1><span> (He/Him)</span><br>
+<h1 style="display: inline-block; margin-top: 0px;">Adesh Nalpet Adimurthy</h1><span></span><br>
     <subtitle class="font-weight-bold text-muted">
         <span style="color: orangered;">
             <i class="fas fa-map-pin" aria-hidden="true"></i>
@@ -13,16 +13,16 @@ permalink: /about/
         <span>
             🇨🇦 Anywhere in Canada
         </span>
-        <span> &nbsp; &nbsp;
+        <!-- <span> &nbsp; &nbsp;
             <a href="{{site.url}}/assets/adesh-nalpet-adimurthy-resume.pdf" download target="_blank">Download Resume</a>
-        </span>
+        </span> -->
         <span> &nbsp; &nbsp;
             <a href="https://calendly.com/pyblog/30min" target="_blank">Schedule time with me</a>
         </span>
     </subtitle>
 </div>
 
-Hey 👋 I'm a computer science graduate student at Dalhousie University, a budding illustrator, and previously a backend engineer at Walmart's PhonePe and YC ClearTax, here to share my experiences, tutorials, and projects.
+Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a budding illustrator; here to share my experiences, tutorials, and projects.
 
 <img src="../assets/featured/for-hire.png" /> 
 
@@ -32,13 +32,13 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - **Programming languages:** Java, Javascript and Python
 
-- **Databases:** MySQL, MongoDB, AeroSpike, ElasticSearch, Redis, Redshift, Athena
+- **Databases:** MySQL/Postgres, MongoDB, ElasticSearch, Redis, Ignite, AeroSpike, Redshift, Athena
 
-- **Frameworks:** Dropwizard, Django, Flask, Angular, Ionic
+- **Frameworks:** Springboot, Dropwizard, Django, Flask, React, Angular
 
-- **CI/CD:** Jenkins, Spinnaker, Docker, Terraform, Gitlab CI, Marathon and Mesos
+- **CI/CD:** Jenkins, kubernetes, Spinnaker, Docker, Terraform, Gitlab CI, Marathon and Mesos
 
-- **Other Technologies:** Docker, Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka
+- **Other Technologies:** Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka, Flink, Airflow
 
 ## Featured Projects
 
@@ -48,13 +48,29 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 - Hybrid Spatial Data Structures: <a href="https://github.com/addu390/hybrid-spatial-index" target="_blank">github.com/addu390/hybrid-spatial-index</a>
 
-- Licensing as a Platform: <a href="https://github.com/addu390/licensing-as-a-platform" target="_blank">github.com/addu390/licensing-as-a-platform</a>
-
 ## Work History
 
 <hr>
 
-<p class="right"><b>2022-05 - Current</b></p>
+<p class="right"><b>2023-03 - Current</b></p>
+
+### Senior Software Engineer
+<p class="nomad"><i>Extreme Networks, Toronto, ON, Canada </i></p>
+
+<hr class="hr">
+
+<p class="right"><b>2022-09 - 2023-02</b></p>
+
+### Software Engineer
+<p class="nomad"><i>Resmed, Research Co-op, Toronto, ON, Canada </i></p>
+
+- Built an all-in-one application set-up tool using Terraform Enterprise to automatically spin up an AWS environment for git branches to work on features in isolation, thereby removing the need to maintain a single stable branch for dev-testing.
+
+- Developed a generic framework to reduce cypress text execution time from ~2 hours to 17 minutes by parallelizing the test cases.
+
+<hr class="hr">
+
+<p class="right"><b>2022-05 - 2022-09</b></p>
 
 ### Google Summer of Code Contributor
 <p class="nomad"><i>Google OSS, Our World in Data, Halifax, NS, Canada </i></p>
@@ -65,12 +81,12 @@ Hey 👋 I'm a computer science graduate student at Dalhousie University, a budd
 
 <hr class="hr">
 
-<p class="right"><b>2022-04 - Current</b></p>
+<p class="right"><b>2022-04 - 2022-09</b></p>
 
 ### Teaching Assistant & Marker - CSCI 5308 Advanced Topics in Software Development
 <p class="nomad"><i>Dalhousie University, Halifax, NS, Canada</i></p>
 
-<p class="right"><b>2021-12 - 2022-04</b></p>
+<p class="right"><b>2022-01 - 2022-04</b></p>
 
 ### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering
 <p class="nomad"><i>Dalhousie University, Halifax, NS, Canada</i></p>
