@@ -694,3 +694,23 @@ code {
   font-size: 25px;
   font-weight: 700;
 }
+
+.image-container {
+  position: relative;
+  text-align: center;
+  color: black;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 35px;
+}

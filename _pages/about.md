@@ -24,11 +24,11 @@ permalink: /about/
 
 Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a budding illustrator; here to share my experiences, tutorials, and projects.
 
-<img src="../assets/featured/for-hire.png" /> 
-
-## Skills
-
-<hr>
+<div class="image-container">
+    <img src="../assets/featured/for-hire.png" /> 
+    <div class="bottom-right">Skills</div>
+    <hr style="margin-top: -10px; ">
+</div>
 
 - **Programming languages:** Java, Javascript and Python
 
@@ -97,17 +97,6 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 
 <hr class="hr">
 
-<p class="right"><b>2021-10 - 2021-12</b></p>
-
-### Computer Science Tutor
-<p class="nomad"><i>SuperProf, Halifax, NS, Canada</i></p>
-
-- Subject(s): CSCI 3110 - Design and Analysis of Algorithms.
-
-- I closely worked with 3 students to improve their hold on Data Structures and Algorithms. But, with all honesty, it was a 2-way street, where I learned a lot too, both DSA and effective communication.
-
-<hr class="hr">
-
 <p class="right"><b>2019-12 - 2021-07</b></p>
 
 ### Software Engineer
@@ -123,7 +112,7 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 
 <hr class="hr">
 
-<p class="right"><b>2018-07 - 2019-12</b></p>
+<p class="right"><b>2017-11 - 2019-12</b></p>
 
 ### Software Engineer II
 <p class="nomad"><i>Clear (Formerly ClearTax), Bengaluru, KA, India</i></p>
@@ -140,42 +129,22 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 
 - Licensing as a Service: Developed a service for monetizing and limiting user exploitation of the application utilizing Python Django to float the application and Redis for database caching.
 
-<hr class="hr">
-
-<p class="right"><b>2017-11 - 2018-07</b></p>
-
-### Full Stack Developer Intern
-<p class="nomad"><i>Techleet Infosystems, Bengaluru, KA, India</i></p>
-
-- Ribbn (Uber for Ambulance): Developed an Ionic-Angular-Django application to book an ambulance and fulfill post-hospitalization services such as doctor's consultation and home-nursing along with location analytics for efficient fleet management and cost optimization.
-
-- Xeta Logistics: Built a logistics billing and goods tracking application with provision for GST E-way bill generation leveraging Laravel-Angular and Computer Vision techniques for text extraction and redaction of documents.
-
 ## Education
 
 <hr>
 
-<p class="right"><b>2021-08 - Current</b></p>
-
 ### Master of Applied Computer Science
 <p class="nomad"><i>Dalhousie University - Halifax, NS, Canada</i></p>
-
-<hr class="hr">
-
-<p class="right"><b>2013-07 - 2017-08</b></p>
-
-### Bachelor of Engineering: Electronics And Communication
-<p class="nomad"><i>Visvesvaraya Technological University - Bengaluru, KA, India</i></p>
 
 ## Accomplishments
 
 <hr>
 
-- Successfully completed the Dal Innovates Collide - Exploring Entrepreneurship (Mentorship Program)
+- Bench 225 and Squat 325 🏋️‍♀️
 
 - Won the "Halifax Innovation Challenge, Extra Mile Award" sponsored by RBC and IBM. 
 
-- Certified in "Business Communications for Researchers" by Path2Innovation.
+- Certified in "Business Communications for Researchers" and "Exploring Entrepreneurship (Mentorship Program)" by Path2Innovation.
 
 - Rated as 'Exceptional Performer' (July 2020 and April 2021) at PhonePe and 'Out Performer (OP)' in the performance reviews at ClearTax (October 2018 and April 2019). 
 
