@@ -20,6 +20,7 @@ Before jumping into using a relational database like MySQL or PostgreSQL as a gr
 A graph is a set of vertices/nodes interconnected by edges/links. The edges can be directed (unidirectional or bidirectional) or undirected (no orientation, only infers a connection between nodes). 
 
 <img class="center-image" style="width: 75%;" src="./assets/posts/graph-types.png" /> 
+<p style="text-align: center;">Figure 1: (Left to Right) Undirected, Unidirectional and Bidirectional</p>
 
 ## Graph Data Structure in Java
 A vertex represents the entity, and an edge represents the relationship between entities:
@@ -68,8 +69,8 @@ Graph createGraph() {
     return graph;
 }
 ```
-Visual representation of the above `graph`:
 <img class="center-image" style="width: 75%;" src="./assets/posts/graph-example-1.png" /> 
+<p style="text-align: center;">Figure 2: Graph visual and map data-structure representation</p>
 
 ## Graph Data Structures in Postgres
 
@@ -99,6 +100,8 @@ Relational databases operate most efficiently on properly normalized data models
 
 A better way to store a graph in Postgres is by creating two tables: `vertex` and `edge`
 <img class="center-image" style="width: 90%;" src="./assets/posts/graph-example-2.png" /> 
+<p style="text-align: center;">Figure 3: Graph representation - List of Edges</p>
+
 ```
 CREATE TABLE vertex (
     vertex_id INT,
@@ -114,4 +117,54 @@ CREATE TABLE edge (
 ```
 The table `edge` represents the relationship between two vertices; the composite primary key `(source_vertex, target_vertex)` ensures that each edge is unique.
 
+## Real World Use-case
+ Zigbee protocol [2] and its mesh topology is a perfect example of a tree data structure. Zigbee has been around for a long time, initially conceived in the early 1990s, and is a widely wireless technology designed to facilitate low-cost, low-power wireless Internet of Things (IoT) networks.
+
+ Moving on to the technical details, Zigbee Devices Types:
+- Zigbee Coordinator (ZC)
+- Zigbee Router (ZR)
+- Zigbee Endpoint Device (ZED)
+
+<img class="center-image" style="width: 60%;" src="./assets/posts/zigbee-example-1.png" />
+<p style="text-align: center;">Figure 4: Zigbee Mesh Topology</p>
+
+ The Zigbee network has exactly one **Zigbee Coordinator (ZC)** responsible for forming and coordinating the network. The **Zigbee Router (ZR)** represents intermediate nodes to assist in relaying data between nodes in the network and is instrumental in building the Zigbee network. The **Zigbee Endpoint Device (ZED)** are nodes that are logically attached to a Zigbee Router (ZR) and are typically devices such as lights, sensors, switches, etc., and communicates only with the Zigbee Router (parent).
+
+ Tables to store ZC/ZR and their relationships in Postgres:
+ ```
+ CREATE TABLE router (
+    id SERIAL PRIMARY KEY,
+    serial_number VARCHAR(64),
+    role VARCHAR(32)
+);
+
+CREATE TABLE neighbor (
+    PRIMARY KEY (source_router, target_router),
+    source_router INTEGER REFERENCES router(id),
+    target_router INTEGER REFERENCES router(id)
+);
+```
+The `router` table has ZC and ZR, distinguished by the `role` column; in a Zigbee network, ZC and ZR are essentially routers, where ZC is often called Leader Router/Co-ordinator. The relationship between `ZC and ZR(s)` and `ZR and ZR(s)` is stored in the `neighbor` table.
+
+The data inserts for the mesh topology as shown in Figure 4 (without leaf nodes/end devices):
+```
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67600', "ZC");
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67601', "ZR");
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67602', "ZR");
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67603', "ZR");
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67604', "ZR");
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67605', "ZR");
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67606', "ZR");
+
+INSERT INTO neighbor (source_router, target_router) VALUES (1, 2);
+INSERT INTO neighbor (source_router, target_router) VALUES (1, 3);
+INSERT INTO neighbor (source_router, target_router) VALUES (1, 6);
+INSERT INTO neighbor (source_router, target_router) VALUES (3, 4);
+INSERT INTO neighbor (source_router, target_router) VALUES (3, 5);
+INSERT INTO neighbor (source_router, target_router) VALUES (6, 7);
+```
+
 Work in Progress!
+
+
+ 
