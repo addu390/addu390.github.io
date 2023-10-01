@@ -561,6 +561,10 @@ footer ul {
   border: 1px solid black;
 }
 
+.img-border {
+  border: 1px solid #D3D3D3;
+}
+
 #search-input {
   width: 94%;
   margin: 10px 0;

@@ -130,7 +130,8 @@ The table `edge` represents the relationship between two vertices; the composite
 
  The Zigbee network has exactly one **Zigbee Coordinator (ZC)** responsible for forming and coordinating the network. The **Zigbee Router (ZR)** represents intermediate nodes to assist in relaying data between nodes in the network and is instrumental in building the Zigbee network. The **Zigbee Endpoint Device (ZED)** are nodes that are logically attached to a Zigbee Router (ZR) and are typically devices such as lights, sensors, switches, etc., and communicates only with the Zigbee Router (parent).
 
- Tables to store ZC/ZR and their relationships in Postgres:
+### Create Queries
+Tables to store ZC/ZR and their relationships in Postgres:
  ```
  CREATE TABLE router (
     id SERIAL PRIMARY KEY,
@@ -146,16 +147,22 @@ CREATE TABLE neighbor (
 ```
 The `router` table has ZC and ZR, distinguished by the `role` column; in a Zigbee network, ZC and ZR are essentially routers, where ZC is often called Leader Router/Co-ordinator. The relationship between `ZC and ZR(s)` and `ZR and ZR(s)` is stored in the `neighbor` table.
 
+### Insert Queries
 The data inserts for the mesh topology as shown in Figure 4 (without leaf nodes/end devices):
 ```
-INSERT INTO router (serial_number, role) VALUES ('ACX7100-67600', "ZC");
-INSERT INTO router (serial_number, role) VALUES ('ACX7100-67601', "ZR");
-INSERT INTO router (serial_number, role) VALUES ('ACX7100-67602', "ZR");
-INSERT INTO router (serial_number, role) VALUES ('ACX7100-67603', "ZR");
-INSERT INTO router (serial_number, role) VALUES ('ACX7100-67604', "ZR");
-INSERT INTO router (serial_number, role) VALUES ('ACX7100-67605', "ZR");
-INSERT INTO router (serial_number, role) VALUES ('ACX7100-67606', "ZR");
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67600', 'ZC');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67601', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67602', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67603', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67604', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67605', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67606', 'ZR');
+```
 
+<img class="center-image img-border" style="width: 60%;" src="./assets/posts/postgres-router.png" />
+<p style="text-align: center;">Figure 5: Entries in Router</p>
+
+```
 INSERT INTO neighbor (source_router, target_router) VALUES (1, 2);
 INSERT INTO neighbor (source_router, target_router) VALUES (1, 3);
 INSERT INTO neighbor (source_router, target_router) VALUES (1, 6);
@@ -164,7 +171,56 @@ INSERT INTO neighbor (source_router, target_router) VALUES (3, 5);
 INSERT INTO neighbor (source_router, target_router) VALUES (6, 7);
 ```
 
-Work in Progress!
+<img class="center-image img-border" style="width: 35%;" src="./assets/posts/postgres-neighbor.png" />
+<p style="text-align: center;">Figure 6: Entries in Neighbor</p>
+
+### Select Queries
+A router (ZC or ZR) has neighbors, and a neighbor router (ZR) also has neighbors (ZR), and this goes on until we have a leaf node (ZED). Querying for all the neighbors of a router = traversing the graph.
+
+Postgres offers built-in recursive queries, typically used for hierarchical or tree-structured data, i.e., to find all the direct and indirect relations to an entity.
+
+```
+
+Get all neighbors (neighbors of neighbors) for a given router id:
+```
+WITH RECURSIVE all_neighbors AS (
+	SELECT neighbor.target_router
+	FROM neighbor
+	WHERE neighbor.source_router = 1
+	
+	UNION
+	
+	SELECT neighbor.target_router
+	FROM neighbor
+	JOIN all_neighbors ON neighbor.source_router = all_neighbors.target_router
+)
+SELECT router.id, router.serial_number
+FROM router
+JOIN all_neighbors ON router.id = all_neighbors.target_router;
+```
+<img class="center-image img-border" style="width: 40%;" src="./assets/posts/postgres-all-neighbors.png" />
+<p style="text-align: center;">Figure 7: All interconnected neighbors</p>
+
+Get all neighbors (neighbors of neighbors - relationships) for a given router id
+```
+WITH RECURSIVE all_neighbors AS (
+	SELECT neighbor.source_router, neighbor.target_router
+	FROM neighbor
+	WHERE neighbor.source_router = 1
+	
+	UNION
+	
+	SELECT neighbor.source_router, neighbor.target_router
+	FROM neighbor
+	JOIN all_neighbors ON neighbor.source_router = all_neighbors.target_router
+)
+SELECT all_neighbors.source_router, all_neighbors.target_router FROM all_neighbors;
+```
+<img class="center-image img-border" style="width: 35%;" src="./assets/posts/postgres-neighbors-of-neighbors.png" />
+<p style="text-align: center;">Figure 8: Neighbors of neighbors</p>
+
+**Note**: Postgres recursive queries work with circular graphs and will not lead to an infinite loop.
+
 
 
  
