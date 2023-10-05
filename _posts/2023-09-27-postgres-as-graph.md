@@ -96,7 +96,7 @@ CREATE TABLE graph (
 ```
 Ideally, each element in the `graph` -> `vertices` array should represent foreign keys to the `vertex` table.
 
-Relational databases operate most efficiently on properly normalized data models. Arrays are not relational data structures, by definition they are sets; while the SQL standard supports defining foreign keys on array elements, PostgreSQL currently does not support it. However, there is an ongoing effort to implement this [1].
+Relational databases operate most efficiently on properly normalized data models. Arrays are not relational data structures, by definition they are sets; while the SQL standard supports defining foreign keys on array elements, PostgreSQL currently does not support it. However, there is an ongoing effort to implement this.
 
 A better way to store a graph in Postgres is by creating two tables: `vertex` and `edge`
 <img class="center-image" style="width: 90%;" src="./assets/posts/graph-example-2.png" /> 
@@ -179,8 +179,6 @@ A router (ZC or ZR) has neighbors, and a neighbor router (ZR) also has neighbors
 
 Postgres offers built-in recursive queries, typically used for hierarchical or tree-structured data, i.e., to find all the direct and indirect relations to an entity.
 
-```
-
 Get all neighbors (neighbors of neighbors) for a given router id:
 ```
 WITH RECURSIVE all_neighbors AS (
@@ -202,6 +200,7 @@ JOIN all_neighbors ON router.id = all_neighbors.target_router;
 <p style="text-align: center;">Figure 7: All interconnected neighbors</p>
 
 Get all neighbors (neighbors of neighbors - relationships) for a given router id
+
 ```
 WITH RECURSIVE all_neighbors AS (
 	SELECT neighbor.source_router, neighbor.target_router
@@ -216,10 +215,25 @@ WITH RECURSIVE all_neighbors AS (
 )
 SELECT all_neighbors.source_router, all_neighbors.target_router FROM all_neighbors;
 ```
+
 <img class="center-image img-border" style="width: 35%;" src="./assets/posts/postgres-neighbors-of-neighbors.png" />
 <p style="text-align: center;">Figure 8: Neighbors of neighbors</p>
 
 **Note**: Postgres recursive queries work with circular graphs and will not lead to an infinite loop.
+
+<hr class="hr">
+
+## References
+
+```
+[1] “7.8. WITH Queries (Common Table Expressions),” PostgreSQL Documentation, May 11, 2023. https://www.postgresql.org/docs/current/queries-with.html#QUERIES-WITH-RECURSIVE
+
+[2] BHIS, “Understanding Zigbee and Wireless Mesh Networking,” Black Hills Information Security, Aug. 27, 2021. https://www.blackhillsinfosec.com/understanding-zigbee-and-wireless-mesh-networking/‌
+
+[3]“Apache AGE,” age.apache.org. https://age.apache.org/
+
+[4] D. Paulus, “Postgres: The Graph Database You Didn’t Know You Had,” dylanpaulus.com. https://www.dylanpaulus.com/posts/postgres-is-a-graph-database
+```
 
 
 
