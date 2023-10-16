@@ -140,12 +140,10 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 
 <hr>
 
-- Bench 225 and Squat 325 🏋️‍♀️
+- Bench 225 and Squat 305 🏋️‍♀️
 
-- Won the "Halifax Innovation Challenge, Extra Mile Award" sponsored by RBC and IBM. 
+- Rated as 'Exceptional Performer' at Extreme Networks (June 2023) and PhonePe (July 2020 and April 2021); 'Out Performer (OP)' in the performance reviews at ClearTax (October 2018 and April 2019). 
 
 - Certified in "Business Communications for Researchers" and "Exploring Entrepreneurship (Mentorship Program)" by Path2Innovation.
-
-- Rated as 'Exceptional Performer' (July 2020 and April 2021) at PhonePe and 'Out Performer (OP)' in the performance reviews at ClearTax (October 2018 and April 2019). 
 
 - Founding member of Youth for Parivartan - Clean India Mission and active member of Kidwai Memorial Institute of Oncology - Cancer Care. 
