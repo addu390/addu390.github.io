@@ -38,15 +38,7 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 
 - **CI/CD:** Jenkins, kubernetes, Spinnaker, Docker, Terraform, Gitlab CI, Marathon and Mesos
 
-- **Other Technologies:** Hadoop-ecosystem, Amazon Web Services, RabbitMQ, Apache Kafka, Flink, Airflow
-
-## Featured Projects
-
-<hr>
-
-- Topology/shape preserved world cartogram: <a href="https://www.pyblog.xyz/population-cartogram" target="_blank">pyblog.xyz/population-cartogram</a>
-
-- Hybrid Spatial Data Structures: <a href="https://github.com/addu390/hybrid-spatial-index" target="_blank">github.com/addu390/hybrid-spatial-index</a>
+- **Other Technologies:** Hadoop-ecosystem, RabbitMQ, Apache Kafka, Flink, Airflow, Debezium, AWS and GCP
 
 ## Work History
 
@@ -75,9 +67,9 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 ### Google Summer of Code Contributor
 <p class="nomad"><i>Google OSS, Our World in Data, Halifax, NS, Canada </i></p>
 
-- Working on building a shape/topology preserved population-scaled world cartogram to better visualize the effect and gravity of metrics such as world hunger and poverty.
+- Developed an efficient algorithm to preserve the shape/topology of population-scaled world cartogram to better visualize the effect and gravity of metrics such as world hunger and poverty.
 
-- Proposal: [https://www.pyblog.xyz/gsoc-2022](https://www.pyblog.xyz/gsoc-2022); Prototype: [https://www.pyblog.xyz/population-cartogram](https://www.pyblog.xyz/population-cartogram)
+- Documentation: [https://www.pyblog.xyz/cartograms-documentation](https://www.pyblog.xyz/cartograms-documentation); Prototype: [https://owid.github.io/cartograms/](https://owid.github.io/cartograms/)
 
 <hr class="hr">
 
@@ -91,9 +83,9 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 ### Teaching Assistant & Marker - CSCI 4118/6105 Algorithm Engineering
 <p class="nomad"><i>Dalhousie University, Halifax, NS, Canada</i></p>
 
-- Developed lab instructions relevant to the topics covered in the class to put theory into practice in the real world, such as the effect of rounding errors in geometric algorithms.
+- Authored lab instructions relevant to the topics covered in the class to put theory into practice in the real world, such as the effect of [rounding errors](https://github.com/addu390/rounding-errors) in geometric algorithms.
 
-- Conducted weekly labs and office hours to assist with lab procedures and assignments for a class of 25 students. Followed by marking the assignments with feedback covering areas of improvement and strengths.
+- Conducted weekly labs and office hours to assist with lab procedures and assignments for a class of 25+ students. Followed by marking the assignments with feedback covering areas of improvement and strengths.
 
 <hr class="hr">
 

@@ -15,9 +15,13 @@ layout: default
 
     {%- include author.html -%}
 
-    {%- if site.disqus.shortname -%}
-        {%- include disqus_comments.html -%}
-    {%- endif -%}
-
     <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+
+<script src="https://utteranc.es/client.js"
+        repo="addu390/addu390.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
