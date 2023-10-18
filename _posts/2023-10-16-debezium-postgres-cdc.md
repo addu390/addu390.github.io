@@ -17,7 +17,7 @@ category: System Wisdom
 <details open><summary class="h3">1. Goal</summary>
 <p>Set up Debezium to capture row-level changes in the schemas of a PostgreSQL database and publish to Kafka topic(s).</p>
 
-<p>The high-level architecture is unquestionably explained in Figure 1. Pikachu, aka Debezium PostgreSQL Connector, detects and carries/publishes row-level change events to Kafka topic(s) for configured Postgres tables.</p>
+<p>The high-level architecture is unquestionably explained in the above diagram 😎. Pikachu, aka Debezium PostgreSQL Connector, detects and carries/publishes row-level change events to Kafka topic(s) for configured Postgres tables.</p>
 </details>
 
 <hr class="hr">
