@@ -418,11 +418,11 @@ docker rm -f $(docker ps -a -q)</code></pre>
 <hr class="hr">
 
 <details open><summary class="h3">7. Conclusion</summary>
-<p>The post demonstrated how to capture data change events with Debezium by streaming data from a PostgreSQL database with Kafka and Zookeeper.</p>
+<p>The post demonstrated how to capture data change events with Debezium by streaming data from a PostgreSQL database to Kafka.</p>
 
 <p>Change Data Capture (CDC) has a lot of use cases, some of the top uses:
-Updating/Invalidating Cache, Enriching Data/Logs from Entity Identifiers, Real-time data loading into a Data Warehouse(s) and search engine(s), Synchronize data (on-premises data to the cloud), Microservices Data exchange with the Outbox Pattern and many more.
+Updating/Invalidating Cache, Enriching Data/Logs from Entity Identifiers, Real-time data loading into Data Warehouse(s) and search engine(s), Synchronize data (on-premises to cloud), Microservices Data exchange with the Outbox Pattern and many more.
 </p>
 
-<p><b>Whats' next</b>: In the next post, we see how to process the events with stream processing engines such as <a href="https://flink.apache.org/">Apache Flink</a>, cache the transformed data (<a href="https://flink.apache.org/2021/01/18/using-rocksdb-state-backend-in-apache-flink-when-and-how/">RockDB</a>), and enrich/cleanse other events with more meaningful information than their raw versions without having to query the source database.</p>
+<p><b>Whats' next</b>: In the next post, we see how to process the CDC events with stream processing engines such as <a href="https://flink.apache.org/">Apache Flink</a>, cache the transformed data (<a href="https://flink.apache.org/2021/01/18/using-rocksdb-state-backend-in-apache-flink-when-and-how/">RockDB</a>), and enrich/cleanse other events with more meaningful information than their raw versions without having to query the source database.</p>
 </details>
