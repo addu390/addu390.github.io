@@ -56,13 +56,12 @@ category: System Wisdom
 
 <hr class="hr">
 
-<details open><summary class="h3">3. Set up using Docker-Compose</summary>
+<details><summary class="h3">3. Define Services (Docker-Compose)</summary>
 <p>As a generate note, If you use Mac M1/M2, ensure the docker image has <code>linux/arm64</code> OS/ARCH.</p>
 <p><img class="center-image" src="./assets/posts/docker-debezium-arch.png" /> </p>
 
-<p>Section 3.1 covers the breakdown of each service/docker image used in <code>docker-compose.yaml</code> file, if you have worked with docker before, skip the section and pick up the entire file from 3.2 instead.</p>
+<p>Section 3.x covers the breakdown of each service/docker image used in <code>docker-compose.yaml</code> file, if you have worked with docker before, skip the section and pick up the entire file from section 4 instead.</p>
 
-<details><summary class="h3">3.1. Services Details (Optional)</summary>
 <p>Break down of services in <code>docker-compose.yaml</code></p>
 
 <ul>
@@ -75,7 +74,7 @@ category: System Wisdom
 <li><p><b>Debezium</b>: Responsible for capturing the row-level changes made to Postgres table(s) and streaming them to a Kafka topic.</p></li>
 </ul>
 
-<details open><summary class="h3">3.1.1. PostgreSQL</summary>
+<details><summary class="h3">3.1. PostgreSQL</summary>
 <p><a href="https://hub.docker.com/r/debezium/postgres">debezium/postgres</a>: PostgreSQL for use with Debezium change data capture. This image is based upon <a href="https://hub.docker.com/_/postgres/">postgres</a> along with <a href="https://www.postgresql.org/docs/11/logicaldecoding-explanation.html">logical decoding</a> plugin from <a href="https://github.com/debezium/">Debezium</a></p>
 
 <p><a href="https://hub.docker.com/r/dpage/pgadmin4/">dpage/pgadmin4</a> (Optional): Web browser version of <a href="https://www.pgadmin.org/download/pgadmin-4-container/">pgAdmin 4</a> for the ease of running DML and DDL operations on PostgreSQL.</p>
@@ -103,7 +102,7 @@ pgadmin:
 
 <hr class="hr">
 
-<details><summary class="h3">3.1.2. Kafka and Zookeeper</summary>
+<details><summary class="h3">3.2. Kafka and Zookeeper</summary>
 
 <p>Confluent Platform Docker images for Kafka: <a href="https://hub.docker.com/r/confluentinc/cp-enterprise-kafka/">confluentinc/cp-enterprise-kafka/postgres</a> and Zookeeper: <a href="https://hub.docker.com/r/confluentinc/cp-zookeeper">confluentinc/cp-zookeeper</a>. The below example is for version <code>7.3</code>, a more recent version, i.e., <code>7.5</code> onwards, Confluent recommends <a href="https://docs.confluent.io/platform/current/kafka-metadata/kraft.html">KRaft</a> mode for new deployments, and Zookeeper is deprecated.</p>
 
@@ -132,7 +131,7 @@ kafka:
 
 <hr class="hr">
 
-<details><summary class="h3">3.1.3. Debezium and Schema Registry</summary>
+<details><summary class="h3">3.3. Debezium and Schema Registry</summary>
 
 <p><a href="https://hub.docker.com/r/debezium/connect">debezium/connect</a> image defines a runnable <a herf="https://kafka.apache.org/documentation.html#connect">Kafka Connect</a> service preconfigured with all Debezium connectors; it monitors database management system(s) for changing data and then forwards those changes directly into Kafka topics organized by server, database, and table.
 </p>
@@ -172,14 +171,13 @@ schema-registry:
 
 <hr class="hr">
 
-<details open><summary class="h3">3.2. Start Services</summary>
+<details open><summary class="h3">4. Start Services (Docker-Compose)</summary>
 
 <p>The complete <code>docker-compose.yaml</code> to set up Postgres with debezium and publish data change events to Kafka:</p>
 
 <p><b>Note</b>: At the time of writing this post, the services use the current stable version(s); visit the docker hub page for the latest stable version(s).</p>
 
-<pre><code>
-version: "3.7"
+<pre><code>version: "3.7"
 services:
   postgres:
     image: debezium/postgres:13-alpine
@@ -243,15 +241,179 @@ services:
     depends_on: [zookeeper, kafka]
 </code></pre>
 
-<ul>
-<li><p>Clean-up and Remove containers: <code>docker rm -f $(docker ps -a -q)</code></p></li>
-<li><p>Create and Start containers: <code>docker-compose up -d</code></p></li>
-<li><p>Stop containers: <code>docker-compose down</code></p></li>
-<li><p>List containers: <code>docker ps</code></p></li>
-</ul>
+<hr class="hr">
+
+<h3>4.1. Run all containers</h3>
+
+<p>Clean-up (Optional) and Run (Create and Start) containers:</p>
+<pre><code>docker rm -f $(docker ps -a -q)
+docker-compose up -d
+</code></pre>
+
+<p><img class="center-image" src="./assets/posts/debezium-docker-compose-up.png" /> </p>
+<p>Make a note of the assigned network name; from the above output, the network name is: <code>enricher_default</code>. To create a custom network, refer <a herf="https://docs.docker.com/compose/networking/">Networking in Compose</a></p>
 
 </details>
 
-<p>Work in Progress!</p>
+<hr class="hr">
+
+<details open><summary class="h3">5. Configure Services</summary>
+
+<p>End-to-end configuration for all the services to create the CDC pipeline:</p>
+
+<details open><summary class="h3">5.1. Create Postgres Tables</summary>
+
+<p>a. Login to pgAdmin <a href="http://localhost:5050">localhost:5050</a> with email/password (admin@admin.com/root) configured in <code>pgadmin</code> container (refer: <code>docker-compose.yaml</code>)</p>
+<p><img class="center-image" src="./assets/posts/debezium-pg-login.png" /> </p>
+
+<hr class="hr">
+
+<p>b. Register database server with username/password (admin/root) and hostname (postgres) configured in <code>postgres</code> container (refer: <code>docker-compose.yaml</code>)</p>
+<p><img class="center-image" src="./assets/posts/debezium-pg-register.png" /> </p>
+
+<hr class="hr">
+
+<p>c. Create and Alter table queries:</p>
+<p>Example: Create a table <code>user-profile</code> from the query tool to track data change events in this table. <b>Skip this</b>; if you already have your own schema for Postgres database tables for which CDC has to be configured.</p>
+<p><img class="center-image" style="width: 55%;" src="./assets/posts/debezium-pg-query-tool.png" /> </p>
+
+<pre><code>CREATE TABLE user_profile (
+  user_id INT NOT NULL,
+  full_name VARCHAR(64) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  PRIMARY KEY (user_id),
+  UNIQUE (email)
+);
+
+ALTER TABLE user_profile REPLICA IDENTITY FULL;
+</code></pre>
+
+<p>Setting the table's replication identity to <code>full</code> infers that the entire row is used as the identifier for change-tracking.</p>
 
 </details>
+
+<hr class="hr">
+
+<details open><summary class="h3">5.2. Set up Debezium Postgres Connector (Kafka Connect)</summary>
+
+<p>a. Check the status of the Kafka Connect service:</p>
+<pre><code>curl -H "Accept:application/json" localhost:8083/</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-status.png" /> </p>
+
+<hr class="hr">
+
+<p>b. Register the Debezium Postgres connector:</p>
+<p>Create a file <code>debezium.json</code>, the Debezium Postgres connector configuration, where <code>user_profile</code> is the table being tracked</p> 
+
+<pre><code>{
+    "name": "postgresql-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "plugin.name": "pgoutput",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "admin",
+        "database.password": "root",
+        "database.dbname": "pyblog",
+        "database.server.name": "postgres",
+        "table.include.list": "public.user_profile",
+        "table.whitelist": "public.user_profile",
+        "database.tcpKeepAlive": true,
+        "topic.prefix": "topic_user_profile"
+    }
+}
+</code></pre>
+
+<p>This command uses the Kafka Connect service’s API to submit a POST request against the <code>/connectors</code> resource with a JSON document that describes the new connector (called <code>postgresql-connector</code>).</p>
+
+<pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" localhost:8083/connectors/ --data "@debezium.json"</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-register.png" /> </p>
+
+<hr class="hr">
+
+<p>c. Check the list of connectors registered with Kafka Connect:</p>
+
+<pre><code>curl -H "Accept:application/json" localhost:8083/connectors/</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-list.png" /> </p>
+
+</details>
+
+<hr class="hr">
+
+<details open><summary class="h3">5.3. View Kafka Messages</summary>
+
+<p>a. Pull kafkacat docker image:</p>
+
+<pre><code>docker pull confluentinc/cp-kafkacat:7.1.9</code></pre>
+
+<a href="https://hub.docker.com/r/confluentinc/cp-kafkacat/">kafkacat</a> is a commandline tool for interacting with Kafka brokers. It can be used to produce and consume messages, as well as query metadata.
+
+<hr class="hr">
+
+<p>b. Listing topics on a broker:</p>
+<p>For the Kafka broker is accessible as <code>kafka:9092</code> on the Docker network <code>enricher_default</code>, list topics by running:</p>
+
+<pre><code>docker run --tty \
+--network enricher_default \
+confluentinc/cp-kafkacat:7.1.9 \
+kafkacat -b kafka:9092 \
+-L
+</code></pre>
+
+<hr class="hr">
+
+<p>c. Consuming messages from a topic:</p>
+
+<p>For the Kafka broker is accessible as <code>kafka:9092</code> on the Docker network <code>enricher_default</code>, print messages and their associated metadata from topic <code>topic_user_profile.public.user_profile</code>:</p>
+
+<pre><code>docker run --tty \
+--network enricher_default \
+confluentinc/cp-kafkacat:7.1.9 \
+kafkacat -b kafka:9092 -C \
+-t topic_user_profile.public.user_profile
+</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-error.png" /> </p>
+
+<p>If you get the error <code>% ERROR: Topic topic_user_profile.public.user_profile error: Broker: Leader not available</code>, run the same command again!</p>
+
+</details>
+
+</details>
+
+<hr class="hr">
+
+<details open><summary class="h3">6. Moment of Truth 🚀</summary>
+
+<p>a. Insert/Update a row in Postgres table:</p>
+<p>For the table, Debezium CDC is configured; Following the example, creating a row in <code>user_profile</code></p>
+
+<pre><code>INSERT INTO user_profile
+ (user_id, full_name, email) 
+VALUES
+ (1,'John Ross', 'john.ross@pyblog.xyz');
+</code></pre>
+
+<p>b. Validate messages in Kafka topic:</p>
+<p>Consuming the Kafka messages, as mentioned in 3.2.4, section c, the output for inserting a new row:</p>
+
+<p><img src="./assets/posts/debezium-connector-cdc.png" /> </p>
+
+<hr class="hr">
+
+<p>c. Stop services and delete Docker Containers:</p>
+
+<p>To stop all the services and delete the docker containers, run:</p>
+
+<pre><code>docker-compose down
+docker rm -f $(docker ps -a -q)</code></pre>
+
+<p><img class="center-image" src="./assets/posts/debezium-connector-kill.png" /> </p>
+
+</details>
+
+<p></p>
+<p><img class="center-image" style="width: 50%" src="./assets/featured/you-deserve-a-break-beverly.gif" /> </p>
