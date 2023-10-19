@@ -12,8 +12,6 @@ category: System Wisdom
 <img class="center-image" src="./assets/featured/debezium-postgres-cdc.png" /> 
 <p style="text-align: center;">Figure 1: Debezium Postgres Connector</p>
 
-
-
 <details open><summary class="h3">1. Goal</summary>
 <p>Set up Debezium to capture row-level changes in the schemas of a PostgreSQL database and publish to Kafka topic(s).</p>
 
