@@ -32,12 +32,18 @@ layout: default
                         {{ post.date | date: date_format }}
                         |
                         <br class="sm-display"/>
-                        By
-                        <a class="post-author" href="/about">{{ post.author }}</a>
-                        under
+                        <!-- By
+                        <a class="post-author" href="/about">{{ post.author }}</a> -->
+                        Category:
+                        <span>
+                            <a href="/categories/#{{ post.category }}">{{ post.category }}</a>
+                        </span>
+                        |
+                        <br class="sm-display"/>
+                        Tags:
                         <span>
                             {% for tag in post.tags %}
-                                <a href="/tags/#{{ tag }}">{{ tag }}</a>
+                                <a href="/tags/#{{ tag }}">{{ tag }}</a>{% if forloop.last %}{% else %},{% endif %}
                             {% endfor %}
                         </span>
                     </p>

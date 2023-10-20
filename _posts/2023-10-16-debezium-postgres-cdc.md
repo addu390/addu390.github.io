@@ -4,6 +4,7 @@ title: "Debezium: PostgreSQL Change Data Capture (CDC)"
 date: 2023-10-16
 tags:
   - System Design
+  - Database
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/debezium-postgres-cdc.png
 category: System Wisdom

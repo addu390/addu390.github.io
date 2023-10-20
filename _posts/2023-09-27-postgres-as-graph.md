@@ -4,6 +4,7 @@ title: "Postgres as a Graph Database"
 date: 2023-09-27
 tags:
   - System Design
+  - Database
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/neo4j-vs-pgsql.png
 category: System Wisdom
