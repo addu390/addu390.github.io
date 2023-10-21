@@ -425,3 +425,28 @@ Updating/Invalidating Cache, Enriching Data/Logs from Entity Identifiers, Real-t
 
 <p><b>Whats' next</b>: In the next post, we see how to process the CDC events with stream processing engines such as <a href="https://flink.apache.org/">Apache Flink</a>, cache the transformed data (<a href="https://flink.apache.org/2021/01/18/using-rocksdb-state-backend-in-apache-flink-when-and-how/">RockDB</a>), and enrich/cleanse other events with more meaningful information than their raw versions without having to query the source database.</p>
 </details>
+
+<hr class="hr">
+
+<details><summary class="h3">8. References</summary>
+
+<pre><code>
+[1] Wikipedia Contributors, “Change data capture,” Wikipedia, Feb. 04, 2019. https://en.wikipedia.org/wiki/Change_data_capture
+
+[2] “Debezium Documentation :: Debezium Documentation,” debezium.io. https://debezium.io/documentation/reference/stable/index.html
+
+[3] “Connectors :: Debezium Documentation,” debezium.io. https://debezium.io/documentation/reference/stable/connectors/index.html
+
+[4] “Debezium connector for PostgreSQL :: Debezium Documentation,” debezium.io. https://debezium.io/documentation/reference/stable/connectors/postgresql.html (accessed Oct. 21, 2023).
+
+[5] “What is Apache Kafka? | AWS,” Amazon Web Services, Inc. https://aws.amazon.com/msk/what-is-kafka/
+
+[6] “Kafka Connect | Confluent Documentation,” docs.confluent.io. https://docs.confluent.io/platform/current/connect/index.html
+‌
+‌[7] J. P. Alvim, “Streaming data from PostgreSQL to s3 using Debezium, Kafka and Python,” Medium, Feb. 11, 2023. https://medium.com/@joaopaulonobregaalvim/streaming-data-from-postgresql-to-s3-using-debezium-kafka-and-python-16c6cdd6dc1e (accessed Oct. 21, 2023).
+
+[8] D. Danushka, “Configuring Debezium to Capture PostgreSQL Changes with Docker Compose,” Tributary Data, Aug. 16, 2021. https://medium.com/event-driven-utopia/configuring-debezium-to-capture-postgresql-changes-with-docker-compose-224742ca5372 (accessed Oct. 21, 2023).
+
+</code></pre>
+
+</details>
