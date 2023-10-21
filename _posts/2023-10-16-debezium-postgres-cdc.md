@@ -132,7 +132,7 @@ kafka:
 
 <details><summary class="h3">3.3. Debezium and Schema Registry</summary>
 
-<p><a href="https://hub.docker.com/r/debezium/connect">debezium/connect</a> image defines a runnable <a herf="https://kafka.apache.org/documentation.html#connect">Kafka Connect</a> service preconfigured with all Debezium connectors; it monitors database management system(s) for changing data and then forwards those changes directly into Kafka topics organized by server, database, and table.
+<p><a href="https://hub.docker.com/r/debezium/connect">debezium/connect</a> image defines a runnable <a href="https://kafka.apache.org/documentation.html#connect">Kafka Connect</a> service preconfigured with all Debezium connectors; it monitors database management system(s) for changing data and then forwards those changes directly into Kafka topics organized by server, database, and table.
 </p>
 
 <p><a href="https://hub.docker.com/r/confluentinc/cp-schema-registry">confluentinc/cp-schema-registry</a> enables client applications to read and write Avro data, in this case, to serialize and deserialize CDC messages.
@@ -250,7 +250,7 @@ docker-compose up -d
 </code></pre>
 
 <p><img class="center-image" src="./assets/posts/debezium-docker-compose-up.png" /> </p>
-<p>Make a note of the assigned network name; from the above output, the network name is: <code>enricher_default</code>. To create a custom network, refer <a herf="https://docs.docker.com/compose/networking/">Networking in Compose</a></p>
+<p>Make a note of the assigned network name; from the above output, the network name is: <code>enricher_default</code>. To create a custom network, refer <a href="https://docs.docker.com/compose/networking/">Networking in Compose</a></p>
 
 </details>
 
