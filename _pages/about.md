@@ -64,7 +64,7 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 
 <p class="right"><b>2022-05 - 2022-09</b></p>
 
-### Google Summer of Code Contributor
+### Google OSS - Open Source Contributor
 <p class="nomad"><i>Google OSS, Our World in Data, Halifax, NS, Canada </i></p>
 
 - Developed an efficient algorithm to preserve the shape/topology of population-scaled world cartogram to better visualize the effect and gravity of metrics such as world hunger and poverty.
@@ -132,7 +132,7 @@ Hey 👋 I'm a Senior Software Engineer with over 5 years of experience and a bu
 
 <hr>
 
-- Bench 225 and Squat 305 🏋️‍♀️
+- Should Press 145, Bench 235, Squat 315 and Deadlift 405 🏋️‍♀️
 
 - Rated as 'Exceptional Performer' at Extreme Networks (June 2023) and PhonePe (July 2020 and April 2021); 'Out Performer (OP)' in the performance reviews at ClearTax (October 2018 and April 2019). 
 

@@ -21,7 +21,7 @@ disqus: purelog-jekyll
 
 author: Adesh Nalpet Adimurthy
 author_bio: >-
-  Hey 👋 I'm a Software Engineer, a budding illustrator, and an open-source contributor. I work as a backend engineer at Extreme Networks, previously at GSoC, PhonePe and ClearTax; here to share my experiences, tutorials, and projects. <br><br> If you find my posts interesting, don't forget to <a href="https://pyblog.medium.com/subscribe">subscribe</a>
+  Hey 👋 I'm a Software Engineer, a budding illustrator, and an open-source contributor. I work as a backend engineer at Extreme Networks, previously at Google OSS, PhonePe and ClearTax; here to share my experiences, tutorials, and projects. <br><br> If you find my posts interesting, don't forget to <a href="https://pyblog.medium.com/subscribe">subscribe</a>
 author_pic: assets/luffy_avatar.png
 paginate: 4
 paginate_path: "/:num/"

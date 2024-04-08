@@ -15,7 +15,7 @@ category: Season the Reason
 
 <hr class="hr">
 
-<details><summary class="h3">Screens</summary>
+<details open><summary class="h3">Screens</summary>
 
 <!-- <p><img src="./assets/posts/pause-and-shop/pause-and-shop-1.png" /> </p> -->
 
