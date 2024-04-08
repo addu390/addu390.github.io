@@ -9,22 +9,19 @@ feature: assets/posts/pause-and-shop/pause-and-shop-ad-1.png
 category: Season the Reason
 ---
 
-<details open><summary class="h3">Press Release</summary>
-
 <p>"Last weekend, my friends and I were watching a movie on Prime Video, and there was this stunning dress one of the characters wore that I absolutely fell in love with. Instead of scrambling to find it online later, I simply paused the movie and used the 'Pause & Shop' feature. Within minutes, I found the exact dress on Amazon and had it added to my cart. It was such a seamless experience! Prime Video not only entertained us but also made it incredibly easy to turn on-screen inspiration into real-life purchases. Can't wait to see what else I'll discover with this feature!" ~ <i>Alex R., Fashion Enthusiast and Prime Member</i></p>
 
 <p>Today, we're thrilled to announce an innovative new feature for Prime Video that seamlessly integrates the thrill of shopping with the joy of entertainment. With "Pause & Shop," Prime members can now pause a movie or an ad on Prime Video and purchase products seen on screen directly from Amazon.com while watching their favorite Prime Video content.</p>
-</details>
 
 <hr class="hr">
 
 <details><summary class="h3">Screens</summary>
 
-<p><img src="./assets/posts/pause-and-shop/pause-and-shop-1.png" /> </p>
+<!-- <p><img src="./assets/posts/pause-and-shop/pause-and-shop-1.png" /> </p> -->
 
-<p><img src="./assets/posts/pause-and-shop/pause-and-shop-2.png" /> </p>
+<!-- <p><img src="./assets/posts/pause-and-shop/pause-and-shop-2.png" /> </p>
 
-<p><img src="./assets/posts/pause-and-shop/pause-and-shop-3.png" /> </p>
+<p><img src="./assets/posts/pause-and-shop/pause-and-shop-3.png" /> </p> -->
 
 <p><img src="./assets/posts/pause-and-shop/pause-and-shop-4.png" /> </p>
 
