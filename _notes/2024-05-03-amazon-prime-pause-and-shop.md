@@ -128,6 +128,6 @@ Content creators and brands interested in featuring their products on "Pause & S
 
 <hr class="hr">
 
-<p>Please note that the information provided in this document represents a Proof of Concept (POC) for an innovative idea being explored. It's important to note that this document and its contents are not affiliated with Amazon in any way. Your feedback is appreciated as we refine and iterate on this concept.</p>
+<p>Please note that the information provided in this document represents a Proof of Concept (POC) for an innovative idea being explored. It's important to note that this document and its contents are not affiliated with Amazon in any way. Your feedback is appreciated as I refine and iterate on this concept.</p>
 
 <br>
