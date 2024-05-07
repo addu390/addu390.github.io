@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Prime Video's Interactive Shopping Experience: Pause & Shop"
-date: 2024-04-07
+date: 2024-05-03
 tags:
   - Project
 author: Adesh Nalpet Adimurthy
@@ -15,7 +15,7 @@ category: Season the Reason
 
 <h5> </h5>
 
-<p><img src="./assets/posts/pause-and-shop/pause-and-shop-4.png" /> </p>
+<p><img src="../assets/posts/pause-and-shop/pause-and-shop-4.png" /> </p>
 
 <p>Welcome to a new era of interactive entertainment and shopping integration, where every pause becomes an opportunity: "Pause & Shop" on Prime Video seamlessly bridges the gap between entertainment and e-commerce by empowering viewers to instantly explore and purchase products seen on screen. With just a simple pause, viewers can delve deeper into the world of their favorite movies or shows, discovering and acquiring featured items effortlessly. This innovative integration not only enhances the viewing experience but also opens up new avenues for brands to connect with their audience in a meaningful way.</p>
 
@@ -34,7 +34,7 @@ category: Season the Reason
 
 <h5> </h5>
 
-<p><img src="./assets/posts/pause-and-shop/pause-and-shop-ad-1.png" /> </p>
+<p><img src="../assets/posts/pause-and-shop/pause-and-shop-ad-1.png" /> </p>
 
 <hr class="hr">
 
