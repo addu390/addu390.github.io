@@ -109,7 +109,7 @@ And now, to break it down, identify the underlying problem, and look at probable
 <hr class="hr">
 
 <details><summary class="h3" id="meditation"> 4. Meditation</summary>
-- Yet to add this section :P
+<p>Still unexplored territory for me, but I've only heard promising whispers about the wonders of meditation 🧘🏽‍♂️</p>
 </details>
 
 <hr class="hr">

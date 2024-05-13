@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Better Fitness; Better Programming"
-date: 2023-10-05
+date: 2024-05-12
 tags:
   - Fitness
 author: Adesh Nalpet Adimurthy
