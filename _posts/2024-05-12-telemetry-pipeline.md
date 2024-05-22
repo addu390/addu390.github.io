@@ -16,7 +16,7 @@ category: System Wisdom
 Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
 
-<details open><summary class="h3">1. Data Collection</summary>
+<details><summary class="h3">1. Collection</summary>
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
@@ -33,14 +33,14 @@ Optionally, download the latest telegraf release from: <a href="https://www.infl
 
 </details>
 
-<details open><summary class="h3">2. Data Transmission</summary>
+<details open><summary class="h3">2. Transmission</summary>
 </details>
 
-<details open><summary class="h3">3. Telmetry Server (Authentication & Processing)</summary>
+<details open><summary class="h3">3. Exchange/Routing</summary>
 </details>
 
-<details open><summary class="h3">4. Data Conversion & Enrichment</summary>
+<details open><summary class="h3">4. Processing & Storage</summary>
 </details>
 
-<details open><summary class="h3">5. Data Storage & Visualization</summary>
+<details open><summary class="h3">5. Visualization</summary>
 </details>
