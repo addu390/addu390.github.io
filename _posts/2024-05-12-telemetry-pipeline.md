@@ -22,25 +22,107 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 
 <p><img class="center-image" src="./assets/posts/telemetry/telegraf-overview.png" /> </p>
 
-<p>For this example, we'll focus on collecting the CPU temperature from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. We'll leverage the osx-cpu-temp command line tool to fetch the CPU temperature. Here’s how you can set this up:</p>
+<p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
 
-
-<h3 id="kafka-connect">1.1. Install Telegraf:</h3>
+<h3 id="install-telegraf">1.1. Install Telegraf</h3>
 <p>Using Homebrew: <code>brew install telegraf</code></p>
-<p> For other OS, refer: <a href="https://docs.influxdata.com/telegraf/v1/install/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/instal</a>. <br/>
+<p> For other OS, refer: <a href="https://docs.influxdata.com/telegraf/v1/install/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/install</a>. <br/>
 Optionally, download the latest telegraf release from: <a href="https://www.influxdata.com/downloads" target="_blank" rel="noopener noreferrer">https://www.influxdata.com/downloads</a><br/></p>
 
+<hr class="hr">
+
+<h3 id="install-osx">1.2. Install osx-cpu-temp</h3>
+<p>Using Homebrew: <code>brew install osx-cpu-temp</code><br/>
+Refer: <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">github.com/lavoiesl/osx-cpu-temp</a></p>
+
+<p>Here's a <b>custom script</b> to get the CPU and Fan Speed:</p>
+<pre><code>#!/bin/bash
+timestamp=$(date +%s)000000000
+hostname=$(hostname | tr "[:upper:]" "[:lower:]")
+cpu=$(osx-cpu-temp -c | sed -e 's/\([0-9.]*\).*/\1/')
+fans=$(osx-cpu-temp -f | grep '^Fan' | sed -e 's/^Fan \([0-9]\) - \([a-zA-Z]*\) side *at \([0-9]*\) RPM (\([0-9]*\)%).*/\1,\2,\3,\4/')
+echo "cpu_temp,device_id=$hostname temp=$cpu $timestamp"
+for f in $fans; do
+  side=$(echo "$f" | cut -d, -f2 | tr "[:upper:]" "[:lower:]")
+  rpm=$(echo "$f" | cut -d, -f3)
+  pct=$(echo "$f" | cut -d, -f4)
+  echo "fan_speed,device_id=$hostname,side=$side rpm=$rpm,percent=$pct $timestamp"
+done
+</code></pre>
+
+<hr class="hr">
+
+<p><b>Output Format</b>: <code>measurement,host=foo,tag=measure val1=5,val2=3234.34 1609459200000000000</code></p>
+
+<ul>
+<li><p>The output is of <a href="https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_reference/" target="_blank" rel="noopener noreferrer">Line protocol syntax</a></p></li>
+<li><p>Where <code>measurement</code> is the “table” (“measurement" in InfluxDB terms) to which the metrics are written.</p></li>
+<li><p><code>host=foo,tag=measure</code> are tags to can group and filter by.</p></li>
+<li><p><code>val1=5,val2=3234.34</code> are values, to display in graphs.</p></li>
+<li><p><code>1716425990000000000</code> is the current unix timestamp + 9 x "0" — representing nanosecond timestamp.</p></li>
+</ul>
+
+<p><b>Sample Output</b>: <code>cpu_temp,device_id=adeshs-mbp temp=0.0 1716425990000000000</code></p>
+
+<hr class="hr">
+
+<h3 id="configure-telegraf">1.3. Configure Telegraf</h3>
+<p>The location of <code>telegraf.conf</code> installed using homebrew: <code>/opt/homebrew/etc/telegraf.conf</code></p>
+
+<pre><code>[agent]
+  interval = "10s"
+  round_interval = true
+  metric_buffer_limit = 10000
+  flush_buffer_when_full = true
+  collection_jitter = "0s"
+  flush_interval = "10s"
+  flush_jitter = "0s"
+  precision = ""
+  debug = false
+  quiet = false
+  logfile = "/path to telegraf log/telegraf.log"
+  hostname = "host"
+  omit_hostname = false
+
+[[inputs.exec]]
+  commands = ["/path to custom script/osx_metrics.sh"]
+  timeout = "5s"
+  name_suffix = "_custom"
+  data_format = "influx"
+  interval = "10s"
+
+[[outputs.http]]
+  url = "http://127.0.0.1:5000/metrics"
+  method = "POST"
+  timeout = "5s"
+  data_format = "json"
+  [outputs.http.headers]
+    Content-Type = "application/json"
+</code></pre>
 
 </details>
+
+<hr class="hr">
 
 <details open><summary class="h3">2. Transmission</summary>
 </details>
 
+<hr class="hr">
+
 <details open><summary class="h3">3. Exchange/Routing</summary>
 </details>
+
+<hr class="hr">
 
 <details open><summary class="h3">4. Processing & Storage</summary>
 </details>
 
+<hr class="hr">
+
 <details open><summary class="h3">5. Visualization</summary>
+</details>
+
+<hr class="hr">
+
+<details><summary class="h3">6. References</summary>
 </details>
