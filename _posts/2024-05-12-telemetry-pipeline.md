@@ -16,7 +16,7 @@ category: System Wisdom
 Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
 
-<details><summary class="h3">1. Collection</summary>
+<details><summary class="h3">1. Collection and Transmission</summary>
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
@@ -69,6 +69,12 @@ done
 <h3 id="configure-telegraf">1.3. Configure Telegraf</h3>
 <p>The location of <code>telegraf.conf</code> installed using homebrew: <code>/opt/homebrew/etc/telegraf.conf</code></p>
 
+<p>Telegraf's configuration file is written using <a href="https://github.com/toml-lang/toml#toml" target="_blank" rel="noopener noreferrer">TOML</a> and is composed of three sections: <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#global-tags" target="_blank" rel="noopener noreferrer">global tags</a>, <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent" target="_blank" rel="noopener noreferrer">agent</a> settings, and <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#plugins" target="_blank" rel="noopener noreferrer">plugins</a> (nputs, outputs, processors, and aggregators).</p>
+
+<p>Once Telegraf collects the data, we need to transmit it to a designated endpoint for further processing. For this, we'll use the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/outputs/http/README.md" target="_blank" rel="noopener noreferrer">HTTP output plugin</a> in Telegraf to send the data in JSON format to a Flask application (covered in the next section).</p>
+
+<p>Below is what the <code>telegraf.conf</code> file looks like, with <code>exec</code> input plugin (format: <code>influx</code>) and <code>HTTP</code> output plugin (format: <code>JSON</code>).</p>
+
 <pre><code>[agent]
   interval = "10s"
   round_interval = true
@@ -100,29 +106,26 @@ done
     Content-Type = "application/json"
 </code></pre>
 
+<p>🚧: Don't forget to expore tons of other input and output plugins: <a href="https://docs.influxdata.com/telegraf/v1/plugins/" target="_blank" rel="noopener noreferrer"></a>docs.influxdata.com/telegraf/v1/plugins</p>
+
 </details>
 
 <hr class="hr">
 
-<details open><summary class="h3">2. Transmission</summary>
+<details open><summary class="h3">2. Exchange/Routing</summary>
 </details>
 
 <hr class="hr">
 
-<details open><summary class="h3">3. Exchange/Routing</summary>
+<details open><summary class="h3">3. Processing & Storage</summary>
 </details>
 
 <hr class="hr">
 
-<details open><summary class="h3">4. Processing & Storage</summary>
+<details open><summary class="h3">4. Visualization</summary>
 </details>
 
 <hr class="hr">
 
-<details open><summary class="h3">5. Visualization</summary>
-</details>
-
-<hr class="hr">
-
-<details><summary class="h3">6. References</summary>
+<details><summary class="h3">5. References</summary>
 </details>
