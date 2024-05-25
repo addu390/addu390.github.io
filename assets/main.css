@@ -739,3 +739,9 @@ code {
 .hr-clear {
   background-color: #DCDCDC;
 }
+
+.sup {
+  position: relative;
+  bottom: 1ex; 
+  font-size: 80%;
+}

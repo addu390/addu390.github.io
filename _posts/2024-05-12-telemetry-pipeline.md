@@ -121,7 +121,7 @@ done
 
 <hr class="hr">
 
-<h3 id="install-kafka">2.1. Set-up Kafka and Create Topic</h3>
+<h3 id="install-kafka">2.2. Set-up Kafka and Create Topic</h3>
 
 <p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a herf="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
 
@@ -167,7 +167,7 @@ services:
 
 <hr class="hr">
 
-<h3 id="create-flask">2.2. Create the Flask Application</h3>
+<h3 id="create-flask">2.3. Create the Flask Application</h3>
 
 <p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app processes it and publishes the information to <code>Kafka</code>. </p>
 
