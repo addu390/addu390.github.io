@@ -69,7 +69,7 @@ done
 <h3 id="configure-telegraf">1.3. Configure Telegraf</h3>
 <p>The location of <code>telegraf.conf</code> installed using homebrew: <code>/opt/homebrew/etc/telegraf.conf</code></p>
 
-<p>Telegraf's configuration file is written using <a href="https://github.com/toml-lang/toml#toml" target="_blank" rel="noopener noreferrer">TOML</a> and is composed of three sections: <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#global-tags" target="_blank" rel="noopener noreferrer">global tags</a>, <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent" target="_blank" rel="noopener noreferrer">agent</a> settings, and <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#plugins" target="_blank" rel="noopener noreferrer">plugins</a> (nputs, outputs, processors, and aggregators).</p>
+<p>Telegraf's configuration file is written using <a href="https://github.com/toml-lang/toml#toml" target="_blank" rel="noopener noreferrer">TOML</a> and is composed of three sections: <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#global-tags" target="_blank" rel="noopener noreferrer">global tags</a>, <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent" target="_blank" rel="noopener noreferrer">agent</a> settings, and <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#plugins" target="_blank" rel="noopener noreferrer">plugins</a> (inputs, outputs, processors, and aggregators).</p>
 
 <p>Once Telegraf collects the data, we need to transmit it to a designated endpoint for further processing. For this, we'll use the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/outputs/http/README.md" target="_blank" rel="noopener noreferrer">HTTP output plugin</a> in Telegraf to send the data in JSON format to a Flask application (covered in the next section).</p>
 
@@ -106,13 +106,99 @@ done
     Content-Type = "application/json"
 </code></pre>
 
-<p>🚧: Don't forget to expore tons of other input and output plugins: <a href="https://docs.influxdata.com/telegraf/v1/plugins/" target="_blank" rel="noopener noreferrer"></a>docs.influxdata.com/telegraf/v1/plugins</p>
+<p>🚧: Don't forget to expore tons of other input and output plugins: <a href="https://docs.influxdata.com/telegraf/v1/plugins/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/plugins</a></p>
 
 </details>
 
 <hr class="hr">
 
-<details open><summary class="h3">2. Exchange/Routing</summary>
+<details><summary class="h3">2. Telemetry Server</summary>
+
+<p>The Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
+
+<h3 id="install-flask">2.1. Install Flask and Kafka</h3>
+<p>Using PIP: <code>pip install Flask flask-cors kafka-python</code></p>
+
+<hr class="hr">
+
+<h3 id="install-kafka">2.1. Set-up Kafka and Create Topic</h3>
+
+<p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a herf="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
+
+<pre><code>version: '3.7'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.5
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-enterprise-kafka:7.3.5
+    ports:
+      - "9092:9092"  # Internal port
+      - "9094:9094"  # External port
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,OUTSIDE://localhost:9094
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,OUTSIDE://0.0.0.0:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      CONFLUENT_SUPPORT_METRICS_ENABLE: "false"
+    depends_on:
+      - zookeeper
+
+  kafka-topics-creator:
+    image: confluentinc/cp-enterprise-kafka:7.3.5
+    depends_on:
+      - kafka
+    entrypoint: ["/bin/sh", "-c"]
+    command: |
+      "cub kafka-ready -b kafka:9092 1 20 && \
+      kafka-topics --create --topic raw-events --bootstrap-server kafka:9092 --replication-factor 1 --partitions 1 && \
+      echo 'Kafka topic created.'"
+</code></pre>
+
+<p>Run <code>docker-compose up</code> to start the services.</p>
+
+<hr class="hr">
+
+<h3 id="create-flask">2.2. Create the Flask Application</h3>
+
+<p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app processes it and publishes the information to <code>Kafka</code>. </p>
+
+<pre><code>import os
+from flask_cors import CORS
+from flask import Flask, jsonify, request
+from dotenv import load_dotenv
+from kafka import KafkaProducer
+import json
+
+
+app = Flask(__name__)
+cors = CORS(app)
+load_dotenv()
+
+producer = KafkaProducer(bootstrap_servers='localhost:9094', 
+                         value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+
+@app.route('/metrics', methods=['POST'])
+def process_metrics():
+    data = request.get_json()
+    print(data)
+    producer.send('raw-events', data)
+    return jsonify({'status': 'success'}), 200
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
+</code></pre>
+
 </details>
 
 <hr class="hr">
