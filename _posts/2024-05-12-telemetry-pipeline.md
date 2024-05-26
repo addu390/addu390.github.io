@@ -3,7 +3,7 @@ layout: post
 title: "Real-time insights: Telemetry Pipeline"
 date: 2024-05-12
 tags:
-  - System Design
+  - Realtime
   - Database
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/telemetry-pipeline.png
