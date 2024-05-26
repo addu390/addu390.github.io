@@ -591,6 +591,12 @@ footer ul {
   width: 65%;
 }
 
+@media only screen and (max-width: 600px) {
+  .center-image-60 {
+    width: 85%;
+  }
+}
+
 a.black-button {
   display:inline-block;
   padding:0.35em 1.2em;
