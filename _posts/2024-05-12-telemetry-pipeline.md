@@ -242,14 +242,19 @@ When choosing the right database for telemetry data, it's crucial to consider se
 <li><p><b>Write/Read Consistency</b>: Decide on the level of consistency required for the application. For example, OLTP (Online Transaction Processing) systems prioritize consistency and transaction integrity, while OLAP (Online Analytical Processing) systems are optimized for complex queries and read-heavy workloads.</p></li>
 </ul>
 
-<p>Choosing a data store typically boils down to selecting between OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid database, depending on your specific use case requirements</p>
+<p>Choosing a data store typically boils down to selecting between OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid approach, depending on your specific use case requirements</p>
 <ul>
 <li><p><b>Transactional and High Throughput Needs</b>: For high write throughput and transactional batches (all or nothing), with queries needing wide row fetches and limited indexed queries based on client_id, time stamp, geo-spatial (<a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank" rel="noopener noreferrer">GeoMesa</a>) points within the client partition, Cassandra is better suited.</p></li>
 
 <li><p><b>Complex Analytical Queries</b>: For more complex analytical queries, aggregations on specific columns, and machine learning models, data store(s) such as ClickHouse or VictoriaMetrics (emphasis on time-series) is more appropriate. Its optimized columnar storage and powerful query capabilities make it ideal for handling large-scale analytical tasks.</p></li>
 
-<li><p><b>Hybrid Approach</b>: In scenarios requiring both fast write-heavy transactional processing and complex analytics, a common approach is to use Cassandra for real-time data ingestion and storage, and periodically perform ETL (Extract, Transform, Load) processes to batch insert data into ClickHouse for analytical processing. This leverages the strengths of both databases, ensuring efficient data handling and comprehensive analytical capabilities. Proper indexing and data modeling goes unsaid 🧐</p></li>
+<li><p><b>Hybrid Approach</b>: In scenarios requiring both fast write-heavy transactional processing and complex analytics, a common approach is to use Cassandra for real-time data ingestion and storage, and periodically perform ETL (Extract, Transform, Load) or CDC (Change Data Capture) processes to batch insert data into OLAP DB for analytical processing. This leverages the strengths of both databases, ensuring efficient data handling and comprehensive analytical capabilities. Proper indexing and data modeling goes unsaid 🧐</p></li>
 </ul>
+
+<p>☢️ Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads are worth considering, such as <a href="https://www.cockroachlabs.com/" target="_blank" rel="noopener noreferrer">CockroachDB</a> and <a href="https://www.yugabyte.com/" target="_blank" rel="noopener noreferrer">YugabyteDB</a>. While you get the best of both worlds, you also get the worst of both 🌎</p>
+
+<p>Lucky for you, I have first hand experience with it 🤭:</p>
+<img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
 </details>
 
 <hr class="hr">
