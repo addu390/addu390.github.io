@@ -17,8 +17,8 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <details open><summary class="h3">0. Overview</summary>
 <p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure. It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://prometheus.io/" target="_blank" rel="noopener noreferrer">Prometheus</a>/<a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">Victoria</a> and Elasticsearch for storage and analysis.</p>
 
-<img src="./assets/posts/telemetry/telemetry-architecture.png" /> 
-<p style="text-align: center;">Figure 2: Telemetry Pipeline Architecture</p>
+<img class="telemetry-image" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
+<p style="text-align: center;">Figure 2: Telemetry Pipeline Architecture (Hover me 😎)</p>
 
 <h3 id="telemetry-stages">0.1. Stages</h3>
 <ul>

@@ -745,3 +745,7 @@ code {
   bottom: 1ex; 
   font-size: 80%;
 }
+
+.telemetry-image:hover {
+  content: url('../assets/posts/telemetry/telemetry-architecture-hover.svg');
+}
