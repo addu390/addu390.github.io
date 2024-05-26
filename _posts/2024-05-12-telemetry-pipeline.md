@@ -15,31 +15,19 @@ category: System Wisdom
 Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
 <details open><summary class="h3">0. Overview</summary>
-<p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure. It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://prometheus.io/" target="_blank" rel="noopener noreferrer">Prometheus</a>/<a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">Victoria</a> and Elasticsearch for storage and analysis.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure.</p>
 
 <img class="telemetry-image" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
 <p style="text-align: center;">Figure 2: Telemetry Pipeline Architecture (Hover me 😎)</p>
+
+<p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">Victoria</a> for storage and analysis.</p>
 
 <h3 id="telemetry-stages">0.1. Stages</h3>
 <ul>
 <li><p><b>Data Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and Fluentd.</p></li>
 <li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or <a herf="https://aws.amazon.com/kinesis/" target="_blank" rel="noopener noreferrer">Amazon Kinesis</a> to handle high throughput.</p></li>
 <li><p><b>Processing</b>: Real-time processing is done using frameworks like Apache Flink or <a herf="https://aws.amazon.com/pm/lambda" target="_blank" rel="noopener noreferrer">AWS Lambda</a> for filtering, aggregating, and enriching data.</p></li>
-<li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Prometheus and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
-</ul>
-
-<hr class="hr">
-
-<h3 id="telemetry-database">0.2. Choosing the Database</h3>
-<p>⚠️ Notice the greyed out lines for the data store?<br/>
-When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
-<ul>
-<li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
-<li><p><b>Data Amplification</b>: Be mindful of how the data volume might grow over time (<a herf="https://en.wikipedia.org/wiki/Write_amplification" target="_blank" rel="noopener noreferrer">+Write Amplification</a>) and how the database handles this increase without significant performance degradation.</p></li>
-<li><p><b>Cost</b>: Evaluate the cost implications, including storage, processing, and any associated services.</p></li>
-<li><p><b>Analytics Use Cases</b>: Determine whether the primary need is for real-time analytics, historical data analysis, or both.</p></li>
-<li><p><b>Transactions</b>: Consider the nature and complexity of transactions that will be performed. For example: Batch write transactions</p></li>
-<li><p><b>Write/Read Consistency</b>: Decide on the level of consistency required for the application. For example, OLTP (Online Transaction Processing) systems prioritize consistency and transaction integrity, while OLAP (Online Analytical Processing) systems are optimized for complex queries and read-heavy workloads.</p></li>
+<li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, Victoria and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
 </ul>
 </details>
 
@@ -232,12 +220,41 @@ if __name__ == "__main__":
 
 <hr class="hr">
 
-<details open><summary class="h3">3. Processing & Storage</summary>
+<details><summary class="h3">3. Processing & Storage</summary>
+
+<h3 id="telemetry-database">3.1. Streaming Processing Engine</h3>
+
+<hr class="hr">
+
+<h3 id="telemetry-database">3.2. Change Data Capture (CDC)</h3>
+
+<hr class="hr">
+
+<h3 id="telemetry-database">3.3. Choosing the Database(s)</h3>
+<p>⚠️ Notice the greyed out lines for the data store?<br/>
+When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
+<ul>
+<li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
+<li><p><b>Data Amplification</b>: Be mindful of how the data volume might grow over time (+<a herf="https://en.wikipedia.org/wiki/Write_amplification" target="_blank" rel="noopener noreferrer">Write Amplification</a>) and how the database handles this increase without significant performance degradation.</p></li>
+<li><p><b>Cost</b>: Evaluate the cost implications, including storage, processing, and any associated services.</p></li>
+<li><p><b>Analytics Use Cases</b>: Determine whether the primary need is for real-time analytics, historical data analysis, or both.</p></li>
+<li><p><b>Transactions</b>: Consider the nature and complexity of transactions that will be performed. For example: Batch write transactions</p></li>
+<li><p><b>Write/Read Consistency</b>: Decide on the level of consistency required for the application. For example, OLTP (Online Transaction Processing) systems prioritize consistency and transaction integrity, while OLAP (Online Analytical Processing) systems are optimized for complex queries and read-heavy workloads.</p></li>
+</ul>
+
+<p>Choosing a data store typically boils down to selecting between OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid database, depending on your specific use case requirements</p>
+<ul>
+<li><p><b>Transactional and High Throughput Needs</b>: For high write throughput and transactional batches (all or nothing), with queries needing wide row fetches and limited indexed queries based on client_id, time stamp, geo-spatial (<a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank" rel="noopener noreferrer">GeoMesa</a>) points within the client partition, Cassandra is better suited.</p></li>
+
+<li><p><b>Complex Analytical Queries</b>: For more complex analytical queries, aggregations on specific columns, and machine learning models, data store(s) such as ClickHouse or VictoriaMetrics (emphasis on time-series) is more appropriate. Its optimized columnar storage and powerful query capabilities make it ideal for handling large-scale analytical tasks.</p></li>
+
+<li><p><b>Hybrid Approach</b>: In scenarios requiring both fast write-heavy transactional processing and complex analytics, a common approach is to use Cassandra for real-time data ingestion and storage, and periodically perform ETL (Extract, Transform, Load) processes to batch insert data into ClickHouse for analytical processing. This leverages the strengths of both databases, ensuring efficient data handling and comprehensive analytical capabilities. Proper indexing and data modeling goes unsaid 🧐</p></li>
+</ul>
 </details>
 
 <hr class="hr">
 
-<details open><summary class="h3">4. Visualization</summary>
+<details><summary class="h3">4. Visualization</summary>
 </details>
 
 <hr class="hr">
