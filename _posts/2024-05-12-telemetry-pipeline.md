@@ -11,12 +11,41 @@ category: System Wisdom
 ---
 
 <img class="center-image" src="./assets/featured/telemetry-pipeline.png" /> 
-<p style="text-align: center;">Figure 1: Telemetry Pipeline</p>
 
 Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
+<details open><summary class="h3">0. Overview</summary>
+<p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure. It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://prometheus.io/" target="_blank" rel="noopener noreferrer">Prometheus</a>/<a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">Victoria</a> and Elasticsearch for storage and analysis.</p>
 
-<details><summary class="h3">1. Collection and Transmission</summary>
+<img src="./assets/posts/telemetry/telemetry-architecture.png" /> 
+<p style="text-align: center;">Figure 2: Telemetry Pipeline Architecture</p>
+
+<h3 id="telemetry-stages">0.1. Stages</h3>
+<ul>
+<li><p><b>Data Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and Fluentd.</p></li>
+<li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or <a herf="https://aws.amazon.com/kinesis/" target="_blank" rel="noopener noreferrer">Amazon Kinesis</a> to handle high throughput.</p></li>
+<li><p><b>Processing</b>: Real-time processing is done using frameworks like Apache Flink or <a herf="https://aws.amazon.com/pm/lambda" target="_blank" rel="noopener noreferrer">AWS Lambda</a> for filtering, aggregating, and enriching data.</p></li>
+<li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Prometheus and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
+</ul>
+
+<hr class="hr">
+
+<h3 id="telemetry-database">0.2. Choosing the Database</h3>
+<p>⚠️ Notice the greyed out lines for the data store?<br/>
+When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
+<ul>
+<li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
+<li><p><b>Data Amplification</b>: Be mindful of how the data volume might grow over time (<a herf="https://en.wikipedia.org/wiki/Write_amplification" target="_blank" rel="noopener noreferrer">+Write Amplification</a>) and how the database handles this increase without significant performance degradation.</p></li>
+<li><p><b>Cost</b>: Evaluate the cost implications, including storage, processing, and any associated services.</p></li>
+<li><p><b>Analytics Use Cases</b>: Determine whether the primary need is for real-time analytics, historical data analysis, or both.</p></li>
+<li><p><b>Transactions</b>: Consider the nature and complexity of transactions that will be performed. For example: Batch write transactions</p></li>
+<li><p><b>Write/Read Consistency</b>: Decide on the level of consistency required for the application. For example, OLTP (Online Transaction Processing) systems prioritize consistency and transaction integrity, while OLAP (Online Analytical Processing) systems are optimized for complex queries and read-heavy workloads.</p></li>
+</ul>
+</details>
+
+<hr class="hr">
+
+<details><summary class="h3">1. Collection & Transmission</summary>
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
@@ -112,7 +141,7 @@ done
 
 <hr class="hr">
 
-<details><summary class="h3">2. Telemetry Server</summary>
+<details><summary class="h3">2. Telemetry Server & Ingestion</summary>
 
 <p>The Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
 
