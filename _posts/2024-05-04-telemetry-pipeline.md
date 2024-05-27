@@ -20,14 +20,14 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <img class="telemetry-image" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
 <p style="text-align: center;">Figure 2: Telemetry Pipeline Architecture (Hover me 😎)</p>
 
-<p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">Victoria</a> for storage and analysis.</p>
+<p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics</a> for storage and analysis.</p>
 
 <details open><summary class="h4">0.1. Stages</summary>
 <ul>
-<li><p><b>Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and Fluentd.</p></li>
-<li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or <a herf="https://aws.amazon.com/kinesis/" target="_blank" rel="noopener noreferrer">Amazon Kinesis</a> to handle high throughput.</p></li>
-<li><p><b>Processing</b>: Real-time processing is done using frameworks like Apache Flink or <a herf="https://aws.amazon.com/pm/lambda" target="_blank" rel="noopener noreferrer">AWS Lambda</a> for filtering, aggregating, and enriching data.</p></li>
-<li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, Victoria and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
+<li><p><b>Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and <a href="https://www.fluentd.org/" target="_blank" rel="noopener noreferrer">Fluentd</a>.</p></li>
+<li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka to handle high throughput.</p></li>
+<li><p><b>Processing</b>: Real-time processing is done using stream processing frameworks like Apache Flink for filtering, aggregating, and enriching data.</p></li>
+<li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, VictoriaMetrics and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
 </ul>
 </details>
 </details>
@@ -149,7 +149,7 @@ done
 
 <details><summary class="h4">2.2. Set-up Kafka and Create Topic</summary>
 
-<p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a herf="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
+<p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
 
 <pre><code>version: '3.7'
 
@@ -254,12 +254,12 @@ if __name__ == "__main__":
 
 <details open><summary class="h3">4. Storage and Analysis </summary>
 <p></p>
-<details open><summary class="h4">4.1. Choosing the Database(s) </summary>
+<details open><summary class="h4">4.1. Choosing the Data Store(s) </summary>
 
 <p>When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
 <ul>
 <li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
-<li><p><b>Data Amplification</b>: Be mindful of how the data volume might grow over time (+<a herf="https://en.wikipedia.org/wiki/Write_amplification" target="_blank" rel="noopener noreferrer">Write Amplification</a>) and how the database handles this increase without significant performance degradation.</p></li>
+<li><p><b>Data Amplification</b>: Be mindful of how the data volume might grow over time (+<a href="https://en.wikipedia.org/wiki/Write_amplification" target="_blank" rel="noopener noreferrer">Write Amplification</a>) and how the database handles this increase without significant performance degradation.</p></li>
 <li><p><b>Cost</b>: Evaluate the cost implications, including storage, processing, and any associated services.</p></li>
 <li><p><b>Analytics Use Cases</b>: Determine whether the primary need is for real-time analytics, historical data analysis, or both.</p></li>
 <li><p><b>Transactions</b>: Consider the nature and complexity of transactions that will be performed. For example: Batch write transactions</p></li>
@@ -295,7 +295,12 @@ if __name__ == "__main__":
 
 <hr class="hr">
 
-<details open><summary class="h4">4.2. Visualization </summary>
+<details open><summary class="h4">4.2. Alerts </summary>
+</details>
+
+<hr class="hr">
+
+<details open><summary class="h4">4.3. Visualization </summary>
 </details>
 
 <hr class="hr">

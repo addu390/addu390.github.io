@@ -624,6 +624,8 @@ a.black-button:hover {
 
 .highlighter-rouge, pre, code {
   background-color: #eae8e8;
+  border-radius: 4px;
+  padding: 3px;
 }
 
 pre {
