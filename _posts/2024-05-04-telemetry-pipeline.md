@@ -291,8 +291,6 @@ if __name__ == "__main__":
 </ul>
 </details>
 
-</details>
-
 <hr class="hr">
 
 <details open><summary class="h4">4.2. Alerts </summary>
@@ -301,6 +299,8 @@ if __name__ == "__main__":
 <hr class="hr">
 
 <details open><summary class="h4">4.3. Visualization </summary>
+</details>
+
 </details>
 
 <hr class="hr">

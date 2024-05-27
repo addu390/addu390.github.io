@@ -765,10 +765,7 @@ code {
   content: url('../assets/posts/telemetry/telemetry-architecture-hover.svg');
 }
 
-.post-entry .h3 {
-  color: #01204E;
-}
-
-.post-entry .h4 {
-  color: #06636d;
+#author h3 {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
