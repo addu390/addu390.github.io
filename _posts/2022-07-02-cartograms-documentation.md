@@ -97,7 +97,7 @@ category: Comics
 
 <hr class="hr">
 
-<details><summary class="h3" id="hexagonsvssquares"> 4. Hexagons vs Squares</summary>
+<details open><summary class="h3" id="hexagonsvssquares"> 4. Hexagons vs Squares</summary>
 
 <h3 id="squaregrids">Square grids</h3>
 
@@ -250,7 +250,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <hr class="hr">
 
-<details><summary class="h4" id="tessellationofnpolygons"> 5.5. Plotting a cartogram</summary>
+<details open><summary class="h4" id="tessellationofnpolygons"> 5.5. Plotting a cartogram</summary>
 
 This section is a word in progress, stay tuned! 🤓
 
@@ -342,7 +342,7 @@ This section is a word in progress, stay tuned! 🤓
 
 <hr class="hr">
 
-<details><summary class="h4" id="project-files">8.2. <a target="_blank" href="https://github.com/owid/cartograms/blob/main/core/catogram.js">cartogram.js</a></summary>
+<details open><summary class="h4" id="project-files">8.2. <a target="_blank" href="https://github.com/owid/cartograms/blob/main/core/catogram.js">cartogram.js</a></summary>
 
 <p> Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: </p>
 

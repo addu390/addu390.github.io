@@ -22,7 +22,7 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 
 <p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">Victoria</a> for storage and analysis.</p>
 
-<h3 id="telemetry-stages">0.1. Stages</h3>
+<details open><summary class="h4">0.1. Stages</summary>
 <ul>
 <li><p><b>Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and Fluentd.</p></li>
 <li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or <a herf="https://aws.amazon.com/kinesis/" target="_blank" rel="noopener noreferrer">Amazon Kinesis</a> to handle high throughput.</p></li>
@@ -30,10 +30,11 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, Victoria and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
 </ul>
 </details>
+</details>
 
 <hr class="hr">
 
-<details><summary class="h3">1. Collection</summary>
+<details open><summary class="h3">1. Collection</summary>
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
@@ -41,14 +42,14 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 
 <p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
 
-<h3 id="install-telegraf">1.1. Install Telegraf</h3>
+<details><summary class="h4">1.1. Install Telegraf</summary>
 <p>Using Homebrew: <code>brew install telegraf</code></p>
 <p> For other OS, refer: <a href="https://docs.influxdata.com/telegraf/v1/install/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/install</a>. <br/>
 Optionally, download the latest telegraf release from: <a href="https://www.influxdata.com/downloads" target="_blank" rel="noopener noreferrer">https://www.influxdata.com/downloads</a><br/></p>
-
+</details>
 <hr class="hr">
 
-<h3 id="install-osx">1.2. Install osx-cpu-temp</h3>
+<details><summary class="h4">1.2. Install osx-cpu-temp</summary>
 <p>Using Homebrew: <code>brew install osx-cpu-temp</code><br/>
 Refer: <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">github.com/lavoiesl/osx-cpu-temp</a></p>
 
@@ -80,10 +81,11 @@ done
 </ul>
 
 <p><b>Sample Output</b>: <code>cpu_temp,device_id=adeshs-mbp temp=0.0 1716425990000000000</code></p>
+</details>
 
 <hr class="hr">
 
-<h3 id="configure-telegraf">1.3. Configure Telegraf</h3>
+<details open><summary class="h4">1.3. Configure Telegraf</summary>
 <p>The location of <code>telegraf.conf</code> installed using homebrew: <code>/opt/homebrew/etc/telegraf.conf</code></p>
 
 <p>Telegraf's configuration file is written using <a href="https://github.com/toml-lang/toml#toml" target="_blank" rel="noopener noreferrer">TOML</a> and is composed of three sections: <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#global-tags" target="_blank" rel="noopener noreferrer">global tags</a>, <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent" target="_blank" rel="noopener noreferrer">agent</a> settings, and <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#plugins" target="_blank" rel="noopener noreferrer">plugins</a> (inputs, outputs, processors, and aggregators).</p>
@@ -126,19 +128,21 @@ done
 <p>🚧: Don't forget to expore tons of other input and output plugins: <a href="https://docs.influxdata.com/telegraf/v1/plugins/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/plugins</a></p>
 
 </details>
+</details>
 
 <hr class="hr">
 
-<details><summary class="h3">2. Ingestion</summary>
+<details open><summary class="h3">2. Ingestion</summary>
 
 <p>The Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
 
-<h3 id="install-flask">2.1. Install Flask and Kafka</h3>
+<details><summary class="h4">2.1. Install Flask and Kafka</summary>
 <p>Using PIP: <code>pip install Flask flask-cors kafka-python</code></p>
+</details>
 
 <hr class="hr">
 
-<h3 id="install-kafka">2.2. Set-up Kafka and Create Topic</h3>
+<details><summary class="h4">2.2. Set-up Kafka and Create Topic</summary>
 
 <p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a herf="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
 
@@ -181,10 +185,11 @@ services:
 </code></pre>
 
 <p>Run <code>docker-compose up</code> to start the services.</p>
+</details>
 
 <hr class="hr">
 
-<h3 id="create-flask">2.3. Create the Flask Application</h3>
+<details open><summary class="h4">2.3. Create the Flask Application</summary>
 
 <p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app processes it and publishes the information to <code>Kafka</code>. </p>
 
@@ -217,23 +222,28 @@ if __name__ == "__main__":
 </code></pre>
 
 </details>
+</details>
 
 <hr class="hr">
 
 <details><summary class="h3">3. Processing</summary>
-
-<h3 id="telemetry-database">3.1. Streaming Processing Engine</h3>
+<p></p>
+<details><summary class="h4">3.1. Streaming Processing Engine</summary>
+</details>
 
 <hr class="hr">
 
-<h3 id="telemetry-database">3.2. Change Data Capture (CDC)</h3>
+<details><summary class="h4">3.2. Change Data Capture (CDC)</summary>
+</details>
 
 </details>
 
 <hr class="hr">
 
 <details open><summary class="h3">4. Storage and Analysis </summary>
-<h3 id="telemetry-database">4.1. Choosing the Database(s)</h3>
+<p></p>
+<details open><summary class="h4">4.1. Choosing the Database(s) </summary>
+
 <p>When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
 <ul>
 <li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
@@ -262,10 +272,12 @@ if __name__ == "__main__":
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
 </details>
+</details>
 
 <hr class="hr">
 
-<h3 id="telemetry-database">4.2. Visualization</h3>
+<details open><summary class="h4">4.2. Visualization </summary>
+</details>
 
 <hr class="hr">
 

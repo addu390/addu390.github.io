@@ -762,3 +762,11 @@ code {
 .telemetry-image:hover {
   content: url('../assets/posts/telemetry/telemetry-architecture-hover.svg');
 }
+
+.post-entry .h3 {
+  color: #01204E;
+}
+
+.post-entry .h4 {
+  color: #028391;
+}
