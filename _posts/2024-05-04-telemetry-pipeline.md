@@ -17,10 +17,13 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <details open><summary class="h3">0. Overview</summary>
 <p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure.</p>
 
-<img class="telemetry-image" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
-<p style="text-align: center;">Figure 1: Telemetry Pipeline Architecture (Hover me 😎)</p>
+<img class="telemetry-barebone center-image-90" src="./assets/posts/telemetry/telemetry-barebone.svg" /> 
+<p style="text-align: center;">Figure 0: Barebone Telemetry Pipeline Architecture (Psst... hover over me! 🤫)</p>
 
 <p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics</a> for storage and analysis.</p>
+
+<img class="telemetry-architecture" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
+<p style="text-align: center;">Figure 1: Detailed Telemetry Pipeline Architecture (Me too! 😎)</p>
 
 <details open><summary class="h4">0.1. Stages</summary>
 <ul>
