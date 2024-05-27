@@ -18,14 +18,14 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure.</p>
 
 <img class="telemetry-image" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
-<p style="text-align: center;">Figure 2: Telemetry Pipeline Architecture (Hover me 😎)</p>
+<p style="text-align: center;">Figure 1: Telemetry Pipeline Architecture (Hover me 😎)</p>
 
 <p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics</a> for storage and analysis.</p>
 
 <details open><summary class="h4">0.1. Stages</summary>
 <ul>
 <li><p><b>Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and <a href="https://www.fluentd.org/" target="_blank" rel="noopener noreferrer">Fluentd</a>.</p></li>
-<li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka to handle high throughput.</p></li>
+<li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or Kinesis to handle high throughput.</p></li>
 <li><p><b>Processing</b>: Real-time processing is done using stream processing frameworks like Apache Flink for filtering, aggregating, and enriching data.</p></li>
 <li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, VictoriaMetrics and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
 </ul>
@@ -263,7 +263,7 @@ if __name__ == "__main__":
 <li><p><b>Cost</b>: Evaluate the cost implications, including storage, processing, and any associated services.</p></li>
 <li><p><b>Analytics Use Cases</b>: Determine whether the primary need is for real-time analytics, historical data analysis, or both.</p></li>
 <li><p><b>Transactions</b>: Consider the nature and complexity of transactions that will be performed. For example: Batch write transactions</p></li>
-<li><p><b>Write/Read Consistency</b>: Decide on the level of consistency required for the application. For example, OLTP (Online Transaction Processing) systems prioritize consistency and transaction integrity, while OLAP (Online Analytical Processing) systems are optimized for complex queries and read-heavy workloads.</p></li>
+<li><p><b>Read and Write Consistency</b>: Decide on the level of consistency required for the application. For example, OLTP (Online Transaction Processing) systems prioritize consistency and transaction integrity, while OLAP (Online Analytical Processing) systems are optimized for complex queries and read-heavy workloads.</p></li>
 </ul>
 
 <hr class="hr">
@@ -293,7 +293,45 @@ if __name__ == "__main__":
 
 <hr class="hr">
 
-<details open><summary class="h4">4.2. Alerts </summary>
+<details><summary class="h4">4.2. Analytics and Alerts</summary>
+
+<p>Traditionally, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data. In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
+
+<img src="./assets/posts/telemetry/usecases-analytics.png" />
+<p style="text-align: center;">Figure 2: Batch Analytics vs Stream Analytics (<a href="https://flink.apache.org/what-is-flink/use-cases/" target="_blank" rel="noopener noreferrer">Source</a>)</p>
+
+<table>
+    <tr>
+        <td>Feature</td>
+        <td>Batch Analytics</td>
+        <td>Stream Analytics</td>
+    </tr>
+    <tr>
+        <td>Data Processing</td>
+        <td>Processes large volumes of stored data</td>
+        <td>Processes data in real-time as it arrives</td>
+    </tr>
+    <tr>
+        <td>Result Latency</td>
+        <td>Produces results with some delay; near real-time results with frequent query runs</td>
+        <td>Provides immediate insights and actions</td>
+    </tr>
+    <tr>
+        <td>Resource Efficiency</td>
+        <td>Requires querying the database often for necessary data</td>
+        <td>Continuously updates results in transient data stores without re-querying the database</td>
+    </tr>
+    <tr>
+        <td>Typical Use</td>
+        <td>Ideal for historical analysis and periodic reporting</td>
+        <td>Best for real-time monitoring, alerting, and dynamic applications</td>
+    </tr>
+    <tr>
+        <td>Complexity Handling</td>
+        <td>Can handle complex queries and computations</td>
+        <td>Less effective for highly complex queries</td>
+    </tr>
+</table>
 </details>
 
 <hr class="hr">

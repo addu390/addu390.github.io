@@ -41,7 +41,7 @@ Presuming the data is being published to a time-series store, the different fiel
 - `Anomaly rule-type`: Absolute/Relative.
 - `Time window`: Sliding window interval.
 - `Time Interval`: From and to interval.
-- `Frequency`: Frequency of rule evaluation.
+- `Frequency`: Frequency of rule evaluation (Every x seconds).
 - `Expiry/Validity`: To decide whether to evaluate the rule or not.
 - `Content`: Alert content (JSON or String).
 - `Receivers`: Webhook, Email, etc.
