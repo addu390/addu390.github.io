@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Real-time insights: Telemetry Pipeline"
-date: 2024-05-12
+date: 2024-05-04
 tags:
   - Realtime
   - Database
@@ -126,8 +126,13 @@ done
 </code></pre>
 
 <p>🚧: Don't forget to expore tons of other input and output plugins: <a href="https://docs.influxdata.com/telegraf/v1/plugins/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/plugins</a></p>
-
 </details>
+
+<details open><summary class="h4">1.4. Run Telegraf</summary>
+<p>Edit <code>telegraf.conf</code> (with the above config):<br/> <code>vi /opt/homebrew/etc/telegraf.conf</code></p>
+<p>Run <code>telegraf</code> (when installed from Homebrew):<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p>
+</details>
+
 </details>
 
 <hr class="hr">
@@ -193,6 +198,8 @@ services:
 
 <p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app processes it and publishes the information to <code>Kafka</code>. </p>
 
+<p>New to Flask? Refer: <a href="https://flask.palletsprojects.com/en/3.0.x/quickstart/">Flask Quickstart</a></p>
+
 <pre><code>import os
 from flask_cors import CORS
 from flask import Flask, jsonify, request
@@ -220,8 +227,13 @@ if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 
 </code></pre>
-
 </details>
+
+<details open><summary class="h4">2.4. Run Telegraf and Flask Application</summary>
+<p>Run Flask App (Telemetry Server):<br/> <code>flask run</code></p>
+<p>Ensure <code>telegraf</code> is running:<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p>
+</details>
+
 </details>
 
 <hr class="hr">
@@ -271,7 +283,14 @@ if __name__ == "__main__":
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
+
+<p>Worth the extra read for geospatial data 🗺️:</p>
+<ul>
+<li>Hybrid Spatial Index (Quad-KD and R-KD trees): <a href="https://www.pyblog.xyz/hybrid-spatial-index-conclusion" target="_blank" rel="noopener noreferrer">pyblog.xyz/hybrid-spatial-index-conclusion</a></li>
+<li>Grid, Cell Shape and Tessellation: <a href="https://www.pyblog.xyz/cartograms-documentation" target="_blank" rel="noopener noreferrer">pyblog.xyz/cartograms-documentation</a></li>
+</ul>
 </details>
+
 </details>
 
 <hr class="hr">

@@ -623,7 +623,7 @@ a.black-button:hover {
 }
 
 .highlighter-rouge, pre, code {
-  background-color: #F5F5F5;
+  background-color: #eae8e8;
 }
 
 pre {
@@ -768,5 +768,5 @@ code {
 }
 
 .post-entry .h4 {
-  color: #028391;
+  color: #06636d;
 }
