@@ -279,7 +279,7 @@ if __name__ == "__main__":
 
 <hr class="hr">
 
-<p>☢️ Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering, such as <a href="https://www.cockroachlabs.com/" target="_blank" rel="noopener noreferrer">CockroachDB</a> and <a href="https://www.yugabyte.com/" target="_blank" rel="noopener noreferrer">YugabyteDB.</a></p>
+<p>☢️ Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering.</p>
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
