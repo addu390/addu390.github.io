@@ -148,12 +148,12 @@ done
 
 <details open><summary class="h3">2. Ingestion</summary>
 
-<p>The telemetry server layer is designed to be lightweight. Its primary function is to authenticate incoming data and publish raw events directly to Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
+<p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming data and publish raw events directly to Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
 
 <p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
 
 <details class="code-container"><summary class="h4">2.1. Install Dependencies</summary>
-<p>Using PIP: <code>pip install Flask flask-cors kafka-python</code></p>
+<p>Using PIP: <code>pip3 install Flask flask-cors kafka-python</code></p>
 </details>
 
 <hr class="sub-hr">
@@ -207,7 +207,7 @@ services:
 
 <p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app receives and publishes the message to <code>Kafka</code>.</p>
 
-<p>New to Flask? Refer: <a href="https://flask.palletsprojects.com/en/3.0.x/quickstart/">Flask Quickstart</a></p>
+<p>New to Flask? Refer: <a href="https://flask.palletsprojects.com/en/3.0.x/quickstart/" target="_blank" rel="noopener noreferrer">Flask Quickstart</a></p>
 
 <pre><code>import os
 from flask_cors import CORS
@@ -253,6 +253,14 @@ if __name__ == "__main__":
 <img src="./assets/posts/telemetry/stateful-stream-processing.svg" />
 
 <details class="code-container"><summary class="h4">3.1. Install Dependencies</summary>
+
+<ul>
+<li><p>Download <code>Flink</code> and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz</a><br/>At the time of writing this post <code>Flink 1.18.1</code> is the latest stable version that supports <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">kafka connector plugin</a>.</p></li>
+<li><p>Start Flink: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
+<br/>Flink dashboard at: <a href="http://localhost:8081" target="_blank" rel="noopener noreferrer">localhost:8081</a></p></li>
+<li><p>Download <code>Kafka Connector</code> and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz</a><br/>Copy/Move the <code>flink-connector-kafka-3.1.0-1.18.jar</code> to <code>flink-1.18.1/lib</code> (<code>$FLINK_HOME/lib</code>)</p></li>
+<li><p>PyFlink Using PIP: <code>pip3 install apache-flink==1.18.1</code><br/>Usage examples: <a href="https://github.com/apache/flink/tree/release-1.19/flink-python/pyflink/examples" target="_blank" rel="noopener noreferrer">flink-python/pyflink/examples</a></p></li>
+</ul>
 </details>
 
 <hr class="sub-hr">
