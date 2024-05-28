@@ -253,7 +253,6 @@ if __name__ == "__main__":
 <img src="./assets/posts/telemetry/stateful-stream-processing.svg" />
 
 <details class="code-container"><summary class="h4">3.1. Install Dependencies</summary>
-
 <ul>
 <li><p>Download <code>Flink</code> and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz</a><br/>At the time of writing this post <code>Flink 1.18.1</code> is the latest stable version that supports <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">kafka connector plugin</a>.</p></li>
 <li><p>Start Flink: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
