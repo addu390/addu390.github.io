@@ -46,7 +46,7 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 
 <p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
 
-<details class="code-container"><summary class="h4">1.1. Install Dependencies</summary>
+<details class="code-container"><summary class="h4">1.1. Dependencies</summary>
 <ul>
 <li><p>Using Homebrew: <code>brew install telegraf</code><br/>
 For other OS, refer: <a href="https://docs.influxdata.com/telegraf/v1/install/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/install</a>. <br/>
@@ -58,7 +58,7 @@ Refer: <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="n
 </details>
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">1.2. Capture Metrics</summary>
+<details class="code-container"><summary class="h4">1.2. Events</summary>
 
 <p>Here's a <b>custom script</b> to get the CPU and Fan Speed:</p>
 <pre><code>#!/bin/bash
@@ -92,7 +92,7 @@ done
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">1.3. Configure Telegraf</summary>
+<details class="code-container"><summary class="h4">1.3. Configuration</summary>
 <p>The location of <code>telegraf.conf</code> installed using homebrew: <code>/opt/homebrew/etc/telegraf.conf</code></p>
 
 <p>Telegraf's configuration file is written using <a href="https://github.com/toml-lang/toml#toml" target="_blank" rel="noopener noreferrer">TOML</a> and is composed of three sections: <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#global-tags" target="_blank" rel="noopener noreferrer">global tags</a>, <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent" target="_blank" rel="noopener noreferrer">agent</a> settings, and <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#plugins" target="_blank" rel="noopener noreferrer">plugins</a> (inputs, outputs, processors, and aggregators).</p>
@@ -137,7 +137,7 @@ done
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">1.4. Run Telegraf</summary>
+<details class="code-container"><summary class="h4">1.4. Start Capture</summary>
 <p>Edit <code>telegraf.conf</code> (with the above config):<br/> <code>vi /opt/homebrew/etc/telegraf.conf</code></p>
 <p>Run <code>telegraf</code> (when installed from Homebrew):<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p>
 </details>
@@ -148,17 +148,17 @@ done
 
 <details open><summary class="h3">2. Ingestion</summary>
 
-<p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming data and publish raw events directly to Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
+<p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming data and publish raw events directly to Message Broker/Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
 
 <p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
 
-<details class="code-container"><summary class="h4">2.1. Install Dependencies</summary>
+<details class="code-container"><summary class="h4">2.1. Dependencies</summary>
 <p>Using PIP: <code>pip3 install Flask flask-cors kafka-python</code></p>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">2.2. Docker Compose</summary>
+<details class="code-container"><summary class="h4">2.2. Configuration</summary>
 
 <p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
 
@@ -203,7 +203,7 @@ services:
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">2.2. Run Telemetry Server</summary>
+<details class="code-container"><summary class="h4">2.2. Start Telemetry Server</summary>
 
 <p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app receives and publishes the message to <code>Kafka</code>.</p>
 
@@ -250,7 +250,7 @@ if __name__ == "__main__":
 
 <details open><summary class="h3">3. Processing</summary>
 <p></p>
-<details open class="text-container"><summary class="h4">3.1. Choosing the Stream Processor</summary>
+<details open class="text-container"><summary class="h4">3.1. Stream Processor</summary>
 <p>Key Features to Look for in a Stream Processing Framework:</p>
 <ul>
 <li><p><b>Scalability and Performance</b>: Scale by adding nodes, efficiently use resources, process data with minimal delay, and handle large volumes</p></li>
@@ -263,7 +263,7 @@ if __name__ == "__main__":
 <li><p><b>Windowing and Event Time Processing</b>: Support various <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/datastream/operators/windows/" target="_blank" rel="noopener noreferrer">windowing strategies</a> (tumbling, sliding, session) and manage late-arriving data based on event timestamps.</p></li>
 <li><p><b>Security and Monitoring</b>: Include security features like data encryption and robust access controls, and provide tools for monitoring performance and logging.</p></li>
 </ul>
-<p>Although I have set the context to use Flink in this example project; 
+<p>Although I have set the context to use Flink in this example; 
 Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener noreferrer">Apache Flink</a> is a powerful choice for stream processing due to its rich feature set, scalability, and advanced capabilities, it can be overkill for a lot of use cases, particularly those with simpler requirements or lower data volumes.</p>
 
 <p>Open Source Alternatives: <a href="https://kafka.apache.org/documentation/streams/" target="_blank" rel="noopener noreferrer">Apache Kafka Streams</a>, <a href="https://storm.apache.org/" target="_blank" rel="noopener noreferrer">Apache Storm</a>, <a href="https://samza.apache.org/" target="_blank" rel="noopener noreferrer">Apache Samza</a></p>
@@ -271,7 +271,7 @@ Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener no
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">3.2. Install Dependencies</summary>
+<details class="code-container"><summary class="h4">3.2. Dependencies</summary>
 <ul>
 <li><p>Download <code>Flink</code> and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz</a><br/>At the time of writing this post <code>Flink 1.18.1</code> is the latest stable version that supports <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">kafka connector plugin</a>.</p></li>
 <li><p>Start Flink: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
@@ -283,12 +283,12 @@ Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener no
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">3.3. Docker Compose</summary>
+<details class="code-container"><summary class="h4">3.3. Configuration</summary>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">3.4. Run Flink Job</summary>
+<details class="code-container"><summary class="h4">3.4. Start Stream Processor</summary>
 </details>
 
 </details>
@@ -297,7 +297,7 @@ Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener no
 
 <details open><summary class="h3">4. Storage and Analysis </summary>
 <p></p>
-<details open class="text-container"><summary class="h4">4.1. Choosing the Data Store(s) </summary>
+<details open class="text-container"><summary class="h4">4.1. Data Store(s) </summary>
 <p>When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
 <ul>
 <li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
