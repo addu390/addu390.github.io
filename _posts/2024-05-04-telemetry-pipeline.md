@@ -25,7 +25,7 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <img class="telemetry-architecture" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
 <p style="text-align: center;">Figure 1: Detailed Telemetry Pipeline Architecture (Me too! 😎)</p>
 
-<details open><summary class="h4">0.1. Stages</summary>
+<details open class="text-container"><summary class="h4">0.1. Stages</summary>
 <ul>
 <li><p><b>Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and <a href="https://www.fluentd.org/" target="_blank" rel="noopener noreferrer">Fluentd</a>.</p></li>
 <li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or Kinesis to handle high throughput.</p></li>
@@ -35,7 +35,7 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 </details>
 </details>
 
-<hr class="hr">
+<hr class="clear-hr">
 
 <details open><summary class="h3">1. Collection</summary>
 
@@ -144,11 +144,13 @@ done
 
 </details>
 
-<hr class="hr">
+<hr class="clear-hr">
 
 <details open><summary class="h3">2. Ingestion</summary>
 
-<p>The Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
+<p>The telemetry server layer is designed to be lightweight. Its primary function is to authenticate incoming data and publish raw events directly to Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
+
+<p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
 
 <details class="code-container"><summary class="h4">2.1. Install Dependencies</summary>
 <p>Using PIP: <code>pip install Flask flask-cors kafka-python</code></p>
@@ -156,7 +158,7 @@ done
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">2.2. Set-up Environment</summary>
+<details class="code-container"><summary class="h4">2.2. Docker Compose</summary>
 
 <p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
 
@@ -244,25 +246,32 @@ if __name__ == "__main__":
 
 </details>
 
-<hr class="hr">
+<hr class="clear-hr">
 
-<details><summary class="h3">3. Processing</summary>
+<details open><summary class="h3">3. Processing</summary>
 <p></p>
-<details class="sub-details-container"><summary class="h4">3.1. Streaming Processing Engine</summary>
+<img src="./assets/posts/telemetry/stateful-stream-processing.svg" />
+
+<details class="code-container"><summary class="h4">3.1. Install Dependencies</summary>
 </details>
 
-<hr class="hr">
+<hr class="sub-hr">
 
-<details class="sub-details-container"><summary class="h4">3.2. Change Data Capture (CDC)</summary>
+<details class="code-container"><summary class="h4">3.2. Docker Compose</summary>
+</details>
+
+<hr class="sub-hr">
+
+<details class="code-container"><summary class="h4">3.3. Run Flink Job</summary>
 </details>
 
 </details>
 
-<hr class="hr">
+<hr class="clear-hr">
 
 <details open><summary class="h3">4. Storage and Analysis </summary>
 <p></p>
-<details open class="sub-details-container"><summary class="h4">4.1. Choosing the Data Store(s) </summary>
+<details open class="text-container"><summary class="h4">4.1. Choosing the Data Store(s) </summary>
 <p>When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
 <ul>
 <li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
@@ -298,11 +307,11 @@ if __name__ == "__main__":
 </ul>
 </details>
 
-<hr class="hr">
+<hr class="sub-hr">
 
-<details open class="sub-details-container"><summary class="h4">4.2. Analytics and Alerts</summary>
+<details open class="text-container"><summary class="h4">4.2. Analytics and Alerts</summary>
 
-<p>Traditionally, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data. In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
+<p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data. In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
 <img src="./assets/posts/telemetry/usecases-analytics.svg" />
 <p style="text-align: center;">Figure 3: Batch Analytics vs Stream Analytics</p>
@@ -338,17 +347,22 @@ if __name__ == "__main__":
         <td>Can handle complex queries and computations</td>
         <td>Less effective for highly complex queries</td>
     </tr>
+    <tr>
+        <td>Backfill</td>
+        <td>Easy to backfill historical data and re-run queries</td>
+        <td>Backfill may introduce incorrect metrics</td>
+    </tr>
 </table>
 </details>
 
-<hr class="hr">
+<hr class="sub-hr">
 
-<details open><summary class="h4">4.3. Visualization </summary>
+<details open class="text-container"><summary class="h4">4.3. Visualization </summary>
 </details>
 
 </details>
 
-<hr class="hr">
+<hr class="clear-hr">
 
 <details><summary class="h3">5. References</summary>
 </details>

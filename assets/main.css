@@ -708,6 +708,12 @@ code {
   height: 0px; border: 0;
 }
 
+.clear-hr {
+  width: 80%;
+  height: 0px; border: 0;
+  padding: 5px;
+}
+
 .right {
   float: right;
 }
@@ -763,10 +769,6 @@ code {
   padding: 2px 16px;
 }
 
-.hr-clear {
-  background-color: #DCDCDC;
-}
-
 .sup {
   position: relative;
   bottom: 1ex; 
@@ -787,12 +789,18 @@ code {
 }
 
 .code-container {
-  background-color: #FFFFED;
-  border: 1px solid #e3e3ba;
+  background-color: #FFFFF0;
+  border: 1px solid rgb(225, 225, 186);
   padding: 10px;
   border-radius: 5px;
 }
 
-.sub-details-container {
+.code-container pre, .code-container code {
+  background-color: #ececcf;
+}
+
+.text-container {
+  border: 1px solid #e0e0e0;
   padding: 10px;
+  border-radius: 5px;
 }
