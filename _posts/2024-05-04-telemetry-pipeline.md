@@ -42,19 +42,23 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
 <p><img class="center-image" src="./assets/posts/telemetry/telegraf-overview.png" /> </p>
+<p style="text-align: center;">Figure 2: Telegraf for collecting metrics & data</p>
 
 <p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
 
-<details><summary class="h4">1.1. Install Telegraf</summary>
-<p>Using Homebrew: <code>brew install telegraf</code></p>
-<p> For other OS, refer: <a href="https://docs.influxdata.com/telegraf/v1/install/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/install</a>. <br/>
-Optionally, download the latest telegraf release from: <a href="https://www.influxdata.com/downloads" target="_blank" rel="noopener noreferrer">https://www.influxdata.com/downloads</a><br/></p>
-</details>
-<hr class="hr">
+<details class="code-container"><summary class="h4">1.1. Install Dependencies</summary>
+<ul>
+<li><p>Using Homebrew: <code>brew install telegraf</code><br/>
+For other OS, refer: <a href="https://docs.influxdata.com/telegraf/v1/install/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/install</a>. <br/>
+Optionally, download the latest telegraf release from: <a href="https://www.influxdata.com/downloads" target="_blank" rel="noopener noreferrer">https://www.influxdata.com/downloads</a><br/></p></li>
 
-<details><summary class="h4">1.2. Install osx-cpu-temp</summary>
-<p>Using Homebrew: <code>brew install osx-cpu-temp</code><br/>
-Refer: <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">github.com/lavoiesl/osx-cpu-temp</a></p>
+<li><p>Using Homebrew: <code>brew install osx-cpu-temp</code><br/>
+Refer: <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">github.com/lavoiesl/osx-cpu-temp</a></p></li>
+</ul>
+</details>
+<hr class="sub-hr">
+
+<details class="code-container"><summary class="h4">1.2. Capture Metrics</summary>
 
 <p>Here's a <b>custom script</b> to get the CPU and Fan Speed:</p>
 <pre><code>#!/bin/bash
@@ -86,9 +90,9 @@ done
 <p><b>Sample Output</b>: <code>cpu_temp,device_id=adeshs-mbp temp=0.0 1716425990000000000</code></p>
 </details>
 
-<hr class="hr">
+<hr class="sub-hr">
 
-<details open><summary class="h4">1.3. Configure Telegraf</summary>
+<details class="code-container"><summary class="h4">1.3. Configure Telegraf</summary>
 <p>The location of <code>telegraf.conf</code> installed using homebrew: <code>/opt/homebrew/etc/telegraf.conf</code></p>
 
 <p>Telegraf's configuration file is written using <a href="https://github.com/toml-lang/toml#toml" target="_blank" rel="noopener noreferrer">TOML</a> and is composed of three sections: <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#global-tags" target="_blank" rel="noopener noreferrer">global tags</a>, <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent" target="_blank" rel="noopener noreferrer">agent</a> settings, and <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#plugins" target="_blank" rel="noopener noreferrer">plugins</a> (inputs, outputs, processors, and aggregators).</p>
@@ -131,7 +135,9 @@ done
 <p>🚧: Don't forget to expore tons of other input and output plugins: <a href="https://docs.influxdata.com/telegraf/v1/plugins/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/plugins</a></p>
 </details>
 
-<details open><summary class="h4">1.4. Run Telegraf</summary>
+<hr class="sub-hr">
+
+<details class="code-container"><summary class="h4">1.4. Run Telegraf</summary>
 <p>Edit <code>telegraf.conf</code> (with the above config):<br/> <code>vi /opt/homebrew/etc/telegraf.conf</code></p>
 <p>Run <code>telegraf</code> (when installed from Homebrew):<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p>
 </details>
@@ -144,13 +150,13 @@ done
 
 <p>The Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
 
-<details><summary class="h4">2.1. Install Flask and Kafka</summary>
+<details class="code-container"><summary class="h4">2.1. Install Dependencies</summary>
 <p>Using PIP: <code>pip install Flask flask-cors kafka-python</code></p>
 </details>
 
-<hr class="hr">
+<hr class="sub-hr">
 
-<details><summary class="h4">2.2. Set-up Kafka and Create Topic</summary>
+<details class="code-container"><summary class="h4">2.2. Set-up Environment</summary>
 
 <p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
 
@@ -191,15 +197,13 @@ services:
       kafka-topics --create --topic raw-events --bootstrap-server kafka:9092 --replication-factor 1 --partitions 1 && \
       echo 'Kafka topic created.'"
 </code></pre>
-
-<p>Run <code>docker-compose up</code> to start the services.</p>
 </details>
 
-<hr class="hr">
+<hr class="sub-hr">
 
-<details open><summary class="h4">2.3. Create the Flask Application</summary>
+<details class="code-container"><summary class="h4">2.2. Run Telemetry Server</summary>
 
-<p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app processes it and publishes the information to <code>Kafka</code>. </p>
+<p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app receives and publishes the message to <code>Kafka</code>.</p>
 
 <p>New to Flask? Refer: <a href="https://flask.palletsprojects.com/en/3.0.x/quickstart/">Flask Quickstart</a></p>
 
@@ -228,13 +232,14 @@ def process_metrics():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
-
 </code></pre>
-</details>
 
-<details open><summary class="h4">2.4. Run Telegraf and Flask Application</summary>
-<p>Run Flask App (Telemetry Server):<br/> <code>flask run</code></p>
-<p>Ensure <code>telegraf</code> is running:<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p>
+<p>Start all services 🚀:</p>
+<ul>
+<li><p>Run <code>docker-compose up</code> to start the services (Kafka + Zookeeper).</p></li>
+<li><p>Run Flask App (Telemetry Server):<br/> <code>flask run</code></p></li>
+<li><p>Ensure <code>telegraf</code> is running:<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p></li>
+</ul>
 </details>
 
 </details>
@@ -243,12 +248,12 @@ if __name__ == "__main__":
 
 <details><summary class="h3">3. Processing</summary>
 <p></p>
-<details><summary class="h4">3.1. Streaming Processing Engine</summary>
+<details class="sub-details-container"><summary class="h4">3.1. Streaming Processing Engine</summary>
 </details>
 
 <hr class="hr">
 
-<details><summary class="h4">3.2. Change Data Capture (CDC)</summary>
+<details class="sub-details-container"><summary class="h4">3.2. Change Data Capture (CDC)</summary>
 </details>
 
 </details>
@@ -257,8 +262,7 @@ if __name__ == "__main__":
 
 <details open><summary class="h3">4. Storage and Analysis </summary>
 <p></p>
-<details open><summary class="h4">4.1. Choosing the Data Store(s) </summary>
-
+<details open class="sub-details-container"><summary class="h4">4.1. Choosing the Data Store(s) </summary>
 <p>When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
 <ul>
 <li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
@@ -296,12 +300,12 @@ if __name__ == "__main__":
 
 <hr class="hr">
 
-<details><summary class="h4">4.2. Analytics and Alerts</summary>
+<details open class="sub-details-container"><summary class="h4">4.2. Analytics and Alerts</summary>
 
 <p>Traditionally, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data. In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
-<img src="./assets/posts/telemetry/usecases-analytics.png" />
-<p style="text-align: center;">Figure 2: Batch Analytics vs Stream Analytics (<a href="https://flink.apache.org/what-is-flink/use-cases/" target="_blank" rel="noopener noreferrer">Source</a>)</p>
+<img src="./assets/posts/telemetry/usecases-analytics.svg" />
+<p style="text-align: center;">Figure 3: Batch Analytics vs Stream Analytics</p>
 
 <table>
     <tr>

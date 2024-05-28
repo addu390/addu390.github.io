@@ -703,6 +703,11 @@ code {
   margin-top: 1.5em;
 }
 
+.sub-hr {
+  width: 80%;
+  height: 0px; border: 0;
+}
+
 .right {
   float: right;
 }
@@ -779,4 +784,15 @@ code {
 #author h3 {
   text-decoration: underline;
   text-underline-offset: 0.2em;
+}
+
+.code-container {
+  background-color: #FFFFED;
+  border: 1px solid #e3e3ba;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sub-details-container {
+  padding: 10px;
 }
