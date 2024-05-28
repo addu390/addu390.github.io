@@ -18,12 +18,12 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure.</p>
 
 <img class="telemetry-barebone center-image-90" src="./assets/posts/telemetry/telemetry-barebone.svg" /> 
-<p style="text-align: center;">Figure 0: Barebone Telemetry Pipeline Architecture (Psst... hover over me! 🤫)</p>
+<p class="figure-header">Figure 0: Barebone Telemetry Pipeline Architecture (Psst... hover over me! 🤫)</p>
 
 <p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics</a> for storage and analysis.</p>
 
 <img class="telemetry-architecture" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
-<p style="text-align: center;">Figure 1: Detailed Telemetry Pipeline Architecture (Me too! 😎)</p>
+<p class="figure-header">Figure 1: Detailed Telemetry Pipeline Architecture (Me too! 😎)</p>
 
 <details open class="text-container"><summary class="h4">0.1. Stages</summary>
 <ul>
@@ -41,8 +41,8 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
-<p><img class="center-image" src="./assets/posts/telemetry/telegraf-overview.png" /> </p>
-<p style="text-align: center;">Figure 2: Telegraf for collecting metrics & data</p>
+<p><img class="center-image telegraf-overview" src="./assets/posts/telemetry/telegraf-overview.svg" /> </p>
+<p class="figure-header">Figure 2: Telegraf for collecting metrics & data</p>
 
 <p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
 
@@ -258,13 +258,14 @@ if __name__ == "__main__":
 <li><p><b>Ease of Use and Community Support</b>: Provide user-friendly APIs in multiple languages, comprehensive documentation, and active community support.</p></li>
 </ul>
 <img src="./assets/posts/telemetry/stateful-stream-processing.svg" />
+<p class="figure-header">Figure 3: Stateful Stream Processing</p>
 <ul>
 <li><p><b>Integration and Compatibility</b>: Seamlessly integrate with various data sources and sinks, and be compatible with other tools in your tech stack.</p></li>
 <li><p><b>Windowing and Event Time Processing</b>: Support various <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/datastream/operators/windows/" target="_blank" rel="noopener noreferrer">windowing strategies</a> (tumbling, sliding, session) and manage late-arriving data based on event timestamps.</p></li>
 <li><p><b>Security and Monitoring</b>: Include security features like data encryption and robust access controls, and provide tools for monitoring performance and logging.</p></li>
 </ul>
-<p>Although I have set the context to use Flink in this example; 
-Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener noreferrer">Apache Flink</a> is a powerful choice for stream processing due to its rich feature set, scalability, and advanced capabilities, it can be overkill for a lot of use cases, particularly those with simpler requirements or lower data volumes.</p>
+<p>Although I have set the context to use Flink for this example;<br/>
+☢️ Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener noreferrer">Apache Flink</a> is a powerful choice for stream processing due to its rich feature set, scalability, and advanced capabilities, it can be overkill for a lot of use cases, particularly those with simpler requirements and/or lower data volumes.</p>
 
 <p>Open Source Alternatives: <a href="https://kafka.apache.org/documentation/streams/" target="_blank" rel="noopener noreferrer">Apache Kafka Streams</a>, <a href="https://storm.apache.org/" target="_blank" rel="noopener noreferrer">Apache Storm</a>, <a href="https://samza.apache.org/" target="_blank" rel="noopener noreferrer">Apache Samza</a></p>
 </details>
@@ -340,7 +341,7 @@ Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener no
 <p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data. In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
 <img src="./assets/posts/telemetry/usecases-analytics.svg" />
-<p style="text-align: center;">Figure 3: Batch Analytics vs Stream Analytics</p>
+<p class="figure-header">Figure 4: Batch Analytics vs Stream Analytics</p>
 
 <table>
     <tr>

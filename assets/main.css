@@ -779,6 +779,10 @@ code {
   content: url('../assets/posts/telemetry/telemetry-architecture-hover.svg');
 }
 
+.telegraf-overview:hover {
+  content: url('../assets/posts/telemetry/telegraf-overview-hover.svg');
+}
+
 .telemetry-barebone:hover {
   content: url('../assets/posts/telemetry/telemetry-barebone-hover.svg');
 }
@@ -803,4 +807,9 @@ code {
   border: 1px solid #e0e0e0;
   padding: 10px;
   border-radius: 5px;
+}
+
+.figure-header {
+  text-align: center !important;
+  font-size: 14px !important;
 }
