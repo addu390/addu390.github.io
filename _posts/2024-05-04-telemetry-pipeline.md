@@ -250,9 +250,28 @@ if __name__ == "__main__":
 
 <details open><summary class="h3">3. Processing</summary>
 <p></p>
+<details open class="text-container"><summary class="h4">3.1. Choosing the Stream Processor</summary>
+<p>Key Features to Look for in a Stream Processing Framework:</p>
+<ul>
+<li><p><b>Scalability and Performance</b>: Scale by adding nodes, efficiently use resources, process data with minimal delay, and handle large volumes</p></li>
+<li><p><b>Fault Tolerance and Data Consistency</b>: Ensure fault tolerance with state saving for failure recovery and exactly-once processing.</p></li>
+<li><p><b>Ease of Use and Community Support</b>: Provide user-friendly APIs in multiple languages, comprehensive documentation, and active community support.</p></li>
+</ul>
 <img src="./assets/posts/telemetry/stateful-stream-processing.svg" />
+<ul>
+<li><p><b>Integration and Compatibility</b>: Seamlessly integrate with various data sources and sinks, and be compatible with other tools in your tech stack.</p></li>
+<li><p><b>Windowing and Event Time Processing</b>: Support various <a href="https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/datastream/operators/windows/" target="_blank" rel="noopener noreferrer">windowing strategies</a> (tumbling, sliding, session) and manage late-arriving data based on event timestamps.</p></li>
+<li><p><b>Security and Monitoring</b>: Include security features like data encryption and robust access controls, and provide tools for monitoring performance and logging.</p></li>
+</ul>
+<p>Although I have set the context to use Flink in this example project; 
+Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener noreferrer">Apache Flink</a> is a powerful choice for stream processing due to its rich feature set, scalability, and advanced capabilities, it can be overkill for a lot of use cases, particularly those with simpler requirements or lower data volumes.</p>
 
-<details class="code-container"><summary class="h4">3.1. Install Dependencies</summary>
+<p>Open Source Alternatives: <a href="https://kafka.apache.org/documentation/streams/" target="_blank" rel="noopener noreferrer">Apache Kafka Streams</a>, <a href="https://storm.apache.org/" target="_blank" rel="noopener noreferrer">Apache Storm</a>, <a href="https://samza.apache.org/" target="_blank" rel="noopener noreferrer">Apache Samza</a></p>
+</details>
+
+<hr class="sub-hr">
+
+<details class="code-container"><summary class="h4">3.2. Install Dependencies</summary>
 <ul>
 <li><p>Download <code>Flink</code> and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz</a><br/>At the time of writing this post <code>Flink 1.18.1</code> is the latest stable version that supports <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">kafka connector plugin</a>.</p></li>
 <li><p>Start Flink: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
@@ -264,12 +283,12 @@ if __name__ == "__main__":
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">3.2. Docker Compose</summary>
+<details class="code-container"><summary class="h4">3.3. Docker Compose</summary>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">3.3. Run Flink Job</summary>
+<details class="code-container"><summary class="h4">3.4. Run Flink Job</summary>
 </details>
 
 </details>
@@ -357,7 +376,7 @@ if __name__ == "__main__":
     <tr>
         <td>Backfill</td>
         <td>Easy to backfill historical data and re-run queries</td>
-        <td>Backfill may introduce incorrect metrics</td>
+        <td>Backfill can potentially introduce complexity</td>
     </tr>
 </table>
 </details>
