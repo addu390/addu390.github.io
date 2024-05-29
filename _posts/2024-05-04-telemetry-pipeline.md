@@ -304,7 +304,7 @@ if __name__ == "__main__":
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">3.4. Start Stream Processor</summary>
+<details class="code-container"><summary class="h4">3.4. Start Cluster</summary>
 <p>Start all services 🚀:</p>
 <ul>
 <li><p>Run <code>docker-compose up</code> to start the services (Kafka, Zookeeper, Debezium and Postgres).</p></li>
