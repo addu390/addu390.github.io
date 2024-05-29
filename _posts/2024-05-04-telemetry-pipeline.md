@@ -15,6 +15,8 @@ category: System Wisdom
 Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
 
 <details open><summary class="h3">0. Overview</summary>
+<p></p>
+<details open class="text-container"><summary class="h4">0.1. Architecture</summary>
 <p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure.</p>
 
 <img class="telemetry-barebone center-image-90" src="./assets/posts/telemetry/telemetry-barebone.svg" /> 
@@ -24,8 +26,11 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 
 <img class="telemetry-architecture" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
 <p class="figure-header">Figure 1: Detailed Telemetry Pipeline Architecture (Me too! 😎)</p>
+</details>
 
-<details open class="text-container"><summary class="h4">0.1. Stages</summary>
+<hr class="sub-hr">
+
+<details open class="text-container"><summary class="h4">0.2. Stages</summary>
 <ul>
 <li><p><b>Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and <a href="https://www.fluentd.org/" target="_blank" rel="noopener noreferrer">Fluentd</a>.</p></li>
 <li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or Kinesis to handle high throughput.</p></li>
@@ -33,11 +38,14 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, VictoriaMetrics and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
 </ul>
 </details>
+
 </details>
 
 <hr class="clear-hr">
 
 <details open><summary class="h3">1. Collection</summary>
+<p></p>
+<details open class="text-container"><summary class="h4">1.1. Collection Agent</summary>
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
@@ -45,8 +53,11 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <p class="figure-header">Figure 2: Telegraf for collecting metrics & data</p>
 
 <p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
+</details>
 
-<details class="code-container"><summary class="h4">1.1. Dependencies</summary>
+<hr class="sub-hr">
+
+<details class="code-container"><summary class="h4">1.2. Dependencies</summary>
 <ul>
 <li><p>Using Homebrew: <code>brew install telegraf</code><br/>
 For other OS, refer: <a href="https://docs.influxdata.com/telegraf/v1/install/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/install</a>. <br/>
@@ -58,7 +69,7 @@ Refer: <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="n
 </details>
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">1.2. Events</summary>
+<details class="code-container"><summary class="h4">1.3. Events</summary>
 
 <p>Here's a <b>custom script</b> to get the CPU and Fan Speed:</p>
 <pre><code>#!/bin/bash
@@ -92,7 +103,7 @@ done
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">1.3. Configuration</summary>
+<details class="code-container"><summary class="h4">1.4. Configuration</summary>
 <p>The location of <code>telegraf.conf</code> installed using homebrew: <code>/opt/homebrew/etc/telegraf.conf</code></p>
 
 <p>Telegraf's configuration file is written using <a href="https://github.com/toml-lang/toml#toml" target="_blank" rel="noopener noreferrer">TOML</a> and is composed of three sections: <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#global-tags" target="_blank" rel="noopener noreferrer">global tags</a>, <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent" target="_blank" rel="noopener noreferrer">agent</a> settings, and <a href="https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#plugins" target="_blank" rel="noopener noreferrer">plugins</a> (inputs, outputs, processors, and aggregators).</p>
@@ -137,7 +148,7 @@ done
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">1.4. Start Capture</summary>
+<details class="code-container"><summary class="h4">1.5. Start Capture</summary>
 <p>Edit <code>telegraf.conf</code> (with the above config):<br/> <code>vi /opt/homebrew/etc/telegraf.conf</code></p>
 <p>Run <code>telegraf</code> (when installed from Homebrew):<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p>
 </details>
@@ -147,18 +158,23 @@ done
 <hr class="clear-hr">
 
 <details open><summary class="h3">2. Ingestion</summary>
+<p></p>
+<details open class="text-container"><summary class="h4">2.1. Telemetry Server</summary>
 
 <p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming requests and publish raw events directly to Message Broker/Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
 
 <p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the requests. It receives the data via a POST request, validates it, and publishes the messages to a Kafka topic.</p>
+</details>
 
-<details class="code-container"><summary class="h4">2.1. Dependencies</summary>
+<hr class="sub-hr">
+
+<details class="code-container"><summary class="h4">2.2. Dependencies</summary>
 <p>Using PIP: <code>pip3 install Flask flask-cors kafka-python</code></p>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">2.2. Configuration</summary>
+<details class="code-container"><summary class="h4">2.3. Configuration</summary>
 
 <p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
 
@@ -203,7 +219,7 @@ services:
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">2.2. Start Telemetry Server</summary>
+<details class="code-container"><summary class="h4">2.4. Start Server</summary>
 
 <p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app receives and publishes the message to <code>Kafka</code>.</p>
 
@@ -305,7 +321,7 @@ if __name__ == "__main__":
 
 <details open><summary class="h3">4. Storage and Analysis </summary>
 <p></p>
-<details open class="text-container"><summary class="h4">4.1. Data Store(s) </summary>
+<details open class="text-container"><summary class="h4">4.1. Datastore </summary>
 <p>When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
 <ul>
 <li><p><b>Read and Write Patterns</b>: Understanding the frequency and volume of read and write operations is key. High write and read throughput require different database optimizations and consistencies.</p></li>
