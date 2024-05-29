@@ -143,13 +143,14 @@ done
     Content-Type = "application/json"
 </code></pre>
 
+<p>Edit <code>telegraf.conf</code> (use above config):<br/> <code>vi /opt/homebrew/etc/telegraf.conf</code></p>
+
 <p>🚧: Don't forget to expore tons of other input and output plugins: <a href="https://docs.influxdata.com/telegraf/v1/plugins/" target="_blank" rel="noopener noreferrer">docs.influxdata.com/telegraf/v1/plugins</a></p>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">1.5. Start Capture</summary>
-<p>Edit <code>telegraf.conf</code> (with the above config):<br/> <code>vi /opt/homebrew/etc/telegraf.conf</code></p>
+<details class="code-container"><summary class="h4" id="telemetry-1-5">1.5. Start Capture</summary>
 <p>Run <code>telegraf</code> (when installed from Homebrew):<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p>
 </details>
 
@@ -169,14 +170,22 @@ done
 <hr class="sub-hr">
 
 <details class="code-container"><summary class="h4">2.2. Dependencies</summary>
-<p>Using PIP: <code>pip3 install Flask flask-cors kafka-python</code></p>
+<ul>
+<li><p>Using PIP: <code>pip3 install Flask flask-cors kafka-python</code></p></li>
+<b>For Local Kafka Set-up</b> (Or use Docker from next sub-section):
+<li><p>Using Homebrew: <code>brew install kafka</code> <br/>Refer: <a href="https://formulae.brew.sh/formula/kafka" target="_blank" rel="noopener noreferrer">Homebrew Kafka</a></p>
+<p>Start Zookeeper: <code>zookeeper-server-start /opt/homebrew/etc/kafka/zookeeper.properties</code><br/>
+Start Kafka: <code>brew services restart kafka</code></p>
+<p>Create Topic: <code>kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic learn</code> <br/>Usage: <a href="https://kafka.apache.org/documentation/#topicconfigs" target="_blank" rel="noopener noreferrer">Kafka CLI</a></p>
+</li>
+</ul>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">2.3. Configuration</summary>
+<details class="code-container"><summary class="h4" id="telemetry-2-3">2.3. Docker Compose</summary>
 
-<p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> file with the configuration below to start <code>Kafka</code> and <code>Zookeeper</code> services:</p>
+<p>To set up Kafka using Docker Compose, ensure Docker is installed on your machine by following the instructions on the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">Docker installation</a> page. Once Docker is installed, create a <code>docker-compose.yml</code> for <code>Kafka</code> and <code>Zookeeper</code>:</p>
 
 <pre><code>version: '3.7'
 
@@ -189,7 +198,7 @@ services:
       - "2181:2181"
 
   kafka:
-    image: confluentinc/cp-enterprise-kafka:7.3.5
+    image: confluentinc/cp-kafka:7.3.5
     ports:
       - "9092:9092"  # Internal port
       - "9094:9094"  # External port
@@ -206,20 +215,38 @@ services:
       - zookeeper
 
   kafka-topics-creator:
-    image: confluentinc/cp-enterprise-kafka:7.3.5
+    image: confluentinc/cp-kafka:7.3.5
     depends_on:
       - kafka
     entrypoint: ["/bin/sh", "-c"]
     command: |
-      "cub kafka-ready -b kafka:9092 1 20 && \
-      kafka-topics --create --topic raw-events --bootstrap-server kafka:9092 --replication-factor 1 --partitions 1 && \
-      echo 'Kafka topic created.'"
+      "
+      # blocks until kafka is reachable
+      kafka-topics --bootstrap-server kafka:9092 --list
+
+      echo -e 'Creating kafka topics'
+      kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic raw-events --replication-factor 1 --partitions 1
+
+      echo -e 'Successfully created the following topics:'
+      kafka-topics --bootstrap-server kafka:9092 --list
+      "
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.3.5
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+      - SCHEMA_REGISTRY_HOST_NAME=schema-registry
+      - SCHEMA_REGISTRY_LISTENERS=http://schema-registry:8085,http://localhost:8085
+    ports:
+      - 8085:8085
+    depends_on: [zookeeper, kafka]
 </code></pre>
+<p>Run <code>docker-compose up</code> to start the services (Kafka + Zookeeper).</p>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">2.4. Start Server</summary>
+<details class="code-container"><summary class="h4" id="telemetry-2-4">2.4. Start Server</summary>
 
 <p>The Flask application includes a <code>/metrics</code> endpoint, as configured in <code>telegraf.conf</code> output to collect metrics. When data is sent to this endpoint, the Flask app receives and publishes the message to <code>Kafka</code>.</p>
 
@@ -254,9 +281,8 @@ if __name__ == "__main__":
 
 <p>Start all services 🚀:</p>
 <ul>
-<li><p>Run <code>docker-compose up</code> to start the services (Kafka + Zookeeper).</p></li>
 <li><p>Run Flask App (Telemetry Server):<br/> <code>flask run</code></p></li>
-<li><p>Ensure <code>telegraf</code> is running:<br/> <code>/opt/homebrew/opt/telegraf/bin/telegraf -config /opt/homebrew/etc/telegraf.conf</code></p></li>
+<li><p>Ensure <code>telegraf</code> is running (Refer: <a href="#telemetry-1-5">Section 1.5</a>)</p></li>
 </ul>
 </details>
 
@@ -265,8 +291,7 @@ if __name__ == "__main__":
 <hr class="clear-hr">
 
 <details open><summary class="h3">3. Processing</summary>
-<p>Building on the <a href="https://www.pyblog.xyz/debezium-postgres-cdc" target="_blank" rel="noopener noreferrer">previous post</a>, this sections covers processing CDC events with Apache Flink, caching data in in-memory DB/RocksDB; transforming and enriching raw data.</p>
-
+<p></p>
 <details open class="text-container"><summary class="h4">3.1. Stream Processor</summary>
 <p>Key Features to Look for in a Stream Processing Framework:</p>
 <ul>
@@ -291,27 +316,68 @@ if __name__ == "__main__":
 
 <details class="code-container"><summary class="h4">3.2. Dependencies</summary>
 <ul>
+<li><p>Install PyFlink Using PIP: <code>pip3 install apache-flink==1.18.1</code><br/>Usage examples: <a href="https://github.com/apache/flink/tree/release-1.19/flink-python/pyflink/examples" target="_blank" rel="noopener noreferrer">flink-python/pyflink/examples</a></p></li>
+
+<b>For Local Flink Set-up:</b> (Or use Docker from next sub-section)
 <li><p>Download Flink and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz</a><br/>☢️ At the time of writing this post <code>Flink 1.18.1</code> is the latest stable version that supports <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">kafka connector plugin</a>.</p></li>
 <li><p>Download Kafka Connector and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz</a><br/>Copy/Move the <code>flink-connector-kafka-3.1.0-1.18.jar</code> to <code>flink-1.18.1/lib</code> (<code>$FLINK_HOME/lib</code>)</p></li>
-<li><p>Install PyFlink Using PIP: <code>pip3 install apache-flink==1.18.1</code><br/>Usage examples: <a href="https://github.com/apache/flink/tree/release-1.19/flink-python/pyflink/examples" target="_blank" rel="noopener noreferrer">flink-python/pyflink/examples</a></p></li>
+<li><p>Ensure Flink Path is set <code>export FLINK_HOME=/full-path/flink-1.18.1</code> (add to <code>.bashrc</code>/<code>.zshrc</code>)</p></li>
+<li><p>Start Flink Cluster: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
+<br/>Flink dashboard at: <a href="http://localhost:8081" target="_blank" rel="noopener noreferrer">localhost:8081</a></p></li>
+<li><p>To Stop Flink Cluster: <code>./bin/stop-cluster.sh</code></p></li>
 </ul>
 </details>
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="h4">3.3. Configuration</summary>
+<details class="code-container"><summary class="h4" id="telemetry-3-3">3.3. Docker Compose</summary>
+<ul>
+<li><p>Create <code>flink_init/Dockerfile</code> file for Flink and Kafka Connector:</p>
+<pre><code>FROM flink:1.18.1-scala_2.12
+
+RUN wget -P /opt/flink/lib https://repo.maven.apache.org/maven2/org/apache/flink/flink-connector-kafka/3.1.0-1.18/flink-connector-kafka-3.1.0-1.18.jar
+
+RUN chown -R flink:flink /opt/flink/lib
+</code></pre>
+</li>
+
+<li><p>Add Flink to <code>docker-compose.yml</code> (in-addition to Kafka, from <a href="#telemetry-2-3">Section 2.3</a>)</p>
+<pre><code>version: '3.8'
+services:
+  jobmanager:
+    build: flink_init/.
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+
+  taskmanager:
+    build: flink_init/.
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
+</code></pre>
+</li>
+<p>Run <code>docker-compose up</code> to start the services (Kafka + Zookeeper, Flink).</p>
+</ul>
 </details>
 
 <hr class="sub-hr">
 
 <details class="code-container"><summary class="h4">3.4. Start Cluster</summary>
+<p>PyFlink Job: Work In Progress!</p>
+<pre><code></code></pre>
 <p>Start all services 🚀:</p>
 <ul>
-<li><p>Run <code>docker-compose up</code> to start the services (Kafka, Zookeeper, Debezium and Postgres).</p></li>
-<li><p>Ensure Flink Path is set <code>export FLINK_HOME=/full-path/flink-1.18.1</code> (add to <code>.bashrc</code>/<code>.zshrc</code>)</p></li>
-<li><p>Start Flink Cluster: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
-<br/>Flink dashboard at: <a href="http://localhost:8081" target="_blank" rel="noopener noreferrer">localhost:8081</a></p></li>
-<li><p>To Stop Flink Cluster: <code>./bin/stop-cluster.sh</code></p></li>
+<li><p>Ensure all the services are running (Refer: Section <a href="#telemetry-1-5">1.5</a>, <a href="#telemetry-2-4">2.4</a>, <a href="#telemetry-3-3">3.3</a>)</p></li>
 </ul>
 </details>
 
