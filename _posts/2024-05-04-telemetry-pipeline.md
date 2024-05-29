@@ -148,9 +148,9 @@ done
 
 <details open><summary class="h3">2. Ingestion</summary>
 
-<p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming data and publish raw events directly to Message Broker/Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
+<p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming requests and publish raw events directly to Message Broker/Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
 
-<p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the data. It receives the data via a POST request, validates it (Authentication), and publishes the messages to a Kafka topic.</p>
+<p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the requests. It receives the data via a POST request, validates it, and publishes the messages to a Kafka topic.</p>
 
 <details class="code-container"><summary class="h4">2.1. Dependencies</summary>
 <p>Using PIP: <code>pip3 install Flask flask-cors kafka-python</code></p>
@@ -249,7 +249,8 @@ if __name__ == "__main__":
 <hr class="clear-hr">
 
 <details open><summary class="h3">3. Processing</summary>
-<p></p>
+<p>Building on the <a href="https://www.pyblog.xyz/debezium-postgres-cdc" target="_blank" rel="noopener noreferrer">previous post</a>, this sections covers processing CDC events with Apache Flink, caching data in in-memory DB/RocksDB; transforming and enriching raw data.</p>
+
 <details open class="text-container"><summary class="h4">3.1. Stream Processor</summary>
 <p>Key Features to Look for in a Stream Processing Framework:</p>
 <ul>
@@ -274,11 +275,9 @@ if __name__ == "__main__":
 
 <details class="code-container"><summary class="h4">3.2. Dependencies</summary>
 <ul>
-<li><p>Download <code>Flink</code> and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz</a><br/>At the time of writing this post <code>Flink 1.18.1</code> is the latest stable version that supports <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">kafka connector plugin</a>.</p></li>
-<li><p>Start Flink: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
-<br/>Flink dashboard at: <a href="http://localhost:8081" target="_blank" rel="noopener noreferrer">localhost:8081</a></p></li>
-<li><p>Download <code>Kafka Connector</code> and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz</a><br/>Copy/Move the <code>flink-connector-kafka-3.1.0-1.18.jar</code> to <code>flink-1.18.1/lib</code> (<code>$FLINK_HOME/lib</code>)</p></li>
-<li><p>PyFlink Using PIP: <code>pip3 install apache-flink==1.18.1</code><br/>Usage examples: <a href="https://github.com/apache/flink/tree/release-1.19/flink-python/pyflink/examples" target="_blank" rel="noopener noreferrer">flink-python/pyflink/examples</a></p></li>
+<li><p>Download Flink and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-1.18.1/flink-1.18.1-bin-scala_2.12.tgz</a><br/>☢️ At the time of writing this post <code>Flink 1.18.1</code> is the latest stable version that supports <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">kafka connector plugin</a>.</p></li>
+<li><p>Download Kafka Connector and extract the archive: <a href="https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz" target="_blank" rel="noopener noreferrer">www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0/flink-connector-kafka-3.1.0-src.tgz</a><br/>Copy/Move the <code>flink-connector-kafka-3.1.0-1.18.jar</code> to <code>flink-1.18.1/lib</code> (<code>$FLINK_HOME/lib</code>)</p></li>
+<li><p>Install PyFlink Using PIP: <code>pip3 install apache-flink==1.18.1</code><br/>Usage examples: <a href="https://github.com/apache/flink/tree/release-1.19/flink-python/pyflink/examples" target="_blank" rel="noopener noreferrer">flink-python/pyflink/examples</a></p></li>
 </ul>
 </details>
 
@@ -290,6 +289,14 @@ if __name__ == "__main__":
 <hr class="sub-hr">
 
 <details class="code-container"><summary class="h4">3.4. Start Stream Processor</summary>
+<p>Start all services 🚀:</p>
+<ul>
+<li><p>Run <code>docker-compose up</code> to start the services (Kafka, Zookeeper, Debezium and Postgres).</p></li>
+<li><p>Ensure Flink Path is set <code>export FLINK_HOME=/full-path/flink-1.18.1</code> (add to <code>.bashrc</code>/<code>.zshrc</code>)</p></li>
+<li><p>Start Flink Cluster: <code>cd flink-1.18.1 && ./bin/start-cluster.sh</code>
+<br/>Flink dashboard at: <a href="http://localhost:8081" target="_blank" rel="noopener noreferrer">localhost:8081</a></p></li>
+<li><p>To Stop Flink Cluster: <code>./bin/stop-cluster.sh</code></p></li>
+</ul>
 </details>
 
 </details>
