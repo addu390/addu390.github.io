@@ -1,4 +1,4 @@
-<p>
+<p class="post-meta">
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     Posted:
     <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
@@ -11,14 +11,6 @@
         {{ mdate | date: date_format }}
     </time>
     {%- endif -%}
-    <!-- &#8239;
-    {%- if page.author -%}
-    {% for author in page.author %}
-    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">By: {{ author }}</span></span>
-    {%- if forloop.last == false %}, {% endif -%}
-    {% endfor %}
-    {%- endif -%} -->
     &#8239;|&#8239;
     Category:&#8239;
     <a href="/categories/#{{ page.category }}">{{ page.category }}</a>&#8239;

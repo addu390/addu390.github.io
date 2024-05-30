@@ -225,7 +225,7 @@ footer .pure-menu-link:hover {
 .post-entry h2,
 .post-entry h3 {
   margin-top: 25px;
-  margin-bottom: 15px;
+  margin-bottom: 0.2em;
 }
 
 .post-header p {
@@ -266,15 +266,8 @@ footer .pure-menu-link:hover {
   line-height: 1.5;
 }
 
-.post-meta {
-  font-family: "Open Sans", sans-serif;
-  color: #444;
-  margin: 0;
-}
-
-.post-meta a {
-  /* font-weight: bold; */
-  color: #C23373;
+.post-title {
+  line-height: 1.15 !important;
 }
 
 .post-category {
@@ -316,8 +309,13 @@ footer .pure-menu-link:hover {
 .archive-links a,
 .post-entry a,
 .archives a,
+.post-meta a,
 .tags a {
   color: #C23373;
+}
+
+.post-meta {
+  line-height: 1.5;
 }
 
 /* AUTHOR */
