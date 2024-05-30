@@ -171,6 +171,8 @@ done
 <p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming requests and publish raw events directly to Message Broker/Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
 
 <p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the requests. It receives the data via a POST request, validates it, and publishes the messages to a Kafka topic.</p>
+
+<p>🌵 <a href="https://opentelemetry.io/docs/collector/" target="_blank" rel="noopener noreferrer">OpenTelemetry</a>: an in-app observability framework to create and manage telemetry data such as traces, metrics, and logs.</p>
 </details>
 
 <hr class="sub-hr">
@@ -379,7 +381,7 @@ services:
 <hr class="sub-hr">
 
 <details class="code-container"><summary class="h4">3.4. Start Cluster</summary>
-<p>PyFlink Job: Work In Progress!</p>
+<p>⚠️ PyFlink Job:</p>
 <pre><code></code></pre>
 <p>Start all services 🚀:</p>
 <ul>
