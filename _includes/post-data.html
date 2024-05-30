@@ -29,3 +29,11 @@
     <a href="/tags/#{{ tag }}">{{ tag }}</a>{%- if forloop.last == false %}, {% endif -%}
     {%- endfor -%}
 </p>
+
+{%- if page.tips -%}
+<div class="flex-container">
+    {%- for tip in page.tips -%}
+    <div class="flex-box">{{ tip }}</div>
+    {%- endfor -%}
+</div>
+{%- endif -%}

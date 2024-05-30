@@ -819,8 +819,9 @@ code {
 }
 
 .flex-box {
-  padding: 4px;
-  margin: 6px;
-  border: 1px solid #999;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-right: 8px;
+  border: 1px solid #d3d3d3;
   border-radius: 5px;
 }

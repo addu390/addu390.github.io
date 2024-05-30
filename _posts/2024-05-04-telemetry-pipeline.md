@@ -5,17 +5,16 @@ date: 2024-05-04
 tags:
   - Realtime
   - Database
+tips:
+  - 🌵 Tangential topic
+  - ☢️ Ponder on
+  - ⚠️ WIP
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/telemetry-pipeline.png
 category: System Wisdom
 ---
 
 <img class="center-image" src="./assets/featured/telemetry-pipeline.png" /> 
-
-<div class="flex-container">
-  <div class="flex-box">🌵 Tangential topic</div>
-  <div class="flex-box">☢️ Ponder on</div>
-</div>
 
 <p>Hey 👋 it's a work in progress, stay tuned! <a href="https://pyblog.medium.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a> maybe?</p>
 
