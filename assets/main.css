@@ -813,3 +813,14 @@ code {
   text-align: center !important;
   font-size: 14px !important;
 }
+
+.flex-container {
+  display: flex;
+}
+
+.flex-box {
+  padding: 4px;
+  margin: 6px;
+  border: 1px solid #999;
+  border-radius: 5px;
+}

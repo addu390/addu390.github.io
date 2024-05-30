@@ -12,7 +12,12 @@ category: System Wisdom
 
 <img class="center-image" src="./assets/featured/telemetry-pipeline.png" /> 
 
-Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.com/subscribe) maybe?
+<div class="flex-container">
+  <div class="flex-box">🌵 Tangential topic</div>
+  <div class="flex-box">☢️ Ponder on</div>
+</div>
+
+<p>Hey 👋 it's a work in progress, stay tuned! <a href="https://pyblog.medium.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a> maybe?</p>
 
 <details open><summary class="h3">0. Overview</summary>
 <p></p>
@@ -52,7 +57,9 @@ Hey 👋 it's a work in progress, stay tuned! [Subscribe](https://pyblog.medium.
 <p><img class="center-image telegraf-overview" src="./assets/posts/telemetry/telegraf-overview.svg" /> </p>
 <p class="figure-header">Figure 2: Telegraf for collecting metrics & data</p>
 
-<p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
+<p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
+
+<p>🌵 <a href="https://github.com/inlets/inlets-pro" target="_blank" rel="noopener noreferrer">Inlets</a> allows devices behind firewalls or NAT to securely expose local services to the public internet by tunneling traffic through a public-facing Inlets server</p>
 </details>
 
 <hr class="sub-hr">
@@ -416,7 +423,7 @@ services:
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
 
-<p>Worth the extra read for geospatial data 🗺️:</p>
+<p>🌵 Worth the extra read for geospatial data:</p>
 <ul>
 <li>Hybrid Spatial Index (Quad-KD and R-KD trees): <a href="https://www.pyblog.xyz/hybrid-spatial-index-conclusion" target="_blank" rel="noopener noreferrer">pyblog.xyz/hybrid-spatial-index-conclusion</a></li>
 <li>Grid, Cell Shape and Tessellation: <a href="https://www.pyblog.xyz/cartograms-documentation" target="_blank" rel="noopener noreferrer">pyblog.xyz/cartograms-documentation</a></li>
