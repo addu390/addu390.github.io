@@ -6,9 +6,10 @@ tags:
   - Realtime
   - Database
 tips:
+  - ⚠️ WIP
   - 🌵 Tangential topic
   - ☢️ Ponder on
-  - ⚠️ WIP
+  - 🚧 Alternatives
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/telemetry-pipeline.png
 category: System Wisdom
@@ -317,7 +318,7 @@ if __name__ == "__main__":
 <p>Although I have set the context to use Flink for this example;<br/>
 ☢️ Note: While <a href="https://flink.apache.org/" target="_blank" rel="noopener noreferrer">Apache Flink</a> is a powerful choice for stream processing due to its rich feature set, scalability, and advanced capabilities, it can be overkill for a lot of use cases, particularly those with simpler requirements and/or lower data volumes.</p>
 
-<p>Open Source Alternatives: <a href="https://kafka.apache.org/documentation/streams/" target="_blank" rel="noopener noreferrer">Apache Kafka Streams</a>, <a href="https://storm.apache.org/" target="_blank" rel="noopener noreferrer">Apache Storm</a>, <a href="https://samza.apache.org/" target="_blank" rel="noopener noreferrer">Apache Samza</a></p>
+<p>🚧 Open Source Alternatives: <a href="https://kafka.apache.org/documentation/streams/" target="_blank" rel="noopener noreferrer">Apache Kafka Streams</a>, <a href="https://storm.apache.org/" target="_blank" rel="noopener noreferrer">Apache Storm</a>, <a href="https://samza.apache.org/" target="_blank" rel="noopener noreferrer">Apache Samza</a></p>
 </details>
 
 <hr class="sub-hr">
@@ -439,8 +440,8 @@ services:
 
 <img src="./assets/posts/telemetry/usecases-analytics.svg" />
 <p class="figure-header">Figure 4: Batch Analytics vs Stream Analytics</p>
-
-<table>
+<div class="table-container">
+<table style="width: 800px;">
     <tr>
         <td>Feature</td>
         <td>Batch Analytics</td>
@@ -477,6 +478,7 @@ services:
         <td>Backfill can potentially introduce complexity</td>
     </tr>
 </table>
+</div>
 </details>
 
 <hr class="sub-hr">
