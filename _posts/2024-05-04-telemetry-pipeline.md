@@ -427,8 +427,12 @@ services:
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
 
-<p>🌵 <a href="https://www.dbs.ifi.lmu.de/Publikationen/Boehm/Ordering_99.pdf" target="_blank" rel="noopener noreferrer">XZ-Ordering</a>: A Space-Filling Curve for Objects with Spatial Extension.</p>
-<p>🌵 <a href="https://www.pyblog.xyz/hybrid-spatial-index-conclusion" target="_blank" rel="noopener noreferrer">Hybrid Spatial Index</a>: Quad-KD and R-KD trees; <a href="https://www.pyblog.xyz/cartograms-documentation" target="_blank" rel="noopener noreferrer">Boundaries</a>: Grid, Cell Shape and Tessellation.</p>
+<hr class="hr">
+<p>🌵 Geospatial Index:
+<a href="https://www.dbs.ifi.lmu.de/Publikationen/Boehm/Ordering_99.pdf" target="_blank" rel="noopener noreferrer">XZ-Ordering</a>,
+<a href="https://github.com/uber/h3" target="_blank" rel="noopener noreferrer">H3</a>,
+<a href="https://www.pyblog.xyz/hybrid-spatial-index-conclusion" target="_blank" rel="noopener noreferrer">Hybrid Spatial Index</a>,
+<a href="https://www.pyblog.xyz/cartograms-documentation" target="_blank" rel="noopener noreferrer">Boundaries</a>.</p>
 </details>
 
 <hr class="sub-hr">
