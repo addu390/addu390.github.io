@@ -53,10 +53,10 @@ layout: default
 
                 <div class="post-description">
                     <p class="md-display">
-                        <em>{{ post.content | strip_html | escape | truncate: 400}}</em>
+                        <em>{{ post.content | strip_html | escape | truncate: 300}}</em>
                     </p>
                     <p class="sm-display">
-                        <em>{{ post.content | strip_html | escape | truncate: 300}}</em>
+                        <em>{{ post.content | strip_html | escape | truncate: 250}}</em>
                     </p>
                 </div>
                 <a href="{{ post.url | relative_url }}" class="black-button">Read more</a>
