@@ -418,8 +418,6 @@ services:
 <li><p><b>Hybrid Approach</b>: In scenarios requiring both fast write-heavy transactional processing and complex analytics, a common approach is to use Cassandra for real-time data ingestion and storage, and periodically perform ETL (Extract, Transform, Load) or CDC (Change Data Capture) processes to batch insert data into OLAP DB for analytical processing. This leverages the strengths of both databases, ensuring efficient data handling and comprehensive analytical capabilities. Proper indexing and data modeling goes unsaid 🧐</p></li>
 </ul>
 
-<p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank" rel="noopener noreferrer">GeoMesa</a>: Geospatial Analytics by providing <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank" rel="noopener noreferrer">spatio-temporal</a> data persistence on top of popular distributed databases for massive storage of point, line and polygon data.</p>
-
 <hr class="hr">
 
 <p>☢️ Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering. Example: <a href="https://github.com/pingcap/tidb" target="_blank" rel="noopener noreferrer">TiDB</a></p>
@@ -427,17 +425,20 @@ services:
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
 
-<hr class="hr">
-<p>🌵 Geospatial Index:
-<a href="https://www.dbs.ifi.lmu.de/Publikationen/Boehm/Ordering_99.pdf" target="_blank" rel="noopener noreferrer">XZ-Ordering</a>,
-<a href="https://github.com/uber/h3" target="_blank" rel="noopener noreferrer">H3</a>,
-<a href="https://www.pyblog.xyz/hybrid-spatial-index-conclusion" target="_blank" rel="noopener noreferrer">Hybrid Spatial Index</a>,
-<a href="https://www.pyblog.xyz/cartograms-documentation" target="_blank" rel="noopener noreferrer">Boundaries</a>.</p>
 </details>
 
 <hr class="sub-hr">
 
-<details open class="text-container"><summary class="h4">4.2. Analytics and Alerts</summary>
+<details open class="text-container"><summary class="h4">4.2. Temporal and Spatial Index</summary>
+<p>⚠️ Work In Progress!</p>
+
+<p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank" rel="noopener noreferrer">GeoMesa</a>: <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank" rel="noopener noreferrer">spatio-temporal</a> data persistence on top of popular distributed databases for massive storage of point, line and polygon data.</p>
+
+</details>
+
+<hr class="sub-hr">
+
+<details open class="text-container"><summary class="h4">4.3. Analytics and Alerts</summary>
 
 <p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data. In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
