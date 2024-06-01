@@ -427,7 +427,7 @@ services:
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
 
-<p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi, just like a scalable cloud database. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer, your high-performance database. For everyday use, 🚗 a reliable car fits, just like a versatile relational database. And remember, bringing a war tank to a community center is overkill, just like using a powerhouse database for simple tasks. Sometimes, you need a fleet—a car for daily use, a truck for heavy loads—just like using multiple databases to handle different workloads seamlessly.</p>
+<p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer. For everyday use, 🚗 a Toyota fits. Bringing a war tank to a community center is overkill. Sometimes, you need a fleet—a car for daily use, and a truck for heavy loads.</p>
 </details>
 
 <hr class="sub-hr">
@@ -445,7 +445,7 @@ services:
 
 <p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data.</p>
 
-<img class="center-image-55" src="./assets/posts/telemetry/telemetry-analytics.svg" />
+<img class="center-image-50" src="./assets/posts/telemetry/telemetry-analytics.svg" />
 <p class="figure-header">Figure 5: Analytics on Static, Relative and In-Motion Data</p>
 
 <p>In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
