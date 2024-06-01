@@ -418,13 +418,16 @@ services:
 <li><p><b>Hybrid Approach</b>: In scenarios requiring both fast write-heavy transactional processing and complex analytics, a common approach is to use Cassandra for real-time data ingestion and storage, and periodically perform ETL (Extract, Transform, Load) or CDC (Change Data Capture) processes to batch insert data into OLAP DB for analytical processing. This leverages the strengths of both databases, ensuring efficient data handling and comprehensive analytical capabilities. Proper indexing and data modeling goes unsaid 🧐</p></li>
 </ul>
 
+<p><a>☢️ InfluxDB</a>: Stagnant <a href="https://github.com/influxdata/influxdb/graphs/contributors" target="_blank" rel="noopener noreferrer">contribution</a> graph, <a href="https://community.influxdata.com/t/is-flux-being-deprecated-with-influxdb-3-0/30992/4" target="_blank" rel="noopener noreferrer">Flux</a> deprecation, but new <a href="https://www.influxdata.com/benchmarks/" target="_blank" rel="noopener noreferrer">benchmarks</a>!</p>
+
 <hr class="hr">
 
-<p>☢️ Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering. Example: <a href="https://github.com/pingcap/tidb" target="_blank" rel="noopener noreferrer">TiDB</a></p>
+<p>Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering. Example: <a href="https://github.com/pingcap/tidb" target="_blank" rel="noopener noreferrer">TiDB</a>, <a href="https://www.timescale.com/" target="_blank" rel="noopener noreferrer">TimescaleDB</a> (Kind of).</p>
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
 
+<p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi, just like a scalable cloud database. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer, your high-performance database. For everyday use, 🚗 a reliable car fits, just like a versatile relational database. And remember, bringing a war tank to a community center is overkill, just like using a powerhouse database for simple tasks. Sometimes, you need a fleet—a car for daily use, a truck for heavy loads—just like using multiple databases to handle different workloads seamlessly.</p>
 </details>
 
 <hr class="sub-hr">
@@ -440,10 +443,15 @@ services:
 
 <details open class="text-container"><summary class="h4">4.3. Analytics and Alerts</summary>
 
-<p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data. In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
+<p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data.</p>
+
+<img class="center-image-55" src="./assets/posts/telemetry/telemetry-analytics.svg" />
+<p class="figure-header">Figure 5: Analytics on Static, Relative and In-Motion Data</p>
+
+<p>In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
 <img src="./assets/posts/telemetry/usecases-analytics.svg" />
-<p class="figure-header">Figure 4: Batch Analytics vs Stream Analytics</p>
+<p class="figure-header">Figure 6: Batch Analytics vs Stream Analytics</p>
 <div class="table-container">
 <table style="width: 800px;">
     <tr>

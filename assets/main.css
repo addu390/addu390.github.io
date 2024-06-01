@@ -589,6 +589,13 @@ footer ul {
   width: 65%;
 }
 
+.center-image-55 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+}
+
 .center-image-90 {
   display: block;
   margin-left: auto;
