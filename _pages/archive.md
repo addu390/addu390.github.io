@@ -57,3 +57,5 @@ title: Archive of All Collections
     <br/>
 </main>
 </details>
+
+<hr class="clear-hr">

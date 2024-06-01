@@ -438,9 +438,10 @@ footer .pure-menu-link:hover {
   }
 
   .post-entry {
-    width: 90%;
+    width: 95%;
     word-break: break-word;
     hyphens: auto;
+    margin: 0.8em auto 0 auto;
   }
 
   .tags {
@@ -477,7 +478,6 @@ footer .pure-menu-link:hover {
 .paginate {
   font-size: 20px;
   text-align: center;
-  /* margin-top: 20px; */
   font-weight: bold;
 }
 
