@@ -14,9 +14,10 @@ layout: default
                 <div>
                     <img class="center-image crop"  src="{{site.url}}/{{ post.feature }}" alt="Featured Image"/>
                 </div>
+
+                <hr class="post-hr">
                 
                 <header class="feed-header">
-                    <!-- <img width="48" height="48" alt="{{post.author}}'s Avatar'" class="post-avatar" src="{{site.url}}/assets/avatar.png"/> -->
                     <h2 class="post-title">
                         <a href="{{ post.url | relative_url }}">
                             {{ post.title | escape }}
@@ -27,8 +28,6 @@ layout: default
                         {{ post.date | date: date_format }}
                         |
                         <br class="sm-display"/>
-                        <!-- By
-                        <a class="post-author" href="/about">{{ post.author }}</a> -->
                         Category:
                         <span>
                             <a href="/categories/#{{ post.category }}">{{ post.category }}</a>
