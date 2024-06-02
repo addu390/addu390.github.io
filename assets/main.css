@@ -162,6 +162,10 @@ footer .pure-menu-link:hover {
   font-size: 18px;
 }
 
+.nav {
+  padding-bottom: 0px;
+}
+
 .nav-list {
   margin: 0;
   padding: 0;
@@ -169,26 +173,31 @@ footer .pure-menu-link:hover {
 }
 
 .nav-item {
+  width: 49%;
+  padding: 1em 0.4em 1.2em 0.4em;
   display: inline-block;
   *display: inline;
-  zoom: 1;
 }
 
 .nav-item a {
   background: transparent;
-  border: 2px solid gray;
   color: #fff;
-  margin-top: 1em;
   margin-right: 5px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-size: 85%;
+  font-size: 90%;
+}
+
+.nav-item:hover,
+.nav-item:focus {
+  text-decoration: none;
+  background:#404040;
 }
 
 .nav-item a:hover,
 .nav-item a:focus {
-  border: 2px solid #fff;
   text-decoration: none;
+  background:#404040;
 }
 
 .content-subhead {
@@ -415,8 +424,8 @@ footer .pure-menu-link:hover {
   }
 
   .posts {
-    max-width: 95%;
-    margin: 1em auto 0 auto;
+    max-width: 100%;
+    margin: 0;
   }
 
   .post .center-image {
@@ -438,10 +447,11 @@ footer .pure-menu-link:hover {
   }
 
   .post-entry {
-    width: 95%;
+    width: 100%;
     word-break: break-word;
     hyphens: auto;
-    margin: 0.8em auto 0 auto;
+    margin: 0;
+    border-radius: 0;
   }
 
   .tags {
@@ -449,7 +459,7 @@ footer .pure-menu-link:hover {
   }
 
   .journals {
-    max-width: 95%;
+    max-width: 100%;
   }
 
   footer .pure-menu-link {
@@ -554,6 +564,10 @@ footer ul {
 .search_res p,
 #results-container {
   font-family: "Open Sans", sans-serif !important;
+}
+
+a {
+  text-underline-offset: 0.2em;
 }
 
 .home {
@@ -668,8 +682,9 @@ code {
   width: 20%;
   padding: 0px;
   position: fixed;
-  overflow-y: auto; 
+  overflow-y: scroll; 
   height: 20em;
+  margin-top: 0px;
 }
 
 .sidebar-list * {
@@ -704,7 +719,6 @@ code {
 
 .high-featured {
   background-color: #181818;
-  border-bottom: 2px solid #222;
 }
 
 .nomad {
@@ -879,9 +893,14 @@ table {
   .post .post-description, .post-entry .post-body {
     padding-left: 0.5em;
     padding-right: 0.5em;
+    border-radius: 0px;
   }
 
 .post-entry .post-body {
   padding-bottom: 1em;
 }
+}
+
+.dice-index, .sidebar-index {
+  font-size: 20px;
 }

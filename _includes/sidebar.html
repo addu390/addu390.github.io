@@ -11,22 +11,24 @@
         <br>
         <h2 class="brand-tagline">{{site.description}}</h2>
         <br>
-        <nav class="nav">
+        <!-- <nav class="nav featured">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a class="pure-button" href="{{site.url}}"><i class="fas fa-home"></i> Home</a>
+                    <a class="" href="{{site.url}}"><span class="sidebar-index">🏠</span> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="pure-button" href="/journals"><i class="fas fa-book"></i> Journal</a>
+                    <a class="" href="/journals"><span class="sidebar-index">📘</span> Journal</a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     </div>
     <ul class="sidebar-list">
-        <li><a href="https://pyblog.medium.com/subscribe" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i>&nbsp; Subscribe</a></li>
-        <li class="featured"><a href="{{site.utl}}/categories/"><i class="far fa-folder-open"></i>&nbsp; Posts by Category</a></li>
-        <li class="featured"><a href="{{site.utl}}/archive/"><i class="fas fa-archive"></i>&nbsp; Archive</a></li>
-        <li class="low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><i class="fab fa-medium"></i>&nbsp; Medium Reading List</a></li>
-        <li class="high-featured"><a href="{{ site.donate_link }}" target="_blank"><i class="fas fa-dollar-sign"></i>&nbsp; Sponsor</a></li>
+        <li class="high-featured"><a href="{{site.url}}"><span class="sidebar-index">🏠</span>&nbsp; Home</a></li>
+        <li class="low-featured"><a href="/journals"><span class="sidebar-index">📘</span>&nbsp; Journal</a></li>
+        <li class="high-featured sidebar-secondary"><a href="https://pyblog.medium.com/subscribe" target="_blank" rel="noopener noreferrer"><span class="sidebar-index">💌</span>&nbsp; Subscribe</a></li>
+        <li class="featured sidebar-secondary"><a href="{{site.utl}}/categories/"><span class="sidebar-index">📂</span>&nbsp; Posts by Category</a></li>
+        <li class="featured sidebar-secondary"><a href="{{site.utl}}/archive/"><span class="sidebar-index">🗃️</span>&nbsp; Archive</a></li>
+        <li class="low-featured sidebar-secondary"><a href="https://medium.com/@pyblog/lists" target="_blank"><span class="sidebar-index"><i class="fab fa-medium"></i></span>&nbsp; Medium Reading List</a></li>
+        <li class="high-featured sidebar-secondary"><a href="{{ site.donate_link }}" target="_blank"><span class="sidebar-index">🤞🏼</span>&nbsp; Sponsor</a></li>
     </ul>
 </aside>
