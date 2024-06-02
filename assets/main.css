@@ -893,6 +893,11 @@ code {
   display: none;
 }
 
+.sidebar-scrollable-div {
+  overflow-y: scroll;
+  height: 20em;
+}
+
 .flex-box {
   flex: 0 0 auto;
   padding-left: 6px;

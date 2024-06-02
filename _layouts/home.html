@@ -116,5 +116,18 @@ layout: default
             <hr class="post-hr">
             <p class="clickable-div" onclick="location.href='{{ site.url }}/floating-point-convex-hull';">Effect of Round Off Errors in Geometric Algorithms</p>
         </section>
+        <section class="post sidebar-scrollable-div">
+            <h3>🏷️ #tags <span class="sub-header">Posts by Tags</span></h3>
+            <hr class="post-hr">
+            <div>
+                {% for tag in site.tags %}
+                    <p class="clickable-div" onclick="location.href='{{site.url}}/tags/#{{ tag | first }}';">#{{ tag | first | capitalize }}</p>
+                {% endfor %}
+            </div>
+        </section>
+        <hr class="post-hr">
+        <section>
+            <p class="figure-header">Made with ♥️ and <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a>.<br/> PyBlog © 2016 - 2024.</p>
+        </section>
     </div>
 </div>
