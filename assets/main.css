@@ -935,3 +935,7 @@ table {
 .dice-index, .sidebar-index {
   font-size: 20px;
 }
+
+.clickable-div {
+  cursor: pointer;
+}

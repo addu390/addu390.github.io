@@ -17,7 +17,7 @@ layout: default
 
         {%- for post in posts -%}
         <section class="post">
-            <div>
+            <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
                 <img class="center-image crop" src="{{site.url}}/{{ post.feature }}" alt="Featured Image" />
             </div>
 
@@ -54,15 +54,14 @@ layout: default
                 </p>
             </header>
 
-            <div class="post-description">
+            <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
                 <p class="md-display">
-                    <em>{{ post.content | strip_html | escape | truncate: 300}}</em>
-                </p>
-                <p class="sm-display">
                     <em>{{ post.content | strip_html | escape | truncate: 250}}</em>
                 </p>
+                <p class="sm-display">
+                    <em>{{ post.content | strip_html | escape | truncate: 200}}</em>
+                </p>
             </div>
-            <a href="{{ post.url | relative_url }}" class="black-button">Read more</a>
         </section>
         {%- endfor -%}
 
