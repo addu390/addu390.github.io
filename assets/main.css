@@ -943,3 +943,8 @@ table {
 #search-input:focus {
   outline-color: #222;
 }
+
+.post .clickable-div:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
