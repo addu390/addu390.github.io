@@ -945,11 +945,15 @@ table {
   cursor: pointer;
 }
 
+.clickable-sidebar-div {
+  cursor: pointer;
+}
+
 #search-input:focus {
   outline-color: #222;
 }
 
-.post .clickable-div:hover {
+.post .clickable-sidebar-div:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }

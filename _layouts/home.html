@@ -110,18 +110,18 @@ layout: default
         <section class="post">
             <h3>🧪 #experiments <span class="sub-header">lab chronicles</span></h3>
             <hr class="post-hr">
-            <p class="clickable-div" onclick="location.href='{{ site.url }}/cartograms-documentation';">Choosing the right spatial grid; Shape Preserved Algorithm</p>
+            <p class="clickable-sidebar-div" onclick="location.href='{{ site.url }}/cartograms-documentation';">Choosing the right spatial grid; Shape Preserved Algorithm</p>
             <hr class="post-hr">
-            <p class="clickable-div" onclick="location.href='{{ site.url }}/hybrid-spatial-index-conclusion';">Hybrid Spatial Data Structures: Quad-KD and R-KD trees</p>
+            <p class="clickable-sidebar-div" onclick="location.href='{{ site.url }}/hybrid-spatial-index-conclusion';">Hybrid Spatial Data Structures: Quad-KD and R-KD trees</p>
             <hr class="post-hr">
-            <p class="clickable-div" onclick="location.href='{{ site.url }}/floating-point-convex-hull';">Effect of Round Off Errors in Geometric Algorithms</p>
+            <p class="clickable-sidebar-div" onclick="location.href='{{ site.url }}/floating-point-convex-hull';">Effect of Round Off Errors in Geometric Algorithms</p>
         </section>
         <section class="post sidebar-scrollable-div">
             <h3>🏷️ #tags <span class="sub-header">Posts by Tags</span></h3>
             <hr class="post-hr">
             <div>
                 {% for tag in site.tags %}
-                    <p class="clickable-div" onclick="location.href='{{site.url}}/tags/#{{ tag | first }}';">#{{ tag | first | capitalize }}</p>
+                    <p class="clickable-sidebar-div" onclick="location.href='{{site.url}}/tags/#{{ tag | first }}';">#{{ tag | first | capitalize }}</p>
                 {% endfor %}
             </div>
         </section>
