@@ -13,12 +13,12 @@
         <p></p>
     </div>
     <ul class="sidebar-list">
-        <li class="featured"><a href="{{site.url}}"><span class="sidebar-index">🏠</span>&nbsp; Home</a></li>
-        <li class="high-featured"><a href="/journals"><span class="sidebar-index">📘</span>&nbsp; Journal</a></li>
-        <li class="featured sidebar-secondary"><a href="https://pyblog.medium.com/subscribe" target="_blank" rel="noopener noreferrer"><span class="sidebar-index">💌</span>&nbsp; Subscribe</a></li>
-        <li class="high-featured sidebar-secondary"><a href="{{site.utl}}/categories"><span class="sidebar-index">📂</span>&nbsp; Categories</a></li>
-        <li class="high-featured sidebar-secondary"><a href="{{site.utl}}/archive"><span class="sidebar-index">🗃️</span>&nbsp; Archive</a></li>
-        <li class="high-featured sidebar-secondary"><a href="https://medium.com/@pyblog/lists" target="_blank"><span class="sidebar-index"><i class="fab fa-medium"></i></span>&nbsp; Medium</a></li>
-        <li class="high-featured sidebar-secondary"><a href="{{ site.donate_link }}" target="_blank"><span class="sidebar-index">🤞🏼</span>&nbsp; Sponsor</a></li>
+        <li class="clickable-div featured" onclick="location.href='{{site.url}}';"><span class="sidebar-index">🏠</span>&nbsp; Home</li>
+        <li class="clickable-div high-featured" onclick="location.href='{{site.url}}/journals';"><span class="sidebar-index">📘</span>&nbsp; Journal</li>
+        <li class="clickable-div featured" onclick="location.href='https://pyblog.medium.com/subscribe';"><span class="sidebar-index">💌</span>&nbsp; Subscribe</li>
+        <li class="clickable-div high-featured" onclick="location.href='{{site.url}}/categories';"><span class="sidebar-index">📂</span>&nbsp; Categories</li>
+        <li class="clickable-div high-featured" onclick="location.href='{{site.url}}/archive';"><span class="sidebar-index">🗃️</span>&nbsp; Archive</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://medium.com/@pyblog/lists';"><span class="sidebar-index"><i class="fab fa-medium"></i></span>&nbsp; Medium</li>
+        <li class="clickable-div high-featured" onclick="location.href='{{ site.donate_link }}';"><span class="sidebar-index">🤞🏼</span>&nbsp; Sponsor</li>
     </ul>
 </aside>

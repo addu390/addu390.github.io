@@ -939,3 +939,7 @@ table {
 .clickable-div {
   cursor: pointer;
 }
+
+#search-input:focus {
+  outline-color: #222;
+}
