@@ -387,7 +387,7 @@ footer .pure-menu-link:hover {
   }
 
   .brand-photo {
-    max-width: 250px;
+    max-width: 230px;
   }
 
   .brand-title,
@@ -684,7 +684,7 @@ code {
   position: fixed;
   overflow-y: scroll; 
   height: 20em;
-  margin-top: 0px;
+  margin-top: 1em;
 }
 
 .sidebar-list * {
