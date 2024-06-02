@@ -5,7 +5,8 @@ layout: default
 
 {% assign journals = site.journals | reverse %}
 
-<div class="posts">
+<div class="pure-g" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-4-5">
     {%- if journals.size > 0 -%}
         {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
 
@@ -60,3 +61,4 @@ layout: default
     <br/>
 
 {%- endif -%}
+</div>

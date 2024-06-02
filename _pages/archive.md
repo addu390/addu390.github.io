@@ -6,7 +6,7 @@ title: Archive of All Collections
 
 **Note:** This page contains all material in `posts` and `journals`.
 
-<details><summary class="h3" id="all-posts">Everything</summary>
+<details open><summary class="h3" id="all-posts">Everything</summary>
 {% for collection in site.collections %}
 {% if collection.label != "pages" and collection.label != "notes" %}
 
