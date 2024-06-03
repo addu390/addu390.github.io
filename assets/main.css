@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --black: #242424;
+  --white: #e9e9e9
+}
+
 html, body{
   width: 100%;
   height: 100%;
@@ -28,7 +33,7 @@ a {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: var(--black);
 }
 
 a:hover,
@@ -83,7 +88,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  color: black;
+  color: var(--black);
 }
 
 th {
@@ -124,7 +129,7 @@ footer .pure-menu-link:hover {
 
 .sidebar {
   background: #222;
-  color: #fff;
+  color: var(--white);
 }
 
 .sidebar-info {
@@ -182,7 +187,7 @@ footer .pure-menu-link:hover {
 
 .nav-item a {
   background: transparent;
-  color: #fff;
+  color: var(--white);
   margin-right: 5px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -282,7 +287,7 @@ footer .pure-menu-link:hover {
 
 .post-title {
   font-size: 2em;
-  color: #222;
+  color: var(--black);
   margin-bottom: 0.2em;
 }
 
@@ -293,7 +298,7 @@ footer .pure-menu-link:hover {
 }
 
 .post-description {
-  color: black;
+  color: var(--black);
   line-height: 1.8em;
 }
 
@@ -312,7 +317,7 @@ footer .pure-menu-link:hover {
 .post-category {
   margin: 0 0.1em;
   padding: 0.3em 1em;
-  color: #fff;
+  color: var(--white);
   background: #999;
   font-size: 80%;
 }
@@ -324,7 +329,7 @@ footer .pure-menu-link:hover {
 .post-image-meta {
   margin-top: -3.5em;
   margin-left: 1em;
-  color: #fff;
+  color: var(--white);
   text-shadow: 0 1px 1px #333;
 }
 
@@ -334,7 +339,7 @@ footer .pure-menu-link:hover {
 }
 
 .post-description {
-  color: black;
+  color: var(--black);
   line-height: 1.8em;
 }
 
@@ -355,6 +360,7 @@ footer .pure-menu-link:hover {
 
 .post-meta {
   line-height: 1.5;
+  /* opacity: 70%; */
 }
 
 /* AUTHOR */
@@ -486,11 +492,11 @@ footer .pure-menu-link:hover {
   text-decoration: underline;
   font-size: 48px;
   margin-bottom: 0px;
-  color: #222;
+  color: var(--black);
 }
 
 .jekyll-header:hover {
-  color: black;
+  color: var(--black);
 }
 
 .content {
@@ -547,23 +553,23 @@ footer ul {
 }
 
 .hashtags i {
-  color: black;
+  color: var(--black);
 }
 
 .categories i {
-  color: black;
+  color: var(--black);
 }
 
 .archive i {
-  color: black;
+  color: var(--black);
 }
 
 .rss i {
-  color: black;
+  color: var(--black);
 }
 
 .donate i {
-  color: black;
+  color: var(--black);
 }
 
 /* SEARCH */
@@ -590,8 +596,8 @@ a {
 .home a {
   padding: 5px 8px;
   border-radius: 5px;
-  background-color: #222;
-  color: #fff;
+  background-color: var(--black);
+  color: var(--white);
 
 }
 
@@ -648,19 +654,19 @@ a {
 a.black-button {
   display:inline-block;
   padding:0.35em 1.2em;
-  border:0.1em solid black;
+  border:0.1em solid var(--black);
   margin:0 0.3em 1.8em 1em;
   border-radius:5px;
   box-sizing: border-box;
   text-decoration:none;
   font-weight:300;
-  color:black;
+  color:var(--black);
   text-align:center;
   transition: all 0.2s;
 }
 a.black-button:hover {
-  color: #fff;;
-  background-color:black;
+  color: var(--white);
+  background-color:var(--black);
 }
 
 @media all and (max-width:30em) {
@@ -681,7 +687,7 @@ pre {
 }
 
 code {
-  color: #222;
+  color: var(--black);
   font-size: 0.92em;
 }
 
@@ -720,7 +726,7 @@ code {
   padding-top:1em;
   padding-bottom:1em;
   padding-left: 3em;
-  color: #fff;
+  color: var(--white);
 }
 
 .sidebar-list li:hover {
@@ -728,7 +734,7 @@ code {
 }
 
 .sidebar-list li a {
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   display: block;
 }
@@ -800,7 +806,7 @@ code {
 .image-container {
   position: relative;
   text-align: center;
-  color: black;
+  color: var(--black);
   font-size: 1.5em;
   font-weight: 700;
 }
@@ -955,7 +961,7 @@ table {
 }
 
 #search-input:focus {
-  outline-color: #222;
+  outline-color: var(--black);
 }
 
 .post .clickable-sidebar-div:hover {
