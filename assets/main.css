@@ -698,12 +698,16 @@ code {
   margin-top: 1em;
 }
 
-.sidebar-list::-webkit-scrollbar {
+.sidebar-list::-webkit-scrollbar, .sidebar-scrollable-div::-webkit-scrollbar {
   width: 6px;
 }
 
 .sidebar-list::-webkit-scrollbar-thumb {
   background: #4e4d4d;
+}
+
+.sidebar-scrollable-div::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
 }
 
 .sidebar-list * {
