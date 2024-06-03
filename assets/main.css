@@ -152,7 +152,7 @@ footer .pure-menu-link:hover {
 }
 
 .brand-title a {
-  color: white;
+  color: rgb(234, 234, 234);
   text-decoration: none;
 }
 
@@ -160,6 +160,7 @@ footer .pure-menu-link:hover {
   font-weight: 300;
   color: #ddd;
   font-size: 18px;
+  line-height: 1.5;
 }
 
 .nav {
