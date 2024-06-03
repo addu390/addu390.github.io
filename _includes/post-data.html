@@ -1,25 +1,5 @@
-<p class="post-meta">
-    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {{ page.date | date: date_format }}
-    </time>
-    {%- if page.modified_date -%}
-    ~
-    {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-    <time datetime="{{ mdate }}" itemprop="dateModified">
-        {{ mdate | date: date_format }}
-    </time>
-    {%- endif -%}
-    &#8239;|&#8239;
-    Category:&#8239;
-    <a href="/categories/#{{ page.category }}">{{ page.category }}</a>&#8239;
-
-    &#8239;|&#8239;
-    Tags: &#8239;
-    {%- for tag in page.tags -%}
-    <a href="/tags/#{{ tag }}">{{ tag }}</a>{%- if forloop.last == false %}, {% endif -%}
-    {%- endfor -%}
-</p>
+{%- assign post = page -%}
+{%- include post-meta.html -%}
 
 {%- if page.tips -%}
 <div class="flex-container">
