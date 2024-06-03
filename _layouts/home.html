@@ -28,6 +28,9 @@ layout: default
                     <a href="{{ post.url | relative_url }}">
                         {{ post.title | escape }}
                     </a>
+                    {%- if post.state -%}
+                    <span class="state-tag">{{ post.state }}</span>
+                    {%- endif %}
                 </h2>
                 {%- include post-meta.html -%}
             </header>

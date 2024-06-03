@@ -972,3 +972,14 @@ table {
 .post-meta-dots {
   padding: 0 4px 0 4px;
 }
+
+.state-tag {
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-left: 6px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 400;
+  vertical-align: middle;
+}

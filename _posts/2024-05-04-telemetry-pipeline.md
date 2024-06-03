@@ -2,6 +2,7 @@
 layout: post
 title: "Real-time insights: Telemetry Pipeline"
 date: 2024-05-04
+state: Draft
 tags:
   - Realtime
   - Database
