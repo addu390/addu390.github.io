@@ -419,7 +419,7 @@ services:
 <li><p><b>Hybrid Approach</b>: In scenarios requiring both fast write-heavy transactional processing and complex analytics, a common approach is to use Cassandra for real-time data ingestion and storage, and periodically perform ETL (Extract, Transform, Load) or CDC (Change Data Capture) processes to batch insert data into OLAP DB for analytical processing. This leverages the strengths of both databases, ensuring efficient data handling and comprehensive analytical capabilities. Proper indexing and data modeling goes unsaid 🧐</p></li>
 </ul>
 
-<p><a>☢️ InfluxDB</a>: Stagnant <a href="https://github.com/influxdata/influxdb/graphs/contributors" target="_blank" rel="noopener noreferrer">contribution</a> graph, <a href="https://community.influxdata.com/t/is-flux-being-deprecated-with-influxdb-3-0/30992/4" target="_blank" rel="noopener noreferrer">Flux</a> deprecation, but new <a href="https://www.influxdata.com/benchmarks/" target="_blank" rel="noopener noreferrer">benchmarks</a>!</p>
+<p>☢️ <a>InfluxDB</a>: Stagnant <a href="https://github.com/influxdata/influxdb/graphs/contributors" target="_blank" rel="noopener noreferrer">contribution</a> graph, <a href="https://community.influxdata.com/t/is-flux-being-deprecated-with-influxdb-3-0/30992/4" target="_blank" rel="noopener noreferrer">Flux</a> deprecation, but new <a href="https://www.influxdata.com/benchmarks/" target="_blank" rel="noopener noreferrer">benchmarks</a>!</p>
 
 <hr class="hr">
 

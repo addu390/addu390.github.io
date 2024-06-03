@@ -350,17 +350,18 @@ footer .pure-menu-link:hover {
 }
 
 .archive-links a,
-.post-entry a,
+.post-body a,
 .archives a,
-.post-meta a,
 .posts-right-bar a,
 .tags a {
   color: #C23373;
 }
 
-.post-meta {
+.post-meta, .post-meta a {
+  margin-top: 0;
   line-height: 1.5;
-  /* opacity: 70%; */
+  color: #4e4d4d !important;
+  font-size: 14px;
 }
 
 /* AUTHOR */
