@@ -223,7 +223,7 @@ footer .pure-menu-link:hover {
 
 .posts {
   margin: 4.8em 0.8em 0 0em;
-  max-width: 74%;
+  max-width: 70%;
 }
 
 .posts-right-bar {
@@ -531,6 +531,7 @@ footer ul {
   background-color: #fff;
   width: 100%;
   box-shadow: #d4d4d4 0px 0px 4px;
+  z-index: 1;
 }
 
 .menu > div
@@ -994,4 +995,8 @@ table {
 .bottom-sidebar {
   margin-top: auto; 
   bottom: 2em;
+}
+
+.posts-right-bar section h3, .posts-right-bar section p {
+  opacity: 80%;
 }
