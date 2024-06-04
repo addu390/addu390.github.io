@@ -1019,3 +1019,16 @@ table {
   color: #999;
   font-size: 12px;
 }
+
+.twemoji {
+  width: 20px;
+  vertical-align: bottom;
+}
+
+.figure-header .twemoji {
+  width: 16px;
+}
+
+.posts-right-bar .twemoji, .brand-tagline .twemoji {
+  vertical-align: sub;
+}
