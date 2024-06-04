@@ -3,7 +3,7 @@ html, body, #map {
   margin: 0;
   padding: 0;
 }
-#container {
+#geo-container {
 	position: absolute;
 	z-index: 99;
 	margin: 5px;
@@ -11,7 +11,7 @@ html, body, #map {
 	top: 0px;
 	cursor: default;
 }
-.label {
+.geo-label {
 	direction: ltr;
 	overflow: hidden;
 	text-align: center;
