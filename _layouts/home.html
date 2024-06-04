@@ -37,10 +37,10 @@ layout: default
 
             <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
                 <p class="md-display">
-                    <em>{{ post.content | strip_html | escape | truncate: 250}}</em>
+                    <span>{{ post.content | strip_html | escape | truncate: 250}}</span>
                 </p>
                 <p class="sm-display">
-                    <em>{{ post.content | strip_html | escape | truncate: 170}}</em>
+                    <span>{{ post.content | strip_html | escape | truncate: 170}}</span>
                 </p>
             </div>
         </section>

@@ -287,7 +287,7 @@ footer .pure-menu-link:hover {
 }
 
 .post-title {
-  font-size: 1.7em;
+  font-size: 1.6em;
   color: var(--black);
   margin-bottom: 0.2em;
 }
@@ -296,12 +296,6 @@ footer .pure-menu-link:hover {
   border-radius: 50px;
   float: right;
   margin-left: 1em;
-}
-
-.post-description {
-  color: var(--black);
-  line-height: 1.5em;
-  font-size: 15px;
 }
 
 .post-entry {
@@ -342,7 +336,7 @@ footer .pure-menu-link:hover {
 
 .post-description {
   color: var(--black);
-  line-height: 1.8em;
+  line-height: 1.6em;
   font-size: 15px;
 }
 
@@ -988,7 +982,7 @@ table {
   margin-left: 6px;
   border: 1px solid #a2a2a2;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   vertical-align: middle;
   color: #8b8b8b
@@ -1028,10 +1022,12 @@ table {
   vertical-align: bottom;
 }
 
-.figure-header .twemoji {
+.figure-header .twemoji, .flex-box .twemoji {
   width: 16px;
 }
 
-.posts-right-bar .twemoji, .brand-tagline .twemoji {
+.posts-right-bar .twemoji, 
+.flex-box .twemoji,
+.brand-tagline .twemoji {
   vertical-align: sub;
 }

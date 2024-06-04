@@ -7,10 +7,10 @@ tags:
   - Realtime
   - Database
 tips:
-  - ⚠️ WIP
-  - 🌵 Tangential topic
-  - ☢️ Ponder on
-  - 🚧 Alternatives
+  - <img class="twemoji" src="../assets/img/emoji/warning.svg" alt=""> WIP
+  - <img class="twemoji" src="../assets/img/emoji/cactus.svg" alt=""> Tangential topic
+  - <img class="twemoji" src="../assets/img/emoji/radio.svg" alt=""> Ponder on
+  - <img class="twemoji" src="../assets/img/emoji/stoptrack.svg" alt=""> Alternatives
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/telemetry-pipeline.png
 category: System Wisdom
