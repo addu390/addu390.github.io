@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GeoHash grid</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/geohash/grid.css" />
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe3s3BU3YNm-vPLwMFeJyrcNy7EEz97LM&callback=console.debug&libraries=maps,marker&v=3"></script>
+    <script src="../assets/geohash/marker.js"></script>
+    <script src="../assets/geohash/latlon.js"></script>
+    <script src="../assets/geohash/grid.js"></script>
+</head>
+
+
+{%- include head.html -%}
+
+<body>
+    <div>
+        {%- include sidebar.html -%}
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <div class="md-display" style="z-index: 1; position: relative;">
+                {%- include links.html -%}
+            </div>
+            <div>
+                <div id="map"></div>
+                <div class="gmnoprint" id="container">
+                    <div class="gm-style-mtc" style="float: left;">
+                        <div class="label" draggable="false">Zoom: <span id="zoom" /></div>
+                    </div>
+                    <div class="gm-style-mtc" style="float: left;">
+                        <div class="label" draggable="false">Extents: <span id="extents" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    window.onload = function () {
+        console.log("Page is fully loaded.");
+        var myDiv = document.getElementById('map');
+        myDiv.style.position = 'inherit !important';
+        myDiv.style.height = '1000px';
+        myDiv.style.overflow = 'unset !important';
+    };
+</script>
+
+</html>
