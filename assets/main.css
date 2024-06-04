@@ -436,7 +436,7 @@ footer .pure-menu-link:hover {
   }
 
   .sidebar-list, .posts-right-bar {
-    display: none;
+    display: none !important;
   }
 
   .pure-g {
@@ -909,6 +909,11 @@ code {
 .sidebar-scrollable-div {
   overflow-y: scroll;
   height: 20em;
+  
+}
+
+.sidebar-scrollable-div a, .sidebar-text-div a {
+  color: var(--black);
 }
 
 .flex-box {
@@ -984,4 +989,9 @@ table {
   font-size: 15px;
   font-weight: 400;
   vertical-align: middle;
+}
+
+.bottom-sidebar {
+  margin-top: auto; 
+  bottom: 2em;
 }

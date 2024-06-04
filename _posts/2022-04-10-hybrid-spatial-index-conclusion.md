@@ -28,11 +28,21 @@ R-tree is a common data-driven data structure used in GIS databases, including M
 
 ### 2.2. Quad-tree
 
-Quad-trees are one of the space-driven data structures used to store raster datasets. But the search performance decreases for high dimensional spatial data and when the density of the points increases. Because when the points are densely populated in certain areas, the tree is not balanced and may have a worst-case time complexity of nearly O(n), with a best-case of O(log4n) [6].
+Quad-trees are one of the space-driven data structures used to store raster datasets. But the search performance decreases for high dimensional spatial data and when the density of the points increases. 
+
+<img src="./assets/posts/quad-tree.png" /> 
+<p style="text-align: center;">Figure 1: Quadtree</p>
+
+Because when the points are densely populated in certain areas, the tree is not balanced and may have a worst-case time complexity of nearly O(n), with a best-case of O(log4n) [6].
 
 ### 2.3. KD-tree
 
-KD-trees are space partitioning data structures; despite the varying density of spatial points, the height of the tree is O(log n) with batch insertion; thereby, the average case time complexity of search operation is O(log n). Furthermore, the kd-tree is a good choice for points compared to polygons (as the overlap is needed for polygons), and the performance degrades for higher dimensions (curse of dimensionality). Lastly, the worst-case time complexity to construct a static kd-tree is O(n log n), assuming an O(n) median-of-medians algorithm (to select the median at each level) [7].
+KD-trees are space partitioning data structures; despite the varying density of spatial points, the height of the tree is O(log n) with batch insertion; thereby, the average case time complexity of search operation is O(log n). 
+
+<img src="./assets/posts/kd-tree.png" /> 
+<p style="text-align: center;">Figure 2: KD-tree</p>
+
+Furthermore, the kd-tree is a good choice for points compared to polygons (as the overlap is needed for polygons), and the performance degrades for higher dimensions (curse of dimensionality). Lastly, the worst-case time complexity to construct a static kd-tree is O(n log n), assuming an O(n) median-of-medians algorithm (to select the median at each level) [7].
 
 ### 2.4. Hybrid-tree
 
@@ -43,7 +53,7 @@ In the real world, the spatial objects are not evenly scattered; instead, the sp
 The rest of the paper compares the search and construction performance of the r-tree, quad-tree, and kd-tree, then introduces and discusses the hybrid spatial data structures, quad-kd tree, and r-kd tree.
 
 <img src="./assets/posts/hybrid-tree.png" /> 
-<p style="text-align: center;">Figure 1. A representation of a Quad-KD hybrid tree structure.</p>
+<p style="text-align: center;">Figure 3. A representation of a Quad-KD hybrid tree structure.</p>
 
 ## 3. Known results
 
@@ -106,22 +116,22 @@ After conducting the experiments for several scenarios for varying densities and
 ### 5.3.1 Points
 
 <img src="./assets/posts/spatial-index/5-20000.png" /> 
-<p style="text-align: center;">Figure 2: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 100 to 20,000 points.</p>
+<p style="text-align: center;">Figure 4: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 100 to 20,000 points.</p>
 
 
 <img src="./assets/posts/spatial-index/5-80000.png" /> 
-<p style="text-align: center;">Figure 3: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 100 to 80,000 points.</p>
+<p style="text-align: center;">Figure 5: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 100 to 80,000 points.</p>
 
 
 <img src="./assets/posts/spatial-index/d-5-25000.png" /> 
-<p style="text-align: center;">Figure 4: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 25,000 points with densities from 0 to 10.</p>
+<p style="text-align: center;">Figure 6: Comparison of search and construct/insert performance of quad, kd, r, quad-kd, and r-kd trees containing 25,000 points with densities from 0 to 10.</p>
 
 ### 5.3.2 Rectangles
 
 When the spatial data has only rectangles, r-kd and quad-kd trees are a mere representation of r-tree and quad-tree, respectively. Hence, for rectangles, the comparison is between quad and r-tree without hybrid trees.
 
 <img src="./assets/posts/spatial-index/2-80000.jpg" /> 
-<p style="text-align: center;">Figure 5: Comparison of search and construct/insert performance of quad-tree and r-tree containing 100 to 80,000 rectangles.</p>
+<p style="text-align: center;">Figure 7: Comparison of search and construct/insert performance of quad-tree and r-tree containing 100 to 80,000 rectangles.</p>
 
 ### 5.3.3 Points and Rectangles
 
@@ -130,13 +140,13 @@ Because of the known complexities of implementing kd-trees for polygons, the kd-
 Note: For hybrid trees (quad-kd and r-kd), the points are within ~32 bounding rectangles spread across the area.
 
 <img src="./assets/posts/spatial-index/4-20000.png" /> 
-<p style="text-align: center;">Figure 6: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 100 to 20,000 points and rectangles.</p>
+<p style="text-align: center;">Figure 8: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 100 to 20,000 points and rectangles.</p>
 
 <img src="./assets/posts/spatial-index/4-80000.png" /> 
-<p style="text-align: center;">Figure 7: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 100 to 80,000 points and rectangles.</p>
+<p style="text-align: center;">Figure 9: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 100 to 80,000 points and rectangles.</p>
 
 <img src="./assets/posts/spatial-index/d-4-50000.png" /> 
-<p style="text-align: center;">Figure 8: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 50,000 points with densities from 0 to 10.</p>
+<p style="text-align: center;">Figure 10: Comparison of search and construct/insert performance of quad, r, quad-kd, and r-kd trees containing 50,000 points with densities from 0 to 10.</p>
 
 Note: After trial and error, the pre-defined maximum capacity for bounding rectangles for quad and r trees is ~450, and a depth of 150 levels for quad-trees.
 

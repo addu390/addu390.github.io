@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hybrid Spatial Data Structure based on KD-tree and Quadtree"
+title: "Hybrid Spatial Data Structures: Introduction"
 date: 2022-03-06
 tags:
   - Algorithms
@@ -63,7 +63,8 @@ However, the project is a WORK IN PROGRESS ⚠️, and stay tuned for more updat
 <hr>
 
 ## References:
-
+```
 [1] Zhang, X, and Du, Z. (2017). Spatial Indexing. The Geographic Information Science & Technology Body of Knowledge (4th Quarter 2017 Edition), John P. Wilson (ed). DOI: 10.22224/gistbok/2017.4.12
 
 [2] Mahmood, Mahmood. (2019). A Proposed Hybrid Spatial Data Structure based on KD Tree and Quad Tree. Jokull. 69. 2–6.
+```
