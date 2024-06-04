@@ -433,11 +433,8 @@ services:
 
 <hr class="sub-hr">
 
-<details open class="text-container"><summary class="h4">4.2. Temporal and Spatial Index</summary>
+<details open class="text-container"><summary class="h4">4.2. Partition and Indexes</summary>
 <p>⚠️ Work In Progress!</p>
-
-<p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank" rel="noopener noreferrer">GeoMesa</a>: <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank" rel="noopener noreferrer">spatio-temporal</a> data persistence on top of popular distributed databases for massive storage of point, line and polygon data.</p>
-
 </details>
 
 <hr class="sub-hr">

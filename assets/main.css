@@ -300,7 +300,8 @@ footer .pure-menu-link:hover {
 
 .post-description {
   color: var(--black);
-  line-height: 1.8em;
+  line-height: 1.5em;
+  font-size: 15px;
 }
 
 .post-entry {
@@ -342,6 +343,7 @@ footer .pure-menu-link:hover {
 .post-description {
   color: var(--black);
   line-height: 1.8em;
+  font-size: 15px;
 }
 
 .archive-links {
@@ -984,11 +986,12 @@ table {
   padding-left: 6px;
   padding-right: 6px;
   margin-left: 6px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid #a2a2a2;
   border-radius: 5px;
   font-size: 15px;
   font-weight: 400;
   vertical-align: middle;
+  color: #8b8b8b
 }
 
 .bottom-sidebar {
@@ -996,8 +999,8 @@ table {
   bottom: 2em;
 }
 
-.posts-right-bar section h3, .posts-right-bar section p {
-  opacity: 80%;
+.posts-right-bar section p {
+  font-size: 15px;
 }
 
 #search .icon {
