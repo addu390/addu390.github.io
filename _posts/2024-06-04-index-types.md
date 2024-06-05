@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stomping Grounds: Types of Indexes"
+title: "Stomping Grounds: Indexes"
 date: 2024-06-04
 state: Draft
 tags:
