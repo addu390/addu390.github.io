@@ -431,7 +431,7 @@ footer .pure-menu-link:hover {
     display: none;
   }
 
-  .sidebar-list, .posts-right-bar {
+  .sidebar-list, .posts-right-bar, .save-button {
     display: none !important;
   }
 
@@ -904,8 +904,7 @@ code {
 
 .sidebar-scrollable-div {
   overflow-y: scroll;
-  height: 20em;
-  
+  max-height: 20em;
 }
 
 .sidebar-scrollable-div a, .sidebar-text-div a {
@@ -1030,4 +1029,28 @@ table {
 .flex-box .twemoji,
 .brand-tagline .twemoji {
   vertical-align: sub;
+}
+
+.save-button {
+  margin-left: 1.2em; 
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.float-right {
+  float: right; 
+}
+
+#clear-reading-list {
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-top: 1.6em;
+  border-radius: 5px;
+  float: right;
+  cursor: pointer;
+  color: #a2a2a2;
+}
+
+#clear-reading-list:hover {
+  color: #AA0000;
 }
