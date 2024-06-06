@@ -624,11 +624,18 @@ a {
   width: 75%;
 }
 
-.center-image-60 {
+.center-image-65 {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 65%;
+}
+
+.center-image-60 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 
 .center-image-50 {

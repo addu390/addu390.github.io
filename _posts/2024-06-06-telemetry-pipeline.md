@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Real-time insights: Telemetry Pipeline"
-date: 2024-05-04
+date: 2024-06-06
 state: Draft
 tags:
   - Realtime
@@ -426,15 +426,20 @@ services:
 <p>Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering. Example: <a href="https://github.com/pingcap/tidb" target="_blank" rel="noopener noreferrer">TiDB</a>, <a href="https://www.timescale.com/" target="_blank" rel="noopener noreferrer">TimescaleDB</a> (Kind of).</p>
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
-<img class="center-image-60" src="./assets/posts/telemetry/of-both-worlds.png" />
+<img class="center-image-65" src="./assets/posts/telemetry/of-both-worlds.png" />
 
 <p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer. For everyday use, 🚗 a Toyota fits. Bringing a war tank to a community center is overkill. Sometimes, you need a fleet—a car for daily use, and a truck for heavy loads.</p>
 </details>
 
 <hr class="sub-hr">
 
-<details open class="text-container"><summary class="h4">4.2. Partition and Indexes</summary>
-<p>⚠️ Work In Progress!</p>
+<details class="text-container"><summary class="h4">4.2. Partition and Indexes</summary>
+
+<p>Without getting into too much detail, it's crucial to choose the right partitioning strategy (Ex: Range, List, Hash) to ensure partitions don't bloat and effectively support primary read patterns (in this context, example: client_id + date_range).</p>
+
+<img class="center-image-60" src="./assets/posts/telemetry/index-types.svg" />
+
+<p>Following this, clustering columns and indexes help organize data within partitions to optimize range queries and sorting. Secondary indexes (within the partition/local or across partitions/global) are valuable for query patterns where partition or primary keys don't apply. Materialized views for precomputing and storing complex query results, speeding up read operations for frequently accessed data.</p>
 </details>
 
 <hr class="sub-hr">
