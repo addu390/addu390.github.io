@@ -303,7 +303,7 @@ if __name__ == "__main__":
 <details open><summary class="h3">3. Processing</summary>
 <p></p>
 <details open class="text-container"><summary class="h4">3.1. Stream Processor</summary>
-<p>Key Features to Look for in a Stream Processing Framework:</p>
+<p>The Stream Processor is responsible for data transformation, enrichment, stateful computations/updates over unbounded (push-model) and bounded (pull-model) data streams and sink enriched and transformed data to various data stores or applications. Key Features to Look for in a Stream Processing Framework:</p>
 <ul>
 <li><p><b>Scalability and Performance</b>: Scale by adding nodes, efficiently use resources, process data with minimal delay, and handle large volumes</p></li>
 <li><p><b>Fault Tolerance and Data Consistency</b>: Ensure fault tolerance with state saving for failure recovery and exactly-once processing.</p></li>
@@ -396,7 +396,7 @@ services:
 <hr class="clear-hr">
 
 <details open><summary class="h3">4. Storage and Analysis </summary>
-<p></p>
+<p>The code snippets - stops here! The rest of the post covers key conventions, strategies, and factors for selecting the right data store, performing real-time analytics, and alerts.</p>
 <details open class="text-container"><summary class="h4">4.1. Datastore </summary>
 <p>When choosing the right database for telemetry data, it's crucial to consider several factors:</p>
 <ul>
@@ -499,6 +499,49 @@ services:
 
 <p>🌵 <a href="https://docs.mindsdb.com/what-is-mindsdb" target="_blank" rel="noopener noreferrer">MindsDB</a>: Connect Data Source, Configure AI Engine, Create AI Tables, Query for predictions and Automate workflows.</p>
 </details>
+
+</details>
+
+<hr class="clear-hr">
+
+<details><summary class="h3">5. References</summary>
+
+<pre style="height: 300px"><code>
+1. Wikipedia, "Telemetry," available: https://en.wikipedia.org/wiki/Telemetry. [Accessed: June 5, 2024].
+2. Apache Cassandra, "Cassandra," available: https://cassandra.apache.org. [Accessed: June 5, 2024].
+3. VictoriaMetrics, "VictoriaMetrics," available: https://victoriametrics.com. [Accessed: June 6, 2024].
+4. Fluentd, "Fluentd," available: https://www.fluentd.org. [Accessed: June 5, 2024].
+5. Elasticsearch, "Elasticsearch," available: https://www.elastic.co. [Accessed: June 5, 2024].
+6. InfluxData, "Telegraf," available: https://www.influxdata.com. [Accessed: June 5, 2024].
+7. InfluxData, "Telegraf Plugins," available: https://docs.influxdata.com. [Accessed: June 5, 2024].
+8. GitHub, "osx-cpu-temp," available: https://github.com/lavoiesl/osx-cpu-temp. [Accessed: June 5, 2024].
+9. GitHub, "Inlets," available: https://github.com/inlets/inlets. [Accessed: June 5, 2024].
+10. InfluxData, "Telegraf Installation," available: https://docs.influxdata.com/telegraf/v1. [Accessed: June 5, 2024].
+11. InfluxData, "InfluxDB Line Protocol," available: https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol. [Accessed: June 5, 2024].
+12. GitHub, "Telegraf Exec Plugin," available: https://github.com/influxdata/telegraf/tree/master/plugins/inputs/exec. [Accessed: June 5, 2024].
+13. GitHub, "Telegraf Output Plugins," available: https://github.com/influxdata/telegraf/tree/master/plugins/outputs. [Accessed: June 5, 2024].
+14. Pallets Projects, "Flask," available: https://flask.palletsprojects.com. [Accessed: June 5, 2024].
+15. Apache Kafka, "Kafka," available: https://kafka.apache.org. [Accessed: June 5, 2024].
+16. Confluent, "Kafka Partitions," available: https://www.confluent.io. [Accessed: June 5, 2024].
+17. AWS, "Amazon Kinesis," available: https://aws.amazon.com/kinesis. [Accessed: June 5, 2024].
+18. Redpanda, "Redpanda," available: https://redpanda.com. [Accessed: June 5, 2024].
+19. Apache, "Apache Flink," available: https://flink.apache.org. [Accessed: June 6, 2024].
+20. GitHub, "flink-python/pyflink/examples," available: https://github.com/apache/flink/tree/master/flink-python/pyflink/examples. [Accessed: June 6, 2024].
+21. Apache, "Flink Download," available: https://www.apache.org/dyn/closer.lua/flink. [Accessed: June 6, 2024].
+22. Apache, "Flink Kafka Connector," available: https://www.apache.org/dyn/closer.lua/flink/flink-connector-kafka-3.1.0. [Accessed: June 6, 2024].
+23. Docker, "Docker Installation," available: https://docs.docker.com. [Accessed: June 6, 2024].
+24. Apache Kafka, "Kafka CLI," available: https://kafka.apache.org/quickstart. [Accessed: June 6, 2024].
+25. Homebrew, "Kafka Installation," available: https://formulae.brew.sh/formula/kafka. [Accessed: June 6, 2024].
+26. Apache, "Apache Storm," available: https://storm.apache.org. [Accessed: June 6, 2024].
+27. Apache, "Apache Samza," available: https://samza.apache.org. [Accessed: June 6, 2024].
+28. ClickHouse, "ClickHouse," available: https://clickhouse.com. [Accessed: June 6, 2024].
+29. InfluxData, "InfluxDB Benchmarks," available: https://www.influxdata.com/benchmarks. [Accessed: June 6, 2024].
+30. TiDB, "TiDB," available: https://github.com/pingcap/tidb. [Accessed: June 6, 2024].
+31. Timescale, "TimescaleDB," available: https://www.timescale.com. [Accessed: June 6, 2024].
+32. MindsDB, "MindsDB," available: https://docs.mindsdb.com. [Accessed: June 6, 2024].
+33. Wikipedia, "Write Amplification," available: https://en.wikipedia.org/wiki/Write_amplification. [Accessed: June 6, 2024].
+34. GitHub, "LSM-Tree," available: https://tikv.github.io/deep-dive/introduction/theory/lsm-tree.html. [Accessed: June 6, 2024].
+</code></pre>
 
 </details>
 <p></p>
