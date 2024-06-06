@@ -170,9 +170,11 @@ done
 
 <p>The telemetry server layer is designed to be <u>lightweight</u>. Its primary function is to authenticate incoming requests and publish raw events directly to Message Broker/Kafka. Further processing of these events will be carried out by the stream processing framework.</p>
 
-<p>For our example, the Flask application serves as the telemetry server, acting as the entry point for the requests. It receives the data via a POST request, validates it, and publishes the messages to a Kafka topic.</p>
+<p>For our example, the <a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">Flask</a> application serves as the telemetry server, acting as the entry point (via load-balancer) for the requests. It receives the data from a POST request, validates it, and publishes the messages to a <a href="https://kafka.apache.org/" target="_blank">Kafka</a> topic.</p>
 
-<p>🌵 <a href="https://opentelemetry.io/docs/collector/" target="_blank" rel="noopener noreferrer">OpenTelemetry</a>: an in-app observability framework to create and manage telemetry data.</p>
+<p>Topic partition is the unit of parallelism in Kafka. Choose a partition key (ex: client_id) that evenly distributes records to avoid hotspots and <a href="https://www.confluent.io/blog/how-choose-number-topics-partitions-kafka-cluster" target="_blank">number of partitions</a> to achieve good throughput.</p>
+
+<p>🚧 Message Broker Alternatives: <a href="https://aws.amazon.com/kinesis/" target="_blank" rel="noopener noreferrer">Amazon Kinesis</a>, <a href="https://redpanda.com/" target="_blank">Redpanda</a></p>
 </details>
 
 <hr class="sub-hr">
