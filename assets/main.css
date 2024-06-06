@@ -1031,9 +1031,9 @@ table {
   vertical-align: sub;
 }
 
-.save-button {
+.save-button .twemoji {
+  width: 25px !important;
   margin-left: 1.2em; 
-  font-size: 16px;
   cursor: pointer;
 }
 
@@ -1042,15 +1042,11 @@ table {
 }
 
 #clear-reading-list {
-  padding-left: 6px;
-  padding-right: 6px;
   margin-top: 1.6em;
-  border-radius: 5px;
   float: right;
   cursor: pointer;
-  color: #a2a2a2;
 }
 
 #clear-reading-list:hover {
-  color: #AA0000;
+  content: url('../assets/img/common/trash.gif');
 }

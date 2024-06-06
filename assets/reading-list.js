@@ -4,27 +4,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarReadingList = document.getElementById('sidebar-reading-list');
     const clearButton = document.getElementById('clear-reading-list');
 
-    clearButton.addEventListener('click', () => {
-        localStorage.removeItem(tableName);
-        updateSidebar();
-        updateSaveButtons();
-    });
+    if (clearButton !== null) {
+        clearButton.addEventListener('click', () => {
+            localStorage.removeItem(tableName);
+            updateSidebar();
+            updateSaveButtons();
+        });
+    }
 
     function updateSaveButtons() {
         saveButtons.forEach(button => {
             const postId = button.parentElement.getAttribute('data-id');
-            const icon = button.querySelector('i');
+            const icon = button.querySelector('img');
             if (isPostSaved(postId)) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
+                icon.src = '../assets/img/common/bookmark-success.svg';
             } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
+                icon.src = '../assets/img/common/bookmark-initial.svg';
             }
         });
     }
 
     function updateSidebar() {
+        if (sidebarReadingList === null) {
+            return;    
+        }
         const savedPosts = JSON.parse(localStorage.getItem(tableName)) || [];
         sidebarReadingList.innerHTML = '';
 
@@ -48,21 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const postId = button.parentElement.getAttribute('data-id');
         const postTitle = button.parentElement.getAttribute('data-title');
         const postUrl = button.parentElement.getAttribute('data-url');
-        const icon = button.querySelector('i');
+        const icon = button.querySelector('img');
         if (isPostSaved(postId)) {
-            icon.classList.remove('far');
-            icon.classList.add('fas');
+            icon.src = '../assets/img/common/bookmark-success.svg';
         }
 
         button.addEventListener('click', () => {
             if (isPostSaved(postId)) {
                 unsavePost(postId);
-                icon.classList.remove('fas');
-                icon.classList.add('far');
+                icon.src = '../assets/img/common/bookmark-initial.svg';
             } else {
                 savePost(postId, postTitle, postUrl);
-                icon.classList.remove('far');
-                icon.classList.add('fas');
+                icon.src = '../assets/img/common/bookmark-success.svg';
             }
             updateSidebar();
         });
