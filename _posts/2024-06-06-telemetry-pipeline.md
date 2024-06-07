@@ -435,9 +435,9 @@ services:
 
 <hr class="sub-hr">
 
-<details class="text-container"><summary class="h4">4.2. Partition and Indexes</summary>
+<details open class="text-container"><summary class="h4">4.2. Partition and Indexes</summary>
 
-<p>Without getting into too much detail, it's crucial to choose the right partitioning strategy (Ex: Range, List, Hash) to ensure partitions don't bloat and effectively support primary read patterns (in this context, example: client_id + date_range).</p>
+<p>Without getting into too much detail, it's crucial to choose the right partitioning strategy (Ex: Range, List, Hash) to ensure partitions don't bloat and effectively support primary read patterns (in this context, example: client_id + region + date_range).</p>
 
 <img class="center-image-60" src="./assets/posts/telemetry/index-types.svg" />
 <p class="figure-header">Figure 5: Types of Indexes and Materialized view</p>
