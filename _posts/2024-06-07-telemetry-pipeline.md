@@ -449,6 +449,13 @@ services:
 
 <img src="./assets/posts/telemetry/partition-view.svg" />
 <p class="figure-header">Figure 6: Partition Key, Clustering Keys, Local/Global Secondary Indexes and Materialized views</p>
+
+<p><b>Multi-dimensional Index (Spatio-temporal)</b>: Indexes such as B+ trees and LSM trees are not designed to directly store higher-dimensional data. Spatial indexing uses structures like R-trees and Quad-trees to efficiently manage spatial queries. For higher-dimensional data, particularly spatio-temporal data, techniques like geohashes, which concatenate spatial data with time, are commonly employed.</p> <p>Space-filling curves like Z-order (Morton) and Hilbert curves interleave spatial and temporal dimensions, preserving locality and enabling efficient queries. Other methods include extending R-trees to incorporate time as an additional dimension, for spatio-temporal indexing</p>
+
+<p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank">GeoMesa</a>: spatio-temporal indexing on top of the Accumulo, HBase, Redis, Kafka, PostGIS and Cassandra. <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank">XZ-Ordering</a>: Customizing Index Creation.</p>
+
+<p>⚠️ Next blog post is all about spatio-temporal indexes!</p>
+
 </details>
 
 <hr class="sub-hr">
