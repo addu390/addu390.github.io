@@ -429,6 +429,7 @@ services:
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img src="./assets/posts/telemetry/of-both-worlds-h.png" />
+<p class="figure-header">Figure 4: Detailed comparison of OLTP, OLAP and HTAP</p>
 
 <p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer. For everyday use, 🚗 a Toyota fits. Bringing a war tank to a community center is overkill. Sometimes, you need a fleet—a car for daily use, and a truck for heavy loads.</p>
 
