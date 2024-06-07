@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Real-time insights: Telemetry Pipeline"
-date: 2024-06-06
+date: 2024-06-07
 state: Draft
 tags:
   - Realtime
@@ -412,7 +412,7 @@ services:
 
 <hr class="hr">
 
-<p>Choosing a data store typically boils down to selecting between OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid approach, depending on your specific use case requirements</p>
+<p>For example, to decide between OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid approach:</p>
 <ul>
 <li><p><b>Transactional and High Throughput Needs</b>: For high write throughput and transactional batches (all or nothing), with queries needing wide row fetches and limited indexed queries based on client_id, time stamp, geo-spatial points within the client partition, Cassandra is better suited.</p></li>
 
@@ -421,16 +421,18 @@ services:
 <li><p><b>Hybrid Approach</b>: In scenarios requiring both fast write-heavy transactional processing and complex analytics, a common approach is to use Cassandra for real-time data ingestion and storage, and periodically perform ETL (Extract, Transform, Load) or CDC (Change Data Capture) processes to batch insert data into OLAP DB for analytical processing. This leverages the strengths of both databases, ensuring efficient data handling and comprehensive analytical capabilities. Proper indexing and data modeling goes unsaid 🧐</p></li>
 </ul>
 
-<p>☢️ <a>InfluxDB</a>: Stagnant <a href="https://github.com/influxdata/influxdb/graphs/contributors" target="_blank" rel="noopener noreferrer">contribution</a> graph, <a href="https://community.influxdata.com/t/is-flux-being-deprecated-with-influxdb-3-0/30992/4" target="_blank" rel="noopener noreferrer">Flux</a> deprecation, but new <a href="https://www.influxdata.com/benchmarks/" target="_blank" rel="noopener noreferrer">benchmarks</a>!</p>
+<p>🌵 <a href="https://debezium.io/" target="_blank" rel="noopener noreferrer">Debezium</a>: Distributed platform for change data capture (more on <a href="/debezium-postgres-cdc">previous post</a>).</p>
 
 <hr class="hr">
 
 <p>Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering. Example: <a href="https://github.com/pingcap/tidb" target="_blank" rel="noopener noreferrer">TiDB</a>, <a href="https://www.timescale.com/" target="_blank" rel="noopener noreferrer">TimescaleDB</a> (Kind of).</p>
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
-<img class="center-image-65" src="./assets/posts/telemetry/of-both-worlds.png" />
+<img src="./assets/posts/telemetry/of-both-worlds-h.png" />
 
 <p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer. For everyday use, 🚗 a Toyota fits. Bringing a war tank to a community center is overkill. Sometimes, you need a fleet—a car for daily use, and a truck for heavy loads.</p>
+
+<p>☢️ <a>InfluxDB</a>: Stagnant <a href="https://github.com/influxdata/influxdb/graphs/contributors" target="_blank" rel="noopener noreferrer">contribution</a> graph, <a href="https://community.influxdata.com/t/is-flux-being-deprecated-with-influxdb-3-0/30992/4" target="_blank" rel="noopener noreferrer">Flux</a> deprecation, but new <a href="https://www.influxdata.com/benchmarks/" target="_blank" rel="noopener noreferrer">benchmarks</a>!</p>
 </details>
 
 <hr class="sub-hr">
