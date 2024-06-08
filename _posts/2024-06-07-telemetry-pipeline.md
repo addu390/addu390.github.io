@@ -454,7 +454,7 @@ services:
 
 <p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank">GeoMesa</a>: spatio-temporal indexing on top of the Accumulo, HBase, Redis, Kafka, PostGIS and Cassandra. <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank">XZ-Ordering</a>: Customizing Index Creation.</p>
 
-<p>⚠️ Next blog post is all about spatio-temporal indexes!</p>
+<p>⚠️ <a href="/spatio-temporal-index">Next blog</a> post is all about spatio-temporal indexes!</p>
 
 </details>
 
