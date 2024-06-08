@@ -15,7 +15,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <img class="center-image" src="./assets/featured/spatio-temporal-index.png" /> 
 
-<p>Brewing in Progress! <a href="https://pyblog.medium.com/subscribe" target="_blank">Subscribe</a> now to be the first to know when it's live 🐙</p>
+<p>Brewing! <a href="https://pyblog.medium.com/subscribe" target="_blank">Subscribe</a> now to be the first to know when it's live 🐙</p>
 
 <details open><summary class="h3">0. Overview</summary>
 </details>
