@@ -617,6 +617,12 @@ a {
   font-size: 24px;
 }
 
+.center-image-0 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .center-image {
   display: block;
   margin-left: auto;
