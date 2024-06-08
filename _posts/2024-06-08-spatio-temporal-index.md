@@ -18,6 +18,9 @@ feature: assets/featured/spatio-temporal-index.png
 <p>Brewing! <a href="https://pyblog.medium.com/subscribe" target="_blank">Subscribe</a> now to be the first to know when it's live 🐙</p>
 
 <details open><summary class="h3">0. Overview</summary>
+<p>Spatio-temporal data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add location tags and often allow users check in specific places and times. This surge is largely due to smartphones, which act as location sensors, making it easier than ever to capture and analyze this type of data.</p>
+
+<p>The goal of this post is to dive into the different spatial and spatio-temporal indexes that are widely used in both relational and non-relational databases. We'll look at the pros and cons of each type, and also discuss which indexes are the most popular today.</p>
 </details>
 
 <hr class="clear-hr">

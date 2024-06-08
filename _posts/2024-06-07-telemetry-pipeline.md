@@ -450,7 +450,10 @@ services:
 <img src="./assets/posts/telemetry/partition-view.svg" />
 <p class="figure-header">Figure 6: Partition Key, Clustering Keys, Local/Global Secondary Indexes and Materialized views</p>
 
-<p><b>Multi-dimensional Index (Spatio-temporal)</b>: Indexes such as B+ trees and LSM trees are not designed to directly store higher-dimensional data. Spatial indexing uses structures like R-trees and Quad-trees to efficiently manage spatial queries. For higher-dimensional data, particularly spatio-temporal data, techniques like geohashes, which concatenate spatial data with time, are commonly employed.</p> <p>Space-filling curves like Z-order (Morton) and Hilbert curves interleave spatial and temporal dimensions, preserving locality and enabling efficient queries. Other methods include extending R-trees to incorporate time as an additional dimension, for spatio-temporal indexing</p>
+<p><b>Multi-dimensional Index (Spatial/Spatio-temporal)</b>: Indexes such as B+ trees and LSM trees are not designed to directly store higher-dimensional data. Spatial indexing uses structures like R-trees and Quad-trees and techniques like geohashes. Space-filling curves like Z-order (Morton) and Hilbert curves interleave spatial and temporal dimensions, preserving locality and enabling efficient queries.</p>
+
+<img class="center-image-0" src="./assets/posts/spatial-index/spatial-index-types.svg" /> 
+<p class="figure-header">Figure 7: Commonly Used: Types of Spatial Indexes</p>
 
 <p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank">GeoMesa</a>: spatio-temporal indexing on top of the Accumulo, HBase, Redis, Kafka, PostGIS and Cassandra. <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank">XZ-Ordering</a>: Customizing Index Creation.</p>
 
@@ -465,12 +468,12 @@ services:
 <p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data.</p>
 
 <img class="center-image-50" src="./assets/posts/telemetry/telemetry-analytics.svg" />
-<p class="figure-header">Figure 7: Analytics on Static, Relative and In-Motion Data</p>
+<p class="figure-header">Figure 8: Analytics on Static, Relative and In-Motion Data</p>
 
 <p>In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
 <img src="./assets/posts/telemetry/usecases-analytics.svg" />
-<p class="figure-header">Figure 8: Batch Analytics vs Stream Analytics</p>
+<p class="figure-header">Figure 9: Batch Analytics vs Stream Analytics</p>
 <div class="table-container">
 <table style="width: 800px;">
     <tr>
