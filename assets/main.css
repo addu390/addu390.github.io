@@ -856,18 +856,6 @@ code {
   font-size: 80%;
 }
 
-.telemetry-architecture:hover {
-  content: url('../assets/posts/telemetry/telemetry-architecture-hover.svg');
-}
-
-.telegraf-overview:hover {
-  content: url('../assets/posts/telemetry/telegraf-overview-hover.svg');
-}
-
-.telemetry-barebone:hover {
-  content: url('../assets/posts/telemetry/telemetry-barebone-hover.svg');
-}
-
 #author h3 {
   text-decoration: underline;
   text-underline-offset: 0.2em;

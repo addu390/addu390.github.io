@@ -24,12 +24,12 @@ category: System Wisdom
 <p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure.</p>
 
 <img class="telemetry-barebone center-image-90" src="./assets/posts/telemetry/telemetry-barebone.svg" /> 
-<p class="figure-header">Figure 0: Barebone Telemetry Pipeline Architecture (Psst... hover over me! 🤫)</p>
+<p class="figure-header">Figure 0: Barebone Telemetry Pipeline Architecture</p>
 
 <p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics</a> for storage and analysis.</p>
 
 <img class="telemetry-architecture" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
-<p class="figure-header">Figure 1: Detailed Telemetry Pipeline Architecture (Me too! 😎)</p>
+<p class="figure-header">Figure 1: Detailed Telemetry Pipeline Architecture</p>
 </details>
 
 <hr class="sub-hr">
@@ -39,7 +39,7 @@ category: System Wisdom
 <li><p><b>Collection</b>: Telemetry data is collected from various sources using agents like Telegraf and <a href="https://www.fluentd.org/" target="_blank" rel="noopener noreferrer">Fluentd</a>.</p></li>
 <li><p><b>Ingestion</b>: Data is ingested through message brokers such as Apache Kafka or Kinesis to handle high throughput.</p></li>
 <li><p><b>Processing</b>: Real-time processing is done using stream processing frameworks like Apache Flink for filtering, aggregating, and enriching data.</p></li>
-<li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, VictoriaMetrics and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like Grafana and Kibana for visualization and alerting.</p></li>
+<li><p><b>Storage and Analysis</b>: Processed data is stored in systems like Cassandra, <a href="https://clickhouse.com/" target="_blank">ClickHouse</a> and <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>, and analyzed using tools like <a href="https://grafana.com/" target="_blank">Grafana</a> and <a href="https://www.elastic.co/kibana" target="_blank">Kibana</a> for visualization and alerting.</p></li>
 </ul>
 </details>
 
