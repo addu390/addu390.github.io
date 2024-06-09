@@ -454,7 +454,7 @@ services:
 <img src="./assets/posts/telemetry/partition-view.svg" />
 <p class="figure-header">Figure 7: Partition Key, Clustering Keys, Local/Global Secondary Indexes and Materialized views</p>
 
-<p><b>Multi-dimensional Index (Spatial/Spatio-temporal)</b>: Indexes such as B+ trees and LSM trees are not designed to directly store higher-dimensional data. Spatial indexing uses structures like R-trees and Quad-trees and techniques like geohashes. Space-filling curves like Z-order (Morton) and Hilbert curves interleave spatial and temporal dimensions, preserving locality and enabling efficient queries.</p>
+<p><b>Multi-dimensional Index (Spatial/Spatio-temporal)</b>: Indexes such as B+ trees and LSM trees are not designed to directly store higher-dimensional data. Spatial indexing uses structures like R-trees and <a href="/hybrid-spatial-index-conclusion" target="_blank">Quad-trees</a> and techniques like <a href="/geohash" target="_blank">geohash</a>. Space-filling curves like Z-order (Morton) and Hilbert curves interleave spatial and temporal dimensions, preserving locality and enabling efficient queries.</p>
 
 <img class="center-image-0" src="./assets/posts/spatial-index/spatial-index-types.svg" /> 
 <p class="figure-header">Figure 8: Commonly Used: Types of Spatial Indexes</p>
@@ -517,6 +517,8 @@ services:
     </tr>
 </table>
 </div>
+
+<p>🌵 <a href="/anomaly-detection-and-remediation" target="_blank">Anomaly Detection and Remediation</a></p>
 
 <p>🌵 <a href="https://docs.mindsdb.com/what-is-mindsdb" target="_blank" rel="noopener noreferrer">MindsDB</a>: Connect Data Source, Configure AI Engine, Create AI Tables, Query for predictions and Automate workflows.</p>
 </details>
