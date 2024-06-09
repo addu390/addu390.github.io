@@ -412,9 +412,13 @@ services:
 
 <hr class="hr">
 
-<p>For example, to decide between OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid approach:</p>
+<p>For example, to decide between Row-based vs Columar Storage. Or OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid approach:</p>
+
+<img class="center-image-90" src="./assets/posts/telemetry/storage-scan-direction.png" />
+<p class="figure-header">Figure 4: Row vs Columnnar Storage</p>
+
 <ul>
-<li><p><b>Transactional and High Throughput Needs</b>: For high write throughput and transactional batches (all or nothing), with queries needing wide row fetches and limited indexed queries based on client_id, time stamp, geo-spatial points within the client partition, Cassandra is better suited.</p></li>
+<li><p><b>Transactional and High Throughput Needs</b>: For high write throughput and transactional batches (all or nothing), with queries needing wide row fetches and limited indexed queries within the partition, Cassandra is better suited.</p></li>
 
 <li><p><b>Complex Analytical Queries</b>: For more complex analytical queries, aggregations on specific columns, and machine learning models, data store(s) such as <a href="https://clickhouse.com/" target="_blank" rel="noopener noreferrer">ClickHouse</a> or VictoriaMetrics (emphasis on time-series) is more appropriate. Its optimized columnar storage and powerful query capabilities make it ideal for handling large-scale analytical tasks.</p></li>
 
@@ -429,7 +433,7 @@ services:
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
 <img src="./assets/posts/telemetry/of-both-worlds-h.png" />
-<p class="figure-header">Figure 4: Detailed comparison of OLTP, OLAP and HTAP</p>
+<p class="figure-header">Figure 5: Detailed comparison of OLTP, OLAP and HTAP</p>
 
 <p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer. For everyday use, 🚗 a Toyota fits. Bringing a war tank to a community center is overkill. Sometimes, you need a fleet—a car for daily use, and a truck for heavy loads.</p>
 
@@ -443,17 +447,17 @@ services:
 <p>Without getting into too much detail, it's crucial to choose the right partitioning strategy (Ex: Range, List, Hash) to ensure partitions don't bloat and effectively support primary read patterns (in this context, example: client_id + region + 1st Day of Month).</p>
 
 <img class="center-image-60" src="./assets/posts/telemetry/index-types.svg" />
-<p class="figure-header">Figure 5: Types of Indexes and Materialized view</p>
+<p class="figure-header">Figure 6: Types of Indexes and Materialized view</p>
 
 <p>Following this, clustering columns and indexes help organize data within partitions to optimize range queries and sorting. Secondary indexes (within the partition/local or across partitions/global) are valuable for query patterns where partition or primary keys don't apply. Materialized views for precomputing and storing complex query results, speeding up read operations for frequently accessed data.</p>
 
 <img src="./assets/posts/telemetry/partition-view.svg" />
-<p class="figure-header">Figure 6: Partition Key, Clustering Keys, Local/Global Secondary Indexes and Materialized views</p>
+<p class="figure-header">Figure 7: Partition Key, Clustering Keys, Local/Global Secondary Indexes and Materialized views</p>
 
 <p><b>Multi-dimensional Index (Spatial/Spatio-temporal)</b>: Indexes such as B+ trees and LSM trees are not designed to directly store higher-dimensional data. Spatial indexing uses structures like R-trees and Quad-trees and techniques like geohashes. Space-filling curves like Z-order (Morton) and Hilbert curves interleave spatial and temporal dimensions, preserving locality and enabling efficient queries.</p>
 
 <img class="center-image-0" src="./assets/posts/spatial-index/spatial-index-types.svg" /> 
-<p class="figure-header">Figure 7: Commonly Used: Types of Spatial Indexes</p>
+<p class="figure-header">Figure 8: Commonly Used: Types of Spatial Indexes</p>
 
 <p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank">GeoMesa</a>: spatio-temporal indexing on top of the Accumulo, HBase, Redis, Kafka, PostGIS and Cassandra. <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank">XZ-Ordering</a>: Customizing Index Creation.</p>
 
@@ -468,12 +472,12 @@ services:
 <p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data.</p>
 
 <img class="center-image-50" src="./assets/posts/telemetry/telemetry-analytics.svg" />
-<p class="figure-header">Figure 8: Analytics on Static, Relative and In-Motion Data</p>
+<p class="figure-header">Figure 9: Analytics on Static, Relative and In-Motion Data</p>
 
 <p>In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
 <img src="./assets/posts/telemetry/usecases-analytics.svg" />
-<p class="figure-header">Figure 9: Batch Analytics vs Stream Analytics</p>
+<p class="figure-header">Figure 10: Batch Analytics vs Stream Analytics</p>
 <div class="table-container">
 <table style="width: 800px;">
     <tr>
