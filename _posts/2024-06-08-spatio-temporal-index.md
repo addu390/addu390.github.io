@@ -4,10 +4,10 @@ title: "Stomping Grounds: Spatio-Temporal Index"
 date: 2024-06-07
 state: Draft
 tags:
-  - Database
-  - Index
+- Database
+- Index
 tips:
-  - <img class="twemoji" src="../assets/img/emoji/warning.svg" alt=""> WIP
+- <img class="twemoji" src="../assets/img/emoji/warning.svg" alt=""> WIP
 author: Adesh Nalpet Adimurthy
 category: System Wisdom
 feature: assets/featured/spatio-temporal-index.png
@@ -21,21 +21,58 @@ feature: assets/featured/spatio-temporal-index.png
 <p>Spatio-temporal data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add location tags and often allow users check in specific places and times. This surge is largely due to smartphones, which act as location sensors, making it easier than ever to capture and analyze this type of data.</p>
 
 <p>The goal of this post is to dive into the different spatial and spatio-temporal indexes that are widely used in both relational and non-relational databases. We'll look at the pros and cons of each type, and also discuss which indexes are the most popular today.</p>
+
+<img class="center-image-0" src="./assets/posts/spatial-index/spatial-index-types.svg" /> 
+<p class="figure-header">Figure 0: Types of Spatial Indexes</p>
+
 </details>
 
 <hr class="clear-hr">
 
-<details open><summary class="h3">1. Spatial Indexes</summary>
-  <img class="center-image-0" src="./assets/posts/spatial-index/spatial-index-types.svg" /> 
-  <p class="figure-header">Figure 0: Types of Spatial Indexes</p>
-  
-  <details open class="text-container"><summary class="h4">1.1. Space-driven Structures</summary>
-  </details>
+<details open><summary class="h3">1. Foundation</summary>
+<img class="center-image-30" src="./assets/posts/spatial-index/no-sort-no-partition-table.svg" /> 
+<p class="figure-header">Figure 1: Initial Table Structure</p>
+<p>Consider a table with the following fields: <code>device</code>, <code>X</code>, and <code>Y</code>, all of which are integers ranging from 1 to 4. Data is inserted into this table randomly by an external application.</p>
 
-  <hr class="sub-hr">
+<img class="center-image-60" src="./assets/posts/spatial-index/no-sort-no-partition-full-scan.svg" /> 
+<p class="figure-header">Figure 2: Unpartitioned and Unsorted Table</p>
+<p>Currently, the table is neither partitioned nor sorted. As a result, the data is distributed across all files (8 files), each containing a mix of all ranges. This means all files are similar in nature. Running a query like <code>Device = 1 and X = 2</code> requires a full scan of all files, which is inefficient.</p>
 
-  <details open class="text-container"><summary class="h4">1.2. Data-driven Structures</summary>
-  </details>
+<img class="center-image-90" src="./assets/posts/spatial-index/no-sort-full-scan.svg" /> 
+<p class="figure-header">Figure 3: Partitioning by Device</p>
+<p>To optimize this, we partition the table by the <code>device</code> field into 4 partitions: <code>Device = 1</code>, <code>Device = 2</code>, <code>Device = 3</code>, and <code>Device = 4</code>. Now, the same query (<code>Device = 1 and X = 2</code>) only needs to scan the relevant partition. This reduces the scan to just 2 files.</p>
+
+<img class="center-image-90" src="./assets/posts/spatial-index/partial-scan-x.svg" /> 
+<p class="figure-header">Figure 4: Sorting Data Within Partitions</p>
+<p>Further optimization can be achieved by sorting the data within each partition by the <code>X</code> field. With this setup, each file in a partition holds a specific range of <code>X</code> values. For example, one file in the <code>Device = 1</code> partition hold <code>X = 1 to 2</code>. This makes the query <code>Device = 1 and X = 2</code> even more efficient.</p>
+
+<img class="center-image-90" src="./assets/posts/spatial-index/no-sort-full-scan-y.svg" /> 
+<p class="figure-header">Figure 5: Limitation with Sorting on a Single Field</p>
+<p>However, if the query changes to <code>Device = 1 and Y = 2</code>, the optimization is lost because the sorting was done on <code>X</code> and not <code>Y</code>. This means the query will still require scanning the entire partition for <code>Device = 1</code>, bringing us back to a less efficient state.</p>
+
+<p>At this point, there's a clear need for efficiently partitioning 2-dimensional data. Why not use B-tree with a composite index? A composite index prioritizes the first column in the index, leading to inefficient querying for the second column. This leads us back to the same problem, particularly when both dimensions need to be considered simultaneously for efficient querying.</p>
+</details>
+
+<details open><summary class="h3">2. Spatial Indexes</summary>
+<p></p>
+
+<details open class="text-container"><summary class="h4">1.1. Space-Filling Curves</summary>
+<p><code>X</code> and <code>Y</code> from 1 to 4 on a 2D axis. The goal is to traverse the data and number them accordingly (the path).</p>
+
+<img class="center-image" src="./assets/posts/spatial-index/space-filling-trivial-details.svg" /> 
+<p class="figure-header">Figure 6: Exploring Space-Filling Curve and Traversing the X-Y Axis</p>
+
+<p>Starting from <code>Y = 4</code> and <code>X = 1</code>, as we traverse up to <code>X = 1</code> and <code>Y = 1</code>, it's evident that there is no locality preservation. The distance between points <code>(1, 4)</code> and <code>(1, 3)</code> is 6, a significant difference for points that are quite close to each other. Grouping this data into files keeps unrelated data together and ended up sorting by one column while ignoring the information in the other column (back to square one). i.e. <code>X = 2</code> leads to a full scan.</p>
+
+<img class="center-image" src="./assets/posts/spatial-index/z-order.svg" /> 
+<p class="figure-header">Figure 7: Z-Order Curve</p>
+
+</details>
+
+<hr class="sub-hr">
+
+<details open class="text-container"><summary class="h4">1.2. Geo Hash</summary>
+</details>
 
 </details>
 
