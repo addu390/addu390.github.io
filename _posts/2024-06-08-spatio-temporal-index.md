@@ -90,7 +90,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <img class="center-image-0" src="./assets/posts/spatial-index/z-order-z-values.svg" /> 
 <p class="figure-header">Figure 11: Efficient Querying with Min-Max Z-Values</p>
-<p>Consider a scenario where the min-max Z-values of 3 files are <code>1 to 5</code>, <code>6 to 9</code>, and <code>13 to 16</code>. Querying by <code>2 <= X <= 3</code> and <code>1 <= Y <= 2</code> would initially require scanning 2 files. However, if we convert these ranges to their Z-value equivalent, which is <code>10 <= Z <= 15</code>, we only need to scan one file, since the min-max Z-values are known.</p>
+<p>Consider a scenario where the min-max Z-values of 3 files are <code>1 to 5</code>, <code>6 to 9</code>, and <code>13 to 16</code>. Querying by <code>2 ≤ X ≤ 3</code> and <code>1 ≤ Y ≤ 2</code> would initially require scanning 2 files. However, if we convert these ranges to their Z-value equivalent, which is <code>10 ≤ Z ≤ 15</code>, we only need to scan one file, since the min-max Z-values are known.</p>
 
 <hr class="hr">
 
