@@ -76,6 +76,26 @@ feature: assets/featured/spatio-temporal-index.png
 <p class="figure-header">Figure 8: Hilbert Curve</p>
 <p>Taking an example, if we query for <code>X = 3</code>, we only need to search 2 of the files. Similarly, for <code>Y = 3</code>, the search is also limited to 2 files. Unlike a hierarchical sort on only one dimension, the data is selective across both dimensions, making the multi-dimensional search more efficient.</p>
 
+<hr class="hr">
+
+<p>In the examples so far, we have presumed that the <code>X</code> and <code>Y</code> values are dense, meaning that there is a value for every combination of <code>X</code> and <code>Y</code>. However, in real-world scenarios, data can be sparse, with many <code>X, Y</code> combinations missing</p>
+
+<img class="center-image" src="./assets/posts/spatial-index/3-partition-curves.svg" /> 
+<p class="figure-header">Figure 9: Flexibility in Number of Files</p>
+<p>The number of files (4 in the prior examples) isn't necessarily dictated. Here's what 3 files would look like using both Z-order and Hilbert curves. The benefits still hold because of the space-filling curve, which efficiently clusters related data points.</p>
+
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/z-order-sparse.svg" /> 
+<p class="figure-header">Figure 10: Optimizing with Z-Values</p>
+<p>To improve efficiency, we can use Z-values. If files are organized by Z-values, each file has a min-max Z-value range. Filters on <code>X</code> and <code>Y</code> can be transformed into Z-values, enabling efficient querying by limiting the search to relevant files based on their Z-value ranges.</p>
+
+<img class="center-image-0" src="./assets/posts/spatial-index/z-order-z-values.svg" /> 
+<p class="figure-header">Figure 11: Efficient Querying with Min-Max Z-Values</p>
+<p>Consider a scenario where the min-max Z-values of 3 files are <code>1 to 5</code>, <code>6 to 9</code>, and <code>13 to 16</code>. Querying by <code>2 <= X <= 3</code> and <code>1 <= Y <= 2</code> would initially require scanning 2 files. However, if we convert these ranges to their Z-value equivalent, which is <code>10 <= Z <= 15</code>, we only need to scan one file, since the min-max Z-values are known.</p>
+
+<hr class="hr">
+
+<p>The <b>implementation goal</b> is to organize the data based on the Z-order curve and store the Z-values. This enables effective querying by transforming <code>X</code> and <code>Y</code> filters into Z-values, thereby reducing the number of files that need to be scanned and enhancing query efficiency.</p>
+
 </details>
 
 <hr class="sub-hr">
