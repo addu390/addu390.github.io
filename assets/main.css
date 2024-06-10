@@ -448,7 +448,7 @@ footer .pure-menu-link:hover {
     width: 95%;
   }
 
-  .center-image {
+  [class^="center-image-"] {
     width: 95%;
   }
 
@@ -621,6 +621,14 @@ a {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.center-image-80 {
+  width: 85%;
+}
+
+.center-image-90 {
+  width: 95%;
 }
 
 .center-image {

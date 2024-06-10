@@ -59,13 +59,22 @@ feature: assets/featured/spatio-temporal-index.png
 <details open class="text-container"><summary class="h4">1.1. Space-Filling Curves</summary>
 <p><code>X</code> and <code>Y</code> from 1 to 4 on a 2D axis. The goal is to traverse the data and number them accordingly (the path).</p>
 
-<img class="center-image" src="./assets/posts/spatial-index/space-filling-trivial-details.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/space-filling-trivial-details.svg" /> 
 <p class="figure-header">Figure 6: Exploring Space-Filling Curve and Traversing the X-Y Axis</p>
 
 <p>Starting from <code>Y = 4</code> and <code>X = 1</code>, as we traverse up to <code>X = 1</code> and <code>Y = 1</code>, it's evident that there is no locality preservation. The distance between points <code>(1, 4)</code> and <code>(1, 3)</code> is 6, a significant difference for points that are quite close to each other. Grouping this data into files keeps unrelated data together and ended up sorting by one column while ignoring the information in the other column (back to square one). i.e. <code>X = 2</code> leads to a full scan.</p>
 
-<img class="center-image" src="./assets/posts/spatial-index/z-order.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/z-order.svg" /> 
 <p class="figure-header">Figure 7: Z-Order Curve</p>
+<p>A recursive Z pattern, also known as the Z-order curve, is an effective way to preserve locality in many cases. For instance, points like <code>(1, 4)</code> and <code>(1, 3)</code> are separated by a single square. By generating 4 files based on this curve, the data is not spread out along a single dimension. Instead, the 4 files are clustered across both dimensions, making the data selective on both <code>X</code> and <code>Y</code> dimensions.</p>
+
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-curve.svg" /> 
+<p class="figure-header">Figure 8: Hilbert Curve</p>
+<p>Similarly, other space-filling curves, such as the Hilbert curve, serve a similar purpose. These curves traverse through the data, ensuring that multi-dimensional data points that are close together in 2D space remain close together along the 1D line or curve, thus preserving locality and enhancing query efficiency across both dimensions.</p>
+
+<img class="center-image-0" src="./assets/posts/spatial-index/hilbert-curve-example.svg" /> 
+<p class="figure-header">Figure 8: Hilbert Curve</p>
+<p>Taking an example, if we query for <code>X = 3</code>, we only need to search 2 of the files. Similarly, for <code>Y = 3</code>, the search is also limited to 2 files. Unlike a hierarchical sort on only one dimension, the data is selective across both dimensions, making the multi-dimensional search more efficient.</p>
 
 </details>
 
