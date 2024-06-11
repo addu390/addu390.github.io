@@ -17,7 +17,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>Brewing! <a href="https://pyblog.medium.com/subscribe" target="_blank">Subscribe</a> now to be the first to know when it's live 🐙</p>
 
-<details><summary class="h3">0. Overview</summary>
+<details open><summary class="h3">0. Overview</summary>
 <p>Spatial data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add location tags and often allow users check in specific places and times. This surge is largely due to smartphones, which act as location sensors, making it easier than ever to capture and analyze this type of data.</p>
 
 <p>The goal of this post is to dive into the different spatial indexes that are widely used in both relational and non-relational databases. We'll look at the pros and cons of each type, and also discuss which indexes are the most popular today.</p>
@@ -31,7 +31,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <hr class="clear-hr">
 
-<details><summary class="h3">1. Foundation</summary>
+<details open><summary class="h3">1. Foundation</summary>
 <img class="center-image-30" src="./assets/posts/spatial-index/no-sort-no-partition-table.svg" /> 
 <p class="figure-header">Figure 1: Initial Table Structure</p>
 <p>Consider a table with the following fields: <code>device</code>, <code>X</code>, and <code>Y</code>, all of which are integers ranging from 1 to 4. Data is inserted into this table randomly by an external application.</p>
@@ -60,7 +60,7 @@ feature: assets/featured/spatio-temporal-index.png
 <details open><summary class="h3">2. Spatial Indexes</summary>
 <p></p>
 
-<details class="text-container"><summary class="h4">2.1. Space-Filling Curves</summary>
+<details open class="text-container"><summary class="h4">2.1. Space-Filling Curves</summary>
 <p><code>X</code> and <code>Y</code> from 1 to 4 on a 2D axis. The goal is to traverse the data and number them accordingly (the path).</p>
 
 <img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/space-filling-trivial-details.svg" /> 
@@ -186,24 +186,162 @@ feature: assets/featured/spatio-temporal-index.png
 
 <details open class="text-container"><summary class="h4">2.2. Grid System</summary>
 
-<p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">GeoHash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (Section 2.1).</p>
-
-<p>Earth is round or more accurately, an ellipsoid. Map projection is a set of transformations represent the globe on a plane. In a map projection. Coordinates(latitude and longitude) of locations from the surface of the globe are transformed to coordinates on a plane. And GeoHash Uses <a href="https://en.wikipedia.org/wiki/Equirectangular_projection" target="_blank">Equirectangular projection</a></p>
+<p>Earth is round or more accurately, an ellipsoid. Map projection is a set of transformations represent the globe on a plane. In a map projection. Coordinates (latitude and longitude) of locations from the surface of the globe are transformed to coordinates on a plane. And GeoHash Uses <a href="https://en.wikipedia.org/wiki/Equirectangular_projection" target="_blank">Equirectangular projection</a></p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/projection.svg" /> 
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
+<h3>2.1.1. Geohash</h3>
+<p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">Geohash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (Section 2.1).</p>
+
+<p>The core of GeoHash is just an clever use of Z-order curves. Split the map-projection (rectangle) into 2 equal rectangles, each identified by unique bit strings.</p>
+
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/geohash-level-0.svg" /> 
-<p class="figure-header">Figure 22: GeoHash Level 1 - Algorithm</p>
+<p class="figure-header">Figure 22: GeoHash Level 1 - Computation</p>
+
+<p>Observation: the divisions along X and Y axes are interleaved between bit strings. For example: an arbitrary bit string <code>01110 01011 00000</code>, follows:</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-bit-interleave.svg" />
+
+<p>By futher encoding this to Base32, we map a unique string to a quadrant in a grid and quadrants that share the same prefix are closer to each other; e.g. <code>000000</code> and <code>000001</code>. By now we know that interleaving trace out a Z-order curve.</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
 <p class="figure-header">Figure 23: GeoHash Level 1 - Z-Order Curve</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
-<p class="figure-header">Figure 24: GeoHash Level 1</p>
+<p>Higher levels (higher order z-curves) lead to higher precision. The geohash algorithm can be iteratively repeated for higher precision. That's one cool property of geohash, adding more characters increase precision of the location.</p>
 
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
-<p class="figure-header">Figure 25: GeoHash Level 2</p>
+<p class="figure-header">Figure 24: GeoHash Level 2</p>
+
+<h3>2.1.2. Geohash - Implementation</h3>
+<p>To Convert a geographical location (latitude, longitude) into a concise string of characters and vice versa</p>
+
+<details class="code-container"><summary class="h4">GeoHash Encoder and Decoder</summary>
+<pre><code>public class GeohashEncoder {
+
+    // Encode latitude and longitude into a geohash with the specified precision
+    public static String encodeGeohash(double latitude, double longitude, int precision) {
+        // Convert latitude and longitude to binary strings
+        String latBin = convertToBinary(latitude, -90, 90, precision * 5 / 2);
+        String lonBin = convertToBinary(longitude, -180, 180, precision * 5 / 2);
+
+        // Interleave the binary strings
+        String interwovenBin = interweave(lonBin, latBin);
+
+        // Convert the interwoven binary string to base32
+        return binaryToBase32(interwovenBin).substring(0, precision);
+    }
+
+    // Convert a coordinate to a binary string based on the range and precision
+    private static String convertToBinary(double value, double min, double max, int precision) {
+        StringBuilder binaryStr = new StringBuilder();
+        for (int i = 0; i < precision; i++) {
+            double mid = (min + max) / 2;
+            if (value >= mid) {
+                binaryStr.append('1');
+                min = mid;
+            } else {
+                binaryStr.append('0');
+                max = mid;
+            }
+        }
+        return binaryStr.toString();
+    }
+
+    // Interleave two binary strings
+    private static String interweave(String str1, String str2) {
+        StringBuilder interwoven = new StringBuilder();
+        for (int i = 0; i < str1.length(); i++) {
+            interwoven.append(str1.charAt(i)).append(str2.charAt(i));
+        }
+        return interwoven.toString();
+    }
+
+    // Convert a binary string to base32
+    private static String binaryToBase32(String binaryStr) {
+        String base32Alphabet = "0123456789bcdefghjkmnpqrstuvwxyz";
+        StringBuilder base32Str = new StringBuilder();
+        for (int i = 0; i < binaryStr.length(); i += 5) {
+            String chunk = binaryStr.substring(i, Math.min(i + 5, binaryStr.length()));
+            int decimalVal = Integer.parseInt(chunk, 2);
+            base32Str.append(base32Alphabet.charAt(decimalVal));
+        }
+        return base32Str.toString();
+    }
+
+    public static void main(String[] args) {
+        double latitude = 37.7749;
+        double longitude = -122.4194;
+        int precision = 5;
+        String geohash = encodeGeohash(latitude, longitude, precision);
+        System.out.println("Geohash: " + geohash);
+    }
+}
+</code></pre>
+
+<pre><code>public class GeohashDecoder {
+
+    // Decode a geohash into latitude and longitude coordinates
+    public static double[] decodeGeohash(String geohash) {
+        // Convert the base32 geohash to a binary string
+        String binaryStr = base32ToBinary(geohash);
+
+        // Split the binary string into longitude and latitude binary strings
+        StringBuilder lonBin = new StringBuilder();
+        StringBuilder latBin = new StringBuilder();
+        for (int i = 0; i < binaryStr.length(); i++) {
+            if (i % 2 == 0) {
+                lonBin.append(binaryStr.charAt(i));
+            } else {
+                latBin.append(binaryStr.charAt(i));
+            }
+        }
+
+        // Convert the binary strings to decimal coordinates
+        double latitude = binaryToDecimal(latBin.toString(), -90, 90);
+        double longitude = binaryToDecimal(lonBin.toString(), -180, 180);
+
+        return new double[]{latitude, longitude};
+    }
+
+    // Convert a base32 string to a binary string
+    private static String base32ToBinary(String base32Str) {
+        String base32Alphabet = "0123456789bcdefghjkmnpqrstuvwxyz";
+        StringBuilder binaryStr = new StringBuilder();
+        for (char c : base32Str.toCharArray()) {
+            int val = base32Alphabet.indexOf(c);
+            String binarySegment = String.format("%5s", Integer.toBinaryString(val)).replace(' ', '0');
+            binaryStr.append(binarySegment);
+        }
+        return binaryStr.toString();
+    }
+
+    // Convert a binary string to a decimal coordinate based on the range
+    private static double binaryToDecimal(String binaryStr, double min, double max) {
+        for (char c : binaryStr.toCharArray()) {
+            double mid = (min + max) / 2;
+            if (c == '1') {
+                min = mid;
+            } else {
+                max = mid;
+            }
+        }
+        return (min + max) / 2;
+    }
+
+    public static void main(String[] args) {
+        // Example geohash to decode
+        String geohash = "9q8yy";
+        double[] coordinates = decodeGeohash(geohash);
+        System.out.println("Latitude: " + coordinates[0] + ", Longitude: " + coordinates[1]);
+    }
+}
+</code></pre>
+</details>
+
+<h3>2.1.2. Geohash - Usage</h3>
+<p></p>
 
 </details>
 
