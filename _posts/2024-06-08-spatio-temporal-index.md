@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stomping Grounds: Spatio-Temporal Index"
+title: "Stomping Grounds: Spatial Indexes"
 date: 2024-06-07
 state: Draft
 tags:
@@ -18,12 +18,14 @@ feature: assets/featured/spatio-temporal-index.png
 <p>Brewing! <a href="https://pyblog.medium.com/subscribe" target="_blank">Subscribe</a> now to be the first to know when it's live 🐙</p>
 
 <details open><summary class="h3">0. Overview</summary>
-<p>Spatio-temporal data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add location tags and often allow users check in specific places and times. This surge is largely due to smartphones, which act as location sensors, making it easier than ever to capture and analyze this type of data.</p>
+<p>Spatial data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add location tags and often allow users check in specific places and times. This surge is largely due to smartphones, which act as location sensors, making it easier than ever to capture and analyze this type of data.</p>
 
-<p>The goal of this post is to dive into the different spatial and spatio-temporal indexes that are widely used in both relational and non-relational databases. We'll look at the pros and cons of each type, and also discuss which indexes are the most popular today.</p>
+<p>The goal of this post is to dive into the different spatial indexes that are widely used in both relational and non-relational databases. We'll look at the pros and cons of each type, and also discuss which indexes are the most popular today.</p>
 
 <img class="center-image-0" src="./assets/posts/spatial-index/spatial-index-types.svg" /> 
 <p class="figure-header">Figure 0: Types of Spatial Indexes</p>
+
+<p>Spatial indexes fall into two main categories: space-driven and data-driven structures. Data-driven structures, like the R-tree family, are tailored to the distribution of the data itself. Space-driven structures include partitioning trees (kd-trees, quad-trees), space-filling curves (Z-order, Hilbert), and grid systems (H3, S2, Geohash), each partitioning space to optimize spatial queries. This classification isn't exhaustive, as many other methods cater to specific needs in spatial data management.</p>
 
 </details>
 
@@ -52,6 +54,8 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>At this point, there's a clear need for efficiently partitioning 2-dimensional data. Why not use B-tree with a composite index? A composite index prioritizes the first column in the index, leading to inefficient querying for the second column. This leads us back to the same problem, particularly when both dimensions need to be considered simultaneously for efficient querying.</p>
 </details>
+
+<hr class="clear-hr">
 
 <details open><summary class="h3">2. Spatial Indexes</summary>
 <p></p>
@@ -132,21 +136,33 @@ However, large jumps along the Z-Order curve can affect certain types of queries
 <hr class="sub-hr">
 
 <details open class="text-container"><summary class="h4">1.2. Geo Hash</summary>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/projection.svg" /> 
+<p class="figure-header">Figure 16:</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
+<p class="figure-header">Figure 17:</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
+<p class="figure-header">Figure 18:</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
+<p class="figure-header">Figure 19:</p>
+
 </details>
 
 </details>
 
 <hr class="clear-hr">
 
-<details open><summary class="h3">2. Spatio-Temporal Index</summary>
-</details>
+<details><summary class="h3">3. References</summary>
 
-<hr class="clear-hr">
-
-<details><summary class="h3">5. References</summary>
-
-<pre style="height: 300px"><code>
+<pre style="max-height: 300px"><code>
 1. Primary credit goes to John Skilling for his article "Programming the Hilbert curve" (American Institue of Physics (AIP) Conf. Proc. 707, 381 (2004)).
+2. Wikipedia. “Z-order curve,” [Online]. Available: https://en.wikipedia.org/wiki/Z-order_curve. [Accessed: 10-Jun-2024].
+3. Amazon Web Services, “Z-order indexing for multifaceted queries in Amazon DynamoDB – Part 1,” [Online]. Available: https://aws.amazon.com/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-1/. [Accessed: 10-Jun-2024].
+4. N. Chandra, “Z-order indexing for efficient queries in Data Lake,” Medium, 20-Sep-2021. [Online]. Available: https://medium.com/@nishant.chandra/z-order-indexing-for-efficient-queries-in-data-lake-48eceaeb2320. [Accessed: 10-Jun-2024].
+5. YouTube, “Z-order indexing for efficient queries in Data Lake,” [Online]. Available: https://www.youtube.com/watch?v=YLVkITvF6KU. [Accessed: 10-Jun-2024].
 </code></pre>
 
 </details>
