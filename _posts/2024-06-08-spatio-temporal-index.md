@@ -17,7 +17,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>Brewing! <a href="https://pyblog.medium.com/subscribe" target="_blank">Subscribe</a> now to be the first to know when it's live 🐙</p>
 
-<details open><summary class="h3">0. Overview</summary>
+<details><summary class="h3">0. Overview</summary>
 <p>Spatial data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add location tags and often allow users check in specific places and times. This surge is largely due to smartphones, which act as location sensors, making it easier than ever to capture and analyze this type of data.</p>
 
 <p>The goal of this post is to dive into the different spatial indexes that are widely used in both relational and non-relational databases. We'll look at the pros and cons of each type, and also discuss which indexes are the most popular today.</p>
@@ -31,7 +31,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <hr class="clear-hr">
 
-<details open><summary class="h3">1. Foundation</summary>
+<details><summary class="h3">1. Foundation</summary>
 <img class="center-image-30" src="./assets/posts/spatial-index/no-sort-no-partition-table.svg" /> 
 <p class="figure-header">Figure 1: Initial Table Structure</p>
 <p>Consider a table with the following fields: <code>device</code>, <code>X</code>, and <code>Y</code>, all of which are integers ranging from 1 to 4. Data is inserted into this table randomly by an external application.</p>
@@ -60,7 +60,7 @@ feature: assets/featured/spatio-temporal-index.png
 <details open><summary class="h3">2. Spatial Indexes</summary>
 <p></p>
 
-<details open class="text-container"><summary class="h4">2.1. Space-Filling Curves</summary>
+<details class="text-container"><summary class="h4">2.1. Space-Filling Curves</summary>
 <p><code>X</code> and <code>Y</code> from 1 to 4 on a 2D axis. The goal is to traverse the data and number them accordingly (the path).</p>
 
 <img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/space-filling-trivial-details.svg" /> 
@@ -184,20 +184,32 @@ feature: assets/featured/spatio-temporal-index.png
 
 <hr class="sub-hr">
 
-<details open class="text-container"><summary class="h4">2.2. Geo Hash</summary>
+<details open class="text-container"><summary class="h4">2.2. Grid System</summary>
+
+<p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">GeoHash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (Section 2.1).</p>
+
+<p>Earth is round or more accurately, an ellipsoid. Map projection is a set of transformations represent the globe on a plane. In a map projection. Coordinates(latitude and longitude) of locations from the surface of the globe are transformed to coordinates on a plane. And GeoHash Uses <a href="https://en.wikipedia.org/wiki/Equirectangular_projection" target="_blank">Equirectangular projection</a></p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/projection.svg" /> 
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/geohash-level-0.svg" /> 
+<p class="figure-header">Figure 22: GeoHash Level 1 - Algorithm</p>
+
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
-<p class="figure-header">Figure 22:</p>
+<p class="figure-header">Figure 23: GeoHash Level 1 - Z-Order Curve</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
-<p class="figure-header">Figure 23:</p>
+<p class="figure-header">Figure 24: GeoHash Level 1</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
-<p class="figure-header">Figure 24:</p>
+<p class="figure-header">Figure 25: GeoHash Level 2</p>
 
+</details>
+
+<hr class="sub-hr">
+
+<details open class="text-container"><summary class="h4">2.3. Space-Partioning Tree</summary>
 </details>
 
 </details>
