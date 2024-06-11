@@ -98,19 +98,34 @@ feature: assets/featured/spatio-temporal-index.png
 
 <hr class="hr">
 
-<p>Z-ordering arranges the 2D pairs on a 1-dimensional line. More importantly, values that were close together in the 2D plane would still be close to each other on the Z-order line. The implementation is quite simple: Interleave or combine the bits of two or more values (multi-dimensional) to create a single value that preserves spatial locality.</p>
+<p>So far, wkt, Z-ordering arranges the 2D pairs on a 1-dimensional line. More importantly, values that were close together in the 2D plane would still be close to each other on the Z-order line. The <b>implementation goal</b> is to derive Z-Values that preserves spatial locality from M-dimensional data-points (Z-ordering is not limited to 2-dimensional space and it can be abstracted to work in any number of dimensions)</p>
+
+<p>Z-order bit-interleaving is a technique that interleave bits of two or more values to create a 1-D value while spatial locality is preserved:</p>
 
 <img class="center-image-40" src="./assets/posts/spatial-index/interleave.svg" /> 
 <p class="figure-header">Figure 12: Bit Interleaving</p>
+<p>Example: 4-bit values <code>X = 10</code>, <code>Y = 12</code> on a 2D grid, <code>X = 1010</code>, <code>Y = 1100</code>, then interleaved value <code>Z = 1110 0100</code> (<code>228</code>)</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-2d-plane.svg" /> 
-<p class="figure-header">Figure 13:</p>
+<p class="figure-header">Figure 13: 2-D Z-Order Curve Space</p>
+
+<p>From the above Z-order keys, we see that points that are close to each other in the original space have close Z-order keys. For instance, points sharing the prefix <code>000</code> in their Z-order keys are close in 2D space, while points with the prefix <code>110</code> indicate greater distance.</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-success.svg" /> 
-<p class="figure-header">Figure 14:</p>
+<p class="figure-header">Figure 14: 2-D Z-Order Curve Space and a Query Region</p>
+<p>Now that we know how to calculate the z-order keys, we can use the z-order keys to define a range of values to read (reange-query), to do so, we have to find the lower and upper counds. For example: The query rectangle: <code>2 ≤ X ≤ 3</code> to <code>4 ≤ Y ≤ 5</code>, the lower bound is <code>Z-Order(X = 2, Y = 4) = 100100</code> and upper bound is <code>(X = 3, Y = 5) = 100111</code>, translates to Z-order values of <code>36</code> and <code>39</code>.</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-danger.svg" /> 
-<p class="figure-header">Figure 15:</p>
+<p class="figure-header">Figure 15: 2-D Z-Order Curve Space and a Query Region (The Problem)</p>
+<p>However, range queries based on Z-Order keys are not always present in a continuous path. For example: The query rectangle <code>1 ≤ X ≤ 3</code> to <code>3 ≤ Y ≤ 4</code>, the lower bound <code>Z-Order(X = 1, Y = 3) = 001011</code> and upper bound is <code>(X = 3, Y = 4) = 100101</code>, translates to Z-order values of <code>11 and 37</code> - optimized using subranges.</p>
+
+<hr class="hr">
+
+<p><b>Usage</b>: Insert data points and their Z-order keys into a one-dimensional hierarchical index structure, such as a B-Tree or Quad-Tree. For range or nearest neighbor queries, convert the search criteria into Z-order keys or range of keys. After retrieval, further filter the results as necessary to remove any garbage values.</p>
+
+<p><b>Conclusion</b>: Space-Filling Curves such as Z-Order indexing is a powerful technique for to query higher-dimensional data, especially as the data volumes grows. By interleaving bits from multiple dimensions into a single value, Z-Order indexing preserves spatial locality, enabling efficient data indexing and retrieval.
+
+However, large jumps along the Z-Order curve can affect certain types of queries. The success of Z-Order indexing relies on the data's distribution and cardinality. Therefore, it is essential to evaluate the nature of the data and query patterns to determine if Z-Order indexing is the right optimization approach.</p>
 
 </details>
 
@@ -125,6 +140,8 @@ feature: assets/featured/spatio-temporal-index.png
 
 <details open><summary class="h3">2. Spatio-Temporal Index</summary>
 </details>
+
+<hr class="clear-hr">
 
 <details><summary class="h3">5. References</summary>
 
