@@ -631,6 +631,10 @@ a {
   width: 95%;
 }
 
+.center-image-70 {
+  width: 70%;
+}
+
 .center-image {
   display: block;
   margin-left: auto;
