@@ -74,13 +74,13 @@ feature: assets/featured/spatio-temporal-index.png
 <p>A recursive Z pattern, also known as the Z-order curve, is an effective way to preserve locality in many cases.</p>
 
 <img class="center-image-0 center-image-60" src="./assets/posts/spatial-index/z-order-types.svg" /> 
-<p class="figure-header">Figure 8: Z-Order Curve Types</p>
+<p class="figure-header">Figure 7: Z-Order Curve Types</p>
 <p>The Z-order curve can take many shapes, depending on which coordinate goes first. The typical Z-shape occurs when the Y-coordinate goes first (most significant bit), and the upper left corner is the base. A mirror image Z-shape occurs when the Y-coordinate goes first and the lower left corner is the base. An N-shape occurs when the X-coordinate goes first and the lower left corner is the base.</p>
 
 <p>Z-order curve grows exponentially, and the next size is the second-order curve that has 2-bit sized dimensions. Duplicate the first-order curve four times and connect them together to form a continuous curve.</p>
 
 <img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/z-order.svg" /> 
-<p class="figure-header">Figure 7: Z-Order Curve</p>
+<p class="figure-header">Figure 8: Z-Order Curve</p>
 
 <p>Points <code>(1, 4)</code> and <code>(1, 3)</code> are separated by a single square. With 4 files based on this curve, the data is not spread out along a single dimension. Instead, the 4 files are clustered across both dimensions, making the data selective on both <code>X</code> and <code>Y</code> dimensions.</p>
 
@@ -90,13 +90,16 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>The Hilbert curve is another type of space-filling curve that serve a similar purpose, rather than using a Z-shaped pattern like the Z-order curve, it uses a gentler U-shaped pattern. When compared with the Z-order curve in Figure 9, it’s quite clear that the Hilbert curve always maintains the same distance between adjacent data points.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-second-order.svg"/> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-second-order.svg"/>
 <p class="figure-header">Figure 9: First Order and Second Order Hilbert Curve</p>
-
 <p>Hilbert curve also grows exponentially, to do so, duplicate the first-order curve and connect them. Additionally, some of the first-order curves are rotated to ensure that the interconnections are not larger than 1 point.</p>
 
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/hilbert-types.svg"/> 
+<p class="figure-header">Figure 10: Hilbert Curve Types</p>
+<p>Although there are quite a lot of varaints of Hilbert curve, the common pattern is to rotate by 90 degrees and repeat the pattern in next higher order(s).</p>
+
 <img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-curve.svg" /> 
-<p class="figure-header">Figure 9: Hilbert Curve</p>
+<p class="figure-header">Figure 11: Hilbert Curve</p>
 <p>Hilbert curves traverse through the data, ensuring that multi-dimensional data points that are close together in 2D space remain close together along the 1D line or curve, thus preserving locality and enhancing query efficiency across both dimensions.</p>
 
 <hr class="hr">
@@ -106,14 +109,14 @@ feature: assets/featured/spatio-temporal-index.png
 <p>Taking an example, if we query for <code>X = 3</code>, we only need to search 2 of the files. Similarly, for <code>Y = 3</code>, the search is also limited to 2 files in both Z-order and Hilbert Curves</p>
 
 <img class="center-image-0" src="./assets/posts/spatial-index/z-order-curve-example.svg" /> 
-<p class="figure-header">Figure 10: Z-Order Curve - Example</p>
+<p class="figure-header">Figure 12: Z-Order Curve - Example</p>
 
 <p>Unlike a hierarchical sort on only one dimension, the data is selective across both dimensions, making the multi-dimensional search more efficient.</p>
 
 <img class="center-image-0" src="./assets/posts/spatial-index/hilbert-curve-example.svg" /> 
-<p class="figure-header">Figure 11: Hilbert Curve - Example</p>
+<p class="figure-header">Figure 13: Hilbert Curve - Example</p>
 
-<p>Although both the curves give a similar advantage, the main shortcoming with Z-order curve: it fails to maintain perfect data locality across all the data points in the curve. In Figure 10, notice the data points between index 8 and 9 are further apart. As the size of the Z-curve increases, so does the distance between such points that connect different parts of curve together.</p>
+<p>Although both the curves give a similar advantage, the main shortcoming with Z-order curve: it fails to maintain perfect data locality across all the data points in the curve. In Figure 12, notice the data points between index 8 and 9 are further apart. As the size of the Z-curve increases, so does the distance between such points that connect different parts of curve together.</p>
 
 <p>Hilbert curve is more preferred over the Z-order curve for ensuring better data locality and Z-order curve is still widely used because of it's simplicity.</p>
 
@@ -124,15 +127,15 @@ feature: assets/featured/spatio-temporal-index.png
 <p>In the examples so far, we have presumed that the <code>X</code> and <code>Y</code> values are dense, meaning that there is a value for every combination of <code>X</code> and <code>Y</code>. However, in real-world scenarios, data can be sparse, with many <code>X, Y</code> combinations missing</p>
 
 <img class="center-image" src="./assets/posts/spatial-index/3-partition-curves.svg" /> 
-<p class="figure-header">Figure 12: Flexibility in Number of Files</p>
+<p class="figure-header">Figure 14: Flexibility in Number of Files</p>
 <p>The number of files (4 in the prior examples) isn't necessarily dictated. Here's what 3 files would look like using both Z-order and Hilbert curves. The benefits still holds to an extent because of the space-filling curve, which efficiently clusters related data points.</p>
 
 <img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/z-order-sparse.svg" /> 
-<p class="figure-header">Figure 13: Optimizing with Z-Values</p>
+<p class="figure-header">Figure 15: Optimizing with Z-Values</p>
 <p>To improve efficiency, we can use Z-values. If files are organized by Z-values, each file has a min-max Z-value range. Filters on <code>X</code> and <code>Y</code> can be transformed into Z-values, enabling efficient querying by limiting the search to relevant files based on their Z-value ranges.</p>
 
 <img class="center-image-0" src="./assets/posts/spatial-index/z-order-z-values.svg" /> 
-<p class="figure-header">Figure 14: Efficient Querying with Min-Max Z-Values</p>
+<p class="figure-header">Figure 16: Efficient Querying with Min-Max Z-Values</p>
 <p>Consider a scenario where the min-max Z-values of 3 files are <code>1 to 5</code>, <code>6 to 9</code>, and <code>13 to 16</code>. Querying by <code>2 ≤ X ≤ 3</code> and <code>3 ≤ Y ≤ 4</code> would initially require scanning 2 files. However, if we convert these ranges to their Z-value equivalent, which is <code>10 ≤ Z ≤ 15</code>, we only need to scan one file, since the min-max Z-values are known.</p>
 
 <hr class="hr">
@@ -144,20 +147,20 @@ feature: assets/featured/spatio-temporal-index.png
 <p>Z-order bit-interleaving is a technique that interleave bits of two or more values to create a 1-D value while spatial locality is preserved:</p>
 
 <img class="center-image-40" src="./assets/posts/spatial-index/interleave.svg" /> 
-<p class="figure-header">Figure 15: Bit Interleaving</p>
+<p class="figure-header">Figure 17: Bit Interleaving</p>
 <p>Example: 4-bit values <code>X = 10</code>, <code>Y = 12</code> on a 2D grid, <code>X = 1010</code>, <code>Y = 1100</code>, then interleaved value <code>Z = 1110 0100</code> (<code>228</code>)</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-2d-plane.svg" /> 
-<p class="figure-header">Figure 16: 2-D Z-Order Curve Space</p>
+<p class="figure-header">Figure 18: 2-D Z-Order Curve Space</p>
 
 <p>From the above Z-order keys, we see that points that are close to each other in the original space have close Z-order keys. For instance, points sharing the prefix <code>000</code> in their Z-order keys are close in 2D space, while points with the prefix <code>110</code> indicate greater distance.</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-success.svg" /> 
-<p class="figure-header">Figure 17: 2-D Z-Order Curve Space and a Query Region</p>
+<p class="figure-header">Figure 19: 2-D Z-Order Curve Space and a Query Region</p>
 <p>Now that we know how to calculate the z-order keys, we can use the z-order keys to define a range of values to read (reange-query), to do so, we have to find the lower and upper counds. For example: The query rectangle: <code>2 ≤ X ≤ 3</code> to <code>4 ≤ Y ≤ 5</code>, the lower bound is <code>Z-Order(X = 2, Y = 4) = 100100</code> and upper bound is <code>(X = 3, Y = 5) = 100111</code>, translates to Z-order values of <code>36</code> and <code>39</code>.</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-danger.svg" /> 
-<p class="figure-header">Figure 18: 2-D Z-Order Curve Space and a Query Region (The Problem)</p>
+<p class="figure-header">Figure 20: 2-D Z-Order Curve Space and a Query Region (The Problem)</p>
 <p>However, range queries based on Z-Order keys are not always present in a continuous Z path. For example: The query rectangle <code>1 ≤ X ≤ 3</code> to <code>3 ≤ Y ≤ 4</code>, the lower bound <code>Z-Order(X = 1, Y = 3) = 001011</code> and upper bound is <code>(X = 3, Y = 4) = 100101</code>, translates to Z-order values of <code>11 and 37</code> - optimized using subranges.</p>
 
 <p>The Z-order curve weakly preserves latitude-longitude proximity, i.e. two locations that are close in physical distance are not guaranteed to be close following the Z-curve</p>
@@ -184,16 +187,16 @@ feature: assets/featured/spatio-temporal-index.png
 <details open class="text-container"><summary class="h4">2.2. Geo Hash</summary>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/projection.svg" /> 
-<p class="figure-header">Figure 19: Equirectangular projection/ Equidistant Cylindrical Projection</p>
+<p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
-<p class="figure-header">Figure 20:</p>
+<p class="figure-header">Figure 22:</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
-<p class="figure-header">Figure 21:</p>
+<p class="figure-header">Figure 23:</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
-<p class="figure-header">Figure 22:</p>
+<p class="figure-header">Figure 24:</p>
 
 </details>
 
