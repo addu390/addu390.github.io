@@ -628,6 +628,10 @@ a {
   margin-right: auto;
 }
 
+.center-image-100 {
+  width: 100%;
+}
+
 .center-image-80 {
   width: 85%;
 }

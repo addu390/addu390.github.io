@@ -95,7 +95,10 @@ feature: assets/featured/spatio-temporal-index.png
 <p class="figure-header">Figure 9: First Order and Second Order Hilbert Curve</p>
 <p>Hilbert curve also grows exponentially, to do so, duplicate the first-order curve and connect them. Additionally, some of the first-order curves are rotated to ensure that the interconnections are not larger than 1 point.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-types.svg"/> 
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/hilbert-exponent.svg" /> 
+<p>Comparing with the Z-curves (from Figure 8, higher-order in Figure 18), the Z-order curve is longer than the Hilbert curve at all levels, for the same area.</p>
+
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/hilbert-types.svg"/> 
 <p class="figure-header">Figure 10: Hilbert Curve Types</p>
 <p>Although there are quite a lot of varaints of Hilbert curve, the common pattern is to rotate by 90 degrees and repeat the pattern in next higher order(s).</p>
 
@@ -109,12 +112,12 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>Taking an example, if we query for <code>X = 3</code>, we only need to search 2 of the files. Similarly, for <code>Y = 3</code>, the search is also limited to 2 files in both Z-order and Hilbert Curves</p>
 
-<img class="center-image-0" src="./assets/posts/spatial-index/z-order-curve-example.svg" /> 
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/z-order-curve-example.svg" /> 
 <p class="figure-header">Figure 12: Z-Order Curve - Example</p>
 
 <p>Unlike a hierarchical sort on only one dimension, the data is selective across both dimensions, making the multi-dimensional search more efficient.</p>
 
-<img class="center-image-0" src="./assets/posts/spatial-index/hilbert-curve-example.svg" /> 
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/hilbert-curve-example.svg" /> 
 <p class="figure-header">Figure 13: Hilbert Curve - Example</p>
 
 <p>Although both the curves give a similar advantage, the main shortcoming with Z-order curve: it fails to maintain perfect data locality across all the data points in the curve. In Figure 12, notice the data points between index 8 and 9 are further apart. As the size of the Z-curve increases, so does the distance between such points that connect different parts of curve together.</p>
@@ -304,7 +307,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>Observation: the divisions along X and Y axes are interleaved between bit strings. For example: an arbitrary bit string <code>01110 01011 00000</code>, follows:</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-bit-interleave.svg" />
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/geohash-bit-interleave.svg" />
 
 <p>By futher encoding this to Base32 (<code>0123456789bcdefghjkmnpqrstuvwxyz</code>), we map a unique string to a quadrant in a grid and quadrants that share the same prefix are closer to each other; e.g. <code>000000</code> and <code>000001</code>. By now we know that interleaving trace out a Z-order curve.</p>
 
