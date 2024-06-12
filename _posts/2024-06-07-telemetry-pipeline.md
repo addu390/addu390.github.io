@@ -53,7 +53,7 @@ category: System Wisdom
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
-<p><img class="center-image telegraf-overview" src="./assets/posts/telemetry/telegraf-overview.svg" /> </p>
+<p><img class="center-image-0 center-image-80 telegraf-overview" src="./assets/posts/telemetry/telegraf-overview.svg" /> </p>
 <p class="figure-header">Figure 2: Telegraf for collecting metrics & data</p>
 
 <p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
@@ -446,7 +446,7 @@ services:
 
 <p>Without getting into too much detail, it's crucial to choose the right partitioning strategy (Ex: Range, List, Hash) to ensure partitions don't bloat and effectively support primary read patterns (in this context, example: client_id + region + 1st Day of Month).</p>
 
-<img class="center-image-60" src="./assets/posts/telemetry/index-types.svg" />
+<img class="center-image-0 center-image-70" src="./assets/posts/telemetry/index-types.svg" />
 <p class="figure-header">Figure 6: Types of Indexes and Materialized view</p>
 
 <p>Following this, clustering columns and indexes help organize data within partitions to optimize range queries and sorting. Secondary indexes (within the partition/local or across partitions/global) are valuable for query patterns where partition or primary keys don't apply. Materialized views for precomputing and storing complex query results, speeding up read operations for frequently accessed data.</p>
@@ -471,7 +471,7 @@ services:
 
 <p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data.</p>
 
-<img class="center-image-50" src="./assets/posts/telemetry/telemetry-analytics.svg" />
+<img class="center-image-65" src="./assets/posts/telemetry/telemetry-analytics.svg" />
 <p class="figure-header">Figure 9: Analytics on Static, Relative and In-Motion Data</p>
 
 <p>In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>

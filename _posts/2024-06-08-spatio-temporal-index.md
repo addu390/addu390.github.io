@@ -32,11 +32,11 @@ feature: assets/featured/spatio-temporal-index.png
 <hr class="clear-hr">
 
 <details open><summary class="h3">1. Foundation</summary>
-<img class="center-image-30" src="./assets/posts/spatial-index/no-sort-no-partition-table.svg" /> 
+<img class="center-image-40" src="./assets/posts/spatial-index/no-sort-no-partition-table.svg" /> 
 <p class="figure-header">Figure 1: Initial Table Structure</p>
 <p>Consider a table with the following fields: <code>device</code>, <code>X</code>, and <code>Y</code>, all of which are integers ranging from 1 to 4. Data is inserted into this table randomly by an external application.</p>
 
-<img class="center-image-60" src="./assets/posts/spatial-index/no-sort-no-partition-full-scan.svg" /> 
+<img class="center-image" src="./assets/posts/spatial-index/no-sort-no-partition-full-scan.svg" /> 
 <p class="figure-header">Figure 2: Unpartitioned and Unsorted Table</p>
 <p>Currently, the table is neither partitioned nor sorted. As a result, the data is distributed across all files (8 files), each containing a mix of all ranges. This means all files are similar in nature. Running a query like <code>Device = 1 and X = 2</code> requires a full scan of all files, which is inefficient.</p>
 
@@ -63,7 +63,7 @@ feature: assets/featured/spatio-temporal-index.png
 <details open class="text-container"><summary class="h4">2.1. Space-Filling Curves</summary>
 <p><code>X</code> and <code>Y</code> from 1 to 4 on a 2D axis. The goal is to traverse the data and number them accordingly (the path).</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/space-filling-trivial-details.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/space-filling-trivial-details.svg" /> 
 <p class="figure-header">Figure 6: Exploring Space-Filling Curve and Traversing the X-Y Axis</p>
 
 <p>Starting from <code>Y = 1</code> and <code>X = 1</code>, as we traverse up to <code>X = 1</code> and <code>Y = 4</code>, it's evident that there is no locality preservation (Lexicographical Order). The distance between points <code>(1, 4)</code> and <code>(1, 3)</code> is 6, a significant difference for points that are quite close to each other. Grouping this data into files keeps unrelated data together and ended up sorting by one column while ignoring the information in the other column (back to square one). i.e. <code>X = 2</code> leads to a full scan.</p>
@@ -73,13 +73,13 @@ feature: assets/featured/spatio-temporal-index.png
 <h3>2.1.1. Z-Order Curve - Intuition</h3>
 <p>A recursive Z pattern, also known as the Z-order curve, is an effective way to preserve locality in many cases.</p>
 
-<img class="center-image-0 center-image-60" src="./assets/posts/spatial-index/z-order-types.svg" /> 
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-types.svg" /> 
 <p class="figure-header">Figure 7: Z-Order Curve Types</p>
 <p>The Z-order curve can take many shapes, depending on which coordinate goes first. The typical Z-shape occurs when the Y-coordinate goes first (most significant bit), and the upper left corner is the base. A mirror image Z-shape occurs when the Y-coordinate goes first and the lower left corner is the base. An N-shape occurs when the X-coordinate goes first and the lower left corner is the base.</p>
 
 <p>Z-order curve grows exponentially, and the next size is the second-order curve that has 2-bit sized dimensions. Duplicate the first-order curve four times and connect them together to form a continuous curve.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/z-order.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/z-order.svg" /> 
 <p class="figure-header">Figure 8: Z-Order Curve</p>
 
 <p>Points <code>(1, 4)</code> and <code>(1, 3)</code> are separated by a single square. With 4 files based on this curve, the data is not spread out along a single dimension. Instead, the 4 files are clustered across both dimensions, making the data selective on both <code>X</code> and <code>Y</code> dimensions.</p>
@@ -90,15 +90,15 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>The Hilbert curve is another type of space-filling curve that serve a similar purpose, rather than using a Z-shaped pattern like the Z-order curve, it uses a gentler U-shaped pattern. When compared with the Z-order curve in Figure 9, it’s quite clear that the Hilbert curve always maintains the same distance between adjacent data points.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-second-order.svg"/>
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/hilbert-second-order.svg"/>
 <p class="figure-header">Figure 9: First Order and Second Order Hilbert Curve</p>
 <p>Hilbert curve also grows exponentially, to do so, duplicate the first-order curve and connect them. Additionally, some of the first-order curves are rotated to ensure that the interconnections are not larger than 1 point.</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/hilbert-types.svg"/> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-types.svg"/> 
 <p class="figure-header">Figure 10: Hilbert Curve Types</p>
 <p>Although there are quite a lot of varaints of Hilbert curve, the common pattern is to rotate by 90 degrees and repeat the pattern in next higher order(s).</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/hilbert-curve.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/hilbert-curve.svg" /> 
 <p class="figure-header">Figure 11: Hilbert Curve</p>
 <p>Hilbert curves traverse through the data, ensuring that multi-dimensional data points that are close together in 2D space remain close together along the 1D line or curve, thus preserving locality and enhancing query efficiency across both dimensions.</p>
 
@@ -126,7 +126,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>In the examples so far, we have presumed that the <code>X</code> and <code>Y</code> values are dense, meaning that there is a value for every combination of <code>X</code> and <code>Y</code>. However, in real-world scenarios, data can be sparse, with many <code>X, Y</code> combinations missing</p>
 
-<img class="center-image" src="./assets/posts/spatial-index/3-partition-curves.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/3-partition-curves.svg" /> 
 <p class="figure-header">Figure 14: Flexibility in Number of Files</p>
 <p>The number of files (4 in the prior examples) isn't necessarily dictated. Here's what 3 files would look like using both Z-order and Hilbert curves. The benefits still holds to an extent because of the space-filling curve, which efficiently clusters related data points.</p>
 
@@ -196,22 +196,22 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>The core of GeoHash is just an clever use of Z-order curves. Split the map-projection (rectangle) into 2 equal rectangles, each identified by unique bit strings.</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/geohash-level-0.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/geohash-level-0.svg" /> 
 <p class="figure-header">Figure 22: GeoHash Level 1 - Computation</p>
 
 <p>Observation: the divisions along X and Y axes are interleaved between bit strings. For example: an arbitrary bit string <code>01110 01011 00000</code>, follows:</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-bit-interleave.svg" />
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-bit-interleave.svg" />
 
 <p>By futher encoding this to Base32, we map a unique string to a quadrant in a grid and quadrants that share the same prefix are closer to each other; e.g. <code>000000</code> and <code>000001</code>. By now we know that interleaving trace out a Z-order curve.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
 <p class="figure-header">Figure 23: GeoHash Level 1 - Z-Order Curve</p>
 
 <p>Higher levels (higher order z-curves) lead to higher precision. The geohash algorithm can be iteratively repeated for higher precision. That's one cool property of geohash, adding more characters increase precision of the location.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
 <p class="figure-header">Figure 24: GeoHash Level 2</p>
 
 <p>Despite the easy implementation and wide usage of geohash, it inherits the disadvantages of Z-order curves (<code>Section 2.1.5</code>): weakly preserved latitude-longitude proximity; does not always guarantee that locations that are physically close are also close on the Z-curve. </p>

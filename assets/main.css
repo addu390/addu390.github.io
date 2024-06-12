@@ -221,6 +221,11 @@ footer .pure-menu-link:hover {
   border-radius: 5px;
 }
 
+.post-entry-toc .posts {
+  margin: 0 1em 0 0 !important;
+  max-width: 76%;
+}
+
 .posts {
   margin: 4.8em 0.8em 0 0em;
   max-width: 68%;
@@ -259,7 +264,7 @@ footer .pure-menu-link:hover {
 }
 
 .post-entry {
-  margin: 4.8em auto 0 auto;
+  margin: 4.8em 0 0 0;
 }
 
 .post-entry h1,
@@ -413,8 +418,8 @@ footer .pure-menu-link:hover {
     z-index: 2;
   }
 
-  .post-entry {
-    width: 85%;
+  .post-entry-toc .posts, .post-entry {
+    width: 100%;
   }
 
   .tags {
@@ -439,9 +444,9 @@ footer .pure-menu-link:hover {
     letter-spacing: normal;
   }
 
-  .posts {
+  .posts, .post-entry-toc .posts {
     max-width: 100%;
-    margin: 0;
+    margin: 0 !important;
   }
 
   .post .center-image {
@@ -667,7 +672,7 @@ a {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 95%;
 }
 
 .center-image-30 {
@@ -754,6 +759,7 @@ code {
 
 .sidebar-scrollable-div::-webkit-scrollbar-thumb {
   background: #e1e1e1;
+  border-radius: 5px;
 }
 
 .sidebar-list * {
@@ -932,6 +938,12 @@ code {
 .sidebar-scrollable-div {
   overflow-y: scroll;
   max-height: 20em;
+}
+
+.sidebar-toc-div {
+  max-height: 40em !important;
+  position: fixed;
+  margin-right: 1.7em;
 }
 
 .sidebar-scrollable-div a, .sidebar-text-div a {
