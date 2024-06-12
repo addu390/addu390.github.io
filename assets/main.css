@@ -900,6 +900,10 @@ code {
   border-radius: 5px;
 }
 
+.code-container .p {
+  font-size: 17px;
+}
+
 .code-container pre, .code-container code {
   background-color: #ececcf;
 }
@@ -1133,3 +1137,4 @@ table {
 .content h2, .content h3, .content summary {
   scroll-margin-top: 70px;
 }
+

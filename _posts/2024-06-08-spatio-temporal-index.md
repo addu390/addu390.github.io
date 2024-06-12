@@ -126,7 +126,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>In the examples so far, we have presumed that the <code>X</code> and <code>Y</code> values are dense, meaning that there is a value for every combination of <code>X</code> and <code>Y</code>. However, in real-world scenarios, data can be sparse, with many <code>X, Y</code> combinations missing</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/3-partition-curves.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/3-partition-curves.svg" /> 
 <p class="figure-header">Figure 14: Flexibility in Number of Files</p>
 <p>The number of files (4 in the prior examples) isn't necessarily dictated. Here's what 3 files would look like using both Z-order and Hilbert curves. The benefits still holds to an extent because of the space-filling curve, which efficiently clusters related data points.</p>
 
@@ -150,6 +150,45 @@ feature: assets/featured/spatio-temporal-index.png
 <p class="figure-header">Figure 17: Bit Interleaving</p>
 <p>Example: 4-bit values <code>X = 10</code>, <code>Y = 12</code> on a 2D grid, <code>X = 1010</code>, <code>Y = 1100</code>, then interleaved value <code>Z = 1110 0100</code> (<code>228</code>)</p>
 
+<details class="code-container"><summary class="p">2.1.5a. Z-Order Curve - Snippet</summary>
+
+<pre><code>public class ZOrderCurve {
+
+    // Function to interleave bits of two integers x and y
+    public static long interleaveBits(int x, int y) {
+        long z = 0;
+        for (int i = 0; i < 32; i++) {
+            z |= (long)((x & (1 << i)) << i) | ((y & (1 << i)) << (i + 1));
+        }
+        return z;
+    }
+
+    // Function to compute the Z-order curve values for a list of points
+    public static long[] zOrderCurve(int[][] points) {
+        long[] zValues = new long[points.length];
+        for (int i = 0; i < points.length; i++) {
+            int x = points[i][0];
+            int y = points[i][1];
+            zValues[i] = interleaveBits(x, y);
+        }
+        return zValues;
+    }
+
+    public static void main(String[] args) {
+        int[][] points = { {1, 2}, {3, 4}, {5, 6} };
+        long[] zValues = zOrderCurve(points);
+
+        System.out.println("Z-order values:");
+        for (long z : zValues) {
+            System.out.println(z);
+        }
+    }
+}
+</code></pre>
+</details>
+
+<hr class="hr">
+
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/z-order-2d-plane.svg" /> 
 <p class="figure-header">Figure 18: 2-D Z-Order Curve Space</p>
 
@@ -167,18 +206,81 @@ feature: assets/featured/spatio-temporal-index.png
 
 <hr class="hr">
 
-<h3>2.1.6. Z-Order Curve - Usage</h3>
+<h3>2.1.6. Hilbert Curve - Implementation</h3>
+<p>From <a href="#2-1-2-hilbert-curve-intuition">Section 2.1.2</a>, wkt: The Hilbert curve implementation converts 2D coordinates to a single scalar value that preserves spatial locality by recursively rotating and transforming the coordinate space.</p>
 
-<p>Insert data points and their Z-order keys into a one-dimensional hierarchical index structure, such as a B-Tree or Quad-Tree. For range or nearest neighbor queries, convert the search criteria into Z-order keys or range of keys. After retrieval, further filter the results as necessary to remove any garbage values.</p>
+<p>In the code snippet: The <code>xyToHilbert</code> function computes this scalar value using bitwise operations, while the <code>hilbertToXy</code> function reverses this process. This method ensures that points close in 2D space remain close in the 1D Hilbert curve index, making it useful for spatial indexing.</p>
 
-<p>To conclude: Space-Filling Curves such as Z-Order indexing is a powerful technique for to query higher-dimensional data, especially as the data volumes grows. By interleaving bits from multiple dimensions into a single value, Z-Order indexing preserves spatial locality, enabling efficient data indexing and retrieval.</p>
+<details class="code-container"><summary class="p">2.1.6a. Hilbert Curve - Snippet</summary>
+<pre><code>public class HilbertCurve {
+    // Rotate/flip a quadrant appropriately
+    private static void rot(int n, int[] x, int[] y, int rx, int ry) {
+        if (ry == 0) {
+            if (rx == 1) {
+                x[0] = n - 1 - x[0];
+                y[0] = n - 1 - y[0];
+            }
+            // Swap x and y
+            int temp = x[0];
+            x[0] = y[0];
+            y[0] = temp;
+        }
+    }
 
-<p>However, large jumps along the Z-Order curve can affect certain types of queries. The success of Z-Order indexing relies on the data's distribution and cardinality. Therefore, it is essential to evaluate the nature of the data and query patterns to determine if Z-Order indexing is the right optimization approach.</p>
+    // Convert (x, y) to Hilbert curve distance
+    public static int xyToHilbert(int n, int x, int y) {
+        int d = 0;
+        int[] ix = { x };
+        int[] iy = { y };
+
+        for (int s = n / 2; s > 0; s /= 2) {
+            int rx = (ix[0] & s) > 0 ? 1 : 0;
+            int ry = (iy[0] & s) > 0 ? 1 : 0;
+            d += s * s * ((3 * rx) ^ ry);
+            rot(s, ix, iy, rx, ry);
+        }
+
+        return d;
+    }
+
+    // Convert Hilbert curve distance to (x, y)
+    public static void hilbertToXy(int n, int d, int[] x, int[] y) {
+        int rx, ry, t = d;
+        x[0] = y[0] = 0;
+        for (int s = 1; s < n; s *= 2) {
+            rx = (t / 2) % 2;
+            ry = (t ^ rx) % 2;
+            rot(s, x, y, rx, ry);
+            x[0] += s * rx;
+            y[0] += s * ry;
+            t /= 4;
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 16; // size of the grid (must be a power of 2)
+        int x = 5;
+        int y = 10;
+        int d = xyToHilbert(n, x, y);
+        System.out.println("The Hilbert curve distance for (" + x + ", " + y + ") is: " + d);
+
+        int[] point = new int[2];
+        hilbertToXy(n, d, point, point);
+        System.out.println("The coordinates for Hilbert curve distance " + d + " are: (" + point[0] + ", " + point[1] + ")");
+    }
+}
+</code></pre>
+</details>
 
 <hr class="hr">
 
-<h3>2.1.7. Hilbert Curve - Implementation</h3>
-<p>Work in Progress!</p>
+<h3>2.1.7. Z-Order Curve and Hilbert Curve - Usage</h3>
+
+<p>Insert data points and their Z-order keys/Hilbert Keys (let's call it Z and H keys) into a one-dimensional hierarchical index structure, such as a B-Tree or Quad-Tree. For range or nearest neighbor queries, convert the search criteria into Z/H keys or range of keys. After retrieval, further filter the results as necessary to remove any garbage values.</p>
+
+<p>To conclude: Space-Filling Curves such as Z-Order/Hilbert indexing is a powerful technique for to query higher-dimensional data, especially as the data volumes grows. By combining bits from multiple dimensions into a single value, space-Filling Curves indexing preserves spatial locality, enabling efficient data indexing and retrieval.</p>
+
+<p>However, as seen in <a href="#2-1-5-z-order-curve-implementation">Section 2.1.5</a>, large jumps along the Z-Order curve can affect certain types of queries. The success of Z-Order indexing relies on the data's distribution and cardinality. Which is solved with using Hilbert curves (<a href="#2-1-2-hilbert-curve-intuition">Section 2.1.2</a>). Therefore, it is essential to evaluate the nature of the data, query patterns and performance needs to determine the right indexing strategy.</p>
 
 </details>
 
@@ -219,34 +321,81 @@ feature: assets/featured/spatio-temporal-index.png
 <p>Adding on to it, is the use of <a href="https://en.wikipedia.org/wiki/Tissot%27s_indicatrix" target="_blank">equirectangular projection</a>, where the division of the map into equal subspaces leads to unequal/disproportional surface areas, especially near the poles (northern and southern hemisphere). However, there are alternatives such as <a href="https://www.researchgate.net/publication/328727378_GEOHASH-EAS_-_A_MODIFIED_GEOHASH_GEOCODING_SYSTEM_WITH_EQUAL-AREA_SPACES" target="_blank">Geohash-EAS</a> (Equal-Area Spaces).</p>
 
 <h3>2.1.2. Geohash - Implementation</h3>
-<p>To Convert a geographical location (latitude, longitude) into a concise string of characters and vice versa</p>
-
-<details open class="code-container"><summary class="h4">Geohash Encoder</summary>
-
-<pre><code>Initialize latitude and longitude ranges.
-Convert latitude to a binary string.
-Convert longitude to a binary string.
-Interleave the binary strings of latitude and longitude.
-Convert the interleaved binary string into a base32 string.
-Return the resulting geohash string.
-</code></pre>
-</details>
+<p>To Convert a geographical location (latitude, longitude) into a concise string of characters and vice versa:</p>
+<ul>
+<li>Convert latitude and longitude to a binary strings.</li>
+<li>Interleave the binary strings of latitude and longitude.</li>
+<li>Geohash: Convert the interleaved binary string into a base32 string.</li>
+</ul>
 
 <hr class="sub-hr">
 
-<details open class="code-container"><summary class="h4">Geohash Decoder</summary>
+<details class="code-container"><summary class="p">2.1.2a. Geohash Encoder - Snippet</summary>
 
-<pre><code>Convert the base32 geohash to a binary string.
-Split the binary string into separate latitude and longitude binary strings.
-Convert the latitude binary string to a decimal coordinate.
-Convert the longitude binary string to a decimal coordinate.
-Calculate the midpoints of the final ranges.
-Return the decoded latitude and longitude.
+<pre><code>public class GeohashEncoder {
+
+    public static String encodeGeohash(double latitude, double longitude, int precision) {
+        // 1. Convert Lat and Long into a binary string based on the range.
+        String latBin = convertToBinary(latitude, -90, 90, precision * 5 / 2);
+        String lonBin = convertToBinary(longitude, -180, 180, precision * 5 / 2);
+
+        // 2. Interweave the binary strings.
+        String interwovenBin = interweave(lonBin, latBin);
+
+        // 3. Converts a binary string to a base32 geohash.
+        String geohash = binaryToBase32(interwovenBin);
+
+        return geohash.substring(0, precision);
+    }
+
+    private static String convertToBinary(double value, double min, double max, int precision) {
+        StringBuilder binaryStr = new StringBuilder();
+        for (int i = 0; i < precision; i++) {
+            double mid = (min + max) / 2;
+            if (value >= mid) {
+                binaryStr.append('1');
+                min = mid;
+            } else {
+                binaryStr.append('0');
+                max = mid;
+            }
+        }
+        return binaryStr.toString();
+    }
+
+    private static String interweave(String str1, String str2) {
+        StringBuilder interwoven = new StringBuilder();
+        for (int i = 0; i < str1.length(); i++) {
+            interwoven.append(str1.charAt(i));
+            interwoven.append(str2.charAt(i));
+        }
+        return interwoven.toString();
+    }
+
+    private static String binaryToBase32(String binaryStr) {
+        String base32Alphabet = "0123456789bcdefghjkmnpqrstuvwxyz";
+        StringBuilder base32Str = new StringBuilder();
+        for (int i = 0; i < binaryStr.length(); i += 5) {
+            String chunk = binaryStr.substring(i, Math.min(i + 5, binaryStr.length()));
+            int decimalVal = Integer.parseInt(chunk, 2);
+            base32Str.append(base32Alphabet.charAt(decimalVal));
+        }
+        return base32Str.toString();
+    }
+
+    public static void main(String[] args) {
+        double latitude = 37.7749;
+        double longitude = -122.4194;
+        int precision = 5;
+        String geohash = encodeGeohash(latitude, longitude, precision);
+        System.out.println("Geohash: " + geohash);
+    }
+}
 </code></pre>
 </details>
 
 <h3>2.1.2. Geohash - Usage</h3>
-<p>Similar to <a href="#2-1-6-z-order-curve-usage">Section 2.1.6</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
+<p>Similar to <a href="#2-1-7-z-order-curve-and-hilbert-curve-usage">Section 2.1.7</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
 
 <p>Prefix Search: Nearby locations share common geohash prefixes, enabling efficient filtering of locations by performing prefix searches on the geohash column</p>
 
