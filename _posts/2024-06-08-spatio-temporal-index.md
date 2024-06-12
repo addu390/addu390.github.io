@@ -214,6 +214,10 @@ feature: assets/featured/spatio-temporal-index.png
 <img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
 <p class="figure-header">Figure 24: GeoHash Level 2</p>
 
+<p>Despite the easy implementation and wide usage of geohash, it inherits the disadvantages of Z-order curves (<code>Section 2.1.5</code>): weakly preserved latitude-longitude proximity; does not always guarantee that locations that are physically close are also close on the Z-curve. </p>
+
+<p>Adding on to it, is the use of <a href="https://en.wikipedia.org/wiki/Tissot%27s_indicatrix" target="_blank">equirectangular projection</a>, where the division of the map into equal subspaces leads to unequal/disproportional surface areas, especially near the poles (northern and southern hemisphere). However, there are alternatives such as <a href="https://www.researchgate.net/publication/328727378_GEOHASH-EAS_-_A_MODIFIED_GEOHASH_GEOCODING_SYSTEM_WITH_EQUAL-AREA_SPACES" target="_blank">Geohash-EAS</a> (Equal-Area Spaces).</p>
+
 <h3>2.1.2. Geohash - Implementation</h3>
 <p>To Convert a geographical location (latitude, longitude) into a concise string of characters and vice versa</p>
 
