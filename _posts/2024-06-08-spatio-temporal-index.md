@@ -192,7 +192,7 @@ feature: assets/featured/spatio-temporal-index.png
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
 <h3>2.1.1. Geohash</h3>
-<p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">Geohash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (Section 2.1).</p>
+<p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">Geohash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (<a href="#2-1-space-filling-curves">Section 2.1</a>).</p>
 
 <p>The core of GeoHash is just an clever use of Z-order curves. Split the map-projection (rectangle) into 2 equal rectangles, each identified by unique bit strings.</p>
 
@@ -203,7 +203,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-bit-interleave.svg" />
 
-<p>By futher encoding this to Base32, we map a unique string to a quadrant in a grid and quadrants that share the same prefix are closer to each other; e.g. <code>000000</code> and <code>000001</code>. By now we know that interleaving trace out a Z-order curve.</p>
+<p>By futher encoding this to Base32 (<code>0123456789bcdefghjkmnpqrstuvwxyz</code>), we map a unique string to a quadrant in a grid and quadrants that share the same prefix are closer to each other; e.g. <code>000000</code> and <code>000001</code>. By now we know that interleaving trace out a Z-order curve.</p>
 
 <img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
 <p class="figure-header">Figure 23: GeoHash Level 1 - Z-Order Curve</p>
@@ -214,7 +214,7 @@ feature: assets/featured/spatio-temporal-index.png
 <img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
 <p class="figure-header">Figure 24: GeoHash Level 2</p>
 
-<p>Despite the easy implementation and wide usage of geohash, it inherits the disadvantages of Z-order curves (<code>Section 2.1.5</code>): weakly preserved latitude-longitude proximity; does not always guarantee that locations that are physically close are also close on the Z-curve. </p>
+<p>Despite the easy implementation and wide usage of geohash, it inherits the disadvantages of Z-order curves (<a href="#2-1-5-z-order-curve-implementation">Section 2.1.5</a>): weakly preserved latitude-longitude proximity; does not always guarantee that locations that are physically close are also close on the Z-curve. </p>
 
 <p>Adding on to it, is the use of <a href="https://en.wikipedia.org/wiki/Tissot%27s_indicatrix" target="_blank">equirectangular projection</a>, where the division of the map into equal subspaces leads to unequal/disproportional surface areas, especially near the poles (northern and southern hemisphere). However, there are alternatives such as <a href="https://www.researchgate.net/publication/328727378_GEOHASH-EAS_-_A_MODIFIED_GEOHASH_GEOCODING_SYSTEM_WITH_EQUAL-AREA_SPACES" target="_blank">Geohash-EAS</a> (Equal-Area Spaces).</p>
 
@@ -246,6 +246,14 @@ Return the decoded latitude and longitude.
 </details>
 
 <h3>2.1.2. Geohash - Usage</h3>
+<p>Similar to <a href="#2-1-6-z-order-curve-usage">Section 2.1.6</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
+
+<p>Prefix Search: Nearby locations share common geohash prefixes, enabling efficient filtering of locations by performing prefix searches on the geohash column</p>
+
+<p>Neighbor Searches: Generate geohashes for a target location and its neighbors to quickly retrieve nearby points. Which also extends to Area Searches: Calculate geohash ranges that cover a specific area and perform range queries to find all relevant points within that region.</p>
+
+<p>Popular databases such as <a href="https://clickhouse.com/docs/en/sql-reference/functions/geo/geohash" target="_blank">ClickHouse</a>, <a href="https://dev.mysql.com/doc/refman/8.4/en/spatial-geohash-functions.html" target="_blank">MySQL</a>, <a href="https://postgis.net/docs/ST_GeoHash.html" target="_blank">PostGIS</a>, <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geohash" target="_blank">BigQuery</a>, <a href="https://docs.aws.amazon.com/redshift/latest/dg/ST_GeoHash-function.html" target="_blank">RedShift</a> and many others offer built-in geohash function.</p>
+
 <p></p>
 
 </details>
