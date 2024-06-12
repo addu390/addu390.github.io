@@ -188,7 +188,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>Earth is round or more accurately, an ellipsoid. Map projection is a set of transformations represent the globe on a plane. In a map projection. Coordinates (latitude and longitude) of locations from the surface of the globe are transformed to coordinates on a plane. And GeoHash Uses <a href="https://en.wikipedia.org/wiki/Equirectangular_projection" target="_blank">Equirectangular projection</a></p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/projection.svg" /> 
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/projection.svg" /> 
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
 <h3>2.1.1. Geohash</h3>

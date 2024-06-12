@@ -938,6 +938,7 @@ code {
 .sidebar-scrollable-div {
   overflow-y: scroll;
   max-height: 20em;
+  scroll-behavior: smooth;
 }
 
 .sidebar-toc-div {
@@ -1123,4 +1124,8 @@ table {
   top: 50%;
   transform: translateY(-50%);
   left: 76%;
+}
+
+.underline {
+  text-decoration: underline;
 }
