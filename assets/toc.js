@@ -53,7 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
       const currentLink = document.querySelector(`#toc a[href="#${current.id}"]`);
       if (currentLink) {
         currentLink.classList.add('underline');
-        tocContainer.scrollTop = currentLink.offsetTop - tocContainer.offsetTop - (tocContainer.clientHeight / 2);
+        // Scroll the parent container to keep the current link in view
+        const parentRect = tocContainer.getBoundingClientRect();
+        const linkRect = currentLink.getBoundingClientRect();
+        if (linkRect.top < parentRect.top || linkRect.bottom > parentRect.bottom) {
+          tocContainer.scrollTop += linkRect.top - parentRect.top - tocContainer.clientHeight / 2 + linkRect.height / 2;
+        }
       }
     }
   }
