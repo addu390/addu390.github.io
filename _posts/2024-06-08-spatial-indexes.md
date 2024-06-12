@@ -297,7 +297,7 @@ feature: assets/featured/spatio-temporal-index.png
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/projection.svg" /> 
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
-<h3>2.1.1. Geohash</h3>
+<h3>2.2.1. Geohash</h3>
 <p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">Geohash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (<a href="#2-1-space-filling-curves">Section 2.1</a>).</p>
 
 <p>The core of GeoHash is just an clever use of Z-order curves. Split the map-projection (rectangle) into 2 equal rectangles, each identified by unique bit strings.</p>
@@ -324,7 +324,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>Adding on to it, is the use of <a href="https://en.wikipedia.org/wiki/Tissot%27s_indicatrix" target="_blank">equirectangular projection</a>, where the division of the map into equal subspaces leads to unequal/disproportional surface areas, especially near the poles (northern and southern hemisphere). However, there are alternatives such as <a href="https://www.researchgate.net/publication/328727378_GEOHASH-EAS_-_A_MODIFIED_GEOHASH_GEOCODING_SYSTEM_WITH_EQUAL-AREA_SPACES" target="_blank">Geohash-EAS</a> (Equal-Area Spaces).</p>
 
-<h3>2.1.2. Geohash - Implementation</h3>
+<h3>2.2.2. Geohash - Implementation</h3>
 <p>To Convert a geographical location (latitude, longitude) into a concise string of characters and vice versa:</p>
 <ul>
 <li>Convert latitude and longitude to a binary strings.</li>
@@ -334,7 +334,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <hr class="sub-hr">
 
-<details class="code-container"><summary class="p">2.1.2a. Geohash Encoder - Snippet</summary>
+<details class="code-container"><summary class="p">2.2.2a. Geohash Encoder - Snippet</summary>
 
 <pre><code>public class GeohashEncoder {
 
@@ -398,7 +398,7 @@ feature: assets/featured/spatio-temporal-index.png
 </code></pre>
 </details>
 
-<h3>2.1.2. Geohash - Conclusion</h3>
+<h3>2.2.3. Geohash - Conclusion</h3>
 <p>Similar to <a href="#2-1-7-z-order-curve-and-hilbert-curve-conclusion">Section 2.1.7</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
 
 <p>Prefix Search: Nearby locations share common geohash prefixes, enabling efficient filtering of locations by performing prefix searches on the geohash column</p>
@@ -409,7 +409,14 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>And many variations have been developed, such as the <a href="https://github.com/yinqiwen/geohash-int" target="_blank">64-bit Geohash</a> and <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2404058" target="_blank">Hilbert-Geohash</a></p>
 
-<p></p>
+<hr class="sub-hr">
+
+<h3>2.2.4. S2 - Intuition</h3>
+
+<img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/s2-globe.svg" /> 
+<p class="figure-header">Figure 25: S2 Cube Face Mapping</p>
+
+<hr class="sub-hr">
 
 </details>
 
