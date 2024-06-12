@@ -1129,3 +1129,7 @@ table {
 .underline {
   text-decoration: underline;
 }
+
+.content h2, .content h3, .content summary {
+  scroll-margin-top: 70px;
+}
