@@ -32,6 +32,7 @@ feature: assets/featured/spatio-temporal-index.png
 <hr class="clear-hr">
 
 <details open><summary class="h3">1. Foundation</summary>
+<p>To understand the need for spatial indexes, or more generally, a way to index multi-dimensional data.</p>
 <img class="center-image-40" src="./assets/posts/spatial-index/no-sort-no-partition-table.svg" /> 
 <p class="figure-header">Figure 1: Initial Table Structure</p>
 <p>Consider a table with the following fields: <code>device</code>, <code>X</code>, and <code>Y</code>, all of which are integers ranging from 1 to 4. Data is inserted into this table randomly by an external application.</p>
@@ -274,13 +275,13 @@ feature: assets/featured/spatio-temporal-index.png
 
 <hr class="hr">
 
-<h3>2.1.7. Z-Order Curve and Hilbert Curve - Usage</h3>
+<h3>2.1.7. Z-Order Curve and Hilbert Curve - Conclusion</h3>
 
-<p>Insert data points and their Z-order keys/Hilbert Keys (let's call it Z and H keys) into a one-dimensional hierarchical index structure, such as a B-Tree or Quad-Tree. For range or nearest neighbor queries, convert the search criteria into Z/H keys or range of keys. After retrieval, further filter the results as necessary to remove any garbage values.</p>
+<p>Usage: Insert data points and their Z-order keys/Hilbert Keys (let's call it Z and H keys) into a one-dimensional hierarchical index structure, such as a B-Tree or Quad-Tree. For range or nearest neighbor queries, convert the search criteria into Z/H keys or range of keys. After retrieval, further filter the results as necessary to remove any garbage values.</p>
 
-<p>To conclude: Space-Filling Curves such as Z-Order/Hilbert indexing is a powerful technique for to query higher-dimensional data, especially as the data volumes grows. By combining bits from multiple dimensions into a single value, space-Filling Curves indexing preserves spatial locality, enabling efficient data indexing and retrieval.</p>
+<p>To conclude: Space-Filling Curves such as Z-Order/Hilbert indexing is a powerful technique to query higher-dimensional data, especially as the data volumes grows. By combining bits from multiple dimensions into a single value, space-Filling Curves indexing preserves spatial locality, enabling efficient data indexing and retrieval.</p>
 
-<p>However, as seen in <a href="#2-1-5-z-order-curve-implementation">Section 2.1.5</a>, large jumps along the Z-Order curve can affect certain types of queries. The success of Z-Order indexing relies on the data's distribution and cardinality. Which is solved with using Hilbert curves (<a href="#2-1-2-hilbert-curve-intuition">Section 2.1.2</a>). Therefore, it is essential to evaluate the nature of the data, query patterns and performance needs to determine the right indexing strategy.</p>
+<p>However, as seen in <a href="#2-1-5-z-order-curve-implementation">Section 2.1.5</a>, large jumps along the Z-Order curve can affect certain types of queries (better with Hilbert curves <a href="#2-1-2-hilbert-curve-intuition">Section 2.1.2</a>). The success of Z-Order indexing relies on the data's distribution and cardinality. Therefore, it is essential to evaluate the nature of the data, query patterns, performance needs and limitation(s) of indexing strategies.</p>
 
 </details>
 
@@ -394,14 +395,16 @@ feature: assets/featured/spatio-temporal-index.png
 </code></pre>
 </details>
 
-<h3>2.1.2. Geohash - Usage</h3>
-<p>Similar to <a href="#2-1-7-z-order-curve-and-hilbert-curve-usage">Section 2.1.7</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
+<h3>2.1.2. Geohash - Conclusion</h3>
+<p>Similar to <a href="#2-1-7-z-order-curve-and-hilbert-curve-conclusion">Section 2.1.7</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
 
 <p>Prefix Search: Nearby locations share common geohash prefixes, enabling efficient filtering of locations by performing prefix searches on the geohash column</p>
 
 <p>Neighbor Searches: Generate geohashes for a target location and its neighbors to quickly retrieve nearby points. Which also extends to Area Searches: Calculate geohash ranges that cover a specific area and perform range queries to find all relevant points within that region.</p>
 
 <p>Popular databases such as <a href="https://clickhouse.com/docs/en/sql-reference/functions/geo/geohash" target="_blank">ClickHouse</a>, <a href="https://dev.mysql.com/doc/refman/8.4/en/spatial-geohash-functions.html" target="_blank">MySQL</a>, <a href="https://postgis.net/docs/ST_GeoHash.html" target="_blank">PostGIS</a>, <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geohash" target="_blank">BigQuery</a>, <a href="https://docs.aws.amazon.com/redshift/latest/dg/ST_GeoHash-function.html" target="_blank">RedShift</a> and many others offer built-in geohash function.</p>
+
+<p>And many variations have been developed, such as the <a href="https://github.com/yinqiwen/geohash-int" target="_blank">64-bit Geohash</a> and <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2404058" target="_blank">Hilbert-Geohash</a></p>
 
 <p></p>
 
