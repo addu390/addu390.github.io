@@ -217,126 +217,27 @@ feature: assets/featured/spatio-temporal-index.png
 <h3>2.1.2. Geohash - Implementation</h3>
 <p>To Convert a geographical location (latitude, longitude) into a concise string of characters and vice versa</p>
 
-<details class="code-container"><summary class="h4">GeoHash Encoder and Decoder</summary>
-<pre><code>public class GeohashEncoder {
+<details open class="code-container"><summary class="h4">Geohash Encoder</summary>
 
-    // Encode latitude and longitude into a geohash with the specified precision
-    public static String encodeGeohash(double latitude, double longitude, int precision) {
-        // Convert latitude and longitude to binary strings
-        String latBin = convertToBinary(latitude, -90, 90, precision * 5 / 2);
-        String lonBin = convertToBinary(longitude, -180, 180, precision * 5 / 2);
-
-        // Interleave the binary strings
-        String interwovenBin = interweave(lonBin, latBin);
-
-        // Convert the interwoven binary string to base32
-        return binaryToBase32(interwovenBin).substring(0, precision);
-    }
-
-    // Convert a coordinate to a binary string based on the range and precision
-    private static String convertToBinary(double value, double min, double max, int precision) {
-        StringBuilder binaryStr = new StringBuilder();
-        for (int i = 0; i < precision; i++) {
-            double mid = (min + max) / 2;
-            if (value >= mid) {
-                binaryStr.append('1');
-                min = mid;
-            } else {
-                binaryStr.append('0');
-                max = mid;
-            }
-        }
-        return binaryStr.toString();
-    }
-
-    // Interleave two binary strings
-    private static String interweave(String str1, String str2) {
-        StringBuilder interwoven = new StringBuilder();
-        for (int i = 0; i < str1.length(); i++) {
-            interwoven.append(str1.charAt(i)).append(str2.charAt(i));
-        }
-        return interwoven.toString();
-    }
-
-    // Convert a binary string to base32
-    private static String binaryToBase32(String binaryStr) {
-        String base32Alphabet = "0123456789bcdefghjkmnpqrstuvwxyz";
-        StringBuilder base32Str = new StringBuilder();
-        for (int i = 0; i < binaryStr.length(); i += 5) {
-            String chunk = binaryStr.substring(i, Math.min(i + 5, binaryStr.length()));
-            int decimalVal = Integer.parseInt(chunk, 2);
-            base32Str.append(base32Alphabet.charAt(decimalVal));
-        }
-        return base32Str.toString();
-    }
-
-    public static void main(String[] args) {
-        double latitude = 37.7749;
-        double longitude = -122.4194;
-        int precision = 5;
-        String geohash = encodeGeohash(latitude, longitude, precision);
-        System.out.println("Geohash: " + geohash);
-    }
-}
+<pre><code>Initialize latitude and longitude ranges.
+Convert latitude to a binary string.
+Convert longitude to a binary string.
+Interleave the binary strings of latitude and longitude.
+Convert the interleaved binary string into a base32 string.
+Return the resulting geohash string.
 </code></pre>
+</details>
 
-<pre><code>public class GeohashDecoder {
+<hr class="sub-hr">
 
-    // Decode a geohash into latitude and longitude coordinates
-    public static double[] decodeGeohash(String geohash) {
-        // Convert the base32 geohash to a binary string
-        String binaryStr = base32ToBinary(geohash);
+<details open class="code-container"><summary class="h4">Geohash Decoder</summary>
 
-        // Split the binary string into longitude and latitude binary strings
-        StringBuilder lonBin = new StringBuilder();
-        StringBuilder latBin = new StringBuilder();
-        for (int i = 0; i < binaryStr.length(); i++) {
-            if (i % 2 == 0) {
-                lonBin.append(binaryStr.charAt(i));
-            } else {
-                latBin.append(binaryStr.charAt(i));
-            }
-        }
-
-        // Convert the binary strings to decimal coordinates
-        double latitude = binaryToDecimal(latBin.toString(), -90, 90);
-        double longitude = binaryToDecimal(lonBin.toString(), -180, 180);
-
-        return new double[]{latitude, longitude};
-    }
-
-    // Convert a base32 string to a binary string
-    private static String base32ToBinary(String base32Str) {
-        String base32Alphabet = "0123456789bcdefghjkmnpqrstuvwxyz";
-        StringBuilder binaryStr = new StringBuilder();
-        for (char c : base32Str.toCharArray()) {
-            int val = base32Alphabet.indexOf(c);
-            String binarySegment = String.format("%5s", Integer.toBinaryString(val)).replace(' ', '0');
-            binaryStr.append(binarySegment);
-        }
-        return binaryStr.toString();
-    }
-
-    // Convert a binary string to a decimal coordinate based on the range
-    private static double binaryToDecimal(String binaryStr, double min, double max) {
-        for (char c : binaryStr.toCharArray()) {
-            double mid = (min + max) / 2;
-            if (c == '1') {
-                min = mid;
-            } else {
-                max = mid;
-            }
-        }
-        return (min + max) / 2;
-    }
-
-    public static void main(String[] args) {
-        // Example geohash to decode
-        String geohash = "9q8yy";
-        double[] coordinates = decodeGeohash(geohash);
-        System.out.println("Latitude: " + coordinates[0] + ", Longitude: " + coordinates[1]);
-    }
-}
+<pre><code>Convert the base32 geohash to a binary string.
+Split the binary string into separate latitude and longitude binary strings.
+Convert the latitude binary string to a decimal coordinate.
+Convert the longitude binary string to a decimal coordinate.
+Calculate the midpoints of the final ranges.
+Return the decoded latitude and longitude.
 </code></pre>
 </details>
 
