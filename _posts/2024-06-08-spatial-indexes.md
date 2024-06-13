@@ -297,7 +297,7 @@ feature: assets/featured/spatio-temporal-index.png
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/projection.svg" /> 
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
-<h3>2.2.1. Geohash</h3>
+<h3>2.2.1. Geohash - Intuition</h3>
 <p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">Geohash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (<a href="#2-1-space-filling-curves">Section 2.1</a>).</p>
 
 <p>The core of GeoHash is just an clever use of Z-order curves. Split the map-projection (rectangle) into 2 equal rectangles, each identified by unique bit strings.</p>
@@ -413,8 +413,38 @@ feature: assets/featured/spatio-temporal-index.png
 
 <h3>2.2.4. S2 - Intuition</h3>
 
+<p>Google's S2 library was released more than 10 years ago and didn't exactly the get the attention it deserved, much later in 2017, Google announced the release of open-source C++ <a href="https://github.com/google/s2geometry" target="_blank">s2geometry library</a>. With the use of Hilbert Curve (<a href="">Section 2.1.2</a>) and cube map projection instead of geohash's Z-order curve and equirectangular projection; S2 addresses (to an extent) the large jumps (<a href="">Section 2.1.5</a>) problem with Z-order curves and disproportional surface areas associated with equirectangular projection.</p>
+
+<p>The core of S2 is the hierarchical decomposition of the sphere into "cells"; done using a <a href="/quadtree" target="_blank">Quad-tree</a>, where a quadrant is recursively subdivided into four equal sub-cells and the use of Hilbet Curve goes hand-in-hand - runs across the centers of the quad-tree’s leaf nodes.</p>
+
+<h3>2.2.4. S2 - Implementation</h3>
+
+<p>Starting with the input <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system#Latitude_and_longitude" target="_blank">co-ordinates</a>, latitude (-90° to +90°) and longitude (-180° to +180°). And <a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS84</a> is a commmonly standard used in <a href="https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system" target="_blank">geocentric coordinate system</a>.</p>
+
+<h3>2.2.4a. S2-Point</h3>
+
+<p>The overview of S2-Point is to:</p>
+<ul>
+    <li>Enclose sphere in cube <code>[-1,1] x [-1,1] x [-1,1]</code></li>
+    <li>Project point(s) <code>p</code> onto the cube</li>
+    <li>Build a quad-tree/hilbert-curve on each cube face (6 faces)</li>
+    <li>Assign ID to the quad-tree cell that contains the projection of point(s) <code>p</code></li>
+</ul>
+
+<img class="center-image-0 center-image-35" src="./assets/posts/spatial-index/s2-cell-step-1.svg" /> 
+<p class="figure-header">Figure 25: Step 1</p>
+
+<img class="center-image-0 center-image-50" src="./assets/posts/spatial-index/s2-globe-projection.svg" />
+<p class="figure-header">Figure 26: </p>
+
 <img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/s2-globe.svg" /> 
-<p class="figure-header">Figure 25: S2 Cube Face Mapping</p>
+<p class="figure-header">Figure 27: </p>
+
+<img class="center-image-0 center-image-30" src="./assets/posts/spatial-index/s2-cell-step-2.svg" /> 
+<p class="figure-header">Figure 28: Step 2</p>
+
+<img class="center-image-0 center-image-40" src="./assets/posts/spatial-index/s2-cell-step-3.svg" /> 
+<p class="figure-header">Figure 29: Step 3</p>
 
 <hr class="sub-hr">
 
