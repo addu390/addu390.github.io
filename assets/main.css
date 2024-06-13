@@ -648,6 +648,10 @@ a {
   width: 35%;
 }
 
+.center-image-45 {
+  width: 45%;
+}
+
 .center-image {
   display: block;
   margin-left: auto;

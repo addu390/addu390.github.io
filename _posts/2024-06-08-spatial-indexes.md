@@ -297,6 +297,8 @@ feature: assets/featured/spatio-temporal-index.png
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/projection.svg" /> 
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
+<hr class="hr">
+
 <h3>2.2.1. Geohash - Intuition</h3>
 <p><a href="https://en.wikipedia.org/wiki/Geohash" target="_blank">Geohash</a>: Invented in 2008 by Gustavo Niemeyer, encodes a geographic location into a short string of letters and digits. It's a hierarchical spatial data structure that subdivides space into buckets of grid shape using a Z-order curve (<a href="#2-1-space-filling-curves">Section 2.1</a>).</p>
 
@@ -323,6 +325,8 @@ feature: assets/featured/spatio-temporal-index.png
 <p>Despite the easy implementation and wide usage of geohash, it inherits the disadvantages of Z-order curves (<a href="#2-1-5-z-order-curve-implementation">Section 2.1.5</a>): weakly preserved latitude-longitude proximity; does not always guarantee that locations that are physically close are also close on the Z-curve. </p>
 
 <p>Adding on to it, is the use of <a href="https://en.wikipedia.org/wiki/Tissot%27s_indicatrix" target="_blank">equirectangular projection</a>, where the division of the map into equal subspaces leads to unequal/disproportional surface areas, especially near the poles (northern and southern hemisphere). However, there are alternatives such as <a href="https://www.researchgate.net/publication/328727378_GEOHASH-EAS_-_A_MODIFIED_GEOHASH_GEOCODING_SYSTEM_WITH_EQUAL-AREA_SPACES" target="_blank">Geohash-EAS</a> (Equal-Area Spaces).</p>
+
+<hr class="hr">
 
 <h3>2.2.2. Geohash - Implementation</h3>
 <p>To Convert a geographical location (latitude, longitude) into a concise string of characters and vice versa:</p>
@@ -398,6 +402,8 @@ feature: assets/featured/spatio-temporal-index.png
 </code></pre>
 </details>
 
+<hr class="hr">
+
 <h3>2.2.3. Geohash - Conclusion</h3>
 <p>Similar to <a href="#2-1-7-z-order-curve-and-hilbert-curve-conclusion">Section 2.1.7</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
 
@@ -409,7 +415,7 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>And many variations have been developed, such as the <a href="https://github.com/yinqiwen/geohash-int" target="_blank">64-bit Geohash</a> and <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2404058" target="_blank">Hilbert-Geohash</a></p>
 
-<hr class="sub-hr">
+<hr class="hr">
 
 <h3>2.2.4. S2 - Intuition</h3>
 
@@ -417,35 +423,110 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>The core of S2 is the hierarchical decomposition of the sphere into "cells"; done using a <a href="/quadtree" target="_blank">Quad-tree</a>, where a quadrant is recursively subdivided into four equal sub-cells and the use of Hilbet Curve goes hand-in-hand - runs across the centers of the quad-tree’s leaf nodes.</p>
 
-<h3>2.2.4. S2 - Implementation</h3>
+<hr class="hr">
 
-<p>Starting with the input <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system#Latitude_and_longitude" target="_blank">co-ordinates</a>, latitude (-90° to +90°) and longitude (-180° to +180°). And <a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS84</a> is a commmonly standard used in <a href="https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system" target="_blank">geocentric coordinate system</a>.</p>
+<h3>2.2.5. S2 - Implementation</h3>
 
-<h3>2.2.4a. S2-Point</h3>
-
-<p>The overview of S2-Point is to:</p>
+<p>The overview of solution is to:</p>
 <ul>
-    <li>Enclose sphere in cube <code>[-1,1] x [-1,1] x [-1,1]</code></li>
+    <li>Enclose sphere in cube</li>
     <li>Project point(s) <code>p</code> onto the cube</li>
     <li>Build a quad-tree/hilbert-curve on each cube face (6 faces)</li>
     <li>Assign ID to the quad-tree cell that contains the projection of point(s) <code>p</code></li>
 </ul>
 
-<img class="center-image-0 center-image-35" src="./assets/posts/spatial-index/s2-cell-step-1.svg" /> 
-<p class="figure-header">Figure 25: Step 1</p>
+<p>Starting with the input <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system#Latitude_and_longitude" target="_blank">co-ordinates</a>, latitude (Degrees: -90° to +90°. Radians: -π/2 to π/2) and longitude (-180° to +180°. Radians: 0 to 2π). And <a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS84</a> is a commmonly standard used in <a href="https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system" target="_blank">geocentric coordinate system</a>.</p>
 
-<img class="center-image-0 center-image-50" src="./assets/posts/spatial-index/s2-globe-projection.svg" />
-<p class="figure-header">Figure 26: </p>
+<hr class="hr">
 
-<img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/s2-globe.svg" /> 
-<p class="figure-header">Figure 27: </p>
+<h3>2.2.5a. (Lat, Long) to (X,Y,Z)</h3>
 
-<img class="center-image-0 center-image-30" src="./assets/posts/spatial-index/s2-cell-step-2.svg" /> 
-<p class="figure-header">Figure 28: Step 2</p>
+<p>Covert <code>p = (lattitude,longitude) => (x,y,z)</code> XYZ co-ordinate system (<code>x = [-1.0, 1.0], y = [-1.0, 1.0], z = [-1.0, -1.0]</code>), based on coordinates on the unit sphere (unit radius), which is similar to <a href="https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system" target="_blank">Earth-centered, Earth-fixed coordinate system</a>.</p>
+
+<img class="center-image-0 center-image-45" src="./assets/posts/spatial-index/ecef.svg" /> 
+<p class="figure-header">Figure 25: (lat, long) to (x, y, z) Transformation with ECEF</p>
+
+<p>Where, <code>(x, y, z)</code>: X-axis at latitude 0°, longitude 0° (equator and prime meridian intersection), Y-axis at latitude 0°, longitude 90° (equator and 90°E meridian intersection), Z-axis at latitude 90° (North Pole), Altitude (<code>PM</code> on Figure 25) = Height to the reference ellipsoid/Sphere (Zero for a Round Planet approximation)</p>
+
+<p>The conversion is from (latitude, logitude) to (x, y, z), where R = 1 for a unit sphere:</p>
+<pre><code>x = R * cos(latitude) * cos(logitude)
+y = R * cos(latitude) * sin(logitude)
+z = R * sin(latitude)
+</code></pre>
+
+<hr class="hr">
+
+<h3>2.2.5b. (X,Y,Z) to (Face,U,V)</h3>
+
+<p>To map <code>(x,y,z)</code> to <code>(face, u,v)</code>, each of the six faces of the cube is projected onto the sphere. The process is similar to <a href="https://en.wikipedia.org/wiki/UV_mapping" target="_blank">UV Mapping</a>: to project 3D model surface into a 2D coordinate space. where <code>u</code> and <code>v</code> denote the axes of the 2D plane. In this case, <code>U,V</code> represent the location of a point on one face of the cube.</p>
+
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/s2-cell-step-1-2.svg" /> 
+<p class="figure-header">Figure 26: (lat, long) to (x, y, z) and (x, y, z) to (face, u, v)</p>
+
+<p>The <code>face</code> denotes which of the 6 (0 to 5) cube faces a point on the sphere is mapped onto. Figure 27, shows the 6 faces of the cube (<a href="https://en.wikipedia.org/wiki/Cube_mapping" target="_blank">cube mapping</a>) after the projection. For a unit-sphere, for each face, the point <code>u,v = (0,0)</code> represent the center of the face.</p>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-globe.svg" /> 
+<p class="figure-header">Figure 27: Cube Face Projection</p>
+
+<p>The evident problem here is that, the linear projection leads to same-area cells on the cube having different sizes on the sphere (Length and Area Distortion), with the ratio of highest to lowest area of <code>5.2</code> (areas on the cube can be up to 5.2 times longer or shorter than the corresponding distances on the sphere).</p>
+
+<hr class="hr">
+
+<h3>2.2.5c. (Face,U,V) to (Face,S,T)</h3>
+
+<p>The ST coordinate system is an extension of UV with an additional non-linear transformation layer to address the (Area Preservation) disproportionate sphere surface-area to cube cell mapping. Without which, cells near the cube face edges would be smaller than those near the cube face centers.</p>
 
 <img class="center-image-0 center-image-40" src="./assets/posts/spatial-index/s2-cell-step-3.svg" /> 
-<p class="figure-header">Figure 29: Step 3</p>
+<p class="figure-header">Figure 28: (u, v) to (s, t)</p>
 
+<p>S2 uses Quadratic projection for <code>(u,v)</code> => <code>(s,t)</code>. Comparing <code>tan</code> and <code>quadratic</code> projections: The tan projection has the least Area/Distance Distortion. However, quadratic projection, which is an approximation of the tan projection - is much faster and almost as good as tangent.</p>
+<table>
+        <tr>
+            <td></td>
+            <td>Area Ratio</td>
+            <td>Cell → Point (µs)</td>
+            <td>Point → Cell (µs)</td>
+        </tr>
+        <tr>
+            <td>Linear</td>
+            <td>5.20</td>
+            <td>0.087</td>
+            <td>0.085</td>
+        </tr>
+        <tr>
+            <td>Tangent</td>
+            <td>1.41</td>
+            <td>0.299</td>
+            <td>0.258</td>
+        </tr>
+        <tr style="background-color: rgb(213, 232, 212);">
+            <td>Quadratic</td>
+            <td>2.08</td>
+            <td>0.096</td>
+            <td>0.108</td>
+        </tr>
+    </table>
+
+<p><code>Cell → Point</code> and <code>Point → Cell</code> represents the transformation from (U, V) to (S, T) coordinates and vice versa.</p>
+
+<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/s2-uv-st-face-0.svg" /> 
+<p class="figure-header">Figure 29: (face, u, v) to (face, s, t); for face = 0</p>
+
+<hr class="hr">
+
+<h3>2.2.5d. (Face,S,T) to (Face,I,J)</h3>
+
+<img class="center-image-0 center-image-45" src="./assets/posts/spatial-index/s2-globe-projection.svg" />
+<p class="figure-header">Figure 30: Cube Face Mapping with Hilbert Curve</p>
+
+<hr class="hr">
+
+<h3>2.2.5e. (Face,I,J) to S2 Cell ID</h3>
+<hr class="sub-hr">
+
+<hr class="hr">
+
+<h3>2.2.6. S2 - Conclusion</h3>
 <hr class="sub-hr">
 
 </details>
