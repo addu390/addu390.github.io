@@ -443,22 +443,18 @@ feature: assets/featured/spatio-temporal-index.png
 
 <p>Covert <code>p = (lattitude,longitude) => (x,y,z)</code> XYZ co-ordinate system (<code>x = [-1.0, 1.0], y = [-1.0, 1.0], z = [-1.0, -1.0]</code>), based on coordinates on the unit sphere (unit radius), which is similar to <a href="https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system" target="_blank">Earth-centered, Earth-fixed coordinate system</a>.</p>
 
-<img class="center-image-0 center-image-45" src="./assets/posts/spatial-index/ecef.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/ecef.svg" /> 
 <p class="figure-header">Figure 25: (lat, long) to (x, y, z) Transformation with ECEF</p>
 
 <p>Where, <code>(x, y, z)</code>: X-axis at latitude 0°, longitude 0° (equator and prime meridian intersection), Y-axis at latitude 0°, longitude 90° (equator and 90°E meridian intersection), Z-axis at latitude 90° (North Pole), Altitude (<code>PM</code> on Figure 25) = Height to the reference ellipsoid/Sphere (Zero for a Round Planet approximation)</p>
-
-<p>The conversion is from (latitude, logitude) to (x, y, z), where R = 1 for a unit sphere:</p>
-<pre><code>x = R * cos(latitude) * cos(logitude)
-y = R * cos(latitude) * sin(logitude)
-z = R * sin(latitude)
-</code></pre>
 
 <hr class="hr">
 
 <h3>2.2.5b. (X,Y,Z) to (Face,U,V)</h3>
 
 <p>To map <code>(x,y,z)</code> to <code>(face, u,v)</code>, each of the six faces of the cube is projected onto the sphere. The process is similar to <a href="https://en.wikipedia.org/wiki/UV_mapping" target="_blank">UV Mapping</a>: to project 3D model surface into a 2D coordinate space. where <code>u</code> and <code>v</code> denote the axes of the 2D plane. In this case, <code>U,V</code> represent the location of a point on one face of the cube.</p>
+
+<p>The projection can simply be imagined as a unit sphere circumscribed by a cube. And a ray is emitted from the center of the sphere to obtain the projection of the point on the sphere to the 6 faces of the cube, that is, the sphere is projected into a cube.</p>
 
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/s2-cell-step-1-2.svg" /> 
 <p class="figure-header">Figure 26: (lat, long) to (x, y, z) and (x, y, z) to (face, u, v)</p>
@@ -470,13 +466,74 @@ z = R * sin(latitude)
 
 <p>The evident problem here is that, the linear projection leads to same-area cells on the cube having different sizes on the sphere (Length and Area Distortion), with the ratio of highest to lowest area of <code>5.2</code> (areas on the cube can be up to 5.2 times longer or shorter than the corresponding distances on the sphere).</p>
 
+<details class="code-container"><summary class="p">2.2.5c. S2 FaceXYZ to UV - Snippet</summary>
+<pre><code>public class S2 {
+
+    public static class Vector3 {
+        public double x;
+        public double y;
+        public double z;
+
+        public Vector3(double x, double y, double z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+    }
+
+    public static int findFace(Vector3 r) {
+        double absX = Math.abs(r.x);
+        double absY = Math.abs(r.y);
+        double absZ = Math.abs(r.z);
+
+        if (absX >= absY && absX >= absZ) {
+            return r.x > 0 ? 0 : 3;
+        } else if (absY >= absX && absY >= absZ) {
+            return r.y > 0 ? 1 : 4;
+        } else {
+            return r.z > 0 ? 2 : 5;
+        }
+    }
+
+    public static double[] validFaceXYZToUV(int face, Vector3 r) {
+        switch (face) {
+            case 0:
+                return new double[]{r.y / r.x, r.z / r.x};
+            case 1:
+                return new double[]{-r.x / r.y, r.z / r.y};
+            case 2:
+                return new double[]{-r.x / r.z, -r.y / r.z};
+            case 3:
+                return new double[]{r.z / r.x, r.y / r.x};
+            case 4:
+                return new double[]{r.z / r.y, -r.x / r.y};
+            default:
+                return new double[]{-r.y / r.z, -r.x / r.z};
+        }
+    }
+
+    public static void main(String[] args) {
+        Vector3 r = new Vector3(1.0, 2.0, 3.0);
+        int face = 0;
+        double[] uv = validFaceXYZToUV(face, r);
+        System.out.println("u: " + uv[0] + ", v: " + uv[1]);
+    }
+}
+
+</code></pre>
+</details>
+
+<p>The Cube <code>Face</code> is the largest absolute X,Y,Z component, when component is -ve, back faces are used.</p>
+<img class="center-image-0 center-image-60" src="./assets/posts/spatial-index/s2-xyz-uv.svg" /> 
+<p>Face and XYZ is mapped to UV by using the other two X, Y, Z components (other than largest component of face) and diving it by the largest component, a value between <code>[-1, 1]</code>. Additionally, some faces of the cube are transposed (-ve) to produce the single continuous hilbert curve on the cube.</p>
+
 <hr class="hr">
 
-<h3>2.2.5c. (Face,U,V) to (Face,S,T)</h3>
+<h3>2.2.5d. (Face,U,V) to (Face,S,T)</h3>
 
 <p>The ST coordinate system is an extension of UV with an additional non-linear transformation layer to address the (Area Preservation) disproportionate sphere surface-area to cube cell mapping. Without which, cells near the cube face edges would be smaller than those near the cube face centers.</p>
 
-<img class="center-image-0 center-image-40" src="./assets/posts/spatial-index/s2-cell-step-3.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/s2-cell-step-3.svg" /> 
 <p class="figure-header">Figure 28: (u, v) to (s, t)</p>
 
 <p>S2 uses Quadratic projection for <code>(u,v)</code> => <code>(s,t)</code>. Comparing <code>tan</code> and <code>quadratic</code> projections: The tan projection has the least Area/Distance Distortion. However, quadratic projection, which is an approximation of the tan projection - is much faster and almost as good as tangent.</p>
@@ -512,17 +569,54 @@ z = R * sin(latitude)
 <img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/s2-uv-st-face-0.svg" /> 
 <p class="figure-header">Figure 29: (face, u, v) to (face, s, t); for face = 0</p>
 
+<details class="code-container"><summary class="p">2.2.5e. S2 UV to ST - Snippet</summary>
+<pre><code>public double stToUV(double s) {
+  if (s >= 0.5) {
+    return (1 / 3.) * (4 * s * s - 1);
+  } else {
+    return (1 / 3.) * (1 - 4 * (1 - s) * (1 - s));
+  }
+}
+
+public double uvToST(double u) {
+  if (u >= 0) {
+    return 0.5 * Math.sqrt(1 + 3 * u);
+  } else {
+    return 1 - 0.5 * Math.sqrt(1 - 3 * u);
+  }
+}
+</code></pre>
+</details>
+
 <hr class="hr">
 
-<h3>2.2.5d. (Face,S,T) to (Face,I,J)</h3>
+<h3>2.2.5f. (Face,S,T) to (Face,I,J)</h3>
 
-<img class="center-image-0 center-image-45" src="./assets/posts/spatial-index/s2-globe-projection.svg" />
-<p class="figure-header">Figure 30: Cube Face Mapping with Hilbert Curve</p>
+<p>The IJ coordinates are discretized ST coordinates and divides the ST plane into <code>2<sup>30</sup> × 2<sup>30</sup></code>, i.e. the i and j coordinates in S2 range from <code>0 to 2<sup>30</sup> - 1</code>.</p>
+
+<p>Why 2<sup>30</sup>? The i and j coordinates are each represented using 30 bits, which is <code>2<sup>30</sup></code> distinct values for both i and j coordinates, this large range allows precise positioning within each face of the cube (high spatial resolution). The total number of unique cells is <code>6 x (2<sup>30</sup> × 2<sup>30</sup>)</code></p>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-st-ij.svg" />
+<p class="figure-header">Figure 30: (face, s, t) to (face, i, j); for face = 0</p>
+
+<details class="code-container"><summary class="p">2.2.5g. S2 ST to IJ - Snippet</summary>
+<pre><code>public static int stToIj(double s) {
+  return Math.max(
+    0, Math.min(1073741824 - 1, (int) Math.round(1073741824 * s))
+  );
+}
+</code></pre>
+</details>
 
 <hr class="hr">
 
-<h3>2.2.5e. (Face,I,J) to S2 Cell ID</h3>
+<h3>2.2.5h. (Face,I,J) to S2 Cell ID</h3>
 <hr class="sub-hr">
+
+<img class="center-image-0 center-image-50" src="./assets/posts/spatial-index/s2-ij-cell.svg" />
+<p class="figure-header">Figure 31: (face, i, j) to cell ID</p>
+
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/s2-cell-id.svg" />
 
 <hr class="hr">
 
