@@ -434,10 +434,11 @@ public static void main(String[] args) {
 }
 </code></pre>
 </details>
+</details>
 
 <hr class="sub-hr">
 
-<details open class="text-container"><summary class="h4">4.3. S2 - Conclusion</summary>
+<details class="text-container"><summary class="h4">4.3. S2 - Conclusion</summary>
 <p></p>
 </details>
 
@@ -452,3 +453,4 @@ public static void main(String[] args) {
 9. "Geospatial Indexing: A Look at Google's S2 Library," CNIter Blog, Mar. 2023. [Online]. Available: https://cniter.github.io/posts/720275bd.html. [Accessed: 13-Jun-2024].
 10. "S2 Geometry Library," S2 Geometry, 2024. [Online]. Available: https://s2geometry.io/. [Accessed: 13-Jun-2024].
 </code></pre>
+</details>

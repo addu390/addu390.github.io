@@ -5,8 +5,6 @@ date: 2024-06-08
 tags:
 - Database
 - Spatial Index
-tips:
-- <img class="twemoji" src="../assets/img/emoji/warning.svg" alt=""> WIP
 author: Adesh Nalpet Adimurthy
 category: System Wisdom
 feature: assets/featured/spatio-temporal-index.png
