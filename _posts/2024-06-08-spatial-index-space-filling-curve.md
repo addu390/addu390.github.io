@@ -8,6 +8,8 @@ tags:
 author: Adesh Nalpet Adimurthy
 category: System Wisdom
 feature: assets/featured/spatio-temporal-index.png
+image: assets/featured/spatio-temporal-index.png
+description: Spatial indexes optimize multi-dimensional data querying using space-filling curves like Z-order and Hilbert curves. Z-order curves employ a recursive Z pattern, and Hilbert curves use a U-shaped pattern, both maintaining data locality to improve spatial query performance. The article compares their effectiveness and includes implementation examples.
 ---
 
 <img class="center-image" src="./assets/featured/spatio-temporal-index.png" /> 
