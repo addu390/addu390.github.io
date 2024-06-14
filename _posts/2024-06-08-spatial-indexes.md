@@ -467,59 +467,55 @@ feature: assets/featured/spatio-temporal-index.png
 <p>The evident problem here is that, the linear projection leads to same-area cells on the cube having different sizes on the sphere (Length and Area Distortion), with the ratio of highest to lowest area of <code>5.2</code> (areas on the cube can be up to 5.2 times longer or shorter than the corresponding distances on the sphere).</p>
 
 <details class="code-container"><summary class="p">2.2.5c. S2 FaceXYZ to UV - Snippet</summary>
-<pre><code>public class S2 {
+<pre><code>public static class Vector3 {
+    public double x;
+    public double y;
+    public double z;
 
-    public static class Vector3 {
-        public double x;
-        public double y;
-        public double z;
-
-        public Vector3(double x, double y, double z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-    }
-
-    public static int findFace(Vector3 r) {
-        double absX = Math.abs(r.x);
-        double absY = Math.abs(r.y);
-        double absZ = Math.abs(r.z);
-
-        if (absX >= absY && absX >= absZ) {
-            return r.x > 0 ? 0 : 3;
-        } else if (absY >= absX && absY >= absZ) {
-            return r.y > 0 ? 1 : 4;
-        } else {
-            return r.z > 0 ? 2 : 5;
-        }
-    }
-
-    public static double[] validFaceXYZToUV(int face, Vector3 r) {
-        switch (face) {
-            case 0:
-                return new double[]{r.y / r.x, r.z / r.x};
-            case 1:
-                return new double[]{-r.x / r.y, r.z / r.y};
-            case 2:
-                return new double[]{-r.x / r.z, -r.y / r.z};
-            case 3:
-                return new double[]{r.z / r.x, r.y / r.x};
-            case 4:
-                return new double[]{r.z / r.y, -r.x / r.y};
-            default:
-                return new double[]{-r.y / r.z, -r.x / r.z};
-        }
-    }
-
-    public static void main(String[] args) {
-        Vector3 r = new Vector3(1.0, 2.0, 3.0);
-        int face = 0;
-        double[] uv = validFaceXYZToUV(face, r);
-        System.out.println("u: " + uv[0] + ", v: " + uv[1]);
+    public Vector3(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 }
 
+public static int findFace(Vector3 r) {
+    double absX = Math.abs(r.x);
+    double absY = Math.abs(r.y);
+    double absZ = Math.abs(r.z);
+
+    if (absX >= absY && absX >= absZ) {
+        return r.x > 0 ? 0 : 3;
+    } else if (absY >= absX && absY >= absZ) {
+        return r.y > 0 ? 1 : 4;
+    } else {
+        return r.z > 0 ? 2 : 5;
+    }
+}
+
+public static double[] validFaceXYZToUV(int face, Vector3 r) {
+    switch (face) {
+        case 0:
+            return new double[]{r.y / r.x, r.z / r.x};
+        case 1:
+            return new double[]{-r.x / r.y, r.z / r.y};
+        case 2:
+            return new double[]{-r.x / r.z, -r.y / r.z};
+        case 3:
+            return new double[]{r.z / r.x, r.y / r.x};
+        case 4:
+            return new double[]{r.z / r.y, -r.x / r.y};
+        default:
+            return new double[]{-r.y / r.z, -r.x / r.z};
+    }
+}
+
+public static void main(String[] args) {
+    Vector3 r = new Vector3(1.0, 2.0, 3.0);
+    int face = 0;
+    double[] uv = validFaceXYZToUV(face, r);
+    System.out.println("u: " + uv[0] + ", v: " + uv[1]);
+}
 </code></pre>
 </details>
 
@@ -569,21 +565,29 @@ feature: assets/featured/spatio-temporal-index.png
 <img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/s2-uv-st-face-0.svg" /> 
 <p class="figure-header">Figure 29: (face, u, v) to (face, s, t); for face = 0</p>
 
+<p>For the quadratic transformation: Apply a square root transformation; sqrt(1 + 3 * u) and to maintain the uniformity of the grid cells</p>
+
 <details class="code-container"><summary class="p">2.2.5e. S2 UV to ST - Snippet</summary>
-<pre><code>public double stToUV(double s) {
-  if (s >= 0.5) {
-    return (1 / 3.) * (4 * s * s - 1);
-  } else {
-    return (1 / 3.) * (1 - 4 * (1 - s) * (1 - s));
-  }
+<pre><code>public static double uvToST(double u) {
+    if (u >= 0) {
+        return 0.5 * Math.sqrt(1 + 3 * u);
+    } else {
+        return 1 - 0.5 * Math.sqrt(1 - 3 * u);
+    }
 }
 
-public double uvToST(double u) {
-  if (u >= 0) {
-    return 0.5 * Math.sqrt(1 + 3 * u);
-  } else {
-    return 1 - 0.5 * Math.sqrt(1 - 3 * u);
-  }
+public static void main(String[] args) {
+    // (u, v) values in the range [-1, 1]
+    double u1 = 0.5;
+    double v1 = -0.5;
+    
+    // Convert (u, v) to (s, t)
+    double s1 = uvToST(u1);
+    double t1 = uvToST(v1);
+
+    System.out.println("For (u, v) = (" + u1 + ", " + v1 + "):");
+    System.out.println("s: " + s1);
+    System.out.println("t: " + t1);
 }
 </code></pre>
 </details>
@@ -592,9 +596,9 @@ public double uvToST(double u) {
 
 <h3>2.2.5f. (Face,S,T) to (Face,I,J)</h3>
 
-<p>The IJ coordinates are discretized ST coordinates and divides the ST plane into <code>2<sup>30</sup> × 2<sup>30</sup></code>, i.e. the i and j coordinates in S2 range from <code>0 to 2<sup>30</sup> - 1</code>.</p>
+<p>The IJ coordinates are discretized ST coordinates and divides the ST plane into <code>2<sup>30</sup> × 2<sup>30</sup></code>, i.e. the i and j coordinates in S2 range from <code>0 to 2<sup>30</sup> - 1</code>. And represent the two dimensions of the leaf-cells (lowest-level cells) on a cube face.</p>
 
-<p>Why 2<sup>30</sup>? The i and j coordinates are each represented using 30 bits, which is <code>2<sup>30</sup></code> distinct values for both i and j coordinates, this large range allows precise positioning within each face of the cube (high spatial resolution). The total number of unique cells is <code>6 x (2<sup>30</sup> × 2<sup>30</sup>)</code></p>
+<p>Why 2<sup>30</sup>? The i and j coordinates are each represented using 30 bits, which is <code>2<sup>30</sup></code> distinct values for both i and j coordinates (every cm² of the earth), this large range allows precise positioning within each face of the cube (high spatial resolution). The total number of unique cells is <code>6 x (2<sup>30</sup> × 2<sup>30</sup>)</code></p>
 
 <img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-st-ij.svg" />
 <p class="figure-header">Figure 30: (face, s, t) to (face, i, j); for face = 0</p>
@@ -611,12 +615,68 @@ public double uvToST(double u) {
 <hr class="hr">
 
 <h3>2.2.5h. (Face,I,J) to S2 Cell ID</h3>
-<hr class="sub-hr">
+<p>The hierarchical sub-division of each cube face into 4 equal quadrants calls for Hilbert Space-Filling Curve (<a href="">Section 2.1.2</a>): to enumerate cells along a Hilbert space-filling curve.</p>
 
-<img class="center-image-0 center-image-50" src="./assets/posts/spatial-index/s2-ij-cell.svg" />
-<p class="figure-header">Figure 31: (face, i, j) to cell ID</p>
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-ij-cell.svg" />
+<p class="figure-header">Figure 31: (face, i, j) to Hilbert Curve Position</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/s2-cell-id.svg" />
+<p>Hilbert Curve preserves spatial locality, meaning, the values that are close on the cube face/surface, are numerically close in the Hilbert curve position (illustration in Figure 31 - Level 3).</p>
+
+<p>Transformation: The Hilbert curve transforms the IJ coordinate position on the cube face from 2D to 1D and is given by a <code>60 bit</code> integer (<code>0 to 2<sup>60</sup></code>).</p>
+
+<details class="code-container"><summary class="p">2.2.5i. S2 IJ to S2 Cell ID - Snippet</summary>
+<pre><code>public class S2CellId {
+    private static final long MAX_LEVEL = 30;
+    private static final long POS_BITS = 2 * MAX_LEVEL + 1;
+    private static final long FACE_BITS = 3;
+    private static final long FACE_MASK = (1L << FACE_BITS) - 1;
+    private static final long POS_MASK = (1L << POS_BITS) - 1;
+
+    public static long faceIjToCellId(int face, int i, int j) {
+        // Face Encoding
+        long cellId = ((long) face) << POS_BITS;
+        // Loop from MAX_LEVEL - 1 down to 0
+        for (int k = MAX_LEVEL - 1; k >= 0; --k) {
+            // Hierarchical Position Encoding
+            int mask = 1 << k;
+            long bits = (((i & mask) != 0) ? 1 : 0) << 1 | (((j & mask) != 0) ? 1 : 0);
+            cellId |= bits << (2 * k);
+        }
+        return cellId;
+    }
+
+    public static void main(String[] args) {
+        int face = 2; 
+        int i = 536870912;
+        int j = 536870912;
+
+        long cellId = faceIjToCellId(face, i, j);
+        System.out.println("S2 Cell ID: " + cellId);
+    }
+}
+</code></pre>
+</details>
+
+<p>The <b>S2 Cell ID</b> is represented by a <code>64-bit</code> integer,</p> 
+<ul>
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/s2-cell-id.svg" />
+<p class="figure-header">Figure 32: (face, i, j) to S2 Cell ID</p>
+<li>the left <code>3 bits</code> are used to represent the cube face <code>[0-5],</code></li>
+<li>the next following <code>60 bits</code> represents the Hilbert Curve position,</li>
+<li>with <code>[0-30]</code> levels; two bits for every higher order/level, followed by a trailing <code>1</code> bit, which is a marker to identify the level of the cell (by position).</li>
+<li>and the last digits are padded with 0s</li>
+</ul>
+
+<pre><code>fffpppp...pppppppp1  # Level 30 cell ID
+fffpppp...pppppp100  # Level 29 cell ID
+fffpppp...pppp10000  # Level 28 cell ID
+...
+...
+...
+fffpp10...000000000  # Level 1 cell ID
+fff1000...000000000  # Level 0 cell ID
+</code></pre>
+<p>Notice the position of trailing <code>1</code> and padded <code>0</code>s, correlated to the level.</p>
 
 <hr class="hr">
 
@@ -637,11 +697,16 @@ public double uvToST(double u) {
 <details><summary class="h3">3. References</summary>
 
 <pre style="max-height: 300px"><code>
-1. Primary credit goes to John Skilling for his article "Programming the Hilbert curve" (American Institue of Physics (AIP) Conf. Proc. 707, 381 (2004)).
-2. Wikipedia. “Z-order curve,” [Online]. Available: https://en.wikipedia.org/wiki/Z-order_curve. [Accessed: 10-Jun-2024].
+1. "Programming the Hilbert curve" (American Institue of Physics (AIP) Conf. Proc. 707, 381 (2004)).
+2. Wikipedia. “Z-order curve,” [Online]. Available: https://en.wikipedia.org/wiki/Z-order_curve.
 3. Amazon Web Services, “Z-order indexing for multifaceted queries in Amazon DynamoDB – Part 1,” [Online]. Available: https://aws.amazon.com/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-1/. [Accessed: 10-Jun-2024].
-4. N. Chandra, “Z-order indexing for efficient queries in Data Lake,” Medium, 20-Sep-2021. [Online]. Available: https://medium.com/@nishant.chandra/z-order-indexing-for-efficient-queries-in-data-lake-48eceaeb2320. [Accessed: 10-Jun-2024].
+4. N. Chandra, “Z-order indexing for efficient queries in Data Lake,” Medium, 20-Sep-2021. [Online]. Available: https://medium.com/@nishant.chandra/. [Accessed: 10-Jun-2024]z-order-indexing-for-efficient-queries-in-data-lake-48eceaeb2320. [Accessed: 10-Jun-2024].
 5. YouTube, “Z-order indexing for efficient queries in Data Lake,” [Online]. Available: https://www.youtube.com/watch?v=YLVkITvF6KU. [Accessed: 10-Jun-2024].
+6. Christian S. Perone, "Google’s S2, geometry on the sphere, cells and Hilbert curve," in Terra Incognita, 14/08/2015, https://blog.christianperone.com/2015/08/googles-s2-geometry-on-the-sphere-cells-and-hilbert-curve/. [Accessed: 12-Jun-2024].
+7. B. Feifke, "Geospatial Indexing Explained," Ben Feifke, Dec. 2022. [Online]. Available: https://benfeifke.com/posts/geospatial-indexing-explained/. [Accessed: 12-Jun-2024].
+8. "S2 Concepts," S2 Geometry Library Documentation, 2024. [Online]. Available: https://docs.s2cell.aliddell.com/en/stable/s2_concepts.html. [Accessed: 13-Jun-2024].
+9. "Geospatial Indexing: A Look at Google's S2 Library," CNIter Blog, Mar. 2023. [Online]. Available: https://cniter.github.io/posts/720275bd.html. [Accessed: 13-Jun-2024].
+10. "S2 Geometry Library," S2 Geometry, 2024. [Online]. Available: https://s2geometry.io/. [Accessed: 13-Jun-2024].
 </code></pre>
 
 </details>
