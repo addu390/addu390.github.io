@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" width="658px" height="244px" viewBox="-0.5 -0.5 658 244" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2024-06-15T17:05:03.417Z&quot; agent=&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36&quot; etag=&quot;6tKGgXu5wG5mH79hEwLp&quot; version=&quot;24.5.4&quot; type=&quot;device&quot;&gt;&#10;  &lt;diagram name=&quot;Page-1&quot; id=&quot;Gw25-TgEOkUZbk0UZzZk&quot;&gt;&#10;    &lt;mxGraphModel dx=&quot;867&quot; dy=&quot;551&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;827&quot; pageHeight=&quot;1169&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;&#10;      &lt;root&gt;&#10;        &lt;mxCell id=&quot;0&quot; /&gt;&#10;        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#000000;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;520&quot; y=&quot;190&quot; width=&quot;180&quot; height=&quot;180&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-2&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;540&quot; y=&quot;210&quot; width=&quot;140&quot; height=&quot;140&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-3&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;560&quot; y=&quot;230&quot; width=&quot;100&quot; height=&quot;100&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-4&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;577.5&quot; y=&quot;247.5&quot; width=&quot;65&quot; height=&quot;65&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;594.38&quot; y=&quot;264.38&quot; width=&quot;31.25&quot; height=&quot;31.25&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-6&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;390&quot; y=&quot;300&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;440&quot; y=&quot;250&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-7&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=1;exitDx=0;exitDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;430&quot; y=&quot;380&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;480&quot; y=&quot;330&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-8&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;520&quot; y=&quot;430&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;570&quot; y=&quot;380&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-9&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;690&quot; y=&quot;370&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;740&quot; y=&quot;320&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-10&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;730&quot; y=&quot;290&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;780&quot; y=&quot;240&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-11&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;720&quot; y=&quot;290&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;770&quot; y=&quot;240&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-12&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;720&quot; y=&quot;250&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;770&quot; y=&quot;200&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-13&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-5&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;750&quot; y=&quot;280&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;800&quot; y=&quot;230&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-14&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;0&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;525&quot; y=&quot;241.38&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-15&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;1&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;544&quot; y=&quot;249.38&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-16&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;3&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;561&quot; y=&quot;256.38&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-17&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;4&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;578&quot; y=&quot;262.38&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-18&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;1&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;560&quot; y=&quot;359&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-19&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;2&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;642.5&quot; y=&quot;357&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-20&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;3&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;690&quot; y=&quot;310&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-21&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;4&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;690&quot; y=&quot;231.5&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-24&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;5&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;639&quot; y=&quot;180&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-25&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;6&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;559&quot; y=&quot;180&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-26&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;7&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;510&quot; y=&quot;231.5&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-27&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;8&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;508&quot; y=&quot;303&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-28&quot; value=&quot;&quot; style=&quot;endArrow=classic;html=1;rounded=0;entryX=0.167;entryY=0.222;entryDx=0;entryDy=0;entryPerimeter=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;520&quot; y=&quot;200&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;545.06&quot; y=&quot;235.95999999999998&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-29&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;Tracks&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;497&quot; y=&quot;182&quot; width=&quot;46&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-30&quot; value=&quot;&quot; style=&quot;endArrow=classic;html=1;rounded=0;entryX=0.081;entryY=0.763;entryDx=0;entryDy=0;entryPerimeter=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;510&quot; y=&quot;340&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;460&quot; y=&quot;290&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-31&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;Sectors&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;486&quot; y=&quot;338.49&quot; width=&quot;50&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-33&quot; value=&quot;&quot; style=&quot;endArrow=classic;html=1;rounded=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;630&quot; y=&quot;380&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;635.367856517187&quot; y=&quot;330.2416420372958&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-34&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;Blocks&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;610&quot; y=&quot;377&quot; width=&quot;50&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-35&quot; value=&quot;&amp;lt;font style=&amp;quot;font-size: 12px;&amp;quot; face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;&amp;amp;nbsp;= (Track Number, Sector Number)&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;455&quot; y=&quot;396&quot; width=&quot;320&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-36&quot; value=&quot;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0); font-family: monospace, monospace; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&amp;quot;&amp;gt;Block Address&amp;lt;/span&amp;gt;&quot; style=&quot;text;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;453&quot; y=&quot;387&quot; width=&quot;70&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-37&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;760&quot; y=&quot;262&quot; width=&quot;340&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-38&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;760&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-39&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;780&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-40&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;800&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-41&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;820&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-42&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;840&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-43&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;860&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-44&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;880&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-45&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;900&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-46&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;920&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-47&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;940&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-48&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;960&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-49&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;980&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-50&quot; value=&quot;&quot; style=&quot;rounded=0;whiteSpace=wrap;html=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;1080&quot; y=&quot;262&quot; width=&quot;20&quot; height=&quot;37&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-51&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-49&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-50&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;990&quot; y=&quot;399&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;1040&quot; y=&quot;349&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-52&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;0&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;750&quot; y=&quot;299.38&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-53&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;511&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;1090&quot; y=&quot;299&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-54&quot; value=&quot;&quot; style=&quot;endArrow=classic;html=1;rounded=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;810&quot; y=&quot;309&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;808.2447257383966&quot; y=&quot;282.38000000000005&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-55&quot; value=&quot;&amp;lt;font face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;Offset&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;787&quot; y=&quot;306.5&quot; width=&quot;50&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-56&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=0.989;exitY=0.604;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.988;entryY=0.607;entryDx=0;entryDy=0;entryPerimeter=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;JrhnrPEwiCwhw-9ldOR3-3&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-2&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;760&quot; y=&quot;340&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;810&quot; y=&quot;290&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-57&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;exitX=0.989;exitY=0.604;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.974;entryY=0.655;entryDx=0;entryDy=0;entryPerimeter=0;&quot; edge=&quot;1&quot; parent=&quot;1&quot; target=&quot;JrhnrPEwiCwhw-9ldOR3-2&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;658&quot; y=&quot;295&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;676&quot; y=&quot;301&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-61&quot; value=&quot;&amp;lt;font style=&amp;quot;font-size: 12px;&amp;quot; face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;&amp;amp;nbsp;= (Block Address, Offset)&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;880&quot; y=&quot;230.5&quot; width=&quot;190&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-62&quot; value=&quot;&amp;lt;font style=&amp;quot;font-size: 12px;&amp;quot; face=&amp;quot;monospace, monospace&amp;quot;&amp;gt;Byte Address&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;774&quot; y=&quot;230.5&quot; width=&quot;130&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;JrhnrPEwiCwhw-9ldOR3-70&quot; value=&quot;&quot; style=&quot;verticalLabelPosition=bottom;html=1;verticalAlign=top;strokeWidth=1;shape=mxgraph.lean_mapping.physical_pull;pointerEvents=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;600&quot; y=&quot;269.38&quot; width=&quot;20&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;      &lt;/root&gt;&#10;    &lt;/mxGraphModel&gt;&#10;  &lt;/diagram&gt;&#10;&lt;/mxfile&gt;&#10;" xmlns="http://www.w3.org/2000/svg">
+  <defs/>
+  <g>
+    <g>
+      <ellipse cx="157" cy="100" rx="90" ry="90" stroke="#000000" pointer-events="all" fill="#dae8fc"/>
+    </g>
+    <g>
+      <ellipse cx="157" cy="100" rx="70" ry="70" stroke="rgb(0, 0, 0)" pointer-events="all" fill="rgb(255, 255, 255)"/>
+    </g>
+    <polygon style="fill: rgb(213, 232, 211); stroke: rgba(0, 0, 0, 0);" points="157.053 150.003 156.966 169.73 164.343 169.062 172.697 167.536 182.45 164.779 194.224 158.804 206.793 149.135 192.42 134.977 187.529 139.934 180.922 144.366 173.57 147.804 164.874 149.759"/>
+    <g>
+      <ellipse cx="157" cy="100" rx="50" ry="50" stroke="rgb(0, 0, 0)" pointer-events="all" fill="rgb(255, 255, 255)"/>
+    </g>
+    <g>
+      <ellipse cx="157" cy="100" rx="32.5" ry="32.5" stroke="rgb(0, 0, 0)" pointer-events="all" fill="rgb(255, 255, 255)"/>
+    </g>
+    <polygon style="stroke: rgba(0, 0, 0, 0); fill: rgba(248, 206, 204, 0.706);" points="67.288 99.875 141.811 99.925 141.694 103.708 143.095 106.897 144.515 109.496 146.126 111.144 93.716 163.644 86.594 155.591 76.973 140.172 71.27 125.772 69.403 118.897 68.039 110.81"/>
+    <g>
+      <ellipse cx="157.01" cy="100" rx="15.624999999999998" ry="15.624999999999998" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <path d="M 67 100 L 141.38 100" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 93.36 163.64 L 145.96 111.05" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 157 190 L 157.01 115.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 220.64 163.64 L 168.05 111.05" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 145.96 88.96 L 93.36 36.36" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 157.01 84.38 L 157 10" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 168.05 88.96 L 220.64 36.36" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 172.63 100 L 247 100" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <rect x="72" y="61.38" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 71px; margin-left: 73px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">0</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="91" y="69.38" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 79px; margin-left: 92px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">1</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="108" y="76.38" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 86px; margin-left: 109px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">3</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="125" y="82.38" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 92px; margin-left: 126px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">4</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="107" y="179" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 189px; margin-left: 108px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">1</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="189.5" y="177" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 187px; margin-left: 191px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">2</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="237" y="130" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 140px; margin-left: 238px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">3</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="237" y="51.5" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 62px; margin-left: 238px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">4</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="186" y="0" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 10px; margin-left: 187px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">5</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="106" y="0" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 10px; margin-left: 107px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">6</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="57" y="51.5" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 62px; margin-left: 58px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">7</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="55" y="123" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 133px; margin-left: 56px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">8</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <path d="M 67 20 L 88.42 50.74" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path d="M 91.42 55.04 L 84.55 51.3 L 88.42 50.74 L 90.29 47.3 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="44" y="2" width="46" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 44px; height: 1px; padding-top: 12px; margin-left: 45px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">Tracks</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <path d="M 57 160 L 75.92 150.26" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path d="M 80.59 147.85 L 75.97 154.17 L 75.92 150.26 L 72.76 147.95 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="33" y="158.49" width="50" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 48px; height: 1px; padding-top: 168px; margin-left: 34px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">Sectors</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <path d="M 177 200 L 181.68 156.57" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path d="M 182.25 151.35 L 184.98 158.69 L 181.68 156.57 L 178.02 157.94 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="157" y="197" width="50" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 48px; height: 1px; padding-top: 207px; margin-left: 158px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">Blocks</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="2" y="216" width="320" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 226px; margin-left: 3px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 12px;" face="monospace, monospace"> = (Track Number, Sector Number)</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="0" y="207" width="70" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 68px; height: 1px; padding-top: 214px; margin-left: 2px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: left;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <span style="color: rgb(0, 0, 0); font-family: monospace, monospace; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Block Address</span>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="307" y="82" width="340" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="307" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="327" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="347" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="367" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="387" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="407" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="427" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="447" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="467" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="487" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="507" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="527" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="627" y="82" width="20" height="37" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <polygon style="stroke: rgba(0, 0, 0, 0); fill: rgba(255, 242, 204, 0.65);" points="347.759 82.239 366.719 82.368 366.612 118.646 347.526 118.688"/>
+    <g>
+      <path d="M 547 100.5 L 627 100.5" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="8 8" pointer-events="stroke"/>
+    </g>
+    <g>
+      <rect x="297" y="119.38" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 129px; margin-left: 298px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">0</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="637" y="119" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 18px; height: 1px; padding-top: 129px; margin-left: 638px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">511</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <path d="M 357 129 L 355.66 108.73" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path d="M 355.32 103.5 L 359.27 110.25 L 355.66 108.73 L 352.29 110.71 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="334" y="126.5" width="50" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 48px; height: 1px; padding-top: 137px; margin-left: 335px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font face="monospace, monospace">Offset</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <path d="M 205.9 110.4 L 225.32 114.98" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 205 115 L 223.36 121.7" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <rect x="427" y="50.5" width="190" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 188px; height: 1px; padding-top: 61px; margin-left: 428px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 12px;" face="monospace, monospace"> = (Block Address, Offset)</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="321" y="50.5" width="130" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 61px; margin-left: 322px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 12px;" face="monospace, monospace">Byte Address</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <path d="M 161.64 90.85 C 158.06 88.68 153.52 89.11 150.38 91.92 C 147.25 94.73 146.22 99.3 147.83 103.24 C 149.45 107.18 153.34 109.61 157.49 109.28 C 161.64 108.94 165.11 105.91 166.11 101.76" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+      <path d="M 165.14 101.76 L 166.59 99.28 L 167 102.26 Z" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+  </g>
+  <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+  <polygon style="stroke: rgba(0, 0, 0, 0); fill: rgba(255, 242, 204, 0.65);" points="205.455 114.484 223.167 121.06 224.909 115.219 206.478 111.035"/>
+</svg>

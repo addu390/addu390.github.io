@@ -5,7 +5,7 @@ permalink: /tags/
 content-type: eg
 ---
 
-<div>
+<main class="all-posts">
     {% for tag in site.tags %}
     <div class="pure-u-1 tags">
         <h2 id="{{ tag | first }}">{{ tag | first | capitalize }}</h2>
