@@ -4,13 +4,15 @@ permalink: /archive
 title: Archive of All Collections
 ---
 
-**Note:** This page contains all material in `posts` and `journals`.
+<p class="all-posts">This page contains all material in <code>posts</code> and <code>journals</code>.</p>
 
-<details open><summary class="h3" id="all-posts">Everything</summary>
+<div class="all-posts">
+<br/>
+<details open><summary class="h3">Everything</summary>
 {% for collection in site.collections %}
 {% if collection.label != "pages" and collection.label != "notes" %}
 
-  <h2>Entries from {{ collection.label | capitalize }}</h2>
+  <h3>Entries from {{ collection.label | capitalize }}</h3>
   <ul>
     {% for item in site[collection.label] %}
       <li class="archives" style="padding-bottom: 0.6em;"><a href="{{ item.url }}">{{ item.title }}</a></li>
@@ -22,11 +24,11 @@ title: Archive of All Collections
 
 <hr class="hr">
 
-<details><summary class="h3" id="all-posts">By tags</summary>
+<details><summary class="h3">By tags</summary>
 <div>
     {% for tag in site.tags %}
     <div class="pure-u-1 tags">
-        <h2 id="{{ tag | first }}">{{ tag | first | capitalize }}</h2>
+        <h3 id="{{ tag | first }}">{{ tag | first | capitalize }}</h3>
         <ul>
         {% for post in tag.last %}
             <li style="padding-bottom: 0.6em;"><a href="{{post.url}}">{{ post.title }}</a></li>
@@ -41,11 +43,11 @@ title: Archive of All Collections
 
 <hr class="hr">
 
-<details><summary class="h3" id="all-posts">By category</summary>
+<details><summary class="h3">By category</summary>
 <main>
     {% for category in site.categories %}
         <div class="pure-u-1 tags">
-        <h2 id="{{ category | first }}">{{ category | first  }}</h2>
+        <h3 id="{{ category | first }}">{{ category | first  }}</h3>
             <ul>
             {% for post in category.last %}
                 <li id="category-content" style="padding-bottom: 0.6em;"><a href="{{post.url}}">{{ post.title }}</a></li>
@@ -57,5 +59,6 @@ title: Archive of All Collections
     <br/>
 </main>
 </details>
+</div>
 
 <hr class="clear-hr">

@@ -1150,3 +1150,19 @@ table {
   scroll-margin-top: 70px;
 }
 
+.all-posts {
+  margin: 0 2em 0 2em;
+  font-size: 17px;
+}
+
+.all-posts a {
+  color: var(--black);
+}
+
+.blog-reference {
+  border: rgb(214, 182, 86) solid 1px;
+  margin-top: 1em;
+  padding: 0 0.8em 0 0.8em;
+  background-color: rgb(255, 242, 204);
+  border-radius: 5px;
+}

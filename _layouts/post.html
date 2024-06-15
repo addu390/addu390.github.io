@@ -2,6 +2,7 @@
 layout: default
 ---
 <div></div>
+{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
 <div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
     <div class="posts pure-u-md-5-6">
         <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
@@ -17,6 +18,10 @@ layout: default
 
             <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
         </article>
+        <div class="blog-reference">
+            <p>Cite this article as: {{ page.author }}. ({{ post.date | date: date_format }}). {{ page.title | escape }}. 
+                PyBlog. <a href="{{ page.url | relative_url }}">https://www.pyblog.xyz{{ page.url | relative_url }}</a></p>
+        </div>
         <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
             theme="github-light" crossorigin="anonymous" async>
             </script>
