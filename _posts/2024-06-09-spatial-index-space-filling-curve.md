@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Spatial Index: Space-Filling Curves"
-date: 2024-06-08
+date: 2024-06-09
 tags:
 - Database
 - Spatial Index
