@@ -138,9 +138,9 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 
 <p>Neighbor Searches: Generate geohashes for a target location and its neighbors to quickly retrieve nearby points. Which also extends to Area Searches: Calculate geohash ranges that cover a specific area and perform range queries to find all relevant points within that region.</p>
 
-<p>Popular databases such as <a href="https://clickhouse.com/docs/en/sql-reference/functions/geo/geohash" target="_blank">ClickHouse</a>, <a href="https://dev.mysql.com/doc/refman/8.4/en/spatial-geohash-functions.html" target="_blank">MySQL</a>, <a href="https://postgis.net/docs/ST_GeoHash.html" target="_blank">PostGIS</a>, <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geohash" target="_blank">BigQuery</a>, <a href="https://docs.aws.amazon.com/redshift/latest/dg/ST_GeoHash-function.html" target="_blank">RedShift</a> and many others offer built-in geohash function.</p>
+<p>Popular databases such as <a href="https://clickhouse.com/docs/en/sql-reference/functions/geo/geohash" target="_blank">ClickHouse</a>, <a href="https://dev.mysql.com/doc/refman/8.4/en/spatial-geohash-functions.html" target="_blank">MySQL</a>, <a href="https://postgis.net/docs/ST_GeoHash.html" target="_blank">PostGIS</a>, <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geohash" target="_blank">BigQuery</a>, <a href="https://docs.aws.amazon.com/redshift/latest/dg/ST_GeoHash-function.html" target="_blank">RedShift</a> and many others offer built-in geohash function. And many variations have been developed, such as the <a href="https://github.com/yinqiwen/geohash-int" target="_blank">64-bit Geohash</a> and <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2404058" target="_blank">Hilbert-Geohash</a></p>
 
-<p>And many variations have been developed, such as the <a href="https://github.com/yinqiwen/geohash-int" target="_blank">64-bit Geohash</a> and <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2404058" target="_blank">Hilbert-Geohash</a></p>
+<p>Interactive Geohash Visualization: <a href="/geohash" target="_blank">/geohash</a></p>
 </details>
 
 <hr class="clear-hr">
@@ -411,7 +411,7 @@ fff1000...000000000  # Level 0 cell ID
 <p>Notice the position of trailing <code>1</code> and padded <code>0</code>s, correlated to the level.</p>
 <hr class="hr">
 
-<p><b>S2 Tokens</b> are a string representation of S2 Cell IDs (uint64), which can be more convenient for storage. It's similar to Geohash, however, prefixes from a high-order S2 token does not yield a parent lower-order token, because the trailing 1 bit in S2 cell ID wouldn't be set correctly. Convert S2 Cell ID to an S2 Token by encoding the ID into a base-16 (hexadecimal) string.</p>
+<p><b>S2 Tokens</b> are a string representation of S2 Cell IDs (uint64), which can be more convenient for storage.</p>
 
 <details class="code-container"><summary class="p">4.2.5b. S2 Cell ID to S2 Token - Snippet</summary>
 <pre><code>public static String cellIdToToken(long cellId) {
@@ -436,12 +436,17 @@ public static void main(String[] args) {
 }
 </code></pre>
 </details>
+<p>It's similar to Geohash, however, prefixes from a high-order S2 token does not yield a parent lower-order token, because the trailing 1 bit in S2 cell ID wouldn't be set correctly. Convert S2 Cell ID to an S2 Token by encoding the ID into a base-16 (hexadecimal) string.</p>
 </details>
 
 <hr class="sub-hr">
 
-<details class="text-container"><summary class="h4">4.3. S2 - Conclusion</summary>
-<p></p>
+<details open class="text-container"><summary class="h4">4.3. S2 - Conclusion</summary>
+<p>Google's S2 provides spatial indexing by using hierarchical decomposition of the sphere into cells through a combination of Hilbert curves and cube map projection. This approach mitigates some of the spatial locality issues present in Z-order curves and offers more balanced surface area representations. S2's use of (face, u, v) coordinates, quadratic projection, and Hilbert space-filling curves ensures efficient and precise spatial indexing.</p>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-stats.svg" />
+
+<p>Closing with a strong pro and a con, S2 offers a high resolution of as low as <code>0.48 cm²</code> cell size (level 30), but the number of cells required to cover a given polygon isn't the best. This makes it a good transition to talk about Uber's <a href="https://www.uber.com/en-CA/blog/h3/" target="_blank">H3</a>. The question is, <a href="/cartograms-documentation#hexagonsvssquares">Why Hexagons?</a></p>
 </details>
 
 <hr class="clear-hr">
