@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Spatial Index: Space-Filling Curves"
-date: 2024-06-09
+date: 2024-06-08
 tags:
 - Database
 - Spatial Index
@@ -50,7 +50,7 @@ description: Spatial indexes optimize multi-dimensional data querying using spac
 <p class="figure-header">Figure 5: Limitation with Sorting on a Single Field</p>
 <p>However, if the query changes to <code>Device = 1 and Y = 2</code>, the optimization is lost because the sorting was done on <code>X</code> and not <code>Y</code>. This means the query will still require scanning the entire partition for <code>Device = 1</code>, bringing us back to a less efficient state.</p>
 
-<p>At this point, there's a clear need for efficiently partitioning 2-dimensional data. Why not use B-tree with a composite index? A composite index prioritizes the first column in the index, leading to inefficient querying for the second column. This leads us back to the same problem, particularly when both dimensions need to be considered simultaneously for efficient querying.</p>
+<p>At this point, there's a clear need for efficiently partitioning 2-dimensional data. Why not use <a href="/b-tree">B-tree</a> with a composite index? A composite index prioritizes the first column in the index, leading to inefficient querying for the second column. This leads us back to the same problem, particularly when both dimensions need to be considered simultaneously for efficient querying.</p>
 </details>
 
 <hr class="clear-hr">
@@ -280,7 +280,7 @@ description: Spatial indexes optimize multi-dimensional data querying using spac
 
 <details open class="text-container"><summary class="h4">2.7. Z-Order Curve and Hilbert Curve - Conclusion</summary>
 
-<p>Usage: Insert data points and their Z-order keys/Hilbert Keys (let's call it Z and H keys) into a one-dimensional hierarchical index structure, such as a B-Tree or Quad-Tree. For range or nearest neighbor queries, convert the search criteria into Z/H keys or range of keys. After retrieval, further filter the results as necessary to remove any garbage values.</p>
+<p>Usage: Insert data points and their Z-order keys/Hilbert Keys (let's call it Z and H keys) into a one-dimensional hierarchical index structure, such as a <a href="/b-tree">B-Tree</a> or Quad-Tree. For range or nearest neighbor queries, convert the search criteria into Z/H keys or range of keys. After retrieval, further filter the results as necessary to remove any garbage values.</p>
 
 <p>To conclude: Space-Filling Curves such as Z-Order/Hilbert indexing is a powerful technique to query higher-dimensional data, especially as the data volumes grows. By combining bits from multiple dimensions into a single value, space-Filling Curves indexing preserves spatial locality, enabling efficient data indexing and retrieval.</p>
 

@@ -131,7 +131,7 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 <hr class="sub-hr">
 
 <details open class="text-container"><summary class="h4">3.3. Geohash - Conclusion</summary>
-<p>Similar to <a href="/spatial-index-space-filling-curve#2-7-z-order-curve-and-hilbert-curve-conclusion">Section 2.7</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A B-trees or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
+<p>Similar to <a href="/spatial-index-space-filling-curve#2-7-z-order-curve-and-hilbert-curve-conclusion">Section 2.7</a> (Indexing the Z-values); Geohashes convert latitude and longitude into a single, sortable string, simplifying spatial data management. A <a href="/b-tree">B-trees</a> or search tree such as GiST/SP-GiST (Generalized Search Tree) index are commonly used for geohash indexing in databases.</p>
 
 <p>Prefix Search: Nearby locations share common geohash prefixes, enabling efficient filtering of locations by performing prefix searches on the geohash column</p>
 
