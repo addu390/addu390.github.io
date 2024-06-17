@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Spatial Index: Grid Systems"
-date: 2024-06-08
+date: 2024-06-12
 tags:
 - Database
 - Spatial Index
