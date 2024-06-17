@@ -149,7 +149,7 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 
 <details open class="text-container"><summary class="h4">4.1. S2 - Intuition</summary>
 
-<p>Google's S2 library was released more than 10 years ago and didn't exactly the get the attention it deserved, much later in 2017, Google announced the release of open-source C++ <a href="https://github.com/google/s2geometry" target="_blank">s2geometry library</a>. With the use of Hilbert Curve (<a href="/spatial-index-space-filling-curve#2-2-hilbert-curve-intuition">Section 2.2</a>) and cube map projection instead of geohash's Z-order curve and equirectangular projection; S2 addresses (to an extent) the large jumps (<a href="/spatial-index-space-filling-curve#2-5-z-order-curve-implementation">Section 2.5</a>) problem with Z-order curves and disproportional surface areas associated with equirectangular projection.</p>
+<p>Google's S2 library was released more than 10 years ago and didn't exactly the get the attention it deserved, much later in 2017, Google announced the release of open-source C++ <a href="https://github.com/google/s2geometry" target="_blank">s2geometry library</a>. With the use of Hilbert Curve (<a href="/spatial-index-space-filling-curve#2-2-hilbert-curve-intuition">Section 2.2</a>) and cube face (spherical) projection instead of geohash's Z-order curve and equirectangular projection; S2 addresses (to an extent) the large jumps (<a href="/spatial-index-space-filling-curve#2-5-z-order-curve-implementation">Section 2.5</a>) problem with Z-order curves and disproportional surface areas associated with equirectangular projection.</p>
 
 <p>The core of S2 is the hierarchical decomposition of the sphere into "cells"; done using a <a href="/quadtree" target="_blank">Quad-tree</a>, where a quadrant is recursively subdivided into four equal sub-cells and the use of Hilbet Curve goes hand-in-hand - runs across the centers of the quad-tree’s leaf nodes.</p>
 </details>
@@ -193,7 +193,7 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 <p>The <code>face</code> denotes which of the 6 (0 to 5) cube faces a point on the sphere is mapped onto. Figure 27, shows the 6 faces of the cube (<a href="https://en.wikipedia.org/wiki/Cube_mapping" target="_blank">cube mapping</a>) after the projection. For a unit-sphere, for each face, the point <code>u,v = (0,0)</code> represent the center of the face.</p>
 
 <img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-globe.svg" /> 
-<p class="figure-header">Figure 27: Cube Face Projection</p>
+<p class="figure-header">Figure 27: Cube Face (Spherical) Projection</p>
 
 <p>The evident problem here is that, the linear projection leads to same-area cells on the cube having different sizes on the sphere (Length and Area Distortion), with the ratio of highest to lowest area of <code>5.2</code> (areas on the cube can be up to 5.2 times longer or shorter than the corresponding distances on the sphere).</p>
 
@@ -441,7 +441,7 @@ public static void main(String[] args) {
 <hr class="sub-hr">
 
 <details open class="text-container"><summary class="h4">4.3. S2 - Conclusion</summary>
-<p>Google's S2 provides spatial indexing by using hierarchical decomposition of the sphere into cells through a combination of Hilbert curves and cube map projection. This approach mitigates some of the spatial locality issues present in Z-order curves and offers more balanced surface area representations. S2's use of (face, u, v) coordinates, quadratic projection, and Hilbert space-filling curves ensures efficient and precise spatial indexing.</p>
+<p>Google's S2 provides spatial indexing by using hierarchical decomposition of the sphere into cells through a combination of Hilbert curves and cube face (spherical) projection. This approach mitigates some of the spatial locality issues present in Z-order curves and offers more balanced surface area representations. S2's use of (face, u, v) coordinates, quadratic projection, and Hilbert space-filling curves ensures efficient and precise spatial indexing.</p>
 
 <img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-stats.svg" />
 
