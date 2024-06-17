@@ -1166,3 +1166,18 @@ table {
   background-color: rgb(255, 242, 204);
   border-radius: 5px;
 }
+
+.green-disclaimer {
+  border: rgb(130, 179, 102) solid 1px;
+  background-color: rgb(213, 232, 212);
+  margin-bottom: 1em;
+}
+
+.green-disclaimer p {
+  font-size: 16px;
+}
+
+.green-disclaimer a {
+  color: var(--black);
+  text-decoration: underline;
+}

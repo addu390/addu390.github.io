@@ -452,8 +452,7 @@ public static void main(String[] args) {
 
 <details><summary class="h3">3. References</summary>
 
-<pre style="max-height: 300px"><code>
-6. Christian S. Perone, "Google’s S2, geometry on the sphere, cells and Hilbert curve," in Terra Incognita, 14/08/2015, https://blog.christianperone.com/2015/08/googles-s2-geometry-on-the-sphere-cells-and-hilbert-curve/. [Accessed: 12-Jun-2024].
+<pre style="max-height: 300px"><code>6. Christian S. Perone, "Google’s S2, geometry on the sphere, cells and Hilbert curve," in Terra Incognita, 14/08/2015, https://blog.christianperone.com/2015/08/googles-s2-geometry-on-the-sphere-cells-and-hilbert-curve/. [Accessed: 12-Jun-2024].
 7. B. Feifke, "Geospatial Indexing Explained," Ben Feifke, Dec. 2022. [Online]. Available: https://benfeifke.com/posts/geospatial-indexing-explained/. [Accessed: 12-Jun-2024].
 8. "S2 Concepts," S2 Geometry Library Documentation, 2024. [Online]. Available: https://docs.s2cell.aliddell.com/en/stable/s2_concepts.html. [Accessed: 13-Jun-2024].
 9. "Geospatial Indexing: A Look at Google's S2 Library," CNIter Blog, Mar. 2023. [Online]. Available: https://cniter.github.io/posts/720275bd.html. [Accessed: 13-Jun-2024].

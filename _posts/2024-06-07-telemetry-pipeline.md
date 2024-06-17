@@ -463,7 +463,7 @@ services:
 
 <p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank">GeoMesa</a>: spatio-temporal indexing on top of the Accumulo, HBase, Redis, Kafka, PostGIS and Cassandra. <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank">XZ-Ordering</a>: Customizing Index Creation.</p>
 
-<p>⚠️ <a href="/spatio-temporal-index">Next blog</a> post is all about spatio-temporal indexes!</p>
+<p><img class="twemoji" src="../assets/img/emoji/rocket.svg" alt=""> <a href="/spatial-index-space-filling-curve">Next blog</a> post is all about spatial indexes!</p>
 
 </details>
 
@@ -531,8 +531,7 @@ services:
 
 <details><summary class="h3">5. References</summary>
 
-<pre style="height: 300px"><code>
-1. Wikipedia, "Telemetry," available: https://en.wikipedia.org/wiki/Telemetry. [Accessed: June 5, 2024].
+<pre style="height: 300px"><code>1. Wikipedia, "Telemetry," available: https://en.wikipedia.org/wiki/Telemetry. [Accessed: June 5, 2024].
 2. Apache Cassandra, "Cassandra," available: https://cassandra.apache.org. [Accessed: June 5, 2024].
 3. VictoriaMetrics, "VictoriaMetrics," available: https://victoriametrics.com. [Accessed: June 6, 2024].
 4. Fluentd, "Fluentd," available: https://www.fluentd.org. [Accessed: June 5, 2024].
