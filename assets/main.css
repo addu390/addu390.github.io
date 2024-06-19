@@ -1165,6 +1165,7 @@ table {
   padding: 0 0.8em 0 0.8em;
   background-color: rgb(255, 242, 204);
   border-radius: 5px;
+  margin-bottom: 1em;
 }
 
 .green-disclaimer {
