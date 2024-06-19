@@ -133,7 +133,7 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 <p class="figure-header">Figure 9: (lat, long) to (x, y, z) Transformation</p>
 
 <details class="code-container" open><summary class="p">2.1a. (Lat, Long) to (X,Y,Z) - Snippet</summary>
-<pre><code>public static double[] latLonToCartesian(double lat, double lon) {
+<pre><code>private static double[] latLonToCartesian(double lat, double lon) {
     double r = Math.cos(Math.toRadians(lat));
     double x = r * Math.cos(Math.toRadians(lon));
     double y = r * Math.sin(Math.toRadians(lon));
@@ -148,8 +148,11 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 <h3>2.2. Icosahedron Vertices</h3>
 <p>Identify the <code>12</code> vertices of the icosahedron using the <a href="https://en.wikipedia.org/wiki/Golden_ratio" target="_blank">golden ratio</a> <code>(ϕ)</code></p>
 
-<p>The icosahedron has 12 vertices, 20 faces, and 30 edges. The vertices can be computed based on the golden ratio, which is <code>φ = (1 + sqrt(5)) / 2 ≈ 1.6180339887</code>
+<p>The icosahedron has 12 vertices, 20 faces, and 30 edges. The vertices can be computed based on the golden ratio <code>φ</code>
 And the 12 vertices are given by <code>(±1, ±ϕ, 0)</code>, <code>(±ϕ, 0, ±1)</code>, <code>(0, ±1, ±ϕ)</code>. Lastly, the vertices need to be normalized to lie on the surface of a unit sphere.</p>
+
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/golden-ratio.svg" /> 
+<p class="figure-header">Figure 10: Golden Ratio Rectangles</p>
 
 <details class="code-container" open><summary class="p">2.2a. Icosahedron Vertices - Snippet</summary>
 <pre><code>// Normalizes a vector to lie on the unit sphere.
@@ -176,9 +179,10 @@ for (int i = 0; i < vertices.length; i++) {
 
 <h3>2.3. Icosahedron Face Centers</h3>
 <p>Calculate the <code>20</code> face centers of the icosahedron:</p>
-<p>For each face, average the coordinates of its three vertices and normalize the resulting vector to lie on the unit sphere. Use the formula:<br/> <code>center = ( (x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3, (z1 + z2 + z3) / 3 )</code></p>
+<p>For each face, average the coordinates of its three vertices and normalize the resulting vector to lie on the unit sphere. Use the formula:</p>
 
-<p>Normalize the vector by dividing each component by its length:<br/> <code>normalized center = center / ||center||</code></p>
+<img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/face-centers.svg" /> 
+<p class="figure-header">Figure 11: Icosahedron Face Center</p>
 
 <details class="code-container"><summary class="p">2.3a. Icosahedron Face Centers - Snippet</summary>
 <pre><code>private static final int NUM_ICOSA_FACES = 20;
@@ -226,12 +230,12 @@ faces[19] = computeFaceCenter(vertices[9], vertices[8], vertices[1]);
 <pre><code>private static final int NUM_ICOSA_FACES = 20;
 
 // Computes the dot product of two vectors.
-public static double dotProduct(double[] a, double[] b) {
+private static double dotProduct(double[] a, double[] b) {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
 // Finds the closest icosahedral face to the given vector.
-public static int findFace(double[] vec) {
+private static int findFace(double[] vec) {
     int face = 0;
     double maxDot = -1;
     for (int i = 0; i < NUM_ICOSA_FACES; i++) {
@@ -248,63 +252,14 @@ public static int findFace(double[] vec) {
 
 <hr class="hr">
 
-<h3>2.5. XYZ Coordinates to Local Face Coordinates</h3>
-<p>Project the 3D Cartesian coordinates onto the local coordinate system of the identified face. Calculate the local coordinates relative to the face center using the difference between the point and the face center: <br/><code>local = ( x - face_x, y - face_y, z - face_z )</code></p>
+<h3>2.5. XYZ to FaceUVLocal Face Coordinates</h3>
+<p>Project the 3D Cartesian coordinates onto the local coordinate system of the identified face i.e. convert 3D coordinates into a 2D coordinate system relative to the face; using the Basis vectors to define a coordinate system on the 2D plane of an icosahedral face.</p>
 
-<details class="code-container"><summary class="p">2.5a. XYZ to Icosahedron FaceXYZ - Snippet</summary>
-<pre><code>public static double[] toFaceCoords(double[] vec, int face) {
-    double[] faceVec = ICOSA_FACES[face];
-    double[] uBasisVector = calculateUBasisVector(faceVec, getAdjacentVertex(faceVec, 1));
-    double[] vBasisVector = calculateVBasisVector(faceVec, getAdjacentVertex(faceVec, 2), uBasisVector);
-    double u = dotProduct(vec, uBasisVector);
-    double v = dotProduct(vec, vBasisVector);
-    return new double[]{u, v};
-}
-
-public static double[] calculateUBasisVector(double[] A, double[] B) {
-    double[] u = new double[3];
-    u[0] = B[0] - A[0];
-    u[1] = B[1] - A[1];
-    u[2] = B[2] - A[2];
-    return normalize(u);
-}
-
-public static double[] calculateVBasisVector(double[] A, double[] C, double[] u) {
-    double[] v = new double[3];
-    v[0] = C[0] - A[0];
-    v[1] = C[1] - A[1];
-    v[2] = C[2] - A[2];
-
-    // Project v onto the plane orthogonal to u
-    double dotProduct = v[0] * u[0] + v[1] * u[1] + v[2] * u[2];
-    v[0] -= dotProduct * u[0];
-    v[1] -= dotProduct * u[1];
-    v[2] -= dotProduct * u[2];
-
-    return normalize(v);
-}
-
-private static double[] getAdjacentVertex(double[] faceVec, int index) {
-    // Placeholder: In practice, you should use actual adjacent vertices based on the icosahedron structure
-    double PHI = (1.0 + Math.sqrt(5.0)) / 2.0;
-    double[][] vertices = {
-            {-1, PHI, 0}, {1, PHI, 0}, {-1, -PHI, 0}, {1, -PHI, 0},
-            {0, -1, PHI}, {0, 1, PHI}, {0, -1, -PHI}, {0, 1, -PHI},
-            {PHI, 0, -1}, {PHI, 0, 1}, {-PHI, 0, -1}, {-PHI, 0, 1}
-    };
-    return normalize(vertices[(faceVec.hashCode() + index) % vertices.length]);
-}
+<details class="code-container"><summary class="p">2.5a. XYZ to Icosahedron FaceUV - Snippet</summary>
+<pre><code>
 </code></pre>
 </details>
-
-<p>Calculate <a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)" target="_blank">Basis Vectors</a>: For a given icosahedral face defined by three vertices <code>A, B, and C</code>:</p>
-<ul>
-<li><code>uBasisVector</code>: The normalized vector from A to B</li>
-<li><code>vBasisVector</code>: The vector from A to C , projected to be orthogonal to <code>uBasisVector</code>, and then normalized.</li>
-</ul>
-
-<p>Project a 3D point onto the plane using <a href="https://en.wikipedia.org/wiki/Dot_product" target="_blank">dot products</a> with the basis vectors to get 2D coordinates: <code>u = P · uBasisVector</code> and <code>v = P · vBasisVector</code></p>
-
+<p>Work in Progress!</p>
 <hr class="hr">
 
 <h3>2.6. 64-bit H3 index</h3>
