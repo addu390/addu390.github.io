@@ -146,10 +146,9 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 <hr class="hr">
 
 <h3>2.2. Icosahedron Vertices</h3>
-<p>Identify the <code>12</code> vertices of the icosahedron using the <a href="https://en.wikipedia.org/wiki/Golden_ratio" target="_blank">golden ratio</a> <code>(ϕ)</code></p>
+<p>Identify the <code>12</code> vertices of the icosahedron using the <a href="https://en.wikipedia.org/wiki/Golden_ratio" target="_blank">golden ratio</a> <code>(ϕ)</code>. It a well known property of a regular icosahedron, where three mutually perpendicular rectangles of aspect ratio <code>(ϕ)</code> are arranged such that they share a common center.</p>
 
-<p>The icosahedron has 12 vertices, 20 faces, and 30 edges. The vertices can be computed based on the golden ratio <code>φ</code>
-And the 12 vertices are given by <code>(±1, ±ϕ, 0)</code>, <code>(±ϕ, 0, ±1)</code>, <code>(0, ±1, ±ϕ)</code>. Lastly, the vertices need to be normalized to lie on the surface of a unit sphere.</p>
+<p>The icosahedron has 12 vertices, 20 faces, and 30 edges. The 12 vertices are given by: <code>(±1, ±ϕ, 0)</code>, <code>(±ϕ, 0, ±1)</code>, <code>(0, ±1, ±ϕ)</code>. Lastly, the vertices need to be normalized to lie on the surface of a unit sphere.</p>
 
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/golden-ratio.svg" /> 
 <p class="figure-header">Figure 10: Golden Ratio Rectangles</p>
@@ -184,7 +183,7 @@ for (int i = 0; i < vertices.length; i++) {
 <img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/face-centers.svg" /> 
 <p class="figure-header">Figure 11: Icosahedron Face Center</p>
 
-<details class="code-container"><summary class="p">2.3a. Icosahedron Face Centers - Snippet</summary>
+<details open class="code-container"><summary class="p">2.3a. Icosahedron Face Centers - Snippet</summary>
 <pre><code>private static final int NUM_ICOSA_FACES = 20;
 
 // Computes the center of a face defined by three vertices.
@@ -195,29 +194,6 @@ private static double[] computeFaceCenter(double[] a, double[] b, double[] c) {
     center[2] = (a[2] + b[2] + c[2]) / 3.0;
     return normalize(center);
 }
-
-// Computes the 20 face centers of an icosahedron.
-double[][] faces = new double[NUM_ICOSA_FACES][3];
-faces[0] = computeFaceCenter(vertices[0], vertices[11], vertices[5]);
-faces[1] = computeFaceCenter(vertices[0], vertices[5], vertices[1]);
-faces[2] = computeFaceCenter(vertices[0], vertices[1], vertices[7]);
-faces[3] = computeFaceCenter(vertices[0], vertices[7], vertices[10]);
-faces[4] = computeFaceCenter(vertices[0], vertices[10], vertices[11]);
-faces[5] = computeFaceCenter(vertices[1], vertices[5], vertices[9]);
-faces[6] = computeFaceCenter(vertices[5], vertices[11], vertices[4]);
-faces[7] = computeFaceCenter(vertices[11], vertices[10], vertices[2]);
-faces[8] = computeFaceCenter(vertices[10], vertices[7], vertices[6]);
-faces[9] = computeFaceCenter(vertices[7], vertices[1], vertices[8]);
-faces[10] = computeFaceCenter(vertices[3], vertices[9], vertices[4]);
-faces[11] = computeFaceCenter(vertices[3], vertices[4], vertices[2]);
-faces[12] = computeFaceCenter(vertices[3], vertices[2], vertices[6]);
-faces[13] = computeFaceCenter(vertices[3], vertices[6], vertices[8]);
-faces[14] = computeFaceCenter(vertices[3], vertices[8], vertices[9]);
-faces[15] = computeFaceCenter(vertices[4], vertices[9], vertices[5]);
-faces[16] = computeFaceCenter(vertices[2], vertices[4], vertices[11]);
-faces[17] = computeFaceCenter(vertices[6], vertices[2], vertices[10]);
-faces[18] = computeFaceCenter(vertices[8], vertices[6], vertices[7]);
-faces[19] = computeFaceCenter(vertices[9], vertices[8], vertices[1]);
 </code></pre>
 </details>
 
@@ -252,14 +228,16 @@ private static int findFace(double[] vec) {
 
 <hr class="hr">
 
-<h3>2.5. XYZ to FaceUVLocal Face Coordinates</h3>
-<p>Project the 3D Cartesian coordinates onto the local coordinate system of the identified face i.e. convert 3D coordinates into a 2D coordinate system relative to the face; using the Basis vectors to define a coordinate system on the 2D plane of an icosahedral face.</p>
+<h3>2.5. XYZ Coordinates to Local Face Coordinates</h3>
+<p>Project the 3D Cartesian coordinates onto the local coordinate system of the identified face i.e. convert 3D coordinates into a 2D coordinate system relative to the face.</p>
 
 <details class="code-container"><summary class="p">2.5a. XYZ to Icosahedron FaceUV - Snippet</summary>
 <pre><code>
 </code></pre>
 </details>
+
 <p>Work in Progress!</p>
+
 <hr class="hr">
 
 <h3>2.6. 64-bit H3 index</h3>
@@ -284,7 +262,7 @@ private static int findFace(double[] vec) {
 
 <p>Multiplying by <code>1e6</code> converts the coordinates to a fixed-point representation, making them suitable for encoding in the H3 index format.</p>
 
-<p>Again, this implementation is a simplified presentation of the H3 indexing process, and it does not capture the full accuracy and complexity of the actual H3 calculations. For precise and reliable H3 index calculations, please use the official H3 library provided by Uber.</p>
+<p>Again, this implementation is an overly simplified version of the H3 indexing process, and it does not capture the full accuracy and complexity of the actual H3 calculations. For precise and reliable H3 index calculations, use the official H3 library by Uber.</p>
 
 <hr class="hr">
 
