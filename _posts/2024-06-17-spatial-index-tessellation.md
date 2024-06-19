@@ -10,6 +10,7 @@ author: Adesh Nalpet Adimurthy
 image: assets/featured/space-tessellation.png
 feature: assets/featured/space-tessellation.png
 category: System Wisdom
+description: Tessellation for spatial indexing divides space into non-overlapping shapes for efficient data management. The Uber H3 grid system uses hexagonal cells, offering better uniformity and efficiency than squares or triangles. This system projects hexagons onto an icosahedron to minimize distortion, enhancing geographic algorithms. The article also provides a custom implementation of H3, explaining the process of converting latitude and longitude to 3D Cartesian coordinates, identifying icosahedron vertices, and encoding cell IDs into a 64-bit integer.
 ---
 
 <img class="center-image" src="./assets/featured/space-tessellation.png" /> 
@@ -362,7 +363,24 @@ public class H3Index {
 <hr class="clear-hr"/>
 
 <details><summary class="h3">4. References</summary>
-
-<pre style="max-height: 300px"><code>
+<pre style="max-height: 300px"><code>1. Uber Technologies, Inc., "H3: A Hexagonal Hierarchical Spatial Index," GitHub. [Online]. Available: https://github.com/uber/h3.
+2. Wikipedia, "Graticule," [Online]. Available: https://en.wikipedia.org/wiki/Graticule.
+3. Microsoft, "QuadKey," Microsoft Docs. [Online]. Available: https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system.
+4. Wikipedia, "Geohash," [Online]. Available: https://en.wikipedia.org/wiki/Geohash.
+5. Google, "Google S2 Geometry Library," [Online]. Available: https://s2geometry.io/.
+6. Wikipedia, "Icosahedron," [Online]. Available: https://en.wikipedia.org/wiki/Icosahedron.
+7. Wikipedia, "Dot product," [Online]. Available: https://en.wikipedia.org/wiki/Dot_product.
+8. Wikipedia, "Basis vectors," [Online]. Available: https://en.wikipedia.org/wiki/Basis_(linear_algebra).
+9. Wikipedia, "3D Cartesian coordinates," [Online]. Available: https://en.wikipedia.org/wiki/Cartesian_coordinate_system.
+10. A. N. Adimurthy, "Spatial Index: Tessellation," PyBlog. [Online]. Available: https://www.pyblog.xyz/spatial-index-tessellation.
+11. Wikipedia, "Conceptualization of a Cartogram," [Online]. Available: https://en.wikipedia.org/wiki/Cartogram.
+12. Wikipedia, "Golden ratio," [Online]. Available: https://en.wikipedia.org/wiki/Golden_ratio.
+13. Wikipedia, "Icosahedron vertices," [Online]. Available: https://en.wikipedia.org/wiki/Icosahedron#Vertices.
+14. Wikipedia, "H3: A Hexagonal Hierarchical Spatial Index," [Online]. Available: https://en.wikipedia.org/wiki/H3_(spatial_index).
+15. Wikipedia, "Dymaxion map," [Online]. Available: https://en.wikipedia.org/wiki/Dymaxion_map.
+16. K. Sahr, "Geodesic Discrete Global Grid Systems," Southern Oregon University. [Online]. Available: https://webpages.sou.edu/~sahrk/sqspc/pubs/gdggs03.pdf.
+17. D. F. Marble, "The Fundamental Data Structures for Implementing Digital Tessellation," University of Edinburgh. [Online]. Available: https://www.geos.ed.ac.uk/~gisteac/gis_book_abridged/files/ch36.pdf.
+18. J. Castner, "The Application of Tessellation in Geographic Data Handling," Semantic Scholar. [Online]. Available: https://pdfs.semanticscholar.org/feb2/3e69e19875817848ac8694b15f58d2ef52b0.pdf.
+19. "Hexagonal Tessellation and Its Application in Geographic Information Systems," YouTube. [Online]. Available: https://www.youtube.com/watch?v=wDuKeUkNLkQ&list=PL0HGds8aHQsAYm86RzQdZtFFeLpIOjk00.
 </code></pre>
 </details>
