@@ -2,7 +2,6 @@
 layout: post
 title: "Spatial Index: Tessellation"
 date: 2024-06-17
-state: Draft
 tags:
 - Database
 - Spatial Index
@@ -342,7 +341,10 @@ public class H3Index {
 
 <hr class="clear-hr"/>
 
-<details><summary class="h3">3. H3 - Conclusion</summary>
+<details open><summary class="h3">3. H3 - Conclusion</summary>
+<p>So far, in the Spatial Index Series, we have seen the use of space-filling curves and their application in grid systems like Geohash and S2. Finally, we explored Uber's H3, which falls under grid systems and more specifically relies on tessellation. By now, it's likely clear that H3 indexes are not directly queryable on the database by ranges or prefixes, but they have more importance towards the accuracy of filling a polygon, nearby search by radius, high resolution, and many more.</p>
+
+<p>If you missed the series, it starts with <a href="/spatial-index-space-filling-curve">Spatial Index: Space-Filling Curves</a>, followed by <a href="/spatial-index-grid-system">Spatial Index: Grid Systems</a>, and finally, the current post, <a href="#spatial-index-tessellation">Spatial Index: Tessellation</a>.</p>
 </details>
 
 <hr class="clear-hr"/>
