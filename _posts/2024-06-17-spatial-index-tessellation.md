@@ -200,7 +200,10 @@ private static double[] computeFaceCenter(double[] a, double[] b, double[] c) {
 <hr class="hr">
 
 <h3>2.4. Closest Icosahedron Face</h3>
-<p>To identify the closest icosahedral face, compute the dot product of the 3D Cartesian coordinates with the normal vectors of the 20 icosahedral faces. The face with the highest dot product value is the closest.</p>
+
+<p>If you think of the <a href="https://en.wikipedia.org/wiki/Platonic_solid" target="_blank">Platonic solid</a> centred at the origin, then the coordinates of a point located at the centre of each face is equal to those of a vector normal to the face. In principle, for a point on the sphere, interate over all the faces and find the face/normal whose dot product with the coordinates of the point is greatest.</p>
+
+<p>In this case, to identify the closest icosahedral face, compute the dot product of the 3D Cartesian coordinates with the normal vectors of the 20 icosahedral faces. The face with the highest dot product value is the closest.</p>
 
 <details class="code-container" open><summary class="p">2.4a. Closest Icosahedron Face - Snippet</summary>
 <pre><code>private static final int NUM_ICOSA_FACES = 20;
@@ -226,17 +229,66 @@ private static int findFace(double[] vec) {
 </code></pre>
 </details>
 
+<p>The above is a brute force method. A better approach would be to load up the face centers of the Dymaxion-based icosahedron into a KDTree (Index) and query to find the closest point.</p>
+
 <hr class="hr">
 
-<h3>2.5. XYZ Coordinates to Local Face Coordinates</h3>
-<p>Project the 3D Cartesian coordinates onto the local coordinate system of the identified face i.e. convert 3D coordinates into a 2D coordinate system relative to the face.</p>
+<h3>2.5. XYZ to FaceUV</h3>
+<p>With the closest icosahedron face identified, <a href="https://math.stackexchange.com/questions/444968/project-a-point-in-3d-on-a-given-plane" target="_blank">project the point P</a> onto the plane of that face and get coordinates of R in U-V using <a href="https://en.wikipedia.org/wiki/Parallel_projection" target="_blank">parallel projection</a>. i.e. convert 3D coordinates into a 2D coordinate system relative to the face.</p>
 
-<details class="code-container"><summary class="p">2.5a. XYZ to Icosahedron FaceUV - Snippet</summary>
-<pre><code>
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/h3-local-faceuv.svg" /> 
+<p class="figure-header">Figure 12: Parallel Projection (3D point on a icosahedron face plane)</p>
+
+<details class="code-container"><summary class="p">2.5a. XYZ to FaceUV - Snippet</summary>
+<pre><code>public class ParallelProjection {
+
+    public static double[] projectToPlane(double[] P, double[] Q1, double[] Q2, double[] Q3) {
+        // Calculate U = Q2 - Q1
+        double[] U = subtract(Q2, Q1);
+
+        // Calculate V = Q3 - Q1
+        double[] V = subtract(Q3, Q1);
+
+        // Calculate N = U x V (normal vector of the plane)
+        double[] N = cross(U, V);
+
+        // Vector from Q1 to P
+        double[] PQ1 = subtract(P, Q1);
+
+        // Scalar projection of PQ1 onto N
+        double scalarProjection = dot(PQ1, N);
+
+        // Scale N by the scalar projection to get the projection component
+        double[] projectionComponent = scale(N, scalarProjection);
+
+        // Subtract this component from P to get the projection R = P - [(P - Q1) ⋅ N] * N
+        return subtract(P, projectionComponent);
+    }
+
+    private static double dot(double[] a, double[] b) {
+        return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    }
+
+    private static double[] subtract(double[] a, double[] b) {
+        return new double[]{a[0] - b[0], a[1] - b[1], a[2] - b[2]};
+    }
+
+    private static double[] scale(double[] a, double scalar) {
+        return new double[]{a[0] * scalar, a[1] * scalar, a[2] * scalar};
+    }
+
+    private static double[] cross(double[] a, double[] b) {
+        return new double[]{
+            a[1] * b[2] - a[2] * b[1],
+            a[2] * b[0] - a[0] * b[2],
+            a[0] * b[1] - a[1] * b[0]
+        };
+    }
+}
 </code></pre>
 </details>
 
-<p>Work in Progress!</p>
+<p>Evidently, the problem here is that the icosahedron is projected onto a sphere, which requires further transformations. For the sake of simplicity in this post, I'm stopping at this point.</p>
 
 <hr class="hr">
 
@@ -244,14 +296,14 @@ private static int findFace(double[] vec) {
 <p>Encode the face, resolution, and grid coordinates into a 64-bit H3 index. Use bitwise operations to combine these components into a single integer value:</p>
 
 <details class="code-container" open><summary class="p">2.6a. FaceUV to H3 Index - Snippet</summary>
-<pre><code>private static long computeH3Index(double[] localCoords, int face, int resolution) {
+<pre><code>private static long computeH3Index(double[] uv, int face, int resolution) {
     long h3Index = 0L;
     h3Index |= (1L << 63); // Set the mode bit (MSB)
     h3Index |= ((long) face << 45); // Set the base cell (face)
     h3Index |= ((long) resolution << 52); // Set the resolution
 
-    long localX = (long) (localCoords[0] * 1e6);
-    long localY = (long) (localCoords[1] * 1e6);
+    long localX = (long) (uv[0] * 1e6);
+    long localY = (long) (uv[1] * 1e6);
     h3Index |= (localX & 0x1FFFFFFFFFFFL);
     h3Index |= ((localY & 0x1FFFFFFFFFFFL) << 23);
 
@@ -315,5 +367,8 @@ public class H3Index {
 17. D. F. Marble, "The Fundamental Data Structures for Implementing Digital Tessellation," University of Edinburgh. [Online]. Available: https://www.geos.ed.ac.uk/~gisteac/gis_book_abridged/files/ch36.pdf.
 18. J. Castner, "The Application of Tessellation in Geographic Data Handling," Semantic Scholar. [Online]. Available: https://pdfs.semanticscholar.org/feb2/3e69e19875817848ac8694b15f58d2ef52b0.pdf.
 19. "Hexagonal Tessellation and Its Application in Geographic Information Systems," YouTube. [Online]. Available: https://www.youtube.com/watch?v=wDuKeUkNLkQ&list=PL0HGds8aHQsAYm86RzQdZtFFeLpIOjk00.
+20. "Mapping spherical coordinates onto faces of an icosahedron," Stack Exchange, CS Stack Exchange. [Online]. Available: https://cs.stackexchange.com/questions/134080/mapping-spherical-coordinates-onto-faces-of-an-icosahedron.
+21. "Project a point in 3D on a given plane," Stack Exchange, Math Stack Exchange. [Online]. Available: https://math.stackexchange.com/questions/444968/project-a-point-in-3d-on-a-given-plane.
+22. "Snapping vector to a point from a grid on a sphere (icosahedron)," Stack Exchange, Stack Overflow. [Online]. Available: https://stackoverflow.com/questions/48553298/snapping-vector-to-a-point-from-a-grid-on-a-sphere-icosahedron.
 </code></pre>
 </details>
