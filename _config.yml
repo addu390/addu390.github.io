@@ -37,6 +37,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-sitemap
 permalink: /:title
 
 defaults:
