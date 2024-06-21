@@ -8,7 +8,7 @@ title: Archive of All Collections
 
 <div class="all-posts">
 <br/>
-<details open><summary class="h3">Everything</summary>
+<details class="text-container" open><summary class="h3">Everything</summary>
 {% for collection in site.collections %}
 {% if collection.label != "pages" and collection.label != "notes" %}
 
@@ -22,9 +22,9 @@ title: Archive of All Collections
 {% endfor %}
 </details>
 
-<hr class="hr">
+<hr class="clear-hr">
 
-<details><summary class="h3">By tags</summary>
+<details class="text-container"><summary class="h3">By tags</summary>
 <div>
     {% for tag in site.tags %}
     <div class="pure-u-1 tags">
@@ -41,9 +41,9 @@ title: Archive of All Collections
 </div>
 </details>
 
-<hr class="hr">
+<hr class="clear-hr">
 
-<details><summary class="h3">By category</summary>
+<details class="text-container"><summary class="h3">By category</summary>
 <main>
     {% for category in site.categories %}
         <div class="pure-u-1 tags">
