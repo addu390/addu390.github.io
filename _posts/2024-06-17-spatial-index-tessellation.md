@@ -91,7 +91,7 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/h3-tessellation-2.svg" />
 <p class="figure-header">Figure 6: H3 Projection and Tessellation</p>
 
-<p>The H3 grid system divides the surface of the Earth into <code>122</code> base cells, which are used as the foundation for higher resolution cells. Each base cell has a specific orientation relative to the face of the icosahedron it is on. This orientation determines how cells at higher resolutions are positioned and indexed.</p>
+<p>The H3 grid system divides the surface of the Earth into <code>122</code> (110 hexagons and 12 icosahedron vertex-centered pentagons) base cells (resolution 0), which are used as the foundation for higher resolution cells. Each base cell has a specific orientation relative to the face of the icosahedron it is on. This orientation determines how cells at higher resolutions are positioned and indexed.</p>
 
 <h3>1.4. Why Pentagons?</h3>
 
@@ -118,7 +118,7 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 <li>Cell Index (45 bits): Contains the specific index of the cell within the base cell and resolution.</li>
 </ul>
 
-<p>This structure allows H3 to efficiently encode the hierarchical location and resolution of each hexagonal cell in a compact 64-bit integer.</p>
+<p>This structure (<a href="#2-5-faceijk-to-h3-index">Figure 14</a>) allows H3 to efficiently encode the hierarchical location and resolution of each hexagonal cell in a compact 64-bit integer.</p>
 </details>
 
 <hr class="clear-hr"/>
@@ -238,6 +238,8 @@ public Vec2d toVec2d(int resolution, int face, double distance) {
 </code></pre>
 </details>
 
+<p>About <code>SQRT7_POWERS</code>. Each resolution beyond 0 is created using an aperture 7 resolution spacing, i.e. number of cells in the next finer resolution (<a href="#1-uber-h3-intuition">Figure 1 and 3</a>). So, as resolution increases, unit length is scaled by <code>sqrt(7)</code>. H3 has 15 resolutions/levels (+resolution 0).</p>
+
 <hr class="hr">
 
 <h3>2.4. Vec2D to FaceIJK</h3>
@@ -340,14 +342,22 @@ IF value.y < 0 THEN
 </code></pre>
 </details>
 
-<p>Each grid resolution is rotated <code>~19.1°</code> relative to the next coarser resolution. The rotation alternates between counterclockwise and clockwise at each successive resolution, so that each resolution will have one of two possible orientations as shown in Figure 13: <code>Class II</code> or <code>Class III</code> (using a terminology coined by R. Buckminster Fuller). The base cells, which make up resolution 0, are <code>Class II</code>.</p>
+<p>Each grid resolution is rotated <code>~19.1°</code> relative to the next coarser resolution. The rotation alternates between counterclockwise (CCW) and clockwise (CW) at each successive resolution, so that each resolution will have one of two possible orientations as shown in Figure 13: <code>Class II</code> or <code>Class III</code>. The base cells, which make up resolution 0, are <code>Class II</code>.</p>
 
 <hr class="hr">
 
 <h3>2.5. FaceIJK to H3 Index</h3>
 <p>Lastly, the <a href="https://h3geo.org/docs/core-library/latLngToCellDesc" target="_blank">face and face-centered ijk coordinates are converted to H3 Index</a>.</p> 
 
-<p>Which primarily involves coverting to Direction bits, representing the hierarchical path from a base cell to a specific cell at a given resolution. These bits encode the sequence of directional steps taken within the hexagonal grid to reach the target cell from the base cell.</p>
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/h3-index-structure.svg" /> 
+<p class="figure-header">Figure 14: H3 Index Structure</p>
+
+<p>If the resolution is not uptill level 15, rest of the vits are set to 1s, for example: <code>83001dfffffffff</code>. The binary representation is as below (Figure 15); <code>Index mode = 1</code> i.e. indexes the regular hexagon type. Resolution = 3; Base Cell = 0; Resolution 1, 2 and 3 are 0, 3 and 5, rest are 1s.</p>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/h3-index-structure-example.svg" /> 
+<p class="figure-header">Figure 15: H3 Index Structure (Example: 83001dfffffffff)</p>
+
+<p>This primarily involves coverting to Direction bits, representing the hierarchical path from a base cell to a specific cell at a given resolution. These bits encode the sequence of directional steps taken within the hexagonal grid to reach the target cell from the base cell.</p>
 
 <ul>
 <li>Handle Base Cell: If the resolution is 0 (base cell), directly set the base cell in the index.</li>
@@ -379,7 +389,7 @@ END IF
 <li>Handle Pentagon Cells: Apply necessary rotations if the base cell is a pentagon to ensure the correct orientation and avoid the missing k-axes subsequence (if the direction bits indicate a move along the <code>k-axis</code>).</li>
 </ul>
 
-<p>Since each base cell can be oriented differently (<a href="#1-3-h3-grid-system">Section 1.3</a>) on the icosahedron's faces, rotations are needed to standardize these orientations. <code>rotation_count</code> refers to the number of 60-degree rotations that need to be applied to the H3 cell index to align it with the canonical orientation of the base cell.</p>
+<p>Since each base cell can be oriented differently (<a href="#1-3-h3-grid-system">Section 1.3</a>) on the icosahedron's faces, rotations are needed to standardize these orientations. <code>rotation_count</code> refers to the number of 60-degree rotations that need to be applied to the H3 cell index to align it with the canonical orientation of the base cell (also <a href="https://h3geo.org/docs/core-library/latLngToCellDesc" target="_blank">refer</a>).</p>
 
 
 <hr class="hr">
@@ -410,6 +420,9 @@ public class H3Index {
 
 <details open><summary class="h3">3. H3 - Conclusion</summary>
 <p>So far, in the Spatial Index Series, we have seen the use of space-filling curves and their application in grid systems like Geohash and S2. Finally, we explored Uber's H3, which falls under grid systems and more specifically relies on tessellation. By now, it's likely clear that H3 indexes are not directly queryable on the database by ranges or prefixes, but they have more importance towards the accuracy of filling a polygon, nearby search by radius, high resolution, and many more.</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3_level_0_1.png" /> 
+<p class="figure-header">Figure 16: H3 grid segmentation (Level 0 and Level 1)</p>
 
 <p>If you missed the series, it starts with <a href="/spatial-index-space-filling-curve">Spatial Index: Space-Filling Curves</a>, followed by <a href="/spatial-index-grid-system">Spatial Index: Grid Systems</a>, and finally, the current post, <a href="#spatial-index-tessellation">Spatial Index: Tessellation</a>.</p>
 </details>
