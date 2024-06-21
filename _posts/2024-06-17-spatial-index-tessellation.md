@@ -123,16 +123,16 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 
 <details open><summary class="h3">2. H3 - Implementation</summary>
 
-<p>The custom implementation below, loosely follows the steps of the actual H3 index calculation for demonstration purposes (to better understand the H3 Index). Here's a step-by-step process with reasonable simplifications:</p>
+<p>The implementation below, loosely follows the steps of the actual H3 index calculation for demonstration purposes (to better understand the H3 Index). Here's a step-by-step process with reasonable simplifications:</p>
 
-<h3>2.1. (Lat, Long) to (X,Y,Z)</h3>
+<h3>2.1. LatLong to Vec3D</h3>
 <p>Convert latitude and longitude to <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank">3D Cartesian coordinates</a> using the formulas (similar to Section <a href="/spatial-index-grid-system#4-2-1-lat-long-to-x-y-z-">4.2.1 in S2</a>):.</p>
 
 <img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/ecef.svg" /> 
 <p class="figure-header">Figure 9: (lat, long) to (x, y, z) Transformation</p>
 
-<details class="code-container" open><summary class="p">2.1a. (Lat, Long) to (X,Y,Z) - Snippet</summary>
-<pre><code>private static double[] latLonToCartesian(double lat, double lon) {
+<details class="code-container" open><summary class="p">2.1a. LatLong to Vec3D - Snippet</summary>
+<pre><code>private static double[] latLonToVec3D(double lat, double lon) {
     double r = Math.cos(Math.toRadians(lat));
     double x = r * Math.cos(Math.toRadians(lon));
     double y = r * Math.sin(Math.toRadians(lon));
@@ -144,22 +144,22 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 
 <hr class="hr">
 
-<h3>2.2. Icosahedron Vertices</h3>
-<p>Identify the <code>12</code> vertices of the icosahedron using the <a href="https://en.wikipedia.org/wiki/Golden_ratio" target="_blank">golden ratio</a> <code>(ϕ)</code>. It a well known property of a regular icosahedron, where three mutually perpendicular rectangles of aspect ratio <code>(ϕ)</code> are arranged such that they share a common center.</p>
+<h3>2.2. Icosahedron Properties</h3>
+<p>We can identify the <code>12</code> vertices of the icosahedron using the <a href="https://en.wikipedia.org/wiki/Golden_ratio" target="_blank">golden ratio</a> <code>(ϕ)</code>. It a well known property of a regular icosahedron, where three mutually perpendicular rectangles of aspect ratio <code>(ϕ)</code> are arranged such that they share a common center.</p>
 
 <p>The icosahedron has 12 vertices, 20 faces, and 30 edges. The 12 vertices are given by: <code>(±1, ±ϕ, 0)</code>, <code>(±ϕ, 0, ±1)</code>, <code>(0, ±1, ±ϕ)</code>. Lastly, the vertices need to be normalized to lie on the surface of a unit sphere.</p>
 
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/golden-ratio.svg" /> 
 <p class="figure-header">Figure 10: Golden Ratio Rectangles</p>
 
-<details class="code-container" open><summary class="p">2.2a. Icosahedron Vertices - Snippet</summary>
-<pre><code>// Normalizes a vector to lie on the unit sphere.
-private static double[] normalize(double[] v) {
-    double length = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-    return new double[]{v[0] / length, v[1] / length, v[2] / length};
-}
+<p>To calculate the <code>20</code> face centers of the icosahedron:</p>
+<p>For each face, average the coordinates of its three vertices and normalize the resulting vector to lie on the unit sphere. Use the formula:</p>
 
-double PHI = (1.0 + Math.sqrt(5.0)) / 2.0;
+<img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/face-centers.svg" /> 
+<p class="figure-header">Figure 11: Icosahedron Face Center</p>
+
+<details class="code-container"><summary class="p">2.2a. Icosahedron Vertices - Snippet</summary>
+<pre><code>double PHI = (1.0 + Math.sqrt(5.0)) / 2.0;
 double[][] vertices = {
         {-1, PHI, 0}, {1, PHI, 0}, {-1, -PHI, 0}, {1, -PHI, 0},
         {0, -1, PHI}, {0, 1, PHI}, {0, -1, -PHI}, {0, 1, -PHI},
@@ -171,21 +171,8 @@ for (int i = 0; i < vertices.length; i++) {
     vertices[i] = normalize(vertices[i]);
 }
 </code></pre>
-</details>
 
-<hr class="hr">
-
-<h3>2.3. Icosahedron Face Centers</h3>
-<p>Calculate the <code>20</code> face centers of the icosahedron:</p>
-<p>For each face, average the coordinates of its three vertices and normalize the resulting vector to lie on the unit sphere. Use the formula:</p>
-
-<img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/face-centers.svg" /> 
-<p class="figure-header">Figure 11: Icosahedron Face Center</p>
-
-<details open class="code-container"><summary class="p">2.3a. Icosahedron Face Centers - Snippet</summary>
-<pre><code>private static final int NUM_ICOSA_FACES = 20;
-
-// Computes the center of a face defined by three vertices.
+<pre><code>// Computes the center of a face defined by three vertices.
 private static double[] computeFaceCenter(double[] a, double[] b, double[] c) {
     double[] center = new double[3];
     center[0] = (a[0] + b[0] + c[0]) / 3.0;
@@ -194,130 +181,165 @@ private static double[] computeFaceCenter(double[] a, double[] b, double[] c) {
     return normalize(center);
 }
 </code></pre>
+
+<pre><code>// Normalizes a vector to lie on the unit sphere.
+private static double[] normalize(double[] v) {
+    double length = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+    return new double[]{v[0] / length, v[1] / length, v[2] / length};
+}
+</code></pre>
 </details>
 
 <hr class="hr">
 
-<h3>2.4. Closest Icosahedron Face</h3>
+<h3>2.3. Vec3D to Vec2D</h3>
+<p>The <code>Vec2D</code> represents the cartesian coordinates on the face of the icosahedron. It provides a 2D projection (<a href="#1-4-why-pentagons-">Figure 7</a>) of a point on the spherical surface of the Earth onto one of the icosahedron's faces, used to map geographic coordinates (latitude and longitude) onto a planar hexagonal grid. The conversion involves <a href="https://en.wikipedia.org/wiki/Gnomonic_projection" target="_blank">gnomonic projection</a>, which translates 3D coordinates to a 2D plane by projecting from the center of the sphere to the plane tangent to the face of the icosahedron.</p>
 
-<p>If you think of the <a href="https://en.wikipedia.org/wiki/Platonic_solid" target="_blank">Platonic solid</a> centred at the origin, then the coordinates of a point located at the centre of each face is equal to those of a vector normal to the face. In principle, for a point on the sphere, interate over all the faces and find the face/normal whose dot product with the coordinates of the point is greatest.</p>
+<ul>
+<li>Calculate <code>r</code> (Radial Distance): Convert the distance from the face center to an angle using the inverse cosine function.</li>
+<li>Gnomonic Scaling: Scale the angle <code>r</code> for the hexagonal grid at the given resolution.</li>
+<li>Calculate θ (Azimuthal Angle): Determine the angle from the face center, adjusting for face orientation and resolution.</li>
+<li>Convert to local 2D Coordinates: Transform polar coordinates <code>(r, θ)</code> into Cartesian coordinates <code>(x, y)</code>.</li>   
+</ul>
 
-<p>In this case, to identify the closest icosahedral face, compute the dot product of the 3D Cartesian coordinates with the normal vectors of the 20 icosahedral faces. The face with the highest dot product value is the closest.</p>
+<img class="center-image-0 center-image" src="./assets/posts/spatial-index/h3-to-vec2d.svg" /> 
+<p class="figure-header">Figure 12: Gnomonic Projection (XYZ to rθ)</p>
 
-<details class="code-container" open><summary class="p">2.4a. Closest Icosahedron Face - Snippet</summary>
-<pre><code>private static final int NUM_ICOSA_FACES = 20;
+<details class="code-container"><summary class="p">2.3a. Vec3D to Vec2D - Snippet</summary>
+<pre><code>// faceAxesAzRadsCII: Icosahedron face `ijk` axes as azimuth in radians from face center to vertex
+// faceCenterGeo: Icosahedron face centers in lat/lng radians.
 
-// Computes the dot product of two vectors.
-private static double dotProduct(double[] a, double[] b) {
-    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+public Vec2d toVec2d(int resolution, int face, double distance) {
+    // cos(r) = 1 - 2 * sin^2(r/2) = 1 - 2 * (sqd / 4) = 1 - sqd/2
+    double r = acos(1.0 - distance / 2.0);
+    if (r < EPSILON) {
+        return new Vec2d(0.0, 0.0);
+    }
+    
+    // Perform gnomonic scaling of `r` (`tan(r)`) and scale for current
+    r = (tan(r) / RES0_U_GNOMONIC) * SQRT7_POWERS[resolution];
+    
+    // Compute counter-clockwise `theta` from Class II i-axis.
+    double theta = faceAxesAzRadsCII[face][0] - this.azimuth(faceCenterGeo[face]);
+    
+    // Adjust `theta` for Class III.
+    if ((resolution % 2) != 0) {
+        theta -= AP7_ROT_RADS;
+    }
+    
+    // Convert to local x, y.
+    return new Vec2d(r * cos(theta), r * sin(theta));
 }
+</code></pre>
+</details>
 
-// Finds the closest icosahedral face to the given vector.
-private static int findFace(double[] vec) {
-    int face = 0;
-    double maxDot = -1;
-    for (int i = 0; i < NUM_ICOSA_FACES; i++) {
-        double dot = dotProduct(vec, ICOSA_FACES[i]); // previously computed in 2.3a
-        if (dot > maxDot) {
-            maxDot = dot;
-            face = i;
+<hr class="hr">
+
+<h3>2.4. Vec2D to FaceIJK</h3>
+<p>Hexagonal grids have three primary axes, unlike the two we have for square grids. In <a href="https://www.redblobgames.com/grids/hexagons/#coordinates" target="_blank">Axial coordinates</a> or the Cube coordinates, the three coordinates (i, j, k) ensure that any point in the hexagonal grid can be described without ambiguity.</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3-axial.png" /> 
+<p class="figure-header">Figure 13: Axial Coordinates (Class II and Class III)</p>
+
+<p>There are several other hex coordinate systems based, in this case, the constraints are <code>i + j + k = 0</code>, with <code>120°</code> axis separation.</p>
+
+<p>The <code>faceIJK</code> represents the position/location of a hexagon within a face of the icosahedron using three coordinates <code>(i, j, k)</code>.</p>
+
+<ul>
+<li>Reverse Conversion: Translate Cartesian coordinates into the hexagonal coordinate system by aligning them with the hex grid's axes.</li>
+<li>Quantize and Round: Convert floating-point coordinates to integer grid positions, determining the closest hexagon center.</li>
+</ul>
+<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3-vec2d-facexyz.svg" /> 
+<ul>
+<li>Check Hex Center and Round: Use remainders to accurately determine which hexagon the point falls into by rounding to the nearest hex center.</li>
+<pre><code>// Determine i and j based on r1 and r2
+IF r1 < 0.5 THEN
+    IF r1 < 1 / 3 THEN
+        i = m1
+        j = m2 + (r2 >= (1 + r1) / 2)
+    ELSE
+        i = m1 + ((1 - r1) <= r2 && r2 < (2 * r1))
+        j = m2 + (r2 >= (1 - r1))
+ELSE IF r1 < 2 / 3 THEN
+    j = m2 + (r2 >= (1 - r1))
+    i = m1 + ((2 * r1 - 1) >= r2 || r2 >= (1 - r1))
+ELSE
+    i = m1 + 1
+    j = m2 + (r2 >= (r1 / 2))
+</code></pre>
+<p></p>
+<li>Fold Across Axes if Necessary: Correct the coordinates if they fall into negative regions, ensuring the coordinates remain within the valid grid.</li>
+<pre><code>IF value.x < 0 THEN
+    offset = j % 2
+    axis_i = (j + offset) / 2
+    diff = i - axis_i
+    i = i - 2 * diff - offset
+
+IF value.y < 0 THEN
+    i = i - (2 * j + 1) / 2
+    j = -j
+</code></pre>
+<li>Normalize: Purpose: Adjust the coordinates to maintain the properties of the hexagonal grid, ensuring <code>i + j + k = 0</code>.</li>
+</ul>
+
+<details class="code-container"><summary class="p">2.4a. Vec2D to FaceIJK - Snippet</summary>
+<pre><code>public static CoordIJK fromVec2d(Vec2d value) {
+    int k = 0;
+
+    double a1 = Math.abs(value.x);
+    double a2 = Math.abs(value.y);
+
+    // Reverse conversion
+    double x2 = a2 / SIN60;
+    double x1 = a1 + x2 / 2.0;
+
+    // Quantize and round
+    int m1 = (int) x1;
+    int m2 = (int) x2;
+
+    double r1 = x1 - m1;
+    double r2 = x2 - m2;
+
+    int i, j;
+    if (r1 < 0.5) {
+        if (r1 < 1.0 / 3.0) {
+            i = m1;
+            j = m2 + (r2 >= (1.0 + r1) / 2.0 ? 1 : 0);
+        } else {
+            i = m1 + ((1.0 - r1) <= r2 && r2 < (2.0 * r1) ? 1 : 0);
+            j = m2 + (r2 >= (1.0 - r1) ? 1 : 0);
         }
+    } else if (r1 < 2.0 / 3.0) {
+        j = m2 + (r2 >= (1.0 - r1) ? 1 : 0);
+        i = m1 + ((2.0 * r1 - 1.0) >= r2 || r2 >= (1.0 - r1) ? 1 : 0);
+    } else {
+        i = m1 + 1;
+        j = m2 + (r2 >= (r1 / 2.0) ? 1 : 0);
     }
-    return face;
+
+    // Fold Across Axes if Necessary
+    if (value.x < 0) {
+        int offset = j % 2;
+        int axis_i = (j + offset) / 2;
+        int diff = i - axis_i;
+        i = i - 2 * diff - offset;
+    }
+
+    if (value.y < 0) {
+        i = i - (2 * j + 1) / 2;
+        j = -j;
+    }
+
+    return new CoordIJK(i, j, k).normalize();
 }
 </code></pre>
 </details>
 
-<p>The above is a brute force method. A better approach would be to load up the face centers of the Dymaxion-based icosahedron into a KDTree (Index) and query to find the closest point.</p>
+<p>Each grid resolution is rotated <code>~19.1°</code> relative to the next coarser resolution. The rotation alternates between counterclockwise and clockwise at each successive resolution, so that each resolution will have one of two possible orientations as shown in Figure 13: <code>Class II</code> or <code>Class III</code> (using a terminology coined by R. Buckminster Fuller). The base cells, which make up resolution 0, are <code>Class II</code>.</p>
 
 <hr class="hr">
 
-<h3>2.5. XYZ to FaceUV</h3>
-<p>With the closest icosahedron face identified, <a href="https://math.stackexchange.com/questions/444968/project-a-point-in-3d-on-a-given-plane" target="_blank">project the point P</a> onto the plane of that face and get coordinates of R in U-V using <a href="https://en.wikipedia.org/wiki/Parallel_projection" target="_blank">parallel projection</a>. i.e. convert 3D coordinates into a 2D coordinate system relative to the face.</p>
-
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/h3-local-faceuv.svg" /> 
-<p class="figure-header">Figure 12: Parallel Projection (3D point on a icosahedron face plane)</p>
-
-<details class="code-container"><summary class="p">2.5a. XYZ to FaceUV - Snippet</summary>
-<pre><code>public class ParallelProjection {
-
-    public static double[] projectToPlane(double[] P, double[] Q1, double[] Q2, double[] Q3) {
-        // Calculate U = Q2 - Q1
-        double[] U = subtract(Q2, Q1);
-
-        // Calculate V = Q3 - Q1
-        double[] V = subtract(Q3, Q1);
-
-        // Calculate N = U x V (normal vector of the plane)
-        double[] N = cross(U, V);
-
-        // Vector from Q1 to P
-        double[] PQ1 = subtract(P, Q1);
-
-        // Scalar projection of PQ1 onto N
-        double scalarProjection = dot(PQ1, N);
-
-        // Scale N by the scalar projection to get the projection component
-        double[] projectionComponent = scale(N, scalarProjection);
-
-        // Subtract this component from P to get the projection R = P - [(P - Q1) ⋅ N] * N
-        return subtract(P, projectionComponent);
-    }
-
-    private static double dot(double[] a, double[] b) {
-        return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
-    }
-
-    private static double[] subtract(double[] a, double[] b) {
-        return new double[]{a[0] - b[0], a[1] - b[1], a[2] - b[2]};
-    }
-
-    private static double[] scale(double[] a, double scalar) {
-        return new double[]{a[0] * scalar, a[1] * scalar, a[2] * scalar};
-    }
-
-    private static double[] cross(double[] a, double[] b) {
-        return new double[]{
-            a[1] * b[2] - a[2] * b[1],
-            a[2] * b[0] - a[0] * b[2],
-            a[0] * b[1] - a[1] * b[0]
-        };
-    }
-}
-</code></pre>
-</details>
-
-<p>Evidently, the problem here is that the icosahedron is projected onto a sphere, which requires further transformations. For the sake of simplicity in this post, I'm stopping at this point.</p>
-
-<hr class="hr">
-
-<h3>2.6. 64-bit H3 index</h3>
-<p>Encode the face, resolution, and grid coordinates into a 64-bit H3 index. Use bitwise operations to combine these components into a single integer value:</p>
-
-<details class="code-container" open><summary class="p">2.6a. FaceUV to H3 Index - Snippet</summary>
-<pre><code>private static long computeH3Index(double[] uv, int face, int resolution) {
-    long h3Index = 0L;
-    h3Index |= (1L << 63); // Set the mode bit (MSB)
-    h3Index |= ((long) face << 45); // Set the base cell (face)
-    h3Index |= ((long) resolution << 52); // Set the resolution
-
-    long localX = (long) (uv[0] * 1e6);
-    long localY = (long) (uv[1] * 1e6);
-    h3Index |= (localX & 0x1FFFFFFFFFFFL);
-    h3Index |= ((localY & 0x1FFFFFFFFFFFL) << 23);
-
-    return h3Index;
-}
-</code></pre>
-</details>
-
-<p>Multiplying by <code>1e6</code> converts the coordinates to a fixed-point representation, making them suitable for encoding in the H3 index format.</p>
-
-<p>Again, this implementation is an overly simplified version of the H3 indexing process, and it does not capture the full accuracy and complexity of the actual H3 calculations. For precise and reliable H3 index calculations, use the official H3 library by Uber.</p>
-
-<hr class="hr">
-
-<h3>2.7. Official H3 library</h3>
+<h3>2.5. Official H3 library</h3>
 <p>Here's a Java snippet using the official H3 library provided by Uber:</p>
 <details open class="code-container"><summary class="p">2.7a. Official H3 - Snippet</summary>
 <pre><code>import com.uber.h3core.H3Core;
@@ -369,8 +391,6 @@ public class H3Index {
 17. D. F. Marble, "The Fundamental Data Structures for Implementing Digital Tessellation," University of Edinburgh. [Online]. Available: https://www.geos.ed.ac.uk/~gisteac/gis_book_abridged/files/ch36.pdf.
 18. J. Castner, "The Application of Tessellation in Geographic Data Handling," Semantic Scholar. [Online]. Available: https://pdfs.semanticscholar.org/feb2/3e69e19875817848ac8694b15f58d2ef52b0.pdf.
 19. "Hexagonal Tessellation and Its Application in Geographic Information Systems," YouTube. [Online]. Available: https://www.youtube.com/watch?v=wDuKeUkNLkQ&list=PL0HGds8aHQsAYm86RzQdZtFFeLpIOjk00.
-20. "Mapping spherical coordinates onto faces of an icosahedron," Stack Exchange, CS Stack Exchange. [Online]. Available: https://cs.stackexchange.com/questions/134080/mapping-spherical-coordinates-onto-faces-of-an-icosahedron.
-21. "Project a point in 3D on a given plane," Stack Exchange, Math Stack Exchange. [Online]. Available: https://math.stackexchange.com/questions/444968/project-a-point-in-3d-on-a-given-plane.
-22. "Snapping vector to a point from a grid on a sphere (icosahedron)," Stack Exchange, Stack Overflow. [Online]. Available: https://stackoverflow.com/questions/48553298/snapping-vector-to-a-point-from-a-grid-on-a-sphere-icosahedron.
+20. Hydronium Labs. "h3o: A safer, faster, and more flexible H3 library written in Rust." GitHub Repository. Available: https://github.com/HydroniumLabs/h3o/tree/master.
 </code></pre>
 </details>
