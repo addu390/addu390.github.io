@@ -1137,7 +1137,7 @@ table {
   position: absolute;
   cursor: pointer;
   z-index: 999;
-  top: 50%;
+  top: 1.7em;
   transform: translateY(-50%);
   left: 76%;
 }
