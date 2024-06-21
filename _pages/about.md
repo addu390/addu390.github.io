@@ -19,9 +19,7 @@ permalink: /about/
     </subtitle>
 </div>
 
-Hey 👋 I'm a Senior Software Engineer with over 6 years of experience; here to share my experiences, tutorials, and projects.
-
-<div><img src="../assets/featured/for-hire.png" /> </div>
+<div><img class="center-image" src="../assets/featured/for-hire.png" /> </div>
 
 ### Accomplishments
 

@@ -1182,3 +1182,7 @@ table {
   color: var(--black);
   text-decoration: underline;
 }
+
+.page-entry {
+  margin-top: 3em;
+}
