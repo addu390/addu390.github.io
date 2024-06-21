@@ -91,6 +91,8 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 <img class="center-image-0 center-image" src="./assets/posts/spatial-index/h3-tessellation-2.svg" />
 <p class="figure-header">Figure 6: H3 Projection and Tessellation</p>
 
+<p>The H3 grid system divides the surface of the Earth into <code>122</code> base cells, which are used as the foundation for higher resolution cells. Each base cell has a specific orientation relative to the face of the icosahedron it is on. This orientation determines how cells at higher resolutions are positioned and indexed.</p>
+
 <h3>1.4. Why Pentagons?</h3>
 
 <p>Looking at the icosahedron, the 5 faces come together at every vertex, and truncating that creates the base cell. Pentagons are unavoidable at the vertices. However, there are only 12 of them at every resolution. But again, for most cases dealing with spaces within a city where the resolution is higher than 9, the pentagons, if far off in the water, they are safe to ignore.</p>
@@ -208,6 +210,9 @@ private static double[] normalize(double[] v) {
 <details class="code-container"><summary class="p">2.3a. Vec3D to Vec2D - Snippet</summary>
 <pre><code>// faceAxesAzRadsCII: Icosahedron face `ijk` axes as azimuth in radians from face center to vertex
 // faceCenterGeo: Icosahedron face centers in lat/lng radians.
+// RES0_U_GNOMONIC: Scaling factor from `Vec2d` resolution 0 unit length (or distance between adjacent cell center points on the plane) to gnomonic unit length.
+// SQRT7_POWERS: Power of √7 for each resolution.
+// AP7_ROT_RADS: Rotation angle between Class II and Class III resolution axes: asin(sqrt(3/28))
 
 public Vec2d toVec2d(int resolution, int face, double distance) {
     // cos(r) = 1 - 2 * sin^2(r/2) = 1 - 2 * (sqd / 4) = 1 - sqd/2
@@ -342,7 +347,7 @@ IF value.y < 0 THEN
 <h3>2.5. FaceIJK to H3 Index</h3>
 <p>Lastly, the <a href="https://h3geo.org/docs/core-library/latLngToCellDesc" target="_blank">face and face-centered ijk coordinates are converted to H3 Index</a>.</p> 
 
-<p>Which primarily involves coverting to Direction bits, represent the hierarchical path from a base cell to a specific cell at a given resolution. These bits encode the sequence of directional steps taken within the hexagonal grid to reach the target cell from the base cell.</p>
+<p>Which primarily involves coverting to Direction bits, representing the hierarchical path from a base cell to a specific cell at a given resolution. These bits encode the sequence of directional steps taken within the hexagonal grid to reach the target cell from the base cell.</p>
 
 <ul>
 <li>Handle Base Cell: If the resolution is 0 (base cell), directly set the base cell in the index.</li>
@@ -357,6 +362,7 @@ bits = set_base_cell(bits, base_cell)
 <pre><code>// Handle Pentagon Cells
 IF base_cell.is_pentagon() THEN
     IF first_axe(bits) == Direction.K THEN
+        // Check for a CW/CCW offset face (default is CCW).
         IF base_cell.is_cw_offset(faceIJK.face) THEN
             bits = rotate60(bits, 1, CW)
         ELSE
@@ -370,8 +376,10 @@ ELSE
     bits = rotate60(bits, rotation_count, CCW)
 END IF
 </code></pre>
-<li>Handle Pentagon Cells: Apply necessary rotations if the base cell is a pentagon to ensure the correct orientation and avoid the missing k-axes subsequence.</li>
+<li>Handle Pentagon Cells: Apply necessary rotations if the base cell is a pentagon to ensure the correct orientation and avoid the missing k-axes subsequence (if the direction bits indicate a move along the <code>k-axis</code>).</li>
 </ul>
+
+<p>Since each base cell can be oriented differently (<a href="#1-3-h3-grid-system">Section 1.3</a>) on the icosahedron's faces, rotations are needed to standardize these orientations. <code>rotation_count</code> refers to the number of 60-degree rotations that need to be applied to the H3 cell index to align it with the canonical orientation of the base cell.</p>
 
 
 <hr class="hr">
