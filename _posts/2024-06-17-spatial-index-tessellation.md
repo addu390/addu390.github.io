@@ -339,7 +339,44 @@ IF value.y < 0 THEN
 
 <hr class="hr">
 
-<h3>2.5. Official H3 library</h3>
+<h3>2.5. FaceIJK to H3 Index</h3>
+<p>Lastly, the <a href="https://h3geo.org/docs/core-library/latLngToCellDesc" target="_blank">face and face-centered ijk coordinates are converted to H3 Index</a>.</p> 
+
+<p>Which primarily involves coverting to Direction bits, represent the hierarchical path from a base cell to a specific cell at a given resolution. These bits encode the sequence of directional steps taken within the hexagonal grid to reach the target cell from the base cell.</p>
+
+<ul>
+<li>Handle Base Cell: If the resolution is 0 (base cell), directly set the base cell in the index.</li>
+<pre><code>// Convert IJK to Direction Bits
+faceIJK.coord = directions_bits_from_ijk(faceIJK.coord, resolution)
+
+// Set the Base Cell
+base_cell = get_base_cell(faceIJK)
+bits = set_base_cell(bits, base_cell)
+</code></pre>
+<li>Build from Finest Resolution Up and Set Base Cell: Convert IJK coordinates to direction bits starting from the finest resolution (r), updating the index progressively. Identify and set the correct base cell for the given IJK coordinates.</li>
+<pre><code>// Handle Pentagon Cells
+IF base_cell.is_pentagon() THEN
+    IF first_axe(bits) == Direction.K THEN
+        IF base_cell.is_cw_offset(faceIJK.face) THEN
+            bits = rotate60(bits, 1, CW)
+        ELSE
+            bits = rotate60(bits, 1, CCW)
+        END IF
+    END IF
+    FOR i = 0 TO rotation_count DO
+        bits = pentagon_rotate60(bits, CCW)
+    END FOR
+ELSE
+    bits = rotate60(bits, rotation_count, CCW)
+END IF
+</code></pre>
+<li>Handle Pentagon Cells: Apply necessary rotations if the base cell is a pentagon to ensure the correct orientation and avoid the missing k-axes subsequence.</li>
+</ul>
+
+
+<hr class="hr">
+
+<h3>2.6. Official H3 library</h3>
 <p>Here's a Java snippet using the official H3 library provided by Uber:</p>
 <details open class="code-container"><summary class="p">2.7a. Official H3 - Snippet</summary>
 <pre><code>import com.uber.h3core.H3Core;
