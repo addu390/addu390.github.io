@@ -7,48 +7,57 @@ layout: default
 
 <div class="pure-g" style="width: 100%; justify-content: center">
     <div class="posts pure-u-md-18-24">
-    {%- if journals.size > 0 -%}
+        {%- if journals.size > 0 -%}
         {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
 
         {%- for post in journals -%}
-            <section class="post">
-                <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
-                    <img class="center-image crop"  src="{{site.url}}/{{ post.feature }}" alt="Featured Image"/>
-                </div>
+        <section class="post">
+            <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+                <img class="center-image crop" src="{{site.url}}/{{ post.feature }}" alt="Featured Image" />
+            </div>
 
-                <hr class="post-hr">
-                
-                <header class="feed-header">
-                    <h2 class="post-title">
-                        <a href="{{ post.url | relative_url }}">
-                            {{ post.title | escape }}
-                        </a>
-                    </h2>
-                    {%- include post-meta.html -%}
-                </header>
+            <hr class="post-hr">
 
-                <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
-                    <p class="md-display">
-                        <em>{{ post.content | strip_html | escape | truncate: 250}}</em>
-                    </p>
-                    <p class="sm-display">
-                        <em>{{ post.content | strip_html | escape | truncate: 200}}</em>
-                    </p>
-                </div>
-            </section>
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="{{ post.url | relative_url }}">
+                        {{ post.title | escape }}
+                    </a>
+                </h2>
+                {%- include post-meta.html -%}
+            </header>
+
+            <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+                <p class="md-display">
+                    <em>{{ post.content | strip_html | escape | truncate: 250}}</em>
+                </p>
+                <p class="sm-display">
+                    <em>{{ post.content | strip_html | escape | truncate: 200}}</em>
+                </p>
+            </div>
+        </section>
         {%- endfor -%}
     </div>
 
 
     <div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;">
         <section class="post">
-            <h3><img class="twemoji" src="../assets/img/emoji/cat-smirk.svg" alt=""> #memes <span class="sub-header"><a class="black-a" href="https://sendmemes.today/" target="_blank">@sendmemes.today</a></span></h3>
+            <h3><img class="twemoji" src="../assets/img/emoji/cat-smirk.svg" alt=""> #memes <span class="sub-header"><a
+                        class="black-a" href="https://sendmemes.today/" target="_blank">@sendmemes.today</a></span></h3>
             <hr class="post-hr">
-            <img src="../assets/memes/from-scratch.png" alt="">
-            <hr class="post-hr">
-            <img width="95%" src="../assets/memes/mails-today.png" alt="">
+            <div class="slider-container">
+                {% assign latest_memes = site.data.memes | reverse | slice: 0, 2 %}
+                {% for meme in latest_memes %}
+                <div class="slider-slide"><img src="{{ meme.url }}" alt="Meme"></div>
+                {% endfor %}
+
+                <a class="slider-prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="slider-next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
         </section>
     </div>
 
-{%- endif -%}
+    {%- endif -%}
 </div>
+
+<script src="{{ '../assets/slider.js' | relative_url }}"></script>
