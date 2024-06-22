@@ -1164,6 +1164,10 @@ table {
   color: var(--black);
 }
 
+.black-a {
+  color: var(--black) !important;
+}
+
 .blog-reference {
   border: rgb(214, 182, 86) solid 1px;
   margin-top: 1em;

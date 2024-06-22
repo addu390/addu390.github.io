@@ -6,7 +6,7 @@ layout: default
 {% assign journals = site.journals | reverse %}
 
 <div class="pure-g" style="width: 100%; justify-content: center">
-    <div class="posts pure-u-md-4-5">
+    <div class="posts pure-u-md-18-24">
     {%- if journals.size > 0 -%}
         {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
 
@@ -40,7 +40,13 @@ layout: default
     </div>
 
 
-    <br/>
+    <div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;">
+        <section class="post">
+            <h3><img class="twemoji" src="../assets/img/emoji/cat-smirk.svg" alt=""> #memes <span class="sub-header"><a class="black-a" href="https://sendmemes.today/" target="_blank">@sendmemes.today</a></span></h3>
+            <hr class="post-hr">
+            <img src="../assets/memes/mails-today.png" alt="">
+        </section>
+    </div>
 
 {%- endif -%}
 </div>
