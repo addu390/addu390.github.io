@@ -78,7 +78,7 @@ permalink: /privacy/
     <li>Opt-out of receiving newsletters and marketing communications.</li>
 </ul>
 </p>
-<p>To exercise these rights, please contact us at pyblog.xyz@gmail.com</p>
+<p>To exercise these rights, please contact us at <span class="underline">yo@pyblog.xyz</span></p>
 
 </details>
 <hr class="clear-hr">
@@ -96,6 +96,6 @@ permalink: /privacy/
 
 <p>We may update this privacy policy from time to time. Any changes will be posted on this page, and the updated policy will take effect as soon as it is published.</p>
 
-<p>If you have any questions or concerns about this privacy policy, please contact us at <span class="underline">pyblog.xyz@gmail.com</span></p>
+<p>If you have any questions or concerns about this privacy policy, please contact us at <span class="underline">yo@pyblog.xyz</span></p>
 
 </div>
