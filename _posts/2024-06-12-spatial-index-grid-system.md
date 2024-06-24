@@ -6,13 +6,13 @@ tags:
 - Database
 - Spatial Index
 author: Adesh Nalpet Adimurthy
-image: assets/featured/space-grids.png
-feature: assets/featured/space-grids.png
+image: assets/featured/webp/space-grids.webp
+feature: assets/featured/webp/space-grids.webp
 category: System Wisdom
 description: Grid systems in spatial indexing, including Geohash and Google S2, encode geographic locations for efficient spatial data management. Geohash uses a Z-order curve, offering ease of implementation but has proximity preservation issues. Google S2 subdivides the Earth into hierarchical cells using a spherical projection, providing better proximity handling. The article discusses their encoding processes, advantages, and limitations, with implementation examples.
 ---
 
-<img class="center-image" src="./assets/featured/space-grids.png" /> 
+<img class="center-image" src="./assets/featured/webp/space-grids.webp" /> 
 
 <p>This post is a continuation of <a href="/spatial-index-space-filling-curve">Stomping Grounds: Spatial Indexes</a>, but don’t worry if you missed the first part—you’ll still find plenty of new insights right here.</p>
 

@@ -12,13 +12,13 @@ tips:
   - <img class="twemoji" src="../assets/img/emoji/radio.svg" alt=""> Ponder on
   - <img class="twemoji" src="../assets/img/emoji/stoptrack.svg" alt=""> Alternatives
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/telemetry-pipeline.png
-image: assets/featured/telemetry-pipeline.png
+feature: assets/featured/webp/telemetry-pipeline.webp
+image: assets/featured/webp/telemetry-pipeline.webp
 category: System Wisdom
 description: A telemetry pipeline for real-time data processing involves data collection using Telegraf, ingestion via Kafka, processing with Apache Flink, and storage in databases like Cassandra and VictoriaMetrics. The article details implementation steps, emphasizing scalability, fault tolerance, and efficient data handling.
 ---
 
-<img class="center-image" src="./assets/featured/telemetry-pipeline.png" /> 
+<img class="center-image" src="./assets/featured/webp/telemetry-pipeline.webp" /> 
 
 <details open><summary class="h3">0. Overview</summary>
 <p></p>

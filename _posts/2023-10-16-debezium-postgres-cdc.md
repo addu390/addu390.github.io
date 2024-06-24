@@ -6,13 +6,13 @@ tags:
   - System Design
   - Database
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/debezium-postgres-cdc.png
-image: assets/featured/debezium-postgres-cdc.png
+feature: assets/featured/webp/debezium-postgres-cdc.webp
+image: assets/featured/webp/debezium-postgres-cdc.webp
 category: System Wisdom
 description: Using Debezium for PostgreSQL Change Data Capture (CDC) involves setting up a pipeline to capture and stream row-level changes from PostgreSQL to Kafka. The process includes configuring PostgreSQL, Kafka, Zookeeper, and Debezium using Docker. The article provides detailed steps for setting up each component, creating PostgreSQL tables, configuring Debezium connectors, and validating the pipeline by consuming Kafka messages. This setup enables real-time data synchronization and processing.
 ---
 
-<img class="center-image" src="./assets/featured/debezium-postgres-cdc.png" /> 
+<img class="center-image" src="./assets/featured/webp/debezium-postgres-cdc.webp" /> 
 <p style="text-align: center;">Figure 1: Debezium Postgres Connector</p>
 
 <details open><summary class="h3">1. Goal</summary>
