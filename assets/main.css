@@ -160,6 +160,7 @@ footer .pure-menu-link:hover {
 .brand-title a {
   color: rgb(234, 234, 234);
   text-decoration: none;
+  vertical-align: middle;
 }
 
 .brand-tagline {
@@ -1300,4 +1301,9 @@ table {
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.6);
   opacity: 60%;
+}
+
+#profile-toggle-icon {
+  vertical-align: middle;
+  width: 35px;
 }

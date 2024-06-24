@@ -36,18 +36,18 @@ category: Comics
 <h3 id="why-get-moving">Why Software Engineers Should Get Moving</h3>
 <p>So, why should we, as software engineers, prioritize fitness? Here are a few reasons based on experiences that many of us share:</p>
 
-<p><u>Stress Buster</u>: At times, coding can be super stressful, especially when deadlines are looming. Regular exercise helps manage stress much better. After a good workout, those stressors don’t seem as daunting.</p>
-<p><u>Boosted Creativity</u>: Some of the best ideas come while away from the desk. Whether on a run or taking a leisurely walk, being active seems to spark creativity. Perfect for brainstorming a new feature or solving a tricky problem.</p>
-<p><u>Team Spirit</u>: Playing team sports or joining group fitness classes can improve communication and teamwork skills. Great news for collaborating on projects at work.</p>
+<p><span class="underline">Stress Buster</span>: At times, coding can be super stressful, especially when deadlines are looming. Regular exercise helps manage stress much better. After a good workout, those stressors don’t seem as daunting.</p>
+<p><span class="underline">Boosted Creativity</span>: Some of the best ideas come while away from the desk. Whether on a run or taking a leisurely walk, being active seems to spark creativity. Perfect for brainstorming a new feature or solving a tricky problem.</p>
+<p><span class="underline">Team Spirit</span>: Playing team sports or joining group fitness classes can improve communication and teamwork skills. Great news for collaborating on projects at work.</p>
 
 <hr class="hr">
 
 <h3 id="fitting-busy-schedule">Fitting Fitness into a Busy Schedule</h3>
 <p>Finding time to exercise can be tough when busy coding, but it doesn’t have to be a chore. Here are some tips that have worked for many:</p>
 
-<p><u>Set Small Goals</u>: Start with manageable fitness goals and gradually build up. Begin with a 10-minute walk each day, and then increase as you feel more comfortable.</p>
-<p><u>Do What You Love</u>: Find an activity you enjoy, whether it’s hitting the gym 🏋🏽, rock climbing 🧗🏽‍♂️, yoga 🧘🏽, swimming 🏊🏼‍♀️, or even dancing 🏊🏼‍♀️. If it’s fun, you’re more likely to stick with it.</p>
-<p><u>Active Breaks</u>: Take short breaks throughout your day to stretch or take a quick walk. It’ll help you stay refreshed and focused.</p>
-<p><u>Join a Community</u>: Working out with others can make it more enjoyable and keep you motivated. Maybe there’s a local running group or a friend who wants to join for workouts.</p>
+<p><span class="underline">Set Small Goals</span>: Start with manageable fitness goals and gradually build up. Begin with a 10-minute walk each day, and then increase as you feel more comfortable.</p>
+<p><span class="underline">Do What You Love</span>: Find an activity you enjoy, whether it’s hitting the gym 🏋🏽, rock climbing 🧗🏽‍♂️, yoga 🧘🏽, swimming 🏊🏼‍♀️, or even dancing 🏊🏼‍♀️. If it’s fun, you’re more likely to stick with it.</p>
+<p><span class="underline">Active Breaks</span>: Take short breaks throughout your day to stretch or take a quick walk. It’ll help you stay refreshed and focused.</p>
+<p><span class="underline">Join a Community</span>: Working out with others can make it more enjoyable and keep you motivated. Maybe there’s a local running group or a friend who wants to join for workouts.</p>
 
 <p>So, there you have it! Better fitness really can lead to better programming. By keeping your body and mind in top shape, you’ll be ready to tackle any coding challenge that comes your way. Give it a try and see how getting active can improve your coding game.</p>

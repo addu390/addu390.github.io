@@ -2,10 +2,10 @@
     <div class="sidebar-info">
         <a href="/">
             <span hidden>{{site.title}}</span>
-            <img class="brand-photo" src="{{site.url}}/{{site.header_image}}" alt="Photo of {{site.author}}" />
+            <img id="profile-gif" class="brand-photo" src="{{site.url}}/{{site.header_image}}" alt="Photo of {{site.author}}" />
         </a>
         <h1 class="brand-title">
-            <a href="/">· {{site.title}} ·</a>
+            <a href="/"> {{site.title}} </a><span><img class="twemoji" id="profile-toggle-icon" src="../assets/img/common/pause.svg" alt="Toggle Icon"></span>
         </h1>
         <br>
         <h2 class="brand-tagline">{{site.description}}</h2>
@@ -23,3 +23,5 @@
         <li class="clickable-div low-featured"><a href="{{ site.donate_link }}" target="_blank"><span class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/luck.svg" alt=""></span>&nbsp; Sponsor</a></li>
     </ul>
 </aside>
+
+<script src="{{ '../assets/sidebar.js' | relative_url }}"></script>
