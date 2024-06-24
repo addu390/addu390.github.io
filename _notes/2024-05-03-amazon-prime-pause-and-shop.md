@@ -2,11 +2,11 @@
 layout: post
 title: "Prime Video's Interactive Shopping Experience: Pause & Shop"
 date: 2024-05-03
+feature: assets/posts/pause-and-shop/pause-and-shop-ad-1.png
 tags:
   - Project
 author: Adesh Nalpet Adimurthy
-feature: assets/posts/pause-and-shop/pause-and-shop-ad-1.png
-category: Season the Reason
+category: Notes
 ---
 
 <p>"Pause & Shop" on Prime Video combines the thrill of shopping with the joy of entertainment, redefining the boundaries of engagement.</p>

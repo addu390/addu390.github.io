@@ -3,47 +3,42 @@ layout: default
 ---
 {{ content }}
 
-{% assign notes = site.notes %}
+{% assign notes = site.notes | reverse %}
 
-<div class="posts">
-    <h2 class="content-subhead">Recent Notes</h2>
-
-    {%- if notes.size > 0 -%}
+<div class="pure-g" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-18-24">
+        {%- if notes.size > 0 -%}
         {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
 
-        {%- for note in notes -%}
-            <section class="post">
-                <header class="feed-header">
-                    <h2 class="post-title">
-                        <a href="{{ note.url | relative_url }}">
-                            {{ note.title | escape }}
-                        </a>
-                    </h2>
+        {%- for post in notes -%}
+        <section class="post">
+            {%- if post.feature -%}
+            <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+                <img class="center-image crop" src="{{site.url}}/{{ post.feature }}" alt="Featured Image" />
+            </div>
 
-                    <p class="post-meta">
-                        Tagged:
-                        <span>
-                            {% for tag in note.tags %}
-                                <a href="/tags/#{{ tag }}">{{ tag }}</a>
-                            {% endfor %}
-                        </span>
-                    </p>
-                </header>
+            <hr class="post-hr">
+            {%- endif -%}
+            
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="{{ post.url | relative_url }}">
+                        {{ post.title | escape }}
+                    </a>
+                </h2>
+                {%- include post-meta.html -%}
+            </header>
 
-                <div class="post-description">
-                    <p class="md-display">
-                        <em>{{ note.content | strip_html | escape | truncate: 300}}</em>
-                    </p>
-                    <p class="sm-display">
-                        <em>{{ note.content | strip_html | escape | truncate: 300}}</em>
-                    </p>
-                </div>
-                <a href="{{ note.url | relative_url }}" class="black-button">Read more</a>
-            </section>
+            <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+                <p class="md-display">
+                    <em>{{ post.content | markdownify | strip_html | escape | truncate: 250}}</em>
+                </p>
+                <p class="sm-display">
+                    <em>{{ post.content | markdownify | strip_html | escape | truncate: 200}}</em>
+                </p>
+            </div>
+        </section>
         {%- endfor -%}
     </div>
-
-
-    <br/>
-
-{%- endif -%}
+    {%- endif -%}
+</div>

@@ -1049,7 +1049,7 @@ table {
   outline-color: var(--black);
 }
 
-.post .clickable-sidebar-div:hover {
+.post .clickable-sidebar-div a:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }

@@ -2,11 +2,12 @@
 title: "Jenkins Test Pipeline"
 layout: post
 tags: Testing
+author: Adesh Nalpet Adimurthy
+category: Notes
+date: 2020-03-14
 ---
 
-## End goal:
-
-Reduce test time from 65 minutes to 15 minutes.
+End goal: Reduce test time from 65 minutes to 15 minutes.
 
 ## Problem:
 
