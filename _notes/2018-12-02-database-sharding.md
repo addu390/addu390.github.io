@@ -1,10 +1,10 @@
 ---
-title: "Database Sharding"
+title: "ClearTax: Database Sharding"
 layout: post
 tags: Database
 author: Adesh Nalpet Adimurthy
 category: Notes
-date: 2019-02-12
+date: 2018-12-02
 ---
 
 Users at ClearTax were broadly classified into:

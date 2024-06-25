@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Prime Video's Interactive Shopping Experience: Pause & Shop"
+title: "Prime Video: Pause & Shop"
 date: 2024-05-03
 tags:
   - Project
@@ -8,7 +8,7 @@ author: Adesh Nalpet Adimurthy
 category: Notes
 ---
 
-<p>"Pause & Shop" on Prime Video combines the thrill of shopping with the joy of entertainment, redefining the boundaries of engagement.</p>
+<p>"Pause and Shop" (Interactive Shopping Experience) on Prime Video combines the thrill of shopping with the joy of entertainment, redefining the boundaries of engagement.</p>
 
 <p>Traditional streaming services often leave viewers with a fragmented experience. While engrossed in their favorite movies or shows, viewers frequently encounter products, costumes, or props that pique their interest, yet they lack an efficient means to explore or purchase these items. This disconnect results in missed opportunities for both consumers and brands alike, leaving audiences longing for a more integrated and streamlined approach to entertainment and commerce.</p>
 
