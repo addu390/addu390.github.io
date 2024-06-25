@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Prime Video: Pause & Shop"
-date: 2024-05-03
+date: 2022-05-03
 tags:
   - Project
 author: Adesh Nalpet Adimurthy
@@ -39,7 +39,7 @@ category: Notes
 
 <h5> </h5>
 
-<details><summary class="h3">Risks, Mitigation Strategy and Alternatives</summary>
+<details open><summary class="h3">Risks, Mitigation Strategy and Alternatives</summary>
 
 <p><b>Risks / Reasons for Not Implementing this Feature:</b></p>
 

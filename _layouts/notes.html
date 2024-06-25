@@ -11,6 +11,7 @@ layout: default
         {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
 
         {%- for post in notes -%}
+        {% unless post.hide_note %}
         <section class="post">
             {%- if post.feature -%}
             <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
@@ -38,7 +39,19 @@ layout: default
                 </p>
             </div>
         </section>
+        {% endunless %}
         {%- endfor -%}
+    </div>
+
+    <div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;">
+        <section class="post">
+            <h3><img class="twemoji" src="../assets/img/emoji/scroll.svg" alt=""> #memo <span class="sub-header">The Hidden Package <a
+                        class="black-a" href="https://sendmemes.today/" target="_blank">@pybloy.xyz</a></span></h3>
+            <hr class="post-hr">
+            <div class="blog-reference green-disclaimer">
+                <p>Hi there <img class="twemoji" src="../assets/img/emoji/shake.svg"><br/> You've found a hidden path on my blog! If you're here, we probably crossed paths and I shared the link with you. Glad you made it! Enjoy exploring, and feel free to reach out if you'd like.</p>
+            </div>
+        </section>
     </div>
     {%- endif -%}
 </div>
