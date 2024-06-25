@@ -7,11 +7,8 @@ permalink: /about/
 <div class="center-align">
 <h1 style="display: inline-block; margin-top: 0px;">Adesh Nalpet Adimurthy</h1><span></span><br>
     <subtitle class="font-weight-bold text-muted">
-        <span style="color: orangered;">
-            <i class="fas fa-map-pin" aria-hidden="true"></i>
-        </span> For Hire &nbsp; &nbsp;
         <span>
-            🇨🇦 Anywhere in Canada
+            🇨🇦 Toronto, Canada
         </span>
         <span> &nbsp; &nbsp;
             <a href="https://calendly.com/pyblog/30min" target="_blank">Schedule time with me</a>
@@ -21,9 +18,10 @@ permalink: /about/
 
 <div><img class="center-image" src="../assets/featured/for-hire.png" /> </div>
 
-### Accomplishments
+<br/>
 
 <hr>
 
-- Shoulder Press 165, Bench Press 235, Squat 315 and Deadlift 405 🏋️‍♀️
-- Can Send V6 on a good day 🧗🏽‍♂️
+- <p>Shoulder Press 165, Bench Press 235, Squat 315 and Deadlift 405 🏋️‍♀️</p>
+- <p>Can Send V6 on a good day 🧗🏽‍♂️</p>
+- <p>Always ending up in the middle of problems, just to fix them.</p>
