@@ -4,7 +4,7 @@ layout: post
 tags: Database
 author: Adesh Nalpet Adimurthy
 category: Notes
-date: 2020-02-12
+date: 2019-02-12
 ---
 
 Users at ClearTax were broadly classified into:

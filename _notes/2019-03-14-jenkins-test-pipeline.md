@@ -4,7 +4,7 @@ layout: post
 tags: Testing
 author: Adesh Nalpet Adimurthy
 category: Notes
-date: 2020-03-14
+date: 2019-03-14
 ---
 
 End goal: Reduce test time from 65 minutes to 15 minutes.

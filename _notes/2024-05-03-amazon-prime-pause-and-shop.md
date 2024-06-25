@@ -2,7 +2,6 @@
 layout: post
 title: "Prime Video's Interactive Shopping Experience: Pause & Shop"
 date: 2024-05-03
-feature: assets/posts/pause-and-shop/pause-and-shop-ad-1.png
 tags:
   - Project
 author: Adesh Nalpet Adimurthy

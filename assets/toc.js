@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const toc = document.getElementById('toc');
   const tocContainer = toc.parentElement;
-  const headers = document.querySelectorAll('.content summary, .content h2, .content h3');
+  const headers = document.querySelectorAll('.content summary, .content h2, .content h3, .content .header');
 
   const headersToInclude = Array.from(headers).slice(0, -1);
 
