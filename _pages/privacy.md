@@ -2,11 +2,15 @@
 layout: page
 title: Privacy Policy
 permalink: /privacy/
+author: Adesh Nalpet Adimurthy
+date: 2024-06-25
 ---
+
+{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
 
 <div class="all-posts">
 
-<p>Last updated on June 20, 2024.</p>
+<p>Last updated on {{ page.date | date: date_format }}.</p>
 
 <p>Welcome to PyBlog (<a class="underline" href="/">https://www.pyblog.xyz/</a>). We value your privacy and are committed to protecting your personal information. This privacy policy outlines the types of information we collect, how we use it, and the measures we take to ensure your information is secure.</p>
 
@@ -59,7 +63,7 @@ permalink: /privacy/
 <details class="text-container" open><summary class="h3">Google Analytics and AdSense</summary>
 <p>We use Google Analytics to collect and analyze non-personal information about the use of our blog. Google Analytics uses cookies to track user interactions. For more information, please refer to the <a href="https://policies.google.com/privacy">Google Analytics Privacy Policy</a>.</p>
 
-<p>We use Google AdSense to display ads on our blog. Google AdSense may use cookies to serve ads based on your prior visits to our blog or other websites. For more information, please refer to the <a href="https://policies.google.com/technologies/ads">Google AdSense Privacy Policy</a>.</p>
+<p>From June 25, 2024, Google AdSense is no longer in use. PyBlog is now ad-free.</p>
 
 </details>
 <hr class="clear-hr">
@@ -90,6 +94,12 @@ permalink: /privacy/
     <li>Include a link to the exact post from which the content or image was taken.</li>
 </ul>
 </p>
+
+<p>Please note that every post/article on this website includes a 'Cite this article as' section at the end. We request that you use this citation format when referencing our content elsewhere. Below is an example for the Privacy Policy Page:</p>
+
+<div class="blog-reference">
+    <p>Cite this article as: {{ page.author }}. ({{ page.date | date: date_format }}). {{ page.title | escape }}. PyBlog. <a href="{{ page.url | relative_url }}">https://www.pyblog.xyz{{ page.url | relative_url }}</a></p>
+</div>
 
 </details>
 <hr class="clear-hr">
