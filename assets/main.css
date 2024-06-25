@@ -1306,6 +1306,7 @@ table {
 
 #profile-toggle-icon {
   width: 35px;
+  cursor: pointer;
 }
 
 #showerButton {
@@ -1340,4 +1341,13 @@ table {
       transform: translateY(100vh);
       opacity: 0.8;
   }
+}
+
+.hidden-a {
+  color: var(--black) !important;
+  cursor: text;
+}
+
+.hidden-a:hover {
+  text-decoration: none;
 }
