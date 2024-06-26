@@ -55,23 +55,20 @@ category: Notes
 <p><span class="header">4.4. Analytics and Alerts</span>: Dotted lines in (Figure 4) for a reason! Heading towards analytics and alerts is stepping on the provider's/business's arena, but Analytics/Database as a Service (while still being API-first) is vast enough to coexist.</p>
 
 <img class="center-image-0 center-image" src="../assets/notes/with-terminal-analytics.svg" />
-<p class="figure-header">Figure 9: Batch Analytics vs Stream Analytics</p>
+<p class="figure-header">Figure 9: Batch, Stream and Direct Query Analytics</p>
 
 <p>In fact, aggregations from section 4.3 are a sub-section of analytics, emphasizing "Streaming Analytics" alongside batch analytics and direct queries on the database.</p>
 
 <hr class="hr">
 
-<p class="header">5. What's next?</p>
-
-<p>The potential and possibilities are endless. Tangentials: UI widgets - in popular front-end frameworks to add on to existing applications (Stripe model), Generative AI - for telematics across providers for drivers, fleet managers, insurance providers, and more, Time and Location Analytics, and many more.</p> 
+<p><span class="header">5. What's next?</span> The potential and possibilities are endless.</p> <p>Tangentials: UI widgets - in popular front-end frameworks to add on to existing applications (Stripe model), Generative AI - on telematics data across providers for drivers, fleet managers, insurance providers, etc., Time and Location Analytics, and many more.</p> 
 <p>But I'm sure someone back there said, "this isn't our focus," when going over the above "Top 4" feature/enhancement suggestions. That's where I conclude. To know more about <span class="underline">what's next?</span></p>
 
 <img class="center-image-0 center-image-95" src="../assets/notes/with-terminal-strategy.svg" />
 
 <hr class="hr">
 
-<p class="header">6. Relevant blog posts:</p>
-<p>Here are a few of my relevant blog posts delving into the details of Telemetry, CDC, Spatial Indexes, Anomaly Detection, and Serverless Architecture:</p>
+<p><span class="header">6. Relevant blog posts</span>: delving into the details of Telemetry, CDC, Spatial Indexes, Anomaly Detection, and Serverless Architecture.</p>
 <ul>
 <li>Real-time insights: <a href="/telemetry-pipeline" target="_blank">Telemetry Pipeline</a></li>
 <li>Debezium: PostgreSQL <a href="/debezium-postgres-cdc" target="_blank">Change Data Capture (CDC)</a></li>
@@ -79,7 +76,7 @@ category: Notes
 <li>Spatial Index: <a href="/spatial-index-space-filling-curve" target="_blank">Space-Filling Curves</a></li>
 <li>Spatial Index: <a href="/spatial-index-grid-system" target="_blank">Grid Systems</a></li>
 <li>Spatial Index: <a href="/spatial-index-tessellation" target="_blank">Tessellation</a></li>
-<li>Spatial Index: <a href="/spatial-index-r-tree" target="_blank">R Trees</a> (Draft)</li>
+<li>Spatial Index: <a href="/spatial-index-r-tree" target="_blank">R Trees</a> (Coming soon!)</li>
 <li>Hybrid Spatial Data Structures: <a href="hybrid-spatial-index-conclusion" target="_blank">Quad-KD and R-KD trees</a></li>
 <p></p>
 <li><a href="/anomaly-detection-and-remediation" target="_blank">Anomaly Detection and Remediations</a></li>

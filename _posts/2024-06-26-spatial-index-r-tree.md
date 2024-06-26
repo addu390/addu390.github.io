@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Spatial Index: R Trees"
-date: 2024-06-21
+date: 2024-06-26
 state: Draft
 tags:
 - Database
