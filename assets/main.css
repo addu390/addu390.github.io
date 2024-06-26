@@ -1356,3 +1356,19 @@ table {
 .hidden-a:hover {
   text-decoration: none;
 }
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 0.8em;
+}
+
+.social-icons a {
+  display: inline-block;
+}
+
+.social-icons img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s;
+}
