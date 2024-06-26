@@ -145,6 +145,7 @@ footer .pure-menu-link:hover {
 
 .brand-photo {
   margin: 0px 0 10px;
+  cursor: pointer;
 }
 
 .brand-title,

@@ -3,10 +3,194 @@ permalink: /404.html
 layout: default
 ---
 
-<div>
-    <h1>404</h1>
+<style>
 
-    <a href="/" class="black-button">
-        Take a ride back! <img src="./assets/img/emoji/auto.svg">
-    </a>
-</div>
+body {
+  background-color: #516dff;
+  font-family: "Press Start 2P", sans-serif;
+  overflow: hidden;
+  margin: 0;
+}
+.btn {
+  padding: 12px 20px;
+  cursor: pointer;
+  border: 0.1em solid #222;
+  border-radius: 0.3em;
+  background-color: #fff;
+}
+
+.btn:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: auto;
+  transition: margin 0.5s ease-out;
+  margin-top: 3em;
+}
+
+.screen.up {
+  margin-top: -100vh;
+}
+
+.insects-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.insects-list li {
+  margin: 10px;
+}
+
+.choose-insect-btn {
+  background-color: transparent;
+  border: 2px solid #222;
+  cursor: pointer;
+  font-family: inherit;
+  width: 150px;
+  height: 150px;
+  border-radius: 0.3em;
+}
+
+.choose-insect-btn:hover {
+  background-color: #fff;
+}
+
+.choose-insect-btn:active {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.choose-insect-btn img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.game-container {
+  position: relative;
+}
+
+.time,
+.score {
+  position: absolute;
+  top: 20px;
+}
+
+.time {
+  left: 20px;
+}
+
+.score {
+  right: 20px;
+}
+
+.message {
+  line-height: 1.7;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  padding: 20px;
+  z-index: 100;
+  text-align: center;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -150%);
+}
+
+.message.visible {
+  transform: translate(-50%, 150%);
+  opacity: 1;
+}
+
+.insect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.insect img {
+  width: 100px;
+  height: 100px;
+}
+
+.insect.caught {
+  transform: translate(-50%, -50%) scale(0);
+}
+</style>
+
+<div class="screen">
+    <h1>Well, this is awkward! You catch insects?</h1>
+    <button class="btn" id="start-btn">Play Game</button>
+  </div>
+  <div class="screen">
+    <h1>What is your "favorite" insect?</h1>
+    <ul class="insects-list">
+      <li>
+        <button class="choose-insect-btn">
+          <p>Fly</p>
+          <img
+          src="./assets/img/games/fly.png"
+            alt="fly"
+          />
+        </button>
+      </li>
+      <li>
+        <button class="choose-insect-btn">
+          <p>Mosquito</p>
+          <img
+          src="./assets/img/games/mosquito.png"
+            alt="mosquito"
+          />
+        </button>
+      </li>
+      <li>
+        <button class="choose-insect-btn">
+          <p>Spider</p>
+          <img
+            src="./assets/img/games/spider.png"
+            alt="spider"
+          />
+        </button>
+      </li>
+      <li>
+        <button class="choose-insect-btn">
+          <p>Roach</p>
+          <img
+          src="./assets/img/games/roach.png"
+            alt="roach"
+          />
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="screen game-container" id="game-container">
+    <h3 id="time" class="time">Time: 00:00</h3>
+    <h3 id="score" class="score">Score: 0</h3>
+    <h3 id="message" class="message">
+      Why are you still here? 😂<br />
+      Please go back to the home page.
+    </h3>
+  </div>
+  <script src="{{ './assets/404.js' | relative_url }}"></script>
+
