@@ -5,11 +5,17 @@ const gameContainer = document.getElementById("game-container");
 const timeElement = document.getElementById("time");
 const scoreElement = document.getElementById("score");
 const message = document.getElementById("message");
+
+const screen1 = document.getElementById("screen-1");
+const screen2 = document.getElementById("screen-2");
 let seconds = 0;
 let score = 0;
 let selectedInsect = {};
 
-startButton.addEventListener("click", () => screens[0].classList.add("up"));
+startButton.addEventListener("click", () => {
+    screen1.style.display = "none";
+    screen2.style.display = "flex";
+});
 
 const increaseScore = () => {
   score++;
@@ -63,6 +69,8 @@ const startGame = () => setInterval(increaseTime, 1000);
 
 chooseInsectButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    screen2.style.display = "none";
+    gameContainer.style.display = "flex";
     const image = button.querySelector("img");
     const src = image.getAttribute("src");
     const alt = image.getAttribute("alt");
