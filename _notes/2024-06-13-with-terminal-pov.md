@@ -5,6 +5,7 @@ date: 2024-06-13
 tags:
   - Project
 author: Adesh Nalpet Adimurthy
+feature: assets/featured/hex-spiderman.png
 category: Notes
 ---
 
@@ -30,10 +31,13 @@ category: Notes
 
 <p><span class="header">4.2a. Context Mapping</span> (Enrichments): It's not uncommon to have systems from multiple providers in a vehicle. Context mapping refers to mapping data from different sources. For example, data outside of telematics providers includes monitoring for in-vehicle cargo, electrical/battery systems, tire pressure, engine health, etc., as well as other relevant data such as environmental conditions (weather) and traffic information.</p>
 
+<img class="center-image-50" src="../assets/notes/with-terminal-enrichment.svg" /> 
+<p class="figure-header">Figure 6: Context Mapping (Enrichments) across Verticals</p>
+
 <p><span class="header">4.2b. Template Mapping</span>: Although a normalized API makes integrations easy, it often requires further transformations to use it with current systems. Template mapping is a schema transformation layer to define the output schema on top of the normalized models.</p> 
 
 <img class="center-image-50" src="../assets/notes/with-terminal-mapping.svg" /> 
-<p class="figure-header">Figure 6: Template Mapping (Transformations)</p>
+<p class="figure-header">Figure 7: Template Mapping (Transformations)</p>
 
 <p>This may seem like an anti-pattern and doesn't necessarily mean it's not normalized anymore. The concept of normalization typically applies to the internal structure of the data and how it's stored. Perform transformations while: Eliminating Redundancy, Ensuring Data Integrity and Optimizing for Queries.</p>
 
@@ -41,7 +45,7 @@ category: Notes
 
 <p><span class="header">4.3. Predictions and Aggregations</span>: A lot of the data points add no value when they are not aggregated. Examples include speed at a specific moment, a single fuel consumption reading, an isolated engine fault code incident, a one-time tire pressure reading, a brief idle period, a single temperature reading (for engine or cargo), and many more. However, these data points become more usable when aggregated, such as averages, sums, counts, min/max values, percentiles, medians, etc.</p>
 <img src="../assets/posts/telemetry/stateful-stream-processing.svg" />
-<p class="figure-header">Figure 7: Stateful Stream Processing from <a href="/telemetry-pipeline" target="_blank">Real-time insights: Telemetry Pipeline</a></p>
+<p class="figure-header">Figure 8: Stateful Stream Processing from <a href="/telemetry-pipeline" target="_blank">Real-time insights: Telemetry Pipeline</a></p>
 <p>Boils down to: Windowing techniques to have context of prior data, which also evolves to predictions (and anomalies). One good example is <a href="https://docs.mindsdb.com/use-cases/data_enrichment/overview">MindsDB</a>: to enrich data with AI-generated content.</p> 
 
 <p>Predictions and Aggregations based on prior data is now a new data source for context mapping.</p>
@@ -51,7 +55,7 @@ category: Notes
 <p><span class="header">4.4. Analytics and Alerts</span>: Dotted lines in (Figure 4) for a reason! Heading towards analytics and alerts is stepping on the provider's/business's arena, but Analytics/Database as a Service (while still being API-first) is vast enough to coexist.</p>
 
 <img src="../assets/posts/telemetry/usecases-analytics.svg" />
-<p class="figure-header">Figure 8: Batch Analytics vs Stream Analytics from <a href="/telemetry-pipeline" target="_blank">Real-time insights: Telemetry Pipeline</a></p>
+<p class="figure-header">Figure 9: Batch Analytics vs Stream Analytics from <a href="/telemetry-pipeline" target="_blank">Real-time insights: Telemetry Pipeline</a></p>
 
 <hr class="hr">
 
