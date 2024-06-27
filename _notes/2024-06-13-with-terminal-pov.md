@@ -44,6 +44,8 @@ category: Notes
 <hr class="hr">
 
 <p><span class="header">4.3. Predictions and Aggregations</span>: A lot of the data points add no value when they are not aggregated. Examples include speed at a specific moment, a single fuel consumption reading, an isolated engine fault code incident, a one-time tire pressure reading, a brief idle period, a single temperature reading (for engine or cargo), and many more. However, these data points become more usable when aggregated, such as averages, sums, counts, min/max values, percentiles, medians, etc.</p>
+
+<p>On the same lines, another use case is down-sampling with aggregations, which ensures that the quality of data is not lost while reducing the number of entries/events.</p>
 <img class="center-image-0 center-image" src="../assets/notes/with-terminal-stateful.svg" />
 <p class="figure-header">Figure 8: Stateful Stream Processing</p>
 <p>Boils down to: Windowing techniques to have context of prior data, which also evolves to predictions (and anomalies). One good example is <a href="https://docs.mindsdb.com/use-cases/data_enrichment/overview" target="_blank">MindsDB</a>: to enrich data with AI-generated content.</p> 
@@ -62,7 +64,7 @@ category: Notes
 <hr class="hr">
 
 <p><span class="header">5. What's next?</span> The potential and possibilities are endless.</p> <p>Tangentials: UI widgets - in popular front-end frameworks to add on to existing applications (Stripe model), Generative AI - on telematics data across providers for drivers, fleet managers, insurance providers, etc., Time and Location Analytics, and many more.</p> 
-<p>But I'm sure someone back there said, "this isn't our focus," when going over the above "Top 4" feature/enhancement suggestions. That's where I conclude. To know more about <span class="underline">what's next?</span></p>
+<p>But I'm sure someone back there said, "this isn't our focus," when going over the above "Top 4" feature/enhancement suggestions. That's where I conclude; to know more about <span class="underline">what's next?</span></p>
 
 <img class="center-image-0 center-image-95" src="../assets/notes/with-terminal-strategy.svg" />
 
