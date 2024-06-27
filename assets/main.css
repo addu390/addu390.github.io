@@ -784,7 +784,7 @@ code {
 
 .sidebar-list::-webkit-scrollbar,
 .sidebar-scrollable-div::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
 }
 
 .sidebar-list::-webkit-scrollbar-thumb {
