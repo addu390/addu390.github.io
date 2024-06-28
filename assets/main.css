@@ -9,6 +9,8 @@
 :root {
   --black: #000;
   --white: #f0f0f0;
+  --bg-color: transparent;
+  --darkreader-bg--bg-color: white !important;
 }
 
 html,
@@ -641,6 +643,7 @@ a {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  background-color: var(--bg-color);
 }
 
 .center-image-100 {
@@ -1185,6 +1188,16 @@ table {
   left: 72%;
 }
 
+.theme-icon {
+  width: 24px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 999;
+  top: 1.7em;
+  transform: translateY(-50%);
+  left: 68%;
+}
+
 .underline {
   text-decoration: underline;
 }
@@ -1371,4 +1384,10 @@ table {
   width: 20px;
   height: 20px;
   transition: transform 0.3s;
+}
+
+.svg-bg-dark-mode::before {
+  background-blend-mode: screen;
+  background-color: white;
+  z-index: -1; /* Place the background behind the image */
 }

@@ -19,12 +19,18 @@ layout: default
             <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
         </article>
         <div class="blog-reference">
-            <p>Cite this article as: {{ page.author }}. ({{ post.date | date: date_format }}). {{ page.title | escape }}. 
-                PyBlog. <a href="{{ page.url | relative_url }}">https://www.pyblog.xyz{{ page.url | relative_url }}</a></p>
+            <p>Cite this article as: {{ page.author }}. ({{ post.date | date: date_format }}). {{ page.title | escape
+                }}.
+                PyBlog. <a href="{{ page.url | relative_url }}">https://www.pyblog.xyz{{ page.url | relative_url }}</a>
+            </p>
         </div>
-        <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
             theme="github-light" crossorigin="anonymous" async>
-            </script>
+        </script>
+        </div>
+        
     </div>
     <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
         <section class="post sidebar-scrollable-div sidebar-toc-div">

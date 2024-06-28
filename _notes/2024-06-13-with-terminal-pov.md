@@ -26,17 +26,17 @@ category: Notes
 
 <p><span class="header">4.1. Output connectors</span>: Given the highly frequent and time-series nature of the data, it's less transactional and more analytical. This implies that the use of the data (for businesses) primarily involves storage in analytical databases and BI systems. This is solved with output connectors, making it a one-stop telematics integration solution.</p>
 
-<img class="center-image-100" src="../assets/notes/with-terminal-connectors.svg" /> 
+<img class="center-image-0 center-image-100" src="../assets/notes/with-terminal-connectors.svg" /> 
 <p class="figure-header">Figure 5: Input and Output Connectors</p>
 
 <p><span class="header">4.2a. Context Mapping</span> (Enrichments): It's not uncommon to have systems from multiple providers in a vehicle. Context mapping refers to mapping data from different sources. For example, data outside of telematics providers includes monitoring for in-vehicle cargo, electrical/battery systems, tire pressure, engine health, etc., as well as other relevant data such as environmental conditions (weather) and traffic information.</p>
 
-<img class="center-image-50" src="../assets/notes/with-terminal-enrichment.svg" /> 
+<img class="center-image-0 center-image-50" src="../assets/notes/with-terminal-enrichment.svg" /> 
 <p class="figure-header">Figure 6: Context Mapping (Enrichments) across Verticals</p>
 
 <p><span class="header">4.2b. Template Mapping</span>: Although a normalized API makes integrations easy, it often requires further transformations to use it with current systems. Template mapping is a schema transformation layer to define the output schema on top of the normalized models.</p> 
 
-<img class="center-image-50" src="../assets/notes/with-terminal-mapping.svg" /> 
+<img class="center-image-0 center-image-50" src="../assets/notes/with-terminal-mapping.svg" /> 
 <p class="figure-header">Figure 7: Template Mapping (Transformations)</p>
 
 <p>This may seem like an anti-pattern and doesn't necessarily mean it's not normalized anymore. The concept of normalization typically applies to the internal structure of the data and how it's stored. Perform transformations while: Eliminating Redundancy, Ensuring Data Integrity and Optimizing for Queries.</p>

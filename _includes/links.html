@@ -1,10 +1,14 @@
 <div class="menu">
     {%- include search.html -%}
-    <a href="/feed.xml" target="_blank"><img class="twemoji rss-icon" src="../assets/img/common/rss.svg" alt=""></a>
-    <img id="notification-icon" class="twemoji notification-icon" src="../assets/img/common/notification.svg" alt="">
+    <a id="dark-mode-button" >
+        <img id="icon-dark" class="twemoji theme-icon" src="../assets/img/emoji/dark.svg" alt="">
+        <img id="icon-light" class="twemoji theme-icon" src="../assets/img/emoji/light.svg" style="display: none;" alt="">
+      </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="../assets/img/common/rss.svg" alt=""></a>
+    <img id="notification-icon" class="svg-icon twemoji notification-icon" src="../assets/img/common/notification.svg" alt="">
 </div>
 <div class="notification-dropdown" id="notification-dropdown">
-    <p>Click the <img class="twemoji" src="../assets/img/common/bookmark-initial.svg"> on any post to easily add it to your reading list <span class="state-tag new-tag">New</span></p>
+    <p>Click the <img class="twemoji svg-icon" src="../assets/img/common/bookmark-initial.svg"> on any post to easily add it to your reading list <span class="state-tag new-tag">New</span></p>
     <hr class="post-hr">
     <p>Sign in with Github and Comment on any post!</p>
 </div>
