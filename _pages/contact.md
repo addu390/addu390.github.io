@@ -16,6 +16,7 @@ date: 2024-06-26
 </ul>
 <p>For questions about a specific post, feel free to drop a comment at the end of the article; login using GitHub.</p>
 <p>For any queries about re-using our content, please check out our <a class="underline" href="/privacy">Privacy Policy</a>.</p>
+<img style="float: right; width: 7em;" src="../assets/img/common/puppy-hi.png" />
 </div>
 <br/><br/>
 </div>
