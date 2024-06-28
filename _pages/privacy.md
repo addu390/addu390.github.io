@@ -12,6 +12,8 @@ date: 2024-06-25
 
 <p>Last updated on {{ page.date | date: date_format }}.</p>
 
+<img style="float: right; width: 9em;" src="../assets/img/common/puppy-privacy.png" />
+
 <p>Welcome to PyBlog (<a class="underline" href="/">https://www.pyblog.xyz/</a>). We value your privacy and are committed to protecting your personal information. This privacy policy outlines the types of information we collect, how we use it, and the measures we take to ensure your information is secure.</p>
 
 <details class="text-container" open><summary class="h3">Information We Collect</summary>
@@ -87,8 +89,15 @@ date: 2024-06-25
 </details>
 <hr class="clear-hr">
 
+<details class="text-container" open><summary class="h3">Sponsoring</summary>
+<p>We do not use affiliate links for anything we recommend. Affiliate links are specific web links that reward the advertiser with commissions for visits, signups, or sales through that link.</p>
+
+<p>We do not show any advertisements or host sponsorships on the blog that dictate the content. We author all the content on this blog, and all recommendations we make are independent and unbiased.</p>
+</details>
+<hr class="clear-hr">
+
 <details class="text-container" open><summary class="h3">Content and Image Usage</summary>
-<p>All content and images on PyBlog are original and created by the author unless otherwise stated. If you wish to use any content or images from PyBlog, you must:
+<p>All content and images on PyBlog are original (licensed under the <a class="underline" href="https://github.com/addu390/addu390.github.io/blob/master/LICENSE" target="_blank">Creative Commons Attribution 4.0 International license</a>) and created by the author unless otherwise stated. If you wish to use any content or images from PyBlog, you must:
 <ul>
     <li>Clearly cite the author.</li>
     <li>Include a link to the exact post from which the content or image was taken.</li>
