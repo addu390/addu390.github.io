@@ -1147,10 +1147,6 @@ table {
   cursor: pointer;
 }
 
-#clear-reading-list:hover {
-  content: url("../assets/img/common/trash.gif");
-}
-
 .notification-dropdown {
   display: none;
   font-size: 15px;
@@ -1168,14 +1164,14 @@ table {
   line-height: 1.5;
 }
 
-.notification-icon {
-  width: 24px;
+.audio-icon {
+  width: 35px;
   position: absolute;
   cursor: pointer;
   z-index: 999;
   top: 1.7em;
   transform: translateY(-50%);
-  left: 76%;
+  left: 75.5%;
 }
 
 .rss-icon {

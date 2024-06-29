@@ -1,49 +1,103 @@
-let enabled = localStorage.getItem('dark-mode');
-if (enabled !== null && enabled === 'true') {
-    enable();
+let darkModeEnabled = localStorage.getItem('dark-mode');
+let soundEnabled = localStorage.getItem('sound-enabled');
+if (darkModeEnabled !== null && darkModeEnabled === 'true') {
+    enableDarkMode();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const iconSoundOn = document.getElementById('icon-sound-on');
+    const iconSoundOff = document.getElementById('icon-sound-off');
+
     const iconDark = document.getElementById('icon-dark');
     const iconLight = document.getElementById('icon-light');
 
-    if (enabled !== null && enabled === 'true') {
-        enableOnLoad();
+    var onSoundforDarkMode = document.getElementById('darkModeOn');
+    var offSoundForDarkMode = document.getElementById('darkModeOff');
+
+    var onSoundforSoundMode = document.getElementById('soundModeOn');
+    var offSoundForSoundMode = document.getElementById('soundModeOff');
+
+    onSoundforDarkMode.volume = 0.2;
+    offSoundForDarkMode.volume = 0.2;
+    
+    onSoundforSoundMode.volume = 0.2;
+    offSoundForSoundMode.volume = 0.2;
+
+    if (darkModeEnabled !== null && darkModeEnabled === 'true') {
+        enableDarkModeOnLoad();
     }
 
+    if (soundEnabled !== null && soundEnabled === 'true') {
+        enableSoundModeOnLoad();
+    }
+
+    iconSoundOn.addEventListener('click', function () {
+        disableSoundModeOnLoad();
+        offSoundForSoundMode.currentTime = 0; 
+        offSoundForSoundMode.play();
+    });
+
+    iconSoundOff.addEventListener('click', function () {
+        enableSoundModeOnLoad();
+        onSoundforSoundMode.currentTime = 0; 
+        onSoundforSoundMode.play();
+    });
+
     iconDark.addEventListener('click', function () {
-        enable();
-        enableOnLoad();
+        disableDarkMode();
+        disableDarkModeOnLoad();
     });
 
     iconLight.addEventListener('click', function () {
-        disable();
-        disableOnLoad();
+        enableDarkMode();
+        enableDarkModeOnLoad();
     });
 
-    function enableOnLoad() {
-        iconDark.style.display = 'none';
-        iconLight.style.display = 'inline';
+    function enableSoundModeOnLoad() {
+        soundEnabled = 'true';
+        localStorage.setItem('sound-enabled', 'true');
+        iconSoundOn.style.display = 'inline';
+        iconSoundOff.style.display = 'none';
+    }
+
+    function disableSoundModeOnLoad() {
+        soundEnabled = 'false';
+        localStorage.setItem('sound-enabled', 'false');
+        iconSoundOn.style.display = 'none';
+        iconSoundOff.style.display = 'inline';
+    }
+
+    function enableDarkModeOnLoad() {
+        iconLight.style.display = 'none';
+        iconDark.style.display = 'inline';
+        if (soundEnabled !== null && soundEnabled === 'true') {
+            onSoundforDarkMode.currentTime = 0; 
+            onSoundforDarkMode.play();
+        }
         applyFilterToClass('svg-icon', 'invert(70%)');
         loadCommentsScript('github-dark');
         addWhiteBgToSvg();
     }
 
-    function disableOnLoad() {
-        iconDark.style.display = 'inline';
-        iconLight.style.display = 'none';
+    function disableDarkModeOnLoad() {
+        iconLight.style.display = 'inline';
+        iconDark.style.display = 'none';
+        if (soundEnabled !== null && soundEnabled === 'true') {
+            offSoundForDarkMode.currentTime = 0; 
+            offSoundForDarkMode.play();
+        }
         applyFilterToClass('svg-icon', 'invert(0%)');
         loadCommentsScript('github-light');
     }
 });
 
-function enable() {
+function enableDarkMode() {
     DarkReader.setFetchMethod(window.fetch)
     DarkReader.enable();
     localStorage.setItem('dark-mode', 'true');
 }
 
-function disable() {
+function disableDarkMode() {
     DarkReader.disable();
     localStorage.setItem('dark-mode', 'false');
 }
