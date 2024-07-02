@@ -17,11 +17,13 @@ permalink: /about/
 
 <p>A Peek into My World</p>
 <ul>
-<li>My playlist is a blast from the past, mostly rock legends like the Eagles, Rolling Stones, Guns N' Roses, Led Zeppelin, and Nirvana. I swear, my Spotify thinks it's 1975.</li>
+<li>My playlist is a blast from the past, mostly rock legends like the Eagles, Rolling Stones, Guns N' Roses, Led Zeppelin, and Nirvana. I swear, my <a href="https://open.spotify.com/playlist/7cC4dvGOD3LCBxKJTFdxLC?si=4f0afd8da2964b4c" target="_blank" class="underline">Spotify</a> thinks it's 1975.</li>
+<li>I love riding motorcycles <img class="twemoji" style="vertical-align: baseline;" src="../assets/img/emoji/motorcycle.svg" /> it's my ultimate getaway.</li>
 <li>I like to climb rocks and ropes. Otherwise, I'm lifting heavy things at the gym and pretending it's fun.</li>
+<br/>
 <li>I get giddy about new startups and tech. Watching the industry evolve is like binge-watching a sci-fi series, but with more (new) acronyms.</li>
-<li>The obvious; Pencil sketching and illustrating!</li>
-<li>I talk to my plants. I think they listen. Bird of Paradise, Pothos, Clementine, and Parlor Palm are my buddies.</li>
+<li>And the obvious—Pencil sketching and illustrating!</li>
+<li>I talk to my plants. I think they listen. Bird of Paradise, Pothos, Clementine, and Parlor Palm are my buddies <img class="twemoji" style="vertical-align: sub;" src="../assets/img/emoji/plant.svg" /></li>
 <li>Currently obsessed with time and spatial indexes.</li>
 </ul>
 
@@ -38,5 +40,5 @@ permalink: /about/
 <p>I have worked in companies with as few as 3 engineers, as well as mid and large-sized startups, and major enterprises.</p> <p>My work is often centered around building asynchronous near-real-time workflows and pipelines, optimizing infrastructure, and developing libraries and microservices to streamline development, enchance maintainability and scalability.</p><br/>
     <img class="center-image-0 center-image-60 dark-invert" src="../assets/img/profile/things-i-have-done.svg" /> 
 </details>
+<p>To get in touch, drop me an email! <a class="underline" href="mailto:yo@pyblog.xyz">yo@pyblog.xyz</a></p>
 </div>
-<br/>
