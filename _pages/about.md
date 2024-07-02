@@ -4,6 +4,13 @@ title: ""
 permalink: /about/
 ---
 
+<div>
+<div class="character-container" id="character2">
+    <img src="../assets/img/profile/gooshi.png" alt="Dog" class="character" style="width: 7em;">
+    <p class="thought-cloud"><img class="svg-icon" id="character2-text" src="../assets/img/profile/gooshi.svg" alt=""></p>
+</div>
+</div>
+
 <div class="all-posts">
 <div class="center-align">
     <h1 style="display: inline-block; margin-top: 0px;">The PyBlogger</h1>
@@ -42,3 +49,5 @@ permalink: /about/
 </details>
 <p>To get in touch, drop me an email! <a class="underline" href="mailto:yo@pyblog.xyz">yo@pyblog.xyz</a></p>
 </div>
+
+<script src="{{ '../assets/character.js' | relative_url }}"></script>

@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function enableDarkModeOnLoad() {
         iconLight.style.display = 'none';
         iconDark.style.display = 'inline';
-        applyFilterToClass('svg-icon', 'invert(70%)');
+        applyFilterToClass('svg-icon', 'invert(77%)');
         loadCommentsScript('github-dark');
         addWhiteBgToSvg();
     }

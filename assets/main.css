@@ -11,6 +11,7 @@
   --white: #f0f0f0;
   --bg-color: transparent;
   --darkreader-bg--bg-color: white !important;
+  --light-grey: #e6e6e6;
 }
 
 html,
@@ -519,6 +520,10 @@ footer .pure-menu-link:hover {
 
   .spotify-iframe {
     width: 100%;
+  }
+
+  #character1, #character2 {
+    display: none;
   }
 }
 
@@ -1104,9 +1109,8 @@ table {
 }
 
 .new-tag {
-  background-color: rgb(252, 211, 77);
-  color: rgb(120, 53, 15);
-  border: rgb(252, 211, 77);
+  vertical-align: text-bottom;
+  padding-left: 6px;
 }
 
 .bottom-sidebar {
@@ -1360,23 +1364,23 @@ table {
   overflow: hidden;
 }
 
-
 .watermelon {
   position: absolute;
   width: 50px;
   height: 50px;
-  background: url('../assets/img/emoji/watermelon.svg') no-repeat center center / contain;
+  background: url("../assets/img/emoji/watermelon.svg") no-repeat center center /
+    contain;
   animation: fall 3s linear infinite;
 }
 
 @keyframes fall {
   0% {
-      transform: translateY(-100%);
-      opacity: 1;
+    transform: translateY(-100%);
+    opacity: 1;
   }
   100% {
-      transform: translateY(100vh);
-      opacity: 0.8;
+    transform: translateY(100vh);
+    opacity: 0.8;
   }
 }
 
@@ -1409,4 +1413,59 @@ table {
   background-blend-mode: screen;
   background-color: white;
   z-index: -1; /* Place the background behind the image */
+}
+
+/* Character Animation in About Page */
+
+.character-container {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0; 
+}
+
+#character2 {
+  transition: right 1s ease-in-out;
+  right: -160px;
+  bottom: 100px;
+  width: 7em;
+  cursor: pointer;
+}
+
+#character2.visible {
+  right: 225px;
+  opacity: 1;
+}
+
+.character-container.visible .thought-cloud {
+  display: block;
+}
+
+.thought-cloud {
+	position: relative;
+	max-width: 30em;
+	background-color: #fff;
+	padding: 0.3em 0.5em;
+	border-radius: 1rem;
+  box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .1), 0 0.0625rem 0.125rem rgba(0, 0, 0, .1);
+}
+
+#character2 .thought-cloud {
+  bottom: 170px;
+}
+
+.thought-cloud::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: 99%;
+	left: 3.5em;
+  border-top: #fff;
+	border: .75rem solid transparent;
+	border-bottom: none;
+	border-top-color: #fff;
+	filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, .1));
 }
