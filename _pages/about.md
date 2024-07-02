@@ -15,7 +15,19 @@ permalink: /about/
     <img class="center-image" src="../assets/featured/for-hire.png" /> 
 </div>
 
-<p>Recent Accomplishments:</p>
+<p>A Peek into My World</p>
+<ul>
+<li>My playlist is a blast from the past, mostly rock legends like the Eagles, Rolling Stones, Guns N' Roses, Led Zeppelin, and Nirvana. I swear, my Spotify thinks it's 1975.</li>
+<li>I like to climb rocks and ropes. Otherwise, I'm lifting heavy things at the gym and pretending it's fun.</li>
+<li>I get giddy about new startups and tech. Watching the industry evolve is like binge-watching a sci-fi series, but with more (new) acronyms.</li>
+<li>The obvious; Pencil sketching and illustrating!</li>
+<li>I talk to my plants. I think they listen. Bird of Paradise, Pothos, Clementine, and Parlor Palm are my buddies.</li>
+<li>Currently obsessed with time and spatial indexes.</li>
+</ul>
+
+<iframe style="border-radius:12px;" src="https://open.spotify.com/embed/playlist/7cC4dvGOD3LCBxKJTFdxLC?utm_source=generator&theme=0" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+<p>Recent Brags:</p>
 <ul>
     <li>Revamped PyBlog with my top-of-the-line illustrations, algorithm visualizers, concept explanation series, and much more.</li>
     <li>Rock Climbing: Can Send V6 on a good day <img class="twemoji" src="../assets/img/emoji/rock-climb.svg" /> </li>
