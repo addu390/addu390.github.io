@@ -46,11 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
     iconDark.addEventListener('click', function () {
         disableDarkMode();
         disableDarkModeOnLoad();
+        if (soundEnabled !== null && soundEnabled === 'true') {
+            offSoundForDarkMode.currentTime = 0; 
+            offSoundForDarkMode.play();
+        }
     });
 
     iconLight.addEventListener('click', function () {
         enableDarkMode();
         enableDarkModeOnLoad();
+        if (soundEnabled !== null && soundEnabled === 'true') {
+            onSoundforDarkMode.currentTime = 0; 
+            onSoundforDarkMode.play();
+        }
     });
 
     function enableSoundModeOnLoad() {
@@ -70,10 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function enableDarkModeOnLoad() {
         iconLight.style.display = 'none';
         iconDark.style.display = 'inline';
-        if (soundEnabled !== null && soundEnabled === 'true') {
-            onSoundforDarkMode.currentTime = 0; 
-            onSoundforDarkMode.play();
-        }
         applyFilterToClass('svg-icon', 'invert(70%)');
         loadCommentsScript('github-dark');
         addWhiteBgToSvg();
@@ -82,11 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function disableDarkModeOnLoad() {
         iconLight.style.display = 'inline';
         iconDark.style.display = 'none';
-        if (soundEnabled !== null && soundEnabled === 'true') {
-            offSoundForDarkMode.currentTime = 0; 
-            offSoundForDarkMode.play();
-        }
         applyFilterToClass('svg-icon', 'invert(0%)');
+        applyFilterToClass('dark-invert', 'invert(0%)');
         loadCommentsScript('github-light');
     }
 });
@@ -115,6 +116,7 @@ function addWhiteBgToSvg() {
     const root = document.documentElement;
     root.style.setProperty('--bg-color', 'white');
     root.style.setProperty('--darkreader-bg--bg-color', 'white');
+    applyFilterToClass("dark-invert", "invert(90%)");
 }
 
 function loadCommentsScript(theme) {
