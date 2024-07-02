@@ -399,6 +399,12 @@ footer .pure-menu-link:hover {
   text-decoration: underline;
 }
 
+.spotify-iframe {
+  border-radius: 12px;
+  width: 50%;
+  height: 152px;
+}
+
 /* RESPONSIVE CSS */
 
 @media (min-width: 48em) {
@@ -501,6 +507,18 @@ footer .pure-menu-link:hover {
 
   footer .pure-menu-link {
     padding: 0 20px;
+  }
+
+  .all-posts {
+    margin: 0 0.5em 0 0.5em !important;
+  }
+
+  .page-entry {
+    margin-top: 0 !important;
+  }
+
+  .spotify-iframe {
+    width: 100%;
   }
 }
 

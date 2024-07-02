@@ -27,7 +27,7 @@ permalink: /about/
 <li>Currently obsessed with time and spatial indexes.</li>
 </ul>
 
-<iframe style="border-radius:12px;" src="https://open.spotify.com/embed/playlist/7cC4dvGOD3LCBxKJTFdxLC?utm_source=generator&theme=0" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe class="spotify-iframe" src="https://open.spotify.com/embed/playlist/7cC4dvGOD3LCBxKJTFdxLC?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 <p>Recent Brags:</p>
 <ul>
