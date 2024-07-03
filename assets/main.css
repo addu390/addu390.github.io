@@ -521,10 +521,6 @@ footer .pure-menu-link:hover {
   .spotify-iframe {
     width: 100%;
   }
-
-  #character1, #character2 {
-    display: none;
-  }
 }
 
 /* JEKYLL CSS */
@@ -1417,32 +1413,6 @@ table {
 
 /* Character Animation in About Page */
 
-.character-container {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0; 
-}
-
-#character2 {
-  transition: right 1s ease-in-out;
-  right: -160px;
-  bottom: 100px;
-  width: 7em;
-  cursor: pointer;
-}
-
-#character2.visible {
-  right: 225px;
-  opacity: 1;
-}
-
-.character-container.visible .thought-cloud {
-  display: block;
-}
-
 .thought-cloud {
 	position: relative;
 	max-width: 30em;
@@ -1452,8 +1422,8 @@ table {
   box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .1), 0 0.0625rem 0.125rem rgba(0, 0, 0, .1);
 }
 
-#character2 .thought-cloud {
-  bottom: 170px;
+.thought-cloud {
+  bottom: 190px;
 }
 
 .thought-cloud::before {

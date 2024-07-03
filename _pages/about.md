@@ -5,10 +5,6 @@ permalink: /about/
 ---
 
 <div>
-<div class="character-container" id="character2">
-    <img src="../assets/img/profile/gooshi.png" alt="Dog" class="character" style="width: 7em;">
-    <p class="thought-cloud"><img class="svg-icon" id="character2-text" src="../assets/img/profile/gooshi.svg" alt=""></p>
-</div>
 </div>
 
 <div class="all-posts">
@@ -20,6 +16,10 @@ permalink: /about/
 
 <div class="center-align">
     <img class="center-image" src="../assets/featured/for-hire.png" /> 
+    <div style="float: right;">
+    <img id="gooshi" src="../assets/img/profile/gooshi-looking-away.png" alt="Gooshi" style="width: 7em;">
+    <p class="thought-cloud"><img class="svg-icon" id="gooshi-says-hi" src="../assets/img/profile/gooshi.svg" alt=""></p>
+</div>
 </div>
 
 <p>A Peek into My World</p>
