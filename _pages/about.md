@@ -34,8 +34,6 @@ permalink: /about/
 <li>Currently obsessed with time and spatial indexes.</li>
 </ul>
 
-<iframe class="spotify-iframe" src="https://open.spotify.com/embed/playlist/7cC4dvGOD3LCBxKJTFdxLC?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
 <p>Recent Brags:</p>
 <ul>
     <li>Revamped PyBlog with my top-of-the-line illustrations, algorithm visualizers, concept explanation series, and much more.</li>

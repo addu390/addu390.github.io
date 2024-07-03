@@ -853,6 +853,10 @@ code {
   background-color: #202020;
 }
 
+.light-featured {
+  background-color: #404040;
+}
+
 .mid-featured {
   background-color: #1c1b1b;
 }
