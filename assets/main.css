@@ -1424,6 +1424,7 @@ table {
 
 .thought-cloud {
   bottom: 190px;
+  text-align: center;
 }
 
 .thought-cloud::before {
@@ -1438,4 +1439,8 @@ table {
 	border-bottom: none;
 	border-top-color: #fff;
 	filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
+
+.disabled {
+  cursor: progress !important;
 }

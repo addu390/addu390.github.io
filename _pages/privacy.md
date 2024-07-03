@@ -12,8 +12,6 @@ date: 2024-06-25
 
 <p>Last updated on {{ page.date | date: date_format }}.</p>
 
-<img style="float: right; width: 9em;" src="../assets/img/common/puppy-privacy.png" />
-
 <p>Welcome to PyBlog (<a class="underline" href="/">https://www.pyblog.xyz/</a>). We value your privacy and are committed to protecting your personal information. This privacy policy outlines the types of information we collect, how we use it, and the measures we take to ensure your information is secure.</p>
 
 <details class="text-container" open><summary class="h3">Information We Collect</summary>

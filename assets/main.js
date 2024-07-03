@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     var onSoundforSoundMode = document.getElementById('soundModeOn');
     var offSoundForSoundMode = document.getElementById('soundModeOff');
 
-    onSoundforDarkMode.volume = 0.2;
-    offSoundForDarkMode.volume = 0.2;
+    onSoundforDarkMode.volume = 0.6;
+    offSoundForDarkMode.volume = 0.6;
     
-    onSoundforSoundMode.volume = 0.2;
-    offSoundForSoundMode.volume = 0.2;
+    onSoundforSoundMode.volume = 0.6;
+    offSoundForSoundMode.volume = 0.6;
 
     if (darkModeEnabled !== null && darkModeEnabled === 'true') {
         enableDarkModeOnLoad();

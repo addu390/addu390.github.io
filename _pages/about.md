@@ -16,13 +16,13 @@ permalink: /about/
 
 <div class="center-align">
     <img class="center-image" src="../assets/featured/for-hire.png" /> 
-    <div style="float: right;">
-    <img id="gooshi" src="../assets/img/profile/gooshi-looking-away.png" alt="Gooshi" style="width: 7em;">
-    <p class="thought-cloud"><img class="svg-icon" id="gooshi-says-hi" src="../assets/img/profile/gooshi.svg" alt=""></p>
-</div>
 </div>
 
 <p>A Peek into My World</p>
+<div style="float: right; cursor: pointer;">
+    <img id="gooshi" src="../assets/img/profile/gooshi-looking-away.png" alt="Gooshi" style="width: 7em;">
+    <p class="thought-cloud"><img class="svg-icon" id="gooshi-says-hi" src="../assets/img/profile/gooshi.svg" alt=""></p>
+</div>
 <ul>
 <li>My playlist is a blast from the past, mostly rock legends like the Eagles, Rolling Stones, Guns N' Roses, Led Zeppelin, and Nirvana. I swear, my <a href="https://open.spotify.com/playlist/7cC4dvGOD3LCBxKJTFdxLC?si=4f0afd8da2964b4c" target="_blank" class="underline">Spotify</a> thinks it's 1975.</li>
 <li>I love riding motorcycles <img class="twemoji" style="vertical-align: baseline;" src="../assets/img/emoji/motorcycle.svg" /> it's my ultimate getaway.</li>
@@ -49,5 +49,10 @@ permalink: /about/
 </details>
 <p>To get in touch, drop me an email! <a class="underline" href="mailto:yo@pyblog.xyz">yo@pyblog.xyz</a></p>
 </div>
+
+<audio id="gooshiSound">
+    <source src="../assets/sounds/meow-kitty.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <script src="{{ '../assets/character.js' | relative_url }}"></script>
