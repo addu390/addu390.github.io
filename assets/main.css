@@ -1231,6 +1231,10 @@ table {
   scroll-margin-top: 70px;
 }
 
+summary {
+  cursor: pointer;
+}
+
 .all-posts {
   margin: 0 2em 0 2em;
   font-size: 17px;

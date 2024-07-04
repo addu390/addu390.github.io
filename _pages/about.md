@@ -18,13 +18,23 @@ permalink: /about/
     <img class="center-image" src="../assets/featured/for-hire.png" /> 
 </div>
 
-<p>A Peek into My World</p>
+<p>Recent Brags:</p>
+
 <div style="float: right; cursor: pointer;">
     <img id="gooshi" src="../assets/img/profile/gooshi-looking-away.png" alt="Gooshi" style="width: 7em;">
     <p class="thought-cloud"><img class="svg-icon" id="gooshi-says-hi" src="../assets/img/profile/gooshi.svg" alt=""></p>
 </div>
 <ul>
-<li>My playlist is a blast from the past, mostly rock legends like the Eagles, Rolling Stones, Guns N' Roses, Led Zeppelin, and Nirvana. I swear, my <a href="https://open.spotify.com/playlist/7cC4dvGOD3LCBxKJTFdxLC?si=4f0afd8da2964b4c" target="_blank" class="underline">Spotify</a> thinks it's 1975.</li>
+    <li>Revamped PyBlog with my top-of-the-line illustrations, algorithm visualizers, concept explanation series, and much more.</li>
+    <li>Rock Climbing: Can Send V6 on a good day <img class="twemoji" src="../assets/img/emoji/rock-climb.svg" /> </li>
+    <li>At the Gym: Shoulder Press 165, Bench Press 235, Squat 315 and Deadlift 405 <img class="twemoji" src="../assets/img/emoji/lift.svg" /></li>
+</ul>
+
+<hr class="clear-hr"/>
+
+<details open class="text-container"><summary class="p"> &nbsp;A Peek into My World</summary>
+<ul>
+<li>My playlist is a blast from the past, mostly rock legends like the Eagles, Rolling Stones, Guns N' Roses, <br/>Led Zeppelin, and Nirvana. I swear, my <a href="https://open.spotify.com/playlist/7cC4dvGOD3LCBxKJTFdxLC?si=4f0afd8da2964b4c" target="_blank" class="underline">Spotify</a> thinks it's 1975.</li>
 <li>I love riding motorcycles <img class="twemoji" style="vertical-align: baseline;" src="../assets/img/emoji/motorcycle.svg" /> it's my ultimate getaway.</li>
 <li>I like to climb rocks and ropes. Otherwise, I'm lifting heavy things at the gym and pretending it's fun.</li>
 <br/>
@@ -33,19 +43,17 @@ permalink: /about/
 <li>I talk to my plants. I think they listen. Bird of Paradise, Pothos, Clementine, and Parlor Palm are my buddies <img class="twemoji" style="vertical-align: sub;" src="../assets/img/emoji/plant.svg" /></li>
 <li>Currently obsessed with time and spatial indexes.</li>
 </ul>
+</details>
 
-<p>Recent Brags:</p>
-<ul>
-    <li>Revamped PyBlog with my top-of-the-line illustrations, algorithm visualizers, concept explanation series, and much more.</li>
-    <li>Rock Climbing: Can Send V6 on a good day <img class="twemoji" src="../assets/img/emoji/rock-climb.svg" /> </li>
-    <li>At the Gym: Shoulder Press 165, Bench Press 235, Squat 315 and Deadlift 405 <img class="twemoji" src="../assets/img/emoji/lift.svg" /></li>
-</ul>
+<hr class="clear-hr"/>
 
 <details class="text-container"><summary class="p"> &nbsp;Trailblazing My Way in Software Engineering</summary>
 <p>I have worked in companies with as few as 3 engineers, as well as mid and large-sized startups, and major enterprises.</p> <p>My work is often centered around building asynchronous near-real-time workflows and pipelines, optimizing infrastructure, and developing libraries and microservices to streamline development, enchance maintainability and scalability.</p><br/>
     <img class="center-image-0 center-image-60 dark-invert" src="../assets/img/profile/things-i-have-done.svg" /> 
 </details>
-<p>To get in touch, drop me an email! <a class="underline" href="mailto:yo@pyblog.xyz">yo@pyblog.xyz</a></p>
+
+<p>
+I’d <a class="underline" href="/contact">love to hear from you</a>! Your feedback, comments, and questions are always welcome.</p>
 </div>
 
 <audio id="gooshiSound">
