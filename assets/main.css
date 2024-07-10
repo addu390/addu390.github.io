@@ -1168,6 +1168,20 @@ table {
   float: right;
 }
 
+.float-right-image {
+  float: right;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  border-radius: 8px;
+}
+
+.float-left-image {
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  border-radius: 8px;
+}
+
 #clear-reading-list {
   margin-top: 1.6em;
   float: right;
