@@ -2,7 +2,6 @@
 layout: post
 title: "Spatial Index: R Trees"
 date: 2024-06-26
-state: Draft
 tags:
 - Database
 - Spatial Index
@@ -14,13 +13,9 @@ category: System Wisdom
 
 <img class="center-image" src="./assets/featured/webp/rtree-spatial-index.webp" /> 
 
-<div class="blog-reference green-disclaimer">
-<p>Work in Progress! This is the last post of the series "<a href="/tags/#Spatial%20Index">Spatial Index</a>", diving into data-driven structures and more specifically the R-tree family. <a href="https://pyblog.medium.com/subscribe" target="_blank">Subscribe</a> to get notified when the post is up!</p>
-</div>
-
 <p>In this post, let's explore the <a href="https://en.wikipedia.org/wiki/R-tree" target="_blank">R-Tree</a> data structure, which is popularly used to store multi-dimensional data, such as data points, segments, and rectangles.</p>
 
-<h3>1. Points, Segments and Rectangles</h3>
+<h3>1. R-Trees and Rectangles</h3>
 
 <p>For example, consider the plan of a university layout below. We can use the R-Tree data structure to index the buildings on the map.</p>
 
@@ -173,9 +168,43 @@ category: System Wisdom
 <p>A realistic use case for an R-Tree is <code>M = 50</code> and there are <code>2^(M-1)</code> possibilities. Hence, a naive approach to look at all possible subsets and choose the best one is not practical (too expensive!).</p>
 
 <h3>4.3.2. The Split Problem: Quadratic Cost</h3>
-<p></p>
-<p></p>
 
+<ul>
+<li>Search for split with smallest possible area</li>
+<li>Cost is Quadratic in <code>M</code> and linear in number of dimensions <code>d</code>.</li>
+<li>Idea:</li>
+<ul>
+<li>Search for pairs of entries that would cause the largest MBR area if placed in the same node. Then put these entries in two different nodes</li>
+<li><p>Then: Consider all remaining entries and consider the one (among the 2 nodes) for which the increase in area (of MBR) has the largest possible difference between the two nodes.</p></li>
+<li><p>This entry is assigned to the node with the smallest increase. Repeat until all entries are assigned</p></li>
+</ul>
+</ul>
 
+<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/r-tree-split-quadratic.svg" />
 
-<p>Work in Progress. Half way there and more to come! </p>
+<p>In this example, two nodes, <code>MBR1</code> and <code>MBR2</code>, are created. <code>R1</code> and <code>R2</code> in the same MBR would lead to creating the largest MBR. <code>R3</code> is then inserted into <code>MBR1</code> and not <code>MBR2</code>, as the area increase of <code>MBR1</code> is smaller compared to <code>MBR2</code>.</p>
+
+<p>Method "AdjustTree," is called whenever a new entry is inserted. It is responsible for adapting the parent's MBR and propagating the changes bottom up, handling splits as well as changes to MBRs. In the worst case, the propagation can be up to the root node.</p>
+
+<h3>5. R-Tree Variants</h3>
+
+<p>R-trees do not guarantee good worst-case performance, but generally speaking, they perform well with real-world data. Addressing this specific problem, the <a href="https://en.wikipedia.org/wiki/Priority_R-tree" target="_blank">Priority R-tree</a> is a worst-case <a href="https://en.wikipedia.org/wiki/Asymptotically_optimal_algorithm" target="_blank">asymptotically optimal</a> alternative to the spatial tree R-tree, which is essentially a hybrid between a k-dimensional tree (<a href="https://en.wikipedia.org/wiki/K-d_tree" target="_blank">k-d tree</a>) and an R-tree.</p>
+
+<p>Another commonly used variant is the <a href="https://en.wikipedia.org/wiki/R*-tree" target="_blanl">R*-Tree</a>, which uses the same algorithm as the regular R-tree for query and delete operations. However, while inserting, the R*-tree uses a combined strategy: for leaf nodes, overlap is minimized, and for inner nodes, enlargement and area are minimized, making the tree construction slightly more expensive.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/R%2B_tree" target="_blanl">R+-Tree</a>, on the other hand, solves one main problem to ensure nodes do not overlap with each other, leading to better point query performance. However, it does so by inserting an object into multiple leaves if necessary, which is a disadvantage due to duplicate entries and larger tree size.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Hilbert_R-tree" target="_blanl">Hilbert R-Tree</a> uses <a href="/spatial-index-space-filling-curve">space-filling curves</a>, specifically the Hilbert curve, to impose a linear ordering on the data rectangles. It has two variants: Packed Hilbert R-trees, suitable for static databases in which updates are very rare, and dynamic Hilbert R-trees, suitable for dynamic databases where insertions, deletions, or updates may occur in real time.</p>
+
+<h3>6. Conclusion</h3>
+
+<p>R-trees have come a long way since the first paper was published in 1984. Today, their applications span over multi-dimensional indexes, computer graphics, video games, spatial data management systems, and many more.</p>
+
+<p>On the flip side, R-trees can degrade badly with discrete data. Hence, it's highly recommended to understand the data representation before using R-trees. R-trees are also relatively slow when there's a very high mutation rate, i.e., where the index changes often; this is because of the higher cost for constructing and updating the index (due to tree rebalancing) and they are more optimized for various search operations. Lastly, R-trees can be a poor algorithm choice when primarily dealing with points as opposed to polygons/regions.</p>
+
+<h3>7. References</h3>
+<pre style="max-height: 300px"><code>[1] A. Guttman, "A Dynamic Index Structure for Spatial Searching," presented at the ACM SIGMOD International Conference on Management of Data, 1984. [Online]. Available: https://www.researchgate.net/publication/220805321_A_Dynamic_Index_Structure_for_Spatial_Searching.
+[2] "R-Tree," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/R-tree.
+[3] "B-Trees and B+ Trees," PyBlog. [Online]. Available: https://www.pyblog.xyz/b-trees-b-plus-trees.
+[4] "Spatial Index R-Tree," YouTube, https://www.youtube.com/watch?v=U0jUvvQkaFw.
+</code></pre>
