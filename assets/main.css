@@ -698,6 +698,10 @@ a {
   width: 55%;
 }
 
+.center-image-85 {
+  width: 85%;
+}
+
 .center-image {
   display: block;
   margin-left: auto;
@@ -1461,4 +1465,9 @@ summary {
 	border-bottom: none;
 	border-top-color: #fff;
 	filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
+
+.black-border {
+  border: 1px solid var(--black);
+  border-radius: 5px;
 }
