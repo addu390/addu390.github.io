@@ -10,7 +10,7 @@
     <link rel="archives" href="{{site.url}}/archives/">
     <link rel="me" href="https://mastodon.social/@addu390">
 
-    <meta name="robots" content="index,follow"> 
+    <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
 
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
@@ -23,12 +23,26 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-LWDR3LD16H');
+        gtag('config', 'G-LWDR3LD16H');
     </script>
     <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
     <script src="{{ '/assets/main.js' | relative_url }}"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+            n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
 </head>

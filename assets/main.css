@@ -57,6 +57,12 @@ h3 {
   font-weight: 700;
 }
 
+.ml-form-embedContent h4 {
+  font-weight: 700;
+  font-size: 1.17em !important; 
+  margin-bottom: 0 !important;
+}
+
 nav {
   padding-bottom: 15px;
 }
