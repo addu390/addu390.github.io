@@ -14,9 +14,9 @@ date: 2024-06-26
 <li><p>Mastodon: <a class="underline" href="https://mastodon.social/@addu390" target="_blank">@addu390</a></p></li>
 <li><p>Twitter: <a class="underline" href="https://twitter.com/gooshi_addu" target="_blank">@addu390</a></p></li>
 </ul>
+<img style="float: right; width: 8.5em;" src="../assets/img/common/puppy-hi.png" />
 <p>For questions about a specific post, feel free to drop a comment at the end of the article; login using GitHub.</p>
 <p>For any queries about re-using the content, please check the <a class="underline" href="/privacy">Privacy Policy</a>.</p>
-<img style="float: right; width: 7.5em;" src="../assets/img/common/puppy-hi.png" />
 </div>
 <br/><br/>
 </div>

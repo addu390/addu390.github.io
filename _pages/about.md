@@ -21,7 +21,7 @@ permalink: /about/
 <p>Recent Brags:</p>
 
 <div style="float: right; cursor: pointer;">
-    <img id="gooshi" src="../assets/img/profile/gooshi-looking-away.png" alt="Gooshi" style="width: 7em;">
+    <img id="gooshi" src="../assets/img/profile/gooshi-looking-away.png" alt="Gooshi" style="width: 7.5em;">
     <p class="thought-cloud"><img class="svg-icon" id="gooshi-says-hi" src="../assets/img/profile/gooshi.svg" alt=""></p>
 </div>
 <ul>

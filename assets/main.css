@@ -1093,7 +1093,7 @@ table {
   cursor: pointer;
 }
 
-#search-input:focus {
+#search-input:focus, .ml-validate-email input:focus {
   outline-color: var(--black);
 }
 
