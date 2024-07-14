@@ -362,6 +362,10 @@ footer .pure-menu-link:hover {
   max-width: 80%;
 }
 
+.post-description p {
+  margin-top: 0.4em;
+}
+
 .post-description {
   color: var(--black);
   line-height: 1.6em;
@@ -391,7 +395,7 @@ footer .pure-menu-link:hover {
 }
 
 .post-meta {
-  margin-bottom: 0px;
+  margin-bottom: 1em;
 }
 
 /* AUTHOR */
@@ -1157,6 +1161,12 @@ table {
 .new-tag {
   vertical-align: text-bottom;
   padding-left: 6px;
+}
+
+.premium-tag {
+  vertical-align: sub;
+  padding-right: 5px;
+  width: 22px;
 }
 
 .bottom-sidebar {

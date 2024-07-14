@@ -25,7 +25,7 @@
                     <span class="state-tag">{{ post.state }}</span>
                     {%- endif %}
                 </h2>
-                {%- include post-meta.html -%}
+
                 <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
                     <p class="md-display">
                         <span>{{ post.content | strip_html | escape | truncate: 200}}</span>
@@ -33,6 +33,7 @@
                     <p class="sm-display">
                         <span>{{ post.content | strip_html | escape | truncate: 120}}</span>
                     </p>
+                    {%- include post-meta.html -%}
                 </div>
             </header>
 

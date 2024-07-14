@@ -2,6 +2,7 @@
 layout: post
 title: "Deploying Django Application on AWS Fargate in 8 minutes"
 date: 2022-02-22
+premium: true
 tags:
   - Django
   - AWS

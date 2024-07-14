@@ -24,6 +24,13 @@
 
     <br />
 
+    {%- if post.premium -%}
+    <img class="premium-tag" src="{{site.url}}/assets/img/common/premium.svg" alt="premium-tag">
+    {%- endif -%}
+    {%- if post.friendly -%}
+    <img class="premium-tag" src="{{site.url}}/assets/img/common/friendly.svg" alt="friendly-tag">
+    {%- endif -%}
+    
     <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
         {{ post.date | date: date_format }}
     </time>
