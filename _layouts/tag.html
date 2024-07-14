@@ -3,14 +3,14 @@ layout: default
 ---
 
 {{ content }}
+<div class="pure-g" style="width: 100%; justify-content: center">
+  {%- include grid-posts.html -%}
 
-{%- include grid-posts.html -%}
-
-<div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;">
-  {%- include reading-list.html -%}
-  {%- include tags-scroll.html -%}
-  {%- include newsletter.html -%}
-  {%- include sidebar-footer.html -%}
-</div>
+  <div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;">
+    {%- include reading-list.html -%}
+    {%- include tags-scroll.html -%}
+    {%- include newsletter.html -%}
+    {%- include sidebar-footer.html -%}
+  </div>
 
 </div>

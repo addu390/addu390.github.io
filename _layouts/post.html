@@ -8,7 +8,7 @@ layout: default
         <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
             <header class="feed-header">
-                <h2 class="post-title" itemprop="name headline">{{ page.title | escape }}</h2>
+                <h2 class="post-title" style="font-size: 1.6em;" itemprop="name headline">{{ page.title | escape }}</h2>
                 {%- include post-data.html -%}
             </header>
 
@@ -27,10 +27,10 @@ layout: default
         <div id="comments-section"></div>
         <div id="comments-script">
             <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
-            theme="github-light" crossorigin="anonymous" async>
-        </script>
+                theme="github-light" crossorigin="anonymous" async>
+                </script>
         </div>
-        
+
     </div>
     <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
         <section class="post sidebar-scrollable-div sidebar-toc-div">

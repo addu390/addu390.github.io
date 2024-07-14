@@ -1,0 +1,45 @@
+<div class="posts pure-u-md-18-24">
+
+    {%- if posts.size > 0 -%}
+    {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
+
+    {%- for post in posts -%}
+    <section class="post">
+        <div class="blog-card">
+            {%- if post.feature -%}
+            <div class="blog-image-container" class="clickable-div"
+                onclick="location.href='{{ post.url | relative_url }}';">
+                <img class="center-image-100 crop blog-image" src="{{site.url}}/{{ post.feature }}"
+                    alt="Featured Image" />
+            </div>
+            <div class="post-vertical-line"></div>
+            <hr class="post-hr post-horizontal-line">
+            {%- endif -%}
+
+            <header class="feed-header blog-content">
+                <h2 class="post-title">
+                    <a href="{{ post.url | relative_url }}">
+                        {{ post.title | escape }}
+                    </a>
+                    {%- if post.state -%}
+                    <span class="state-tag">{{ post.state }}</span>
+                    {%- endif %}
+                </h2>
+                {%- include post-meta.html -%}
+                <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+                    <p class="md-display">
+                        <span>{{ post.content | strip_html | escape | truncate: 200}}</span>
+                    </p>
+                    <p class="sm-display">
+                        <span>{{ post.content | strip_html | escape | truncate: 120}}</span>
+                    </p>
+                </div>
+            </header>
+
+
+        </div>
+    </section>
+    {%- endfor -%}
+    {%- include posts-pagination.html -%}
+    {%- endif -%}
+</div>

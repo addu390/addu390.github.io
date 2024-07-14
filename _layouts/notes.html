@@ -3,57 +3,25 @@ layout: default
 ---
 {{ content }}
 
-{% assign notes = site.notes | reverse %}
+{% assign posts = site.notes | reverse %}
 {% assign disable-meta-click = true %}
 
 <div class="pure-g" style="width: 100%; justify-content: center">
-    <div class="posts pure-u-md-18-24">
-        {%- if notes.size > 0 -%}
-        {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
-
-        {%- for post in notes -%}
-        {% unless post.hide_note %}
-        <section class="post">
-            {%- if post.feature -%}
-            <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
-                <img class="center-image crop" src="{{site.url}}/{{ post.feature }}" alt="Featured Image" />
-            </div>
-
-            <hr class="post-hr">
-            {%- endif -%}
-            
-            <header class="feed-header">
-                <h2 class="post-title">
-                    <a href="{{ post.url | relative_url }}">
-                        {{ post.title | escape }}
-                    </a>
-                </h2>
-                {%- include post-meta.html -%}
-            </header>
-
-            <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
-                <p class="md-display">
-                    <span>{{ post.content | markdownify | strip_html | escape | truncate: 250}}</span>
-                </p>
-                <p class="sm-display">
-                    <span>{{ post.content | markdownify | strip_html | escape | truncate: 200}}</span>
-                </p>
-            </div>
-        </section>
-        {% endunless %}
-        {%- endfor -%}
-    </div>
+    {%- include row-posts.html -%}
 
     <div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;">
         <section class="post">
-            <h3><img class="twemoji" src="../assets/img/emoji/scroll.svg" alt=""> #memo <span class="sub-header">From the Back Office</span></h3>
+            <h3><img class="twemoji" src="../assets/img/emoji/scroll.svg" alt=""> #memo <span class="sub-header">From
+                    the Back Office</span></h3>
             <hr class="post-hr">
             <div class="">
                 <p>This blog space is for sharing ideas, thoughts, and interesting links.</p>
-                <p>The best way to stay updated is by following my <a class="black-a underline" target="_blank" href="/feed.xml">RSS feed</a>.</p>
+                <p>The best way to stay updated is by following my <a class="black-a underline" target="_blank"
+                        href="/feed.xml">RSS feed</a>.</p>
                 <p>Or head to the <a class="black-a underline" href="/">home page</a> for the latest posts.</p>
             </div>
         </section>
+        {%- include newsletter.html -%}
+        {%- include sidebar-footer.html -%}
     </div>
-    {%- endif -%}
 </div>

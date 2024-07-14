@@ -261,7 +261,6 @@ footer .pure-menu-link:hover {
 .post,
 .post-entry,
 .feed-header,
-.post .post-description,
 .post-entry .post-body {
   padding-left: 1em;
   padding-right: 1em;
@@ -310,9 +309,15 @@ footer .pure-menu-link:hover {
 }
 
 .post-title {
-  font-size: 1.6em;
+  font-size: 1.4em;
   color: var(--black);
   margin-bottom: 0.2em;
+}
+
+.post-vertical-line {
+  width: 1px;
+  background-color: #ddd;
+  margin-top: 10px;
 }
 
 .post-avatar {
@@ -385,6 +390,10 @@ footer .pure-menu-link:hover {
   font-size: 14px;
 }
 
+.post-meta {
+  margin-bottom: 0px;
+}
+
 /* AUTHOR */
 
 #author {
@@ -415,8 +424,12 @@ footer .pure-menu-link:hover {
 /* RESPONSIVE CSS */
 
 @media (min-width: 48em) {
-  .sm-display {
+  .sm-display, .post-horizontal-line {
     display: none;
+  }
+
+  .post-vertical-line {
+    display: block;
   }
 
   .content {
@@ -429,7 +442,7 @@ footer .pure-menu-link:hover {
   }
 
   .brand-photo {
-    max-width: 230px;
+    max-width: 215px;
   }
 
   .brand-title,
@@ -458,12 +471,19 @@ footer .pure-menu-link:hover {
 }
 
 @media screen and (max-width: 48em) {
-  .md-display {
-    display: none;
+
+  .blog-card, .blog-content, .blog-image-container, .post-grid-container, .post-horizontal-line {
+    display: block !important;
+  }
+
+  .blog-image-container {
+    width: 100% !important;
   }
 
   .sidebar-list,
   .posts-right-bar,
+  .md-display, 
+  .post-vertical-line,
   .save-button {
     display: none !important;
   }
@@ -1076,7 +1096,6 @@ table {
   .post,
   .post-entry,
   .feed-header,
-  .post .post-description,
   .post-entry .post-body {
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -1505,4 +1524,28 @@ summary {
 
 .opacity-80 {
   opacity: 80%;
+}
+
+.blog-card {
+  display: flex;
+  overflow: hidden;
+}
+
+.blog-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140%;
+}
+
+.blog-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.blog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

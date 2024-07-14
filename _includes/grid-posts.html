@@ -1,34 +1,33 @@
-<div class="pure-g" style="width: 100%; justify-content: center">
-    <div class="posts post-grid-container pure-u-md-18-24">
-        {%- if page.posts.size > 0 -%}
-        {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
+<div class="posts post-grid-container pure-u-md-18-24">
+    {%- if page.posts.size > 0 -%}
+    {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
 
-        {%- for post in page.posts -%}
-        <section class="post post-grid-card">
-            <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
-                <img class="center-image-100 crop" src="{{site.url}}/{{ post.feature }}" alt="Featured Image" />
-            </div>
+    {%- for post in page.posts -%}
+    <section class="post post-grid-card">
+        <div class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+            <img class="center-image-100 crop" src="{{site.url}}/{{ post.feature }}" alt="Featured Image" />
+        </div>
 
-            <hr class="post-hr">
+        <hr class="post-hr">
 
-            <header class="feed-header">
-                <h2 class="post-title">
-                    <a href="{{ post.url | relative_url }}">
-                        {{ post.title | escape }}
-                    </a>
-                </h2>
-                {%- include post-meta.html -%}
-            </header>
+        <header class="feed-header" style="padding-left: 0px;">
+            <h2 class="post-title">
+                <a href="{{ post.url | relative_url }}">
+                    {{ post.title | escape }}
+                </a>
+            </h2>
+            {%- include post-meta.html -%}
+        </header>
 
-            <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
-                <p class="md-display">
-                    <span>{{ post.content | strip_html | escape | truncate: 150}}</span>
-                </p>
-                <p class="sm-display">
-                    <span>{{ post.content | strip_html | escape | truncate: 100}}</span>
-                </p>
-            </div>
-        </section>
-        {%- endfor -%}
-    </div>
-    {%- endif -%}
+        <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+            <p class="md-display">
+                <span>{{ post.content | strip_html | escape | truncate: 120}}</span>
+            </p>
+            <p class="sm-display">
+                <span>{{ post.content | strip_html | escape | truncate: 100}}</span>
+            </p>
+        </div>
+    </section>
+    {%- endfor -%}
+</div>
+{%- endif -%}

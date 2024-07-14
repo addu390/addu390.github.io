@@ -1,0 +1,30 @@
+{% if site.paginate and (paginator.next_page or paginator.previous_page) %}
+<div class="pure-menu pure-menu-horizontal paginate">
+    <ul>
+
+        {%- if paginator.previous_page %}
+        <li class="pure-menu-item">
+            <a href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
+        </li>
+        {%- else %}
+        <li class="pure-menu-item">#</li>
+        {%- endif %}
+
+        <li class="pure-menu-item" id="current-page">
+            Page
+            {{ paginator.page }}
+            of
+            {{ paginator.total_pages }}
+        </li>
+
+        {%- if paginator.next_page %}
+        <li class="pure-menu-item">
+            <a href="{{ paginator.next_page_path | relative_url }}" class="next-page">Next</a>
+        </li>
+        {%- else %}
+        <li class="pure-menu-item">#</li>
+        {%- endif %}
+
+    </ul>
+</div>
+{%- endif %}
