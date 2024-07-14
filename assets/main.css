@@ -472,10 +472,18 @@ footer .pure-menu-link:hover {
     letter-spacing: normal;
   }
 
+  .post-title {
+    font-size: 1.4em;
+  }
+
+  .posts {
+    margin-top: 0.5em;
+  }
+
   .posts,
   .post-entry-toc .posts {
     max-width: 100%;
-    margin: 0 !important;
+    margin: 1em 0 0 0 !important;
   }
 
   .post .center-image {
@@ -1483,9 +1491,18 @@ summary {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 1em;
   row-gap: 0.25em;
+  height: fit-content;
 }
 
 .disabled-link {
   pointer-events: none;
   cursor: default;
+}
+
+.opacity-70 {
+  opacity: 70%;
+}
+
+.opacity-80 {
+  opacity: 80%;
 }
