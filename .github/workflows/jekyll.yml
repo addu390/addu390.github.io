@@ -1,32 +1,30 @@
-name: Jekyll site CI
+name: Build and Deploy Jekyll
 
 on:
   push:
     branches:
-      - master
+      - master  # Change this to your default branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3  # Update to v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.3.1
+        ruby-version: 3.3.1  # Change this to your required Ruby version
 
     - name: Install dependencies
-      run: bundle install
-
-    - name: Build the site
-      run: bundle exec jekyll build
-
-    - name: Check _site directory
       run: |
-        echo "Checking _site directory contents:"
-        ls -la ./_site
+        gem install bundler
+        bundle install
+
+    - name: Build site
+      run: bundle exec jekyll build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
