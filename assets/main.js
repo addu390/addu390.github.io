@@ -93,7 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function enableDarkMode() {
-    DarkReader.setFetchMethod(window.fetch)
+    DarkReader.setFetchMethod((url) => {
+        // If the URL is the external CSS, prevent fetching
+        if (url.includes('https://assets.mailerlite.com/css/universal.css')) {
+            return Promise.resolve(new Response('', {
+                status: 200,
+                statusText: 'OK'
+            }));
+        }
+        return fetch(url);
+    });
     DarkReader.enable();
     localStorage.setItem('dark-mode', 'true');
 }
