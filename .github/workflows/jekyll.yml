@@ -23,6 +23,11 @@ jobs:
     - name: Build the site
       run: bundle exec jekyll build
 
+    - name: Check _site directory
+      run: |
+        echo "Checking _site directory contents:"
+        ls -la ./_site
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
