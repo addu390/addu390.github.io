@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Refactoring Nightmares | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Refactoring Nightmares" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Get Well Soon." />
+<meta property="og:description" content="Get Well Soon." />
+<link rel="canonical" href="https://pyblog.xyz/refactoring-nightmares" />
+<meta property="og:url" content="https://pyblog.xyz/refactoring-nightmares" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Refactoring Nightmares" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/refactoring-nightmares","@type":"BlogPosting","description":"Get Well Soon.","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Refactoring Nightmares","dateModified":"2022-06-01T00:00:00+00:00","datePublished":"2022-06-01T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/refactoring-nightmares"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Refactoring Nightmares</h2><p class="post-meta" data-id="/refactoring-nightmares" data-url="/refactoring-nightmares" data-title="Refactoring Nightmares">
+    <time datetime="2022-06-01T00:00:00+00:00" itemprop="datePublished">
+        Jun 1, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/leisure-seizure">Leisure Seizure</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/project"> #Project</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/design-patterns"> #Design Patterns</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">5 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/refactor-tomato.png" /></p>
+<p style="text-align: center;">Get Well Soon. </p>
+
+<p>You are working on a fast-growing, never-stopping product; 35 sprints and 600 coffees later, you finally got to move on, and a new engineer steps in, or you realize sooner or later that you cannot keep up with the feature requests while ensuring code quality. Then, after raising the need for refactoring as blockers for a couple of features, finally! It’s the day when your engineering team decides to dedicate bandwidth for refactoring - Sounds familiar? You are not alone.</p>
+
+<hr class="hr" />
+
+<h2 id="how-to-prevent-the-need-for-a-major-refactor">How to prevent the need for a major refactor</h2>
+
+<h3 id="dont-rebuild-build-the-right-things">Don’t Rebuild; Build the Right Things.</h3>
+<p>(1) Striking the right balance between business needs and development time is beyond important, especially in an early-stage start-up, quantifying the need to follow best practices to write clean code with meaningful test cases can be harder than it looks. One of the go-to approaches is to retrospect the hotfixes/number of bugs/blockers to the original story. Have a process around merging code to pre-production/production:</p>
+
+<ul>
+  <li>Set a code coverage threshold,</li>
+  <li>automatically tag pull/merge requests without review comments, or the classic “LGTM” (Looks Good To Me),</li>
+  <li>link hotfixes to production to the original story/PR,</li>
+  <li>“code owners” for certain critical classes/modules, not everyone has access to merge changes to any file/module (important for a monolith codebase).</li>
+</ul>
+
+<p>(2) Almost never start working on a feature directly on your IDE,</p>
+<ul>
+  <li>gather the requirements,</li>
+  <li>start a rough solutioning document,</li>
+  <li>list down the different components,</li>
+  <li>direct how each of these components talks to each other,</li>
+  <li>think of the extent of abstraction and probable future use cases,</li>
+  <li>decide on the contracts and re-iterate</li>
+</ul>
+
+<p>Finally, it’s time to get on to that IDE and start off with the low-level design: interfaces, entities, DTOs, request/response, etc, followed by the implementation backed with test cases (Test Driven Development).</p>
+
+<h3 id="if-its-a-stable-product-dont-touch-it">If it’s a Stable Product, Don’t Touch it</h3>
+<p>Do the very opposite! Just because the application is stable and doesn’t have more features coming up anytime soon does not necessarily mean it goes untouched. Of course, it may not be the highest priority, but make sure to maintain the project and keep it up to date before it bites you back at a later stage:</p>
+
+<ul>
+  <li>Upgrade dependencies, at least the next major version, if not minor ones.</li>
+  <li>Keep it on par with the rest of the codebase/services, be it the architecture, conventions, or contracts.</li>
+  <li>Stable services are often forgotten or taken for granted; write detailed documentation.</li>
+</ul>
+
+<p>Again, from the business point of view, making any changes to a stable product has no ROI, at least in the short time, but it’s services such as these that expose security vulnerabilities and have scalability issues in the longer run.</p>
+
+<h3 id="refactoring-is-not-a-one-time-gig">Refactoring is NOT a One-time Gig</h3>
+<p>Despite extensive solutioning and following all the best practices, the product requirements, customer needs, and business goals aren’t as predictable as we think and are likely to change drastically over time. Fortunately, the changes aren’t overnight either;</p>
+
+<p><img class="center-image" src="./assets/posts/git-changes.png" /></p>
+
+<ul>
+  <li>The best way to avoid heavy refactoring is to do your refactoring a lot more often.</li>
+  <li>Revalidate the existing low-level design when you touch older sections of the codebase.</li>
+  <li>Temporary hacks aren’t too bad, but they eventually become the norm; these hacks should top the list of items to take up next.</li>
+  <li>Don’t worry about “Ohh! That’s too much code for a small use-case”. For example, consider a finite state-machine of 5 states of 4 transitions, resulting in a state-machine orchestrator/engine class, four transitions classes, four listener classes (pub-sub), and classes/functions for API resource(s), transformations, DTOs, etc. For all you know, the same could have been written with a bunch of if-else conditions on states.</li>
+  <li>Don’t be shy to use design patterns; don’t go overboard with it either. The best site for design patterns <a href="https://refactoring.guru/design-patterns">https://refactoring.guru/design-patterns</a></li>
+</ul>
+
+<p>Also, if you have a story for refactoring under technical debt, it’s a clear indicator that something isn’t right.</p>
+
+<h3 id="find-ways-to-correlate-the-importance-of-refactoring-to-roi">Find ways to correlate the importance of refactoring to ROI.</h3>
+<p>Alrighty, this is the last one. As mentioned earlier, it’s not always easy to emphasize the importance of regular refactoring, which may seem like it’s slowing you down.</p>
+
+<p>“<a href="https://www.linkedin.com/pulse/refactoring-nightmares-nicholas-iannone/">Think of it this way</a>: You’re a code politician. Your stakeholders are your citizens, and they will expect you to not only make new laws but also to repeal laws that no one agrees with anymore. Refactoring is just as necessary as feature development, and developers tend to focus too much on adding new things. We can spend our time filling our rooms with new toys, clothes, and furniture, but we also need to clean our rooms and throw out old items from time to time.”</p>
+
+<p>Head back to “Don’t Rebuild; Build the Right Things” and come up with metrics to better justify the need for refactoring.</p>
+
+<hr class="hr" />
+
+<h2 id="how-to-refactor">How to refactor</h2>
+
+<h3 id="pause-new-development-while-refactoring">Pause new development while refactoring</h3>
+<p>Imagine refactoring, and the other developers are also making changes or even refactoring the same class you are - leading to a merge-conflicts nightmare. So, communicate beforehand about the changes you plan on doing, and make sure to refactor in stages so that it doesn’t end up being a blocker for too long.</p>
+
+<p><img class="center-image" src="./assets/posts/merge-conflicts.png" /></p>
+
+<h3 id="define-the-scope-of-your-refactoring">Define the scope of your refactoring</h3>
+<p>Refactoring is not different from working on a feature; start with</p>
+<ul>
+  <li>gathering context about the existing piece of code you are about to refactor,</li>
+  <li>scope the refactoring plan and decide on the classes/functions you’d refactor,</li>
+  <li>as always, don’t start coding right away; start with the low-level design and come up with a rough sketch of what the results look like - more importantly, take solutioning-time into consideration while estimating the approximate time,</li>
+  <li>finally, prioritize and break down the refactoring task into smaller deployable chucks instead of raising that one mega-sized pull request expecting your peer to review it.</li>
+</ul>
+
+<h3 id="test-cases-test-cases-test-cases">Test cases, Test cases, Test cases</h3>
+<p>To start with, one shouldn’t even refactor if there are minimal or no prior test cases. Always remember, if anything can go wrong, it will (murphy’s law). I mean it! Maybe refactoring isn’t the right choice at this moment. Instead, improve the code coverage, document the expected behavior, and visit back to refactor. Without a quantifiable metric to measure the correctness of the refactor, the repercussions can be brutal. If there are test cases with good code coverage already, follow TDD, add new test cases, and fix the older ones.</p>
+
+<hr class="hr" />
+
+<p>All said, how deep is the mess you’re in? Coming out of ugly legacy code is hard, and not many signup for it. The same old “prevention is better than cure” is the way to avoid ending up with the Refactoring Nightmare.</p>
+
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/refactoring-nightmares" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Jun 1, 2022). Refactoring Nightmares.
+                PyBlog. <a href="/refactoring-nightmares">https://www.pyblog.xyz/refactoring-nightmares</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

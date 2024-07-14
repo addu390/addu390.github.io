@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://pyblog.xyz/sitemap.xml

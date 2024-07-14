@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Jenkins Test Pipeline | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Jenkins Test Pipeline" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="End goal: Reduce test time from 65 minutes to 15 minutes." />
+<meta property="og:description" content="End goal: Reduce test time from 65 minutes to 15 minutes." />
+<link rel="canonical" href="https://pyblog.xyz/notes/jenkins-test-pipeline" />
+<meta property="og:url" content="https://pyblog.xyz/notes/jenkins-test-pipeline" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-08-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Jenkins Test Pipeline" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/notes/jenkins-test-pipeline","@type":"BlogPosting","description":"End goal: Reduce test time from 65 minutes to 15 minutes.","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Jenkins Test Pipeline","dateModified":"2018-08-14T00:00:00+00:00","datePublished":"2018-08-14T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/notes/jenkins-test-pipeline"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Jenkins Test Pipeline</h2><p class="post-meta" data-id="/notes/jenkins-test-pipeline" data-url="/notes/jenkins-test-pipeline" data-title="Jenkins Test Pipeline">
+    <time datetime="2018-08-14T00:00:00+00:00" itemprop="datePublished">
+        Aug 14, 2018
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/notes">Notes</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/testing"> #Testing</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">9 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p>End goal: Reduce test time from 65 minutes to 15 minutes.</p>
+
+<h2 id="problem">Problem:</h2>
+
+<p>The entire GST product was a monolithic java maven project with about 20 modules and 1000s of test cases, hence the time taken for running test cases was 65+ minutes, which hampered the productivity and deployment time.</p>
+
+<p>Being in the core GST backend team (Ultron was the POD name), I picked up the task to reduce the test time.</p>
+
+<h2 id="current-situation">Current situation:</h2>
+
+<p>Test cases were executed in an M4 large EC2 machine with a TeamCity agent to get test coverage reports.</p>
+
+<h2 id="teamcity-was-primarily-used-for">TeamCity was primarily used for:</h2>
+
+<ul>
+  <li>Relative code coverage thresholds based on a base branch.</li>
+  <li>Code coverage reports.</li>
+  <li>Ease of integration.</li>
+  <li>Low cost ($300 for an agent).</li>
+</ul>
+
+<h2 id="requirements">Requirements:</h2>
+
+<ul>
+  <li>Parallelise – running test cases.</li>
+  <li>Reduce cost (With parallelization, each TeamCity agent would cost 300$ more and require a standalone EC2 server).</li>
+  <li>Support relative code coverage threshold based on different base reference branches (Code coverage threshold of a branch is compared with the code coverage of the branch raised against, which is not supported in Teamcity).</li>
+  <li>Integration with Github and spinnaker pipeline for deployments.</li>
+</ul>
+
+<h2 id="implementation">Implementation:</h2>
+
+<ul>
+  <li>Test cases were distributed across several test suites.
+Further (Run test cases for smaller modules in the project), to include/ exclude modules, inputFiles.lst (list of test class names) was used, refer the python script below:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+import re
+import argparse
+
+
+def includeExcludeTest(args):
+    exclude = testSelection(args, False)
+    include = testSelection(args, True)
+
+    if exclude is not None and include is not None:
+        test_string = exclude + "," + include
+    elif exclude is not None and include is None:
+        test_string = exclude
+    elif include is not None and exclude is None:
+        test_string = include
+    command = "mvn clean verify -Dtest='" + test_string + "' -DfailIfNoTests=false -Dmaven.wagon.http.pool=false"
+    print(command)
+    os.system(command)
+
+
+def testSelection(args, param):
+    modules = args.exclude
+    test_string = "!"
+    suffix = ",!"
+    remove_suffix = 2
+
+    if param:
+        modules = args.include
+        test_string = ""
+        suffix = ","
+        remove_suffix = 1
+
+    if modules is not None:
+        for module in modules:
+            input_test_files = open(
+                module + "/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst")
+            for eachLine in iter(input_test_files):
+                regex = module + "/src/test/java/in/cleartax/gst/"
+                if re.search(regex, eachLine):
+                    each_test = eachLine[(eachLine.find(regex) + (31 + len(module))): -1]
+                    test_string = test_string + each_test + suffix
+
+        test_string = test_string[:-remove_suffix]
+        return test_string
+
+
+def setup_args(parser):
+    parser.add_argument(
+        "--include",
+        nargs="*",
+        type=str
+    )
+    parser.add_argument(
+        "--exclude",
+        nargs="*",
+        type=str
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    setup_args(parser)
+    args = parser.parse_args()
+    includeExcludeTest(args)
+
+
+if __name__ == "__main__":
+    main()
+</code></pre></div></div>
+
+<h3 id="usage">Usage:</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">python3 maven_test.py –exclude module1 module2</code></li>
+  <li><code class="language-plaintext highlighter-rouge">python3 maven_test.py –include module1 module2</code></li>
+</ul>
+
+<h3 id="just-an-example-of-how-the-pipeline-looks-like">Just an example of how the pipeline looks like.</h3>
+<ul>
+  <li>Creating Jenkins pipeline</li>
+</ul>
+
+<h2 id="pipeline">Pipeline:</h2>
+
+<ul>
+  <li>Git pull (As the name suggests, get the latest changes of the source branch)</li>
+  <li>Check for the label run-ci, this was primarily added to prevent unnecessary executions of test cases and are only executed when the developer adds the label run-ci to the pull-request.</li>
+  <li>Build the project and push the image to docker registry, to prevent re-building the project for each parallel execution, thereby saving time.</li>
+  <li>Run all the test suites/ group of test cases in parallel, in this case, there were 15 parallel executions.</li>
+  <li>For cost reduction, AWS Spot instances were used.</li>
+  <li>Upload the jacoco executable (Code coverage results) to AWS S3 (<BRANCH_NAME>_<BUILD_ID>).</BUILD_ID></BRANCH_NAME></li>
+  <li>Consolidate code coverage reports, once all the executions are complete, code coverage report had to be consolidated to get the code coverage of all modules.</li>
+  <li>Code coverage threshold validation, a similar pipeline runs to compute the code coverage of known base branches (stage, pre-production, and production) which is triggered every time a pull-request is merged.</li>
+  <li>Disk clean up, all the files are deleted from the machine and picks up the next execution.</li>
+  <li>View code coverage and surefire (Passed and failed test cases) results, user can view the code coverage per Jenkins job build, powered by jacoco-jenkins plugin.</li>
+</ul>
+
+<h2 id="jenkins-pipeline-example-jenkinsfile">Jenkins pipeline example (jenkinsFile):</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>timeout(time: 60, unit: 'MINUTES') {
+   def commands
+   def imageDetails
+   def imageName
+   def uniqueName
+   def buildCommand
+   def gitUrl = 'git@github.com:PROJECT.git'
+   def gitBranch = env.BRANCH_NAME
+   def gitCredentialsId = 'XXXX-XXXX-XXXX'
+   def lineCoverageJacoco
+   def methodCoverageJacoco
+   def classCoverageJacoco
+   def branchBuildBumber
+   def branchBuildName
+   def pullNumber
+   def githubUserToken = 'USERNAME:XXXX-XXXX-XXXX'
+   def githubHeader = 'application/vnd.github.symmetra-preview+json'
+
+   node(label : 'temp_docker_node') {
+
+       stage('Git pull') {
+           git branch: gitBranch,
+           credentialsId: gitCredentialsId,
+           url: gitUrl
+
+           try {
+               COMMIT_SHA = sh (script: 'git log -n 1 | grep -o -E -e "[0-9a-f]{40}"', returnStdout: true).trim()
+               echo "Commit ID is ${COMMIT_SHA}"
+
+               def labelResponse = sh(script: 'curl -u ' + githubUserToken + ' -H Accept:' + githubHeader + ' https://api.github.com/search/issues?q=SHA:' + COMMIT_SHA, returnStdout: true)
+               def labelJson = readJSON text: labelResponse
+               def labelList = labelJson.items[0].labels
+               pullNumber = labelJson.items[0].number
+
+               int labelCount = 0
+               int labelFound = 0
+               def sleepTime = 2
+
+               while(labelCount &lt; labelList.size()) {
+                   if (labelList[labelCount].name == 'run-ci') {
+                       labelFound = 1
+                       echo "This PR is eligible for running parallel tests with label : ${labelList[labelCount].name}"
+                   }
+                   labelCount = labelCount + 1
+
+                   echo "Sleeping for ${sleepTime} seconds to prevent rate limiting"
+                   sleep(time:sleepTime, unit:"SECONDS")
+               }
+               if (labelFound != 1) {
+                   error("LabelMismatchException")
+               }
+           }
+           catch (e) {
+               if (e.toString().contains("LabelMismatchException")) {
+                   error("Add label [run-ci] to this PR to run parallel tests")
+               }
+               println e
+           }
+       }
+
+       def jenkins_config = readJSON file: 'jenkins_config';
+       commands = jenkins_config.testsToRun
+
+       imageDetails = jenkins_config.imageDetails
+       buildDetails = jenkins_config.buildDetails
+
+       branchBuildBumber = "${currentBuild.id}"
+       branchBuildName = "${env.BRANCH_NAME}"
+
+       echo branchBuildBumber
+       echo branchBuildName
+
+       uniqueName = "${env.BRANCH_NAME}_${currentBuild.id}".replace("/", "_").replace("#", "_")
+       imageName = "${imageDetails.imageName}:" + uniqueName
+       buildCommand = "mvn -T 1C clean package -DskipTests=true"
+       stage('Build') {
+           sh 'rm -rf coverage'
+           sh buildCommand
+       }
+       stage ('Push image') {
+           retry (2) {
+               docker.withRegistry('https://XXXX.amazonaws.com', 'ecr:REGION:AWS Spot Role') {
+               def customImage = docker.build(imageName)
+               customImage.push()
+               }
+           }
+       }
+   }
+   tests = [:]
+   int com = 0
+
+   while(com &lt; commands.size() ){
+       String testName = "tests_${com}"
+       String s3UploadCommand = "aws s3 cp \$WORKSPACE/&lt;PATH&gt;/target/coverage-report/merged.exec s3://&lt;AWS-S3&gt;/" + uniqueName + "/" + testName + ".exec"
+       String commandToRun = commands[com] + " &amp;&amp; rm -rf  \$WORKSPACE/coverage &amp;&amp; cp -r ./  \$WORKSPACE/coverage"
+
+       try {
+           tests[testName] = {
+               node(label : 'temp_docker_node') {
+                       try {
+                           stage (testName){
+                               docker.withRegistry('https://XXXX.amazonaws.com', 'ecr:REGION:AWS Spot Role') {
+                                   docker.image(imageName).inside('-v $HOME/.m2:/home/jenkins/.m2'){
+                                   sh commandToRun
+                                   }
+                               }
+                           }
+                           try {
+                               sh s3UploadCommand
+                           }
+                           catch (e) {
+                               echo "Check for test failures in prior maven test step"
+                               sh 'sudo pip3 install awscli --force-reinstall --upgrade'
+                               sh s3UploadCommand
+                           }
+                       }
+                       catch (e) {
+                           error("There are few test failures, check the [Tests] tab or maven verify step")
+                           println e
+                       }
+                       finally {
+                           try {
+                               junit '**/surefire-reports/*.xml'
+                           }
+                           catch (e) {
+                               error("No test report files were found, check the [Tests] tab or maven verify step")
+                               println e
+                           }
+                       }
+                   }
+               }
+           }
+       catch (e) {
+           println e
+       }
+       com = com + 1
+   }
+
+  parallel tests
+  node(label : 'temp_docker_node') {
+       String s3DownloadCommand = "mkdir -p /usr/src/app/&lt;PATH&gt;/target/suite-reports &amp;&amp; aws s3 cp s3://&lt;AWS-S3&gt;/" + uniqueName + "/" + " /usr/src/app/&lt;PATH&gt;/target/suite-reports --recursive"
+
+       stage ('coverage') {
+           docker.withRegistry('https://XXXX.amazonaws.com', 'ecr:REGION:AWS Spot Role') {
+               docker.image(imageName).inside('-v $HOME/.m2:/home/jenkins/.m2'){
+                   sh s3DownloadCommand
+                   sh 'cd /usr/src/app/&lt;PROJECT-PATH&gt; &amp;&amp; mvn antrun:run@finalTask -P final-report &amp;&amp;  rm -rf  \$WORKSPACE/coverage &amp;&amp; cp -r /usr/src/app/  \$WORKSPACE/coverage'
+               }
+           }
+       }
+
+       echo "Running coverage for branch ${env.BRANCH_NAME} with build number ${currentBuild.id}"
+
+       jacoco(
+             execPattern: '**/coverage/&lt;PATH&gt;/target/coverage-report/final.exec',
+             classPattern: '**/coverage/**',
+             sourcePattern: '**/coverage/**',
+             inclusionPattern: '**/*.class',
+             exclusionPattern: '**/*Test*.class'
+       )
+
+       stage('Threshold') {
+           String baseRefBranch
+           String jenkinsJobName
+
+           try {
+               retry (2) {
+                   def pullResponse = sh(script: 'curl -u ' + githubUserToken + ' -H Accept:' + githubHeader + ' https://api.github.com/repos/&lt;REPO-NAME&gt;/pulls/' + pullNumber, returnStdout: true)
+                   def pullJson = readJSON text: pullResponse
+                   baseRefBranch = pullJson.base.ref
+
+                   if (!baseRefBranch.contains("release")) {
+                       baseRefBranch = "master"
+                   }
+               }
+           } catch (e) {
+               baseRefBranch = "master"
+           }
+
+           echo "Created from branch is ${baseRefBranch}"
+
+           if (baseRefBranch == "master") {
+               jenkinsJobName = "masterParallelTest"
+           }
+           else if (baseRefBranch == "production-release") {
+               jenkinsJobName = "productionParallelTest"
+           }
+           else {
+               jenkinsJobName = "releaseParallelTest"
+           }
+
+           def codeCoverageResponse = sh(script: 'curl http://jenkins.&lt;CUSTOM&gt;.co/job/' + jenkinsJobName + '/lastSuccessfulBuild/jacoco/api/json?pretty=true --user "EMAIL:TOKEN"', returnStdout: true)
+           def codeCoverageResponseJson = readJSON text: codeCoverageResponse
+           branchBuildName = branchBuildName.replace("/", "%2F").replace("#", "%23")
+
+           def branchResponse = sh(script: 'curl http://jenkins.&lt;CUSTOM&gt;.co/job/ParallelTest/job/' + branchBuildName + '/' + branchBuildBumber + '/jacoco/api/json?pretty=true --user "EMAIL:TOKEN"', returnStdout: true)
+           def branchJson = readJSON text: branchResponse
+
+           echo "Line coverage of master : ${codeCoverageResponseJson.lineCoverage.percentageFloat} and current value is ${branchJson.lineCoverage.percentageFloat}"
+           echo "Class coverage of master : ${codeCoverageResponseJson.classCoverage.percentageFloat} and current value is ${branchJson.classCoverage.percentageFloat}"
+           echo "Method coverage of master : ${codeCoverageResponseJson.methodCoverage.percentageFloat} and current value is ${branchJson.methodCoverage.percentageFloat}"
+
+           float currentLineCoverage = "${branchJson.lineCoverage.percentageFloat}"
+           float currentMethodCoverage = "${branchJson.methodCoverage.percentageFloat}"
+           float currentClassCoverage = "${branchJson.classCoverage.percentageFloat}"
+
+           float baseBranchLineCoverage = "${codeCoverageResponseJson.lineCoverage.percentageFloat}"
+           float baseBranchMethodCoverage = "${codeCoverageResponseJson.methodCoverage.percentageFloat}"
+           float baseBranchClassCoverage = "${codeCoverageResponseJson.classCoverage.percentageFloat}"
+
+           baseBranchLineCoverage = baseBranchLineCoverage - 0.3
+           baseBranchMethodCoverage = baseBranchMethodCoverage - 0.2
+           baseBranchClassCoverage = baseBranchClassCoverage - 0.2
+
+           echo "Line coverage threshold : ${baseBranchLineCoverage} | Class coverage threshold : ${baseBranchClassCoverage} | Method coverage threshold : ${baseBranchMethodCoverage}"
+
+           if (currentLineCoverage &lt; baseBranchLineCoverage) {
+               error("Line coverage is low")
+           }
+           else {
+               echo "Line coverage passed"
+           }
+
+           if (currentClassCoverage &lt; baseBranchClassCoverage) {
+               error("Class coverage is low")
+           }
+           else {
+               echo "Class coverage passed"
+           }
+
+           if (currentMethodCoverage &lt; baseBranchMethodCoverage) {
+               error("Method coverage is low")
+           }
+           else {
+               echo "Method coverage passed"
+           }
+       }
+
+       stage('Disk clean up') {
+           try {
+               echo "Cleaning the disk"
+               sh 'docker system prune --volumes -f'
+               sh 'docker image prune -a -f'
+           }
+           catch (e) {
+               echo "Clean failed as it is already in progress"
+           }
+       }
+   }
+}
+</code></pre></div></div>
+
+<p>Example of defining the number of parallel executions : testsToRun – List of commands.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+	"buildDetails" = {
+		"buildCommand" = "mvn -T 1C clean package -DskipTests=true"
+	},
+
+	"imageDetails" = {
+		"imageName" = "&lt;IMAGE-NAME&gt;"
+	},
+
+	"testsToRun" = [
+		"cd /usr/src/app &amp;&amp;  mvn verify -Dtest=TestSuite1 -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+		"cd /usr/src/app &amp;&amp;  mvn verify -Dtest=TestSuite2 -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+		"cd /usr/src/app &amp;&amp;  mvn verify -Dtest=TestSuite3 -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+		"cd /usr/src/app &amp;&amp;  mvn verify -Dtest=TestSuite4 -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+		"cd /usr/src/app &amp;&amp;  mvn verify -Dtest=TestSuite5 -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+		"cd /usr/src/app &amp;&amp;  mvn verify -Dtest=TestSuite6 -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+		"cd /usr/src/app &amp;&amp;  mvn verify -Dtest=TestSuite7 -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+        "cd /usr/src/app &amp;&amp;  mvn verify -Dtest=UnitTestSuite -DfailIfNoTests=false -Dmaven.wagon.http.pool=false",
+        "cd /usr/src/app &amp;&amp;  python3 maven_test.py --exclude module1 module2",
+        "cd /usr/src/app &amp;&amp;  python3 maven_test.py --include module3 module4"
+	]
+}
+</code></pre></div></div>
+
+<p>Ant scripts were used to generate code coverage reports for each execution and merge all the individual code coverage reports stored in AWS S3.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;parent&gt;
+        &lt;artifactId&gt;ARTIFACT&lt;/artifactId&gt;
+        &lt;groupId&gt;GROUP_ID&lt;/groupId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;/parent&gt;
+    &lt;modelVersion&gt;1.0.0&lt;/modelVersion&gt;
+
+    &lt;artifactId&gt;COVERAGE_MODULE&lt;/artifactId&gt;
+
+    &lt;properties&gt;
+        &lt;skip.final.report&gt;true&lt;/skip.final.report&gt;
+        &lt;build.directory.suite-reports&gt;../project-coverage/target/suite-reports&lt;/build.directory.suite-reports&gt;
+        &lt;!--All modules having test cases should be added here--&gt;
+        &lt;!--Directories--&gt;
+        &lt;build.directory.module1&gt;../module1/target&lt;/build.directory.module1&gt;
+        &lt;build.directory.module2&gt;../module2/target&lt;/build.directory.module2&gt;
+        &lt;build.directory.module3&gt;../module3/target&lt;/build.directory.module3&gt;
+        &lt;build.directory.module4&gt;../module4/target&lt;/build.directory.module4&gt;
+        &lt;build.directory.module5&gt;../module5/target&lt;/build.directory.module5&gt;
+        &lt;build.directory.module6&gt;../module6/target&lt;/build.directory.module6&gt;
+        &lt;build.directory.module6&gt;../module6/target&lt;/build.directory.module6&gt;
+    &lt;/properties&gt;
+
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;id&gt;final-report&lt;/id&gt;
+            &lt;properties&gt;
+                &lt;skip.final.report&gt;false&lt;/skip.final.report&gt;
+            &lt;/properties&gt;
+        &lt;/profile&gt;
+    &lt;/profiles&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
+                &lt;executions&gt;
+                    &lt;!-- Copy the ant tasks jar | Needed for ts.jacoco.report-ant --&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;jacoco-dependency-ant&lt;/id&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;copy&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;phase&gt;process-test-resources&lt;/phase&gt;
+                        &lt;inherited&gt;false&lt;/inherited&gt;
+                        &lt;configuration&gt;
+                            &lt;artifactItems&gt;
+                                &lt;artifactItem&gt;
+                                    &lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+                                    &lt;artifactId&gt;org.jacoco.ant&lt;/artifactId&gt;
+                                    &lt;version&gt;0.7.9&lt;/version&gt;
+                                &lt;/artifactItem&gt;
+                            &lt;/artifactItems&gt;
+                            &lt;stripVersion&gt;true&lt;/stripVersion&gt;
+                            &lt;outputDirectory&gt;${basedir}/target/jacoco-jars&lt;/outputDirectory&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+                &lt;version&gt;1.8&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;!--merge jacoco.exec for all modules to merged.exec--&gt;
+                        &lt;id&gt;mergeTask&lt;/id&gt;
+                        &lt;phase&gt;post-integration-test&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;run&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;configuration&gt;
+                            &lt;target&gt;
+                                &lt;echo message="Merging JaCoCo Reports" /&gt;
+                                &lt;taskdef name="merge" classname="org.jacoco.ant.MergeTask"&gt;
+                                    &lt;classpath path="${project.basedir}/target/jacoco-jars/org.jacoco.ant.jar" /&gt;
+                                &lt;/taskdef&gt;
+                                &lt;mkdir dir="${project.basedir}/target/coverage-report" /&gt;
+                                &lt;merge destfile="${project.basedir}/target/coverage-report/merged.exec"&gt;
+                                    &lt;fileset dir="${build.directory.module1}"&gt;&lt;include name="jacoco.exec" /&gt;&lt;/fileset&gt;
+                                    &lt;fileset dir="${build.directory.module2}"&gt;&lt;include name="jacoco.exec" /&gt;&lt;/fileset&gt;
+                                    &lt;fileset dir="${build.directory.module3}"&gt;&lt;include name="jacoco.exec" /&gt;&lt;/fileset&gt;
+                                    &lt;fileset dir="${build.directory.module4}"&gt;&lt;include name="jacoco.exec" /&gt;&lt;/fileset&gt;
+                                    &lt;fileset dir="${build.directory.module5}"&gt;&lt;include name="jacoco.exec" /&gt;&lt;/fileset&gt;
+                                    &lt;fileset dir="${build.directory.module6}"&gt;&lt;include name="jacoco.exec" /&gt;&lt;/fileset&gt;
+                                &lt;/merge&gt;
+                            &lt;/target&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+
+                    &lt;execution&gt;
+                        &lt;id&gt;finalTask&lt;/id&gt;
+                        &lt;phase&gt;verify&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;run&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;configuration&gt;
+                            &lt;skip&gt;${skip.final.report}&lt;/skip&gt;
+                            &lt;target&gt;
+                                &lt;echo message="Generating final executable" /&gt;
+                                &lt;taskdef name="final" classname="org.jacoco.ant.MergeTask"&gt;
+                                    &lt;classpath path="${project.basedir}/target/jacoco-jars/org.jacoco.ant.jar" /&gt;
+                                &lt;/taskdef&gt;
+                                &lt;final destfile="${project.basedir}/target/coverage-report/final.exec"&gt;
+                                    &lt;fileset dir="${build.directory.suite-reports}"&gt;&lt;include name="*.exec" /&gt;&lt;/fileset&gt;
+                                &lt;/final&gt;
+                            &lt;/target&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+
+                &lt;/executions&gt;
+
+                &lt;dependencies&gt;
+                    &lt;dependency&gt;
+                        &lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+                        &lt;artifactId&gt;org.jacoco.ant&lt;/artifactId&gt;
+                        &lt;version&gt;0.7.9&lt;/version&gt;
+                    &lt;/dependency&gt;
+                &lt;/dependencies&gt;
+            &lt;/plugin&gt;
+
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+&lt;/project&gt;
+</code></pre></div></div>
+
+<p>More detailed explanation for generating code coverage report for a multi-module maven project can be found here</p>
+
+<p>All of the above steps cover the code pieces, however, that constitutes to about 40% of the work, a lot more effort put in for:</p>
+
+<ul>
+  <li>Jenkins integration with AWS EC2 auto-scaling (Based on disk space and number of instances in the spot fleet).</li>
+  <li>Ensure a new instance picks up the same task when an instance is killed abruptly (Spot instances are not stand-alone, hence cheaper).</li>
+</ul>
+
+<p>About 2 minutes before the instance is killed, a file is uploaded to a defined path by AWS to signal that the instance will be killed soon.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Slf4j
+public class SpotTerminationHealthCheck extends HealthCheck {
+
+    private static String TERMINATION_FILE = "/tmp/spot-shutdown-notice";
+
+    @Override
+    protected Result check() {
+        if (new File(TERMINATION_FILE).exists()) {
+            final String message = String.format("Spot Instance termination notice received: %s is present." +
+                            " Marking this node unhealthy",
+                    TERMINATION_FILE);
+
+            log.warn(message);
+
+            return Result.unhealthy(message);
+        }
+        return Result.healthy("Spot Instance still active.");
+    }
+}
+</code></pre></div></div>
+
+<ul>
+  <li>Pipeline setup and expose APIs (this was powered by a flask application with AWS S3 as the storage hosted in a T2 small EC2 instance) for code coverage of the base branches used for defining the threshold.</li>
+  <li>Setting up docker. We eventually started using docker for deployments as we migrated to Kubernetes and an easy environment set-up for new joiners.</li>
+  <li>Fixing Jenkins jacoco plugin.</li>
+  <li>The parallel test framework was generic and could be used with any maven project.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion:</h2>
+
+<p>Test time was reduced to 14 minutes – best case, 17 minutes – average, and 22 minutes being the worst case and cost about 20$ – 25$ per week.</p>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/notes/jenkins-test-pipeline" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Aug 14, 2018). Jenkins Test Pipeline.
+                PyBlog. <a href="/notes/jenkins-test-pipeline">https://www.pyblog.xyz/notes/jenkins-test-pipeline</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

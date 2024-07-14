@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2024-06-13T19:36:06.979Z&quot; agent=&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36&quot; etag=&quot;pUMRycwBuIU_GB485e2x&quot; version=&quot;24.5.4&quot; type=&quot;device&quot;&gt;&#10;  &lt;diagram name=&quot;Page-1&quot; id=&quot;xYNSXjtf3gAjpbmNjPiO&quot;&gt;&#10;    &lt;mxGraphModel dx=&quot;4770&quot; dy=&quot;3030&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;827&quot; pageHeight=&quot;1169&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;&#10;      &lt;root&gt;&#10;        &lt;mxCell id=&quot;0&quot; /&gt;&#10;        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;&#10;        &lt;mxCell id=&quot;pg8BnXULnGQPwEBn0WLY-1&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=none;opacity=80;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;270.25&quot; y=&quot;180&quot; width=&quot;220&quot; height=&quot;220&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-1&quot; value=&quot;&quot; style=&quot;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;270&quot; y=&quot;180&quot; width=&quot;220&quot; height=&quot;220&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-2&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;270&quot; y=&quot;180&quot; width=&quot;220&quot; height=&quot;220&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-3&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;strokeWidth=0.5;&quot; parent=&quot;1&quot; source=&quot;pg8BnXULnGQPwEBn0WLY-1&quot; target=&quot;V4xsv-cqhpSbk9zOzUou-1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;610&quot; y=&quot;300&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;660&quot; y=&quot;250&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-4&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=1;exitDx=0;exitDy=0;strokeWidth=0.5;&quot; parent=&quot;1&quot; source=&quot;V4xsv-cqhpSbk9zOzUou-1&quot; target=&quot;V4xsv-cqhpSbk9zOzUou-1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;500&quot; y=&quot;410&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;280&quot; y=&quot;190&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-5&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.5;jumpSize=6;startSize=6;endSize=6;spacing=2;dashed=1;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;466&quot; y=&quot;180&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;516&quot; y=&quot;180&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-6&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;dashed=1;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;466&quot; y=&quot;400&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;516&quot; y=&quot;400&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-7&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;dashed=1;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;466&quot; y=&quot;289.77&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;516&quot; y=&quot;289.77&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-8&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;dashed=1;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;471&quot; y=&quot;235&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;510&quot; y=&quot;235&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-9&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;dashed=1;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;470&quot; y=&quot;345&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;509&quot; y=&quot;345&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-10&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;480&quot; y=&quot;207&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;500&quot; y=&quot;207&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-11&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#81b367;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;opacity=90;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;480&quot; y=&quot;262&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;500&quot; y=&quot;262&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-12&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;480&quot; y=&quot;317&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;500&quot; y=&quot;317&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-13&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.7;jumpSize=6;startSize=6;endSize=6;&quot; parent=&quot;1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;480&quot; y=&quot;373&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;500&quot; y=&quot;373&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-14&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;entryX=0.998;entryY=0.197;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;&quot; parent=&quot;1&quot; target=&quot;V4xsv-cqhpSbk9zOzUou-1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;380&quot; y=&quot;290&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;600&quot; y=&quot;230&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-15&quot; value=&quot;&quot; style=&quot;ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#050505;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;471&quot; y=&quot;230&quot; width=&quot;5&quot; height=&quot;5&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-16&quot; value=&quot;&amp;lt;font style=&amp;quot;font-size: 20px;&amp;quot;&amp;gt;p&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;445&quot; y=&quot;232&quot; width=&quot;60&quot; height=&quot;30&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;V4xsv-cqhpSbk9zOzUou-17&quot; value=&quot;&amp;lt;font style=&amp;quot;font-size: 16px;&amp;quot;&amp;gt;p = (latitude, longitude) =&amp;amp;gt; (x, y, z)&amp;lt;/font&amp;gt;&quot; style=&quot;text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&#10;          &lt;mxGeometry x=&quot;268&quot; y=&quot;152&quot; width=&quot;248&quot; height=&quot;20&quot; as=&quot;geometry&quot; /&gt;&#10;        &lt;/mxCell&gt;&#10;        &lt;mxCell id=&quot;pg8BnXULnGQPwEBn0WLY-2&quot; value=&quot;&quot; style=&quot;endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;strokeWidth=0.5;&quot; parent=&quot;1&quot; source=&quot;V4xsv-cqhpSbk9zOzUou-1&quot; target=&quot;pg8BnXULnGQPwEBn0WLY-1&quot; edge=&quot;1&quot;&gt;&#10;          &lt;mxGeometry width=&quot;50&quot; height=&quot;50&quot; relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&#10;            &lt;mxPoint x=&quot;490&quot; y=&quot;400&quot; as=&quot;sourcePoint&quot; /&gt;&#10;            &lt;mxPoint x=&quot;270&quot; y=&quot;180&quot; as=&quot;targetPoint&quot; /&gt;&#10;          &lt;/mxGeometry&gt;&#10;        &lt;/mxCell&gt;&#10;      &lt;/root&gt;&#10;    &lt;/mxGraphModel&gt;&#10;  &lt;/diagram&gt;&#10;&lt;/mxfile&gt;&#10;" viewBox="0.5 -13.97 535.5 275.8">
+  <defs/>
+  <g>
+    <g>
+      <ellipse cx="112.25" cy="137" rx="110" ry="110" fill-opacity="0.8" fill="#dae8fc" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="2" y="27" width="220" height="220" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <ellipse cx="112" cy="137" rx="110" ry="110" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <path d="M 190.03 214.78 L 2 27" fill="none" stroke="rgb(0, 0, 0)" stroke-width="0.5" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 2 247 L 222 27" fill="none" stroke="rgb(0, 0, 0)" stroke-width="0.5" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 198 27 L 248 27" fill="none" stroke="#82b366" stroke-width="1.5" stroke-miterlimit="10" stroke-dasharray="4.5 4.5" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 198 247 L 248 247" fill="none" stroke="#82b366" stroke-width="1.7" stroke-miterlimit="10" stroke-dasharray="5.1 5.1" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 198 136.77 L 248 136.77" fill="none" stroke="#82b366" stroke-width="1.7" stroke-miterlimit="10" stroke-dasharray="5.1 5.1" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 203 82 L 242 82" fill="none" stroke="#82b366" stroke-width="1.7" stroke-miterlimit="10" stroke-dasharray="5.1 5.1" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 202 192 L 241 192" fill="none" stroke="#82b366" stroke-width="1.7" stroke-miterlimit="10" stroke-dasharray="5.1 5.1" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 212 54 L 232 54" fill="none" stroke="#82b366" stroke-width="1.7" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 212 109 L 232 109" fill="none" stroke="#81b367" stroke-opacity="0.9" stroke-width="1.7" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 212 164 L 232 164" fill="none" stroke="#82b366" stroke-width="1.7" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 212 220 L 232 220" fill="none" stroke="#82b366" stroke-width="1.7" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <path d="M 112 137 L 221.56 70.34" fill="none" stroke="#b85450" stroke-width="2" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g>
+      <ellipse cx="205.5" cy="79.5" rx="2.5" ry="2.5" fill="#050505" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+    </g>
+    <g>
+      <rect x="177" y="79" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 94px; margin-left: 178px;">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 20px;">p</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <rect x="0" y="-1" width="248" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g>
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 246px; height: 1px; padding-top: 9px; margin-left: 1px;">
+            <div style="box-sizing: border-box; font-size: 0px; text-align: center;" data-drawio-colors="color: rgb(0, 0, 0);">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 16px;">p = (latitude, longitude) =&gt; (x, y, z)</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g>
+      <path d="M 222 247 L 34.47 59.22" fill="none" stroke="rgb(0, 0, 0)" stroke-width="0.5" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+  </g>
+  <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+  <path style="fill: rgba(218, 232, 252, 0.776); stroke: rgba(0, 0, 0, 0);" d="M 425.655 59.265 C 425.655 59.265 458.735 96.861 458.402 131.292 C 457.902 183.125 426.097 212.542 426.097 212.542"/>
+  <polyline style="fill: rgba(218, 232, 252, 0.78); stroke: rgba(0, 0, 0, 0);" points="350.864 135.082 426.112 58.386 426.234 212.329"/>
+  <g style="" transform="matrix(0.982819, 0, 0, 1, 26.784132, -7.47155)">
+    <path style="stroke: rgba(0, 0, 0, 0); fill: rgb(220, 132, 128);" d="M 329.747 142.232 L 439.661 32.269 L 438.863 72.726 L 329.747 142.232 Z"/>
+    <path style="stroke: rgba(0, 0, 0, 0); fill: rgb(220, 132, 128);" d="M 439.2 142.651 L 437.974 127.929 L 329.747 142.766 L 439.2 142.651 Z"/>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <path d="M 551 258 L 551 18" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <path d="M 551 248 L 441 138" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <path d="M 441 138 L 551 28" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <path d="M 441 138 L 551 68" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <path d="M 441 138 L 551 138" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <path d="M 441 138 L 550.822 122.359" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 550.977 137.778 L 549.846 122.526"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <path style="stroke: rgb(0, 0, 0); fill: rgba(216, 216, 216, 0);" d="M 517.738 61.178 C 564.621 111.325 558.215 173.261 517.605 214.83"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -111.896919, 4.99459)">
+      <rect x="553" y="218" width="25" height="30" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -112, 8)">
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 23px; height: 1px; padding-top: 233px; margin-left: 554px;">
+            <div data-drawio-colors="color: rgb(0, 0, 0);" style="box-sizing: border-box; font-size: 0px; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 18px;">-1</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+        <text style="font-family: Arial, sans-serif; font-size: 18px; white-space: pre;" x="559.221" y="26.538">+1</text>
+        <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="622.832" y="114.262"> </text>
+      </g>
+    </g>
+    <g>
+      <rect x="361" y="0" width="170" height="20" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -54, 0)">
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 168px; height: 1px; padding-top: 10px; margin-left: 362px;">
+            <div data-drawio-colors="color: rgb(0, 0, 0);" style="box-sizing: border-box; font-size: 0px; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 16px;">(x, y, z) =&gt; (face, u, v)</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -133, -6)">
+      <g transform="translate(-0.5 -0.5)">
+        <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 265px; margin-left: 532px;">
+            <div data-drawio-colors="color: rgb(0, 0, 0);" style="box-sizing: border-box; font-size: 0px; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                <font style="font-size: 18px;">u, v</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -113.241028, -198.800949)"/>
+  </g>
+  <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="" transform="matrix(0.982819, 0, 0, 1, 26.784132, -7.47155)"/>
+  <path style="stroke: rgb(0, 0, 0); fill: rgba(216, 216, 216, 0);" d="M 367.831 152.623 C 374.368 148.56 375.597 145.315 376.26 135.278"/>
+  <text style="font-family: Arial, sans-serif; font-size: 16px; white-space: pre;" x="358.602" y="153.44" transform="matrix(0.982819, 0, 0, 1, 23.855938, 0)">45°</text>
+</svg>

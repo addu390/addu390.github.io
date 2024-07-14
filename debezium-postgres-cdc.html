@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Debezium: PostgreSQL Change Data Capture (CDC) | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Debezium: PostgreSQL Change Data Capture (CDC)" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Using Debezium for PostgreSQL Change Data Capture (CDC) involves setting up a pipeline to capture and stream row-level changes from PostgreSQL to Kafka. The process includes configuring PostgreSQL, Kafka, Zookeeper, and Debezium using Docker. The article provides detailed steps for setting up each component, creating PostgreSQL tables, configuring Debezium connectors, and validating the pipeline by consuming Kafka messages. This setup enables real-time data synchronization and processing." />
+<meta property="og:description" content="Using Debezium for PostgreSQL Change Data Capture (CDC) involves setting up a pipeline to capture and stream row-level changes from PostgreSQL to Kafka. The process includes configuring PostgreSQL, Kafka, Zookeeper, and Debezium using Docker. The article provides detailed steps for setting up each component, creating PostgreSQL tables, configuring Debezium connectors, and validating the pipeline by consuming Kafka messages. This setup enables real-time data synchronization and processing." />
+<link rel="canonical" href="https://pyblog.xyz/debezium-postgres-cdc" />
+<meta property="og:url" content="https://pyblog.xyz/debezium-postgres-cdc" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:image" content="https://pyblog.xyz/assets/featured/webp/debezium-postgres-cdc.webp" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-16T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pyblog.xyz/assets/featured/webp/debezium-postgres-cdc.webp" />
+<meta property="twitter:title" content="Debezium: PostgreSQL Change Data Capture (CDC)" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/debezium-postgres-cdc","@type":"BlogPosting","description":"Using Debezium for PostgreSQL Change Data Capture (CDC) involves setting up a pipeline to capture and stream row-level changes from PostgreSQL to Kafka. The process includes configuring PostgreSQL, Kafka, Zookeeper, and Debezium using Docker. The article provides detailed steps for setting up each component, creating PostgreSQL tables, configuring Debezium connectors, and validating the pipeline by consuming Kafka messages. This setup enables real-time data synchronization and processing.","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"image":"https://pyblog.xyz/assets/featured/webp/debezium-postgres-cdc.webp","headline":"Debezium: PostgreSQL Change Data Capture (CDC)","dateModified":"2023-10-16T00:00:00+00:00","datePublished":"2023-10-16T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/debezium-postgres-cdc"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Debezium: PostgreSQL Change Data Capture (CDC)</h2><p class="post-meta" data-id="/debezium-postgres-cdc" data-url="/debezium-postgres-cdc" data-title="Debezium: PostgreSQL Change Data Capture (CDC)">
+    <time datetime="2023-10-16T00:00:00+00:00" itemprop="datePublished">
+        Oct 16, 2023
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/system-design"> #System Design</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">7 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/webp/debezium-postgres-cdc.webp" /></p>
+<p style="text-align: center;">Figure 1: Debezium Postgres Connector</p>
+
+<details open=""><summary class="h3">1. Goal</summary>
+<p>Set up Debezium to capture row-level changes in the schemas of a PostgreSQL database and publish to Kafka topic(s).</p>
+
+<p>The high-level architecture is unquestionably explained in the above diagram 😎. Pikachu, aka Debezium PostgreSQL Connector, detects and carries/publishes row-level change events to Kafka topic(s) for configured Postgres tables.</p>
+</details>
+
+<hr class="hr" />
+
+<details><summary class="h3">2. Definitions</summary>
+
+<h3 id="cdc">2.1. Change Data Capture (CDC)</h3>
+<p>In databases, change data capture (CDC) is a set of software design patterns used to determine and track the data that has changed (the "deltas") so that action can be taken using the changed data [1].</p>
+
+<hr class="hr" />
+
+<h3 id="debezium">2.2. Debezium</h3>
+<p>Debezium is a set of distributed services to capture changes in your databases so that your applications can see those changes and respond to them. Debezium records all row-level changes within each database table in a change event stream, and applications simply read these streams to see the change events in the same order in which they occurred [2].</p>
+
+<hr class="hr" />
+
+<h3 id="connectors">2.3. Debezium Connectors</h3>
+<p>A library of connectors that capture changes from a variety of database management systems and produce events with very similar structures, making it far easier for your applications to consume and respond to the events regardless of where the changes originated [3].</p>
+
+<hr class="hr" />
+
+<h3 id="postgresql-connector">2.4. Debezium connector for PostgreSQL</h3>
+<p>The Debezium PostgreSQL connector captures row-level changes in the schemas of a PostgreSQL database [4].</p>
+
+<hr class="hr" />
+
+<h3 id="kafka">2.5. Kafka</h3>
+<p>Apache Kafka is a distributed data store optimized for ingesting and processing streaming data in real-time. Streaming data is data that is continuously generated by thousands of data sources, which typically send the data records in simultaneously [5].</p>
+
+<hr class="hr" />
+
+<h3 id="kafka-connect">2.6. Kafka Connect</h3>
+<p>Kafka Connect is a tool for scalably and reliably streaming data between Apache Kafka and other systems. It makes it simple to quickly define connectors that move large collections of data into and out of Kafka [6].</p>
+
+</details>
+
+<hr class="hr" />
+
+<details><summary class="h3">3. Define Services (Docker-Compose)</summary>
+<p>As a generate note, If you use Mac M1/M2, ensure the docker image has <code>linux/arm64</code> OS/ARCH.</p>
+<p><img class="center-image" src="./assets/posts/docker-debezium-arch.png" /> </p>
+
+<p>Section 3.x covers the breakdown of each service/docker image used in <code>docker-compose.yaml</code> file, if you have worked with docker before, skip the section and pick up the entire file from section 4 instead.</p>
+
+<p>Break down of services in <code>docker-compose.yaml</code></p>
+
+<ul>
+<li><p><b>Postgres</b>: The database containing the table(s) for which CDC is tracked.</p></li>
+
+<li><p><b>Kafka</b> and <b>Zookeeper</b>: The event broker where CDC events are stored.</p></li>
+
+<li><p><b>Schema Registry</b>: To serialize/deserialize CDC message(s) using Avro schema.</p></li>
+
+<li><p><b>Debezium</b>: Responsible for capturing the row-level changes made to Postgres table(s) and streaming them to a Kafka topic.</p></li>
+</ul>
+
+<details><summary class="h3">3.1. PostgreSQL</summary>
+<p><a href="https://hub.docker.com/r/debezium/postgres">debezium/postgres</a>: PostgreSQL for use with Debezium change data capture. This image is based upon <a href="https://hub.docker.com/_/postgres/">postgres</a> along with <a href="https://www.postgresql.org/docs/11/logicaldecoding-explanation.html">logical decoding</a> plugin from <a href="https://github.com/debezium/">Debezium</a></p>
+
+<p><a href="https://hub.docker.com/r/dpage/pgadmin4/">dpage/pgadmin4</a> (Optional): Web browser version of <a href="https://www.pgadmin.org/download/pgadmin-4-container/">pgAdmin 4</a> for the ease of running DML and DDL operations on PostgreSQL.</p>
+
+<pre><code>
+postgres:
+  image: debezium/postgres:13-alpine
+  ports:
+    - 5432:5432
+  environment:
+    - POSTGRES_USER=admin
+    - POSTGRES_PASSWORD=root
+    - POSTGRES_DB=pyblog
+
+pgadmin:
+  image: dpage/pgadmin4
+  environment:
+    - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+    - PGADMIN_DEFAULT_PASSWORD=root
+  ports:
+    - '5050:80'
+  restart: always
+</code></pre>
+</details>
+
+<hr class="hr" />
+
+<details><summary class="h3">3.2. Kafka and Zookeeper</summary>
+
+<p>Confluent Platform Docker images for Kafka: <a href="https://hub.docker.com/r/confluentinc/cp-enterprise-kafka/">confluentinc/cp-enterprise-kafka/postgres</a> and Zookeeper: <a href="https://hub.docker.com/r/confluentinc/cp-zookeeper">confluentinc/cp-zookeeper</a>. The below example is for version <code>7.3</code>, a more recent version, i.e., <code>7.5</code> onwards, Confluent recommends <a href="https://docs.confluent.io/platform/current/kafka-metadata/kraft.html">KRaft</a> mode for new deployments, and Zookeeper is deprecated.</p>
+
+<pre><code>
+zookeeper:
+  image: confluentinc/cp-zookeeper:7.3.5
+  environment:
+    ZOOKEEPER_CLIENT_PORT: 2181
+
+kafka:
+  image: confluentinc/cp-enterprise-kafka:7.3.5
+  depends_on: [zookeeper]
+  environment:
+    KAFKA_BROKER_ID: 1
+    KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+    KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+    KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    KAFKA_JMX_PORT: 9991
+  ports:
+    - 9092:9092
+</code></pre>
+
+</details>
+
+<hr class="hr" />
+
+<details><summary class="h3">3.3. Debezium and Schema Registry</summary>
+
+<p><a href="https://hub.docker.com/r/debezium/connect">debezium/connect</a> image defines a runnable <a href="https://kafka.apache.org/documentation.html#connect">Kafka Connect</a> service preconfigured with all Debezium connectors; it monitors database management system(s) for changing data and then forwards those changes directly into Kafka topics organized by server, database, and table.
+</p>
+
+<p><a href="https://hub.docker.com/r/confluentinc/cp-schema-registry">confluentinc/cp-schema-registry</a> enables client applications to read and write Avro data, in this case, to serialize and deserialize CDC messages.
+</p>
+
+<pre><code>
+debezium:
+  image: debezium/connect:2.4
+  environment:
+    BOOTSTRAP_SERVERS: kafka:9092
+    GROUP_ID: 1
+    CONFIG_STORAGE_TOPIC: connect_configs
+    OFFSET_STORAGE_TOPIC: connect_offsets
+    STATUS_STORAGE_TOPIC: my_status_topic
+    CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8085
+    CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8085
+  depends_on: [kafka]
+  ports:
+    - 8083:8083
+
+schema-registry:
+  image: confluentinc/cp-schema-registry:7.3.5
+  environment:
+    - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+    - SCHEMA_REGISTRY_HOST_NAME=schema-registry
+    - SCHEMA_REGISTRY_LISTENERS=http://schema-registry:8085,http://localhost:8085
+  ports:
+    - 8085:8085
+  depends_on: [zookeeper, kafka]
+</code></pre>
+
+</details>
+
+</details>
+
+<hr class="hr" />
+
+<details open=""><summary class="h3">4. Start Services (Docker-Compose)</summary>
+
+<p>The complete <code>docker-compose.yaml</code> to set up Postgres with debezium and publish data change events to Kafka:</p>
+
+<p><b>Note</b>: At the time of writing this post, the services use the current stable version(s); visit the docker hub page for the latest stable version(s).</p>
+
+<pre><code>version: "3.7"
+services:
+  postgres:
+    image: debezium/postgres:13-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=pyblog
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - '5050:80'
+    restart: always
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.5
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-enterprise-kafka:7.3.5
+    depends_on: [zookeeper]
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_JMX_PORT: 9991
+    ports:
+      - 9092:9092
+
+  debezium:
+    image: debezium/connect:2.4
+    environment:
+      BOOTSTRAP_SERVERS: kafka:9092
+      GROUP_ID: 1
+      CONFIG_STORAGE_TOPIC: connect_configs
+      OFFSET_STORAGE_TOPIC: connect_offsets
+      STATUS_STORAGE_TOPIC: my_status_topic
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8085
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8085
+    depends_on: [kafka]
+    ports:
+      - 8083:8083
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.3.5
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+      - SCHEMA_REGISTRY_HOST_NAME=schema-registry
+      - SCHEMA_REGISTRY_LISTENERS=http://schema-registry:8085,http://localhost:8085
+    ports:
+      - 8085:8085
+    depends_on: [zookeeper, kafka]
+</code></pre>
+
+<hr class="hr" />
+
+<h3>4.1. Run all containers</h3>
+
+<p>Clean-up (Optional) and Run (Create and Start) containers:</p>
+<pre><code>docker rm -f $(docker ps -a -q)
+docker-compose up -d
+</code></pre>
+
+<p><img class="center-image" src="./assets/posts/debezium-docker-compose-up.png" /> </p>
+<p>Make a note of the assigned network name; from the above output, the network name is: <code>enricher_default</code>. To create a custom network, refer <a href="https://docs.docker.com/compose/networking/">Networking in Compose</a></p>
+
+</details>
+
+<hr class="hr" />
+
+<details open=""><summary class="h3">5. Configure Services</summary>
+
+<p>End-to-end configuration for all the services to create the CDC pipeline:</p>
+
+<details open=""><summary class="h3">5.1. Create Postgres Tables</summary>
+
+<p>a. Login to pgAdmin <a href="http://localhost:5050">localhost:5050</a> with email/password (admin@admin.com/root) configured in <code>pgadmin</code> container (refer: <code>docker-compose.yaml</code>)</p>
+<p><img class="center-image" src="./assets/posts/debezium-pg-login.png" /> </p>
+
+<hr class="hr" />
+
+<p>b. Register database server with username/password (admin/root) and hostname (postgres) configured in <code>postgres</code> container (refer: <code>docker-compose.yaml</code>)</p>
+<p><img class="center-image" src="./assets/posts/debezium-pg-register.png" /> </p>
+
+<hr class="hr" />
+
+<p>c. Create and Alter table queries:</p>
+<p>Example: Create a table <code>user-profile</code> from the query tool to track data change events in this table. <b>Skip this</b>; if you already have your own schema for Postgres database tables for which CDC has to be configured.</p>
+<p><img class="center-image" style="width: 55%;" src="./assets/posts/debezium-pg-query-tool.png" /> </p>
+
+<pre><code>CREATE TABLE user_profile (
+  user_id INT NOT NULL,
+  full_name VARCHAR(64) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  PRIMARY KEY (user_id),
+  UNIQUE (email)
+);
+
+ALTER TABLE user_profile REPLICA IDENTITY FULL;
+</code></pre>
+
+<p>Setting the table's replication identity to <code>full</code> infers that the entire row is used as the identifier for change-tracking.</p>
+
+</details>
+
+<hr class="hr" />
+
+<details open=""><summary class="h3">5.2. Set up Debezium Postgres Connector (Kafka Connect)</summary>
+
+<p>a. Check the status of the Kafka Connect service:</p>
+<pre><code>curl -H "Accept:application/json" localhost:8083/</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-status.png" /> </p>
+
+<hr class="hr" />
+
+<p>b. Register the Debezium Postgres connector:</p>
+<p>Create a file <code>debezium.json</code>, the Debezium Postgres connector configuration, where <code>user_profile</code> is the table being tracked</p> 
+
+<pre><code>{
+    "name": "postgresql-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "plugin.name": "pgoutput",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "admin",
+        "database.password": "root",
+        "database.dbname": "pyblog",
+        "database.server.name": "postgres",
+        "table.include.list": "public.user_profile",
+        "table.whitelist": "public.user_profile",
+        "database.tcpKeepAlive": true,
+        "topic.prefix": "topic_user_profile"
+    }
+}
+</code></pre>
+
+<p>This command uses the Kafka Connect service’s API to submit a POST request against the <code>/connectors</code> resource with a JSON document that describes the new connector (called <code>postgresql-connector</code>).</p>
+
+<pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" localhost:8083/connectors/ --data "@debezium.json"</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-register.png" /> </p>
+
+<hr class="hr" />
+
+<p>c. Check the list of connectors registered with Kafka Connect:</p>
+
+<pre><code>curl -H "Accept:application/json" localhost:8083/connectors/</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-list.png" /> </p>
+
+</details>
+
+<hr class="hr" />
+
+<details open=""><summary class="h3">5.3. View Kafka Messages</summary>
+
+<p>a. Pull kafkacat docker image:</p>
+
+<pre><code>docker pull confluentinc/cp-kafkacat:7.1.9</code></pre>
+
+<a href="https://hub.docker.com/r/confluentinc/cp-kafkacat/">kafkacat</a> is a commandline tool for interacting with Kafka brokers. It can be used to produce and consume messages, as well as query metadata.
+
+<hr class="hr" />
+
+<p>b. Listing topics on a broker:</p>
+<p>For the Kafka broker is accessible as <code>kafka:9092</code> on the Docker network <code>enricher_default</code>, list topics by running:</p>
+
+<pre><code>docker run --tty \
+--network enricher_default \
+confluentinc/cp-kafkacat:7.1.9 \
+kafkacat -b kafka:9092 \
+-L
+</code></pre>
+
+<hr class="hr" />
+
+<p>c. Consuming messages from a topic:</p>
+
+<p>For the Kafka broker is accessible as <code>kafka:9092</code> on the Docker network <code>enricher_default</code>, print messages and their associated metadata from topic <code>topic_user_profile.public.user_profile</code>:</p>
+
+<pre><code>docker run --tty \
+--network enricher_default \
+confluentinc/cp-kafkacat:7.1.9 \
+kafkacat -b kafka:9092 -C \
+-t topic_user_profile.public.user_profile
+</code></pre>
+
+<p><img src="./assets/posts/debezium-connector-error.png" /> </p>
+
+<p>If you get the error <code>% ERROR: Topic topic_user_profile.public.user_profile error: Broker: Leader not available</code>, run the same command again!</p>
+
+</details>
+
+</details>
+
+<hr class="hr" />
+
+<details open=""><summary class="h3">6. Moment of Truth 🚀</summary>
+
+<p>a. Insert/Update a row in Postgres table:</p>
+<p>For the table, Debezium CDC is configured; Following the example, creating a row in <code>user_profile</code></p>
+
+<pre><code>INSERT INTO user_profile
+ (user_id, full_name, email) 
+VALUES
+ (1,'John Ross', 'john.ross@pyblog.xyz');
+</code></pre>
+
+<p>b. Validate messages in Kafka topic:</p>
+<p>Consuming the Kafka messages, as mentioned in 3.2.4, section c, the output for inserting a new row:</p>
+
+<p><img src="./assets/posts/debezium-connector-cdc.png" /> </p>
+
+<hr class="hr" />
+
+<p>c. Stop services and delete Docker Containers:</p>
+
+<p>To stop all the services and delete the docker containers, run:</p>
+
+<pre><code>docker-compose down
+docker rm -f $(docker ps -a -q)</code></pre>
+
+<p><img class="center-image" src="./assets/posts/debezium-connector-kill.png" /> </p>
+
+</details>
+
+<hr class="hr" />
+
+<details open=""><summary class="h3">7. Conclusion</summary>
+<p>The post demonstrated how to capture data change events with Debezium by streaming data from a PostgreSQL database to Kafka.</p>
+
+<p>Change Data Capture (CDC) has a lot of use cases, some of the top uses:
+Updating/Invalidating Cache, Enriching Data/Logs from Entity Identifiers, Real-time data loading into Data Warehouse(s) and search engine(s), Synchronize data (on-premises to cloud), Microservices Data exchange with the Outbox Pattern and many more.
+</p>
+
+<p><b>Whats' next</b>: In the next post, we see how to process the CDC events with stream processing engines such as <a href="https://flink.apache.org/">Apache Flink</a>, cache the transformed data (<a href="https://flink.apache.org/2021/01/18/using-rocksdb-state-backend-in-apache-flink-when-and-how/">RockDB</a>), and enrich/cleanse other events with more meaningful information than their raw versions without having to query the source database.</p>
+</details>
+
+<hr class="hr" />
+
+<details><summary class="h3">8. References</summary>
+
+<pre><code>
+[1] Wikipedia Contributors, “Change data capture,” Wikipedia, Feb. 04, 2019. https://en.wikipedia.org/wiki/Change_data_capture
+
+[2] “Debezium Documentation :: Debezium Documentation,” debezium.io. https://debezium.io/documentation/reference/stable/index.html
+
+[3] “Connectors :: Debezium Documentation,” debezium.io. https://debezium.io/documentation/reference/stable/connectors/index.html
+
+[4] “Debezium connector for PostgreSQL :: Debezium Documentation,” debezium.io. https://debezium.io/documentation/reference/stable/connectors/postgresql.html (accessed Oct. 21, 2023).
+
+[5] “What is Apache Kafka? | AWS,” Amazon Web Services, Inc. https://aws.amazon.com/msk/what-is-kafka/
+
+[6] “Kafka Connect | Confluent Documentation,” docs.confluent.io. https://docs.confluent.io/platform/current/connect/index.html
+‌
+‌[7] J. P. Alvim, “Streaming data from PostgreSQL to s3 using Debezium, Kafka and Python,” Medium, Feb. 11, 2023. https://medium.com/@joaopaulonobregaalvim/streaming-data-from-postgresql-to-s3-using-debezium-kafka-and-python-16c6cdd6dc1e (accessed Oct. 21, 2023).
+
+[8] D. Danushka, “Configuring Debezium to Capture PostgreSQL Changes with Docker Compose,” Tributary Data, Aug. 16, 2021. https://medium.com/event-driven-utopia/configuring-debezium-to-capture-postgresql-changes-with-docker-compose-224742ca5372 (accessed Oct. 21, 2023).
+
+</code></pre>
+
+</details>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/debezium-postgres-cdc" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Oct 16, 2023). Debezium: PostgreSQL Change Data Capture (CDC).
+                PyBlog. <a href="/debezium-postgres-cdc">https://www.pyblog.xyz/debezium-postgres-cdc</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

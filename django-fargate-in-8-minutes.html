@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Deploying Django Application on AWS Fargate in 8 minutes | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Deploying Django Application on AWS Fargate in 8 minutes" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django)." />
+<meta property="og:description" content="Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django)." />
+<link rel="canonical" href="https://pyblog.xyz/django-fargate-in-8-minutes" />
+<meta property="og:url" content="https://pyblog.xyz/django-fargate-in-8-minutes" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Deploying Django Application on AWS Fargate in 8 minutes" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/django-fargate-in-8-minutes","@type":"BlogPosting","description":"Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django).","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Deploying Django Application on AWS Fargate in 8 minutes","dateModified":"2022-02-22T00:00:00+00:00","datePublished":"2022-02-22T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/django-fargate-in-8-minutes"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Deploying Django Application on AWS Fargate in 8 minutes</h2><p class="post-meta" data-id="/django-fargate-in-8-minutes" data-url="/django-fargate-in-8-minutes" data-title="Deploying Django Application on AWS Fargate in 8 minutes">
+    <time datetime="2022-02-22T00:00:00+00:00" itemprop="datePublished">
+        Feb 22, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/django-rango">Django Rango</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/django"> #Django</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/aws"> #AWS</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/docker"> #Docker</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/python"> #Python</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">4 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/aws-fargate-django.png" /></p>
+<p style="text-align: center;">Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django).</p>
+
+<p>So far, we have seen how to <a href="https://pyblog.medium.com/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f">dockerize the Django application</a> and <a href="https://pyblog.medium.com/deploying-django-application-on-aws-ec2-and-docker-10a1f7c29573">deploy the application on EC2</a>.</p>
+
+<p>Installing Docker Engine on every EC2 instance and running the Dockerized Django application does not scale and make it harder to maintain ⚠️. However, it’s probably the right choice for a staging environment or an application with 1–2 EC2 instances.</p>
+
+<p>That said, let’s get to it 😎</p>
+
+<h2 id="the-plan-️">The plan ✈️</h2>
+
+<ul>
+  <li>Install AWS CLI.</li>
+  <li>Install ECS CLI.</li>
+  <li>Configure Fragate Cluster, Task Definition, and Service.</li>
+  <li>Configure AWS log-group.</li>
+</ul>
+
+<h2 id="step-1-install-aws-and-ecs-cli">Step 1: Install AWS and ECS CLI</h2>
+
+<ul>
+  <li>Install AWS CLI: AWS does an amazing job with documentation; <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">follow the instructions to install AWS CLI</a>.</li>
+  <li>Install ECS CLI: <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html">Instructions to install ECS CLI</a></li>
+</ul>
+
+<p>I have seen quite a bit of confusion on this one; all you need to do is:
+Download and set the right permissions:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest</code></li>
+  <li><code class="language-plaintext highlighter-rouge">chmod +x /usr/local/bin/ecs-cli</code></li>
+  <li>Verify the installation: <code class="language-plaintext highlighter-rouge">ecs-cli --version</code></li>
+</ul>
+
+<p>To Configure Fragate Cluster, Task Definition, and Service: The original post by AWS: <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-fargate.html">Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI</a>.</p>
+
+<p>But I guarantee you that you’d see no hiccups if you follow along with this post instead as I make the extra effort to fill in the gaps.</p>
+
+<h2 id="step-2-cluster-configuration-using-amazon-ecs-cli">Step 2: Cluster Configuration using Amazon ECS CLI</h2>
+
+<p>To define a <code class="language-plaintext highlighter-rouge">&lt;cluster-name&gt;</code> with FARGATE launch type in <code class="language-plaintext highlighter-rouge">&lt;aws-region&gt;</code>,</p>
+
+<p>Run: <code class="language-plaintext highlighter-rouge">ecs-cli configure --cluster &lt;CLUSTER-NAME&gt; --default-launch-type FARGATE --config-name &lt;CONFIG-NAME&gt; --region &lt;AWS-REGION&gt;</code></p>
+
+<p>Tip ⚠️ I often found instances of mixing up the cluster name and the configuration name, so choose the same name for <code class="language-plaintext highlighter-rouge">&lt;CLUSTER-NAME&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;CONFIG-NAME&gt;</code> to avoid confusion. Example: <code class="language-plaintext highlighter-rouge">ecs-cli configure --cluster ecs-cluster --default-launch-type FARGATE --config-name ecs-cluster --region ca-central-1</code></p>
+
+<h3 id="launchdeploy-the-cluster">Launch/deploy the cluster:</h3>
+
+<p>If you already have a VPC and subnet(s): <code class="language-plaintext highlighter-rouge">ecs-cli up --cluster-config test --vpc &lt;VPC-ID&gt; --subnets &lt;SUBNET-ID-1&gt;, &lt;SUBNET-ID-2&gt;</code>
+OR let the CLI create one for us: <code class="language-plaintext highlighter-rouge">ecs-cli up --cluster-config &lt;CONFIG-NAME&gt;</code>
+Note ⚠️ The <code class="language-plaintext highlighter-rouge">&lt;CONFIG-NAME&gt;</code> is the same as the one used before.</p>
+
+<p>Make a note of the VPC and Subnet(s), looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VPC created: vpc-xxxxxxxxxxxxxxxx
+Subnet created: subnet-xxxxxxxxxxxxxxxx
+Subnet created: subnet-xxxxxxxxxxxxxxxx
+</code></pre></div></div>
+
+<h2 id="step-3-create-the-task-execution-iam-role">Step 3: Create the Task Execution IAM Role</h2>
+
+<p><strong>Note</strong>: IAM roles are not region-specific</p>
+
+<p>The ECS Task Execution IAM role is pre-generated by AWS. Check if it’s already present: AWS Console → IAM → Role → Search for ecsTaskExecutionRole (Verify that it’s attached to <code class="language-plaintext highlighter-rouge">AmazonECSTaskExecutionRolePolicy</code> policy).</p>
+
+<p>If it’s not present, create ECS Task Execution IAM role:</p>
+
+<p>Create a file named <code class="language-plaintext highlighter-rouge">task-execution-assume-role.json</code> with the following contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    },
+  ]
+}
+</code></pre></div></div>
+
+<ul>
+  <li>Create the task execution role: <code class="language-plaintext highlighter-rouge">aws iam --region &lt;AWS-REGION&gt; create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://task-execution-assume-role.json</code></li>
+  <li>Attach the task execution role policy: <code class="language-plaintext highlighter-rouge">aws iam --region &lt;AWS-REGION&gt; attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy</code></li>
+  <li>Replace <code class="language-plaintext highlighter-rouge">&lt;AWS-REGION&gt;</code> with the AWS region, you choose to use; for instance, in my case, it’s <code class="language-plaintext highlighter-rouge">ca-central-1</code></li>
+</ul>
+
+<h2 id="step-4-configure-security-group">Step 4: Configure Security Group</h2>
+
+<p>To keep it simple, instead of using a load balancer, we’ll attach a security group to allow incoming internet traffic at port 80.</p>
+
+<p>Create a security group associated with the <code class="language-plaintext highlighter-rouge">&lt;VPC-ID&gt;</code></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">aws ec2 create-security-group --description test --group-name ec2-sg-licensing --vpc-id &lt;VPC-ID&gt;</code></li>
+  <li>Make a note of the Security Group, looks like: <code class="language-plaintext highlighter-rouge">sg-xxxxxxxxxxxxxxxx</code> and add inbound traffic rules: <code class="language-plaintext highlighter-rouge">aws ec2 authorize-security-group-ingress --group-id &lt;SECURITY-GROUP-ID&gt; --protocol tcp --port 80 --cidr 0.0.0.0/0 --region &lt;AWS-REGION&gt;</code></li>
+</ul>
+
+<h2 id="step-5-docker-compose">Step 5: Docker Compose</h2>
+
+<p>Docker Compose file set-up:</p>
+
+<p>Amazon ECS CLI supports version 3 and not sub-versions such as <code class="language-plaintext highlighter-rouge">3.8</code>; hence, keeping the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> simple is essential. Here’s an example docker-compose file of a Django-Gunicorn-Nginx application:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'services:
+  web:
+    image: &lt;docker-username&gt;/&lt;project-name&gt;:&lt;tag|latest&gt;
+    command: gunicorn --bind 0.0.0.0:8000 licensing_platform.wsgi --workers=4
+    environment:
+      - DEBUG
+      - DATABASE_NAME
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - HOST_ENDPOINT
+      - REDIS_LOCATION
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - "8000"
+    networks:
+      - django-network  nginx:
+    image: &lt;docker-username&gt;/&lt;nginx-for-project-name&gt;:&lt;tag|latest&gt;
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ecs-cluster-licensing
+        awslogs-region: ca-central-1
+        awslogs-stream-prefix: web
+    depends_on:
+      - web
+    networks:
+      - django-networknetworks:
+  django-network:volumes:
+  media_volume:
+  static_volume:
+</code></pre></div></div>
+
+<ul>
+  <li>Notice that the logging section in the nginx service; change the awslogs-group and awslogs-region</li>
+  <li>Include the environmental variables required by the application as shown in the above <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file. However, a better practice is to use <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS System Manager Parameter Store</a>.</li>
+</ul>
+
+<p>To create a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> for a Django application, refer: <a href="https://pyblog.medium.com/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f">dockerize the Django application</a></p>
+
+<p>The Dockerfile for service web:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:20.04
+ADD . /app
+WORKDIR /appRUN apt-get update -y
+RUN apt-get install software-properties-common -y
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get install python3.9 -y
+RUN apt-get install python3-pip -y
+RUN python3.9 -m pip install --upgrade setuptools
+RUN apt-get install sudo ufw build-essential libpq-dev libmysqlclient-dev python3.9-dev default-libmysqlclient-dev libpython3.9-dev -y
+RUN python3.9 -m pip install -r requirements.txt
+RUN python3.9 -m pip install psycopg2-binary
+RUN sudo ufw allow 8000EXPOSE 8000
+The Dockerfile for service nginx:
+
+FROM nginx:stable-alpineCOPY default.conf /etc/nginx
+COPY default.conf /etc/nginx/conf.dEXPOSE 80
+Nginx Configuration file (default.conf):
+
+server {    listen 80 default_server;
+    server_name _;    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }    location /static/ {
+        alias /app/static/;
+    }    location /media/ {
+        alias /app/static/;
+    }}
+</code></pre></div></div>
+
+<p>⚠️ Notice that the proxy_pass is http://127.0.0.1:8000 and not http://web:8000.</p>
+
+<h2 id="step-6-ecs-configuration-file">Step 6: ECS Configuration file</h2>
+
+<p>Create a new file <code class="language-plaintext highlighter-rouge">ecs-params.yml</code> at the root of the project (the same level of <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>) with contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: 1
+task_definition:
+  task_execution_role: ecsTaskExecutionRole
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 0.5GB
+    cpu_limit: 256
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - "&lt;SUBNET_ID-1&gt;"
+        - "&lt;SUBNET-ID-2&gt;"
+      security_groups:
+        - "&lt;SECURITY-GROUP-ID&gt;"
+      assign_public_ip: ENABLED
+</code></pre></div></div>
+
+<p>We previously noted subnets(s) and security group for inbound traffic; make sure to update them.</p>
+
+<h2 id="step-6-ecs-configuration-file-1">Step 6: ECS Configuration file</h2>
+
+<p>Finally! it’s time to spin up the resources, run:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ecs-cli compose --project-name &lt;CLUSTER-NAME&gt; service up --create-log-groups --cluster-config &lt;CONFIG-NAME&gt;</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Check the status: ecs-cli compose --project-name &lt;CLUSTER-NAME&gt; service ps --cluster-config &lt;CONFIG-NAME&gt;</code></li>
+</ul>
+
+<p>Look for the IP address of the Nginx machine, as shown in Figure 1. Visit <code class="language-plaintext highlighter-rouge">http://&lt;ip-address&gt;/admin</code> to view the admin page of the Django application or hit an API of your application 🚀</p>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/django-fargate-in-8-minutes" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Feb 22, 2022). Deploying Django Application on AWS Fargate in 8 minutes.
+                PyBlog. <a href="/django-fargate-in-8-minutes">https://www.pyblog.xyz/django-fargate-in-8-minutes</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

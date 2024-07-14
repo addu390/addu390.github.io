@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Dockerizing Django Application — Gunicorn and Nginx | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Dockerizing Django Application — Gunicorn and Nginx" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django)" />
+<meta property="og:description" content="Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django)" />
+<link rel="canonical" href="https://pyblog.xyz/dockerize-django" />
+<meta property="og:url" content="https://pyblog.xyz/dockerize-django" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-11T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Dockerizing Django Application — Gunicorn and Nginx" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/dockerize-django","@type":"BlogPosting","description":"Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django)","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Dockerizing Django Application — Gunicorn and Nginx","dateModified":"2022-02-11T00:00:00+00:00","datePublished":"2022-02-11T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/dockerize-django"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Dockerizing Django Application — Gunicorn and Nginx</h2><p class="post-meta" data-id="/dockerize-django" data-url="/dockerize-django" data-title="Dockerizing Django Application — Gunicorn and Nginx">
+    <time datetime="2022-02-11T00:00:00+00:00" itemprop="datePublished">
+        Feb 11, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/django-rango">Django Rango</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/django"> #Django</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/aws"> #AWS</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/docker"> #Docker</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">5 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/docker-django.png" /></p>
+<p style="text-align: center;">Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django)</p>
+
+<p>A step-by-step tutorial on dockerizing a Django application with MySQL database using Guinicorn and Nginx.</p>
+
+<p>This post assumes that you have some familiarity with Django and likely have a local Django development project, and looking at how to deploy the project in production.</p>
+
+<p>In the later section of the post, we’ll see how to deploy the project on AWS EC2.</p>
+
+<h2 id="checklist-">Checklist 🚧</h2>
+
+<ul>
+  <li>Check if the application is running in your local machine: python manage.py runserver, accessible at <code class="language-plaintext highlighter-rouge">http://localhost:8000</code></li>
+  <li>Don’t forget to run: <code class="language-plaintext highlighter-rouge">python manage.py makemigrations</code>, <code class="language-plaintext highlighter-rouge">python manage.py migrate</code>, and <code class="language-plaintext highlighter-rouge">python manage.py collectstatic</code></li>
+</ul>
+
+<h2 id="the-plan-">The plan 🛠</h2>
+
+<ul>
+  <li>We cannot use the Django development server on production; it’s meant for local development and cannot handle concurrent requests – this is why we’ll use a combination of Guinicorn and Nginx.</li>
+  <li>Create docker-file(s) for the Django application running in port 8000 and use Nginx to proxy the incoming request at port 80 to port 8000.</li>
+  <li>A docker-compose file to put it all together, define the network, links, and volumes to server static and media files.</li>
+</ul>
+
+<h2 id="a-dockerfile-for-the-django-application-">A Dockerfile for the Django application 💻</h2>
+
+<ul>
+  <li>Make sure you have the requirements.txt file with all the dependencies. You can generate one with: pip freeze &gt; requirements.txt</li>
+  <li>The example Dockerfile below is for a Django Application with MySQL database and might need minor changes for other DBs.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:20.04
+ADD . /app
+WORKDIR /app
+
+RUN apt-get update -y
+RUN apt-get install software-properties-common -y
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get install python3.9 -y
+RUN apt-get install python3-pip -y
+RUN python3.9 -m pip install --upgrade setuptools
+RUN apt-get install sudo ufw build-essential libpq-dev python3.9-dev libmysqlclient-dev default-libmysqlclient-dev libpython3.9-dev -y
+RUN python3.9 -m pip install -r requirements.txt
+RUN python3.9 -m pip install psycopg2-binary
+RUN sudo ufw allow 8000
+
+EXPOSE 8000
+</code></pre></div></div>
+
+<p>At the time of writing this post, Ubuntu:20.04 and python:3.9 are the stable latest versions.
+Place the docker file at the root of the project, in the same directory as manage.py</p>
+
+<h2 id="a-dockerfile-for-nginx-">A Dockerfile for Nginx 📄</h2>
+
+<ul>
+  <li>Create a directory nginx with two files: Dockerfile and default.conf (the directory name can be anything).</li>
+  <li>The contents of these two files are as follows:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM nginx:stable-alpine
+
+COPY default.conf /etc/nginx
+COPY default.conf /etc/nginx/conf.d
+
+EXPOSE 80
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+
+    listen 80 default_server;
+    server_name _;
+
+    location / {
+        proxy_pass http://web:8000;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }
+
+    location /static/ {
+        alias /app/static/;
+    }
+
+    location /media/ {
+        alias /app/static/;
+    }
+
+}
+</code></pre></div></div>
+
+<p>Why is it <code class="language-plaintext highlighter-rouge">proxy_pass http://web:8000</code>? We’ll come to that in a second.</p>
+
+<h2 id="the-docker-compose-file-">The docker-compose file 📄</h2>
+
+<p>Even before pushing the image to the Docker hub, the best practice is to test the application a couple of times by building the docker image locally. Hence, two docker-compose files, one of local development 🛺 and the other for production use ✈️.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+    command: gunicorn --bind 0.0.0.0:8000 &lt;project-name&gt;.wsgi --workers=4
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - "8000"
+    networks:
+      - django-network
+
+  nginx:
+    build: nginx
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - django-network
+
+networks:
+  django-network:
+    name: django-network
+
+volumes:
+  media_volume:
+  static_volume:
+</code></pre></div></div>
+
+<p>Command to start the docker containers: <code class="language-plaintext highlighter-rouge">docker-compose up -f docker-compose.dev.yml</code></p>
+
+<p>Note:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">web</code> refers to the Django web application, the name of the service can be anything, but ensure to reference the same name in the nginx configuration file.</li>
+  <li>Ideally, we would want to serve static content (HTML and CSS) from CDN for faster content delivery and not from the EC2 instance (covered that in a follow-up post).</li>
+  <li>Instead of using the default network, it’s better to define an explicit network, such as django-network</li>
+  <li>Notice that the service web has expose and not ports; expose ensures that the port 8000 is accessible only within the local network and not from the host machine (outside world).</li>
+</ul>
+
+<p>Similarly, for production use, build and push the Django and Nginx images to the Docker hub (make sure not to include sensitive information by using .dockerignore)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*.pyc
+migrations/
+__pycache__
+db.sqlite3
+.idea
+*.DS_Store
+.env
+static
+</code></pre></div></div>
+
+<p>Run at the project’s root (same level of <code class="language-plaintext highlighter-rouge">manage.py</code>): <code class="language-plaintext highlighter-rouge">docker build -t &lt;docker-username&gt;/&lt;project-name&gt;:&lt;tag|latest&gt; . and docker push &lt;docker-username&gt;/&lt;project-name&gt;:&lt;tag|latest&gt;</code></p>
+
+<p>Run inside the nginx directory created earlier: <code class="language-plaintext highlighter-rouge">docker build -t &lt;docker-username&gt;/&lt;nginx-for-project-name&gt;:&lt;tag|latest&gt; . and docker push &lt;docker-username&gt;/&lt;nginx-for-project-name&gt;:&lt;tag|latest&gt;</code></p>
+
+<h2 id="the-docker-compose-file-for-production-use-would-look-like">The docker-compose file for production use would look like:</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3.8'
+
+services:
+  web:
+    image: &lt;docker-username&gt;/&lt;project-name&gt;:&lt;tag|latest&gt;
+    command: gunicorn --bind 0.0.0.0:8000 licensing_platform.wsgi --workers=4
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - "8000"
+    networks:
+      - django-network
+
+  nginx:
+    image: &lt;docker-username&gt;/&lt;nginx-for-project-name&gt;:&lt;tag|latest&gt;
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - django-network
+
+networks:
+  django-network:
+    name: django-network
+
+volumes:
+  media_volume:
+  static_volume:
+</code></pre></div></div>
+
+<p>The only change here is to use the images from the docker hub rather than building them locally.</p>
+
+<p>Command to start the docker containers: <code class="language-plaintext highlighter-rouge">docker-compose up</code>
+Use the <code class="language-plaintext highlighter-rouge">-d</code> flag to run in the background: <code class="language-plaintext highlighter-rouge">docker-compose -d up</code></p>
+
+<p>You are good to go; for using the env variables inside the container, I prefer explicitly mentioning the env variables to be used in the docker containers that are in the host machine, so the docker-compose file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3.8'
+
+services:
+  web:
+    image: &lt;docker-username&gt;/&lt;project-name&gt;:&lt;tag|latest&gt;
+    command: gunicorn --bind 0.0.0.0:8000 licensing_platform.wsgi --workers=4
+    environment:
+      - DEBUG
+      - DATABASE_NAME
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - HOST_ENDPOINT
+      - REDIS_LOCATION
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - "8000"
+    networks:
+      - django-network
+
+  nginx:
+    image: &lt;docker-username&gt;/&lt;nginx-for-project-name&gt;:&lt;tag|latest&gt;
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - django-network
+
+networks:
+  django-network:
+    name: django-network
+
+volumes:
+  media_volume:
+  static_volume:
+</code></pre></div></div>
+
+<p>To access the local MySQL server (to test on local machine), the host-name: host.docker.internal</p>
+
+<p>For production, use AWS RDS – MySQL with the proper inbound traffic rules in the security group of the EC2 instance(s).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEBUG=True
+DATABASE_NAME = ''
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+HOST_ENDPOINT = 'host.docker.internal'
+REDIS_LOCATION = 'redis://127.0.0.1:6379/'
+</code></pre></div></div>
+
+<p>Wohoo 🚀 Launch ready!</p>
+
+<p>Everything is a lot easier if there’s a project for reference; here it is: <a href="https://github.com/addu390/licensing-as-a-platform">licensing-as-a-platform</a></p>
+
+<h2 id="deployment--ec2">Deployment – EC2</h2>
+
+<ul>
+  <li>While it’s much easier to use ECS, I prefer not to get confined to using managed services of a cloud provider.</li>
+  <li>It’s simple, launch an EC2 instance, install Docker Engine and Docker Compose and create an AMI; this would be your Docker AMI.</li>
+  <li>Terminate and Launch a new instance with Docker AMI previously created as the base AMI for EC2, configure as per your need, include the necessary user data, import docker-compose.yml (most likely by git), and run docker-compose up.</li>
+  <li>You will, of course, have to write a shell script to automate the launch of EC2 instances.</li>
+</ul>
+
+<p>Typically, create an ALB (Application Load Balancer) with a target group and auto-scaling group 🚁</p>
+
+<p>I will soon write a follow-up post covering AMI, EC2, RDS, ALB, VPC, Security groups, and everything else necessary for a scalable web application.</p>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/dockerize-django" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Feb 11, 2022). Dockerizing Django Application — Gunicorn and Nginx.
+                PyBlog. <a href="/dockerize-django">https://www.pyblog.xyz/dockerize-django</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Anatomy of a System Design Interview: The example | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Anatomy of a System Design Interview: The example" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Complex is Simple." />
+<meta property="og:description" content="Complex is Simple." />
+<link rel="canonical" href="https://pyblog.xyz/tackle-system-design" />
+<meta property="og:url" content="https://pyblog.xyz/tackle-system-design" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Anatomy of a System Design Interview: The example" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/tackle-system-design","@type":"BlogPosting","description":"Complex is Simple.","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Anatomy of a System Design Interview: The example","dateModified":"2022-05-25T00:00:00+00:00","datePublished":"2022-05-25T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/tackle-system-design"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Anatomy of a System Design Interview: The example</h2><p class="post-meta" data-id="/tackle-system-design" data-url="/tackle-system-design" data-title="Anatomy of a System Design Interview: The example">
+    <time datetime="2022-05-25T00:00:00+00:00" itemprop="datePublished">
+        May 25, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/project"> #Project</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/system-design"> #System Design</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">9 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/iphone-100x.png" /></p>
+<p style="text-align: center;">Complex is Simple. </p>
+
+<p>What’s better than going over a real system design interview question (Interviewed in June 2022).</p>
+
+<h2 id="1-requirements">1. Requirements</h2>
+<p>Review the end-to-end design below. <strong>You need to design Your System</strong>. Your system is responsible for
+linking a customer patient to an internal system, maintaining that mapping, and letting the customer
+system know whether your system was able to establish the link.</p>
+
+<ul>
+  <li>Communication is Asynchronous.</li>
+  <li>Orders must be acknowledged as soon as possible.</li>
+  <li>System must be fault-tolerant.</li>
+  <li>System must be reliable, available and scalable.</li>
+  <li>System needs to persist the patient’s ID from both the customer and the internal system.</li>
+</ul>
+
+<p><img class="center-image" src="./assets/posts/linkage-system.png" /></p>
+<p style="text-align: center;">Expected Design</p>
+
+<hr />
+
+<h2 id="2-overview">2. Overview</h2>
+<h3 id="21-architecture-diagram">2.1. Architecture Diagram</h3>
+
+<p><img class="center-image" src="./assets/posts/linking-system-design.png" /></p>
+<p style="text-align: center;">Architecture Diagram </p>
+
+<p>Link: <a href="https://drive.google.com/file/d/1xCP9EpqqrDzCT2jd47ke6WlX69TD4NSk/view?usp=sharing">https://drive.google.com/file/d/1xCP9EpqqrDzCT2jd47ke6WlX69TD4NSk/view?usp=sharing</a></p>
+
+<hr class="hr" />
+
+<h3 id="22-components">2.2. Components</h3>
+<p>The overview of the different components of the merchant service is as follows:</p>
+<ul>
+  <li>
+    <p><strong>Merchant Service</strong>: A proxy-link service (like a merchant who buys and sells) links the customer’s patient-id to internal system’s <code class="language-plaintext highlighter-rouge">patient-id</code>.</p>
+  </li>
+  <li>
+    <p><strong>LB (Load Balancer)</strong>: Receives public traffic and distributes the load across the merchant-service producer cluster (compute instances).</p>
+  </li>
+  <li>
+    <p><strong>P Cluster</strong>: The merchant-service application producer cluster that scales horizontally (Example: EC2 cluster with auto-scaling and target group attached to the load balancer), receives the requests from the load-balancer and push messages to the queue.</p>
+  </li>
+  <li>
+    <p><strong>Queue</strong>: A messaging broker to handle high traffic to process long-running/asynchronous tasks in streams/batches.</p>
+  </li>
+  <li>
+    <p><strong>C Cluster</strong>: The merchant-service application consumer cluster processes the messages in the queue and returns the appropriate response.</p>
+  </li>
+  <li>
+    <p><strong>Cron Scheduler</strong>: Schedule cron jobs to reconcile the workflows stuck in pending state(s).</p>
+  </li>
+  <li>
+    <p><strong>Relational DB</strong>: The database primarily has two tables: “workflows” to track and manage the state of the incoming requests until completion and <code class="language-plaintext highlighter-rouge">patient-mapping</code> to store the mapping between customer and internal <code class="language-plaintext highlighter-rouge">patient-id</code>.</p>
+  </li>
+  <li>
+    <p><strong>Key-value Store</strong>: For storing the incoming request data (customer and patient details) and idempotency-key of requests.</p>
+  </li>
+</ul>
+
+<hr class="hr" />
+
+<h3 id="23-datastores">2.3. Datastores</h3>
+<h3 id="231-relational-database-sql">2.3.1 Relational Database (SQL)</h3>
+<ul>
+  <li>
+    <p><strong>Workflow</strong>: A <code class="language-plaintext highlighter-rouge">workflows</code> table to keep track of the request received from the customer and manage the state until the state transitions to an end-state.</p>
+
+    <ul>
+      <li>
+        <p>Table <strong>workflows</strong>:</p>
+
+        <table>
+          <tbody>
+            <tr>
+              <td>workflow-id</td>
+              <td>request-id</td>
+              <td>customer-id</td>
+              <td>patient-id</td>
+              <td>status</td>
+              <td>request-type</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>Where, status: <code class="language-plaintext highlighter-rouge">RECEIVED</code>, <code class="language-plaintext highlighter-rouge">IN_PROGRESS</code>, <code class="language-plaintext highlighter-rouge">LINKED</code>, <code class="language-plaintext highlighter-rouge">NO_RESULTS</code>, <code class="language-plaintext highlighter-rouge">COMPLETED</code>, <code class="language-plaintext highlighter-rouge">FAILED</code> and request-type: <code class="language-plaintext highlighter-rouge">LINK</code></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Linkage</strong>: A <code class="language-plaintext highlighter-rouge">patient-mapping</code> table links the customer patient-id to the internal patient-id.</p>
+
+    <ul>
+      <li>
+        <p>Table <strong>patient-mapping</strong>:</p>
+
+        <table>
+          <tbody>
+            <tr>
+              <td>customer-id</td>
+              <td>customer-patient-id</td>
+              <td>internal-patient-id</td>
+              <td>status</td>
+              <td>workflow-id</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>Where, status: <code class="language-plaintext highlighter-rouge">LINKED</code>, <code class="language-plaintext highlighter-rouge">DE-LINKED</code></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="232-key-value-store-nosql">2.3.2. Key-value Store (NoSQL)</h3>
+<ul>
+  <li>
+    <p><strong>Idempotency</strong>: Key: (<code class="language-plaintext highlighter-rouge">idempotency-key</code> + <code class="language-plaintext highlighter-rouge">customer-id</code>), Value: idempotency key from client/customer.</p>
+  </li>
+  <li>
+    <p><strong>Request Data</strong>: Key: (Unique <code class="language-plaintext highlighter-rouge">request-id</code>), Value: Request data (customer and patient details).</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="3-workflow">3. Workflow</h2>
+
+<h3 id="31-request-from-customer-system">3.1. Request from Customer System</h3>
+<p>API call from the Customer System to the load-balancer of Merchant Service.</p>
+
+<p>Method: <code class="language-plaintext highlighter-rouge">POST</code>, Path: <code class="language-plaintext highlighter-rouge">/link</code>
+Header:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"idempotency-key": "String"
+"customer-token": "String"
+</code></pre></div></div>
+
+<p>Request Body:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+	"patient": {
+		"id": "UUID",
+		"full_name": "String",
+		"dob": "DateTime",
+		...
+		"contact": {
+			"address": "String",
+			"phone": "String",
+			"email": "String"
+		}
+		"insurance": {
+			...
+		}
+	},
+	"webhook": "url"
+}
+</code></pre></div></div>
+
+<p>To perform an idempotent request, the customer/client must add an <code class="language-plaintext highlighter-rouge">idempotency-key</code> header to the request. Idempotency works by saving the resulting status code, response body and body of the first request made for the given idempotency key; subsequent requests with the same key return the same result (or until the state changes) until the pre-defined TTL (typically, 24 hours).</p>
+
+<p>The customer-token is for access control and decrypted on the backend to retrieve the customer details (Example: unique <code class="language-plaintext highlighter-rouge">customer-id</code>). Similar to the JSON Web Token model.</p>
+
+<hr class="hr" />
+
+<h3 id="32-acknowledgement-fail-first-and-fail-fast">3.2. Acknowledgement: Fail first and Fail Fast</h3>
+<ul>
+  <li>
+    <p><strong>Validations</strong>: Regex matching on expected input pattern, idempotency check, already linked or in progress, etc.</p>
+  </li>
+  <li>
+    <p><strong>Persistence</strong>:</p>
+
+    <ul>
+      <li>
+        <p><strong>Request Data</strong>: Store the request data in the key-value store (key as unique request-id and value as request data - Customer and Patient details).</p>
+      </li>
+      <li>
+        <p><strong>Workflow details</strong>: in the “workflows” table: <code class="language-plaintext highlighter-rouge">workflow-id</code>, <code class="language-plaintext highlighter-rouge">request-id</code>, <code class="language-plaintext highlighter-rouge">customer-id</code>, <code class="language-plaintext highlighter-rouge">patient-id</code>, <code class="language-plaintext highlighter-rouge">status</code> (<code class="language-plaintext highlighter-rouge">RECEIVED</code>), <code class="language-plaintext highlighter-rouge">request-type</code> (<code class="language-plaintext highlighter-rouge">LINK</code>), and <code class="language-plaintext highlighter-rouge">timestamp</code>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Queue</strong>: Push the message to the queue (section 3.3) - silent failure with retries</p>
+  </li>
+  <li><strong>Response</strong>:
+    <ul>
+      <li>Return error response/exception(s) before or during persistence - if any (fail fast),</li>
+      <li>Else
+        <ul>
+          <li>Store the <code class="language-plaintext highlighter-rouge">idempotency-key</code> with expected response</li>
+          <li>Return the response with a status code 202 (Request accepted) and a <code class="language-plaintext highlighter-rouge">workflow-id</code>. The client/customer can check the request’s status using the <code class="language-plaintext highlighter-rouge">workflow-id</code>. 
+The response body:
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+"workflow-id": "String"
+}
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Status API</strong>:
+    <ul>
+      <li>The merchant service guarantees a valid response once a 202 is returned with a <code class="language-plaintext highlighter-rouge">workflow-id</code>. The customer/client can check the status of the request from the <code class="language-plaintext highlighter-rouge">workflow-id</code> or get a callback to the webhook.</li>
+      <li>Method: <code class="language-plaintext highlighter-rouge">GET</code> , Path: <code class="language-plaintext highlighter-rouge">/link/status/&lt;workflow-id&gt;</code>
+Response:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "status": "workflows.status"
+}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Note</strong>:</p>
+<ul>
+  <li>
+    <p>The request data can be archived if necessary after linking customer-internal <code class="language-plaintext highlighter-rouge">patient-id</code>.</p>
+  </li>
+  <li>
+    <p>It is not recommended to poll the status API; caching may be required if done.</p>
+  </li>
+</ul>
+
+<hr class="hr" />
+
+<h3 id="33-process-the-request">3.3. Process the request</h3>
+<p>The <strong>merchant service producer</strong> pushes the message to the queue in the forward flow (section 3.2) or reconciliation (section 4). The message body is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+	"workflow-id": "String",
+	"request-id": "String",
+	"customer-id": "String",
+	"patient-id": "String",
+	"request-type": "LINK",
+}
+</code></pre></div></div>
+
+<p>The <strong>merchant service consumer</strong> picks the message(s) from the queue:</p>
+
+<ul>
+  <li>
+    <p><strong>Workflow Details</strong>: Get details from the <code class="language-plaintext highlighter-rouge">workflows</code> table by <code class="language-plaintext highlighter-rouge">workflow-id</code> and update the workflow status to <code class="language-plaintext highlighter-rouge">IN_PROGRESS</code>.</p>
+  </li>
+  <li>
+    <p><strong>Patient and Customer Details</strong>: Get the customer and patient details from <code class="language-plaintext highlighter-rouge">request-id</code> from the key-value store.</p>
+  </li>
+  <li>
+    <p><strong>Search</strong>: Make an API call to the internal service to search for the patient:</p>
+
+    <ul>
+      <li>
+        <p><strong>Empty Search result</strong>: Mark the status <code class="language-plaintext highlighter-rouge">NO_RESULTS</code> in the workflow table.</p>
+      </li>
+      <li>
+        <p><strong>Non-empty Search result</strong>: Create an entry in the <code class="language-plaintext highlighter-rouge">patient-mapping</code> table (<code class="language-plaintext highlighter-rouge">customer-id</code>, <code class="language-plaintext highlighter-rouge">customer-patient-id</code>, <code class="language-plaintext highlighter-rouge">internal-patient-id</code>, <code class="language-plaintext highlighter-rouge">status</code>, <code class="language-plaintext highlighter-rouge">workflow-id</code>), mark the status <code class="language-plaintext highlighter-rouge">LINKED</code>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Response: Update response in NoSQL store for <code class="language-plaintext highlighter-rouge">idempotency-key</code>, return the success/error response (webhook), and mark the status <code class="language-plaintext highlighter-rouge">COMPLETED</code> in the <code class="language-plaintext highlighter-rouge">workflows</code> table.</p>
+  </li>
+</ul>
+
+<p><strong>Note</strong>:</p>
+<ul>
+  <li>
+    <p>Failures are marked as <code class="language-plaintext highlighter-rouge">FAILED</code> in the <code class="language-plaintext highlighter-rouge">workflows</code> table to retry/debug (Wildcard to stop a workflow).</p>
+  </li>
+  <li>
+    <p>Use a finite state machine with predefined from-to states and transitions.</p>
+  </li>
+  <li>
+    <p>The webhook URL is usually not a part of the request but rather configured beforehand as a part of merchant-customer onboarding and available as a part of customer details.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="4-fault-tolerance-and-reconciliation">4. Fault tolerance and Reconciliation</h2>
+<h3 id="41-application-failure">4.1. Application Failure</h3>
+<p>Reconciliation is necessary to ensure that a request is processed after responding to the customer system’s request with a 202 response and <code class="language-plaintext highlighter-rouge">workflow-id</code>. At this stage, we have an entry in the <code class="language-plaintext highlighter-rouge">workflows</code> table and a key-value pair of the request data containing the customer and patient details.</p>
+
+<p>The scheduler such as Airflow is configured to check for workflows in pending state(s) (<code class="language-plaintext highlighter-rouge">RECEIVED</code>, <code class="language-plaintext highlighter-rouge">IN_PROGRESS</code>, <code class="language-plaintext highlighter-rouge">LINKED</code>, <code class="language-plaintext highlighter-rouge">NO_RESULTS</code>) beyond an expected time interval. For instance, if the expected processing time is at most 7 minutes, the workflows with <code class="language-plaintext highlighter-rouge">(current timestamp - updated_at) &gt; 7 minutes</code> are put back into the queue until it reaches an end state (limit on the number of retries). Followed by an hourly or daily report for workflows stuck in a pending state for further debugging.</p>
+
+<p>Hence a cron job/scheduler runs at a frequency (say, every 5 minutes) to check for workflows in pending state(s).</p>
+
+<hr class="hr" />
+
+<h3 id="42-resource-failure">4.2. Resource Failure</h3>
+<p><strong>Fault tolerance</strong> and high availability go hand-in-hand. While HA ensures minimal service interruption, fault tolerance aims for no service interruption or zero downtime, resulting in a higher cost.
+Typically satisfied with standby servers and storage systems to switch to in the case of failovers. For example:</p>
+
+<ul>
+  <li>
+    <p><strong>MySQL/RDS</strong>: Automatically switch to a standby replica or secondary instance in another Site/Availability Zone (Multi-AZ DB instance).</p>
+  </li>
+  <li>
+    <p><strong>Compute/EC2</strong>: Stand-by consumer/producer cluster spread across sites/AZs to handle failovers.</p>
+  </li>
+  <li>
+    <p><strong>Aerospike/DynamoDB</strong>: Nodes in a multi-site/AZ cluster are identically sized and evenly distributed across all sites to handle failovers and enable symmetry in performance and recovery.</p>
+  </li>
+  <li>
+    <p><strong>Message Bus/Queue</strong>: In Kafka - done by copying the partition data to other brokers (replicas) by setting a suitable replication factor.</p>
+  </li>
+</ul>
+
+<p>Lastly, a time-series data store (InfluxDB) for application events and
+Anomaly Detection and Remediation: <a href="https://www.pyblog.xyz/anomaly-detection-and-remediation">https://www.pyblog.xyz/anomaly-detection-and-remediation</a></p>
+
+<hr />
+
+<h2 id="5-scalability-availability-and-reliability">5. Scalability, Availability, and Reliability</h2>
+<p>The scalability, availability, reliability, and fault tolerance of the merchant service are dependent on the components mentioned in section 2.2.</p>
+
+<ul>
+  <li>
+    <p>The use of <strong>load balancers</strong> allows us to horizontally scale the application to handle traffic by increasing/decreasing the number of instances in the producer/consumer cluster. Further, health checks ensure high cluster availability and reliability by deregistering unhealthy instances and spinning up new healthy instances.</p>
+  </li>
+  <li>
+    <p><strong>Messaging brokers/bus</strong> such as RabbitMQ/Kafka have built clustering abilities, scales horizontally, and is HA (Highly Available). Moreover, even if the messages in the queue are lost, we can always reproduce the messages by reconciliation (section 4).</p>
+  </li>
+  <li>
+    <p>The <strong>NoSQL</strong> databases and <strong>relational databases</strong> (ACID vs BASE) are scalable when sharded horizontally. Furthermore, using the master-slave configuration combined with frequent snapshots offers availability and reliability.</p>
+  </li>
+  <li>
+    <p><strong>Workflow orchestrator/Scheduler</strong> such as Airflow is a highly available service and plays a prominent role in timely reconciliation. That said, the scheduler’s unavailability may delay the response time for failed processes until recovered.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="6-assumptions">6. Assumptions</h2>
+<h3 id="61-unique-search-result">6.1. Unique Search Result</h3>
+<p>The search API returns a single patient entry; however, to handle a list of patients in the search result, one possible approach is to pick the best result, and link automatically or let the customer/client decide the best link (compliance and patient data privacy?).</p>
+
+<hr class="hr" />
+
+<h3 id="62-sync-search">6.2. Sync Search</h3>
+<p>The API call to the internal system to search for the patient is synchronous. However, the async API call working is as follows:</p>
+
+<ul>
+  <li>
+    <p>The search API request to the internal system returns a 202 status code with <code class="language-plaintext highlighter-rouge">search-id</code>, and the callback URL is pre-configured (webhook).</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">search-id</code> is now a column in the <code class="language-plaintext highlighter-rouge">workflows</code> table.</p>
+  </li>
+  <li>
+    <p>The search search-id is saved in the <code class="language-plaintext highlighter-rouge">workflows</code> table with the status <code class="language-plaintext highlighter-rouge">REQUESTED</code>, which falls under pending state(s) to perform reconciliation beyond a time interval.</p>
+  </li>
+  <li>
+    <p>Note: Search call to the internal system is made after receiving the message from the consumer and not before pushing the message to the queue in the producer; hence search-id is initially NULL.</p>
+  </li>
+</ul>
+
+<hr class="hr" />
+
+<h3 id="63-patient-details">6.3. Patient Details</h3>
+<p>The <code class="language-plaintext highlighter-rouge">/link</code> API is meant for acknowledging the link status, and another API
+ <code class="language-plaintext highlighter-rouge">/patient/&lt;patient-id&gt;</code>  gives the patient details after a successful link.</p>
+
+<hr />
+
+<h3 id="7-questions">7. Questions</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Sections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>How should the link request work?</td>
+      <td>3.1, 3.2, 3.3</td>
+    </tr>
+    <tr>
+      <td>What does your system do when it receives the request?</td>
+      <td>3.1, 3.2</td>
+    </tr>
+    <tr>
+      <td>How and when does it respond?</td>
+      <td>3.2, 3.3</td>
+    </tr>
+    <tr>
+      <td>What data stores does your system use?</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <td>What are all the things you need to consider in terms of reliability, availability, scalability?</td>
+      <td>4, 5</td>
+    </tr>
+    <tr>
+      <td>How is your system fault tolerant?</td>
+      <td>4, 5</td>
+    </tr>
+    <tr>
+      <td>What does your overall solution look like and what are the components inside your system?</td>
+      <td>2, 3</td>
+    </tr>
+    <tr>
+      <td>Describe the APIs, responses, any behaviors you have designed within your system</td>
+      <td>3.1, 3.2, 3.3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/tackle-system-design" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (May 25, 2022). Anatomy of a System Design Interview: The example.
+                PyBlog. <a href="/tackle-system-design">https://www.pyblog.xyz/tackle-system-design</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>B Trees and B+ Trees | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="B Trees and B+ Trees" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How do you know which watermelon to pick?" />
+<meta property="og:description" content="How do you know which watermelon to pick?" />
+<link rel="canonical" href="https://pyblog.xyz/b-tree" />
+<meta property="og:url" content="https://pyblog.xyz/b-tree" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:image" content="https://pyblog.xyz/assets/featured/webp/bee-tree.webp" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pyblog.xyz/assets/featured/webp/bee-tree.webp" />
+<meta property="twitter:title" content="B Trees and B+ Trees" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/b-tree","@type":"BlogPosting","description":"How do you know which watermelon to pick?","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"image":"https://pyblog.xyz/assets/featured/webp/bee-tree.webp","headline":"B Trees and B+ Trees","dateModified":"2024-02-15T00:00:00+00:00","datePublished":"2024-02-15T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/b-tree"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">B Trees and B+ Trees</h2><p class="post-meta" data-id="/b-tree" data-url="/b-tree" data-title="B Trees and B+ Trees">
+    <time datetime="2024-02-15T00:00:00+00:00" itemprop="datePublished">
+        Feb 15, 2024
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/code-on-the-road">Code on the Road</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/data-structures"> #Data Structures</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">9 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/webp/bee-tree.webp" /></p>
+
+<div class="blog-reference green-disclaimer">
+<p>This post aims to correlate the use of B+ Trees as indexes in DBMS, rather than delving deeply into the specifics of B+ Trees. And is primarily derived from <a href="https://www.youtube.com/watch?v=aZjYr87r1b8" target="_blank">Abdul Bari's explanation on B Trees</a>.</p>
+</div>
+
+<details open=""><summary class="h3">0. Foundation</summary>
+
+<h3>Disk Structure</h3>
+<p>Let's start with disk structure. It's a <a href="https://en.wikipedia.org/wiki/Hard_disk_drive_platter" target="_blank">platter</a> with concentric circles, which are logical not physical. These circles of different radii are called tracks, and the vertical sections are called <a href="https://en.wikipedia.org/wiki/Disk_sector" target="_blank">sectors</a>. The intersection of a track and a sector is called a block. Hence, any location on the disk, i.e., block address, can be identified by the track number and sector number.</p>
+<img class="center-image-0 center-image-90" src="./assets/posts/b-tree/disk-structure.svg" />
+
+<hr class="hr" />
+<h3>How is Data Stored on Disk</h3>
+<p>Let's consider a block size of 512 bytes (hypothetical), meaning each block is 512 bytes. All read and write operations are in terms of blocks. Considering one block of 512 bytes, we have a beginning address of 0 up to 511. Each byte can have its own address and is called an offset. Now, we can refer to any one byte on the disk in terms of block address and offset.</p>
+
+<p>The disk is mounted on a spindle and has a head post. By spinning, we can change the sectors, and with the arm movement of the head (for reading and writing), the tracks are changed. This allows us to access any block or byte of data.</p>
+
+<img class="center-image-0 center-image-65" src="./assets/posts/b-tree/disk-main-memory.svg" />
+<p class="figure-header">Figure 1: Main Memory for Processing</p>
+
+<p>Another type of memory is main memory (<a href="https://en.wikipedia.org/wiki/Random-access_memory" target="_blank">RAM</a>). We run programs in main memory, and these programs access the data on the disk. To do so, the data has to be brought into the main memory to be accessed, and any updated results are written back to the disk. Thus, the data cannot be directly processed on the disk and must be brought into the main memory.</p>
+
+<p>Organizing the data inside the main memory as used by the program involves data structures, while organizing the data on the disk so that it can be accessed efficiently is managed by a DBMS (Database Management System).</p>
+
+<p>Moving on to understanding how the data is organized on the disk, let's consider an employee table with columns such as ID, name, department, and several others, containing 100 records/rows. Each record is 128 bytes, and each block on the disk is 512 bytes. Hence, the number of records that can be stored in each block is 4.</p>
+<img class="center-image-0 center-image-80" src="./assets/posts/b-tree/disk-organization-cropped.svg" />
+<p class="figure-header">Figure 2: Disk Organization</p>
+
+<p>Number of blocks required = <code>Total Number of Records / Records per block</code> = <code>100/4</code> = <code>25</code> blocks are required for storing 100 records.</p>
+
+<hr class="hr" />
+<h3>What is Indexing</h3>
+<p>Now, let's consider a query to search for a particular record. Because of the sequential access, this would require reading up to 25 blocks on the disk. To reduce this time and the number of blocks to scan, we prepare an <a href="https://en.wikipedia.org/wiki/Database_index" target="_blank">index</a> table. Each record in the index has a pointer to the table inside the disk/block, called the record pointer.</p>
+
+<img class="center-image-0 center-image-80" src="./assets/posts/b-tree/disk-index.svg" />
+<p class="figure-header">Figure 3: Table Index</p>
+
+<p>Typically, for a <a href="http://mlwiki.org/index.php/Secondary_Index" target="_blank">dense index</a>, each record in the table has an entry in the index. The index is also stored on the disk. Given that the index is stored on the disk, the space it takes can be calculated as follows: We know that the ID takes 10 bytes, and assume the pointer takes 6 bytes. So, each entry in the index takes 16 bytes.</p>
+
+<p>For 100 records, the size of the index on the disk is: <code>100 × 16 bytes = 1600 bytes</code>. And the number of blocks required is <code>1600 bytes/512 bytes per block</code> = <code>3.125</code>. Approximately, we need 4 blocks to store the index records on the disk.</p>
+
+<p>This significantly reduces the number of blocks to be read on the disk. By finding the ID in the index (accessing up to 4 blocks), followed by using the pointer address to find the record (accessing 1 block), the maximum number of blocks to access a record is reduced from 25 to 5 blocks.</p>
+
+<hr class="hr" />
+<h3>What is Multi-Level Indexing</h3>
+
+<p>But as the number of records grows, the size of the index also grows. For instance, if we have 1,000 records in the employee table, this would take up 250 blocks on the disk. The index would now need 32 blocks for the 1,000 entries, leading to the index itself becoming too large or requiring too many blocks to scan.</p>
+
+<img class="center-image-0 center-image-80" src="./assets/posts/b-tree/disk-multi-index.svg" />
+<p class="figure-header">Figure 4: Multi Level Index</p>
+
+<p>This can be optimized by using multi-level indexing. The level-2 index points to the first record of each level-1 index block. Each level-1 index block contains 32 index records (ID + Pointer). Thus, each entry in the level-2 index holds the first ID and a pointer to a level-1 index block. This <a href="http://mlwiki.org/index.php/Secondary_Index" target="_blank">sparse index</a> reduces the number of blocks needed to search.</p>
+
+<p>By adding another level of indexing, the number of blocks to scan for a given <code>ID</code> is reduced from 33 blocks (32 level-1 Index + 1 table block) to 3 blocks (1 level-2 index + 1 level-1 index + 1 table block).</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/b-tree/two-level-sparse-index.svg" />
+<p class="figure-header">Figure 4: Two Level Sparse Index</p>
+
+<p>The multi-level index forms a tree structure. However, manually adding indexes every time the number of records increases significantly is not feasible. What we want is a system that can automatically add and delete higher-level indices, resulting in a self-managed multi-level indexing system.</p>
+
+<p>This concludes the foundation and introduces the basic concept behind B-trees, B+ trees, and more generally, M-way search trees.</p>
+
+</details>
+
+<hr class="clear-hr" />
+
+<details open=""><summary class="h3">1. M-way Search Trees</summary>
+<p>Starting with a BST (<a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank">Binary Search Tree</a>), each node has one key/value and at most two children: the left child contains values less than the parent node, and the right child contains values greater than the parent node.</p>
+
+<img class="center-image-0 center-image" src="./assets/posts/b-tree/m-way-intuition.svg" />
+<p class="figure-header">Figure 5: BST vs M-Way Search Tree</p>
+
+<p>Extending this to a similar search tree structure with multiple keys per node, consider an example with 2 keys: <code>[20, 50]</code>. Here, the keys are arranged in ascending order, and the node can have 3 children: one for values less than 20, one for values between 20 and 50, and one for values greater than 50.</p>
+
+<p>These are called M-Way Search Trees. The above example is a 3-way search tree, where the node has 2 keys and at most 3 children. In general, an M-Way Search Tree can have at most <code>M</code> children and <code>(M - 1)</code> keys. Thus, M is based on the number of children, representing the degree of a node.</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/b-tree/m-way-node-structure.svg" />
+<p class="figure-header">Figure 6: BST and 4-Way Search Tree Node</p>
+
+<p>Similar to a BST, where a node has a key/data and left and right child pointers, in an M-Way Search Tree, a node can have up to <code>M</code> children pointers and <code>(M - 1)</code> keys. For example, in a 4-way search tree, a node can have up to 4 children pointers and 3 keys.</p>
+
+<img class="center-image-0 center-image-35" src="./assets/posts/b-tree/m-way-multi-index-node.svg" />
+<p class="figure-header">Figure 7: M-Way Search Tree (Multi Index) Node</p>
+
+<p>For multi-level indexes, we can use an M-Way Search Tree, where each node contains keys, child pointers, and record pointers (to the database record).</p>
+
+<p>However, let's take an example of using a 10-Way Search Tree for Multi-Level Indexing to see the issue with M-Way Trees. Where each node can have at most 10 children (M - 1) and 9 keys. Insert the keys: <code>10, 20, 30</code></p>
+
+<img class="center-image-0 center-image-50" src="./assets/posts/b-tree/m-way-issue.svg" />
+<p class="figure-header">Figure 8: M-Way Search Tree - Out of Control</p>
+
+<p>While it may seem obvious to first fill up the node keys before branching to a new child, M-Way Search Trees have no strict rules enforced on branching (inserts and deletes). In the worst case, an M-Way Search Tree could have a length of <code>N</code> for N number of keys, which is as bad as a linear search.
+
+</p>
+
+</details>
+
+<hr class="clear-hr" />
+
+<details open=""><summary class="h3">2. B Trees</summary>
+<p>In short, B-trees are M-Way trees with rules. The 4 rules:</p>
+<ol>
+<li>A node should have at least <code>⌈M/2⌉</code> children before creating a new child node to control the height of the M-Way Search Tree.</li>
+<li>The root node can have a minimum of 2 children without the restriction of Point 1.</li>
+<li>All leaf nodes should be at the same level.</li>
+<li>The creation process is bottom-up.</li>
+</ol>
+
+<p>Taking an example, M = 4 (4 children, 3 keys), starting with keys: <code>[10, 20, 40, 50]</code>:</p>
+<p>Initial Insertion:</p>
+<ul>
+<li>Insert 10: The tree is empty, so 10 becomes the first key in the root node.</li>
+<li>Insert 20: 20 is greater than 10, so it is placed in the same node, resulting in <code>[10, 20]</code>.</li>
+<li>Insert 40: 40 is greater than both 10 and 20, so it is placed in the same node, resulting in <code>[10, 20, 40]</code>.</li>
+</ul>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/b-tree/b-tree-2.svg" />
+<p class="figure-header">Figure 9: B Tree, Insertion and Overflow (1)</p>
+
+<p>Handling Overflow:</p>
+<ul>
+<li>Insert 50: The node now has 4 keys, exceeding the limit of 3 keys per node. This requires splitting the node.</li>
+<li>The middle key, 40, will be promoted to a new root node.</li>
+<li>The keys are split into two nodes: <code>[10, 20]</code> and <code>[50]</code>, with 40 as the root.</li>
+</ul>
+<p></p>
+
+<p>Adding more keys <code>[60, 70, 70]</code>:</p>
+<ul>
+<li>Insert 60: Goes to the right node <code>[50]</code>, resulting in <code>[50, 60]</code>.</li>
+<li>Insert 70: Goes to the right node <code>[50, 60]</code>, resulting in <code>[50, 60, 70]</code>.</li>
+</ul>
+
+<img class="center-image-0 center-image" src="./assets/posts/b-tree/b-tree-3.svg" />
+<p class="figure-header">Figure 10: B Tree, Insertion and Overflow (2)</p>
+
+<p>Handling Overflow in Right Node:</p>
+<ul>
+<li>Insert 80: The right node now has 4 keys, exceeding the limit. The middle key, 70, is promoted to the root.</li>
+<li>The keys are split into two nodes: <code>[50, 60]</code> and <code>[80]</code>.</li>
+</ul>
+
+
+<p>Adding more keys <code>[30, 35]</code>:</p>
+
+<ul>
+<li>Insert 30: Goes to the left node <code>[10, 20]</code>, resulting in <code>[10, 20, 30]</code>.</li>
+<li>Insert 35: The left node <code>[10, 20, 30]</code> now has 4 keys, exceeding the limit. The middle key, 30, will be promoted to the root.</li>
+<li>The keys are split into two nodes: <code>[10, 20] and [35]</code>.</li>
+</ul>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/b-tree/b-tree-4.svg" />
+<p class="figure-header">Figure 11: B Tree, Insertion and Overflow (3)</p>
+
+<ul>
+<li>The root now has <code>[30, 40, 70]</code>.</li>
+<li>Children: <code>[10, 20]</code>, <code>[35]</code>, <code>[50, 60]</code>, <code>[80]</code>.</li>
+</ul>
+
+<p>Adding more keys <code>[5, 15]</code>:</p>
+<ul>
+<li>Insert 5: Goes to the leftmost node <code>[10, 20]</code>, resulting in <code>[5, 10, 20]</code>.</li>
+<li>Insert 15: The leftmost node <code>[5, 10, 20]</code> now has 4 keys, exceeding the limit. The middle key, 15, will be promoted to the parent node.</li>
+</ul>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/b-tree/b-tree-5.svg" />
+<p class="figure-header">Figure 12: B Tree, Insertion and Overflow (3)</p>
+
+<ul>
+<li>The node <code>[30, 40, 70]</code> will now have <code>[15, 30, 40, 70]</code>, and needs to split because it has exceeded the limit.</li>
+<li>The middle key, 40, will be promoted to a new root.</li>
+<li>The keys are split into three nodes: <code>[15, 30]</code> and <code>[70]</code>.</li>
+<li>Re-arrange the links/connections.</li>
+</ul>
+
+<img class="center-image-0 center-image" src="./assets/posts/b-tree/b-tree-6.svg" />
+<p class="figure-header">Figure 13: B Tree, Final Form</p>
+
+<p>Note: Splitting the node in the above example is <code>⌈M/2⌉</code> (Ciel), which makes it left-biased, whereas choosing <code>⌊M/2⌋</code> (Floor) is still valid and would be right-biased.</p>
+
+</details>
+
+<hr class="clear-hr" />
+
+<details open=""><summary class="h3">3. B+ Trees</summary>
+
+<p>B+ Tree is a variant of a B Tree. In a B Tree, every node has keys with record pointers, as shown in Figure 7. In contrast, a B+ Tree does not have record pointers in every node. Instead, only the leaf nodes have record pointers.</p>
+
+<img class="center-image-0 center-image" src="./assets/posts/b-tree/b-plus-tree.svg" />
+<p class="figure-header">Figure 13: B+ Tree</p>
+
+<p>Every key in the B+ Tree has its copy in the leaf node along with its record pointer. Additionally, the leaf nodes are connected, forming a linked list, making the leaf-node level a dense index, which matches the format of the multi-level index we wanted (Figure 4).</p>
+</details>
+
+<hr class="clear-hr" />
+
+<details><summary class="h3">4. References</summary>
+<pre style="max-height: 300px"><code>"Platter," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/Platter.
+"Sector," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/Sector.
+"Random-access memory," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/Random-access_memory.
+"Database index," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/Database_index.
+"Dense Index," MLWiki. [Online]. Available: https://mlwiki.org/index.php/Dense_Index.
+"Sparse Index," MLWiki. [Online]. Available: https://mlwiki.org/index.php/Sparse_Index.
+"Binary search tree," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/Binary_search_tree.
+"B-tree," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/B-tree.
+"B+ tree," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/B%2B_tree.
+"M-ary tree," Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/M-ary_tree.
+"B-Trees and B+ Trees," YouTube. [Online]. Available: https://www.youtube.com/watch?v=aZjYr87r1b8.
+</code></pre>
+</details>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/b-tree" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Feb 15, 2024). B Trees and B+ Trees.
+                PyBlog. <a href="/b-tree">https://www.pyblog.xyz/b-tree</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

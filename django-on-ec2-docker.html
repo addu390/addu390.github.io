@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Deploying Django Application on AWS EC2 and Docker | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Deploying Django Application on AWS EC2 and Docker" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Totoro — With logo colors (AWS, Nginx, Guinicorn, and Django)" />
+<meta property="og:description" content="Totoro — With logo colors (AWS, Nginx, Guinicorn, and Django)" />
+<link rel="canonical" href="https://pyblog.xyz/django-on-ec2-docker" />
+<meta property="og:url" content="https://pyblog.xyz/django-on-ec2-docker" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Deploying Django Application on AWS EC2 and Docker" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/django-on-ec2-docker","@type":"BlogPosting","description":"Totoro — With logo colors (AWS, Nginx, Guinicorn, and Django)","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Deploying Django Application on AWS EC2 and Docker","dateModified":"2022-02-17T00:00:00+00:00","datePublished":"2022-02-17T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/django-on-ec2-docker"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Deploying Django Application on AWS EC2 and Docker</h2><p class="post-meta" data-id="/django-on-ec2-docker" data-url="/django-on-ec2-docker" data-title="Deploying Django Application on AWS EC2 and Docker">
+    <time datetime="2022-02-17T00:00:00+00:00" itemprop="datePublished">
+        Feb 17, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/django-rango">Django Rango</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/django"> #Django</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/aws"> #AWS</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/docker"> #Docker</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">3 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/aws-ec2-django.png" /></p>
+<p style="text-align: center;">Totoro — With logo colors (AWS, Nginx, Guinicorn, and Django)</p>
+
+<p>If you are here, you are probably looking to deploy a Django project using AWS EC2 and docker without an orchestrator (ECS, EKS, or Docker Swarm – <a href="https://www.mirantis.com/blog/mirantis-will-continue-to-support-and-develop-docker-swarm/">don’t use swarm</a>), you are at the right place.</p>
+
+<p>PS: I’d still recommend using Kubernetes or at least ECS in the longer run!</p>
+
+<h2 id="lets-get-started-">Let’s get started 🤪</h2>
+
+<p>This post assumes that you are familiar with AWS basic operations, such as spinning up an EC2 instance or other services and attaching a security group with relevant inbound and outbound traffic.</p>
+
+<p>Most resources selected are eligible under the free tier, and I’m not attaching a screenshot of every other screen on the AWS console; instead, just mentioning the steps.</p>
+
+<p>Instead of installing docker-engine in EC2 every time, let’s create a Docker AMI:</p>
+
+<ul>
+  <li>Launch Amazon Linux 2 EC2 instance.</li>
+  <li>Set-up docker AMI: Install Docker Engine and Docker Compose; enable and start docker service at AMI boot time.</li>
+</ul>
+
+<h2 id="launch-amazon-linux-2-ec2-instance">Launch Amazon Linux 2 EC2 instance:</h2>
+
+<ul>
+  <li>Select Region: Typically, a region closest to you.</li>
+  <li>Select AMI: Amazon Linux 2 AMI (HVM) – Kernel 5.10, SSD Volume Type (Free tier).</li>
+  <li>EC2 Family: t2.micro (Free tier).</li>
+  <li>Configure instance: Choose the appropriate VPC and subnet (leave it to default subnet if you aren’t sure) and leave the user-data blank.</li>
+  <li>Add your IP address for SSH inbound traffic in the security group and use a wild card 0.0.0.0 (not recommended).</li>
+  <li>Download the RSA keypair .pem file.</li>
+</ul>
+
+<h2 id="set-up-docker-ami">Set-up docker AMI:</h2>
+
+<ul>
+  <li>Login into remote EC2 instance using the ssh: <code class="language-plaintext highlighter-rouge">ssh -i &lt;ec2-keypair&gt;.pem ec2-user@&lt;ec2-public-ip-address&gt;</code> (don’t forget to set the right permission to the .pem file: <code class="language-plaintext highlighter-rouge">chmod 0400 &lt;ec2-keypair&gt;.pem</code>)</li>
+  <li>Install docker engine and docker-compose.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum update
+sudo yum install docker
+wget https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) 
+sudo mv docker-compose-$(uname -s)-$(uname -m) /usr/local/bin/docker-compose
+sudo chmod -v +x /usr/local/bin/docker-compose
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo chmod 666 /var/run/docker.sock
+</code></pre></div></div>
+
+<p>Note: To run docker-compose without sudo: <code class="language-plaintext highlighter-rouge">sudo usermod -aG docker $USER</code></p>
+
+<h2 id="run-the-django-application-on-docker--ec2">Run the Django application on Docker + EC2:</h2>
+
+<ul>
+  <li>Launch an EC2 instance with docker pre-installed.</li>
+  <li>Configure user data; to include environment variables and start-up script.</li>
+</ul>
+
+<p><img src="./assets/posts/create-ami.png" /></p>
+<p style="text-align: center;">Figure 1: Create AMI from EC2 instance</p>
+
+<h2 id="launch-an-ec2-instance-with-docker-pre-installed">Launch an EC2 instance with docker pre-installed:</h2>
+
+<ul>
+  <li>👻 We are almost done! On the EC2 dashboard, select the EC2 instance, go to “actions &gt; image and templates &gt; create image” and give the AMI a name.</li>
+  <li>Terminate and launch another EC2 instance (to test) from the new AMI (choose custom AMI while launching EC2 instance).</li>
+  <li>In the configure section, the user-data area is as follows (using cloud-init):</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Type: multipart/mixed; boundary="//"
+MIME-Version: 1.0
+
+--//
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
+#cloud-config
+runcmd:
+ - echo "For the first boot"
+
+cloud_final_modules:
+- [scripts-user, always]
+
+--//
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/sh
+sudo chmod 666 /var/run/docker.sock
+echo 'export DEBUG=False DATABASE_NAME=licensing DATABASE_USER=admin DATABASE_PASSWORD=xxxx HOST_ENDPOINT=rds-licensing.xxxx.ca-central-1.rds.amazonaws.com REDIS_LOCATION=redis://127.0.0.1:6379/' &gt; ~/script.sh
+chmod +x ~/script.sh
+sudo cp ~/script.sh /etc/profile.d/script.sh
+source /etc/profile
+--//--
+</code></pre></div></div>
+
+<p>Note: The user data script shown above works on first-boot and re-boots/restarts.</p>
+
+<p><img src="./assets/posts/select-custom-ami.png" /></p>
+<p style="text-align: center;">Figure 2: Launch EC2 instance from Custom Docker AMI</p>
+
+<p>Note: A better practice is to save the user data in a file, convert it to base64.</p>
+
+<p><img src="./assets/posts/set-user-data.png" /></p>
+<p style="text-align: center;">Figure 3: Set user data for EC2 instance (Docker AMI)</p>
+
+<p>Last but not the least, in the user-data, include how’d want to get your docker-compose.yml file. If it’s git, include a <code class="language-plaintext highlighter-rouge">git clone &lt;repo&gt;.git</code> and <code class="language-plaintext highlighter-rouge">docker-compose up</code></p>
+
+<p><img src="./assets/posts/ec2-security-inbound.png" /></p>
+<p style="text-align: center;">Figure 4: EC2 Security Group</p>
+
+<p>The EC2 security group is configured to receive public traffic; typically, HTTP traffic would only be from the load balancer.</p>
+
+<p>If you are following up with my prior post on dockerizing the Django application with MySQL database and Redis cache, here’s a quick set of steps to create RDS – MySQL.</p>
+
+<h2 id="create-mysql-database">Create MySQL Database:</h2>
+
+<ul>
+  <li>Choose a database creation method: Standard Create.</li>
+  <li>Engine options: MySQL</li>
+  <li>Edition: MySQL Community</li>
+  <li>Version: MySQL 8.0.27</li>
+  <li>Templates: Free Tier</li>
+  <li>Settings: Fill in the database name, master username, and master password.</li>
+  <li>DB instance class: db.t2.micro (Free tier)</li>
+  <li>Storage: General Purpose SSD with 20 GB (20 GB is the minimum storage for RDS).</li>
+  <li>Database authentication: Password authentication (Although not ideal, since the database is only accessible within the private network).</li>
+</ul>
+
+<p>If the database set-up is not for production use, make sure to use free tier, disable auto-scaling, backups, enhanced monitoring, and multi-AZ, and don’t set the RDS to “public”; use it within the private network. Instead, attach the EC2 security group to RDS inbound rules at port 3306.</p>
+
+<p><img src="./assets/posts/database-setup.png" /></p>
+<p style="text-align: center;">Figure 5: RDS Set-up in the private network</p>
+
+<p>And yes 🗄 make sure RDS and EC2 are within the same VPC.</p>
+
+<p>You are good to go 🚀</p>
+
+<p>Don’t forget to update the hostnames and passwords in user data (env variables) and configure the security group EC2 instances.</p>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/django-on-ec2-docker" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Feb 17, 2022). Deploying Django Application on AWS EC2 and Docker.
+                PyBlog. <a href="/django-on-ec2-docker">https://www.pyblog.xyz/django-on-ec2-docker</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

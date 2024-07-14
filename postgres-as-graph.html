@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Postgres as a Graph Database | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Postgres as a Graph Database" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Neo4j vs PostgreSQL" />
+<meta property="og:description" content="Neo4j vs PostgreSQL" />
+<link rel="canonical" href="https://pyblog.xyz/postgres-as-graph" />
+<meta property="og:url" content="https://pyblog.xyz/postgres-as-graph" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Postgres as a Graph Database" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/postgres-as-graph","@type":"BlogPosting","description":"Neo4j vs PostgreSQL","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Postgres as a Graph Database","dateModified":"2023-09-27T00:00:00+00:00","datePublished":"2023-09-27T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/postgres-as-graph"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Postgres as a Graph Database</h2><p class="post-meta" data-id="/postgres-as-graph" data-url="/postgres-as-graph" data-title="Postgres as a Graph Database">
+    <time datetime="2023-09-27T00:00:00+00:00" itemprop="datePublished">
+        Sep 27, 2023
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/system-design"> #System Design</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">5 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/neo4j-vs-pgsql.png" /></p>
+<p style="text-align: center;">Neo4j vs PostgreSQL</p>
+
+<p>Have you ever come across the need to store a graph in a relational database because using/onboarding a graph database for a small use-case is overkill?</p>
+
+<p>Before jumping into using a relational database like MySQL or PostgreSQL as a graph database, let’s lay down the fundamentals:</p>
+
+<h2 id="what-is-a-graph">What is a Graph?</h2>
+<p>A graph is a set of vertices/nodes interconnected by edges/links. The edges can be directed (unidirectional or bidirectional) or undirected (no orientation, only infers a connection between nodes).</p>
+
+<p><img class="center-image" style="width: 75%;" src="./assets/posts/graph-types.png" /></p>
+<p style="text-align: center;">Figure 1: (Left to Right) Undirected, Unidirectional and Bidirectional</p>
+
+<h2 id="graph-data-structure-in-java">Graph Data Structure in Java</h2>
+<p>A vertex represents the entity, and an edge represents the relationship between entities:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Vertex {
+    Integer label;
+    // standard constructor, getters, setters
+}
+</code></pre></div></div>
+<p>The graph would be a collection of vertices and edges:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Graph {
+    private Map&lt;Vertex, List&lt;Vertex&gt;&gt; adjVertices;
+    // standard constructor, getters, setters
+
+    void addVertex(Integer label) {
+        adjVertices.putIfAbsent(new Vertex(label), new ArrayList&lt;&gt;());
+    }
+
+    void addEdge(Integer label1, Integer label2) {
+        Vertex v1 = new Vertex(label1);
+        Vertex v2 = new Vertex(label2);
+        adjVertices.get(v1).add(v2);
+        adjVertices.get(v2).add(v1);
+    }
+}
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Graph createGraph() {
+    Graph graph = new Graph();
+    graph.addVertex(1);
+    graph.addVertex(2);
+    graph.addVertex(3);
+    graph.addVertex(4);
+    graph.addVertex(5);
+    graph.addVertex(6);
+    
+    graph.addEdge(1, 2);
+    graph.addEdge(1, 3);
+    graph.addEdge(2, 1);
+    graph.addEdge(2, 4);
+    graph.addEdge(3, 5);
+    graph.addEdge(3, 6);
+    
+    return graph;
+}
+</code></pre></div></div>
+<p><img class="center-image" style="width: 75%;" src="./assets/posts/graph-example-1.png" /></p>
+<p style="text-align: center;">Figure 2: Graph visual and map data-structure representation</p>
+
+<h2 id="graph-data-structures-in-postgres">Graph Data Structures in Postgres</h2>
+
+<p>Storing the graph <code class="language-plaintext highlighter-rouge">Map&lt;Vertex, List&lt;Vertex&gt;&gt;</code> in a relational database such as Postgres as-is would mean creating two tables: <code class="language-plaintext highlighter-rouge">Vertex</code> and <code class="language-plaintext highlighter-rouge">Graph</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE vertex (
+    vertex_id INT,
+    PRIMARY KEY(vertex_id)
+    // Other columns
+);
+
+CREATE TABLE graph (
+    graph_id INT,
+    vertex_id INT,
+    vertices INTEGER[]
+
+    PRIMARY KEY(graph_id),
+    CONSTRAINT fk_vertex_id
+    FOREIGN KEY(vertex_id)
+    REFERENCES vertex(vertex_id)
+    ON DELETE NO ACTION
+);
+</code></pre></div></div>
+<p>Ideally, each element in the <code class="language-plaintext highlighter-rouge">graph</code> -&gt; <code class="language-plaintext highlighter-rouge">vertices</code> array should represent foreign keys to the <code class="language-plaintext highlighter-rouge">vertex</code> table.</p>
+
+<p>Relational databases operate most efficiently on properly normalized data models. Arrays are not relational data structures, by definition they are sets; while the SQL standard supports defining foreign keys on array elements, PostgreSQL currently does not support it. However, there is an ongoing effort to implement this.</p>
+
+<p>A better way to store a graph in Postgres is by creating two tables: <code class="language-plaintext highlighter-rouge">vertex</code> and <code class="language-plaintext highlighter-rouge">edge</code>
+<img class="center-image" style="width: 90%;" src="./assets/posts/graph-example-2.png" /></p>
+<p style="text-align: center;">Figure 3: Graph representation - List of Edges</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE vertex (
+    vertex_id INT,
+    PRIMARY KEY(vertex_id)
+    // Other columns
+);
+
+CREATE TABLE edge (
+    source_vertex INT REFERENCES vertex(vertex_id),
+    target_vertex INT REFERENCES vertex(vertex_id),
+    PRIMARY KEY (source_vertex, target_vertex)
+);
+</code></pre></div></div>
+<p>The table <code class="language-plaintext highlighter-rouge">edge</code> represents the relationship between two vertices; the composite primary key <code class="language-plaintext highlighter-rouge">(source_vertex, target_vertex)</code> ensures that each edge is unique.</p>
+
+<h2 id="real-world-use-case">Real World Use-case</h2>
+<p>Zigbee protocol [2] and its mesh topology is a perfect example of a tree data structure. Zigbee has been around for a long time, initially conceived in the early 1990s, and is a widely wireless technology designed to facilitate low-cost, low-power wireless Internet of Things (IoT) networks.</p>
+
+<p>Moving on to the technical details, Zigbee Devices Types:</p>
+<ul>
+  <li>Zigbee Coordinator (ZC)</li>
+  <li>Zigbee Router (ZR)</li>
+  <li>Zigbee Endpoint Device (ZED)</li>
+</ul>
+
+<p><img class="center-image" style="width: 60%;" src="./assets/posts/zigbee-example-1.png" /></p>
+<p style="text-align: center;">Figure 4: Zigbee Mesh Topology</p>
+
+<p>The Zigbee network has exactly one <strong>Zigbee Coordinator (ZC)</strong> responsible for forming and coordinating the network. The <strong>Zigbee Router (ZR)</strong> represents intermediate nodes to assist in relaying data between nodes in the network and is instrumental in building the Zigbee network. The <strong>Zigbee Endpoint Device (ZED)</strong> are nodes that are logically attached to a Zigbee Router (ZR) and are typically devices such as lights, sensors, switches, etc., and communicates only with the Zigbee Router (parent).</p>
+
+<h3 id="create-queries">Create Queries</h3>
+<p>Tables to store ZC/ZR and their relationships in Postgres:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE TABLE router (
+    id SERIAL PRIMARY KEY,
+    serial_number VARCHAR(64),
+    role VARCHAR(32)
+);
+
+CREATE TABLE neighbor (
+    PRIMARY KEY (source_router, target_router),
+    source_router INTEGER REFERENCES router(id),
+    target_router INTEGER REFERENCES router(id)
+);
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">router</code> table has ZC and ZR, distinguished by the <code class="language-plaintext highlighter-rouge">role</code> column; in a Zigbee network, ZC and ZR are essentially routers, where ZC is often called Leader Router/Co-ordinator. The relationship between <code class="language-plaintext highlighter-rouge">ZC and ZR(s)</code> and <code class="language-plaintext highlighter-rouge">ZR and ZR(s)</code> is stored in the <code class="language-plaintext highlighter-rouge">neighbor</code> table.</p>
+
+<h3 id="insert-queries">Insert Queries</h3>
+<p>The data inserts for the mesh topology as shown in Figure 4 (without leaf nodes/end devices):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO router (serial_number, role) VALUES ('ACX7100-67600', 'ZC');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67601', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67602', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67603', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67604', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67605', 'ZR');
+INSERT INTO router (serial_number, role) VALUES ('ACX7100-67606', 'ZR');
+</code></pre></div></div>
+
+<p><img class="center-image img-border" style="width: 60%;" src="./assets/posts/postgres-router.png" /></p>
+<p style="text-align: center;">Figure 5: Entries in Router</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO neighbor (source_router, target_router) VALUES (1, 2);
+INSERT INTO neighbor (source_router, target_router) VALUES (1, 3);
+INSERT INTO neighbor (source_router, target_router) VALUES (1, 6);
+INSERT INTO neighbor (source_router, target_router) VALUES (3, 4);
+INSERT INTO neighbor (source_router, target_router) VALUES (3, 5);
+INSERT INTO neighbor (source_router, target_router) VALUES (6, 7);
+</code></pre></div></div>
+
+<p><img class="center-image img-border" style="width: 35%;" src="./assets/posts/postgres-neighbor.png" /></p>
+<p style="text-align: center;">Figure 6: Entries in Neighbor</p>
+
+<h3 id="select-queries">Select Queries</h3>
+<p>A router (ZC or ZR) has neighbors, and a neighbor router (ZR) also has neighbors (ZR), and this goes on until we have a leaf node (ZED). Querying for all the neighbors of a router = traversing the graph.</p>
+
+<p>Postgres offers built-in recursive queries, typically used for hierarchical or tree-structured data, i.e., to find all the direct and indirect relations to an entity.</p>
+
+<p>Get all neighbors (neighbors of neighbors) for a given router id:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WITH RECURSIVE all_neighbors AS (
+	SELECT neighbor.target_router
+	FROM neighbor
+	WHERE neighbor.source_router = 1
+	
+	UNION
+	
+	SELECT neighbor.target_router
+	FROM neighbor
+	JOIN all_neighbors ON neighbor.source_router = all_neighbors.target_router
+)
+SELECT router.id, router.serial_number
+FROM router
+JOIN all_neighbors ON router.id = all_neighbors.target_router;
+</code></pre></div></div>
+<p><img class="center-image img-border" style="width: 40%;" src="./assets/posts/postgres-all-neighbors.png" /></p>
+<p style="text-align: center;">Figure 7: All interconnected neighbors</p>
+
+<p>Get all neighbors (neighbors of neighbors - relationships) for a given router id</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WITH RECURSIVE all_neighbors AS (
+	SELECT neighbor.source_router, neighbor.target_router
+	FROM neighbor
+	WHERE neighbor.source_router = 1
+	
+	UNION
+	
+	SELECT neighbor.source_router, neighbor.target_router
+	FROM neighbor
+	JOIN all_neighbors ON neighbor.source_router = all_neighbors.target_router
+)
+SELECT all_neighbors.source_router, all_neighbors.target_router FROM all_neighbors;
+</code></pre></div></div>
+
+<p><img class="center-image img-border" style="width: 35%;" src="./assets/posts/postgres-neighbors-of-neighbors.png" /></p>
+<p style="text-align: center;">Figure 8: Neighbors of neighbors</p>
+
+<p><strong>Note</strong>: Postgres recursive queries work with circular graphs and will not lead to an infinite loop.</p>
+
+<hr class="hr" />
+
+<h2 id="references">References</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] “7.8. WITH Queries (Common Table Expressions),” PostgreSQL Documentation, May 11, 2023. https://www.postgresql.org/docs/current/queries-with.html#QUERIES-WITH-RECURSIVE
+
+[2] BHIS, “Understanding Zigbee and Wireless Mesh Networking,” Black Hills Information Security, Aug. 27, 2021. https://www.blackhillsinfosec.com/understanding-zigbee-and-wireless-mesh-networking/‌
+
+[3]“Apache AGE,” age.apache.org. https://age.apache.org/
+
+[4] D. Paulus, “Postgres: The Graph Database You Didn’t Know You Had,” dylanpaulus.com. https://www.dylanpaulus.com/posts/postgres-is-a-graph-database
+</code></pre></div></div>
+
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/postgres-as-graph" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Sep 27, 2023). Postgres as a Graph Database.
+                PyBlog. <a href="/postgres-as-graph">https://www.pyblog.xyz/postgres-as-graph</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

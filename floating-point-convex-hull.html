@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Floating Point Round Off Errors in Geometric Algorithms | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Floating Point Round Off Errors in Geometric Algorithms" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Eat Spinach and Build your Convex Hull — Popeye the Sailor." />
+<meta property="og:description" content="Eat Spinach and Build your Convex Hull — Popeye the Sailor." />
+<link rel="canonical" href="https://pyblog.xyz/floating-point-convex-hull" />
+<meta property="og:url" content="https://pyblog.xyz/floating-point-convex-hull" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Floating Point Round Off Errors in Geometric Algorithms" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/floating-point-convex-hull","@type":"BlogPosting","description":"Eat Spinach and Build your Convex Hull — Popeye the Sailor.","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Floating Point Round Off Errors in Geometric Algorithms","dateModified":"2022-03-14T00:00:00+00:00","datePublished":"2022-03-14T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/floating-point-convex-hull"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Floating Point Round Off Errors in Geometric Algorithms</h2><p class="post-meta" data-id="/floating-point-convex-hull" data-url="/floating-point-convex-hull" data-title="Floating Point Round Off Errors in Geometric Algorithms">
+    <time datetime="2022-03-14T00:00:00+00:00" itemprop="datePublished">
+        Mar 14, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/code-on-the-road">Code on the Road</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/algorithms"> #Algorithms</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/c"> #C++</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/data-structures"> #Data Structures</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">6 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/popeye-convex-hull.png" /></p>
+<p style="text-align: center;">Eat Spinach and Build your Convex Hull — Popeye the Sailor.</p>
+
+<h2 id="floating-point-precision-in-geometric-algorithms">Floating Point Precision in Geometric Algorithms</h2>
+
+<p>Most geometric algorithms are designed for exact real arithmetic; replacing them with floating-point arithmetic may cause those implementations to fail. Unfortunately, there are no go-to documents on what can go wrong and why across geometric algorithms. The rest of the post discusses what can go wrong when geometric algorithms are executed with floating-point arithmetic.</p>
+
+<p>To make the explanation simple, consider the convex hull algorithms for a given set of points <code class="language-plaintext highlighter-rouge">S</code>, the smallest polygon that can contain all the points of <code class="language-plaintext highlighter-rouge">S</code>; the extreme points of <code class="language-plaintext highlighter-rouge">S</code> would be the vertices of the convex hull polygon; all the points inside the convex hull are simply discarded.</p>
+
+<p>Typically, convex hulls computed by the floating-point implementation may leave out some of the extreme points, compute non-convex polygons, or the algorithm may run forever.</p>
+
+<h2 id="incremental-planar-convex-hull-algorithm">Incremental Planar Convex Hull Algorithm</h2>
+
+<p>An Convex Hull incremental algorithm maintains the current convex hull (<code class="language-plaintext highlighter-rouge">CH</code>) of the points seen so far. Initially, a convex hull is formed by choosing three non-collinear points in <code class="language-plaintext highlighter-rouge">S</code>. It then considers the remaining points one-by-one. When considering a point <code class="language-plaintext highlighter-rouge">r</code>, it first determines whether <code class="language-plaintext highlighter-rouge">r</code> is outside the current convex hull polygon. If not, <code class="language-plaintext highlighter-rouge">r</code> is discarded. Otherwise, the convex hull is updated by forming the tangents from <code class="language-plaintext highlighter-rouge">r</code> to <code class="language-plaintext highlighter-rouge">CH</code>. The algorithm maintains the current hull as a circular list <code class="language-plaintext highlighter-rouge">L = (v0, v1,. . .,vk−1)</code> of its extreme points in counter-clockwise order, where line segments <code class="language-plaintext highlighter-rouge">(vi, vi+1)</code> are the edges of the current hull.</p>
+
+<h2 id="single-step-failures">Single-Step Failures</h2>
+
+<p>An instance of violating the correctness properties of the algorithm. Consider a sequence: <code class="language-plaintext highlighter-rouge">p1, p2, p3, . . .</code> of points such that the first three points form a counter-clockwise triangle, and the insertion of some later point leads to a violation of a correctness property (because of floating-point). The examples that resulted in a violation always involve nearly or truly collinear points; to be clear, sufficiently non-collinear points did not cause any problems. Although this may seem that the examples are unrealistic, it mostly depends on the requirement of tolerable rounding errors as point sets may contain nearly collinear points or truly collinear points, which become nearly collinear by conversion to floating-point representation.</p>
+
+<h2 id="geometry-of-float-orientation">Geometry of Float-Orientation</h2>
+
+<p>Three points <code class="language-plaintext highlighter-rouge">p = (px, py)</code>, <code class="language-plaintext highlighter-rouge">q = (qx, qy)</code>, and <code class="language-plaintext highlighter-rouge">r = (rx, ry)</code> in the plane lie on the same line or form a left or right turn.</p>
+
+<p>The orientation of the triple <code class="language-plaintext highlighter-rouge">(p, q, r)</code> is defined by:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orientation(p, q, r) = sign((qx − px)(ry − py)−(qy − py)(rx − px)).
+</code></pre></div></div>
+
+<p>However, for floating-point arithmetic, because of the possible round-off errors, there are three ways in which the result of <code class="language-plaintext highlighter-rouge">float_orient</code> could differ from the correct orientation:</p>
+
+<ul>
+  <li>Rounding to zero: Misclassify <code class="language-plaintext highlighter-rouge">+</code> or <code class="language-plaintext highlighter-rouge">−</code> as <code class="language-plaintext highlighter-rouge">0</code></li>
+  <li>Perturbed zero: Misclassify <code class="language-plaintext highlighter-rouge">0</code> as <code class="language-plaintext highlighter-rouge">+</code> or <code class="language-plaintext highlighter-rouge">−</code></li>
+  <li>Sign inversion: Misclassify <code class="language-plaintext highlighter-rouge">+</code> as <code class="language-plaintext highlighter-rouge">−</code> or vice-versa.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">float_orient</code>, in other words, triple points are classified as left-turns, right-turns, or collinear.</p>
+
+<h2 id="failure-1-a-point-outside-the-current-hull-sees-no-edge-of-the-current-convex-hull">Failure 1: A point outside the current hull sees no edge of the current convex hull</h2>
+
+<p>Consider the set of points:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p1 = (7.3000000000000194, 7.3000000000000167) 
+p2 = (24.000000000000068, 24.000000000000071) 
+p3 = (24.00000000000005, 24.000000000000053) 
+p4 = (0.50000000000001621, 0.5000000000)
+p5 = (8, 4) 
+p6 = (4, 9) 
+p7 = (15, 27) 
+p8 = (26, 25) 
+p9 = (19, 11)
+</code></pre></div></div>
+
+<p>Orientation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>float_orient(p1, p2, p3) &gt; 0 
+float_orient(p1, p2, p4) &gt; 0 
+float_orient(p2, p3, p4) &gt; 0 
+float_orient(p3, p1, p4) &gt; 0 (??)
+</code></pre></div></div>
+
+<p><img width="80%" src="./assets/posts/convex-hull-failure-1.png" /></p>
+<p style="text-align: center;">Figure 1: Computer Convex Hull</p>
+
+<p>The above figure shows the computed convex hull, where a point that is clearly extreme is left out of the convex hull; <code class="language-plaintext highlighter-rouge">p1 ≈ (17, 17), p2 ≈ (24, 24) ≈ p3</code></p>
+
+<p>The first four points lie almost on the line: y = x, and <code class="language-plaintext highlighter-rouge">float_orient</code> shows the above results. As indicated by <code class="language-plaintext highlighter-rouge">(??)</code>, the last evaluation is wrong. Geometrically, these evaluations mean that <code class="language-plaintext highlighter-rouge">p4</code> sees no edge of the triangle <code class="language-plaintext highlighter-rouge">(p1, p2, p3)</code>. The points <code class="language-plaintext highlighter-rouge">p5, . . . , p9</code> are then correctly identified as extreme points and are added to the hull. 
+However, the algorithm never recovers from the error made when considering <code class="language-plaintext highlighter-rouge">p4</code> and the result of the computation differs drastically from the correct hull.</p>
+
+<h2 id="failure-2-a-point-inside-the-current-hull-sees-an-edge-of-the-current-hull">Failure 2: A point inside the current hull sees an edge of the current hull</h2>
+
+<p>Take a counterclockwise triangle (Initially) and choose the fourth point inside the triangle but very close to one of the edges. There is the chance of sign reversal. For example, consider the set of points:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p1 = (27.643564356435643, −21.881188118811881 ) 
+p2 = (83.366336633663366, 15.544554455445542 ) 
+p3 = ( 4.0, 4.0 ) 
+p4 = (73.415841584158414, 8.8613861386138595)
+</code></pre></div></div>
+
+<p>Orientation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>float orient(p1, p2, p3) &gt; 0 
+float orient(p1, p2, p4) &lt; 0 (??) 
+float orient(p2, p3, p4) &gt; 0 
+float orient(p3, p1, p4) &gt; 0 
+</code></pre></div></div>
+
+<p>The convex hull is correctly initialized to <code class="language-plaintext highlighter-rouge">(p1, p2, p3)</code>. The point p4 is inside the current convex hull, but the algorithm incorrectly believes that <code class="language-plaintext highlighter-rouge">p4</code> can see the edge <code class="language-plaintext highlighter-rouge">(p1, p2)</code> and hence changes the hull to <code class="language-plaintext highlighter-rouge">(p1, p4, p2, p3)</code>, a slightly non-convex polygon.</p>
+
+<h2 id="failure-3-a-point-outside-the-current-hull-sees-all-edges-of-the-convex-hull">Failure 3: A point outside the current hull sees all edges of the convex hull</h2>
+
+<p>Consider the set of points:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p1 = ( 200.0, 49.200000000000003) 
+p2 = ( 100.0, 49.600000000000001) 
+p3 = (−233.33333333333334, 50.93333333333333 ) 
+p4 = ( 166.66666666666669, 49.333333333333336) 
+</code></pre></div></div>
+
+<p>Orientation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>float orient(p1, p2, p3) &gt; 0 
+float orient(p1, p2, p4) &lt; 0 
+float orient(p2, p3, p4) &lt; 0 
+float orient(p3, p1, p4) &lt; 0 (??) 
+</code></pre></div></div>
+
+<p><img src="./assets/posts/convex-hull-failure-2.png" /></p>
+<p style="text-align: center;">Figure 2: Schematic view of Failure 3: The point p4 sees all edges of the triangle (p1, p2, p3)</p>
+
+<p>The first three points form a counterclockwise oriented triangle, and according to <code class="language-plaintext highlighter-rouge">float_orient</code>, the algorithm believes that <code class="language-plaintext highlighter-rouge">p4</code> can see all edges of the triangle.</p>
+
+<h2 id="failure-4-a-point-outside-the-current-hull-sees-a-non-contiguous-set-of-edges">Failure 4: A point outside the current hull sees a non-contiguous set of edges</h2>
+
+<p>Consider the set of points:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p1 = (0.50000000000001243, 0.50000000000000189) 
+p2 = (0.50000000000001243, 0.50000000000000333) 
+p3 = (24.00000000000005, 24.000000000000053) 
+p4 = (24.000000000000068, 24.000000000000071) 
+p5 = (17.300000000000001, 17.300000000000001)
+</code></pre></div></div>
+
+<p>Orientation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>float_orient(p1, p4, p5) &lt; 0 (??) 
+float_orient(p4, p3, p5) &gt; 0 
+float_orient(p3, p2, p5) &lt; 0 
+float_orient(p2, p1, p5) &gt; 0
+</code></pre></div></div>
+
+<p>Inserting the first three points, followed by the fourth point <code class="language-plaintext highlighter-rouge">p4</code> results in the convex quadrilateral <code class="language-plaintext highlighter-rouge">(p1, p4, p3, p2)</code>, which is correct. The last point, <code class="language-plaintext highlighter-rouge">p5</code>, sees only the edge <code class="language-plaintext highlighter-rouge">(p3, p2)</code> and none of the other three. However, <code class="language-plaintext highlighter-rouge">float_orient</code> makes <code class="language-plaintext highlighter-rouge">p5</code> see also the edge <code class="language-plaintext highlighter-rouge">(p1, p4)</code>. The subsequences of visible and invisible edges are not contiguous. Since the falsely classified edge <code class="language-plaintext highlighter-rouge">(p1, p4)</code> comes first, the algorithm inserts <code class="language-plaintext highlighter-rouge">p5</code> at this edge, removes no other vertex, and returns a polygon that has self-intersections.</p>
+
+<h2 id="the-takeaway">The Takeaway</h2>
+
+<p>As illustrated above, algorithms can fail because of rounding errors, taking an example of a convex hull algorithm implemented with floating-point arithmetic naively.</p>
+
+<p>As always, the reference to the C++ code, with variants of convex algorithms that fail because of rounding errors and how to prevent it can be found here: <a href="https://github.com/addu390/rounding-errors">https://github.com/addu390/rounding-errors</a></p>
+
+<p>As an extension, consider trying the CGAL library by using the exact float (<code class="language-plaintext highlighter-rouge">MP_Float</code>).</p>
+
+<p>Lastly, the post summarizes [1] and [2]. Which I came across while developing CSCI 6105 lab instructions as a Teaching Assistant.</p>
+
+<hr />
+
+<h2 id="references">References:</h2>
+
+<p>[1] “Robustness Problems in Convex Hull Computation,” wwwisg.cs.uni-magdeburg.de. http://wwwisg.cs.uni-magdeburg.de/ag/ClassroomExample/#Kettner2008 (accessed Mar. 11, 2022).</p>
+
+<p>[2] L. Kettner, K. Mehlhorn, S. Pion, S. Schirra, and C. Yap, “Classroom examples of robustness problems in geometric computations,” Computational Geometry, vol. 40, no. 1, pp. 61–78, May 2008, doi: 10.1016/j.comgeo.2007.06.003.</p>
+
+<p>[3] “The Floating-Point Guide - Exact Types,” floating-point-gui.de. https://floating-point-gui.de/formats/exact/ (accessed Mar. 11, 2022).</p>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/floating-point-convex-hull" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Mar 14, 2022). Floating Point Round Off Errors in Geometric Algorithms.
+                PyBlog. <a href="/floating-point-convex-hull">https://www.pyblog.xyz/floating-point-convex-hull</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

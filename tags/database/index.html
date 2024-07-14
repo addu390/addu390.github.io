@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Database | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Database" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How do you know which watermelon to pick?" />
+<meta property="og:description" content="How do you know which watermelon to pick?" />
+<link rel="canonical" href="https://pyblog.xyz/tags/database/" />
+<meta property="og:url" content="https://pyblog.xyz/tags/database/" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Database" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/tags/database/","@type":"WebPage","description":"How do you know which watermelon to pick?","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Database","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div class="pure-g" style="width: 100%; justify-content: center">
+    <div class="posts post-grid-container pure-u-md-18-24"><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/spatial-index-r-tree';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/webp/rtree-spatial-index.webp" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/spatial-index-r-tree">
+                        Spatial Index: R Trees
+                    </a>
+                </h2><p class="post-meta" data-id="/spatial-index-r-tree" data-url="/spatial-index-r-tree" data-title="Spatial Index: R Trees">
+    <time datetime="2024-06-26T00:00:00+00:00" itemprop="datePublished">
+        Jun 26, 2024
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/spatial-index"> #Spatial Index</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">9 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/spatial-index-r-tree';">
+                <p class="md-display">
+                    <span>
+
+In this post, let&#39;s explore the R-Tree data structure, which is popularly used to store multi-dimensional data, such as data points, segments...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+
+In this post, let&#39;s explore the R-Tree data structure, which is popularly used to store mul...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/spatial-index-tessellation';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/webp/space-tessellation.webp" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/spatial-index-tessellation">
+                        Spatial Index: Tessellation
+                    </a>
+                </h2><p class="post-meta" data-id="/spatial-index-tessellation" data-url="/spatial-index-tessellation" data-title="Spatial Index: Tessellation">
+    <time datetime="2024-06-17T00:00:00+00:00" itemprop="datePublished">
+        Jun 17, 2024
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/spatial-index"> #Spatial Index</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">16 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/spatial-index-tessellation';">
+                <p class="md-display">
+                    <span>
+
+Brewing! this post a continuation of Spatial Index: Grid Systems where we will set the foundation for tessellation and delve into the details of ...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+
+Brewing! this post a continuation of Spatial Index: Grid Systems where we will set the foundati...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/spatial-index-grid-system';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/webp/space-grids.webp" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/spatial-index-grid-system">
+                        Spatial Index: Grid Systems
+                    </a>
+                </h2><p class="post-meta" data-id="/spatial-index-grid-system" data-url="/spatial-index-grid-system" data-title="Spatial Index: Grid Systems">
+    <time datetime="2024-06-12T00:00:00+00:00" itemprop="datePublished">
+        Jun 12, 2024
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/spatial-index"> #Spatial Index</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">13 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/spatial-index-grid-system';">
+                <p class="md-display">
+                    <span>
+
+This post is a continuation of Stomping Grounds: Spatial Indexes, but don’t worry if you missed the first part—you’ll still find plenty of new in...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+
+This post is a continuation of Stomping Grounds: Spatial Indexes, but don’t worry if you missed...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/spatial-index-space-filling-curve';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/webp/spatio-temporal-index.webp" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/spatial-index-space-filling-curve">
+                        Spatial Index: Space-Filling Curves
+                    </a>
+                </h2><p class="post-meta" data-id="/spatial-index-space-filling-curve" data-url="/spatial-index-space-filling-curve" data-title="Spatial Index: Space-Filling Curves">
+    <time datetime="2024-06-11T00:00:00+00:00" itemprop="datePublished">
+        Jun 11, 2024
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/spatial-index"> #Spatial Index</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">12 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/spatial-index-space-filling-curve';">
+                <p class="md-display">
+                    <span>
+
+0. Overview
+Spatial data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add lo...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+
+0. Overview
+Spatial data has grown (/is growing) rapidly thanks to web services tracking where ...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/telemetry-pipeline';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/webp/telemetry-pipeline.webp" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/telemetry-pipeline">
+                        Real-time insights: Telemetry Pipeline
+                    </a>
+                </h2><p class="post-meta" data-id="/telemetry-pipeline" data-url="/telemetry-pipeline" data-title="Real-time insights: Telemetry Pipeline">
+    <time datetime="2024-06-07T00:00:00+00:00" itemprop="datePublished">
+        Jun 7, 2024
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/realtime"> #Realtime</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">14 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/telemetry-pipeline';">
+                <p class="md-display">
+                    <span>
+
+0. Overview
+
+0.1. Architecture
+A telemetry pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, ...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+
+0. Overview
+
+0.1. Architecture
+A telemetry pipeline is a system that collects, ingests, process...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/b-tree';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/webp/bee-tree.webp" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/b-tree">
+                        B Trees and B+ Trees
+                    </a>
+                </h2><p class="post-meta" data-id="/b-tree" data-url="/b-tree" data-title="B Trees and B+ Trees">
+    <time datetime="2024-02-15T00:00:00+00:00" itemprop="datePublished">
+        Feb 15, 2024
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/code-on-the-road">Code on the Road</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/data-structures"> #Data Structures</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">9 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/b-tree';">
+                <p class="md-display">
+                    <span>
+
+
+This post aims to correlate the use of B+ Trees as indexes in DBMS, rather than delving deeply into the specifics of B+ Trees. And is primarily ...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+
+
+This post aims to correlate the use of B+ Trees as indexes in DBMS, rather than delving deeply...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/debezium-postgres-cdc';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/webp/debezium-postgres-cdc.webp" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/debezium-postgres-cdc">
+                        Debezium: PostgreSQL Change Data Capture (CDC)
+                    </a>
+                </h2><p class="post-meta" data-id="/debezium-postgres-cdc" data-url="/debezium-postgres-cdc" data-title="Debezium: PostgreSQL Change Data Capture (CDC)">
+    <time datetime="2023-10-16T00:00:00+00:00" itemprop="datePublished">
+        Oct 16, 2023
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/system-design"> #System Design</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">7 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/debezium-postgres-cdc';">
+                <p class="md-display">
+                    <span>
+Figure 1: Debezium Postgres Connector
+
+1. Goal
+Set up Debezium to capture row-level changes in the schemas of a PostgreSQL database and publish to...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+Figure 1: Debezium Postgres Connector
+
+1. Goal
+Set up Debezium to capture row-level changes in t...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/postgres-as-graph';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/neo4j-vs-pgsql.png" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/postgres-as-graph">
+                        Postgres as a Graph Database
+                    </a>
+                </h2><p class="post-meta" data-id="/postgres-as-graph" data-url="/postgres-as-graph" data-title="Postgres as a Graph Database">
+    <time datetime="2023-09-27T00:00:00+00:00" itemprop="datePublished">
+        Sep 27, 2023
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/system-design"> #System Design</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">5 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/postgres-as-graph';">
+                <p class="md-display">
+                    <span>
+Neo4j vs PostgreSQL
+
+Have you ever come across the need to store a graph in a relational database because using/onboarding a graph database for a ...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+Neo4j vs PostgreSQL
+
+Have you ever come across the need to store a graph in a relational databas...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/tackle-system-design';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/iphone-100x.png" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/tackle-system-design">
+                        Anatomy of a System Design Interview: The example
+                    </a>
+                </h2><p class="post-meta" data-id="/tackle-system-design" data-url="/tackle-system-design" data-title="Anatomy of a System Design Interview: The example">
+    <time datetime="2022-05-25T00:00:00+00:00" itemprop="datePublished">
+        May 25, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/system-wisdom">System Wisdom</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/project"> #Project</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/system-design"> #System Design</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">9 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/tackle-system-design';">
+                <p class="md-display">
+                    <span>
+Complex is Simple. 
+
+What’s better than going over a real system design interview question (Interviewed in June 2022).
+
+1. Requirements
+Review the...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+Complex is Simple. 
+
+What’s better than going over a real system design interview question (Inte...</span>
+                </p>
+            </div>
+        </section><section class="post post-grid-card">
+            <div class="clickable-div" onclick="location.href='/django-postgis';">
+                <img class="center-image-100 crop" src="https://pyblog.xyz/assets/featured/geo-django-popeye.png" alt="Featured Image" />
+            </div>
+
+            <hr class="post-hr">
+
+            <header class="feed-header">
+                <h2 class="post-title">
+                    <a href="/django-postgis">
+                        Location-based application using Django, PostGIS and Leaflet
+                    </a>
+                </h2><p class="post-meta" data-id="/django-postgis" data-url="/django-postgis" data-title="Location-based application using Django, PostGIS and Leaflet">
+    <time datetime="2022-03-15T00:00:00+00:00" itemprop="datePublished">
+        Mar 15, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/django-rango">Django Rango</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/django"> #Django</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/database"> #Database</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/python"> #Python</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">3 min read</span>
+</p></header>
+
+            <div class="post-description clickable-div" onclick="location.href='/django-postgis';">
+                <p class="md-display">
+                    <span>
+One spatial point to an other — Popeye the Sailor.
+
+In a prior post, the experiment on hybrid spatial-index to find spatial data points is worth e...</span>
+                </p>
+                <p class="sm-display">
+                    <span>
+One spatial point to an other — Popeye the Sailor.
+
+In a prior post, the experiment on hybrid sp...</span>
+                </p>
+            </div>
+        </section></div><div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;"><section class="post sidebar-scrollable-div">
+    <span ><img id="clear-reading-list" class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/trash.svg" alt=""></span>
+    <h3><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/bookmark.svg" alt=""> #readinglist <span class="sub-header">your saved selections</span></h3>
+    <div id="sidebar-reading-list"></div>
+</section><section class="post sidebar-scrollable-div">
+    <h3><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/tag.svg" alt=""> #<a href="/tags">tags</a> <span class="sub-header">posts by tags</span></h3>
+    <hr class="post-hr">
+    <div>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/project">#Project</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/python">#Python</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/3d-printing">#3d printing</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/security">#Security</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/dropwizard">#Dropwizard</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/java">#Java</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/design-patterns">#Design patterns</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/django">#Django</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/aws">#Aws</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/docker">#Docker</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/algorithms">#Algorithms</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/data-structures">#Data structures</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/github">#Github</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/c">#C++</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/database">#Database</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/gallery">#Gallery</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/cartogram">#Cartogram</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/gsoc">#Gsoc</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/open-source">#Open source</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/system-design">#System design</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/machine-learning">#Machine learning</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/realtime">#Realtime</a></p>
+        
+            <p class="clickable-sidebar-div"><a href="https://pyblog.xyz/tags/spatial-index">#Spatial index</a></p>
+        
+    </div>
+</section><div class="ml-embedded" style="margin-bottom: 1em" data-form="9OoTRn"></div><section class="social-icons">
+    <a href="https://mastodon.social/@addu390" target="_blank"><img class="svg-icon" src="https://pyblog.xyz/assets/img/common/mastodon.svg" alt="mastodon"></a>
+    <a href="https://pyblog.medium.com/" target="_blank"><img class="svg-icon" src="https://pyblog.xyz/assets/img/common/medium.svg" alt="medium"></a>
+    <a href="https://x.com/gooshi_addu" target="_blank"><img class="svg-icon" src="https://pyblog.xyz/assets/img/common/x.svg" alt="x"></a>
+    <a href="https://github.com/addu390" target="_blank"><img class="svg-icon" src="https://pyblog.xyz/assets/img/common/github.svg" alt="github"></a>
+    <a href="https://buymeacoffee.com/pyblog" target="_blank"><img class="svg-icon" src="https://pyblog.xyz/assets/img/common/sponsor.svg" alt="buymeacoffee"></a>
+    <a href="https://instagram.com/hyperretard_" target="_blank"><img class="svg-icon" src="https://pyblog.xyz/assets/img/common/instagram.svg" alt="instagram"></a>
+</section>
+<section>
+    <p class="figure-header">Made with <img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/heart.svg" alt=""> and <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a>.<br/> PyBlog © 2016 - 2024.</p>
+</section></div>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

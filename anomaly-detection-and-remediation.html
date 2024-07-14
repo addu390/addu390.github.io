@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Anomaly Detection and Remediation | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Anomaly Detection and Remediation" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Expect the Unexpected" />
+<meta property="og:description" content="Expect the Unexpected" />
+<link rel="canonical" href="https://pyblog.xyz/anomaly-detection-and-remediation" />
+<meta property="og:url" content="https://pyblog.xyz/anomaly-detection-and-remediation" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Anomaly Detection and Remediation" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/anomaly-detection-and-remediation","@type":"BlogPosting","description":"Expect the Unexpected","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Anomaly Detection and Remediation","dateModified":"2022-04-17T00:00:00+00:00","datePublished":"2022-04-17T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/anomaly-detection-and-remediation"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Anomaly Detection and Remediation</h2><p class="post-meta" data-id="/anomaly-detection-and-remediation" data-url="/anomaly-detection-and-remediation" data-title="Anomaly Detection and Remediation">
+    <time datetime="2022-04-17T00:00:00+00:00" itemprop="datePublished">
+        Apr 17, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/code-on-the-road">Code on the Road</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/python"> #Python</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/django"> #Django</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/security"> #Security</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">5 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/popeye-killswitch.png" /></p>
+<p style="text-align: center;">Expect the Unexpected </p>
+
+<h2 id="1-introduction">1. Introduction</h2>
+<p>The overview of the post is on building a system to detect potential anomalies and take immediate action(s). Hence primarily has two phases: Detect and Contain.
+However, the post discusses the use case to detect and contain anomalies as a generic implementation detail.</p>
+
+<h3 id="11-two-main-components">1.1. Two main components:</h3>
+<ul>
+  <li>
+    <p><strong>Anomaly Detection Service</strong> (Detect): Define rules to detect abnormal incidents.</p>
+  </li>
+  <li>
+    <p><strong>Kill Switch Service</strong> (Contain): Prioritize and evaluate rules to switch the application behavior.</p>
+  </li>
+</ul>
+
+<h2 id="2-anomaly-detection-service">2. Anomaly Detection Service</h2>
+<p>Anomaly Detection service is an alerting framework for configuring alerts on top of any time series datastore.</p>
+
+<h3 id="21-working-overview">2.1. Working Overview</h3>
+<p>Events from applications(s) are published and stored in a time-series data store. Predefined rules (absolute and relative) are evaluated at a fixed time interval and frequency to alert if any anomalies are detected.</p>
+
+<h3 id="22-anomalies-can-be-broadly-categorized-into-two-types">2.2. Anomalies can be broadly categorized into two types:</h3>
+<ul>
+  <li>
+    <p><strong>Absolute Anomaly:</strong> is based on absolute data values; for example, an application receives a minimum of 400 payments every 30 minutes from 10 AM to 5 PM; anything below the minimum is considered an anomaly.</p>
+  </li>
+  <li>
+    <p><strong>Relative Anomaly:</strong> is based on data values relative to the previous day/week/month; for example, a 25% or more decrease in the number of payments in a 30-minute time window(s) from 10 AM to 3 PM relative to the previous day(s) (on the same day and 30-minute window); i.e., if there were 200 payments from 3:00 PM to 3:30 PM yesterday and it’s less than 140 today (more than 25% decrease), it’s an anomaly.</p>
+  </li>
+</ul>
+
+<h3 id="23-model">2.3. Model</h3>
+<p>Presuming the data is being published to a time-series store, the different fields of a rule are as follows:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ID</code>: A Unique Identifier.</li>
+  <li><code class="language-plaintext highlighter-rouge">Query</code>: To get the data for evaluation from the time-series data store.</li>
+  <li><code class="language-plaintext highlighter-rouge">Anomaly rule-type</code>: Absolute/Relative.</li>
+  <li><code class="language-plaintext highlighter-rouge">Time window</code>: Sliding window interval.</li>
+  <li><code class="language-plaintext highlighter-rouge">Time Interval</code>: From and to interval.</li>
+  <li><code class="language-plaintext highlighter-rouge">Frequency</code>: Frequency of rule evaluation (Every x seconds).</li>
+  <li><code class="language-plaintext highlighter-rouge">Expiry/Validity</code>: To decide whether to evaluate the rule or not.</li>
+  <li><code class="language-plaintext highlighter-rouge">Content</code>: Alert content (JSON or String).</li>
+  <li><code class="language-plaintext highlighter-rouge">Receivers</code>: Webhook, Email, etc.</li>
+  <li><code class="language-plaintext highlighter-rouge">Status</code>: Active/Inactive.</li>
+</ul>
+
+<h3 id="24-system-design">2.4. System Design</h3>
+<p>At this point, it’s clear that queries have to be executed within a defined time interval (from-to) and time window; furthermore, in the case of relative rules, current query results have to compare the results with historical data.</p>
+
+<p>However, historical data is often archived and is not scalable to run a query every time the rule is evaluated, as certain critical systems may have frequent executions.</p>
+
+<p>One possible solution is to use lazy loading: Store the results in ElasticSearch (Query result, time window/interval, rule ID, etc.) after evaluating the rule; thereby, for <strong>relative rules</strong>, the historical data values can be retrieved from ElasticSearch instead of querying the time-series datastore every time. Furthermore, having a pipeline to <strong>prefill historical data results into ElasticSearch</strong> further reduces the rule evaluation time.</p>
+
+<p>When a rule is registered, for the time interval and widow, a scheduler is responsible for evaluating the rule at a predefined frequency. For instance, a rule has a 30-minute time window and a 10 AM to 3 PM time interval with a frequency of 10 minutes: in this case, the rule evaluations are 10-10:30, 10:10-10:40, 10:20-10:50, and so on.</p>
+
+<p>Lastly, when the rule has to be evaluated, the scheduler publishes a message to the queue. Once the rule evaluation results in an alert, the alert message is pushed to another queue.</p>
+
+<p>Hence, the different <strong>components</strong> involved are as follows:</p>
+
+<p><img class="center-image-0" src="./assets/posts/ad-system-design-v2.png" /></p>
+<p style="text-align: center;">Anomaly Detection Service System Design </p>
+
+<ul>
+  <li><strong>Key-value store (MongoDB):</strong>
+    <ul>
+      <li>A catalog to store the rule(s) and alert(s) data required for rule evaluation and alerts (A better option: use ElasticSearch to search for rules from time interval and window - necessary for the reconciliation of rule registration).</li>
+      <li>For idempotency - to ensure the same rule is not evaluated more than once under the same time window and keep track of previous evaluation(s) status.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Queue (RabbitMQ/Kafka):</strong> To queue rule evaluation and alert requests.</p>
+  </li>
+  <li><strong>Time-series data store (InfluxDB):</strong> Datastore for application events. Rules are evaluated by querying the data.</li>
+</ul>
+
+<h3 id="25-conclusion">2.5. Conclusion</h3>
+<p>The applications of the Anomaly detector are endless as long as data is published to a time-series data store and have use cases across domains: abnormal queries on the database, frequency of APIs, usage of tools (Cloud Trail), change in user privileges, resource utilization spikes, and many more. The action items after detecting anomalies are open-ended, and lastly, the rule evaluation is not limited to a query on the time-series data store. The extension could be having an ML decision layer for the query data.</p>
+
+<h2 id="3-kill-switch-service">3. Kill Switch Service</h2>
+
+<h3 id="21-working-overview-1">2.1. Working Overview</h3>
+<p>The basic idea of the “kill-switch” is to take a JSON input and evaluate a set of rules on the input JSON and return the match result. 
+After that, it’s up to the receiver to decide the action item; one go-to approach is to throw an exception with a custom status code and configure the client-side pages to display a relevant message such as “Temporarily blocked.”</p>
+
+<p>For example: Let’s say there’s a workflow in the application where the purchase of an order is fulfilled, and HSBC bank is temporarily down, or there’s a bug identified; hence, to block such workflows, one would create a kill-switch rule which matches to True for <code class="language-plaintext highlighter-rouge">PURCHASE</code> workflow of <code class="language-plaintext highlighter-rouge">HSBC</code> bank.</p>
+
+<ul>
+  <li>Predefined Rule: <code class="language-plaintext highlighter-rouge">WORKFLOW == "PURCHASE" and BANK == "HSBC"</code></li>
+  <li>JSON input: <code class="language-plaintext highlighter-rouge">{"WORKFLOW": "PURCHASE", "BANK": "HSBC"}</code></li>
+  <li>Output: <code class="language-plaintext highlighter-rouge">True</code></li>
+</ul>
+
+<h3 id="32-model">3.2. Model</h3>
+<p>The different fields of a rule are as follows:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ID</code>: A Unique Identifier.</li>
+  <li><code class="language-plaintext highlighter-rouge">Conditions</code>: To evaluate the input JSON.</li>
+  <li><code class="language-plaintext highlighter-rouge">Time Interval</code>: From and to interval (Validity/Expiry of the rule).</li>
+  <li><code class="language-plaintext highlighter-rouge">Frequency</code>: Frequency of rule evaluation (Defaults to 30 seconds).</li>
+  <li><code class="language-plaintext highlighter-rouge">Status</code>: Active/Inactive.</li>
+</ul>
+
+<h3 id="33-system-design">3.3. System Design</h3>
+<p>While implementing a simple rule engine for the given JSON is relatively easy, the expectation is that most APIs in the backend application would need to call the Kill-switch service to evaluate. Hence, ensuring low latency is of a higher priority.</p>
+
+<p>The kill-switch service can store the ruleset in a key-value cache-store such as Redis with a longer TTL and update the cache when the rules are expired or modified.</p>
+
+<p>The application calling the kill-switch service still has to bear the network latency to make the API call, possibly for most backend APIs. Using another layer of Redis is a bad idea, given the TTL may have to be seconds. A better approach is to load the kill-switch rules relevant to the integrated application at run-time for a predefined frequency, using a scheduler + queue combination.</p>
+
+<p>The barebone implementation of KS: <a href="https://github.com/addu390/kill-switch">https://github.com/addu390/kill-switch</a></p>
+
+<p>The different <strong>components</strong> involved are as follows:</p>
+
+<p><img class="center-image-0" src="./assets/posts/ks-system-design.png" /></p>
+<p style="text-align: center;">Kill Switch Service System Design </p>
+
+<ul>
+  <li>
+    <p><strong>Data Store (MySQL):</strong> To validate and store the rule(s).</p>
+  </li>
+  <li>
+    <p><strong>Queue (RabbitMQ/Kafka):</strong> (for Client application) Scheduler callback pushed to a queue to import the kill-switch rules (in-memory).</p>
+  </li>
+  <li>
+    <p><strong>Key-value Cache (Redis):</strong> To cache the rules to facilitate low latency API calls.</p>
+  </li>
+</ul>
+
+<h3 id="34-conclusion">3.4. Conclusion</h3>
+<p>The use-case(s) of the kill-switch service spans across domains. All it takes is a set of key-value pairs and rule(s) to validate the key-value pairs, followed by an action item in complete control of the client. Be it temporarily blocking a workflow, a set of users, a tool, or even resources. However, it’s important to use KS for its prime purpose and not force-fit to other use-cases like A/B testing.</p>
+
+<p>Both the services (AD and KS) work independently and are stand-alone applications. But go hand-in-hand. For instance, activating a kill switch can be an action item of the anomaly detector.</p>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/anomaly-detection-and-remediation" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Apr 17, 2022). Anomaly Detection and Remediation.
+                PyBlog. <a href="/anomaly-detection-and-remediation">https://www.pyblog.xyz/anomaly-detection-and-remediation</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>

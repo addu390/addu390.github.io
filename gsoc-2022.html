@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Jekyll">
+    <link rel="license" href="LICENSE">
+
+    <meta name="application-name" content="PYBLOG">
+    <meta name="theme-color" content="">
+    <link rel="archives" href="https://pyblog.xyz/archives/">
+    <link rel="me" href="https://mastodon.social/@addu390">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/code.css">
+    <link rel="alternate" type="application/rss+xml" href="https://pyblog.xyz/feed.xml">
+    <!-- TODO: Upgrade Google Analytics -->
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Google Summer of Code - Cartograms in Grapher | PYBLOG</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Google Summer of Code - Cartograms in Grapher" />
+<meta name="author" content="Adesh Nalpet Adimurthy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Wish me Luck :)" />
+<meta property="og:description" content="Wish me Luck :)" />
+<link rel="canonical" href="https://pyblog.xyz/gsoc-2022" />
+<meta property="og:url" content="https://pyblog.xyz/gsoc-2022" />
+<meta property="og:site_name" content="PYBLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Google Summer of Code - Cartograms in Grapher" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Adesh Nalpet Adimurthy" />
+<script type="application/ld+json">
+{"url":"https://pyblog.xyz/gsoc-2022","@type":"BlogPosting","description":"Wish me Luck :)","author":{"@type":"Person","name":"Adesh Nalpet Adimurthy"},"headline":"Google Summer of Code - Cartograms in Grapher","dateModified":"2022-04-22T00:00:00+00:00","datePublished":"2022-04-22T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pyblog.xyz/gsoc-2022"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWDR3LD16H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LWDR3LD16H');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js"></script>
+    <script src="/assets/main.js"></script>
+
+    <!-- MailerLite Universal -->
+    <script async>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1023335');
+    </script>
+    <!-- End MailerLite Universal -->
+</head><body>
+
+    <div id="layout" class="pure-g"><aside class="sidebar pure-u-1 pure-u-md-1-5">
+    <div class="sidebar-info">
+        <span hidden>PYBLOG</span>
+        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+            src="https://pyblog.xyz/assets/img/profile/3.gif" alt="Photo of Adesh Nalpet Adimurthy" />
+        <h1 class="brand-title">
+            <a href="/">· PYBLOG ·</a>
+        </h1>
+        <br>
+        <h2 class="brand-tagline">How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?</h2>
+        <p></p>
+    </div>
+
+    <ul class="sidebar-list">
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz';"><span class="sidebar-index"><img
+                    class="twemoji" src="https://pyblog.xyz/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/book.svg"
+                    alt="journal"></span>&nbsp;
+            Journal</li>
+        <li class="clickable-div high-featured" onclick="location.href='https://pyblog.xyz/subscribe';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="https://pyblog.xyz/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="https://www.buymeacoffee.com/pyblog" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/cookie.svg"
+                    alt="privacy policy"></span>&nbsp;
+            Privacy Policy</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/categories';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/folder.svg"
+                    alt="categories"></span>&nbsp;
+            Categories</li>
+        <li class="clickable-div low-featured" onclick="location.href='https://pyblog.xyz/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="https://pyblog.xyz/assets/img/emoji/archive.svg"
+                    alt="archive"></span>&nbsp;
+            Archive</li>
+    </ul>
+</aside>
+
+<script src="/assets/sidebar.js"></script><div class="content pure-u-1 pure-u-md-4-5">
+            <div id="showerContainer"></div>
+            <div class="md-display"><div class="menu"><div id="search">
+    <label>
+        <svg class="icon svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
+        <span class="search-power-text">Powered by Simple Search</span>
+    </label>
+</div>
+<ul id="results-container" style="display: none"></ul>
+<script src="/assets/simple-jekyll-search.js"></script>
+<script>
+    function changeResultContainerDisp(val) {
+        if (val) {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "block";
+            document.getElementById("search-input").addEventListener("blur", function () {
+                document.addEventListener("click", function (event) {
+                    var isClickInside = document.getElementById("results-container").contains(event.target);
+                    if (! isClickInside) {
+                        document
+                            .getElementById("results-container")
+                            .style
+                            .display = "none";
+                    }
+                })
+            })
+        } else {
+            document
+                .getElementById("results-container")
+                .style
+                .display = "none";
+        }
+    }
+    var sjs = SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        json: "/search.json",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='https://pyblog.xyz{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='../assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        noResultsText: "No results found. Try another search.",
+        fuzzy: false,
+        limit: 5
+    })
+</script><a id="dark-mode-button">
+        <img id="icon-light" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="https://pyblog.xyz/assets/img/emoji/dark.svg" style="display: none;" alt="">
+    </a>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="https://pyblog.xyz/assets/img/common/rss.svg"
+            alt=""></a>
+    <a id="sound-button">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="https://pyblog.xyz/assets/img/common/audio-off.svg" alt="">
+    </a>
+</div>
+
+<audio id="darkModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="darkModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOn">
+    <source src="https://pyblog.xyz/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="soundModeOff">
+    <source src="https://pyblog.xyz/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio></div>
+            <div>
+                <div></div><div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
+    <div class="posts pure-u-md-5-6">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="feed-header">
+                <h2 class="post-title" itemprop="name headline">Google Summer of Code - Cartograms in Grapher</h2><p class="post-meta" data-id="/gsoc-2022" data-url="/gsoc-2022" data-title="Google Summer of Code - Cartograms in Grapher">
+    <time datetime="2022-04-22T00:00:00+00:00" itemprop="datePublished">
+        Apr 22, 2022
+    </time><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/categories/code-on-the-road">Code on the Road</a><b class="post-meta-dots">·</b>
+    <a href="https://pyblog.xyz/tags/python"> #Python</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/cartogram"> #Cartogram</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/gsoc"> #GSoC</a>&#8239; 
+    <a href="https://pyblog.xyz/tags/open-source"> #Open Source</a><span class="save-button float-right"><img class="twemoji svg-icon" src="https://pyblog.xyz/assets/img/common/bookmark-initial.svg" alt=""></span>
+    <span class="float-right">9 min read</span>
+</p></header>
+
+            <div articlebody" class="post-body itemprop=">
+                <p><img class="center-image" src="./assets/featured/popeye/wb/ralph-popeye.png" /></p>
+<p style="text-align: center;">Wish me Luck :) </p>
+
+<p>Update: I got the gig 😋</p>
+
+<p>A proposal I submitted for Google Summer of Code, Summer 2022 to Our World in Data (OWID) to implement a population-scaled, shape preserved world cartogram.</p>
+
+<h2 id="1-overview">1. Overview</h2>
+
+<p>Our World in Data (OWID) strives to make knowledge of global problems accessible and understandable through interactive geographical data visualizations to see how the world has changed over the course of time.</p>
+
+<p>A quick and intuitive view of the world map in relation to population makes it easy for viewers to co-relate the effect and the relative measure’s gravity. OWID uses a range of choropleth maps, but size-scaled maps have downsides, primarily because human visual perception associates areas with importance. Furthermore, readily available alternatives use mosaic cartograms, which distort the shape of countries.</p>
+
+<p>The basic idea is distorting the map by resizing the regions by population since the population is among the most important aspects to consider; for example, if malnutrition is high in a vast country, then the severity is much worse than if malnutrition is high in a tiny country.</p>
+
+<p><img src="./assets/posts/gsoc/world-population-owid.png" /></p>
+<p style="text-align: center;">Figure 1, a population-based cartogram, shows how a cartogram can give a different impression of the world population compared with the original map.</p>
+
+<h2 id="2-problem-description">2. Problem description</h2>
+<p>In a sentence, the primary objective is to plot a visually conclusive world map by illustrating territories using a method for trading off shape and area.</p>
+
+<p>Furthermore, it’s vital to ensure the shape or the outline of a region (Example: Country and Province) is preserved, i.e., visualization steps have to be in place so that the resulting cartograms appear similar to the original world cartograms, such that the area is easily recognizable only by its appearance without the explicit need for labels and quickly understand the displayed data.</p>
+
+<p>Therefore, the problem definition comes down to [2]:</p>
+
+<ul>
+  <li>Shape Preservation: Rescaling the territories by a factor without changing the shape is nearly impossible; hence the solution bridges the gap between an ideal solution and the expected outcome.</li>
+  <li>Topology Preservation: Emphasizing the importance for the algorithm to provide a mapping to the original polygon set, without which solving for graph isomorphism is challenging.</li>
+</ul>
+
+<h2 id="3-implementation">3. Implementation</h2>
+<p>The project primarily consists of 3 components:</p>
+<ul>
+  <li>Data Retrieval and Transformation</li>
+  <li>Core Service</li>
+  <li>Output and Visualization</li>
+</ul>
+
+<p>Before working on the individual components, the first and foremost step is the contract definition (Low-Level Design), considering the most prominent use-cases; the first step is to finalize the inputs, structure of the dataset, interfaces, DTOs, and DAOs.</p>
+
+<h3 id="31-data-retrieval-and-transformation">3.1. Data Retrieval and Transformation</h3>
+
+<p>Data source:</p>
+<ul>
+  <li>File system: CSV or TSV.</li>
+  <li>Database: MySQL.</li>
+  <li>API: Pythonic API for working with OWID’s data catalog; <a href="https://github.com/owid/owid-catalog-py">Reference</a>.</li>
+</ul>
+
+<p>Irrespective of the data source, the resulting in-memory list or an iterator (for large datasets) is the input for the transformation layer, responsible for standardizing the input to the core service; this ensures that changes in the input are ideally independent of the core functionalities.</p>
+
+<h3 id="32-core-service">3.2. Core Service</h3>
+
+<h3 id="321-inputoutput">3.2.1. Input/Output</h3>
+
+<ul>
+  <li>Abstract: takes population dataset after data transformation as the input and generates an output to plot a world map in the relative scale.</li>
+  <li>Input Parameters:
+    <ul>
+      <li>The population dataset.</li>
+      <li>Number of cells (squares or Hexagons) in the cartogram (Default: 20000, an approximate number for a visually acute world map for a cell density of 0.5 million).</li>
+      <li>Initial border of the world map (Default: Size/Area scaled cartogram).</li>
+    </ul>
+  </li>
+  <li>Output:
+    <ul>
+      <li>Final border of the world map.</li>
+      <li>Mapping of cells within the above border for each territory/country.</li>
+      <li>Output format: CSV or Json.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="322-gist-of-the-algorithm">3.2.2. Gist of the Algorithm</h3>
+
+<ul>
+  <li>Taking an example, let’s say there are 20000 square (1x1) cells in a size-scaled world map, where each country has a specific number of cells representing the total area.</li>
+  <li>Now, taking population as the measure instead of size changes the number of cells for every country (total number of cells remains to be 20000).</li>
+  <li>To transform a size-scaled world map into a population-scaled map, we move cells across countries while retaining the shape—also known as Diffusion Method (DIF), where cells move from one country to another until a balanced distribution is reached [3]</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><span style="display: inline-block; width:200px">Figure 2 and 3</span></td>
+    </tr>
+    <tr>
+      <td>For simplicity, let’s take Australia and India. India is approximately 3,287,263 sq km, while Australia is approximately 7,741,220 sq km, making Australia nearly 2.4 times bigger than India. On the other hand, Australia and India’s populations are 26,068,792 and 1,406,631,776, respectively, making India 54 times the population of Australia.</td>
+      <td><img src="./assets/posts/gsoc/aus-india-size.png" /></td>
+    </tr>
+    <tr>
+      <td>Figure 2 shows the size scaled map of Australia and India; in order to scale the map to population, we move the cells from Australia to India; figure 3 shows the population-scaled map of the two countries. Notice that the map is scaled while retaining the shape of the country. However, the extent of visual identification of a country by its shape after scaling is subjective but measured by computing the level of distortion between the area and population-scaled world map.</td>
+      <td><img src="./assets/posts/gsoc/aus-india-population.png" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note: Figures 2 and 3 are not perfectly scaled and hand-drawn to show the correlation.</p>
+
+<p>Points to note:</p>
+<ul>
+  <li>The cells can be thought of as the pixels, and the border is a perimeter around the pixels.</li>
+  <li>While the algorithm is not limited to the population dataset and is generic, the input and output may adhere to population-specific transformation and standards such as country-code and <a href="https://python-geojson.readthedocs.io/en/latest/">geojson</a> specifications.</li>
+  <li>It is important to note that the value of a cell is also changed, i.e., in figure 2, each cell represents a 25,000 sq km area, whereas, in figure 2, each cell represents a 0.5 million population count.</li>
+</ul>
+
+<h3 id="33-output-and-visualization">3.3. Output and Visualization</h3>
+<p>As mentioned above, the output primarily consists of two sections, the cells, and the border. Each cell is associated with a territory/country-code, XY coordinates (lower-left), and metadata.
+The output of the core service is fed to the transformation layer to produce meaningful illustrations; one such example is creating an SVG of the world map. Furthermore, the transformed output is stored appropriately in a data or a file store. Other transformations include formats that facilitate easy integration with visualization tool(s).</p>
+
+<h2 id="4-deliverables-and-milestones">4. Deliverables and milestones</h2>
+
+<h3 id="41-deliverables">4.1. Deliverables</h3>
+
+<ul>
+  <li>Input and output standardization (independent of the dataset but flexible enough to support a variety of population datasets) and transformation (mappers).</li>
+  <li>Cells (X, Y, country) and Borders (X, Y, country-code, border-type) generator from Topo-json.</li>
+  <li>Cell density (the value of each cell, for example, a country of population 5 million would have ten cells if each cell translates to 0.5 million) calculator depending on the input; necessary to determine a suitable number of cells in the world map.</li>
+  <li>Measure distortion or topology error: To find the extent of country shape distortion, the relative change in position or orientation across countries, and adjacency distortion between neighboring countries [3].</li>
+  <li>Algorithm for Cartogram:
+    <ul>
+      <li>Implementation of Diffusion Method (Section 3.2.2).</li>
+      <li>Abstraction to experiment/use other algorithms.</li>
+    </ul>
+  </li>
+  <li>Output transformation:
+    <ul>
+      <li>Data frame (cells and border) to CSV/JSON convertor.</li>
+      <li>Persistence of the output (MySQL/file-store).</li>
+      <li>Visual representation of the persisted output in the form of SVG.</li>
+      <li>Integration with graph visualization tool(s) (may need additional output data transformation).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="42-timeline">4.2. Timeline</h3>
+
+<p>Work estimation: 300 hours</p>
+
+<p>In the summer term, I have opted to enroll in an additional course, “Process of Data Science” and am likely to volunteer to cook food for an NGO. I intend to work 20 hours a week until the project’s completion without a break.</p>
+
+<p>Agile methodology 15-week timeline with 7 x 2-week sprint(s):</p>
+<ul>
+  <li>Sprint 1: June 13 - June 20
+    <ul>
+      <li>Pre-requisites: Requirement closure and repository set-up.</li>
+      <li>Data: Format and unit(s) finalization of Input and Output (flexible for extension).</li>
+      <li>Cartogram Algorithm: Implementation details (Pseudo Code).</li>
+    </ul>
+  </li>
+  <li>Sprint 2: June 20 - July 4
+    <ul>
+      <li>Data (Transformation): Raster (.asc) to list of cell coordinates and computation of boundaries for cell groups/countries.</li>
+      <li>Cartogram Algorithm: Low-level design with test cases.</li>
+      <li>Visualization: Explore suitable libraries for visualizing the output.</li>
+    </ul>
+  </li>
+  <li>Sprint 3: June 4 - July 18
+    <ul>
+      <li>Cartogram Algorithm: First working model of moving cells across cell groups/countries.</li>
+      <li>Validation: Calculate the degree of distortion of the population-scaled map compared to the size-scaled map (Ideally, find a measure for shape preservation).</li>
+      <li>Verify test cases (Test Driven Development).</li>
+    </ul>
+  </li>
+  <li>Sprint 4: July 18 - August 1
+    <ul>
+      <li>Cartogram Algorithm: Shape preservation implementation details, low-level design, and test cases.</li>
+      <li>Visualization: Visualize population scaled world map to better understand shape preservation.</li>
+    </ul>
+  </li>
+  <li>Sprint 5: August 1 - August 15
+    <ul>
+      <li>Diffusion Algorithm: Shape preservation implementation and re-iteration.</li>
+      <li>Verify test cases (Test Driven Development).</li>
+    </ul>
+  </li>
+  <li>Sprint 6: August 15 - August 29
+    <ul>
+      <li>Cartogram Algorithm: Implementation closure to piece it together (Result: Move cells across cell groups/countries while retaining the shape of the country and measure the degree of distortion).</li>
+      <li>Visualization: Explore developing an easy-to-use visualizer to delete and insert cells in a grid (world-map) for fine-tuning the output map.</li>
+    </ul>
+  </li>
+  <li>Sprint 7: August 29 - September 12
+    <ul>
+      <li>Visualization: Implement a visualization tool to fine-tune the output world map and re-generate the output CSV.</li>
+    </ul>
+  </li>
+  <li>Closure: September 12 - September 19
+    <ul>
+      <li>Buffer for completion for leftover(s).</li>
+      <li>Documentation: Installation, Usage, and example.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="43-prototype">4.3. Prototype</h3>
+
+<p>Early requirement gathering and building a prototype gives a head start and clarity in work involved, translating to nearly accurate project planning.</p>
+
+<h3 id="431-contiguous-cartogram">4.3.1. Contiguous Cartogram</h3>
+
+<p>I initially built a prototype doing the following:</p>
+
+<ul>
+  <li>As mentioned in section 3.2.2, a size-scaled world map with 20000 cells is derived from a raster world map dataset of 60 minute/1 degree (~110km) resolution.</li>
+  <li>Next, the borders are computed from cells for all unique country codes.</li>
+  <li>Lastly, compare with the population-scaled world map manually derived by moving cells across countries [1].</li>
+</ul>
+
+<p><img src="./assets/posts/gsoc/world-population.png" /></p>
+<p style="text-align: center;">Figure 4: Size-scaled world map</p>
+
+<p>Figure 4 shows the size-scaled world map derived from the raster dataset [5], whereas Figure 5 shows the expected population-scaled world map output. By the end of this project, the goal is to generate Figure 5 algorithmically.</p>
+
+<p><img src="./assets/posts/gsoc/world-size.png" /></p>
+<p style="text-align: center;">Figure 5: Population-scaled world map (2018)</p>
+
+<h3 id="432-non-contiguous-cartogram">4.3.2. Non-contiguous Cartogram</h3>
+
+<p>While the high-level design of generating a population-scaled world cartogram remains conceptually the same, one other approach to distort a polygon (with increased complexity to rearrange):</p>
+
+<ul>
+  <li>Import the size-scaled/previous year population-scaled world map (geoJson).</li>
+  <li>Fill the entire region with points representing the center of cells.</li>
+  <li>Filter the cells outside the polygon (country); while doing so, the width of the stroke around the border for selecting edge nodes is responsible for increasing/decreasing the number of cells (while retaining the shape).</li>
+  <li>Repeat the steps for all polygons/countries.</li>
+</ul>
+
+<p><img src="./assets/posts/gsoc/us-stroke-width.png" /></p>
+<p style="text-align: center;">Figures 6.a and 6.b: US country is shrunk in size. The points in dark blue represent the cells to be removed.</p>
+
+<h3 id="433-working-prototype">4.3.3. Working Prototype</h3>
+
+<p>Lastly, using the previous year’s cartogram to generate the cartogram of the successive year yields a better result than scaling a size-scaled world map. For example, figure 7 shows the 2018 population-scaled cartogram (manually generated). Figure 8 shows the map of 2050 generated algorithmically with figure 7 as the base reference.</p>
+
+<p>After exploring existing tools such as <a href="https://github.com/PitchInteractiveInc/tilegrams">Tilegrams</a> (not maintained anymore), I built a lightweight prototype to handle higher resolution.</p>
+
+<p>Prototype: <a href="https://www.pyblog.xyz/population-cartogram">https://www.pyblog.xyz/population-cartogram</a></p>
+
+<p>Other Scripts: <a href="https://github.com/addu390/population-cartogram">https://github.com/addu390/population-cartogram</a></p>
+
+<p>The prototype allows changing the radius of the hexagon and visualizing the population-scaled world map from 1950 to 2100.</p>
+
+<p><img src="./assets/posts/gsoc/cartogram.gif" /></p>
+<p style="text-align: center;">Figures 7: World Population Cartogram from 1960 to 2060</p>
+
+<h3 id="434-mentorship">4.3.4. Mentorship</h3>
+<p>I have been brainstorming with industry experts and received tremendous feedback for the project. Most importantly, OWID GSoC mentor <a href="https://github.com/danyx23">Daniel Bachler</a> constantly helped me gather the requirements, work towards a possible solution, and improve the proposal. Secondly, the discussion with Matt Dzugan on the <a href="https://github.com/mattdzugan/World-Population-Cartogram/issues/13">World population cartogram</a> laid a foundation for the prototype.</p>
+
+<h2 id="5-about-me">5. About me</h2>
+
+<p>My name is Adesh Nalpet Adimurthy, and I’m a computer science graduate student at Dalhousie University, a budding illustrator, and previously a backend engineer at PhonePe and YC ClearTax. I’m proficient in Java and Python but versatile to adopt any programming language. From GSoC, I hope to get a head start as an open-source contributor and give back to the community.</p>
+
+<p>Contact:</p>
+<ul>
+  <li>Email: 390.adesh@gmail.com</li>
+  <li>Institution: Dalhousie University</li>
+  <li>Program: Master of Applied Computer Science</li>
+  <li>Timezone: Atlantic Standard Time</li>
+</ul>
+
+<p>Links:</p>
+<ul>
+  <li>Github: <a href="https://github.com/addu390">https://github.com/addu390</a></li>
+  <li>Author at: <a href="https://pyblog.xyz/">https://pyblog.xyz/</a></li>
+  <li>Bio: <a href="https://www.pyblog.xyz/about">https://www.pyblog.xyz/about</a></li>
+</ul>
+
+<p>Relevant projects and discussions:</p>
+<ul>
+  <li><a href="https://www.pyblog.xyz/hybrid-spatial-index-conclusion">hybrid spatial indexes</a> and a <a href="https://github.com/addu390/dedo">prototype for secure delivery</a>.</li>
+  <li><a href="https://github.com/owid/owid-grapher/discussions/1288">Project Idea and discussion</a></li>
+</ul>
+
+<h2 id="6-references">6) References</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] M. Dzugan, “World Population Cartogram,” GitHub, Mar. 25, 2022. https://github.com/mattdzugan/World-Population-Cartogram (accessed Mar. 25, 2022).
+
+[2] Keim, Daniel &amp; North, Stephen &amp; Panse, Christian. (2004). CartoDraw: A Fast Algorithm for Generating Contiguous Cartograms. IEEE transactions on visualization and computer graphics. 10. 95-110. 10.1109/TVCG.2004.1260761. 
+
+[3] M. Alam, S. Kobourov, M. Schneider, and S. Veeramoni, "An Experimental Study of Algorithms for Cartogram Generation." Accessed: Mar. 25, 2022. [Online]. Available: https://www2.cs.arizona.edu/~mjalam/cartogram/main.pdf.
+
+[4] "Proposal Example 2, Google Summer of Code Guides," google.github.io. https://google.github.io/gsocguides/student/proposal-example-2.html (accessed Mar. 25, 2022).
+
+[5] "National Identifier Grid, v4.11: Gridded Population of the World (GPW), v4, SEDAC," sedac.ciesin.columbia.edu. https://sedac.ciesin.columbia.edu/data/set/gpw-v4-national-identifier-grid-rev11 (accessed Mar. 28, 2022).
+</code></pre></div></div>
+
+            </div>
+            <img style="float: right; width: 5em;" src="../assets/img/common/puppy.gif" />
+            <a class="u-url" href="/gsoc-2022" hidden></a>
+        </article>
+        <div class="blog-reference">
+            <p>Cite this article as: Adesh Nalpet Adimurthy. (Apr 22, 2022). Google Summer of Code - Cartograms in Grapher.
+                PyBlog. <a href="/gsoc-2022">https://www.pyblog.xyz/gsoc-2022</a>
+            </p>
+        </div>
+        <div id="comments-section"></div>
+        <div id="comments-script">
+            <script src="https://utteranc.es/client.js" repo="addu390/addu390.github.io" issue-term="pathname"
+            theme="github-light" crossorigin="anonymous" async>
+        </script>
+        </div>
+        
+    </div>
+    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
+        <section class="post sidebar-scrollable-div sidebar-toc-div">
+            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
+                    of contents</span></h3>
+            <div id="toc">
+                <!-- Table of Contents will be injected here -->
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/assets/toc.js"></script>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/reading-list.js"></script>
+</body>
+
+</html>
