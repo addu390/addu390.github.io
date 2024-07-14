@@ -449,7 +449,7 @@ footer .pure-menu-link:hover {
   }
 
   .tags {
-    width: 30%;
+    width: 33%;
   }
 
   footer .pure-menu-link {
@@ -1476,4 +1476,16 @@ summary {
 .black-border {
   border: 1px solid var(--black);
   border-radius: 5px;
+}
+
+.post-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1em;
+  row-gap: 0.25em;
+}
+
+.disabled-link {
+  pointer-events: none;
+  cursor: default;
 }

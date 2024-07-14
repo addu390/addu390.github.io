@@ -1,0 +1,9 @@
+<section class="post sidebar-scrollable-div">
+    <h3><img class="twemoji" src="{{ site.url }}/assets/img/emoji/folder.svg" alt=""> #<a href="/categories">categories</a> <span class="sub-header">posts by categories</span></h3>
+    <hr class="post-hr">
+    <div>
+        {% for category in site.categories %}
+            <p class="clickable-sidebar-div"><a href="{{site.url}}/categories/{{ category | first | slugify }}">{{ category | first | capitalize }}</a></p>
+        {% endfor %}
+    </div>
+</section>

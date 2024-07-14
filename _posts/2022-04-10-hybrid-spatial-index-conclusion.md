@@ -4,8 +4,8 @@ title: "Hybrid Spatial Data Structures: Quad-KD and R-KD trees"
 date: 2022-04-10
 tags:
   - Algorithms
-  - Data Structures
   - Java
+  - Data Structures
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/popeye/wb/ben-grimm-popeye.png
 category: Code on the Road

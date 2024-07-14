@@ -13,46 +13,49 @@
 
     <ul class="sidebar-list">
         <li class="clickable-div high-featured" onclick="location.href='{{site.url}}';"><span class="sidebar-index"><img
-                    class="twemoji" src="../assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+                    class="twemoji" src="{{site.url}}/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
         <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/journals';"><span
-                class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/book.svg"
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/book.svg"
                     alt="journal"></span>&nbsp;
             Journal</li>
         <li class="clickable-div high-featured" onclick="location.href='{{site.url}}/subscribe';"><span
-                    class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/loveletter.svg"
-                        alt="subscribe"></span>&nbsp; Subscribe</li>
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/loveletter.svg"
+                    alt="subscribe"></span>&nbsp; Subscribe</li>
+
+
+        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/horn.svg"
+                    alt="contact"></span>&nbsp;
+            Contact</li>
+
+        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/about';"><span
+                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
+                    src="{{ site.url }}/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+            About</li>
+        <li class="clickable-div low-featured"><a href="{{ site.donate_link }}" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/luck.svg"
+                        alt="sponsor"></span>&nbsp;
+                Sponsor</a></li>
+        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
+                    class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/medium.svg"
+                        alt="medium"></span>&nbsp;
+                Medium</a></li>
+        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/notes';"><span
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/notes.svg"
+                    alt="notes"></span>&nbsp;
+            Notes</li>
         <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/privacy';"><span
-                class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/cookie.svg"
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/cookie.svg"
                     alt="privacy policy"></span>&nbsp;
             Privacy Policy</li>
         <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/categories';"><span
-                class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/folder.svg"
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/folder.svg"
                     alt="categories"></span>&nbsp;
             Categories</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/contact';"><span
-                class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/horn.svg"
-                    alt="contact"></span>&nbsp;
-            Contact</li>
         <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/archive';"><span
-                class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/archive.svg"
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/archive.svg"
                     alt="archive"></span>&nbsp;
             Archive</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/about';"><span
-                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
-                    src="../assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
-            About</li>
-        <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
-                    class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/medium.svg"
-                        alt="medium"></span>&nbsp;
-                Medium</a></li>
-        <li class="clickable-div low-featured"><a href="{{ site.donate_link }}" target="_blank"><span
-                    class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/luck.svg"
-                        alt="sponsor"></span>&nbsp;
-                Sponsor</a></li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/notes';"><span
-                class="sidebar-index"><img class="twemoji" src="../assets/img/emoji/notes.svg"
-                    alt="notes"></span>&nbsp;
-            Notes</li>
     </ul>
 </aside>
 

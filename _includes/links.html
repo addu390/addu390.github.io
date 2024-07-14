@@ -1,33 +1,33 @@
 <div class="menu">
     {%- include search.html -%}
     <a id="dark-mode-button">
-        <img id="icon-light" class="twemoji theme-icon" src="../assets/img/emoji/light.svg" alt="">
-        <img id="icon-dark" class="twemoji theme-icon" src="../assets/img/emoji/dark.svg" style="display: none;" alt="">
+        <img id="icon-light" class="twemoji theme-icon" src="{{site.url}}/assets/img/emoji/light.svg" alt="">
+        <img id="icon-dark" class="twemoji theme-icon" src="{{site.url}}/assets/img/emoji/dark.svg" style="display: none;" alt="">
     </a>
-    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="../assets/img/common/rss.svg"
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="{{site.url}}/assets/img/common/rss.svg"
             alt=""></a>
     <a id="sound-button">
-        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="../assets/img/common/audio-on.svg" style="display: none;" alt="">
-        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="../assets/img/common/audio-off.svg" alt="">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="{{site.url}}/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="{{site.url}}/assets/img/common/audio-off.svg" alt="">
     </a>
 </div>
 
 <audio id="darkModeOn">
-    <source src="../assets/sounds/switch-on.mp3" type="audio/mpeg">
+    <source src="{{site.url}}/assets/sounds/switch-on.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
 <audio id="darkModeOff">
-    <source src="../assets/sounds/switch-off.mp3" type="audio/mpeg">
+    <source src="{{site.url}}/assets/sounds/switch-off.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
 <audio id="soundModeOn">
-    <source src="../assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    <source src="{{site.url}}/assets/sounds/enable-sound.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
 <audio id="soundModeOff">
-    <source src="../assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    <source src="{{site.url}}/assets/sounds/disable-sound.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>

@@ -4,8 +4,8 @@ title: "Hybrid Spatial Data Structures: Introduction"
 date: 2022-03-06
 tags:
   - Algorithms
-  - Data Structures
   - Java
+  - Data Structures
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/hybrid-spatial-index-totoro.png
 category: Code on the Road

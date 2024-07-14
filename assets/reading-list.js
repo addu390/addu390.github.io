@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const postId = button.parentElement.getAttribute('data-id');
             const icon = button.querySelector('img');
             if (isPostSaved(postId)) {
-                icon.src = '../assets/img/common/bookmark-success.svg';
+                icon.src = 'https://pyblog.xyz/assets/img/common/bookmark-success.svg';
             } else {
-                icon.src = '../assets/img/common/bookmark-initial.svg';
+                icon.src = 'https://pyblog.xyz/assets/img/common/bookmark-initial.svg';
             }
         });
     }

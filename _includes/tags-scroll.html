@@ -1,0 +1,9 @@
+<section class="post sidebar-scrollable-div">
+    <h3><img class="twemoji" src="{{ site.url }}/assets/img/emoji/tag.svg" alt=""> #<a href="/tags">tags</a> <span class="sub-header">posts by tags</span></h3>
+    <hr class="post-hr">
+    <div>
+        {% for tag in site.tags %}
+            <p class="clickable-sidebar-div"><a href="{{site.url}}/tags/{{ tag | first | slugify }}">#{{ tag | first | capitalize }}</a></p>
+        {% endfor %}
+    </div>
+</section>

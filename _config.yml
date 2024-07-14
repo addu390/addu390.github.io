@@ -2,7 +2,7 @@ title: "PYBLOG"
 email: 390.adesh@gmail.com
 donate_link: https://www.buymeacoffee.com/pyblog
 description: >- 
-  How do you know which watermelon <img id="showerButton" class="twemoji" src="../assets/img/emoji/watermelon.svg" alt=""> to pick?
+  How do you know which watermelon <img id="showerButton" class="twemoji" src="https://pyblog.xyz/assets/img/emoji/watermelon.svg" alt=""> to pick?
 baseurl: ""
 url: "https://pyblog.xyz" 
 repository: addu390/addu390.github.io
@@ -38,6 +38,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-archives
 permalink: /:title
 
 defaults:
@@ -71,6 +72,15 @@ collections:
   journals:
     output: true
     permalink: /journals/:title
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
 
 exclude:
   - ".jekyll-cache"

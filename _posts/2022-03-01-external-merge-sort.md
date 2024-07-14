@@ -4,8 +4,8 @@ title: "External Merge Sort using Priority Queue"
 date: 2022-03-01
 tags:
   - Algorithms
-  - Data Structures
   - Python
+  - Data Structures
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/external-sorting-totoro.png
 category: Code on the Road

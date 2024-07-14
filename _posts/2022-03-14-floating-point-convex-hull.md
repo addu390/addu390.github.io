@@ -4,8 +4,8 @@ title: "Floating Point Round Off Errors in Geometric Algorithms"
 date: 2022-03-14
 tags:
   - Algorithms
-  - Data Structures
   - C++
+  - Data Structures
 author: Adesh Nalpet Adimurthy
 feature: assets/featured/popeye-convex-hull.png
 category: Code on the Road
