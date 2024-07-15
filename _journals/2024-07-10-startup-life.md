@@ -10,7 +10,7 @@ category: Life
 ---
 
 <!-- <img class="center-image" src="../assets/featured/webp/arnold-as-me.webp" />  -->
-<img class="center-image" src="../assets/featured/arnold-terminator.png" /> 
+<img class="center-image-0 center-image-65" src="../assets/featured/arnold-terminator.png" /> 
 
 <p>I'm super pumped to say that I'm joining an early-stage startup soon <img class="twemoji" style="vertical-align: text-top;" src="../assets/img/emoji/fire.svg" alt=""> The co-working space is buzzing, downtown vibes are incredible, and the drive to make an impact is real!</p>
 

@@ -1,6 +1,10 @@
 <p class="post-meta" data-id="{{ post.url | relative_url }}" data-url="{{ post.url | relative_url }}"
     data-title="{{ post.title | escape }}">
     {% assign wordCount = post.content | number_of_words %}
+    {% assign numberOfMinutes = wordCount | divided_by: 225 %}
+    {%- if numberOfMinutes == 0 -%}
+    {% assign numberOfMinutes = 1 %}
+    {%- endif -%}
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
 
     <span class="save-button float-right"><img class="opacity-70 twemoji svg-icon"
@@ -30,7 +34,7 @@
     {%- if post.friendly -%}
     <img class="premium-tag" src="{{site.url}}/assets/img/common/friendly.svg" alt="friendly-tag">
     {%- endif -%}
-    
+
     <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
         {{ post.date | date: date_format }}
     </time>
@@ -42,5 +46,5 @@
     </time>
     {%- endif -%}
     <b class="post-meta-dots">·</b>
-    <span>{{ wordCount | divided_by: 225 | append: " min read"}}</span>
+    <span>{{ numberOfMinutes | append: " min read"}}</span>
 </p>

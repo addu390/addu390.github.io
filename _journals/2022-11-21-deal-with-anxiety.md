@@ -9,7 +9,7 @@ feature: assets/featured/alright.png
 category: Life
 ---
 
-<img class="center-image" src="../assets/featured/alright.png" /> 
+<img class="center-image-0 center-image-65" src="../assets/featured/alright.png" /> 
 <p style="text-align: center;">Hang in there! </p>
 
 It's funny how I want to start the post with "after the pandemic," although it's been a while since covid is no longer a significant concern, fair to say it has had a long-lasting effect on our lives. 

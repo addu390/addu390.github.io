@@ -11,23 +11,7 @@ layout: default
 
     <div class="posts-right-bar pure-u-md-6-24" style="display: flex; flex-direction: column;">
         {%- include reading-list.html -%}
-        <section class="post">
-            <h3><img class="twemoji" src="../assets/img/emoji/cat-smirk.svg" alt=""> #memes <span class="sub-header"><a
-                        class="black-a" href="https://sendmemes.today/" target="_blank">@sendmemes.today</a></span></h3>
-            <hr class="post-hr">
-            <div class="slider-container">
-                {% assign latest_memes = site.data.memes | reverse | slice: 0, 2 %}
-                {% for meme in latest_memes %}
-                <div class="slider-slide"><img src="{{ meme.url }}" alt="Meme"></div>
-                {% endfor %}
-
-                <a class="slider-prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="slider-next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-        </section>
         {%- include newsletter.html -%}
         {%- include sidebar-footer.html -%}
     </div>
 </div>
-
-<script src="{{ '../assets/slider.js' | relative_url }}"></script>

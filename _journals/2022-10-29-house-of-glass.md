@@ -9,7 +9,7 @@ feature: assets/featured/rage.png
 category: Life
 ---
 
-<img class="center-image" src="../assets/featured/rage.png" /> 
+<img class="center-image-0 center-image-65" src="../assets/featured/rage.png" /> 
 <p style="text-align: center;">Embrace the rage! </p>
 
 As much as I want to write a deep, heart-felt post on how the last couple of months have been, I often find it less dramatic and simple to convey the message over a bunch of illustrations and leave it up to the reader's interpretation.

@@ -13,7 +13,7 @@ category: System Wisdom
 description: Tessellation for spatial indexing divides space into non-overlapping shapes for efficient data management. The Uber H3 grid system uses hexagonal cells, offering better uniformity and efficiency than squares or triangles. This system projects hexagons onto an icosahedron to minimize distortion, enhancing geographic algorithms. The article also provides a custom implementation of H3, explaining the process of converting latitude and longitude to 3D Cartesian coordinates, identifying icosahedron vertices, and encoding cell IDs into a 64-bit integer.
 ---
 
-<img class="center-image" src="./assets/featured/webp/space-tessellation.webp" /> 
+<img class="center-image-0 center-image-65" src="./assets/featured/webp/space-tessellation.webp" /> 
 
 <p>Brewing! this post a continuation of <a href="/spatial-index-grid-system">Spatial Index: Grid Systems</a> where we will set the foundation for tessellation and delve into the details of <a href="https://github.com/uber/h3" target="_blank">Uber H3</a></p>
 

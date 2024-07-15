@@ -10,7 +10,7 @@ feature: assets/featured/workout-anatomy.png
 category: Comics
 ---
 
-<img class="center-image" src="../assets/featured/workout-anatomy.png" /> 
+<img class="center-image-0 center-image-65" src="../assets/featured/workout-anatomy.png" /> 
 <p style="text-align: center;">There's more to bro-split!</p>
 
 <p>Greetings 🖖🏽 fellow coders! On the other side of all the tech in the world are software engineers who spend countless hours in front of their computers, diving deep into solving problems, and often feeling the strain of long, sedentary days. Early in my career, I thought grinding through hours of coding without breaks was the only way to get things done. But I’ve come to realize that staying physically active has made me a better programmer. Let’s talk about how fitness can transform your life as a software engineer.</p>
