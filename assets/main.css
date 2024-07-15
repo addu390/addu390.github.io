@@ -1555,7 +1555,7 @@ summary {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  min-height: 150px;
   max-height: 400px;
   width: 120%;
   margin: 0.6em 0.9em 0.6em 0em;
