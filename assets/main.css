@@ -534,7 +534,7 @@ footer .pure-menu-link:hover {
   }
 
   [class^="center-image-"] {
-    width: 95%;
+    width: 90% !important;
   }
 
   .brand-title,
@@ -1566,7 +1566,7 @@ summary {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 90%;
   object-fit: cover;
   object-position: 50% 0;
 }
