@@ -1559,6 +1559,7 @@ summary {
   max-height: 400px;
   width: 120%;
   margin: 0.6em 0.9em 0.6em 0em;
+  cursor: pointer;
 }
 
 .blog-image {

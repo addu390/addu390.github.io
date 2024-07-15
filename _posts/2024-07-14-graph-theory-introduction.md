@@ -1,0 +1,149 @@
+---
+layout: post
+title: "Graph Theory: Introduction"
+date: 2024-07-14
+state: Draft
+tags:
+- Graph Theory
+- Data Structures
+author: Adesh Nalpet Adimurthy
+image: assets/featured/webp/graph-theory-101.webp
+feature: assets/featured/webp/graph-theory-101.webp
+category: Code on the Road
+---
+
+<img class="center-image-0 center-image-50" src="./assets/featured/graph-theory-101.png" />
+
+<p>Before heading into details of how we store, represent, and traverse various kinds of graphs, this post is more of a ramp-up to better understand what graphs are and the different kinds from a computer science point of view, rather than a mathematical one. So, no proofs and equations, mostly just diagrams and implementation details, with an emphasis on how to apply graph theory to real-world applications.</p>
+
+<p>Graph theory is the mathematical theory of the properties and applications of graphs/networks, which is just a collection of objects that are all interconnected.</p>
+
+<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-wardrobe.svg" />
+<p>Graph theory is a broad enough topic to say it can be applied to almost any problem—first (maybe not first, make it 21st) thing in the morning, choosing what to wear - given all of the wardrobe, how many sets of clothes can I make by choosing one from each category (by category, I mean tops, bottoms, shoes, hats, and glasses)? While this sounds like a math problem to find permutations, using graphs to visualize each clothing item as a node and edges to represent relationships between them can be helpful.</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/graph-theory/gt-social-network.svg" />
+<p>Another everyday example is the social network. A graph representation answers questions such as how many mutual friends or how many degrees of separation exist between two people.</p>
+
+<h3>1. Types of Graphs</h3>
+
+<p>There are a lot of types of graphs, and it's important to understand the kind of graph you are dealing with. Let's go over the most commonly known graph variants.</p>
+
+<h3>1.1. Undirected Graph</h3>
+<p>The most simple kind of graph, where the edges have no orientation (bi-directional). i.e., edge <code>(u, v)</code> is identical to edge <code>(v, u)</code>.</p>
+<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-undirected.svg" />
+<p>Example: A city interconnected by bi-directional roads. You can drive from one city to another and can retrace the same path back.</p>
+
+<h3>1.2. Directed Graph/Digraph</h3>
+<p>In contrast to an undirected graph, directed graphs or digraphs have edges that are directed/have orientation. Edge <code>(u, v)</code> represents that you can only go from node u to node v and not the other way around. As shown in the figure below, the edges are directed, indicated by the arrowheads on the edges between nodes.</p>
+
+<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-directed.svg" />
+
+<p>Example: This graph could represent people who bought each other gifts. C and D got gifts for each other, E didn't get any nor give any, B got one from A, gave a gift to D, and sent a gift to itself.</p>
+
+<h3>1.3. Weighted Graphs</h3>
+<p>So far, we have seen unweighted graphs, but edges on graphs can contain weights to represent arbitrary values such as distance, cost, quantity, etc.</p>
+<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-weighted.svg" />
+<p>Weighted graphs can again be directed or undirected. An edge of a weighted graph can be denoted with <code>(u, v, w)</code>, where <code>w</code> is the weight.<p>
+
+<h3>2. Special Graphs</h3>
+<p>While directed, undirected and weighted graphs covers the basic types, there are many other types of graphs governed by rules and restrictions.</p>
+
+<h3>2.1. Trees</h3>
+<p>A tree is simply a collection of nodes connected by directed (or undirected) edges with no cycles or loops (no node can be its own ancestor). A tree has <code>N</code> nodes and <code>N-1</code> edges.</p>
+<img class="center-image-0 center-image" src="./assets/posts/graph-theory/gt-trees.svg" />
+<p>All of the above are indeed trees, even the left-most graph, which has no cycles and N-1 edges.</p>
+
+<h3>2.2. Rooted Trees</h3>
+<p>A related but totally different kind of graph is a rooted tree. It has a designated root node, where every edge either points away from or towards the root node. When edges point away from the root, it's called an out-tree (arborescence) and an in-tree (anti-arborescence) otherwise.</p>
+<img class="center-image-0 center-image" src="./assets/posts/graph-theory/gt-rooted-trees.svg" />
+<p>Out-trees are more commonly used than in-trees, so much so that out-trees are often referred to as just "trees."</p>
+
+<h3>2.3. Directed Acyclic Graphs (DAGs)</h3>
+<p>DAGs are directed acyclic graphs, i.e., with directed edges and no cycles or loops. DAGs play an important role and are very common in computer science, including dependency management, workflows, schedulers, and many more.</p>
+<p>When dealing with DAGs, commonly used algorithms include finding the shortest path and topological sort (how to process nodes in a graph in the correct order considering dependencies).</p>
+<img class="center-image-0 center-image" src="./assets/posts/graph-theory/gt-dags.svg" />
+<p>Fun Fact: All out-trees are DAGs, but not all DAGs are out-trees.</p>
+<p>DAG nodes can have multiple parents, meaning there can be multiple paths that eventually merge. Out-trees are DAGs with the restriction that a child can only have one parent. Another way to see it is that a tree is like single-class inheritance, and a DAG is like multiple-class inheritance.</p>
+
+<h3>2.4. Bipartite Graph</h3>
+<p>A bipartite graph is one whose vertices can be split into two independent groups, <code>U</code> and <code>V</code>, such that every edge connects between <code>U</code> and <code>V</code>. A bipartite graph is two-colorable, in other words, it is a graph in which every edge connects a vertex of one set (Example, set 1: red color) to a vertex of the other set (Example, set 2: blue color).</p>
+<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-bipartite.svg" />
+<p>A common question is to find the maximum matching that can be created on a bipartite graph (covered in a follow-up post). For example, say red nodes are jobs and blue nodes are people. The problem is to determine how many people can be matched to jobs.</p>
+
+<h3>2.5. Complete Graph</h3>
+<p>In a complete graph, there is a unique edge between every pair of nodes, i.e., every node is connected to every other node except itself. A complete graph with <code>n</code> vertices is denoted by the graph <code>K<sub>n</sub></code>.</p>
+<img class="center-image-0 center-image-100" src="./assets/posts/graph-theory/gt-complete.svg" />
+<p>A complete graph is often seen as the worst-case possible graph and is used for performance testing.</p>
+
+<h3>3. Graph Representation</h3>
+<p>The next important aspect is the data structure we use to represent a graph, which can have a huge impact on performance. The simplest and most common way is using an adjacency matrix.</p>
+
+<h3>3.1. Adjacency Matrix</h3>
+<p>An adjacency matrix <code>m</code> represents a graph, where <code>m[i][j]</code> is the edge weight of going from node <code>i</code> to node <code>j</code>. Unless specified, it's often assumed that the edge of going from a node to itself has zero cost. Which is why the diagonal of the matrix has all zeroes.</p>
+<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-adjacency-matrix.svg" />
+<p>For example, the weight of the edge going from node D to node B is 5, as represented in the matrix.</p>
+
+<p>Pros:</p>
+<ul>
+<li>Space efficient for representing dense graphs.</li>
+<li>Edge weight lookup is constant time: <code>O(1)</code>.</li>
+<li>Simplest graph representation.</li>
+</ul>
+
+<p>Cons:</p>
+<ul>
+<li>Requires <code>O(V<sup>2</sup>)</code> space, where <code>V</code> is the number of nodes/vertices.</li>
+<li>Iterating over all edges requires <code>O(V<sup>2</sup>)</code> time.</li>
+</ul>
+
+<p>The quadratic space complexity becomes less feasible when dealing with networks with nodes in the order of thousands or more.</p>
+
+<h3>3.2. Adjacency List</h3>
+<p>The other alternative to the adjacency matrix is the adjacency list. This is a way to represent the graph as a map from nodes to lists of outgoing edges. In other words, each node tracks all its outgoing edges. i.e., <code>N<sub>1</sub> = [(N<sub>x</sub>, W), (N<sub>y</sub>, W), ...]</code></p>
+<img class="center-image-0 center-image-70" src="./assets/posts/graph-theory/gt-adjacency-list.svg" />
+<p>For example, Node C has 3 outgoing edges, so the map entry for Node C has those 3 entries, each represented by the combination of the destination node and edge weight/cost.</p>
+
+<p>Pros:</p>
+<ul>
+<li>Space efficient for representing sparse graphs (no extra space for unused edges).</li>
+<li>Iterating over all edges is efficient.</li>
+</ul>
+
+<p>Cons:</p>
+<ul>
+<li>Less space efficient for dense graphs.</li>
+<li>Edge weight lookup is <code>O(E)</code>, where <code>E</code> is the number of edges of a node.
+</li>
+<li>Slightly more complex graph representation.</li>
+</ul>
+<p>Adjacency lists are still very commonly used, since edge weight lookup is not a common use case and many real-world use cases involve sparse graphs.</p>
+
+<h3>3.3. Edge List</h3>
+<p>The edge list takes an overly simplified approach to represent a graph simply as an unordered list of edges with the source node, destination node, and the weight. For example, <code>(u, v, w)</code> represents the cost from node <code>u</code> to node <code>v</code> as <code>w</code>.</p>
+<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-edge-list.svg" />
+<p>Pros:</p>
+<ul>
+<li>Space efficient for representing sparse graphs.</li>
+<li>Iterating over all edges is efficient.</li>
+<li>Overly simple structure/representation.</li>
+</ul>
+
+<p>Cons:</p>
+<ul>
+<li>Less space efficient for dense graphs.</li>
+<li>Edge weight lookup is <code>O(E)</code>, where <code>E</code> is the number of edges.</li>
+</ul>
+
+<p>Despite the seeming simplicity and lack of structure, edge lists do come in handy for a variety of problems and algorithms.</p>
+
+<!-- <h3>4. Graph Problems</h3> -->
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+

@@ -8,7 +8,11 @@ layout: default
         <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
             <header class="feed-header">
-                <h2 class="post-title" style="font-size: 1.6em;" itemprop="name headline">{{ page.title | escape }}</h2>
+                <h2 class="post-title" style="font-size: 1.6em;" itemprop="name headline">{{ page.title | escape }}
+                    {%- if page.state -%}
+                    <span style="margin-left: 0.8em;" class="state-tag">{{ page.state }}</span>
+                    {%- endif %}
+                </h2>
                 {%- include post-data.html -%}
             </header>
 
