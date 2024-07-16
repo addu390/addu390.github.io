@@ -209,6 +209,25 @@ category: Code on the Road
 <p>With the basics of graph theory covered, including various types of graphs and their representations, we've laid the groundwork for understanding how to efficiently store, represent, and traverse graphs in real-world applications. The next set of posts on Graph Theory will be a deep dive into specific problems and algorithms.</p>
 
 <h3>6. References</h3>
-<pre style="max-height: 300px"><code>[1] W. Fiset, "Algorithms repository," GitHub, 2017. [Online]. Available: https://github.com/williamfiset/Algorithms.
+<pre style="max-height: 180px"><code>[1] W. Fiset, "Algorithms repository," GitHub, 2017. [Online]. Available: https://github.com/williamfiset/Algorithms.
 [2] V. Schwartz, "Currency Arbitrage and Graphs (2)," Reasonable Deviations, Apr. 21, 2019. [Online]. Available: https://reasonabledeviations.com/2019/04/21/currency-arbitrage-graphs-2/. 
+[3] Wikipedia, "Graph theory," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Graph_theory.
+[4] Wikipedia, "Bidirected graph," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Bidirected_graph.
+[5] Wikipedia, "Directed graph," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Directed_graph.
+[6] Wikipedia, "Tree (graph theory)," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Tree_(graph_theory).
+[7] Wikipedia, "Directed acyclic graph," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Directed_acyclic_graph.
+[8] Wikipedia, "Bipartite graph," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Bipartite_graph.
+[9] Wikipedia, "Complete graph," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Complete_graph.
+[10] Wikipedia, "Adjacency matrix," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Adjacency_matrix.
+[11] Wikipedia, "Adjacency list," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Adjacency_list.
+[12] Wikipedia, "Breadth-first search," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Breadth-first_search.
+[13] Wikipedia, "Depth-first search," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Depth-first_search.
+[14] Wikipedia, "Bellman–Ford algorithm," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm.
+[15] Wikipedia, "Floyd–Warshall algorithm," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm.
+[16] Wikipedia, "Strongly connected component," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Strongly_connected_component.
+[17] Wikipedia, "Travelling salesman problem," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Travelling_salesman_problem.
+[18] Wikipedia, "Held–Karp algorithm," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm.
+[19] Wikipedia, "Bridge (graph theory)," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Bridge_(graph_theory).
+[20] Wikipedia, "Minimum spanning tree," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Minimum_spanning_tree.
+[21] Wikipedia, "Flow network," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Flow_network.
 </code></pre>
