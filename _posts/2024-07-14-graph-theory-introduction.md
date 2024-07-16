@@ -2,7 +2,6 @@
 layout: post
 title: "Graph Theory: Introduction"
 date: 2024-07-14
-state: Draft
 tags:
 - Graph Theory
 - Data Structures
@@ -185,7 +184,7 @@ category: Code on the Road
 
 <h3>4.6. Bridges</h3>
 <p>A bridge, cut-edge, or cut-arc is an edge of a graph whose deletion increases the graph's number of connected components (islands or clusters).</p>
-<img class="center-image-0 center-image-60" src="./assets/posts/graph-theory/gt-bridge.svg" />
+<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-bridge.svg" />
 <p>Detecting bridges is important as they often signify bottlenecks, weak points, or vulnerabilities in a graph. For instance, it's common to ensure that a mesh network is a bridgeless graph.</p>
 
 <h3>4.7. Articulation Points</h3>
@@ -194,8 +193,10 @@ category: Code on the Road
 <p>In the same graph as for bridges, the nodes connected by the bridges are articulation points.</p>
 
 <h3>4.8. Minimum Spanning Tree (MST)</h3>
-<p></p>
-<p></p>
+<p>A minimum spanning tree (MST) or minimum weight spanning tree is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight/cost.</p>
+<img class="center-image-0 center-image-80" src="./assets/posts/graph-theory/gt-mst.svg" />
+<p>A graph can have multiple minimum spanning trees with the same cost, but the resulting trees (MSTs) are not unique. Common use cases include designing a least-cost network, transportation networks, and more.</p>
+<p>Algorithms: Kruskal's, Prim's and Boruvka's algorithm.</p>
 <p></p>
 
 <h3>4.7. Network Flow: Max Flow</h3>

@@ -2,7 +2,6 @@
 layout: post
 title: "Real-time insights: Telemetry Pipeline"
 date: 2024-06-07
-state: Nearly Finished
 tags:
   - Realtime
   - Database
