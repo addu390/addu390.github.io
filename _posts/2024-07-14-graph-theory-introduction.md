@@ -18,7 +18,7 @@ category: Code on the Road
 
 <p>Graph theory is the mathematical theory of the properties and applications of graphs/networks, which is just a collection of objects that are all interconnected.</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-wardrobe.svg" />
+<img class="center-image-0 center-image-60" src="./assets/posts/graph-theory/gt-wardrobe.svg" />
 <p>Graph theory is a broad enough topic to say it can be applied to almost any problem—first (maybe not first, make it 21st) thing in the morning, choosing what to wear - given all of the wardrobe, how many sets of clothes can I make by choosing one from each category (by category, I mean tops, bottoms, shoes, hats, and glasses)? While this sounds like a math problem to find permutations, using graphs to visualize each clothing item as a node and edges to represent relationships between them can be helpful.</p>
 
 <img class="center-image-0 center-image-70" src="./assets/posts/graph-theory/gt-social-network.svg" />
@@ -30,7 +30,7 @@ category: Code on the Road
 
 <h3>1.1. Undirected Graph</h3>
 <p>The most simple kind of graph, where the edges have no orientation (bi-directional). i.e., edge <code>(u, v)</code> is identical to edge <code>(v, u)</code>.</p>
-<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-undirected.svg" />
+<img class="center-image-0 center-image-50" src="./assets/posts/graph-theory/gt-undirected.svg" />
 <p>Example: A city interconnected by bi-directional roads. You can drive from one city to another and can retrace the same path back.</p>
 
 <h3>1.2. Directed Graph/Digraph</h3>
@@ -42,7 +42,7 @@ category: Code on the Road
 
 <h3>1.3. Weighted Graphs</h3>
 <p>So far, we have seen unweighted graphs, but edges on graphs can contain weights to represent arbitrary values such as distance, cost, quantity, etc.</p>
-<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-weighted.svg" />
+<img class="center-image-0 center-image-50" src="./assets/posts/graph-theory/gt-weighted.svg" />
 <p>Weighted graphs can again be directed or undirected. An edge of a weighted graph can be denoted with <code>(u, v, w)</code>, where <code>w</code> is the weight.<p>
 
 <h3>2. Special Graphs</h3>
@@ -136,14 +136,79 @@ category: Code on the Road
 
 <p>Despite the seeming simplicity and lack of structure, edge lists do come in handy for a variety of problems and algorithms.</p>
 
-<!-- <h3>4. Graph Problems</h3> -->
+<h3>4. Graph Problems</h3>
 
+<p>One of the best approaches to dealing with graph problems is to better understand and familiarize yourself with common graph theory algorithms. Many other problems can be reduced to a known graph problem.</p>
+
+<ul>
+<li>Does the graph already exist, or is it to be derived/constructed?</li>
+<li>Is the graph directed or undirected?</li>
+<li>Is it a weighted graph (edges)?</li>
+<li>Is it a sparse graph or a dense graph?</li>
+<li>Based on all of the above, should I use an adjacency matrix, adjacency list, edge list, or other structures?</li>
+</ul>
+
+<h3>4.1. Shortest Path Problem</h3>
+
+<p>Given a weighted graph, find the shortest path of edges from Node A to Node B (source and destination nodes).</p>
+<p>Algorithms: Breadth First Search (unweighted graph), Dijkstra's, Bellman-Ford, Floyd-Warshall, A*, and many more.</p>
+<img class="center-image-0 center-image-100" src="./assets/posts/graph-theory/gt-shortest-path.svg" />
+<p>In the example, to find the shortest path from Node A to Node H, the sum of all the weights/costs of the path taken should be the least.</p>
+
+<h3>4.2. Connectivity</h3>
+
+<p>Along the same lines, to determine if connectivity exists from Node A to Node B. In other words, given the nodes, do they exist in the same network/graph? This is quite commonly used in communication networks such as WiFi, Thread, Zigbee, etc.</p>
+<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-connectivity.svg" />
+<p>Algorithms: Any search algorithm such as BFS (Breadth First Search) or DFS (Depth First Search).</p>
+
+<h3>4.3. Negative Cycles</h3>
+<p>To detect negative cycles in a directed graph. Also known as a negative-weight cycle, it is a cycle in a graph whose edges sum to a negative value.</p>
 <p></p>
+<img class="center-image-0 center-image-45" src="./assets/posts/graph-theory/gt-cycles.svg" />
+<p>In the example, nodes B, C, and D form a negative cycle, where the sum of costs is -1, which can lead to cycling endlessly with a smaller cost for every iteration. For instance, finding the shortest path without detecting negative cycles would be a trap, never escaping out of it.</p>
+<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-currency.svg" />
+<p>Detecting negative cycles has other applications, such as currency arbitrage. In this context, assign currencies to different vertices, and let the edge weight represent the exchange rate.</p>
+<p>Algorithms to detect negative cycles: Bellman-Ford and Floyd-Warshall.</p>
 <p></p>
-<p></p>
-<p></p>
-<p></p>
+
+<h3>4.4. Strongly Connected Components</h3>
+<p>SSCs are self-contained cycles within a directed graph, i.e., every vertex/node in a cycle can reach every other vertex in the same cycle. </p>
+<img class="center-image-0 center-image" src="./assets/posts/graph-theory/gt-ssc.svg" />
+<p>If each strongly connected component is contracted to a single vertex, the resulting graph is a directed acyclic graph (DAG), the condensation of Graph G.</p>
+<p>Algorithms: Tarjan's SSC and Kosaraju's algorithm.</p>
+
+<h3>4.5. Traveling Salesman Problem</h3>
+<p>or the travelling salesperson problem (TSP) asks "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?" It is an NP-hard problem.</p>
+<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-tsp.svg" />
+<p>For the above graph, the TSP (Traveling Salesman Problem) solution has a cost of 9 to travel from Node A to all the other nodes and back to Node A.</p>
+<p>Algorithms: Held-Karp, Brand and Bound, Approximation (Ex: Ant Colony) algorithms</p>
+
+<h3>4.6. Bridges</h3>
+<p>A bridge, cut-edge, or cut-arc is an edge of a graph whose deletion increases the graph's number of connected components (islands or clusters).</p>
+<img class="center-image-0 center-image-60" src="./assets/posts/graph-theory/gt-bridge.svg" />
+<p>Detecting bridges is important as they often signify bottlenecks, weak points, or vulnerabilities in a graph. For instance, it's common to ensure that a mesh network is a bridgeless graph.</p>
+
+<h3>4.7. Articulation Points</h3>
+<p>An articulation point, or cut vertex, is similar to a bridge, but instead of edges, they are nodes. When removed, they increase the number of connected components.</p>
+<img class="center-image-0 center-image-60" src="./assets/posts/graph-theory/gt-ap.svg" />
+<p>In the same graph as for bridges, the nodes connected by the bridges are articulation points.</p>
+
+<h3>4.8. Minimum Spanning Tree (MST)</h3>
 <p></p>
 <p></p>
 <p></p>
 
+<h3>4.7. Network Flow: Max Flow</h3>
+<p></p>
+<p></p>
+<p></p>
+
+<h3>5. Conclusion</h3>
+<p></p>
+<p></p>
+<p></p>
+
+<h3>6. References</h3>
+<pre style="max-height: 300px"><code>[1] W. Fiset, "Algorithms repository," GitHub, 2017. [Online]. Available: https://github.com/williamfiset/Algorithms.
+[2] V. Schwartz, "Currency Arbitrage and Graphs (2)," Reasonable Deviations, Apr. 21, 2019. [Online]. Available: https://reasonabledeviations.com/2019/04/21/currency-arbitrage-graphs-2/. 
+</code></pre>
