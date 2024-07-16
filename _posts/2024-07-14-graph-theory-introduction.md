@@ -199,15 +199,14 @@ category: Code on the Road
 <p>Algorithms: Kruskal's, Prim's and Boruvka's algorithm.</p>
 <p></p>
 
-<h3>4.7. Network Flow: Max Flow</h3>
-<p></p>
-<p></p>
-<p></p>
+<h3>4.7. Flow Network</h3>
+<p>Flow network or the transportation network is a directed graph where the edge weight represents "capacity." The amount of flow on an edge cannot exceed the capacity of the edge. Capacity can represent fluids in a pipe, currents in an electrical circuit, cars on a road, etc.</p>
+<p>Problem: For an infinite input to reach the sink, what's the max flow? With this, it's easier to see bottlenecks in the network that slow the flow. Correlating to the example, max flow would be the number of cars, volume of fluid, etc.</p>
+<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-flow-network.svg" />
+<p>Also, there cannot be blockages in the network/flow, the amount of flow into a node equals the amount of flow out of it.</p>
 
 <h3>5. Conclusion</h3>
-<p></p>
-<p></p>
-<p></p>
+<p>With the basics of graph theory covered, including various types of graphs and their representations, we've laid the groundwork for understanding how to efficiently store, represent, and traverse graphs in real-world applications. The next set of posts on Graph Theory will be a deep dive into specific problems and algorithms.</p>
 
 <h3>6. References</h3>
 <pre style="max-height: 300px"><code>[1] W. Fiset, "Algorithms repository," GitHub, 2017. [Online]. Available: https://github.com/williamfiset/Algorithms.
