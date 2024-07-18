@@ -6,6 +6,7 @@ tags:
 - Graph Theory
 - Data Structures
 author: Adesh Nalpet Adimurthy
+premium: true
 image: assets/featured/webp/graph-theory-search.webp
 feature: assets/featured/webp/graph-theory-search.webp
 category: Code on the Road
@@ -90,8 +91,10 @@ category: Code on the Road
 
 <h3>1.2.1. DFS: Stack</h3>
 <p>The intuition behind using a <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)" target="_blank">stack</a> is that when we reach a dead-end, we want to get to the previously added node (LIFO: Last-In First-Out) and explore other paths. This helps you explore each path deeply before backtracking, done using a stack to go back to the last node.</p>
+
+<img class="slides center-image-0" style="width: 28%" src="./assets/posts/graph-theory/stack-ds.svg">
+
 <p>Easier to understand with visualization:</p>
-<p></p>
 
 <div class="slider" id="slider3">
   <div class="slides center-image-0 center-image-80">
@@ -357,7 +360,11 @@ category: Code on the Road
 <li>Order of visiting nodes: <code>A, B, F, G, E, C, D</code></li>
 </ul>
 
+<h3>2.1 BFS: Implementation</h3>
+
 <p>Similar to DFS, we need to know if a node is "visited" in order to prevent cycles, i.e., re-visiting a node. Typically, BFS is implemented using a <a href="https://en.wikipedia.org/wiki/Queue_(abstract_data_type)" target="_blank">queue</a> (FIFO: First-In First-Out) data structure. I wouldn't necessarily say that it's impossible to solve it with a stack, but it's definitely not conventional and introduces complexity.</p>
+
+<img class="slides center-image-0 center-image-35" src="./assets/posts/graph-theory/queue-ds.svg">
 
 <p>Fun Fact: in the worst-case scenario (for Trees), a stack-based BFS performs better than a queue-based BFS. I'll explain more on this in a different post dedicated to Trees.</p>
 
@@ -381,7 +388,7 @@ category: Code on the Road
 </div>
 
 <p>One important observation in BFS is that we add nodes that we have discovered but not yet visited to the queue, and come back to (visit) them later.
-With the source node (or root node) in the queue, the process is to visit a node (dequeue), add all the children to the queue (enqueue), and repeat the process.</p>
+With the source node (or root node) in the queue, the process is to visit a node (dequeue), add all the children/adjacent nodes to the queue (enqueue), and repeat the process.</p>
 
 <div class="table-container">
 <table style="width: 800px;">
@@ -491,7 +498,7 @@ With the source node (or root node) in the queue, the process is to visit a node
 <p>This can be prevented by: searching the entire queue (increasing time complexity), using another hashtable to track enqueued nodes (increasing space complexity), or slightly optimized with tail checks.</p>
 
 <h3>3. Conclusion</h3>
-<p>Both Breadth-First Search (BFS) and Depth-First Search (DFS) have a lot of applications and come up way too often when dealing with graphs.</p><p>BFS is the first that pops up when finding the shortest path in an unweighted graph. DFS has tons of use-cases too. Be it computing a graph's minimum spanning tree, detecting cycles in a graph, checking if a graph is bipartite, finding bridges, articulation points, strongly connected components, topologically sorting a graph, and many more. BFS and DFS can often be used interchangeably.</p>
+<p>Both Breadth-First Search (BFS) and Depth-First Search (DFS) have a lot of applications and come up way too often when dealing with graphs.</p><p>BFS is the first that pops up when finding the shortest path in an unweighted graph. DFS has tons of use-cases—be it computing a graph's minimum spanning tree, detecting cycles in a graph, checking if a graph is bipartite, finding bridges, articulation points, strongly connected components, topologically sorting a graph, and many more. BFS and DFS can often be used interchangeably.</p>
 
 <h3>4. References</h3>
 <pre style="max-height: 180px"><code>[1] Wikipedia contributors, "Depth-first search," Wikipedia, The Free Encyclopedia. [Online]. Available: https://en.wikipedia.org/wiki/Depth-first_search.
