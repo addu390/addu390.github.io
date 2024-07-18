@@ -57,7 +57,7 @@ category: Code on the Road
 <p>Notice that in scenarios where there are more than one adjacent node, we choose the next node to explore at random, and hence there are several paths to traverse using DFS. Defining specific rules for which node to explore next brings up the topic of new strategies in DFS (In the case for Trees: Pre-order, In-order and Post-order traversal).</p>
 
 <h3>1.1. DFS: Detecting Cycles</h3>
-<p>In the previous example, we understood to back-track when we reach a leaf node. Taking an example with a graph this time to cover the "detecting a cycle" scenario, i.e., visiting a node that was previously visited.</p>
+<p>In the previous example, we understood to <a href="https://en.wikipedia.org/wiki/Backtracking" target="_blank">back-track</a> when we reach a leaf node. Taking an example with a graph this time to cover the "detecting a cycle" scenario, i.e., visiting a node that was previously visited.</p>
 <div class="slider" id="slider2">
   <div class="slides center-image-0 center-image-60">
     <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-1.svg" class="slide">
@@ -89,7 +89,7 @@ category: Code on the Road
 <p>The core of the solution is to find a way to back-track and head on a different path when encountering two scenarios: reaching a dead-end (leaf node) and reaching an already visited node (cycle).</p>
 
 <h3>1.2.1. DFS: Stack</h3>
-<p>The intuition behind using a stack is that when we reach a dead-end, we want to get to the previously added node (LIFO: Last-In First-Out) and explore other paths. This helps you explore each path deeply before backtracking, done using a stack to go back to the last node.</p>
+<p>The intuition behind using a <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)" target="_blank">stack</a> is that when we reach a dead-end, we want to get to the previously added node (LIFO: Last-In First-Out) and explore other paths. This helps you explore each path deeply before backtracking, done using a stack to go back to the last node.</p>
 <p>Easier to understand with visualization:</p>
 <p></p>
 
@@ -192,7 +192,7 @@ category: Code on the Road
 </code></pre>
 
 <h3>1.2.2. DFS: Recursion</h3>
-<p>The recursion solution is quite similar to the above stack solution, where we rely on the call stack as opposed to a user-defined stack.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Recursion" target="_blank">recursion</a> solution is quite similar to the above stack solution, where we rely on the call stack as opposed to a user-defined stack.</p>
 
 <div class="slider" id="slider4">
   <div class="slides center-image-0 center-image-80">
@@ -357,7 +357,7 @@ category: Code on the Road
 <li>Order of visiting nodes: <code>A, B, F, G, E, C, D</code></li>
 </ul>
 
-<p>Similar to DFS, we need to know if a node is "visited" in order to prevent cycles, i.e., re-visiting a node. Typically, BFS is implemented using a queue (FIFO: First-In First-Out) data structure. I wouldn't necessarily say that it's impossible to solve it with a stack, but it's definitely not conventional and introduces complexity.</p>
+<p>Similar to DFS, we need to know if a node is "visited" in order to prevent cycles, i.e., re-visiting a node. Typically, BFS is implemented using a <a href="https://en.wikipedia.org/wiki/Queue_(abstract_data_type)" target="_blank">queue</a> (FIFO: First-In First-Out) data structure. I wouldn't necessarily say that it's impossible to solve it with a stack, but it's definitely not conventional and introduces complexity.</p>
 
 <p>Fun Fact: in the worst-case scenario (for Trees), a stack-based BFS performs better than a queue-based BFS. I'll explain more on this in a different post dedicated to Trees.</p>
 
@@ -460,7 +460,35 @@ With the source node (or root node) in the queue, the process is to visit a node
                     queue.enqueue(neighbor)
 </code></pre>
 
-<p>Note: The method visit(node) is just a placeholder to do any operation, which could be as simple as just printing.</p>
+<p>I hate to be the person who uses a tree to explain a graph. Reminds me of the physics class at school, where the lectures and exams are miles apart! So, here is the visualization of BFS for a graph:</p>
+
+<div class="slider" id="slider7">
+  <div class="slides center-image-0 center-image-90">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-1.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-2.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-3.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-4.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-5.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-6.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-7.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-8.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-9.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-10.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-11.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-12.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-13.svg" class="slide">
+    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-14.svg" class="slide">
+  </div>
+  <div class="controls">
+    <button onclick="plusSlides(-1, 'slider7')" class="prev black-button">Prev</button>
+    <button onclick="playSlides('slider7')" class="play black-button">Play</button>
+    <button onclick="stopSlides('slider7')" class="stop black-button" hidden>Stop</button>
+    <button onclick="plusSlides(1, 'slider7')" class="next black-button">Next</button>
+  </div>
+</div>
+
+<p>In the Breadth-First Search (BFS) for a graph, the same element might be added to the queue multiple times in the presence of cycles (i.e. same nodes can be visited from multiple nodes). However, it will be ignored later based on the visited check. In the above graph BFS visualization, I have skipped adding the same element into the queue and indicated it with arrows (from other node(s)) instead.</p>
+<p>This can be prevented by: searching the entire queue (increasing time complexity), using another hashtable to track enqueued nodes (increasing space complexity), or slightly optimized with tail checks.</p>
 
 <h3>3. Conclusion</h3>
 <p>Both Breadth-First Search (BFS) and Depth-First Search (DFS) have a lot of applications and come up way too often when dealing with graphs.</p><p>BFS is the first that pops up when finding the shortest path in an unweighted graph. DFS has tons of use-cases too. Be it computing a graph's minimum spanning tree, detecting cycles in a graph, checking if a graph is bipartite, finding bridges, articulation points, strongly connected components, topologically sorting a graph, and many more. BFS and DFS can often be used interchangeably.</p>
