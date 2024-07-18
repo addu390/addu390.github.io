@@ -202,7 +202,7 @@ category: Code on the Road
 <h3>4.7. Flow Network</h3>
 <p><a href="https://en.wikipedia.org/wiki/Flow_network" target="_blank">Flow network</a> or the transportation network is a directed graph where the edge weight represents "capacity." The amount of flow on an edge cannot exceed the capacity of the edge. Capacity can represent fluids in a pipe, currents in an electrical circuit, cars on a road, etc.</p>
 <p>Problem: For an infinite input to reach the sink, what's the max flow? With this, it's easier to see bottlenecks in the network that slow the flow. Correlating to the example, max flow would be the number of cars, volume of fluid, etc.</p>
-<img class="center-image-0 center-image-55" src="./assets/posts/graph-theory/gt-flow-network.svg" />
+<img class="center-image-0 center-image-65" src="./assets/posts/graph-theory/gt-flow-network.svg" />
 <p>Also, there cannot be blockages in the network/flow, the amount of flow into a node equals the amount of flow out of it.</p>
 
 <h3>5. Conclusion</h3>

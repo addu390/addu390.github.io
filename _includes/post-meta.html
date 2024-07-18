@@ -1,7 +1,7 @@
 <p class="post-meta" data-id="{{ post.url | relative_url }}" data-url="{{ post.url | relative_url }}"
     data-title="{{ post.title | escape }}">
     {% assign wordCount = post.content | number_of_words %}
-    {% assign numberOfMinutes = wordCount | divided_by: 225 %}
+    {% assign numberOfMinutes = wordCount | divided_by: 275 %}
     {%- if numberOfMinutes == 0 -%}
     {% assign numberOfMinutes = 1 %}
     {%- endif -%}

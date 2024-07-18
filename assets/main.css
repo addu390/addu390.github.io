@@ -814,35 +814,36 @@ a {
   }
 }
 
-a.black-button {
+.black-button {
+  background-color: #fff;
   display: inline-block;
-  padding: 0.35em 1.2em;
+  padding: 0.35em 0.8em !important;
   border: 0.1em solid var(--black);
-  margin: 0 0.3em 1.8em 1em;
+  margin: 1em 0.3em 0em 0.3em !important;
   border-radius: 5px;
   box-sizing: border-box;
   text-decoration: none;
-  font-weight: 300;
   color: var(--black);
   text-align: center;
   transition: all 0.2s;
-}
-a.black-button:hover {
-  color: var(--white);
-  background-color: var(--black);
+  cursor: pointer;
 }
 
-@media all and (max-width: 30em) {
-  a.black-button {
-    display: block;
-    margin: 0 0.3em 0.8em 0.3em;
-  }
+.black-button:disabled {
+  cursor: not-allowed;
+  color: #a2a2a2;
+  border: 0.1em solid #a2a2a2;
+}
+
+.black-button:hover:enabled {
+  color: var(--white);
+  background-color: var(--black);
 }
 
 .highlighter-rouge,
 pre,
 code {
-  background-color: #eae8e8;
+  background-color: #F2F2F2;
   border-radius: 5px;
   padding: 3px;
 }
@@ -1347,79 +1348,6 @@ summary {
   margin-top: 3em;
 }
 
-/* Slider CSS */
-
-.slider-container {
-  position: relative;
-  max-width: 100%;
-  margin: auto;
-  overflow: hidden;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-10%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
-
-.slider-slide {
-  display: none;
-  -webkit-animation: slideIn 1s forwards;
-  animation: slideIn 1s forwards;
-}
-
-.slider-slide img {
-  width: 100%;
-  height: auto;
-}
-
-.slider-active {
-  display: block;
-}
-
-.slider-prev,
-.slider-next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  user-select: none;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slider-container a {
-  color: white;
-  opacity: 30%;
-}
-
-.slider-prev {
-  left: 10px;
-}
-
-.slider-next {
-  right: 10px;
-}
-
-.slider-prev:hover,
-.slider-next:hover {
-  text-decoration: none;
-  background-color: rgba(0, 0, 0, 0.6);
-  opacity: 60%;
-}
-
 #profile-toggle-icon {
   width: 35px;
   cursor: pointer;
@@ -1555,8 +1483,8 @@ summary {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 150px;
-  max-height: 400px;
+  min-height: 125px;
+  max-height: 350px;
   width: 120%;
   margin: 0.6em 0.9em 0.6em 0em;
   cursor: pointer;
@@ -1576,3 +1504,34 @@ summary {
   flex-direction: column;
   padding-top: 0.5em;
 }
+
+.one-line-list li {
+  margin-bottom: 8px;
+}
+
+
+/* SLIDER CSS */
+  .slider {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .slide {
+    min-width: 100%;
+    display: none;
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  .controls {
+    width: 100%;
+    text-align: center;
+  }
