@@ -1551,3 +1551,7 @@ summary {
   z-index: 2; 
   position: relative;
 }
+
+#bmc-wbtn svg path {
+  fill: var(--black) !important;
+}
