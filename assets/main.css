@@ -1430,6 +1430,7 @@ summary {
 /* Character Animation in About Page */
 
 .thought-cloud {
+  width: 93%;
   position: relative;
   max-width: 30em;
   background-color: #fff;
@@ -1546,7 +1547,7 @@ summary {
 }
 
 .subscribe-gooshi {
-  float: left; 
+  float: right; 
   margin-top: -60px; 
   z-index: 2; 
   position: relative;

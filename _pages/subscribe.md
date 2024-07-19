@@ -11,8 +11,8 @@ permalink: /subscribe/
 <div class="ml-embedded" style="margin-bottom: 1em" data-form="9OoTRn"></div>
 
 <div class="subscribe-gooshi" style="">
-    <img style="width: 8em;" src="../assets/img/common/puppy-letter.png" />
-    <p class="thought-cloud" style="bottom: 200px;"><img class="svg-icon" id="gooshi-says-hi" src="../assets/img/profile/gooshi-subscribe.svg" alt=""></p>
+    <img style="width: 6.6em;" src="../assets/img/common/puppy-letter.png" />
+    <p class="thought-cloud" style="bottom: 180px;"><img class="svg-icon" src="../assets/img/profile/gooshi-subscribe.svg" alt=""></p>
 </div>
 
 </div>
