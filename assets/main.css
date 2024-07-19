@@ -59,7 +59,7 @@ h3 {
 
 .ml-form-embedContent h4 {
   font-weight: 700;
-  font-size: 1.17em !important; 
+  font-size: 1.17em !important;
   margin-bottom: 0 !important;
 }
 
@@ -429,7 +429,8 @@ footer .pure-menu-link:hover {
 /* RESPONSIVE CSS */
 
 @media (min-width: 48em) {
-  .sm-display, .post-horizontal-line {
+  .sm-display,
+  .post-horizontal-line {
     display: none;
   }
 
@@ -476,9 +477,16 @@ footer .pure-menu-link:hover {
 }
 
 @media screen and (max-width: 48em) {
-
-  .blog-card, .blog-content, .blog-image-container, .post-grid-container, .post-horizontal-line {
+  .blog-card,
+  .blog-content,
+  .blog-image-container,
+  .post-grid-container,
+  .post-horizontal-line {
     display: block !important;
+  }
+
+  .subscribe-gooshi {
+    margin-top: 40px !important; 
   }
 
   .blog-content {
@@ -496,7 +504,7 @@ footer .pure-menu-link:hover {
 
   .sidebar-list,
   .posts-right-bar,
-  .md-display, 
+  .md-display,
   .post-vertical-line,
   .save-button {
     display: none !important;
@@ -843,7 +851,7 @@ a {
 .highlighter-rouge,
 pre,
 code {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: 5px;
   padding: 3px;
 }
@@ -1135,7 +1143,8 @@ table {
   cursor: pointer;
 }
 
-#search-input:focus, .ml-validate-email input:focus {
+#search-input:focus,
+.ml-validate-email input:focus {
   outline-color: var(--black);
 }
 
@@ -1421,12 +1430,13 @@ summary {
 /* Character Animation in About Page */
 
 .thought-cloud {
-	position: relative;
-	max-width: 30em;
-	background-color: #fff;
-	padding: 0.3em 0.5em;
-	border-radius: 1rem;
-  box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .1), 0 0.0625rem 0.125rem rgba(0, 0, 0, .1);
+  position: relative;
+  max-width: 30em;
+  background-color: #fff;
+  padding: 0.3em 0.5em;
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1),
+    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1);
 }
 
 .thought-cloud {
@@ -1435,17 +1445,17 @@ summary {
 }
 
 .thought-cloud::before {
-	content: '';
-	position: absolute;
-	width: 0;
-	height: 0;
-	top: 99%;
-	left: 3.5em;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 99%;
+  left: 3.5em;
   border-top: #fff;
-	border: .75rem solid transparent;
-	border-bottom: none;
-	border-top-color: #fff;
-	filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+  border: 0.75rem solid transparent;
+  border-bottom: none;
+  border-top-color: #fff;
+  filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
 }
 
 .black-border {
@@ -1509,29 +1519,35 @@ summary {
   margin-bottom: 8px;
 }
 
-
 /* SLIDER CSS */
-  .slider {
-    position: relative;
-    max-width: 100%;
-    overflow: hidden;
-  }
+.slider {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
 
-  .slides {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
 
-  .slide {
-    min-width: 100%;
-    display: none;
-  }
+.slide {
+  min-width: 100%;
+  display: none;
+}
 
-  .slide.active {
-    display: block;
-  }
+.slide.active {
+  display: block;
+}
 
-  .controls {
-    width: 100%;
-    text-align: center;
-  }
+.controls {
+  width: 100%;
+  text-align: center;
+}
+
+.subscribe-gooshi {
+  float: left; 
+  margin-top: -60px; 
+  z-index: 2; 
+  position: relative;
+}
