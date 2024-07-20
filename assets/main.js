@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         iconLight.style.display = 'none';
         iconDark.style.display = 'inline';
         applyFilterToClass('svg-icon', 'invert(77%)');
-        loadCommentsScript('github-dark');
+        loadCommentsScript('transparent_dark');
         addWhiteBgToSvg();
     }
 
@@ -88,13 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
         iconDark.style.display = 'none';
         applyFilterToClass('svg-icon', 'invert(0%)');
         applyFilterToClass('dark-invert', 'invert(0%)');
-        loadCommentsScript('github-light');
+        loadCommentsScript('light');
     }
 });
 
 function enableDarkMode() {
     DarkReader.setFetchMethod((url) => {
-        // If the URL is the external CSS, prevent fetching
         if (url.includes('https://assets.mailerlite.com/css/universal.css')) {
             return Promise.resolve(new Response('', {
                 status: 200,
