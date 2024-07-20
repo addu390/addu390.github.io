@@ -6,32 +6,7 @@ layout: default
 <style>
     body {
         overflow: hidden;
-        margin: 0;
-    }
-
-    #screen-2 {
-        display: none;
-    }
-
-    .main-text {
-        margin-top: 4em;
-    }
-
-    .btn {
-        padding: 12px 20px;
-        cursor: pointer;
-        border: 0.1em solid #222;
-        border-radius: 0.3em;
-        background-color: #fff;
-    }
-
-    .btn:hover {
-        background-color: #222;
-        color: #fff;
-    }
-
-    .btn:focus {
-        outline: none;
+        margin: 0;   
     }
 
     .screen {
@@ -40,148 +15,19 @@ layout: default
         align-items: center;
         justify-content: center;
         transition: margin 0.5s ease-out;
-        margin-top: 3em;
-        top: 50%;
+        vertical-align: middle;
+        margin-top: 10%;
     }
 
-    .screen.up {
-        margin-top: -100vh;
-    }
-
-    .insects-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .insects-list li {
-        margin: 10px;
-    }
-
-    .choose-insect-btn {
-        background-color: transparent;
-        border: 2px solid #222;
-        cursor: pointer;
-        font-family: inherit;
-        width: 150px;
-        height: 150px;
-        border-radius: 0.3em;
-    }
-
-    .choose-insect-btn:hover {
-        background-color: #fff;
-    }
-
-    .choose-insect-btn img {
-        width: 120px;
-        height: 120px;
-        object-fit: contain;
-    }
-
-    .game-container {
-        position: relative;
-        display: none;
-    }
-
-    .time,
-    .score {
-        position: absolute;
-        top: 20px;
-    }
-
-    .time {
-        left: 20px;
-    }
-
-    .score {
-        right: 20px;
-    }
-
-    .message {
-        line-height: 1.7;
-        background-color: rgba(0, 0, 0, 0.5);
-        width: 100%;
-        padding: 20px;
-        z-index: 100;
+    .text {
         text-align: center;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        color: #fff;
-        transform: translate(-50%, -150%);
-    }
-
-    .message.visible {
-        transform: translate(-50%, 150%);
-        opacity: 1;
-    }
-
-    .insect {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        transform: translate(-50%, -50%) scale(1);
-        transition: transform 0.3s ease-in-out;
-        cursor: pointer;
-    }
-
-    .insect img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .insect.caught {
-        transform: translate(-50%, -50%) scale(0);
+        padding-left: 2.5em;
+        position: relative;
+        font-size: 1.2em;
     }
 </style>
 
-<div class="screen" id="screen-1">
-    <br />
+<div class="screen">
     <img style="height: 25em;" src="{{ './assets/img/games/buffed-doge.png' | relative_url }}" alt="buff doge" />
-    <h1>You look lost! Care to play a game?</h1>
-    <button class="btn" id="start-btn">Play Game</button>
+    <small class="text">Oops! Page not found</small>
 </div>
-<div class="screen" id="screen-2">
-    <h1 class="main-text">What is your "favorite" insect?</h1>
-    <ul class="insects-list">
-        <li>
-            <button class="choose-insect-btn">
-                <p>Roach</p>
-                <img src="{{ './assets/img/games/roach.png' | relative_url }}" alt="roach" />
-            </button>
-        </li>
-        <li>
-            <button class="choose-insect-btn">
-                <p>Fly</p>
-                <img src="{{ './assets/img/games/fly.png' | relative_url }}" alt="fly" />
-            </button>
-        </li>
-        <li>
-            <button class="choose-insect-btn">
-                <p>Spider</p>
-                <img src="{{ './assets/img/games/spider.png' | relative_url }}" alt="spider" />
-            </button>
-        </li>
-        <li>
-            <button class="choose-insect-btn">
-                <p>Mosquito</p>
-                <img src="{{ './assets/img/games/mosquito.png' | relative_url }}" alt="mosquito" />
-            </button>
-        </li>
-    </ul>
-</div>
-<div class="screen game-container" id="game-container">
-    <h2 id="time" class="time">Time: 00:00</h3>
-        <h2 id="score" class="score">Score: 0</h3>
-            <h3 id="message" class="message">
-                Why are you still here? 😂<br />
-                Please go back to the home page.
-            </h3>
-</div>
-<script src="{{ './assets/404.js' | relative_url }}"></script>
