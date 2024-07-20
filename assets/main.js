@@ -139,7 +139,7 @@ function loadCommentsScript(theme) {
         script.setAttribute('data-repo-id', "MDEwOlJlcG9zaXRvcnkyOTk0MDg4NDY=");
         script.setAttribute('data-category', "Q&A");
         script.setAttribute('data-category-id', "DIC_kwDOEdidzs4ChB1Z");
-        script.setAttribute('data-mapping', "url");
+        script.setAttribute('data-mapping', "pathname");
         script.setAttribute('data-strict', "0");
         script.setAttribute('data-reactions-enabled', "1");
         script.setAttribute('data-emit-metadata', "0");
