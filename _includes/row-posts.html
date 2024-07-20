@@ -26,11 +26,11 @@
                     {%- endif %}
                 </h2>
 
-                <div class="post-description clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
-                    <p class="md-display">
+                <div class="post-description clickable-div">
+                    <p class="md-display" onclick="location.href='{{ post.url | relative_url }}';">
                         <span>{{ post.content | strip_html | escape | truncate: 200}}</span>
                     </p>
-                    <p class="sm-display">
+                    <p class="sm-display" onclick="location.href='{{ post.url | relative_url }}';">
                         <span>{{ post.content | strip_html | escape | truncate: 120}}</span>
                     </p>
                     {%- include post-meta.html -%}

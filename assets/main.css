@@ -1556,3 +1556,9 @@ summary {
 #bmc-wbtn svg path {
   fill: var(--black) !important;
 }
+
+.verified-tag {
+  width: 22px;
+  vertical-align: baseline;
+  margin-left: 3px;
+}

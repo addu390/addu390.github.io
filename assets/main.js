@@ -134,14 +134,22 @@ function loadCommentsScript(theme) {
         existingScript.innerHTML = '';
         const script = document.createElement('script');
         script.id = 'comments-script';
-        script.src = 'https://utteranc.es/client.js'; // Replace with your actual script source
-        script.setAttribute('theme', theme);
-        script.setAttribute('repo', 'addu390/addu390.github.io');
-        script.setAttribute('issue-term', 'pathname');
-        script.setAttribute('crossorigin', 'anonymous');
+        script.src = 'https://giscus.app/client.js';
+        script.setAttribute('data-repo', "addu390/addu390.github.io");
+        script.setAttribute('data-repo-id', "MDEwOlJlcG9zaXRvcnkyOTk0MDg4NDY=");
+        script.setAttribute('data-category', "Q&A");
+        script.setAttribute('data-category-id', "DIC_kwDOEdidzs4ChB1Z");
+        script.setAttribute('data-mapping', "url");
+        script.setAttribute('data-strict', "0");
+        script.setAttribute('data-reactions-enabled', "1");
+        script.setAttribute('data-emit-metadata', "0");
+        script.setAttribute('data-input-position', "top");
+        script.setAttribute('data-theme', theme);
+        script.setAttribute('data-lang', "en");
+        script.setAttribute('data-loading', "lazy");
+        script.setAttribute('crossorigin', "anonymous");
         script.async = true;
         document.getElementById('comments-script').appendChild(script);
     }
 }
-
 

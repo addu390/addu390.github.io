@@ -1,10 +1,13 @@
 <aside class="sidebar pure-u-1 pure-u-md-1-5">
     <div class="sidebar-info">
         <span hidden>{{site.title}}</span>
-        <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
-            src="{{site.url}}/{{site.header_image}}" alt="Photo of {{site.author}}" />
+        <div>
+            <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
+                src="{{site.url}}/{{site.header_image}}" alt="Photo of {{site.author}}" />
+        </div>
         <h1 class="brand-title">
-            <a href="/">· {{site.title}} ·</a>
+            <a href="/"> {{site.title}}</a><img title="verified" class="verified-tag"
+            src="{{site.url}}/assets/img/profile/verified.svg" alt="Verified Tag" />
         </h1>
         <br>
         <h2 class="brand-tagline">{{site.description}}</h2>
@@ -33,9 +36,9 @@
                     src="{{ site.url }}/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
             About</li>
         <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/sponsor';"><span
-                    class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/luck.svg"
-                        alt="sponsor"></span>&nbsp;
-                Sponsor</li>
+                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/luck.svg"
+                    alt="sponsor"></span>&nbsp;
+            Sponsor</li>
         <li class="clickable-div low-featured"><a href="https://medium.com/@pyblog/lists" target="_blank"><span
                     class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/medium.svg"
                         alt="medium"></span>&nbsp;

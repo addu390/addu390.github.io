@@ -19,9 +19,9 @@
     <b class="post-meta-dots">·</b>
     {%- for tag in post.tags -%}
     {%- if disable-meta-click -%}
-    <a href="#" class="disabled-link"> #{{ tag }}</a>
+    <span style="padding-right: 1px;">#</span><a href="#" class="disabled-link">{{ tag }}</a>
     {% else %}
-    <a href="{{site.url}}/tags/{{ tag | slugify }}"> #{{ tag }}</a>
+    <span style="padding-right: 1px;">#</span><a href="{{site.url}}/tags/{{ tag | slugify }}">{{ tag }}</a>
     {%- endif -%}
     {%- if forloop.last == false %}&#8239; {% endif -%}
     {%- endfor -%}
@@ -29,7 +29,7 @@
     <br />
 
     {%- if post.premium -%}
-    <img title="Premium Post on Medium" class="premium-tag" src="{{site.url}}/assets/img/common/premium.svg" alt="premium-tag">
+    <img title="Premium" class="premium-tag" src="{{site.url}}/assets/img/common/premium.svg" alt="premium-tag">
     {%- endif -%}
     {%- if post.friendly -%}
     <img class="premium-tag" src="{{site.url}}/assets/img/common/friendly.svg" alt="friendly-tag">

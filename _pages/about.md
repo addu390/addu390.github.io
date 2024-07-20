@@ -41,7 +41,7 @@ permalink: /about/
 <li>I get giddy about new startups and tech. Watching the industry evolve is like binge-watching a sci-fi series, but with more (new) acronyms.</li>
 <li>And the obvious—Pencil sketching and illustrating!</li>
 <li>I talk to my plants. I think they listen. Bird of Paradise, Pothos, Clementine, and Parlor Palm are my buddies <img class="twemoji" style="vertical-align: sub;" src="../assets/img/emoji/plant.svg" /></li>
-<li>Currently obsessed with time and spatial indexes.</li>
+<li>Currently obsessed with <a class="underline" href="{{ site.url }}/tags/graph-theory">Graph Theory</a> and <a class="underline" href="{{ site.url }}/tags/spatial-index">Spatio-Temporal Indexes</a>.</li>
 </ul>
 </details>
 
@@ -55,6 +55,8 @@ permalink: /about/
 <p>
 I’d <a class="underline" href="/contact">love to hear from you</a>! Your feedback, comments, and questions are always welcome.</p>
 </div>
+
+<br/>
 
 <audio id="gooshiSound">
     <source src="../assets/sounds/meow-kitty.mp3" type="audio/mpeg">
