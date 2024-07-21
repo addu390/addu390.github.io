@@ -33,6 +33,7 @@ ul,
 ol,
 li,
 summary,
+table,
 a {
   font-family: "Open Sans", sans-serif;
 }
@@ -105,6 +106,9 @@ tr:hover {
 
 th {
   text-align: center;
+  background-color: #222; 
+  font-weight: 300;
+  color: var(--white);
 }
 
 footer {
@@ -1109,7 +1113,7 @@ code {
 .table-container {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 600px;
+  max-height: 900px;
   flex-direction: row;
 }
 
