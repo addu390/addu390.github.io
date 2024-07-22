@@ -6,8 +6,9 @@
                 src="{{site.url}}/{{site.header_image}}" alt="Photo of {{site.author}}" />
         </div>
         <h1 class="brand-title">
-            <a href="/"> {{site.title}}</a><img title="verified" class="verified-tag"
-            src="{{site.url}}/assets/img/profile/verified.svg" alt="Verified Tag" />
+            <a href="{{ site.url }}"> {{site.title}}</a><img onclick="location.href='{{site.url}}';" title="verified"
+                class="clickable-div verified-tag" src="{{site.url}}/assets/img/profile/verified.svg"
+                alt="Verified Tag" />
         </h1>
         <br>
         <h2 class="brand-tagline">{{site.description}}</h2>
@@ -24,13 +25,10 @@
         <li class="clickable-div high-featured" onclick="location.href='{{site.url}}/subscribe';"><span
                 class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/loveletter.svg"
                     alt="subscribe"></span>&nbsp; Subscribe</li>
-
-
         <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/contact';"><span
                 class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/horn.svg"
                     alt="contact"></span>&nbsp;
             Contact</li>
-
         <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/about';"><span
                 class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
                     src="{{ site.url }}/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;

@@ -27,8 +27,6 @@ content-type: eg
             <li id="date-content" style="padding-bottom: 0.6em; list-style: none;"><a href="{{ post.url }}">{{ post.title }}</a></li>
           {% endfor %}
     {% endfor %}
-
         <br/>
         <br/>
-
 </main>
