@@ -7,7 +7,9 @@
 }
 
 :root {
+  --py-black: #222;
   --black: #000;
+  --og-white: #fff;
   --white: #f0f0f0;
   --bg-color: transparent;
   --darkreader-bg--bg-color: white !important;
@@ -1565,4 +1567,14 @@ summary {
   width: 22px;
   vertical-align: baseline;
   margin-left: 3px;
+}
+
+.page {
+  border: none;
+  background-color: transparent;
+  margin-top: 4em;
+}
+
+.page .text-container {
+  background-color: var(--og-white);
 }
