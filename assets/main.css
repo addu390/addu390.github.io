@@ -1124,9 +1124,6 @@ table {
 }
 
 @media (max-width: 768px) {
-  details img {
-    width: 100% !important;
-  }
   .center-image {
     width: 100% !important;
   }
