@@ -18,10 +18,6 @@ permalink: /about/
 
 <p>Recent Brags:</p>
 
-<div style="float: right; cursor: pointer;">
-    <img id="gooshi" src="../assets/img/profile/gooshi-looking-away.png" alt="Gooshi" style="width: 6.6em;">
-    <p class="thought-cloud" style="bottom: 185px;"><img class="svg-icon" id="gooshi-says-hi" src="../assets/img/profile/gooshi.svg" alt=""></p>
-</div>
 <ul>
     <li>Revamped PyBlog with my top-of-the-line illustrations, algorithm visualizers, concept explanation series, and much more.</li>
     <li>Rock Climbing: Can Send V6 on a good day <img class="twemoji" src="../assets/img/emoji/rock-climb.svg" /> </li>
@@ -56,10 +52,3 @@ I’d <a class="underline" href="/contact">love to hear from you</a>! Your feedb
 </div>
 
 <br/>
-
-<audio id="gooshiSound">
-    <source src="../assets/sounds/meow-kitty.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
-<script src="{{ '../assets/js/character.js' | relative_url }}"></script>

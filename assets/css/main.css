@@ -632,12 +632,6 @@ a {
   width: 40%;
 }
 
-@media only screen and (max-width: 600px) {
-  .center-image-60 {
-    width: 85%;
-  }
-}
-
 .black-button {
   background-color: #fff;
   display: inline-block;
@@ -1090,40 +1084,6 @@ summary {
   cursor: pointer;
 }
 
-#showerButton {
-  cursor: pointer;
-}
-
-#showerContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.watermelon {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: url("../../assets/img/emoji/watermelon.svg") no-repeat center center /
-    contain;
-  animation: fall 3s linear infinite;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-100%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0.8;
-  }
-}
-
 .hidden-a {
   color: var(--black) !important;
   cursor: text;
@@ -1133,58 +1093,10 @@ summary {
   text-decoration: none;
 }
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 0.8em;
-}
-
-.social-icons a {
-  display: inline-block;
-}
-
-.social-icons img {
-  width: 20px;
-  height: 20px;
-  transition: transform 0.3s;
-}
-
 .svg-bg-dark-mode::before {
   background-blend-mode: screen;
   background-color: white;
   z-index: -1; /* Place the background behind the image */
-}
-
-/* Character Animation in About Page */
-
-.thought-cloud {
-  width: 93%;
-  position: relative;
-  max-width: 30em;
-  background-color: #fff;
-  padding: 0.3em 0.5em;
-  border-radius: 1rem;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1),
-    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1);
-}
-
-.thought-cloud {
-  bottom: 190px;
-  text-align: center;
-}
-
-.thought-cloud::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 99%;
-  left: 3.5em;
-  border-top: #fff;
-  border: 0.75rem solid transparent;
-  border-bottom: none;
-  border-top-color: #fff;
-  filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
 }
 
 .black-border {
@@ -1233,17 +1145,6 @@ summary {
 .controls {
   width: 100%;
   text-align: center;
-}
-
-.subscribe-gooshi {
-  float: right;
-  margin-top: -60px;
-  z-index: 2;
-  position: relative;
-}
-
-#bmc-wbtn svg path {
-  fill: var(--black) !important;
 }
 
 .verified-tag {
