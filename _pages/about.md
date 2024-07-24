@@ -62,4 +62,4 @@ I’d <a class="underline" href="/contact">love to hear from you</a>! Your feedb
     Your browser does not support the audio element.
 </audio>
 
-<script src="{{ '../assets/character.js' | relative_url }}"></script>
+<script src="{{ '../assets/js/character.js' | relative_url }}"></script>

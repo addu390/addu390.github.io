@@ -14,11 +14,20 @@ permalink: /subscribe/
 <p>Prefer a more personal touch? Sign up for the newsletter <img class="twemoji" style="vertical-align: sub;" src="../assets/img/emoji/loveletter.svg" alt="letter"> below.</p>
 <div class="ml-embedded" style="margin-bottom: 1em" data-form="9OoTRn"></div>
 
-<div class="subscribe-gooshi" style="">
-    <img style="width: 6.6em;" src="../assets/img/common/puppy-letter.png" />
-    <p class="thought-cloud" style="bottom: 180px;"><img class="svg-icon" src="../assets/img/profile/gooshi-subscribe.svg" alt=""></p>
-</div>
-
 </div>
 <br/><br/>
 </div>
+
+<!-- MailerLite Universal -->
+<script async>
+    (function (w, d, e, u, f, l, n) {
+        w[f] = w[f] || function () {
+            (w[f].q = w[f].q || [])
+                .push(arguments);
+        }, l = d.createElement(e), l.async = 1, l.src = u,
+            n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+    })
+        (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+    ml('account', '1023335');
+</script>
+<!-- End MailerLite Universal -->
