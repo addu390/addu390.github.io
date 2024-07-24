@@ -197,6 +197,14 @@ th {
   line-height: 1.5;
 }
 
+.post {
+  transition: transform .2s;
+}
+
+.post:hover {
+  transform: scale(1.02);
+}
+
 .post,
 .post-entry {
   border: var(--light-grey) solid 1px;
