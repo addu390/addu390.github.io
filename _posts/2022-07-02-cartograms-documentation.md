@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Documentation: Conceptualization of a Cartogram"
+title: "Conceptualization of a Cartogram"
 date: 2022-07-02
 premium: true
 tags:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "3D Printing iPhone 8 Privacy Case with Camera Cover"
+title: "3D Printing iPhone 8 Privacy Case"
 date: 2021-03-27
 tags:
   - Project

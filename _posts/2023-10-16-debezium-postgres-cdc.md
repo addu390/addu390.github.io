@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Debezium: PostgreSQL Change Data Capture (CDC)"
+title: "Debezium: PostgreSQL Change Data Capture"
 date: 2023-10-16
 tags:
   - System Design

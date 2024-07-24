@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dockerizing Django Application — Gunicorn and Nginx"
+title: "Dockerizing Django — Gunicorn and Nginx"
 date: 2022-02-11
 tags:
   - Django

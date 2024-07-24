@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Location-based application using Django, PostGIS and Leaflet"
+title: "Location-based application using Django and PostGIS"
 date: 2022-03-15
 tags:
   - Django

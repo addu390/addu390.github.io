@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hybrid Spatial Data Structures: Quad-KD and R-KD trees"
+title: "Hybrid Spatial Index: Quad-KD and R-KD trees"
 date: 2022-04-10
 tags:
   - Algorithms
