@@ -400,6 +400,10 @@ th {
     border-radius: 0px;
   }
 
+  .post-entry-toc .posts {
+    margin: 0 0 0 0 !important;
+  }
+
   .post .center-image {
     width: 95%;
   }
