@@ -28,7 +28,7 @@
 
                 <div class="post-description clickable-div">
                     <p class="text-overflow" onclick="location.href='{{ post.url | relative_url }}';">
-                        <span>{{ post.content | strip_html | escape | truncate: 120}}</span>
+                        <span>{{ post.content | strip_html | escape | truncate: 200}}</span>
                     </p>
                 </div>
             </div>

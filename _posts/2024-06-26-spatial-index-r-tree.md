@@ -11,7 +11,7 @@ feature: assets/featured/webp/rtree-spatial-index.webp
 category: System Wisdom
 ---
 
-<img class="center-image-0 center-image-65" src="./assets/featured/webp/rtree-spatial-index.webp" /> 
+<img class="center-image-0 center-image" src="./assets/featured/webp/rtree-spatial-index.webp" /> 
 
 <p>In this post, let's explore the <a href="https://en.wikipedia.org/wiki/R-tree" target="_blank">R-Tree</a> data structure, which is popularly used to store multi-dimensional data, such as data points, segments, and rectangles.</p>
 
