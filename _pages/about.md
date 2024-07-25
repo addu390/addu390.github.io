@@ -25,7 +25,7 @@ permalink: /about/
 </ul>
 </div>
 
-<hr class="post-hr"/>
+<hr class="sub-hr">
 
 <details open class="text-container"><summary class="p"> &nbsp;A Peek into My World</summary>
 <ul>
@@ -40,7 +40,7 @@ permalink: /about/
 </ul>
 </details>
 
-<hr class="post-hr"/>
+<hr class="sub-hr">
 
 <details class="text-container"><summary class="p"> &nbsp;Trailblazing My Way in Software Engineering</summary>
 <p>I have worked in companies with as few as 3 engineers, as well as mid and large-sized startups, and major enterprises.</p> <p>My work is often centered around building asynchronous near-real-time workflows and pipelines, optimizing infrastructure, and developing libraries and microservices to streamline development, enchance maintainability and scalability.</p><br/>

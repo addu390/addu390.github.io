@@ -35,7 +35,7 @@ date: 2024-06-25
 </p>
 </details>
 
-<hr class="clear-hr">
+<hr class="sub-hr">
 
 <details class="text-container" open><summary class="h3">How We Use Your Information</summary>
 
@@ -58,7 +58,7 @@ date: 2024-06-25
 </p>
 
 </details>
-<hr class="clear-hr">
+<hr class="sub-hr">
 
 <details class="text-container" open><summary class="h3">Google Analytics and AdSense</summary>
 <p>We use Google Analytics to collect and analyze non-personal information about the use of our blog. Google Analytics uses cookies to track user interactions. For more information, please refer to the <a href="https://policies.google.com/privacy">Google Analytics Privacy Policy</a>.</p>
@@ -66,13 +66,13 @@ date: 2024-06-25
 <p>From June 25, 2024, Google AdSense is no longer in use. PyBlog is now ad-free.</p>
 
 </details>
-<hr class="clear-hr">
+<hr class="sub-hr">
 
 <details class="text-container" open><summary class="h3">Data Security</summary>
 <p>We take reasonable measures to protect your personal information from unauthorized access, disclosure, alteration, and destruction. However, please be aware that no security measures are perfect or impenetrable, and we cannot guarantee the absolute security of your information.</p>
 
 </details>
-<hr class="clear-hr">
+<hr class="sub-hr">
 
 <details class="text-container" open><summary class="h3">Your Rights</summary>
 <p>You have the right to:
@@ -85,14 +85,14 @@ date: 2024-06-25
 <p>To exercise these rights, please contact us at <span class="underline">yo@pyblog.xyz</span></p>
 
 </details>
-<hr class="clear-hr">
+<hr class="sub-hr">
 
 <details class="text-container" open><summary class="h3">Sponsoring</summary>
 <p>We do not use affiliate links for anything we recommend. Affiliate links are specific web links that reward the advertiser with commissions for visits, signups, or sales through that link.</p>
 
 <p>We do not show any advertisements or host sponsorships on the blog that dictate the content. We author all the content on this blog, and all recommendations we make are independent and unbiased.</p>
 </details>
-<hr class="clear-hr">
+<hr class="sub-hr">
 
 <details class="text-container" open><summary class="h3">Content and Image Usage</summary>
 <p>All content and images on PyBlog are original (licensed under the <a class="underline" href="https://github.com/addu390/addu390.github.io/blob/master/LICENSE" target="_blank">Creative Commons Attribution 4.0 International license</a>) and created by the author unless otherwise stated. If you wish to use any content or images from PyBlog, you must:
@@ -109,7 +109,7 @@ date: 2024-06-25
 </div>
 
 </details>
-<hr class="clear-hr">
+<hr class="sub-hr">
 
 <p>We may update this privacy policy from time to time. Any changes will be posted on this page, and the updated policy will take effect as soon as it is published.</p>
 

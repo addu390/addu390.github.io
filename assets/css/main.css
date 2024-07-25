@@ -50,11 +50,6 @@ a:focus {
   text-decoration: underline;
 }
 
-h1 {
-  font-weight: 800;
-  text-align: center;
-}
-
 h2,
 h3 {
   font-weight: 700;
@@ -245,6 +240,11 @@ th {
   margin-bottom: 0.2em;
 }
 
+.page h2 {
+  text-align: center;
+  font-size: 1.6em;
+}
+
 .post-header p {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
@@ -399,25 +399,12 @@ th {
     max-width: 100%;
   }
 
-  .post,
-  .post-entry,
-  .feed-header,
-  .post-entry .post-body {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    border-radius: 0px;
-  }
-
   .post-entry-toc .posts {
     margin: 0 0 0 0 !important;
   }
 
   .post .center-image {
     width: 95%;
-  }
-
-  [class^="center-image-"] {
-    width: 95% !important;
   }
 
   .brand-title,
@@ -549,6 +536,7 @@ a {
 }
 
 .center-image-0 {
+  border-radius: 5px;
   display: block;
   margin-left: auto;
   margin-right: auto;
