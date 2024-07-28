@@ -14,6 +14,7 @@
   --bg-color: transparent;
   --darkreader-bg--bg-color: white !important;
   --light-grey: #f1f1f1;
+  --very-light-grey: #fafafa;
 }
 
 html,
@@ -23,7 +24,7 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
-  background-color: #fafafa;
+  background-color: var(--very-light-grey);
 }
 
 h1,
@@ -193,7 +194,7 @@ th {
 }
 
 .post {
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .post:hover {
@@ -226,7 +227,7 @@ th {
 }
 
 .content {
-  background-color: #fafafa;
+  background-color: var(--very-light-grey);
 }
 
 .post-entry {
@@ -450,20 +451,6 @@ th {
 
 .content {
   padding-top: 0;
-}
-
-.paginate {
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.paginate ul {
-  margin-top: 0.5em;
-}
-
-.paginate * {
-  font-family: "Open Sans", sans-serif;
 }
 
 #current-page {
@@ -1165,4 +1152,61 @@ summary {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px 20px 10px;
+  padding: 10px;
+}
+
+.pagination-box {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.pagination-box-idle {
+  background-color: var(--very-light-grey);
+  border: 1px solid #ccc;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-box-idle:hover {
+  border: var(--py-black) 1px solid;
+}
+
+.pagination-box-hit {
+  background-color: var(--py-black);
+  color: #fff;
+  border: 1px solid var(--py-black);
+}
+
+.pagination a {
+  text-decoration: none;
+}
+
+.pagination-box-swipe-right,
+.pagination-box-swipe-left {
+  border: none !important;
+  font-size: 30px;
+  padding-top: 5px;
+}
+
+.pagination-box-swipe-right:hover,
+.pagination-box-swipe-left:hover {
+  background-color: transparent;
+}
+
+.pagination-box-swipe-right {
+  padding-left: 5px;
+}
+
+.pagination-box-swipe-left {
+  padding-right: 5px;
 }
