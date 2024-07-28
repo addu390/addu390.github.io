@@ -4,6 +4,7 @@ title: Organized by Category
 permalink: /categories/
 content-type: eg
 ---
+
 <p></p>
 <main class="all-posts text-container">
     {% for category in site.categories %}
