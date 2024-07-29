@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:wght@400;700;800&display=swap");
-
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -38,7 +36,7 @@ li,
 summary,
 table,
 a {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "PT Sans", Calibri, Tahoma, sans-serif;
 }
 
 a {
@@ -161,17 +159,6 @@ th {
   color: #ddd;
   font-size: 17px;
   line-height: 1.5;
-}
-
-.content-subhead {
-  text-transform: uppercase;
-  color: #333;
-  border-bottom: 1px solid #eee;
-  padding: 0.4em 0;
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  font-family: "Open Sans", sans-serif;
 }
 
 .pure-button {
@@ -1173,18 +1160,20 @@ summary {
 
 .pagination-box-idle {
   background-color: var(--very-light-grey);
-  border: 1px solid #ccc;
+  border: 1.5px solid #ccc;
   transition: background-color 0.3s, color 0.3s;
+  border-radius: 50%;
 }
 
 .pagination-box-idle:hover {
-  border: var(--py-black) 1px solid;
+  border: var(--py-black) 1.5px solid;
 }
 
 .pagination-box-hit {
   background-color: var(--py-black);
   color: #fff;
-  border: 1px solid var(--py-black);
+  border: 1.5px solid var(--py-black);
+  border-radius: 50%;
 }
 
 .pagination a {
@@ -1204,9 +1193,9 @@ summary {
 }
 
 .pagination-box-swipe-right {
-  padding-left: 5px;
+  padding-left: 3px;
 }
 
 .pagination-box-swipe-left {
-  padding-right: 5px;
+  padding-right: 3px;
 }
