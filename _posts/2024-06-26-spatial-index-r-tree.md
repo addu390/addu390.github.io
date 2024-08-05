@@ -11,7 +11,7 @@ feature: assets/featured/webp/rtree-spatial-index.webp
 category: System Wisdom
 ---
 
-<img class="center-image-0 center-image" src="./assets/featured/webp/rtree-spatial-index.webp" /> 
+<img class="center-image-0 center-image-65" src="./assets/featured/webp/rtree-spatial-index.webp" /> 
 
 <p>If you have been following the <a href="{{site.url}}/tags/spatial-index">Spatial Index Series</a>, it started with the need for multi-dimensional indexes and an introduction to <a href="{{site.url}}/spatial-index-space-filling-curve">space-filling curves</a>, followed by a deep dive into <a href="{{site.url}}/spatial-index-grid-system">grid systems</a> (GeoHash and Google S2) and <a href="{{site.url}}/spatial-index-tessellation">tessellation</a> (Uber H3).</p>
 

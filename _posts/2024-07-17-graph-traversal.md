@@ -12,7 +12,7 @@ feature: assets/featured/webp/graph-theory-search.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-80" src="./assets/featured/graph-theory-search.png" />
+<img class="center-image-0 center-image-65" src="./assets/featured/graph-theory-search.png" />
 
 <h3>0. Graph Traversal</h3>
 <p>Breadth-First Search (<a href="https://en.wikipedia.org/wiki/Breadth-first_search" target="_blank">BFS</a>) and Depth-First Search (<a href="https://en.wikipedia.org/wiki/Depth-first_search" target="_blank">DFS</a>) are two of the most commonly used graph traversal methods.</p>

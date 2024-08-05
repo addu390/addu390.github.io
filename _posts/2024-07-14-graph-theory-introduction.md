@@ -11,7 +11,7 @@ feature: assets/featured/webp/graph-theory-101.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-80" src="./assets/featured/graph-theory-101.png" />
+<img class="center-image-0 center-image-65" src="./assets/featured/graph-theory-101.png" />
 
 <p>Before heading into details of how we store, represent, and traverse various kinds of graphs, this post is more of a ramp-up to better understand what graphs are and the different kinds from a computer science point of view, rather than a mathematical one. So, no proofs and equations, mostly just diagrams and implementation details, with an emphasis on how to apply graph theory to real-world applications.</p>
 
