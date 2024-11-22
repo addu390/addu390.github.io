@@ -11,7 +11,7 @@ feature: assets/featured/webp/one-piece-fan-art.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-50" src="./assets/featured/webp/one-piece-fan-art.webp" />
+<img class="center-image-0 center-image-40" src="./assets/featured/webp/one-piece-fan-art.webp" />
 <p class="figure-header">Figure: One Piece Fan Art</p>
 
 <p>It feels good to be back, reflecting, pondering, and putting thoughts into words. Let's talk about something core to the software engineering that often gets overlooked in the rush to code: <b>design-driven development</b>.</p>
