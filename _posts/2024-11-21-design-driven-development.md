@@ -6,13 +6,13 @@ tags:
 - Graph Theory
 - Data Structures
 author: Adesh Nalpet Adimurthy
-image: assets/featured/webp/one-piece-fan-art.webp
-feature: assets/featured/webp/one-piece-fan-art.webp
+image: assets/featured/webp/ppt-hate.webp
+feature: assets/featured/webp/ppt-hate.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-40" src="./assets/featured/webp/one-piece-fan-art.webp" />
-<p class="figure-header">Figure: One Piece Fan Art</p>
+<img class="center-image-0 center-image-65" src="./assets/featured/webp/ppt-hate.webp" />
+<p class="figure-header">Figure: PPT Hate 🤫</p>
 
 <p>It feels good to be back, reflecting, pondering, and putting thoughts into words. Let's talk about something core to the software engineering that often gets overlooked in the rush to code: <b>design-driven development</b>.</p>
 
