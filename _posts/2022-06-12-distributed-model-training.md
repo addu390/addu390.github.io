@@ -10,7 +10,7 @@ feature: assets/featured/porco-rosso.png
 category: System Wisdom
 ---
 
-<img class="center-image" src="./assets/featured/porco-rosso.png" /> 
+<img class="center-image expand-image" src="./assets/featured/porco-rosso.png" /> 
 <p style="text-align: center;">Porco Rosso. </p>
 
 ## Distributed Training

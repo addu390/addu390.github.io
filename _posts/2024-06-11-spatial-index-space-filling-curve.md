@@ -13,7 +13,7 @@ image: assets/featured/webp/spatio-temporal-index.webp
 description: Spatial indexes optimize multi-dimensional data querying using space-filling curves like Z-order and Hilbert curves. Z-order curves employ a recursive Z pattern, and Hilbert curves use a U-shaped pattern, both maintaining data locality to improve spatial query performance. The article compares their effectiveness and includes implementation examples.
 ---
 
-<img class="center-image-0 center-image-65" src="./assets/featured/webp/spatio-temporal-index.webp" /> 
+<img class="center-image-0 center-image-65 expand-image" src="./assets/featured/webp/spatio-temporal-index.webp" /> 
 
 <details open><summary class="h3">0. Overview</summary>
 <p>Spatial data has grown (/is growing) rapidly thanks to web services tracking where and when users do things. Most applications add location tags and often allow users check in specific places and times. This surge is largely due to smartphones, which act as location sensors, making it easier than ever to capture and analyze this type of data.</p>

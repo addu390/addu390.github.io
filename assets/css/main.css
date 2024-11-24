@@ -357,6 +357,10 @@ th {
     margin-top: 40px !important;
   }
 
+  .expand-image {
+    width: 100% !important;
+  }
+
   .blog-content {
     padding-top: 0% !important;
   }

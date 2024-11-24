@@ -14,7 +14,7 @@ feature: assets/featured/solar-system-cartogram.png
 category: Comics
 ---
 
-<img class="center-image" src="./assets/featured/solar-system-cartogram.png" /> 
+<img class="center-image expand-image" src="./assets/featured/solar-system-cartogram.png" /> 
 
 # Explanation
 

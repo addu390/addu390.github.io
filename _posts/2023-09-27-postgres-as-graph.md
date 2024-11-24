@@ -10,7 +10,7 @@ feature: assets/featured/neo4j-vs-pgsql.png
 category: System Wisdom
 ---
 
-<img class="center-image" src="./assets/featured/neo4j-vs-pgsql.png" /> 
+<img class="center-image expand-image" src="./assets/featured/neo4j-vs-pgsql.png" /> 
 <p style="text-align: center;">Neo4j vs PostgreSQL</p>
 
 Have you ever come across the need to store a graph in a relational database because using/onboarding a graph database for a small use-case is overkill? 
