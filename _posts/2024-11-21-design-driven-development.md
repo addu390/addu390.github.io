@@ -61,7 +61,7 @@ category: Code on the Road
 <p>A good engineer is someone who can design, document, and implement clean code. Stop coping!</p>
 
 <img class="center-image-0 center-image-55 expand-image" src="./assets/posts/glorified-rockstar.png" />
-<p class="figure-header">High-Velocity Mediocre Ninja-Rockstar Engineer on the right 🤡</p>
+<p class="figure-header">High-Velocity Ninja-Rockstar Engineer on the right 🤡</p>
 
 <p><b>Stop the PPTs 🪱</b> and start documenting 🐉. Clear, written documentation beats any PowerPoint presentation or casual conversations. Having a well-documented design allows for parallel work, clearer communication, and a shared understanding. Without it, you risk creating silos of knowledge, with one or two team members holding all the information, making collaboration difficult and inefficient.</p>
 
