@@ -217,7 +217,12 @@ category: System Wisdom
 <p>One of the replicas is assigned to be the <code>leader</code> of that partition, and the rest are called <code>followers</code>. The producer sends the data to the leader, and the followers retrieve the data from the leader for replication. In a similar fashion, the consumer reads from the leader; however, the consumer(s) can also read from the follower(s).</p>
 
 
-<h3>4. Kafka Broker (Control Plane)</h3>
+<!-- <h3>4. Kafka Broker (Control Plane)</h3> -->
+
+<pre style="max-height: 180px"><code>[1] "Apache Kafka Streams Architecture," Apache Kafka, [Online]. Available: https://kafka.apache.org/39/documentation/streams/architecture.
+[2] "Apache Kafka Documentation: Configuration," Apache Kafka, [Online]. Available: https://kafka.apache.org/documentation/#configuration.
+[3] J. Rao, "Apache Kafka Architecture and Internals," Confluent, [Online]. Available: https://www.confluent.io/blog/apache-kafka-architecture-and-internals-by-jun-rao/.
+</code></pre>
 
 
 
