@@ -219,6 +219,7 @@ category: System Wisdom
 
 <!-- <h3>4. Kafka Broker (Control Plane)</h3> -->
 
+<h3>6. References</h3>
 <pre style="max-height: 180px"><code>[1] "Apache Kafka Streams Architecture," Apache Kafka, [Online]. Available: https://kafka.apache.org/39/documentation/streams/architecture.
 [2] "Apache Kafka Documentation: Configuration," Apache Kafka, [Online]. Available: https://kafka.apache.org/documentation/#configuration.
 [3] J. Rao, "Apache Kafka Architecture and Internals," Confluent, [Online]. Available: https://www.confluent.io/blog/apache-kafka-architecture-and-internals-by-jun-rao/.

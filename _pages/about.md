@@ -35,14 +35,13 @@ permalink: /about/
 <br/>
 <li>And the obvious—Pencil sketching and illustrating!</li>
 <li>Plants are cool! Bird of Paradise, Pothos, Clementine, and Parlor Palm <img class="twemoji" style="vertical-align: sub;" src="../assets/img/emoji/plant.svg" /></li>
-<li>Currently obsessed with <a class="underline" href="{{ site.url }}/tags/graph-theory">Graph Theory</a> and <a class="underline" href="{{ site.url }}/tags/spatial-index">Spatio-Temporal Indexes</a>.</li>
 </ul>
 </details>
 
 <hr class="sub-hr">
 
 <details class="text-container"><summary class="p"> &nbsp;Trailblazing My Way in Software Engineering</summary>
-<p>I have worked in companies with as few as 3 engineers, as well as mid and large-sized startups, and major enterprises.</p> <p>My work is often centered around building asynchronous near-real-time workflows and pipelines, optimizing infrastructure, and developing libraries and microservices to streamline development, enchance maintainability and scalability. Phew!</p><br/>
+<p>I have worked in companies with as few as 3 engineers, as well as mid and large-sized startups, and major enterprises.</p> <p>My work is often centered around building near-real-time streaming workflows and pipelines, optimizing infrastructure, developing libraries and microservices to streamline development, enchance maintainability and scalability. Phew!</p><br/>
     <img class="center-image-0 center-image-60 dark-invert" src="../assets/img/profile/things-i-have-done.svg" /> 
 </details>
 
