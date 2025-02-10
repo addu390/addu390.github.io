@@ -14,7 +14,7 @@ category: System Wisdom
 <p>🚧 This post is a work in progress, but feel free to explore what’s here so far. Stay tuned for more!</p>
 </div>
 
-<p><code>14 years</code> of <a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>! Kafka is the de facto standard for event streaming, just like AWS S3 is for object storage and PostgreSQL is for RDBMS. While every TD&H has likely used it, managing a Kafka cluster is a whole other game. The long list of <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">high-importance configurations</a> is a testament to this. In this blog post, the goal is to understand Kafka's internals enough to make sense of its many configurations and highlight best practices.</p>
+<p><code>14 years</code> of <a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>! Kafka is the de facto standard for event streaming, just like AWS S3 is for object storage and PostgreSQL is for RDBMS. While every TD&H (SWE) has likely used Kafka, managing a Kafka cluster is a whole other game. The long list of <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">high-importance configurations</a> is a testament to this. In this blog post, the goal is to understand Kafka's internals enough to make sense of its many configurations and highlight best practices.</p>
 
 <img class="center-image-0 center-image-60" src="./assets/posts/kafka/kafka-api.webp">
 
