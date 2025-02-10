@@ -16,7 +16,7 @@ category: System Wisdom
 
 <p><code>14 years</code> of <a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>! Kafka is the de facto standard for event streaming, just like AWS S3 is for object storage and PostgreSQL is for RDBMS. While every TD&H (SWE) has likely used Kafka, managing a Kafka cluster is a whole other game. The long list of <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">high-importance configurations</a> is a testament to this. In this blog post, the goal is to understand Kafka's internals enough to make sense of its many configurations and highlight best practices.</p>
 
-<img class="center-image-0 center-image-60" src="./assets/posts/kafka/kafka-api.webp">
+<img class="center-image-0 center-image-50" src="./assets/posts/kafka/kafka-api.webp">
 
 <p>On a completely different note, the cost and operational complexity of Kafka have led to the emergence of alternatives, making the <code>Kafka API</code> the de facto standard for event streaming, similar to the S3 API and PG Wire. Some examples include: Confluent Kafka, RedPanda, WrapStream, AutoMQ, AWS MSK, Pulsar, and many more!</p>
 
