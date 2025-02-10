@@ -11,8 +11,6 @@ feature: assets/featured/webp/stack-bfs.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-65 expand-image" src="./assets/featured/stack-bfs.png" />
-
 <h3>1. BFS using Queue</h3>
 <p>Just in the prior post on <a href="{{ site.url }}/stack-based-bfs">graph traversal</a>, we went into details of Depth-First Search (DFS) and Breadth-First Search (BFS). BFS is a way of traversing down the graph, level-by-level. Specifically for a balanced-tree, the first/root node is visited first, followed by its immediate children, then followed by the next level children, and so on. Here's the same example of BFS using a queue:</p>
 

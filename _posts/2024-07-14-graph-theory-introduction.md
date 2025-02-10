@@ -11,8 +11,6 @@ feature: assets/featured/webp/graph-theory-101.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-65 expand-image" src="./assets/featured/graph-theory-101.png" />
-
 <p>Before heading into details of how we store, represent, and traverse various kinds of graphs, this post is more of a ramp-up to better understand what graphs are and the different kinds from a computer science point of view, rather than a mathematical one. So, no proofs and equations, mostly just diagrams and implementation details, with an emphasis on how to apply graph theory to real-world applications.</p>
 
 <p><a href="https://en.wikipedia.org/wiki/Graph_theory" target="_blank">Graph theory</a> is the mathematical theory of the properties and applications of graphs/networks, which is just a collection of objects that are all interconnected.</p>

@@ -11,8 +11,6 @@ feature: assets/featured/webp/ppt-hate.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-65 expand-image" src="./assets/featured/webp/ppt-hate.webp" />
-
 <p>It feels good to be back, reflecting, pondering, and putting thoughts into words. Let's talk about something core to the software engineering that often gets overlooked in the rush to code: <b>design-driven development</b>.</p>
 
 <p>The goal of the post isn't to dictate how to think, design or solve problems, but rather bring emphasis on how crucial the design phase is—and how it lays the foundation for everything that follows. Building softwares goes beyond writing clean code; it's about creating systems with a solid, scalable foundation; think of features like modular blocks that are easy to fit, which calls for abstraction at various levels, allowing flexibility and portability.</p>
@@ -61,7 +59,6 @@ category: Code on the Road
 <p>A good engineer is someone who can design, document, and implement clean code. Stop coping!</p>
 
 <img class="center-image-0 center-image-55 expand-image" src="./assets/posts/glorified-rockstar.png" />
-<p class="figure-header">High-Velocity Ninja-Rockstar Engineer on the right 🤡</p>
 
 <p><b>Stop the PPTs 🪱</b> and start documenting 🐉. Clear, written documentation beats any PowerPoint presentation or casual conversations. Having a well-documented design allows for parallel work, clearer communication, and a shared understanding. Without it, you risk creating silos of knowledge, with one or two team members holding all the information, making collaboration difficult and inefficient.</p>
 

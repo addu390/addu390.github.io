@@ -12,8 +12,6 @@ feature: assets/featured/webp/graph-theory-search.webp
 category: Code on the Road
 ---
 
-<img class="center-image-0 center-image-65 expand-image" src="./assets/featured/graph-theory-search.png" />
-
 <h3>0. Graph Traversal</h3>
 <p>Breadth-First Search (<a href="https://en.wikipedia.org/wiki/Breadth-first_search" target="_blank">BFS</a>) and Depth-First Search (<a href="https://en.wikipedia.org/wiki/Depth-first_search" target="_blank">DFS</a>) are two of the most commonly used graph traversal methods.</p>
 <p>The traversal of a graph, whether BFS or DFS, involves two main concepts: visiting a node and exploring a node. Exploration refers to visiting all the children/adjacent nodes.</p>
