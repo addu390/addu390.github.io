@@ -107,6 +107,177 @@ th {
   color: var(--white);
 }
 
+/* Posts table container styles */
+.posts-table-container {
+  padding: 0 2em 80px 2em;
+  overflow: visible;
+  max-width: 100%;
+}
+
+/* Posts table specific styles */
+.posts-table {
+  margin-top: 1em;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  table-layout: fixed;
+  border: 1px solid #ddd;
+}
+
+.posts-table th {
+  background-color: var(--py-black);
+  color: var(--white);
+  font-weight: 600;
+  text-align: left;
+  padding: 16px 12px;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-right: 1px solid #ddd;
+}
+
+.posts-table th:last-child {
+  border-right: none;
+}
+
+.posts-table th:nth-child(1) { width: 15%; }  /* Date */
+.posts-table th:nth-child(2) { width: 55%; }  /* Title + Reading Time */
+.posts-table th:nth-child(3) { width: 30%; }  /* Tags */
+
+.posts-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #ddd !important;
+  border-right: 1px solid #ddd !important;
+  vertical-align: middle;
+}
+
+.posts-table td:last-child {
+  border-right: none !important;
+}
+
+.posts-table tr {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.posts-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.posts-table tr:hover td {
+  border-right: 1px solid #ddd !important;
+  border-bottom: 1px solid #ddd !important;
+}
+
+.posts-table tr:hover td:last-child {
+  border-right: none !important;
+}
+
+.posts-table tr:last-child td {
+  border-bottom: none !important;
+}
+
+.posts-table-title-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  line-height: 1.4;
+}
+
+.posts-table-title-link {
+  flex: 1;
+  text-decoration: underline !important;
+  color: var(--black) !important;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.posts-table-title-link:hover {
+  color: #222 !important;
+  text-decoration: underline !important;
+  font-weight: 500;
+}
+
+.posts-table-feature-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid #e0e0e0;
+}
+
+/* Simple text styling for comma-separated tags */
+.posts-table-tags-text {
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.posts-table a.posts-table-tag-link {
+  color: var(--black) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease;
+}
+
+.posts-table a.posts-table-tag-link:hover {
+  color: #222 !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important;
+}
+
+.posts-table-date {
+  color: #666;
+  font-size: 0.9em;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.posts-table-read-time {
+  color: #888;
+  font-size: 0.85em;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments for posts table */
+@media screen and (max-width: 48em) {
+  .posts-table th,
+  .posts-table td {
+    padding: 12px 8px;
+  }
+  
+  .posts-table th:nth-child(1) { width: 20%; }  /* Date - wider on mobile */
+  .posts-table th:nth-child(2) { width: 55%; }  /* Title + Reading Time */
+  .posts-table th:nth-child(3) { width: 25%; }  /* Tags */
+  
+  .posts-table-title-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .posts-table-feature-img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .posts-table-container {
+    padding: 0 1em 70px 1em;
+  }
+  
+  .pagination {
+    padding: 12px 8px;
+    margin: 8px 8px 16px 8px;
+    left: 0;
+  }
+}
+
 /* LAYOUT CSS */
 .pure-img-responsive {
   max-width: 100%;
@@ -171,7 +342,7 @@ th {
 }
 
 .posts {
-  margin-top: 4.2em;
+  margin-top: 3.3em;
 }
 
 .posts-right-bar {
@@ -219,6 +390,20 @@ th {
 
 .post-entry {
   margin: 4.8em 0 0 0;
+}
+
+.post-featured-image {
+  margin: 0.5em 0 0.3em 0;
+  text-align: center;
+}
+
+.post-featured-image img {
+  max-width: 50%;
+  height: auto;
+}
+
+.post-featured-image + header .post-title {
+  margin-top: 0;
 }
 
 .post-entry h1,
@@ -303,7 +488,9 @@ th {
 .archives a,
 .posts-right-bar a,
 .tags a {
-  color: #c23373;
+  color: var(--black);
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 .post-meta,
@@ -852,6 +1039,23 @@ code {
   color: var(--black);
 }
 
+/* TOC links - only underline on hover, not on auto-scroll highlight */
+#toc a {
+  text-decoration: none !important;
+  color: var(--black) !important;
+  font-weight: 500 !important;
+}
+
+#toc a:hover {
+  text-decoration: underline !important;
+}
+
+/* Auto-scroll highlighting - keep it working but no underline */
+#toc a.underline {
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
 .flex-box {
   flex: 0 0 auto;
   padding-left: 6px;
@@ -1154,7 +1358,12 @@ summary {
   justify-content: center;
   align-items: center;
   margin: 10px 10px 20px 10px;
-  padding: 10px;
+  padding: 15px 10px;
+  position: fixed;
+  bottom: -15px;
+  left: 20%;
+  right: 0;
+  z-index: 10;
 }
 
 .pagination-box {
@@ -1184,6 +1393,36 @@ summary {
   border-radius: 50%;
 }
 
+.pagination-box-disabled {
+  background-color: var(--very-light-grey);
+  color: #ccc;
+  border: 1.5px solid #eee;
+  border-radius: 50%;
+  cursor: not-allowed;
+}
+
+.pagination-box-disabled.pagination-box-swipe-right,
+.pagination-box-disabled.pagination-box-swipe-left {
+  /* Copy exact enabled arrow styles */
+  display: inline-block !important;
+  padding: 8px 12px !important;
+  margin: 0 5px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  font-size: 16px !important;
+  
+  /* Then apply swipe overrides exactly like enabled */
+  border: none !important;
+  font-size: 30px !important;
+  padding-top: 3px !important;
+  background-color: transparent !important;
+  color: var(--black) !important;
+  
+  /* Only difference - disabled appearance */
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
 .pagination a {
   text-decoration: none;
 }
@@ -1193,6 +1432,9 @@ summary {
   border: none !important;
   font-size: 30px;
   padding-top: 3px;
+  background-color: transparent !important;
+  color: #222 !important;
+  font-weight: 600;
 }
 
 .pagination-box-swipe-right:hover,
@@ -1200,10 +1442,18 @@ summary {
   background-color: transparent;
 }
 
-.pagination-box-swipe-right {
-  padding-left: 3px;
+.pagination-box-disabled.pagination-box-swipe-right:hover,
+.pagination-box-disabled.pagination-box-swipe-left:hover {
+  background-color: transparent;
+  border: none;
 }
 
-.pagination-box-swipe-left {
-  padding-right: 3px;
+.pagination-box-swipe-right,
+.pagination-box-disabled.pagination-box-swipe-right {
+  padding-left: 3px !important;
+}
+
+.pagination-box-swipe-left,
+.pagination-box-disabled.pagination-box-swipe-left {
+  padding-right: 3px !important;
 }

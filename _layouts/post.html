@@ -7,6 +7,14 @@ layout: default
     <div class="posts pure-u-md-5-6">
         <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
+            {%- if page.feature or page.image -%}
+            <div class="post-featured-image">
+                <img class="center-image-100" 
+                     src="{{site.url}}/{{ page.feature | default: page.image }}" 
+                     alt="Featured Image for {{ page.title | escape }}" />
+            </div>
+            {%- endif -%}
+
             <header class="feed-header">
                 <h2 class="post-title" style="font-size: 1.6em;" itemprop="name headline">{{ page.title | escape }}
                     {%- if page.state -%}

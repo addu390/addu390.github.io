@@ -4,6 +4,7 @@
     <a class="pagination-box pagination-box-idle pagination-box-swipe-left"
         href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a>
     {% else %}
+    <a class="pagination-box pagination-box-disabled pagination-box-swipe-left">&laquo;</a>
     {% endif %}
 
     {% for page in (1..paginator.total_pages) %}
@@ -23,6 +24,7 @@
     <a class="pagination-box pagination-box-idle pagination-box-swipe-right"
         href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"> &raquo;</a>
     {% else %}
+    <a class="pagination-box pagination-box-disabled pagination-box-swipe-right">&raquo;</a>
     {% endif %}
 </div>
 {% endif %}
