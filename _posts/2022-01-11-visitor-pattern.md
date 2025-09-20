@@ -10,9 +10,6 @@ feature: assets/featured/java-visitor-pattern.png
 category: Java Lava
 ---
 
-<img class="center-image" src="./assets/featured/java-visitor-pattern.png" /> 
-<p style="text-align: center;">Don’t force-fit the switch-case (Spirited Away)</p>
-
 Even before going ahead with an example, what is Visitor Pattern?
 Here is the [Wikipedia definition](https://en.wikipedia.org/wiki/Visitor_pattern).
 

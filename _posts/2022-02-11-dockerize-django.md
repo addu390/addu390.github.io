@@ -11,9 +11,6 @@ feature: assets/featured/docker-django.png
 category: Django Rango
 ---
 
-<img class="center-image" src="./assets/featured/docker-django.png" /> 
-<p style="text-align: center;">Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django)</p>
-
 A step-by-step tutorial on dockerizing a Django application with MySQL database using Guinicorn and Nginx.
 
 This post assumes that you have some familiarity with Django and likely have a local Django development project, and looking at how to deploy the project in production.

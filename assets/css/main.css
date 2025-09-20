@@ -485,12 +485,36 @@ th {
 
 .archive-links a,
 .post-body a,
-.archives a,
-.posts-right-bar a,
-.tags a {
+.posts-right-bar a {
   color: var(--black);
   text-decoration: underline;
   font-weight: 500;
+}
+
+.archives a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.archives a:hover,
+.archives a:focus {
+  text-decoration: underline;
+}
+
+.all-posts h3 {
+  font-weight: normal;
+}
+
+.tags a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tags a:hover,
+.tags a:focus {
+  text-decoration: underline;
 }
 
 .post-meta,

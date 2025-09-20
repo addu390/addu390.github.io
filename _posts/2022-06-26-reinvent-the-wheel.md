@@ -9,9 +9,6 @@ feature: assets/featured/reinvent-the-wheel.png
 category: System Wisdom
 ---
 
-<img class="center-image expand-image" src="./assets/featured/reinvent-the-wheel.png" /> 
-<p style="text-align: center;">Reinvent the Wheel! </p>
-
 As I get slightly older and slightly wiser - to me, it's more and more apparent that we humans live a life full of contradiction, are rarely self-satisfied, and thrive on learning and discovering new things. It's as if a duty to contribute with all the might to a better future, not for oneself, but for the future, that's way beyond imagination and self-existence.
 
 On these lines, it almost always gets to my core when someone overuses "Don't reinvent the wheel"—implying that a solution to the problem already exists. In most cases, to underplay the problem or assert an opinion before understanding the crux of the problem.

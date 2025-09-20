@@ -14,8 +14,6 @@ feature: assets/featured/solar-system-cartogram.png
 category: Comics
 ---
 
-<img class="center-image expand-image" src="./assets/featured/solar-system-cartogram.png" /> 
-
 # Explanation
 
 <details open><summary class="h3" id="whatisacartogram"> 1. What is a cartogram?</summary>

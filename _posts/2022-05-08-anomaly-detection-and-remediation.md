@@ -11,9 +11,6 @@ feature: assets/featured/popeye-killswitch.png
 category: Code on the Road
 ---
 
-<img class="center-image" src="./assets/featured/popeye-killswitch.png" /> 
-<p style="text-align: center;">Expect the Unexpected </p>
-
 ## 1. Introduction
 The overview of the post is on building a system to detect potential anomalies and take immediate action(s). Hence primarily has two phases: Detect and Contain.
 However, the post discusses the use case to detect and contain anomalies as a generic implementation detail.

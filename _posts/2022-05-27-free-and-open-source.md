@@ -9,9 +9,6 @@ feature: assets/featured/foss-thankyou.png
 category: Leisure Seizure
 ---
 
-<img class="center-image" src="./assets/featured/foss-thankyou.png" /> 
-<p style="text-align: center;">FOSS Developers 💪🏻 </p>
-
 ## Free and Open Source Software
 "Free and open-source software (FOSS) is software that is both free software and open-source software where anyone is freely licensed to use, copy, study, and change the software in any way, and the source code is openly shared so that people are encouraged to voluntarily improve the design of the software" - Wikipedia
 

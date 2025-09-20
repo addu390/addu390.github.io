@@ -11,9 +11,6 @@ feature: assets/featured/popeye-convex-hull.png
 category: Code on the Road
 ---
 
-<img class="center-image" src="./assets/featured/popeye-convex-hull.png" /> 
-<p style="text-align: center;">Eat Spinach and Build your Convex Hull — Popeye the Sailor.</p>
-
 ## Floating Point Precision in Geometric Algorithms
 
 Most geometric algorithms are designed for exact real arithmetic; replacing them with floating-point arithmetic may cause those implementations to fail. Unfortunately, there are no go-to documents on what can go wrong and why across geometric algorithms. The rest of the post discusses what can go wrong when geometric algorithms are executed with floating-point arithmetic.

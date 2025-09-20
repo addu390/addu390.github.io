@@ -11,9 +11,6 @@ feature: assets/featured/iphone-100x.png
 category: System Wisdom
 ---
 
-<img class="center-image" src="./assets/featured/iphone-100x.png" /> 
-<p style="text-align: center;">Complex is Simple. </p>
-
 What's better than going over a real system design interview question (Interviewed in June 2022). 
 
 ## 1. Requirements

@@ -13,9 +13,6 @@ feature: assets/featured/aws-fargate-django.png
 category: Django Rango
 ---
 
-<img class="center-image" src="./assets/featured/aws-fargate-django.png" /> 
-<p style="text-align: center;">Totoro — With logo colors (AWS, Docker, Nginx, Guinicorn, and Django).</p>
-
 So far, we have seen how to [dockerize the Django application](https://pyblog.medium.com/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f) and [deploy the application on EC2](https://pyblog.medium.com/deploying-django-application-on-aws-ec2-and-docker-10a1f7c29573).
 
 Installing Docker Engine on every EC2 instance and running the Dockerized Django application does not scale and make it harder to maintain ⚠️. However, it’s probably the right choice for a staging environment or an application with 1–2 EC2 instances.

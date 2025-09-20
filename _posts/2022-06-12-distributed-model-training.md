@@ -10,9 +10,6 @@ feature: assets/featured/porco-rosso.png
 category: System Wisdom
 ---
 
-<img class="center-image expand-image" src="./assets/featured/porco-rosso.png" /> 
-<p style="text-align: center;">Porco Rosso. </p>
-
 ## Distributed Training
 Deep learning is a subset of machine learning, a branch of artificial intelligence to perform tasks through experience. Deep learning algorithms are well suited and perform the best with large datasets, not to mention the need for high computation power. With the pay-per-use serverless service model, such as the google collab, training large neural networks on the cloud is easier than ever.
 While it's possible to train huge models in a single multi-core GPU machine, it could take days and even weeks. Hence, this leads to the fundamental problem of reducing the training time.

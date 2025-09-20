@@ -10,9 +10,6 @@ feature: assets/featured/refactor-tomato.png
 category: Leisure Seizure
 ---
 
-<img class="center-image" src="./assets/featured/refactor-tomato.png" /> 
-<p style="text-align: center;">Get Well Soon. </p>
-
 You are working on a fast-growing, never-stopping product; 35 sprints and 600 coffees later, you finally got to move on, and a new engineer steps in, or you realize sooner or later that you cannot keep up with the feature requests while ensuring code quality. Then, after raising the need for refactoring as blockers for a couple of features, finally! It's the day when your engineering team decides to dedicate bandwidth for refactoring - Sounds familiar? You are not alone.
 
 <hr class="hr">

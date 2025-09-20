@@ -11,9 +11,6 @@ feature: assets/featured/hybrid-spatial-index-totoro.png
 category: Code on the Road
 ---
 
-<img class="center-image" src="./assets/featured/hybrid-spatial-index-totoro.png" /> 
-<p style="text-align: center;">Let’s grow the trees! — Totoro.</p>
-
 ## What’s a Spatial Index?
 
 A spatial index is a data structure that allows for accessing a spatial object efficiently, which is a commonly used technique in spatial databases. Without indexing, searching would require a “sequential scan” of all records in the database, thereby increasing the processing time. The Minimum Bounding Rectangle (MBR), often termed the Bounding Box (BBox), serves as an object approximation in a spatial index construction process.

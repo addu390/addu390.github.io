@@ -11,9 +11,6 @@ feature: assets/featured/external-sorting-totoro.png
 category: Code on the Road
 ---
 
-<img class="center-image" src="./assets/featured/external-sorting-totoro.png" /> 
-<p style="text-align: center;">External Sorting — Totoro.</p>
-
 External sorting is a class of sorting algorithms that can handle massive amounts of data. External sorting is required when the data being sorted does not fit into the main memory of a computing device (RAM). Instead, they must reside in the slower external memory (Disk).
 
 To explain the working of External Merge Sort using a Priority Queue, consider the input array: `[5, 8, 6, 3, 7, 1, 4, 9, 10, 2]`

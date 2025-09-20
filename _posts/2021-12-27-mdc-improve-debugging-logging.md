@@ -10,9 +10,6 @@ feature: assets/featured/bob-mdc.png
 category: Java Lava
 ---
 
-<img class="center-image" src="./assets/featured/bob-mdc.png" /> 
-<p style="text-align: center;">Bob the builder, agrees!</p>
-
 Construct your logs as good as Bob the Builder!
 
 Usually in most of the backend applications, a separate thread from the thread pool processes a client request. Once the request is completed, the thread is returned to the thread pool and it’s typical logs are generated.

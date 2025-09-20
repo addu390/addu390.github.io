@@ -11,9 +11,6 @@ feature: assets/featured/popeye/wb/ben-grimm-popeye.png
 category: Code on the Road
 ---
 
-<img class="center-image" src="./assets/featured/popeye/wb/ben-grimm-popeye.png" /> 
-<p style="text-align: center;">Quad-KD vs R-KD trees</p>
-
 ## 1. Abstract
 
 A hybrid spatial index is a data structure that combines two or more data structures suitable for effectively storing spatial objects to improve search performance. The project report compares tree data structures kd-tree, quad-tree, and r-tree and then introduces hybrid tree structures quad-kd and r-kd trees to reduce the access time of spatial objects, specifically when the dataset has both points and polygons. Finally, the report concludes how and when hybrid spatial indexes have better search performance than other commonly used spatial indexes in a 2D space.

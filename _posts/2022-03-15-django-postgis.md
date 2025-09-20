@@ -11,9 +11,6 @@ feature: assets/featured/geo-django-popeye.png
 category: Django Rango
 ---
 
-<img class="center-image" src="./assets/featured/geo-django-popeye.png" /> 
-<p style="text-align: center;">One spatial point to an other — Popeye the Sailor.</p>
-
 In a prior post, the experiment on [hybrid spatial-index](https://www.pyblog.xyz/hybrid-spatial-index) to find spatial data points is worth exploring, but the in-memory implementations and the lack of ability to scale make it almost pointless to use it in real-world applications.
 
 In a web application that requires storage and accessing spatial data (co-ordinates), a combination of Django, PostgreSQL (PostGIS), GeoDjango, and Leaflet (or Google Maps) solves most of the preliminary use cases.

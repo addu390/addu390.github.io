@@ -9,9 +9,6 @@ feature: assets/featured/gh-llama.png
 category: Code on the Road
 ---
 
-<img class="center-image" src="./assets/featured/gh-llama.png" /> 
-<p style="text-align: center;">Let's get the website up! — Drama llama.</p>
-
 ## Configuration
 
 - Domain (example.com).
