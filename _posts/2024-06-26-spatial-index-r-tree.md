@@ -2,6 +2,7 @@
 layout: post
 title: "Spatial Index: R Trees"
 date: 2024-06-26
+highlight: true
 tags:
 - Database
 - Spatial Index

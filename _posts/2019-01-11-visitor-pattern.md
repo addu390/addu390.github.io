@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Avoid switch case for ENUMs – Visitor pattern"
-date: 2022-01-11
+date: 2019-01-11
 tags:
   - Design Patterns
   - Java

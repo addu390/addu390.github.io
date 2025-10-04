@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MDC : Improving debugging/logging"
-date: 2021-12-27
+date: 2019-12-27
 tags:
   - Dropwizard
   - Java

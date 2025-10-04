@@ -19,7 +19,7 @@
             {%- if numberOfMinutes == 0 -%}
             {%- assign numberOfMinutes = 1 -%}
             {%- endif -%}
-            <tr class="clickable-div" onclick="location.href='{{ post.url | relative_url }}';">
+            <tr class="clickable-div{% if post.highlight %} highlighted-post{% endif %}" onclick="location.href='{{ post.url | relative_url }}';">
                 <td>
                     <time class="posts-table-date" datetime="{{ post.date | date_to_xmlschema }}">
                         {{ post.date | date: date_format }}

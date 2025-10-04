@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Stockpile — Store Request and Response"
-date: 2022-01-19
+date: 2019-01-19
 tags:
   - Dropwizard
   - Java

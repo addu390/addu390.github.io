@@ -2,6 +2,7 @@
 layout: post
 title: "Spatial Index: Tessellation"
 date: 2024-06-17
+highlight: true
 premium: true
 tags:
 - Database

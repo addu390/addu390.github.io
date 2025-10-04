@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Myoelectric Prosthetic Arm — MYRO 2.0"
-date: 2019-12-15
+date: 2017-12-15
 tags:
   - Project
   - Python

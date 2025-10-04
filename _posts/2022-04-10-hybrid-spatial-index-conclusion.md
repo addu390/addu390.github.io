@@ -2,6 +2,7 @@
 layout: post
 title: "Hybrid Spatial Index: Quad-KD and R-KD trees"
 date: 2022-04-10
+highlight: true
 tags:
   - Algorithms
   - Java
