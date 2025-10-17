@@ -147,7 +147,7 @@ th {
 .posts-table th:nth-child(3) { width: 30%; }  /* Tags */
 
 .posts-table td {
-  padding: 16px 12px;
+  padding: 17.5px 12px;
   vertical-align: middle;
 }
 

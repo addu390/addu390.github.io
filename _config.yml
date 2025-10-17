@@ -20,10 +20,8 @@ comments: true
 disqus: purelog-jekyll
 
 author: Adesh Nalpet Adimurthy
-author_bio: >-
-  Balancing code 💻, creativity 🖍️, and cardio 🧗🏽‍♂️ – that's my life as a software engineer, artist, and fitness buff; here to share my experiences, tutorials, and projects. <br><br> If you find my posts interesting, don't forget to <a href="https://pyblog.medium.com/subscribe" target="_blank" rel="noopener noreferrer">subscribe</a>!
 author_pic: assets/img/profile/luffy_avatar.png
-paginate: 9
+paginate: 11
 paginate_path: "/:num/"
 
 markdown: kramdown
