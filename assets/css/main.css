@@ -54,6 +54,10 @@ h3 {
   font-weight: 700;
 }
 
+b {
+  font-weight: 600;
+}
+
 .ml-form-embedContent h4 {
   font-weight: 700;
   font-size: 1.17em !important;
@@ -1033,6 +1037,30 @@ code {
   text-underline-offset: 0.2em;
 }
 
+.wavy-text {
+  -webkit-text-decoration: underline wavy;
+  text-decoration: underline wavy;
+  text-underline-offset: 4px;
+}
+
+.grey-container {
+  background-color: #f1f1f1;
+  border: 1px solid var(--light-grey);
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+}
+
+.grey-container td {
+  background-color: #fff;
+}
+
+.red-tag {
+  background-color: rgb(248, 206, 204);
+  border: 1px solid rgb(184, 84, 80);
+  padding: 2px 5px 2px 5px;
+  border-radius: 5px;
+}
+
 .code-container {
   background-color: #fffff0;
   border: 1px solid rgb(225, 225, 186);
@@ -1290,17 +1318,11 @@ summary {
 
 .green-disclaimer {
   border: rgb(130, 179, 102) solid 1px;
+  margin-top: 1em;
+  padding: 0 0.8em 0 0.8em;
   background-color: rgb(213, 232, 212);
+  border-radius: 5px;
   margin-bottom: 1em;
-}
-
-.green-disclaimer p {
-  font-size: 16px;
-}
-
-.green-disclaimer a {
-  color: var(--black);
-  text-decoration: underline;
 }
 
 .page-entry {
