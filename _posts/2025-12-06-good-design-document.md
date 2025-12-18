@@ -23,7 +23,7 @@ category: System Wisdom
 <h3>1.1. Layer 1: Problem Definition</h3>
 <p>Establish clear and sufficient requirements, both functional and non-functional.</p>
 <ul>
-<li><p>Start with questions, be it to internal stakeholders and/or external users. All in the vein of making the problem definition/statement a lot clearer to prevent scope creep.</p></li>
+<li><p>Start with questions, be it to internal stakeholders and/or external users. All in the vein of making the problem definition/statement a lot clearer to prevent <a target="_blank" href="https://en.wikipedia.org/wiki/Scope_creep">scope creep</a>.</p></li>
 
 <li><p>Define the problem statement, and be explicit about the goals and the non-goals.</p></li>
 
@@ -32,14 +32,14 @@ category: System Wisdom
 
 <h3>1.2. Layer 2: Setting the Stage</h3>
 
-<p>This is the most flexible layer, choose what’s most relevant to discuss to set the context for the final Layer 3. Here are a few examples of what Layer 3 can include: one, some, or others.</p>
+<p>Layer 2 is the most flexible layer of the document. Its purpose is to establish the right context and mental model before introducing the detailed design in Layer 3. The content included here should be chosen based on what best helps the reader understand why the proposed solution exists and how to reason about it.</p>
 
 <ul>
-<li><p>Functional Specification:  .</p></li>
+<li><p>Functional Specification: expand into a deeper functional specification, describing how the system works from an external or consumer perspective. The focus remains on behavior, interactions, and expectations rather than design details.</p></li>
 
-<li><p>Component breakdown: If you can decompose the system into fairly isolated components, do so. This improves comprehension and clarifies terminology, flow, and relationships.</p></li>
+<li><p>Component breakdown: When many components are involved, it is reasonable to provide a high-level breakdown of each component and an overview of how they interact. Such breakdowns improve comprehension while remaining conceptual and may naturally sit closer to Layer 3 when complexity increases.</p></li>
 
-<li><p>Abstract Solution: Especially where athere are multiple compeoents/services involced, having an more abstract, technology-agnostic view helps know the different moving parts and key areas of the deeper design.</p></li>
+<li><p>Abstract Solution: A more abstract, technology-agnostic solution can be introduced. Highlights the major moving parts and responsibilities, helps bridge the reader into the detailed proposed solution in Layer 3.</p></li>
 
 <li><p>Trade-offs and rationale: Highlight trade-offs, an example being bespoke vs. extensibility, which provides the context for why the solution is going beyond the current requirements, keeping future state in mind.</p></li>
 
