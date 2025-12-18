@@ -70,17 +70,11 @@ category: Notes
 
 <hr class="hr">
 
-<p><span class="header">6. Relevant blog posts</span>: delving into the details of Telemetry, CDC, Spatial Indexes, Anomaly Detection, and Serverless Architecture.</p>
+<p><span class="header">6. Relevant blog posts</span>:</p>
 <ul>
-<li>Real-time insights: <a href="/telemetry-pipeline" target="_blank">Telemetry Pipeline</a></li>
-<li>Debezium: PostgreSQL <a href="/debezium-postgres-cdc" target="_blank">Change Data Capture (CDC)</a></li>
-<p></p>
 <li>Spatial Index: <a href="/spatial-index-space-filling-curve" target="_blank">Space-Filling Curves</a></li>
 <li>Spatial Index: <a href="/spatial-index-grid-system" target="_blank">Grid Systems</a></li>
 <li>Spatial Index: <a href="/spatial-index-tessellation" target="_blank">Tessellation</a></li>
 <li>Spatial Index: <a href="/spatial-index-r-tree" target="_blank">R Trees</a> (Coming soon!)</li>
 <li>Hybrid Spatial Data Structures: <a href="hybrid-spatial-index-conclusion" target="_blank">Quad-KD and R-KD trees</a></li>
-<p></p>
-<li><a href="/anomaly-detection-and-remediation" target="_blank">Anomaly Detection and Remediations</a></li>
-<li>Deploying Django Application on <a href="/django-fargate-in-8-minutes" target="_blank">AWS Fargate in 8 minutes</a></li>
 </ul>
