@@ -754,6 +754,10 @@ a {
   background-color: var(--bg-color);
 }
 
+.center-image-125 {
+  width: 125%;
+}
+
 .center-image-100 {
   width: 100%;
 }

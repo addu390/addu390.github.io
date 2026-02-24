@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Flink Internals"
+title: "Apache Flink Internals"
 date: 2026-02-21
 tags:
 - System Design
@@ -40,7 +40,7 @@ category: System Wisdom
 
 <img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-transformations.svg">
 
-<details class="text-container"><summary class="p"> &nbsp;2.1.1. Relevant classes</summary>
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>streaming/api/transformations/</code></p>
 <pre><code>Transformation, 
 OneInputTransformation, 
@@ -62,7 +62,7 @@ SinkTransformation
 
 <p>The resulting StreamGraph is a direct representation of the job logic. No optimization has happened yet.</p>
 
-<details class="text-container"><summary class="p"> &nbsp;2.2.1. Relevant classes</summary>
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>streaming/api/graph/</code></p>
 <pre><code>StreamGraphGenerator, 
 StreamGraph, 
@@ -87,7 +87,7 @@ etc.
 
 <p>4 operators → 2 JobVertices. Fewer network exchanges, less serialization, better throughput.</p>
 
-<details class="text-container"><summary class="p"> &nbsp;2.3.1. Relevant classes</summary>
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>streaming/api/graph/</code></p>
 <pre><code>StreamingJobGraphGenerator 
 </code></pre>
@@ -105,7 +105,7 @@ JobEdge
 <p>Each operator runs at some parallelism, the number of parallel instances (subtasks) that execute it. At parallelism N, the operator's data stream is divided into N stream partitions.</p>
 
 <p>Using the same example:</p>
-<img class="center-image-0 center-image-80" src="./assets/posts/flink/flink-physical-topology.svg">
+<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-physical-topology.svg">
 
 <p>Each subtask produces a stream partition, an independent slice of the data.
 Between operators, data either flows forward or gets redistributed:</p>
@@ -118,7 +118,7 @@ Between operators, data either flows forward or gets redistributed:</p>
 
 <p>Where these shuffle boundaries land is one of the most important performance factors in a Flink job. Forward connections are cheap. Shuffles are expensive.</p>
 
-<details class="text-container"><summary class="p"> &nbsp;2.4.1. Relevant classes</summary>
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>streaming/runtime/partitioner/</code></p>
 <pre><code>StreamPartitioner, 
 ForwardPartitioner, 
@@ -143,7 +143,7 @@ In <code>streaming/api/graph/</code>
 
 <p>Each <code>ExecutionVertex</code> is deployed to a <code>TaskManager</code> as a Task. A Task is the actual runtime entity: a dedicated thread that runs the <code>OperatorChain</code>, reads from InputGates, processes records through the chained operators, and writes to <code>ResultPartition</code>(s).</p>
 
-<details class="text-container"><summary class="p"> &nbsp;2.5.1. Relevant classes</summary>
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>runtime/executiongraph/</code></p>
 <pre><code>DefaultExecutionGraph, 
 ExecutionJobVertex, 
@@ -178,7 +178,7 @@ Execution.
 
 <p>There is also an experimental third option, <code>ForStStateBackend</code>, built on <code>ForSt</code> (a fork of RocksDB). It stores SST files on remote storage (S3, HDFS) instead of local disk, allowing state to exceed local disk capacity entirely. Designed for disaggregated, cloud native setups and supports asynchronous state access, but is <code>@Experimental</code>.</p>
 
-<details class="text-container"><summary class="p"> &nbsp;3.1.1. Relevant classes</summary>
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>flink-runtime/</code>, <code>flink-statebackend-rocksdb/</code>, <code>flink-statebackend-forst/</code></p>
 <pre><code>StateBackend,
 HashMapStateBackend,
@@ -187,7 +187,29 @@ ForStStateBackend
 </code></pre>
 </details>
 
-<h3>3.2. Snapshots and Checkpointing</h3>
+<h3>3.2. State Primitives</h3>
+
+<p>The state backends described above are the storage engines. What gets stored in them broadly falls into two categories.</p>
+
+<h3>3.2.1. Keyed State</h3>
+<p>Keyed State is partitioned by key. In the example job, the <code>keyBy(...)</code> before the window means each window subtask only processes events for its assigned keys. The window operator internally uses keyed state to buffer incoming events until the window fires. That buffer is a <code>ListState</code> scoped to each key, stored in whichever state backend is configured.</p>
+
+<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-state.svg">
+
+<p>Beyond the internal use by windows, Flink exposes keyed state primitives for custom operators:</p>
+<ul>
+<li><code>ValueState&lt;T&gt;</code>: A single value per key.</li>
+<li><code>ListState&lt;T&gt;</code>: A list of values per key.</li>
+<li><code>MapState&lt;K, V&gt;</code>: A key-value map per key.</li>
+<li><code>ReducingState&lt;T&gt;</code> / <code>AggregatingState&lt;IN, OUT&gt;</code>: Applies a reduce or aggregate on each addition, storing only the accumulated result.</li>
+</ul>
+
+<h3>3.2.2. Operator State</h3>
+<p>Operator State is per subtask, not tied to keys. Each parallel instance holds its own independent state. The typical use case is a source connector tracking partition assignments and offsets.</p>
+
+<p>Both categories are managed by Flink: included in checkpoints, restored on failure, redistributed on rescale. Keyed state is redistributed through Key Groups, the atomic unit of state redistribution. The total number of Key Groups is fixed at the configured maximum parallelism. Each subtask is assigned a range of Key Groups, and when parallelism changes, those ranges are simply reassigned across the new set of subtasks.</p>
+
+<h3>3.3. Snapshots and Checkpointing</h3>
 
 <p>State stored locally in each subtask solves the access problem, but not the durability problem. If a <code>TaskManager</code> crashes, that local state is gone. Flink needs a way to periodically capture a consistent snapshot of the entire job's state so it can recover from failures.</p>
 
@@ -224,8 +246,153 @@ ForStStateBackend
 
 <p>A key detail: barriers never overtake records. They flow strictly in line. This is what ensures the snapshot captures exactly the state that results from processing all records before the barrier and none of the records after it.</p>
 
-<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-window-barrier.svg">
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
+<p>In <code>runtime/checkpoint/</code>, <code>runtime/io/network/api/</code></p>
+<pre><code>CheckpointCoordinator,
+CheckpointBarrier
+</code></pre>
+
+<p>In <code>streaming/api/checkpoint/</code>, <code>streaming/runtime/tasks/</code></p>
+<pre><code>CheckpointedFunction,
+SubtaskCheckpointCoordinator
+</code></pre>
+</details>
+
+<h3>3.3.2. Aligned Checkpoint</h3>
 
 <p>For operators with multiple inputs (like after a shuffle), the barrier must arrive from all input channels before the snapshot is taken. This is called barrier alignment, and it ensures that no pre-checkpoint and post-checkpoint data gets mixed. This alignment can briefly pause processing on the faster channels, which is a tradeoff explored further in unaligned checkpoints.</p>
 
-<h3>3.3. Recovery</h3>
+<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-window-barrier.svg">
+
+<p>While aligned checkpoint (default) guarantees a clean cut: the snapshot contains exactly the state that results from all records before the barrier and none after, the pausing can cause backpressure. If one channel is significantly faster than another, the fast channel's data backs up, stalling upstream operators.</p>
+
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
+<p>In <code>streaming/runtime/io/checkpointing/</code></p>
+<pre><code>SingleCheckpointBarrierHandler,
+AbstractAlignedBarrierHandlerState,
+AlternatingCollectingBarriersUnaligned
+</code></pre>
+</details>
+
+<h3>3.3.3. Unaligned Checkpoint</h3>
+
+<p>Instead of pausing, the operator reacts to the first barrier it sees from any channel. It immediately forwards the barrier downstream and continues processing all channels. The records that are already in the input/output buffers (in-flight data between the two barriers) are stored as part of the checkpoint state.</p>
+
+<img class="center-image-0 center-image-80" src="./assets/posts/flink/flink-unaligned-checkpoint.svg">
+
+<p>The result: checkpoint duration becomes independent of throughput and alignment time. Barriers travel through the DAG as fast as possible. The tradeoff is larger checkpoint sizes (in-flight data is included) and more I/O.</p>
+
+<p>Flink also supports a hybrid approach. Checkpoints start aligned, but if alignment takes longer than a configured timeout (<code>alignedCheckpointTimeout</code>), the operator switches to unaligned mid-checkpoint. This gets the benefits of aligned checkpoints under normal conditions while avoiding the stalling problem under backpressure.</p>
+
+<p>Note: Unaligned checkpoints require exactly-once mode and only one concurrent checkpoint is allowed with unaligned mode.</p>
+
+<h3>3.3.4. Incremental Checkpoints</h3>
+
+<p>Full checkpoints upload the entire state every time. For an operator holding 10 GB of state where only 200 MB changed, uploading the full 10 GB is wasteful.</p>
+
+<p>Incremental checkpoints exploit how RocksDB stores data. Writes go into an in-memory MemTable. When full, it flushes to disk as an immutable SST file (Sorted String Table). A background compaction process merges smaller SST files into larger ones, discarding duplicates. The key property: SST files are never modified after creation, only created (by flush) or deleted (by compaction).</p>
+
+<p>Going back to the example job, the Window operator [2] buffers events in RocksDB until the 10 second window fires. With incremental checkpoints enabled and 2 retained checkpoints:</p>
+
+<div style="width: 100%; overflow-x: auto;">
+<img class="center-image-0 center-image-100" style="width: 135%; max-width: none; display: block;" src="./assets/posts/flink/flink-incremental-checkpoint.svg">
+</div>
+
+<p>Flink tracks which SST files are new or deleted between checkpoints and only uploads the delta.</p>
+
+<p>The shared state registry tracks how many active checkpoints reference each file. When a checkpoint is pruned (retained count exceeded), Flink decrements the reference counts. Files that drop to 0 are deleted from storage.</p>
+
+<p>The result: instead of uploading the full state each time, only new SST files are uploaded. The tradeoff is that recovery may need to reconstruct state from multiple incremental deltas, potentially making restores slower than with full checkpoints.</p>
+
+<h3>3.3.5. Savepoint</h3>
+
+<p>Savepoints use the same mechanism as checkpoints (barriers, state snapshots, source offsets) but are triggered manually by the user, not by the periodic scheduler.</p>
+
+<p>The key differences:</p>
+
+<ul>
+<li><p>Always aligned: unaligned mode does not apply to savepoints.</p></li>
+
+<li><p>Do not expire: checkpoints are automatically cleaned up when newer ones complete. Savepoints persist until explicitly deleted. Triggered on demand: via CLI (flink savepoint <code>jobID</code>) or REST API, not on a timer.</p></li>
+
+<li><p>Portable format: savepoints use a standardized format that is compatible across state backends. A job checkpointed with HashMapStateBackend can be restored on EmbeddedRocksDBStateBackend from a savepoint.</p></li>
+</ul>
+
+<p>Savepoints are used for planned operations: upgrading application code, changing parallelism, migrating to a different cluster, or switching state backends. The workflow is: take a savepoint, stop the job, make changes, restart from the savepoint.</p>
+
+<p>In the example job, if the parallelism of the Window operator needs to change from 2 to 4, a savepoint captures the current state (including Key Group assignments). On restart with the new parallelism, Flink redistributes the Key Groups across the 4 new subtasks and restores the state accordingly.</p>
+
+<h3>3.4. Recovery</h3>
+
+<p>When a failure occurs (TaskManager crash, network fault, user code exception, etc.), Flink stops the entire job and rolls back to the latest completed checkpoint.</p>
+
+<p>The recovery process:</p>
+
+<ul>
+<li><p>The <code>JobManager</code> selects the most recent successfully completed checkpoint (all sinks acknowledged, all state stored durably).</p></li>
+<li><p>All operators are redeployed across available <code>TaskManagers</code>.</p></li>
+<li><p>Each operator's state is restored from the checkpoint storage (Remote File System, S3/HDFS). The window operator gets back its buffered events, aggregation operators get back their partial results.</p></li>
+<li><p>Source operators rewind to the offsets recorded in the checkpoint. For Kafka, this means resetting the consumer to the checkpointed partition offsets.</p></li>
+<li><p>Processing resumes from that point. Every record after the checkpoint offset is reprocessed, but since the state has been rolled back to match, the end result is as if the failure never happened.</p></li>
+</ul>
+
+<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-state-restore.svg">
+
+<p>This is what gives Flink <code>exactly-once</code> processing semantics. Records between the checkpoint and the failure are reprocessed, but the state they are applied to has been rolled back to before those records were processed the first time. No double counting.</p>
+
+<p>However, the source must support replay (rewinding to a previous position). Kafka, Kinesis, filesystem, etc., sources all support replay. If a source cannot rewind, exactly-once guarantees cannot be met.</p>
+
+<h3>4. Time</h3>
+<p>There are three notions of time:</p>
+
+<ul>
+<li><p>Event Time: The timestamp embedded in the event itself, representing when the event actually occurred. A sensor reading generated at <code>14:00:03</code> carries that timestamp regardless of when Flink processes it.</p></li>
+<li><p>Processing Time: The wall clock of the machine running the operator at the moment it processes the event. Simple and fast, but non-deterministic. The same data replayed at a different speed produces different results.</p></li>
+<li><p>Ingestion Time: The timestamp assigned when the event enters Flink. More stable than processing time, but still does not reflect actual event occurrence.</p></li>
+</ul>
+
+<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-times.svg">
+
+<p>In the example job, <code>TumblingEventTimeWindows.of(Time.seconds(10))</code> uses event time. The window boundaries are determined by the timestamps in the data, not by when the records happen to arrive. This makes the results deterministic and reproducible.</p>
+
+<h3>4.1. Disorder Problem</h3>
+
+<p>Processing time is always monotonically increasing, the wall clock only moves forward. Event time has no such guarantee. In distributed systems, events produced in order can arrive at Flink out of order due to network delays, partitioning, or upstream buffering.</p>
+
+<img class="center-image-0 center-image-80" src="./assets/posts/flink/flink-disorder.svg">
+
+<p>A window covering <code>t=1</code> to <code>t=5</code> cannot simply close when it sees <code>t=6</code>, because <code>t=4</code> or <code>t=5</code> might still be in transit. The system needs a way to know when it is safe to fire the window.</p>
+
+<h3>4.2. Watermarks</h3>
+
+<p>Watermarks are Flink's solution to the disorder problem. A watermark is a special marker that flows through the data stream carrying a timestamp <code>t</code>. It declares: "no more events with a <code>timestamp ≤ t</code> will arrive."</p>
+
+<img class="center-image-0 center-image-80" src="./assets/posts/flink/flink-watermarks.svg">
+
+<p>When the window operator receives a watermark that passes the window's end time, it knows the window is complete and fires it. Until that watermark arrives, the window holds its state.</p>
+
+<p>Watermarks flow inline with the data, just like checkpoint barriers. At operators with multiple inputs (after a shuffle), the effective watermark is the minimum across all input channels. The stream can only be as far along in event time as its slowest input.</p>
+
+<p>The gap between the actual event time and the watermark is called the bounded out of orderness. A larger gap tolerates more disorder but increases latency (windows fire later) and state lifetime (buffered data is held longer).</p>
+
+<h3>4.3. Timers</h3>
+
+<p>Operators can register timers for a future point in event time or processing time. When the watermark (for event time) or the wall clock (for processing time) reaches the registered timestamp, the timer fires and triggers a callback.</p>
+
+<p>Windows use timers internally. When a new window is created, the window operator registers an event time timer for the window's end time. When the watermark passes that time, the timer fires and the window emits its result.</p>
+
+<p>Custom operators using <code>ProcessFunction</code> can register their own timers for use cases like session timeouts, delayed cleanup of expired state, or triggering periodic aggregations.</p>
+
+<details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
+<p>In <code>flink-core/api/common/eventtime/</code></p>
+<pre><code>WatermarkStrategy,
+WatermarkGenerator
+</code></pre>
+
+<p>In <code>streaming/runtime/operators/</code>, <code>streaming/api/operators/</code></p>
+<pre><code>TimestampsAndWatermarksOperator,
+InternalTimerService
+</code></pre>
+</details>
+
+<h3>5. Runtime</h3>
