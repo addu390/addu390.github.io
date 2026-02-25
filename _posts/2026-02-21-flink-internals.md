@@ -396,3 +396,150 @@ InternalTimerService
 </details>
 
 <h3>5. Runtime</h3>
+
+<p>A running Flink cluster consists of two types of JVM processes: one <code>JobManager</code> and one or more <code>TaskManagers</code>.</p>
+
+<img class="center-image-0 center-image-45" src="./assets/posts/flink/flink-runtime.svg">
+
+<h3>5.1. Job Manager</h3>
+
+<p>The <code>JobManager</code> is the control plane. It contains three RPC endpoints running in the same JVM. TaskManagers are the data plane: worker processes that execute tasks. Communication between them splits into two layers: <code>Pekko</code> for control messages (scheduling, heartbeats, checkpoint triggers) and <code>Netty</code> for actual data exchange between tasks.</p>
+
+<h3>5.1.1. Dispatcher</h3>
+
+<p>The <code>Dispatcher</code> is the entry point for the cluster. It exposes the REST API, receives job submissions, and serves the Flink Web UI.</p>
+
+<p>When a job arrives, the Dispatcher persists it durably via the <code>ExecutionPlanWriter</code> (backed by ZooKeeper or Kubernetes ConfigMaps in HA setups), then creates a <code>JobManagerRunner</code> which starts a <code>JobMaster</code> for that job. This persist-before-run design is what makes HA recovery possible: if the <code>JobManager</code> crashes and a new leader takes over, the new Dispatcher recovers persisted jobs from storage and re-creates their JobMasters.</p>
+
+<p>In a session cluster, the Dispatcher lives for the lifetime of the cluster and handles multiple jobs. In application mode, it is scoped to a single application.</p>
+
+<p>The Dispatcher also participates in leader election. A <code>DispatcherLeaderProcess</code> monitors whether this JobManager is the current leader. On gaining leadership, it reads recovered jobs from the <code>ExecutionPlanStore</code> and recovered dirty job results from the <code>JobResultStore</code>, then creates the actual Dispatcher instance with that recovery state.</p>
+
+<h3>5.1.2. Resource Manager</h3>
+
+<p>The ResourceManager owns the cluster's slot inventory. It maintains a registry of all TaskManagers and their slots, and a <code>SlotManager</code> that matches slot requests from JobMasters against available slots.</p>
+
+<p>The flow:</p>
+<ul>
+<li><p>TaskManagers start up and register with the <code>ResourceManager</code> via RPC, reporting how many slots they offer and each slot's <code>ResourceProfile</code> (CPU, memory).</p></li>
+<li><p>When a <code>JobMaster</code> needs slots, it declares resource requirements to the ResourceManager.</p></li>
+<li><p>The <code>SlotManager</code> checks if existing free slots can satisfy the request. If yes, it sends an <code>requestSlot</code> RPC to the TaskManager, telling it to allocate that slot for the specific job.</p></li>
+<li><p>If not enough free slots exist and the ResourceManager is backed by an active resource provider (Kubernetes, YARN), it requests new TaskManagers from the provider. In standalone mode, it can only wait for TaskManagers to register on their own.</p></li>
+</ul>
+
+<p>The <code>ResourceManager</code> also monitors TaskManager health through heartbeats. If a TaskManager misses heartbeats, the ResourceManager declares it dead, removes its slots from the inventory, and notifies affected JobMasters.
+Importantly, the ResourceManager knows nothing about job logic. It deals purely in slots: who has them, who needs them, and how to provision more.</p>
+
+<p>Slot Allocation Flow:</p>
+<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-allocation-flow.svg">
+
+<h3>5.1.3. Job Master</h3>
+
+<p>One <code>JobMaster</code> per running job. This is where the actual job execution is managed. Internally it contains two critical components:</p>
+
+<h3>5.1.3a. Scheduler</h3>
+<p>Scheduler decides when and where to deploy tasks. There are multiple scheduler implementations, such as:</p>
+<ul>
+<li><code>DefaultScheduler</code> with <code>PipelinedRegionSchedulingStrategy</code> for streaming</li>
+<li><code>AdaptiveBatchScheduler</code> for batch workloads</li>
+<li><code>AdaptiveScheduler</code> for reactive scaling (adjusts parallelism based on available slots)</li>
+</ul>
+
+<p>The scheduler works with the <code>SlotPool</code>, which is the JobMaster's local view of allocated slots. The SlotPool uses a declarative resource model: it declares how many slots of what profile it needs, the <code>ResourceManager</code> fulfills them, and TaskManagers offer the allocated slots back to the JobMaster. Once slots are available, the scheduler assigns <code>ExecutionVertex</code> instances to them and triggers deployment.</p>
+
+<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-jobmaster.svg">
+
+<p>For a pure streaming job like <code>MyJob</code>, the entire job is one pipelined region. On scheduling start, it finds all source regions and schedules them. Since everything is one region, all tasks launch at once.<p>
+
+<p>For batch jobs with blocking shuffle boundaries, each stage is a separate region. Source regions are scheduled first. Downstream regions are scheduled only when their upstream blocking partitions become consumable. This saves resources by not starting downstream tasks that have nothing to consume yet.</p>
+
+<h3>5.1.3b. Checkpoint Coordinator</h3>
+
+<p><code>CheckpointCoordinator</code>: triggers checkpoint barriers, tracks acknowledgements from all tasks, manages completed checkpoint metadata, and decides when to discard old checkpoints. This is the component that drives the entire checkpointing flow described in the earlier State section.</p>
+
+<p>The <code>JobMaster</code> also handles failure recovery. When a task fails, it consults a <code>FailoverStrategy</code> (typically <code>RestartPipelinedRegionFailoverStrategy</code>) to determine which tasks need to be restarted, cancels them, and redeploys from the last checkpoint.</p>
+
+<h3>5.1.4. Job Lifecycle</h3>
+
+<p>A job, once accepted by the <code>Dispatcher</code>, moves through a state machine managed by the <code>JobStatus</code>. The typical happy path is straightforward: <code>INITIALIZING → CREATED → RUNNING → FINISHED</code></p> 
+
+<ul>
+<li><p><code>INITIALIZING</code>: The Dispatcher has received the job, but the JobMaster has not yet gained leadership or been fully created.</p></li>
+<li><p><code>CREATED</code>: The JobMaster is ready. No tasks have been scheduled yet.</p></li>
+<li><p><code>RUNNING</code>: At least some tasks are scheduled or executing. The job stays in this state until all tasks finish.</p></li>
+<li><p><code>FINISHED</code>: All tasks completed successfully.</p></li>
+</ul>
+
+<p>When a task fails during execution, the Scheduler evaluates whether the error is recoverable. If it is, the affected tasks are restarted. The job itself stays in <code>RUNNING</code> while individual tasks are restarted at the region level.</p>
+
+<p>If the failure is unrecoverable (or restart attempts are exhausted), the job transitions through: <code>RUNNING → FAILING → FAILED</code>. <code>FAILING</code> cancels all remaining tasks. Once every task reaches a terminal state, the job moves to <code>FAILED</code> and exits.</p>
+
+<p>When a user manually cancels a job (via the Web UI or CLI): <code>RUNNING → CANCELLING → CANCELED</code>. <code>CANCELLING</code> cancels all tasks. Once all tasks are in a terminal state, the job enters <code>CANCELED</code>.</p>
+
+<p>Suspension (HA only): <code>RUNNING → SUSPENDED</code>. <code>SUSPENDED</code> only occurs when high availability is configured and the JobMaster loses leadership. The job is not removed from the HA store, it just means this particular JobMaster has stopped managing it. Another <code>JobMaster</code> (or the same one after regaining leadership) will pick the job back up and restart it.</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-job-cycle.svg">
+
+<h3>5.2. Task Manager</h3>
+
+<p>The <code>TaskManager</code> is a JVM process that does the actual data processing. In Flink, this process is called <code>TaskExecutor</code>. Each cluster has one or more TaskExecutors, and each one registers with the <code>ResourceManager</code> on startup by sending a <code>SlotReport</code> listing all available task slots.</p>
+
+<h3>5.2.1. Task Slots</h3>
+
+<p>A <code>TaskExecutor</code> divides its resources into a fixed number of task slots. Each slot is a resource container with its own <code>MemoryManager</code> and a defined <code>ResourceProfile</code> (CPU, memory). The number of slots is configured via <code>taskmanager.numberOfTaskSlots</code>.</p>
+
+<p>A slot goes through a lifecycle of states: <code>ALLOCATED → ACTIVE → RELEASING → (freed)</code></p>
+<p><code>ALLOCATED</code> means the <code>ResourceManager</code> has assigned it to a job, but the <code>JobMaster</code> has not yet started using it. <code>ACTIVE</code> means the slot is in use and tasks can be added to it. <code>RELEASING</code> means the tasks inside it have failed or finished and it is waiting to be fully emptied before it can be freed.</p>
+
+<p>The important detail: a slot can hold multiple tasks. The tasks map inside <code>TaskSlot</code> is keyed by <code>ExecutionAttemptID</code>, meaning multiple operator subtasks can share a single slot. This is where slot sharing comes in.</p>
+
+<h3>5.2.2. Slot Sharing</h3>
+
+<p>By default, Flink places all operators of a job into the same <code>SlotSharingGroup</code>. This means one subtask from each operator in the pipeline can be co-located in a single slot. For the running <code>MyJob</code> example:</p>
+
+<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-task-slot.svg">
+
+<p>The design motivation is twofold. First, it means a job with N pipeline stages does not need <code>N × parallelism</code> slots. The number of slots needed equals the maximum parallelism across all operators (here: 2). Second, co-locating a full pipeline slice in one slot enables forward connections to stay local (in-memory data exchange, no network serialization).</p>
+
+<h3>5.2.3. Task Execution Model</h3>
+
+<p>Each task runs in a dedicated thread and typically follows a simple internal pipeline: <code>InputGate(s) → OperatorChain → ResultPartition(s)</code></p>
+
+<p>The task reads records from its <code>InputGate</code>, passes them through the <code>OperatorChain</code> (the chained operators from the JobGraph), and writes output to its <code>ResultPartition</code>. Source tasks are the exception: they generate data directly, with no <code>InputGate</code>.</p>
+
+<p>A <code>ResultPartition</code> is divided into <code>SubPartitions</code>, one per downstream consumer subtask. An InputGate is composed of InputChannels, one per upstream producer subtask.</p>
+
+<p>The data exchange between ResultPartitions and InputGates goes through the <code>ShuffleService</code>. The default implementation is <code>NettyShuffleService</code>. If the producer and consumer are in the same <code>TaskManager</code>, data can be exchanged locally without going over the network.</p>
+
+<p>For MyJob (Source+Map chained, parallelism 2 → Window parallelism 2 → Sink parallelism 1):</p>
+
+<img class="center-image-0 center-image-50" src="./assets/posts/flink/flink-task-execution-model.svg">
+
+<p>Source and Map are chained, so they share a thread with no serialization between them. The <code>keyBy</code> triggers an all-to-all shuffle: each SourceMap subtask's ResultPartition has 2 SubPartitions (one per Window subtask), and each Window subtask's InputGate has 2 InputChannels (one per SourceMap subtask).</p> 
+
+<p>Records are hashed by key and routed to the SubPartition responsible for that key group. Window to Sink has a parallelism change (2 → 1), so each Window subtask's ResultPartition has only 1 SubPartition (the single Sink), and the Sink's <code>InputGate</code> has 2 InputChannels (one per Window subtask).</p>
+
+<h3>5.2.4. Task Executor Services</h3>
+
+<p>In the post <code>TaskManager</code> and <code>TaskExecutor</code> may have been used interchangeably. To clarify, <code>TaskManager</code> is the process (the JVM). <code>TaskExecutor</code> is the main class running inside that process. In practice they refer to the same thing, but at different levels of abstraction.</p>
+
+<p>When a TaskManager process starts, it initializes a set of shared services before any task is deployed. These services live for the lifetime of the process and are shared across all tasks running in it. They fall into a few categories.</p>
+
+<img class="center-image-0 center-image-65" src="./assets/posts/flink/flink-task-executor-services-1.svg">
+
+<p>Slot Management is central. The TaskSlotTable tracks which slots exist, which are free, and which tasks are running in each slot. The JobTable maps each active JobID to its JobMaster connection, so the TaskManager knows which JobMaster to report to for each task. The JobLeaderService monitors leadership changes for each job, so if a JobMaster fails over, the TaskManager reconnects to the new leader.</p>
+
+<p>Network and Shuffle handles all data exchange. The ShuffleEnvironment (default: Netty based) owns the buffer pools, creates ResultPartitions for task output and InputGates for task input. This is where credit based flow control and backpressure happen. The PartitionTracker keeps track of which result partitions this TaskManager has produced, so they can be released when no longer needed.</p>
+
+<p>Memory is split into managed off-heap memory (SharedResources) and disk spill (IOManager). State backends like RocksDB/ForSt and operators that sort or hash data use managed memory. The IOManager provides temporary file channels for spilling when memory is exhausted.</p>
+
+<p>State and Checkpointing services support fault tolerance. The LocalStateStoresManager maintains local copies of state on disk for faster recovery (instead of always fetching from the distributed checkpoint store). The FileMergingManager is a newer optimization that merges many small checkpoint files into fewer larger ones to reduce file system pressure. The ChangelogStoragesManager supports the changelog state backend. The ChannelStateExecutorFactory handles snapshotting in-flight network buffers for unaligned checkpoints.</p>
+
+<img class="center-image-0 center-image-65" src="./assets/posts/flink/flink-task-executor-services-2.svg">
+
+<p>Classloading and Artifacts manages user code isolation. The LibraryCacheManager maintains per-job classloaders so that different jobs running on the same TaskManager do not interfere with each other. The BlobService downloads JAR files from the central BlobServer on the JobManager side. The FileCache handles files registered through the distributed cache API.</p>
+
+<p>Connectivity keeps the TaskManager linked to the cluster. Two heartbeat managers run continuously: one toward the ResourceManager (reporting slot availability and resource usage) and one toward each JobMaster (reporting task status and metrics). If heartbeats stop, the other side assumes the TaskManager is dead and triggers failover. HAServices handles leader discovery so the TaskManager always knows who the current ResourceManager leader is.</p>
+
+<p>When a task gets deployed into a slot, it receives references to these shared services. It does not create its own network stack or memory manager. This is why all tasks in the same TaskManager share the same buffer pool, the same managed memory segment, and the same heartbeat connections.</p>
+
