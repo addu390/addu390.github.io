@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Kafka Internals"
+title: "Apache Kafka Internals"
 date: 2025-02-09
 tags:
 - System Design
