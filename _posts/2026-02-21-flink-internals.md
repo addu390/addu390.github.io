@@ -11,6 +11,8 @@ feature: assets/featured/webp/the-kafka.webp
 category: System Wisdom
 ---
 
+<p>Apache Flink's official documentation and blog posts are comprehensive, but tend to be fragmented across different examples and cover the breadth of different components in isolation. The approach taken here is to follow a single reference Flink job end-to-end, through every component and moving part it touches, keeping the discussion grounded in the example, rather than attempting broad coverage of Flink's full capabilities. The tradeoff is intentional: depth over breadth.</p>
+
 <h3>1. Components</h3>
 
 <p>A running Flink system has two sides: the user-facing side and the system side.</p>
