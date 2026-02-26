@@ -176,7 +176,9 @@ Execution.
 
 <p>Because each subtask has its own local state backend instance, state scales naturally with parallelism. Two parallel subtasks of the window operator means two independent state stores, each holding only the data for its own subset of keys.</p>
 
-<p>There is also an experimental third option, <code>ForStStateBackend</code>, built on <code>ForSt</code> (a fork of RocksDB). It stores SST files on remote storage (S3, HDFS) instead of local disk, allowing state to exceed local disk capacity entirely. Designed for disaggregated, cloud native setups and supports asynchronous state access, but is <code>@Experimental</code>.</p>
+<p>There is also an third option (gaining popularity), <code>ForStStateBackend</code>, built on <code>ForSt</code> (a fork of RocksDB). It stores SST files on remote storage (S3, HDFS) instead of local disk (outside of local cache), allowing state to exceed local disk capacity entirely. Designed for disaggregated, cloud native setups and supports asynchronous state access.</p>
+
+<p>Note: <code>ForStStateBackend</code> does not support canonical savepoint, full snapshot, changelog and file-merging checkpoints</p>
 
 <details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>flink-runtime/</code>, <code>flink-statebackend-rocksdb/</code>, <code>flink-statebackend-forst/</code></p>
@@ -214,6 +216,8 @@ ForStStateBackend
 <p>State stored locally in each subtask solves the access problem, but not the durability problem. If a <code>TaskManager</code> crashes, that local state is gone. Flink needs a way to periodically capture a consistent snapshot of the entire job's state so it can recover from failures.</p>
 
 <p>This mechanism is called checkpointing, and it is based on the <code>Chandy-Lamport</code> algorithm for distributed snapshots, adapted for Flink's dataflow model.</p>
+
+<h3>3.3.1. Checkpoint Barriers</h3>
 
 <p>The process works as follows:</p>
 <ul>
@@ -282,9 +286,15 @@ AlternatingCollectingBarriersUnaligned
 
 <p>The result: checkpoint duration becomes independent of throughput and alignment time. Barriers travel through the DAG as fast as possible. The tradeoff is larger checkpoint sizes (in-flight data is included) and more I/O.</p>
 
-<p>Flink also supports a hybrid approach. Checkpoints start aligned, but if alignment takes longer than a configured timeout (<code>alignedCheckpointTimeout</code>), the operator switches to unaligned mid-checkpoint. This gets the benefits of aligned checkpoints under normal conditions while avoiding the stalling problem under backpressure.</p>
+<p>Note, Unaligned checkpoints:</p>
+<ul>
+<li><p>require exactly-once mode and only one concurrent checkpoint is allowed with unaligned mode. So they will take slightly longer.</p></li>
+<li><p>break with an implicit guarantee in respect to watermarks during recovery. On recovery, Flink generates watermarks after it restores in-flight data, which means pipelines that apply the latest watermark on each record may produce different results than with aligned checkpoints.</p></li>
+</ul>
 
-<p>Note: Unaligned checkpoints require exactly-once mode and only one concurrent checkpoint is allowed with unaligned mode.</p>
+<p>Flink also supports a hybrid approach. Checkpoints start aligned, but if alignment takes longer than a configured timeout (<code>execution.checkpointing.aligned-checkpoint-timeout</code>), the operator switches to unaligned mid-checkpoint. This gets the benefits of aligned checkpoints under normal conditions while avoiding the stalling problem under backpressure.</p>
+
+
 
 <h3>3.3.4. Incremental Checkpoints</h3>
 
@@ -315,10 +325,8 @@ AlternatingCollectingBarriersUnaligned
 
 <li><p>Do not expire: checkpoints are automatically cleaned up when newer ones complete. Savepoints persist until explicitly deleted. Triggered on demand: via CLI (flink savepoint <code>jobID</code>) or REST API, not on a timer.</p></li>
 
-<li><p>Portable format: savepoints use a standardized format that is compatible across state backends. A job checkpointed with HashMapStateBackend can be restored on EmbeddedRocksDBStateBackend from a savepoint.</p></li>
+<li><p>Portable format: savepoints can be created in canonical format, a standardized representation that is compatible across state backends. A job checkpointed with <code>HashMapStateBackend</code> can be restored on <code>EmbeddedRocksDBStateBackend</code> from a canonical savepoint. Native format (default and preferred) is faster to create and restore but is tied to the specific state backend and does not support cross-backend restoration.</p></li>
 </ul>
-
-<p>Portable format: savepoints can be created in canonical format, a standardized representation that is compatible across state backends. A job checkpointed with HashMapStateBackend can be restored on EmbeddedRocksDBStateBackend from a canonical savepoint. Native format is faster to create and restore but is tied to the specific state backend and does not support cross-backend restoration.</p>
 
 <p>Savepoints are used for planned operations: upgrading application code, changing parallelism, migrating to a different cluster, or switching state backends. The workflow is: take a savepoint, stop the job, make changes, restart from the savepoint.</p>
 
@@ -348,9 +356,9 @@ AlternatingCollectingBarriersUnaligned
 <p>There are three notions of time:</p>
 
 <ul>
-<li><p>Event Time: The timestamp embedded in the event itself, representing when the event actually occurred. A sensor reading generated at <code>14:00:03</code> carries that timestamp regardless of when Flink processes it.</p></li>
+<li><p>Event Time (most common): The timestamp embedded in the event itself, representing when the event actually occurred. A sensor reading generated at <code>14:00:03</code> carries that timestamp regardless of when Flink processes it.</p></li>
 <li><p>Processing Time: The wall clock of the machine running the operator at the moment it processes the event. Simple and fast, but non-deterministic. The same data replayed at a different speed produces different results.</p></li>
-<li><p>Ingestion Time: The timestamp assigned when the event enters Flink. More stable than processing time, but still does not reflect actual event occurrence.</p></li>
+<li><p>Ingestion Time (least common/discouraged): The timestamp assigned when the event enters Flink. More stable than processing time, but still does not reflect actual event occurrence.</p></li>
 </ul>
 
 <img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-times.svg">
@@ -405,7 +413,7 @@ InternalTimerService
 
 <h3>5.1. Job Manager</h3>
 
-<p>The <code>JobManager</code> is the control plane. It contains three RPC endpoints running in the same JVM. TaskManagers are the data plane: worker processes that execute tasks. Communication between them splits into two layers: <code>Pekko</code> for control messages (scheduling, heartbeats, checkpoint triggers) and <code>Netty</code> for actual data exchange between tasks.</p>
+<p>The <code>JobManager</code> is the control plane. It contains three RPC endpoints running in the same JVM. TaskManagers are the data plane: worker processes that execute tasks. Communication between them splits into two layers: <code>Pekko</code> (formerly Akka) for control messages (scheduling, heartbeats, checkpoint triggers) and <code>Netty</code> for actual data exchange between tasks.</p>
 
 <h3>5.1.1. Dispatcher</h3>
 
@@ -565,8 +573,6 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <h3>5.3. Network</h3>
 
-<p>Altough the network stack is one of the core components that make up the flink-runtime, it derserves it's own new section for the deep-dive.</p>
-
 <p>Flink's network stack sits inside flink-runtime and connects all subtasks across TaskManagers. It is the layer through which all shuffled data flows, making it a primary factor in both throughput and latency. Coordination between TaskManagers and the JobManager uses RPC (Pekko). Data transport between subtasks uses a lower level API built on Netty.</p>
 
 <h3>5.3.1. Physical Transport</h3>
@@ -578,7 +584,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 <p>Whether a connection is local or remote depends entirely on where the subtasks land:</p>
 <img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-example-recap.svg">
 
-<p>Each remote connection gets its own <code>TCP</code> channel. With higher parallelism (e.g. parallelism 4 across two TaskManagers offering 2 slots each), multiple subtasks of the same task share a <code>TaskManager</code>. Their remote connections toward the same destination TaskManager are then multiplexed over a single TCP channel, reducing resource usage.</p>
+<p>Each remote connection gets its own <code>TCP</code> channel. Consider a higher parallelism, i.e. parallelism 4 across two TaskManagers offering 2 slots each, multiple subtasks of the same task share a <code>TaskManager</code>. Their remote connections toward the same destination TaskManager are then multiplexed over a single TCP channel, reducing resource usage.</p>
 
 <img class="center-image-0 center-image-100" src="./assets/posts/flink/flink-tcp-channel.svg">
 
