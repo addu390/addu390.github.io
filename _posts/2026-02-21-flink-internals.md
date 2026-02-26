@@ -83,9 +83,9 @@ etc.
 
 <img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-operator-chaining.svg">
 
-<p>Source and Map chain together (same parallelism, forward edge). Window/Apply and Sink chain together. The keyBy between Map and Window introduces a hash partitioner, a shuffle boundary, so those two cannot chain. That boundary becomes a real <code>JobEdge</code> between the two <code>JobVertices</code>.
+<p>Source and Map chain together (same parallelism, forward edge). The keyBy between Map and Window introduces a hash partitioner, a shuffle boundary, so those two cannot chain. Window and Sink also cannot chain because their parallelism differs (2 vs 1). That gives three JobVertices.</p>
 
-<p>4 operators → 2 JobVertices. Fewer network exchanges, less serialization, better throughput.</p>
+<p>4 operators → 3 JobVertices. Chaining reduces the number of network exchanges and avoids unnecessary serialization within a chain.</p>
 
 <details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>streaming/api/graph/</code></p>
@@ -192,7 +192,7 @@ ForStStateBackend
 <p>The state backends described above are the storage engines. What gets stored in them broadly falls into two categories.</p>
 
 <h3>3.2.1. Keyed State</h3>
-<p>Keyed State is partitioned by key. In the example job, the <code>keyBy(...)</code> before the window means each window subtask only processes events for its assigned keys. The window operator internally uses keyed state to buffer incoming events until the window fires. That buffer is a <code>ListState</code> scoped to each key, stored in whichever state backend is configured.</p>
+<p>Keyed State is partitioned by key. In the example job, the <code>keyBy(...)</code> before the window means each window subtask only processes events for its assigned keys. The window operator internally uses keyed state to buffer incoming events until the window fires. In `MyJob` that buffer is a <code>ListState</code> scoped to each key, stored in whichever state backend is configured.</p>
 
 <img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-state.svg">
 
@@ -318,13 +318,15 @@ AlternatingCollectingBarriersUnaligned
 <li><p>Portable format: savepoints use a standardized format that is compatible across state backends. A job checkpointed with HashMapStateBackend can be restored on EmbeddedRocksDBStateBackend from a savepoint.</p></li>
 </ul>
 
+<p>Portable format: savepoints can be created in canonical format, a standardized representation that is compatible across state backends. A job checkpointed with HashMapStateBackend can be restored on EmbeddedRocksDBStateBackend from a canonical savepoint. Native format is faster to create and restore but is tied to the specific state backend and does not support cross-backend restoration.</p>
+
 <p>Savepoints are used for planned operations: upgrading application code, changing parallelism, migrating to a different cluster, or switching state backends. The workflow is: take a savepoint, stop the job, make changes, restart from the savepoint.</p>
 
 <p>In the example job, if the parallelism of the Window operator needs to change from 2 to 4, a savepoint captures the current state (including Key Group assignments). On restart with the new parallelism, Flink redistributes the Key Groups across the 4 new subtasks and restores the state accordingly.</p>
 
 <h3>3.4. Recovery</h3>
 
-<p>When a failure occurs (TaskManager crash, network fault, user code exception, etc.), Flink stops the entire job and rolls back to the latest completed checkpoint.</p>
+<p>When a failure occurs (TaskManager crash, network fault, user code exception, etc.), Flink stops the affected pipeline region (which for a single-region streaming job like this example, means the entire job) and rolls back to the latest completed checkpoint.</p>
 
 <p>The recovery process:</p>
 
@@ -409,7 +411,7 @@ InternalTimerService
 
 <p>The <code>Dispatcher</code> is the entry point for the cluster. It exposes the REST API, receives job submissions, and serves the Flink Web UI.</p>
 
-<p>When a job arrives, the Dispatcher persists it durably via the <code>ExecutionPlanWriter</code> (backed by ZooKeeper or Kubernetes ConfigMaps in HA setups), then creates a <code>JobManagerRunner</code> which starts a <code>JobMaster</code> for that job. This persist-before-run design is what makes HA recovery possible: if the <code>JobManager</code> crashes and a new leader takes over, the new Dispatcher recovers persisted jobs from storage and re-creates their JobMasters.</p>
+<p>When a job arrives, the Dispatcher persists it durably via the <code>ExecutionPlanWriter</code>, then creates a <code>JobManagerRunner</code> which starts a <code>JobMaster</code> for that job. This persist-before-run design is what makes HA recovery possible: if the <code>JobManager</code> crashes and a new leader takes over, the new Dispatcher recovers persisted jobs from storage and re-creates their JobMasters.</p>
 
 <p>In a session cluster, the Dispatcher lives for the lifetime of the cluster and handles multiple jobs. In application mode, it is scoped to a single application.</p>
 
@@ -488,12 +490,11 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>A <code>TaskExecutor</code> divides its resources into a fixed number of task slots. Each slot is a resource container with its own <code>MemoryManager</code> and a defined <code>ResourceProfile</code> (CPU, memory). The number of slots is configured via <code>taskmanager.numberOfTaskSlots</code>.</p>
 
-<p>A slot goes through a lifecycle of states: <code>ALLOCATED → ACTIVE → RELEASING → (freed)</code></p>
-<p><code>ALLOCATED</code> means the <code>ResourceManager</code> has assigned it to a job, but the <code>JobMaster</code> has not yet started using it. <code>ACTIVE</code> means the slot is in use and tasks can be added to it. <code>RELEASING</code> means the tasks inside it have failed or finished and it is waiting to be fully emptied before it can be freed.</p>
+<p>A slot has three states: <code>ALLOCATED</code> (assigned to a job by the ResourceManager, not yet in use by the JobMaster), <code>ACTIVE</code> (in use, tasks can be added), and <code>RELEASING</code> (tasks have failed, waiting to be fully emptied before the slot is freed).</p>
 
 <p>The important detail: a slot can hold multiple tasks. The tasks map inside <code>TaskSlot</code> is keyed by <code>ExecutionAttemptID</code>, meaning multiple operator subtasks can share a single slot. This is where slot sharing comes in.</p>
 
-<h3>5.2.2. Slot Sharing</h3>
+<h3>5.2.2. Task Slot Sharing</h3>
 
 <p>By default, Flink places all operators of a job into the same <code>SlotSharingGroup</code>. This means one subtask from each operator in the pipeline can be co-located in a single slot. For the running <code>MyJob</code> example:</p>
 
@@ -509,7 +510,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>A <code>ResultPartition</code> is divided into <code>SubPartitions</code>, one per downstream consumer subtask. An InputGate is composed of InputChannels, one per upstream producer subtask.</p>
 
-<p>The data exchange between ResultPartitions and InputGates goes through the <code>ShuffleService</code>. The default implementation is <code>NettyShuffleService</code>. If the producer and consumer are in the same <code>TaskManager</code>, data can be exchanged locally without going over the network.</p>
+<p>The data exchange between ResultPartitions and InputGates goes through the <code>ShuffleEnvironment</code>. The default implementation is <code>NettyShuffleEnvironment</code>. If the producer and consumer are in the same <code>TaskManager</code>, data can be exchanged locally without going over the network.</p>
 
 <p>For MyJob (Source+Map chained, parallelism 2 → Window parallelism 2 → Sink parallelism 1):</p>
 
@@ -519,27 +520,118 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>Records are hashed by key and routed to the SubPartition responsible for that key group. Window to Sink has a parallelism change (2 → 1), so each Window subtask's ResultPartition has only 1 SubPartition (the single Sink), and the Sink's <code>InputGate</code> has 2 InputChannels (one per Window subtask).</p>
 
-<h3>5.2.4. Task Executor Services</h3>
+<h3>5.2.4. Task Manager Services</h3>
 
 <p>In the post <code>TaskManager</code> and <code>TaskExecutor</code> may have been used interchangeably. To clarify, <code>TaskManager</code> is the process (the JVM). <code>TaskExecutor</code> is the main class running inside that process. In practice they refer to the same thing, but at different levels of abstraction.</p>
 
 <p>When a TaskManager process starts, it initializes a set of shared services before any task is deployed. These services live for the lifetime of the process and are shared across all tasks running in it. They fall into a few categories.</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/flink/flink-task-executor-services-1.svg">
+<p><b>Slot Management</b> is central. The <code>TaskSlotTable</code> tracks which slots exist, which are free, and which tasks are running in each slot. The <code>JobTable</code> maps each active JobID to its <code>JobMaster</code> connection, so the <code>TaskManager</code> knows which JobMaster to report to for each task. The <code>JobLeaderService</code> monitors leadership changes for each job, so if a JobMaster fails over, the TaskManager reconnects to the new leader.</p>
 
-<p>Slot Management is central. The TaskSlotTable tracks which slots exist, which are free, and which tasks are running in each slot. The JobTable maps each active JobID to its JobMaster connection, so the TaskManager knows which JobMaster to report to for each task. The JobLeaderService monitors leadership changes for each job, so if a JobMaster fails over, the TaskManager reconnects to the new leader.</p>
+<p><b>Network and Shuffle</b> handles all data exchange. The <code>ShuffleEnvironment</code> (default: Netty) owns the buffer pools, creates <code>ResultPartitions</code> for task output and <code>InputGates</code> for task input. This is where credit based flow control and backpressure happen. The <code>TaskExecutorPartitionTracker</code> keeps track of which result partitions this TaskManager has produced, so they can be released when no longer needed.</p>
 
-<p>Network and Shuffle handles all data exchange. The ShuffleEnvironment (default: Netty based) owns the buffer pools, creates ResultPartitions for task output and InputGates for task input. This is where credit based flow control and backpressure happen. The PartitionTracker keeps track of which result partitions this TaskManager has produced, so they can be released when no longer needed.</p>
+<p><b>Memory</b> is handled by the per-slot <code>MemoryManager</code> (managed off-heap memory) and the <code>IOManager</code> (disk spill). Within managed memory, <code>SharedResources</code> enables reference-counted sharing of resources like RocksDB caches across operators in the same slot. State backends like RocksDB/ForSt and operators that sort or hash data use managed memory. The <code>IOManager</code> provides temporary file channels for spilling when memory is exhausted.</p>
 
-<p>Memory is split into managed off-heap memory (SharedResources) and disk spill (IOManager). State backends like RocksDB/ForSt and operators that sort or hash data use managed memory. The IOManager provides temporary file channels for spilling when memory is exhausted.</p>
+<img class="center-image-0 center-image-65" src="./assets/posts/flink/flink-task-executor-services.svg">
 
-<p>State and Checkpointing services support fault tolerance. The LocalStateStoresManager maintains local copies of state on disk for faster recovery (instead of always fetching from the distributed checkpoint store). The FileMergingManager is a newer optimization that merges many small checkpoint files into fewer larger ones to reduce file system pressure. The ChangelogStoragesManager supports the changelog state backend. The ChannelStateExecutorFactory handles snapshotting in-flight network buffers for unaligned checkpoints.</p>
+<p><b>State and Checkpointing</b> services support fault tolerance. The <code>LocalStateStoresManager</code> maintains local copies of state on disk for faster recovery (instead of always fetching from the distributed checkpoint store). The <code>FileMergingManager</code> is a newer optimization that merges many small checkpoint files into fewer larger ones to reduce file system pressure. The <code>ChangelogStoragesManager</code> supports the changelog state backend. The <code>ChannelStateExecutorFactory</code> handles snapshotting in-flight network buffers for unaligned checkpoints.</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/flink/flink-task-executor-services-2.svg">
+<p><b>Classloading and Artifacts</b> manages user code isolation. The <code>LibraryCacheManager</code> maintains per-job classloaders so that different jobs running on the same TaskManager do not interfere with each other. The <code>PermanentBlobService</code> downloads JAR files from the central <code>BlobServer</code> on the JobManager side. The <code>FileCache</code> handles files registered through the distributed cache API.</p>
 
-<p>Classloading and Artifacts manages user code isolation. The LibraryCacheManager maintains per-job classloaders so that different jobs running on the same TaskManager do not interfere with each other. The BlobService downloads JAR files from the central BlobServer on the JobManager side. The FileCache handles files registered through the distributed cache API.</p>
+<p><b>Connectivity</b> keeps the TaskManager linked to the cluster. Two heartbeat managers run continuously: one toward the <code>ResourceManager</code> (reporting slot availability and resource usage) and one toward each JobMaster (reporting task status and metrics). If heartbeats stop, the other side assumes the TaskManager is dead and triggers failover. <code>HAServices</code> handles leader discovery so the TaskManager always knows who the current ResourceManager leader is.</p>
 
-<p>Connectivity keeps the TaskManager linked to the cluster. Two heartbeat managers run continuously: one toward the ResourceManager (reporting slot availability and resource usage) and one toward each JobMaster (reporting task status and metrics). If heartbeats stop, the other side assumes the TaskManager is dead and triggers failover. HAServices handles leader discovery so the TaskManager always knows who the current ResourceManager leader is.</p>
+<p>When a task gets deployed into a slot, it receives references to these shared services. It does not create its own network stack. The <code>NetworkBufferPool</code> is shared across all tasks in the TaskManager, though each task gets its own <code>LocalBufferPool</code> drawn from it. Managed memory is scoped per slot: all tasks sharing a slot through slot sharing share the same <code>MemoryManager</code>, but tasks in different slots have independent memory budgets. Heartbeat connections are shared across the entire TaskManager process.</p>
 
-<p>When a task gets deployed into a slot, it receives references to these shared services. It does not create its own network stack or memory manager. This is why all tasks in the same TaskManager share the same buffer pool, the same managed memory segment, and the same heartbeat connections.</p>
+<h3>5.2.5. Task Manager Memory</h3>
+
+<p>A <code>TaskManager</code> is a single JVM process. Its total memory is carved into strictly defined regions at startup, each serving a different purpose. Unlike a typical Java application where the JVM manages one undifferentiated heap, Flink explicitly budgets every byte.</p>
+
+<p>The first distinction is between what Flink controls (Total Flink Memory) and what the JVM needs for itself (Metaspace and Overhead). Together they form Total Process Memory, which is the container or process limit. When deploying on YARN or Kubernetes, Flink uses Total Process Memory to calculate the container request size.</p>
+
+<p>Within Total Flink Memory, the heap is split into Framework and Task. Both live in the same JVM heap at runtime; Flink does not enforce isolation between them. The separation exists for budgeting: it ensures the framework always has enough headroom for coordination even when user code is memory intensive. Task Heap has no fixed default because it is the remainder after every other component is subtracted from Total Flink Memory.</p>
+
+<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-total-memory.svg">
+
+<p>The off-heap region covers Framework Off-Heap, Task Off-Heap, and Network Memory. All three are counted toward <code>-XX:MaxDirectMemorySize</code>. Network Memory is allocated as JVM direct memory (<code>ByteBuffer.allocateDirect()</code>), used exclusively for the network buffer pool that moves data between tasks. Framework and Task Off-Heap budget for both JVM direct memory and native memory; Flink counts their full configured amount toward the JVM direct memory limit as a conservative measure.</p>
+
+<p>Managed Memory in practice is scoped per slot, not per task. Each slot gets its own <code>MemoryManager</code> with a budget of total managed memory divided by the number of slots. All tasks sharing a slot (through slot sharing) share this budget. For the <code>MyJob</code> example:</p>
+
+<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-task-memory-budget.svg">
+
+<p>Managed Memory is different: it lives outside JVM direct memory entirely. For stateful operators using RocksDB, Flink reserves a budget and RocksDB allocates its own native memory through JNI. (invisible to <code>-XX:MaxDirectMemorySize</code>). This means Managed Memory and Network Memory never compete for the same JVM budget, and the state backend (RocksDB/ForSt) cannot accidentally starve the network layer.</p>
+
+<p>The tradeoff is that if Managed Memory is misconfigured and the process exceeds its container limit, the OS kills the process rather than the JVM throwing a catchable exception.</p>
+
+
+<h3>5.3. Network</h3>
+
+<p>Altough the network stack is one of the core components that make up the flink-runtime, it derserves it's own new section for the deep-dive.</p>
+
+<p>Flink's network stack sits inside flink-runtime and connects all subtasks across TaskManagers. It is the layer through which all shuffled data flows, making it a primary factor in both throughput and latency. Coordination between TaskManagers and the JobManager uses RPC (Pekko). Data transport between subtasks uses a lower level API built on Netty.</p>
+
+<h3>5.3.1. Physical Transport</h3>
+
+<p>In the example job, <code>keyBy()</code> introduces a network shuffle between <code>SourceMap</code> and <code>Window</code>. Records can no longer stay local to the subtask that produced them. Each record is hashed by its key and routed to whichever Window subtask is responsible for that key group. This is a full all-to-all connection: every SourceMap subtask must be able to send to every Window subtask.</p>
+
+<p>As covered in the Task Execution Model, slot sharing places each pipeline slice into a single slot. With a small twist for this section, the two slots sit on two different TaskManagers. This means some connections are <code>local</code> (same TM) and some are <code>remote</code> (cross-TM, over TCP via Netty).</p>
+
+<p>Whether a connection is local or remote depends entirely on where the subtasks land:</p>
+<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-example-recap.svg">
+
+<p>Each remote connection gets its own <code>TCP</code> channel. With higher parallelism (e.g. parallelism 4 across two TaskManagers offering 2 slots each), multiple subtasks of the same task share a <code>TaskManager</code>. Their remote connections toward the same destination TaskManager are then multiplexed over a single TCP channel, reducing resource usage.</p>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/flink/flink-tcp-channel.svg">
+
+<p>Each subtask's output is a <code>ResultPartition</code>, split into <code>ResultSubpartitions</code>, one per downstream consumer. In the example, each SourceMap subtask has a <code>ResultPartition</code> with 4 ResultSubpartitions (one for each Window subtask). Each Window subtask has a ResultPartition with 1 ResultSubpartition (the single Sink subtask).</p>
+
+<p>On the receiving side, each subtask reads from an <code>InputGate</code> containing <code>InputChannels</code>, one per upstream producer. Each Window subtask's InputGate has 4 InputChannels (one from each SourceMap subtask). Sink's InputGate has 4 InputChannels (one from each Window subtask).</p>
+
+<p>At this layer, Flink no longer deals with individual records. Data is serialized and packed into network buffers. Each subtask has its own local buffer pool, one on the sending side and one on the receiving side, bounded by: <code>#channels × buffers-per-channel + floating-buffers-per-gate</code></p>
+
+<p>With defaults of 2 exclusive buffers per channel and 8 floating buffers per gate, each Window subtask's receiving buffer pool is capped at <code>4 × 2 + 8 = 16</code> buffers. These are drawn from the <code>NetworkBufferPool</code> covered in the Memory Model section.</p>
+
+<h3>5.3.2. Credit-based Flow Control</h3>
+
+<p>Since all logical channels between two TaskManagers are multiplexed over a single TCP connection, a slow receiver on one channel could stall the connection entirely, throttling every other subtask sharing the wire. Credit-based flow control solves this by tracking buffer availability per logical channel, keeping backpressure isolated.</p>
+
+<p>The core rule: a sender may only forward a buffer if the receiver has announced capacity for it. <code>1 buffer = 1 credit</code>.</p>
+
+<p>On the receiving side, each remote input channel has two kinds of buffers:</p>
+<ul>
+<li>Exclusive buffers (2 per channel): permanently assigned, never shared.</li>
+<li>Floating buffers (8 per gate): shared across all channels in the gate, borrowed on demand.</li>
+</ul>
+
+<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-flow-control.svg">
+
+<p>If there are not enough floating buffers available globally, each buffer pool gets a share proportional to its capacity of whatever is available. The cycle:</p>
+
+<ul>
+<li><p>When a channel is established, the receiver announces its exclusive buffers as initial credits.</p></li>
+<li><p>The sender tracks the credit score per subpartition. Each sent buffer decrements the credit by one. No credit, no sending.</p></li>
+<li><p>Each buffer sent also carries the sender's current backlog size, how many buffers are still waiting in that subpartition's queue.</p></li>
+<li><p>The receiver uses the backlog to request floating buffers from the gate's shared pool. It may get all, some, or none. If none are available, it registers as a listener and gets notified when one is recycled.</p></li>
+<li><p>Every newly acquired buffer is announced back to the sender as a fresh credit, and the cycle continues.</p></li>
+</ul>
+
+<p>If a receiver falls behind, its credits eventually hit 0. The sender stops forwarding buffers for that channel only. The TCP connection stays open, other channels on it continue normally. In the example: if one Window subtask on TM2 falls behind, its credit drops to 0. The SourceMap subtasks stop sending to it but keep sending to every other Window subtask. The shared TCP connection between TM1 and TM2 is never blocked.</p>
+
+<p>Because one channel in a multiplex can no longer block another, overall resource utilization improves. Full control over how much data is "on the wire" also improves checkpoint alignment. Without flow control, a stalled receiver would still have the lower network stack's internal buffers filling up, and checkpoint barriers would queue behind all of that data, waiting for it to drain before alignment could begin. With credit-based control, there is far less data sitting in transit, so barriers propagate faster.</p>
+
+<h3>5.3.3. Buffer Flushing</h3>
+
+<p>The <code>RecordWriter</code> serializes each record into bytes on the heap, then writes those bytes into the network buffer currently assigned to the target subpartition. If the record doesn't fit, the remaining bytes spill into a new buffer. The deserializer on the receiving side (<code>SpillingAdaptiveSpanningRecordDeserializer</code>) handles reassembly, including records that span multiple 32 KB buffers.</p>
+
+<p>A buffer becomes available for <code>Netty</code> to consume in three situations:</p>
+<ul>
+<li><p>Buffer full: the writer finishes the buffer and requests a new one. The finished buffer is added to the subpartition queue, which notifies Netty.</p></li>
+<li><p>Buffer timeout: a background thread (<code>OutputFlusher</code>) periodically calls flush (default: every 100ms, configured via <code>execution.buffer-timeout.interval</code>). This notifies Netty to consume whatever has been written so far without closing the buffer. The buffer stays in the queue and keeps accumulating more data from the writer side.</p></li>
+<li><p>Special event: checkpoint barriers, end-of-partition events, etc. These finish all in-progress buffers immediately and add the event to every subpartition.</p></li>
+</ul>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/flink/flink-buffer-flushing.svg">
+
+<p>The buffer is added to the subpartition queue while still being written to (via the <code>BufferBuilder</code> / <code>BufferConsumer</code> pair). The writer appends through the <code>BufferBuilder</code>, Netty reads through the BufferConsumer. This avoids synchronization on every record, the two sides only coordinate through the buffer's reader and writer indices.</p>
+
+<p>In low-throughput scenarios, the output flusher drives latency. In high-throughput scenarios, buffers fill up before the flusher fires and the system self-adjusts.</p>
 
