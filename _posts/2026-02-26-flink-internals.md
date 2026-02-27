@@ -6,6 +6,7 @@ tags:
 - Realtime
 author: Adesh Nalpet Adimurthy
 category: System Wisdom
+highlight: green
 ---
 
 <p>Most blog posts on Flink's internals and architecture, even the official documentation, tend to be fragmented across different examples and cover components in isolation. The approach taken here is to follow a single reference Flink job end-to-end, through every component and moving part it touches, keeping the discussion grounded in the example, rather than attempting broad coverage of Flink's full capabilities. The tradeoff is intentional: depth over breadth.</p>

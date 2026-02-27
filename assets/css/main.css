@@ -267,6 +267,24 @@ th {
   background-color: inherit;
 }
 
+/* Green highlighted posts */
+.posts-table tr.highlighted-post-green:nth-child(odd) {
+  background-color: #f3faf5;
+  border-left: 3px solid #22c55e;
+}
+
+.posts-table tr.highlighted-post-green:nth-child(even) {
+  border-left: 3px solid #22c55e;
+}
+
+.posts-table tr.highlighted-post-green:nth-child(odd):hover {
+  background-color: #eef7f1;
+}
+
+.posts-table tr.highlighted-post-green:nth-child(even):hover {
+  background-color: #e5f0ea;
+}
+
 /* Responsive adjustments for posts table */
 @media screen and (max-width: 48em) {
   .posts-table th,
