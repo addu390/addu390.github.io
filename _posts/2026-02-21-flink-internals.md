@@ -11,7 +11,7 @@ feature: assets/featured/webp/the-kafka.webp
 category: System Wisdom
 ---
 
-<p>Apache Flink's official documentation and blog posts are comprehensive, but tend to be fragmented across different examples and cover the breadth of different components in isolation. The approach taken here is to follow a single reference Flink job end-to-end, through every component and moving part it touches, keeping the discussion grounded in the example, rather than attempting broad coverage of Flink's full capabilities. The tradeoff is intentional: depth over breadth.</p>
+<p>Most blog posts on Flink's internals and architecture, even the official documentation, tend to be fragmented across different examples and cover components in isolation. The approach taken here is to follow a single reference Flink job end-to-end, through every component and moving part it touches, keeping the discussion grounded in the example, rather than attempting broad coverage of Flink's full capabilities. The tradeoff is intentional: depth over breadth.</p>
 
 <h3>1. Components</h3>
 
@@ -642,4 +642,21 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 <p>The buffer is added to the subpartition queue while still being written to (via the <code>BufferBuilder</code> / <code>BufferConsumer</code> pair). The writer appends through the <code>BufferBuilder</code>, Netty reads through the BufferConsumer. This avoids synchronization on every record, the two sides only coordinate through the buffer's reader and writer indices.</p>
 
 <p>In low-throughput scenarios, the output flusher drives latency. In high-throughput scenarios, buffers fill up before the flusher fires and the system self-adjusts.</p>
+
+<h3>6. End to End</h3>
+
+<p>The very first section introduced the high-level picture: Client, JobManager, TaskManagers. Here is the same diagram, redrawn with everything covered since.</p>
+
+<img class="center-image-0 center-image-100" src="./assets/posts/flink/flink-end-to-end.svg">
+
+<p>If you made it this far, you now have a solid mental model of what happens inside a running Flink job, from graph compilation and operator chaining to state snapshots, flow control, and much more. Not everything Flink does, but enough to reason about what is actually going on when a job runs.</p>
+
+<h3>7. References</h3>
+<pre style="max-height: 180px"><code>[1] "Flink Architecture," Apache Flink, [Online]. Available: https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/flink-architecture/.
+[2] "A Deep Dive into Flink's Network Stack," Apache Flink, [Online]. Available: https://flink.apache.org/2019/06/05/a-deep-dive-into-flinks-network-stack/.
+[3] "Flink Course Series 1: A General Introduction to Apache Flink," Alibaba Cloud, [Online]. Available: https://www.alibabacloud.com/blog/flink-course-series-1-a-general-introduction-to-apache-flink_597974.
+[4] "Apache Flink: Concepts Overview," Apache Flink, [Online]. Available: https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/concepts/overview/.
+[5] "DataStream V2: Watermark," Apache Flink, [Online]. Available: https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/datastream-v2/watermark/.
+[6] "DataStream V2: Building Blocks," Apache Flink, [Online]. Available: https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/datastream-v2/building_blocks/.
+</code></pre>
 
