@@ -1,13 +1,10 @@
 ---
 layout: post
 title: "Apache Flink Internals"
-date: 2026-02-21
+date: 2026-02-26
 tags:
-- System Design
 - Realtime
 author: Adesh Nalpet Adimurthy
-image: assets/featured/webp/the-kafka.webp
-feature: assets/featured/webp/the-kafka.webp
 category: System Wisdom
 ---
 
