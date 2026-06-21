@@ -3,12 +3,12 @@ layout: post
 title: "Graph Theory: Introduction"
 date: 2024-07-14
 tags:
-- Graph Theory
-- Data Structures
+  - Graph Theory
+  - Data Structures
+  - Algorithms
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/graph-theory-101.webp
 feature: assets/img/featured/webp/graph-theory-101.webp
-category: Code on the Road
 ---
 
 <p>Before heading into details of how we store, represent, and traverse various kinds of graphs, this post is more of a ramp-up to better understand what graphs are and the different kinds from a computer science point of view, rather than a mathematical one. So, no proofs and equations, mostly just diagrams and implementation details, with an emphasis on how to apply graph theory to real-world applications.</p>

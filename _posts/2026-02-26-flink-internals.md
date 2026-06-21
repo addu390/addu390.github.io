@@ -3,9 +3,10 @@ layout: post
 title: "Apache Flink Internals"
 date: 2026-02-26
 tags:
-- Realtime
+  - Internals
+  - Streaming
+  - Distributed Systems
 author: Adesh Nalpet Adimurthy
-category: System Wisdom
 highlight: green
 ---
 

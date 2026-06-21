@@ -3,11 +3,10 @@ layout: post
 title: "Refactoring Nightmares"
 date: 2022-06-01
 tags:
-  - Project
   - Design Patterns
+  - Projects
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/refactor-tomato.png
-category: Leisure Seizure
 ---
 
 You are working on a fast-growing, never-stopping product; 35 sprints and 600 coffees later, you finally got to move on, and a new engineer steps in, or you realize sooner or later that you cannot keep up with the feature requests while ensuring code quality. Then, after raising the need for refactoring as blockers for a couple of features, finally! It's the day when your engineering team decides to dedicate bandwidth for refactoring - Sounds familiar? You are not alone.

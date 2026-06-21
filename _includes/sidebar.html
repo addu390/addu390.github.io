@@ -3,11 +3,11 @@
         <span hidden>{{site.title}}</span>
         <div>
             <img title="Start/Stop tear of joy!" id="profile-gif" class="brand-photo"
-                src="{{site.url}}/{{site.header_image}}" alt="Photo of {{site.author}}" />
+                src="/{{site.header_image}}" alt="Photo of {{site.author}}" />
         </div>
         <h1 class="brand-title">
-            <a href="{{ site.url }}"> {{site.title}}</a><img onclick="location.href='{{site.url}}';" title="verified"
-                class="clickable-div verified-tag" src="{{site.url}}/assets/img/profile/verified.svg"
+            <a href="/"> {{site.title}}</a><img onclick="location.href='/';" title="verified"
+                class="clickable-div verified-tag" src="/assets/img/profile/verified.svg"
                 alt="Verified Tag" />
         </h1>
         <br>
@@ -16,42 +16,37 @@
     </div>
 
     <ul class="sidebar-list">
-        <li class="clickable-div high-featured" onclick="location.href='{{site.url}}';"><span class="sidebar-index"><img
-                    class="twemoji" src="{{site.url}}/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/journals';"><span
-                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/book.svg"
+        <li class="clickable-div" onclick="location.href='/';"><span class="sidebar-index"><img
+                    class="twemoji" src="/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div" onclick="location.href='/journals';"><span
+                class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/book.svg"
                     alt="journal"></span>&nbsp;
             Journal</li>
-        <li class="clickable-div high-featured" onclick="location.href='{{site.url}}/contact';"><span
-                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/horn.svg"
+        <li class="clickable-div" onclick="location.href='/contact';"><span
+                class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/horn.svg"
                     alt="contact"></span>&nbsp;
             Contact</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/about';"><span
+        <li class="clickable-div" onclick="location.href='/about';"><span
                 class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
-                    src="{{ site.url }}/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
+                    src="/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
             About</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/sponsor';"><span
-                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/luck.svg"
-                    alt="sponsor"></span>&nbsp;
-            Sponsor</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/privacy';"><span
-                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/cookie.svg"
+        <li class="clickable-div" onclick="location.href='/privacy';"><span
+                class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/cookie.svg"
                     alt="privacy policy"></span>&nbsp;
             Privacy Policy</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/tags';"><span
-                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/tag.svg"
+        <li class="clickable-div" onclick="location.href='/tags';"><span
+                class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/tag.svg"
                     alt="tags"></span>&nbsp;
             Tags</li>
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/categories';"><span
-                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/folder.svg"
-                    alt="categories"></span>&nbsp;
-            Categories</li>
-
-        <li class="clickable-div low-featured" onclick="location.href='{{site.url}}/archive';"><span
-                class="sidebar-index"><img class="twemoji" src="{{site.url}}/assets/img/emoji/archive.svg"
+        <li class="clickable-div" onclick="location.href='/archive';"><span
+                class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/archive.svg"
                     alt="archive"></span>&nbsp;
             Archive</li>
     </ul>
+
+    <div class="sidebar-footer">
+        {%- include sidebar-footer.html -%}
+    </div>
 </aside>
 
 <script src="{{ '../assets/js/sidebar.js' | relative_url }}"></script>

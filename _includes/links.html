@@ -1,33 +1,40 @@
 <div class="menu">
     {%- include search.html -%}
-    <a id="dark-mode-button">
-        <img id="icon-light" class="twemoji theme-icon" src="{{site.url}}/assets/img/emoji/light.svg" alt="">
-        <img id="icon-dark" class="twemoji theme-icon" src="{{site.url}}/assets/img/emoji/dark.svg" style="display: none;" alt="">
-    </a>
-    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="{{site.url}}/assets/img/common/rss.svg"
+    <span class="theme-grade">
+        <a id="dark-mode-button" class="theme-trigger" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" title="Theme">
+            <img id="theme-smiley" class="twemoji theme-icon" src="/assets/img/emoji/smiley-light.svg" alt="Theme">
+        </a>
+        <ul class="theme-grade-menu" hidden>
+            <li><button type="button" data-grade="light"><img class="twemoji" src="/assets/img/emoji/smiley-light.svg" alt="">Light</button></li>
+            <li><button type="button" data-grade="dim"><img class="twemoji" src="/assets/img/emoji/smiley-dim.svg" alt="">Dim</button></li>
+            <li><button type="button" data-grade="dark"><img class="twemoji" src="/assets/img/emoji/smiley-dark.svg" alt="">Dark</button></li>
+            <li><button type="button" data-grade="darker"><img class="twemoji" src="/assets/img/emoji/smiley-darker.svg" alt="">Darker</button></li>
+        </ul>
+    </span>
+    <a href="/feed.xml" target="_blank"><img class="svg-icon twemoji rss-icon" src="/assets/img/common/rss.svg"
             alt=""></a>
     <a id="sound-button">
-        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="{{site.url}}/assets/img/common/audio-on.svg" style="display: none;" alt="">
-        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="{{site.url}}/assets/img/common/audio-off.svg" alt="">
+        <img id="icon-sound-on" class="twemoji audio-icon svg-icon" src="/assets/img/common/audio-on.svg" style="display: none;" alt="">
+        <img id="icon-sound-off" class="twemoji audio-icon svg-icon" src="/assets/img/common/audio-off.svg" alt="">
     </a>
 </div>
 
 <audio id="darkModeOn">
-    <source src="{{site.url}}/assets/sounds/switch-on.mp3" type="audio/mpeg">
+    <source src="/assets/sounds/switch-on.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
 <audio id="darkModeOff">
-    <source src="{{site.url}}/assets/sounds/switch-off.mp3" type="audio/mpeg">
+    <source src="/assets/sounds/switch-off.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
 <audio id="soundModeOn">
-    <source src="{{site.url}}/assets/sounds/enable-sound.mp3" type="audio/mpeg">
+    <source src="/assets/sounds/enable-sound.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
 <audio id="soundModeOff">
-    <source src="{{site.url}}/assets/sounds/disable-sound.mp3" type="audio/mpeg">
+    <source src="/assets/sounds/disable-sound.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>

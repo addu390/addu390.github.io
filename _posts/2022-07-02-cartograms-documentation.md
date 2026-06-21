@@ -4,14 +4,12 @@ title: "Conceptualization of a Cartogram"
 date: 2022-07-02
 premium: true
 tags:
-  - Project
   - GSoC
-  - Cartogram
-  - Algorithms
   - Open Source
+  - Algorithms
+  - Projects
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/solar-system-cartogram.png
-category: Comics
 ---
 
 # Explanation

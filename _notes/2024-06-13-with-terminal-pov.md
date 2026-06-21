@@ -3,10 +3,9 @@ layout: post
 title: "With Terminal: Point of View"
 date: 2024-06-13
 tags:
-  - Project
+  - Projects
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/hex-spiderman.png
-category: Notes
 ---
 
 <img class="center-image-0 center-image-40" src="../assets/img/notes/with-terminal-what.svg" />

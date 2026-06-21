@@ -3,10 +3,9 @@ layout: post
 title: "Back in Black"
 date: 2024-07-10
 tags:
-  - Startup
+  - Life
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/arnold-terminator.png
-category: Life
 ---
 
 <!-- <img class="center-image" src="../assets/img/featured/webp/arnold-as-me.webp" />  -->

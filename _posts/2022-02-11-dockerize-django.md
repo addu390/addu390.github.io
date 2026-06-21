@@ -4,11 +4,9 @@ title: "Dockerizing Django — Gunicorn and Nginx"
 date: 2022-02-11
 tags:
   - Django
-  - AWS
-  - Docker
+  - DevOps
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/docker-django.png
-category: Django Rango
 ---
 
 A step-by-step tutorial on dockerizing a Django application with MySQL database using Guinicorn and Nginx.

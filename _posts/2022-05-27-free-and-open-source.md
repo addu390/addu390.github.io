@@ -6,7 +6,6 @@ tags:
   - Open Source
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/foss-thankyou.png
-category: Leisure Seizure
 ---
 
 ## Free and Open Source Software

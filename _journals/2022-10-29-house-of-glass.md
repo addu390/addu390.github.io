@@ -3,10 +3,11 @@ layout: post
 title: "Story Illustration: House of Glass"
 date: 2022-10-29
 tags:
-  - Wisdom
+  - Life
+  - Art
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/rage.png
-category: Life
+hide: true
 ---
 
 As much as I want to write a deep, heart-felt post on how the last couple of months have been, I often find it less dramatic and simple to convey the message over a bunch of illustrations and leave it up to the reader's interpretation.

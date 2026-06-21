@@ -3,10 +3,9 @@ layout: post
 title: "Custom domain for GitHub pages"
 date: 2022-03-10
 tags:
-  - Github
+  - DevOps
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/gh-llama.png
-category: Code on the Road
 ---
 
 ## Configuration

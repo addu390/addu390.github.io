@@ -7,7 +7,6 @@ tags:
   - Java
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/java-visitor-pattern.png
-category: Java Lava
 ---
 
 Even before going ahead with an example, what is Visitor Pattern?

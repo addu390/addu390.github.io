@@ -4,11 +4,10 @@ title: "Location-based application using Django and PostGIS"
 date: 2022-03-15
 tags:
   - Django
-  - Database
+  - Databases
   - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/geo-django-popeye.png
-category: Django Rango
 ---
 
 In a prior post, the experiment on [hybrid spatial-index](https://www.pyblog.xyz/hybrid-spatial-index) to find spatial data points is worth exploring, but the in-memory implementations and the lack of ability to scale make it almost pointless to use it in real-world applications.

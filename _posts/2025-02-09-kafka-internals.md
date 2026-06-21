@@ -3,12 +3,12 @@ layout: post
 title: "Apache Kafka Internals"
 date: 2025-02-09
 tags:
-- System Design
-- Realtime
+  - Internals
+  - Streaming
+  - Distributed Systems
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/the-kafka.webp
 feature: assets/img/featured/webp/the-kafka.webp
-category: System Wisdom
 ---
 <div class="blog-reference">
 <p>🚧 This post is a work in progress, but feel free to explore what’s here so far. Stay tuned for more!</p>

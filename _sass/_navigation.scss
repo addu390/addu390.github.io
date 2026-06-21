@@ -12,9 +12,9 @@
 
 .menu {
   position: fixed;
-  background-color: #fff;
+  background-color: var(--surface);
   width: 100%;
-  border-bottom: var(--light-grey) 1px solid;
+  border-bottom: var(--border) 1px solid;
   z-index: 1;
 }
 
@@ -28,6 +28,20 @@
 #search {
   width: 50%;
   position: relative;
+}
+
+#results-container {
+  background-color: var(--surface);
+  border-radius: 5px;
+}
+
+#results-container .search_res a,
+#results-container .search_res p {
+  color: var(--text);
+}
+
+.menu .svg-icon {
+  filter: var(--icon-filter);
 }
 
 #search,
@@ -53,20 +67,22 @@ a {
 .home a {
   padding: 5px 8px;
   border-radius: 5px;
-  background-color: var(--black);
+  background-color: var(--py-black);
   color: var(--white);
 }
 
 .img-border {
-  border: 1px solid #d3d3d3;
+  border: 1px solid var(--border);
 }
 
 #search-input {
   width: 94%;
   margin: 10px 0;
   padding: 8px;
-  border: 1px var(--light-grey) solid;
+  border: 1px var(--border) solid;
   border-radius: 5px;
+  background-color: var(--surface);
+  color: var(--text);
 }
 
 .search-icon {

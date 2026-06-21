@@ -3,12 +3,11 @@ layout: post
 title: "3D Printing iPhone 8 Privacy Case"
 date: 2017-03-27
 tags:
-  - Project
-  - 3D Printing
+  - Projects
   - Security
+  - 3D Printing
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/3d-print-privacy-case.png
-category: Leisure Seizure
 ---
 
 “Should You Cover Your Smartphone Camera?” is a question trending since 2015 🤭

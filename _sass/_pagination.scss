@@ -21,27 +21,27 @@
 }
 
 .pagination-box-idle {
-  background-color: var(--very-light-grey);
-  border: 1.5px solid #ccc;
+  background-color: var(--surface);
+  border: 1.5px solid var(--border-strong);
   transition: background-color 0.3s, color 0.3s;
   border-radius: 50%;
 }
 
 .pagination-box-idle:hover {
-  border: var(--py-black) 1.5px solid;
+  border: var(--border-strong) 1.5px solid;
 }
 
 .pagination-box-hit {
   background-color: var(--py-black);
-  color: #fff;
+  color: var(--white);
   border: 1.5px solid var(--py-black);
   border-radius: 50%;
 }
 
 .pagination-box-disabled {
-  background-color: var(--very-light-grey);
-  color: #ccc;
-  border: 1.5px solid #eee;
+  background-color: var(--surface);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
   border-radius: 50%;
   cursor: not-allowed;
 }
@@ -78,7 +78,7 @@
   font-size: 30px;
   padding-top: 3px;
   background-color: transparent !important;
-  color: #222 !important;
+  color: var(--text) !important;
   font-weight: 600;
 }
 

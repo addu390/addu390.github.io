@@ -9,8 +9,45 @@
 }
 
 .sidebar {
-  background: #222;
-  color: var(--white);
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+.sidebar-footer {
+  padding: 1.2em 0 1em;
+  text-align: center;
+}
+
+.sidebar-footer .social-icons a {
+  margin: 0 6px;
+}
+
+.sidebar-footer .svg-icon {
+  width: 22px;
+  filter: invert(80%) !important;
+}
+
+.sidebar-footer .figure-header {
+  color: var(--sidebar-muted);
+  margin-top: 0.8em;
+}
+
+.sidebar-footer .figure-header .twemoji {
+  vertical-align: middle;
+}
+
+.sidebar-footer .figure-header a {
+  color: var(--sidebar-text);
+  text-decoration: underline;
+}
+
+.site-copyright {
+  position: fixed;
+  right: 2em;
+  bottom: 1.2em;
+  font-size: 14px;
+  color: var(--text-muted);
+  z-index: 2;
 }
 
 .sidebar-info {
@@ -40,14 +77,14 @@
 }
 
 .brand-title a {
-  color: rgb(234, 234, 234);
+  color: var(--sidebar-text);
   text-decoration: none;
   vertical-align: middle;
 }
 
 .brand-tagline {
   font-weight: 300;
-  color: #ddd;
+  color: var(--sidebar-muted);
   font-size: 17px;
   line-height: 1.5;
 }
@@ -81,9 +118,9 @@
 
 .post,
 .post-entry {
-  border: var(--light-grey) solid 1px;
+  border: var(--border) solid 1px;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: var(--surface);
 }
 
 .post,
@@ -242,6 +279,6 @@
   margin-top: 0.5em;
   margin-bottom: 0;
   line-height: 1.5;
-  color: #4e4d4d !important;
+  color: var(--text-muted) !important;
   font-size: 14px;
 }

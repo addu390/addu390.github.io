@@ -3,7 +3,7 @@ layout: default
 ---
 {{ content }}
 
-{% assign posts = site.journals | reverse %}
+{% assign posts = site.journals | where_exp: "item", "item.hide != true" | reverse %}
 {% assign disable-meta-click = true %}
 
 <div class="pure-g" style="width: 100%; justify-content: center">

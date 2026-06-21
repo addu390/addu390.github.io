@@ -3,13 +3,13 @@ layout: post
 title: "Graph Theory: Search and Traversal"
 date: 2024-07-17
 tags:
-- Graph Theory
-- Data Structures
+  - Graph Theory
+  - Data Structures
+  - Algorithms
 author: Adesh Nalpet Adimurthy
 premium: true
 image: assets/img/featured/webp/graph-theory-search.webp
 feature: assets/img/featured/webp/graph-theory-search.webp
-category: Code on the Road
 ---
 
 <h3>0. Graph Traversal</h3>

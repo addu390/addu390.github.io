@@ -3,12 +3,10 @@ layout: post
 title: "Anatomy of a System Design Interview"
 date: 2022-05-25
 tags:
-  - Project
-  - Database
   - System Design
+  - Databases
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/iphone-100x.png
-category: System Wisdom
 ---
 
 What's better than going over a real system design interview question (Interviewed in June 2022). 

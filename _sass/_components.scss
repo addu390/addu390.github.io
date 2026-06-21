@@ -1,13 +1,13 @@
 .black-button {
-  background-color: #fff;
+  background-color: var(--surface);
   display: inline-block;
   padding: 0.35em 0.8em !important;
-  border: 0.1em solid var(--black);
+  border: 0.1em solid var(--text);
   margin: 1em 0.3em 0em 0.3em !important;
   border-radius: 5px;
   box-sizing: border-box;
   text-decoration: none;
-  color: var(--black);
+  color: var(--text);
   text-align: center;
   transition: all 0.2s;
   cursor: pointer;
@@ -15,19 +15,19 @@
 
 .black-button:disabled {
   cursor: not-allowed;
-  color: #a2a2a2;
-  border: 0.1em solid #a2a2a2;
+  color: var(--text-muted);
+  border: 0.1em solid var(--border-strong);
 }
 
 .black-button:hover:enabled {
   color: var(--white);
-  background-color: var(--black);
+  background-color: var(--py-black);
 }
 
 .highlighter-rouge,
 pre,
 code {
-  background-color: #f2f2f2;
+  background-color: var(--code-bg);
   border-radius: 5px;
   padding: 3px;
 }
@@ -78,15 +78,23 @@ code {
   padding-top: 1em;
   padding-bottom: 1em;
   padding-left: 3em;
-  color: var(--white);
+  color: var(--sidebar-text);
+}
+
+.sidebar-list li:nth-child(odd) {
+  background-color: var(--sidebar-bg-odd);
+}
+
+.sidebar-list li:nth-child(even) {
+  background-color: var(--sidebar-bg-even);
 }
 
 .sidebar-list li:hover {
-  background: #404040;
+  background: var(--sidebar-hover);
 }
 
 .sidebar-list li a {
-  color: var(--white);
+  color: var(--sidebar-text);
   text-decoration: none;
   display: block;
 }
@@ -116,7 +124,7 @@ code {
 }
 
 .hr {
-  background-color: #dcdcdc;
+  background-color: var(--border);
   width: 80%;
   height: 1px;
   border: 0;
@@ -193,6 +201,7 @@ code {
   border: 1px solid rgb(225, 225, 186);
   padding: 10px 15px 10px 15px;
   border-radius: 5px;
+  color: #222;
 }
 
 .code-container .p {
@@ -262,7 +271,7 @@ code {
   padding-left: 6px;
   padding-right: 6px;
   margin-right: 8px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid var(--border);
   border-radius: 5px;
   font-size: 15px;
 }
@@ -309,12 +318,12 @@ table {
   padding-left: 6px;
   padding-right: 6px;
   margin-left: 6px;
-  border: 1px solid #a2a2a2;
+  border: 1px solid var(--border-strong);
   border-radius: 5px;
   font-size: 14px;
   font-weight: 400;
   vertical-align: middle;
-  color: #8b8b8b;
+  color: var(--text-muted);
 }
 
 #search .icon {
@@ -333,7 +342,7 @@ table {
   right: 3em;
   top: 50%;
   transform: translateY(-50%);
-  color: #999;
+  color: var(--text-muted);
   font-size: 12px;
 }
 
@@ -399,12 +408,86 @@ table {
 
 .theme-icon {
   width: 24px;
-  position: absolute;
   cursor: pointer;
-  z-index: 999;
+  vertical-align: middle;
+}
+
+.theme-grade {
+  display: inline-block;
+}
+
+.menu .theme-grade {
+  position: absolute;
+  left: 68%;
   top: 1.7em;
   transform: translateY(-50%);
-  left: 68%;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.theme-trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme-grade-menu {
+  position: absolute;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  min-width: 150px;
+}
+
+.menu .theme-grade-menu {
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1002;
+}
+
+.theme-grade-menu[hidden] {
+  display: none;
+}
+
+.theme-grade-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.theme-grade-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 8px 16px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.theme-grade-menu button .twemoji {
+  width: 18px;
+  vertical-align: middle;
+}
+
+.theme-grade-menu button:hover {
+  background-color: var(--surface-alt);
+}
+
+.theme-grade-menu button.active {
+  font-weight: 600;
+  background-color: var(--surface-alt);
 }
 
 .underline {
@@ -453,8 +536,14 @@ summary {
   font-size: 16px;
 }
 
-.green-disclaimer a {
-  color: var(--black);
+.green-disclaimer,
+.blog-reference {
+  color: #222;
+}
+
+.green-disclaimer a,
+.blog-reference a {
+  color: #222;
   text-decoration: underline;
 }
 

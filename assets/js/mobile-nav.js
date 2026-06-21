@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var overlay = document.querySelector('.mobile-nav-overlay');
   var searchToggle = document.querySelector('.mobile-search-toggle');
   var searchPanel = document.getElementById('mobileSearchPanel');
-  var themeToggle = document.querySelector('.mobile-theme-toggle');
 
   function openDrawer() {
     if (!drawer) return;
@@ -60,25 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-
-  function syncThemeIcon() {
-    var dark = localStorage.getItem('dark-mode') === 'true';
-    var light = document.getElementById('m-icon-light');
-    var darkIcon = document.getElementById('m-icon-dark');
-    if (light && darkIcon) {
-      light.style.display = dark ? 'none' : 'inline';
-      darkIcon.style.display = dark ? 'inline' : 'none';
-    }
-  }
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      var dark = localStorage.getItem('dark-mode') === 'true';
-      var target = document.getElementById(dark ? 'icon-dark' : 'icon-light');
-      if (target) target.click();
-      setTimeout(syncThemeIcon, 50);
-    });
-  }
-  syncThemeIcon();
 
   var mInput = document.getElementById('search-input-mobile');
   var mResults = document.getElementById('results-container-mobile');

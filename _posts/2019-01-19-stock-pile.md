@@ -3,11 +3,10 @@ layout: post
 title: "Stockpile — Store Request and Response"
 date: 2019-01-19
 tags:
-  - Dropwizard
   - Java
+  - Design Patterns
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/stock-pile.png
-category: Java Lava
 ---
 
 For most applications, it is quite crucial to store the request and response of APIs, especially while integrating with external service providers.

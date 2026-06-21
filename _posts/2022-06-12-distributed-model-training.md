@@ -3,11 +3,11 @@ layout: post
 title: "Distributed Model Training"
 date: 2022-06-26
 tags:
-  - System Design
+  - Distributed Systems
   - Machine Learning
+  - System Design
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/porco-rosso.png
-category: System Wisdom
 ---
 
 ## Distributed Training

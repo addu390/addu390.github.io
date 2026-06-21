@@ -4,15 +4,15 @@ title: "Spatial Index: R Trees"
 date: 2024-06-26
 highlight: true
 tags:
-- Database
-- Spatial Index
+  - Spatial Index
+  - Databases
+  - Data Structures
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/rtree-spatial-index.webp
 feature: assets/img/featured/webp/rtree-spatial-index.webp
-category: System Wisdom
 ---
 
-<p>If you have been following the <a href="{{site.url}}/tags/spatial-index">Spatial Index Series</a>, it started with the need for multi-dimensional indexes and an introduction to <a href="{{site.url}}/spatial-index-space-filling-curve">space-filling curves</a>, followed by a deep dive into <a href="{{site.url}}/spatial-index-grid-system">grid systems</a> (GeoHash and Google S2) and <a href="{{site.url}}/spatial-index-tessellation">tessellation</a> (Uber H3).</p>
+<p>If you have been following the <a href="/tags/spatial-index">Spatial Index Series</a>, it started with the need for multi-dimensional indexes and an introduction to <a href="/spatial-index-space-filling-curve">space-filling curves</a>, followed by a deep dive into <a href="/spatial-index-grid-system">grid systems</a> (GeoHash and Google S2) and <a href="/spatial-index-tessellation">tessellation</a> (Uber H3).</p>
 
 <p>In this post, let's explore the <a href="https://en.wikipedia.org/wiki/R-tree" target="_blank">R-Tree</a> data structure (data-driven structure), which is popularly used to store multi-dimensional data, such as data points, segments, and rectangles.</p>
 

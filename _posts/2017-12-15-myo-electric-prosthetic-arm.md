@@ -3,12 +3,11 @@ layout: post
 title: "Myoelectric Prosthetic Arm — MYRO 2.0"
 date: 2017-12-15
 tags:
-  - Project
-  - Python
+  - Projects
   - 3D Printing
+  - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/ironman-myro.png
-category: Leisure Seizure
 ---
 
 ## Deprecated ⛔️

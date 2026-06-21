@@ -4,12 +4,12 @@ title: "Hybrid Spatial Index: Quad-KD and R-KD trees"
 date: 2022-04-10
 highlight: true
 tags:
+  - Spatial Index
   - Algorithms
-  - Java
   - Data Structures
+  - Java
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/popeye/wb/ben-grimm-popeye.png
-category: Code on the Road
 ---
 
 ## 1. Abstract

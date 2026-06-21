@@ -3,11 +3,9 @@ layout: post
 title: "MDC : Improving debugging/logging"
 date: 2019-12-27
 tags:
-  - Dropwizard
   - Java
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/bob-mdc.png
-category: Java Lava
 ---
 
 Construct your logs as good as Bob the Builder!

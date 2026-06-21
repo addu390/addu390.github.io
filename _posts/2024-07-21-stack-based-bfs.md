@@ -3,16 +3,16 @@ layout: post
 title: "Breath-First Search using Stack"
 date: 2024-07-21
 tags:
-- Graph Theory
-- Data Structures
+  - Graph Theory
+  - Data Structures
+  - Algorithms
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/stack-bfs.webp
 feature: assets/img/featured/webp/stack-bfs.webp
-category: Code on the Road
 ---
 
 <h3>1. BFS using Queue</h3>
-<p>Just in the prior post on <a href="{{ site.url }}/stack-based-bfs">graph traversal</a>, we went into details of Depth-First Search (DFS) and Breadth-First Search (BFS). BFS is a way of traversing down the graph, level-by-level. Specifically for a balanced-tree, the first/root node is visited first, followed by its immediate children, then followed by the next level children, and so on. Here's the same example of BFS using a queue:</p>
+<p>Just in the prior post on <a href="/stack-based-bfs">graph traversal</a>, we went into details of Depth-First Search (DFS) and Breadth-First Search (BFS). BFS is a way of traversing down the graph, level-by-level. Specifically for a balanced-tree, the first/root node is visited first, followed by its immediate children, then followed by the next level children, and so on. Here's the same example of BFS using a queue:</p>
 
 <div class="slider" id="slider8">
   <div class="slides center-image-0 center-image-80">

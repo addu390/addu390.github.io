@@ -3,12 +3,11 @@ layout: post
 title: "Anomaly Detection and Remediation"
 date: 2022-04-17
 tags:
-  - Python
-  - Django
   - Security
+  - Django
+  - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/popeye-killswitch.png
-category: Code on the Road
 ---
 
 ## 1. Introduction

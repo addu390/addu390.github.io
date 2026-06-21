@@ -3,11 +3,11 @@ layout: post
 title: "Postgres as a Graph Database"
 date: 2023-09-27
 tags:
+  - Databases
   - System Design
-  - Database
+  - Graph Theory
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/neo4j-vs-pgsql.png
-category: System Wisdom
 ---
 
 Have you ever come across the need to store a graph in a relational database because using/onboarding a graph database for a small use-case is overkill? 

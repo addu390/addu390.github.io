@@ -4,11 +4,10 @@ title: "Floating Point Round Off Errors in Geometric Algorithms"
 date: 2022-03-14
 tags:
   - Algorithms
-  - C++
   - Data Structures
+  - C++
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/popeye-convex-hull.png
-category: Code on the Road
 ---
 
 ## Floating Point Precision in Geometric Algorithms

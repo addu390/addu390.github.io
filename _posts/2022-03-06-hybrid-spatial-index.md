@@ -3,12 +3,12 @@ layout: post
 title: "Hybrid Spatial Data Structures: Introduction"
 date: 2022-03-06
 tags:
+  - Spatial Index
   - Algorithms
-  - Java
   - Data Structures
+  - Java
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/hybrid-spatial-index-totoro.png
-category: Code on the Road
 ---
 
 ## What’s a Spatial Index?

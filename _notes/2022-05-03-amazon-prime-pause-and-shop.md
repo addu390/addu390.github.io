@@ -3,9 +3,9 @@ layout: post
 title: "Prime Video: Pause & Shop"
 date: 2022-05-03
 tags:
-  - Project
+  - System Design
+  - Projects
 author: Adesh Nalpet Adimurthy
-category: Notes
 ---
 
 <p>"Pause and Shop" (Interactive Shopping Experience) on Prime Video combines the thrill of shopping with the joy of entertainment, redefining the boundaries of engagement.</p>

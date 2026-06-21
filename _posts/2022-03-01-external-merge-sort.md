@@ -4,11 +4,10 @@ title: "External Merge Sort using Priority Queue"
 date: 2022-03-01
 tags:
   - Algorithms
-  - Python
   - Data Structures
+  - Python
 author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/external-sorting-totoro.png
-category: Code on the Road
 ---
 
 External sorting is a class of sorting algorithms that can handle massive amounts of data. External sorting is required when the data being sorted does not fit into the main memory of a computing device (RAM). Instead, they must reside in the slower external memory (Disk).

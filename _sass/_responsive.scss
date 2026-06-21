@@ -30,6 +30,15 @@
     z-index: 2;
   }
 
+  .sidebar-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 20%;
+    background: var(--sidebar-bg);
+    z-index: 3;
+  }
+
   .post-entry-toc .posts,
   .post-entry {
     width: 100%;
@@ -56,6 +65,10 @@
   .sidebar-list,
   .md-display {
     display: none !important;
+  }
+
+  .site-copyright {
+    display: none;
   }
 
   .pure-g {

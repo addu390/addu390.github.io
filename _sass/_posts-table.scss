@@ -9,16 +9,16 @@
 .posts-table {
   margin-top: 1em;
   border-collapse: collapse;
-  background-color: #fff;
+  background-color: var(--surface);
   overflow: hidden;
   width: 100%;
   table-layout: fixed;
-  border: 1px solid var(--py-black);
+  border: 1px solid var(--border);
 }
 
 .posts-table th {
-  background-color: var(--py-black);
-  color: var(--white);
+  background-color: var(--th-bg);
+  color: var(--th-text);
   font-weight: 600;
   text-align: left;
   padding: 16px 12px;
@@ -42,7 +42,7 @@
 }
 
 .posts-table tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--table-hover);
 }
 
 .posts-table-title-cell {
@@ -62,7 +62,7 @@
 }
 
 .posts-table-title-link:hover {
-  color: #222 !important;
+  color: var(--text) !important;
   text-decoration: underline !important;
   font-weight: 500;
 }
@@ -73,12 +73,12 @@
   object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
 }
 
 /* Simple text styling for comma-separated tags */
 .posts-table-tags-text {
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.9em;
   line-height: 1.4;
 }
@@ -91,20 +91,20 @@
 }
 
 .posts-table a.posts-table-tag-link:hover {
-  color: #222 !important;
+  color: var(--text) !important;
   text-decoration: underline !important;
   font-weight: 500 !important;
 }
 
 .posts-table-date {
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.9em;
   white-space: nowrap;
   line-height: 1.4;
 }
 
 .posts-table-read-time {
-  color: #888;
+  color: var(--text-muted);
   font-size: 0.85em;
   white-space: nowrap;
   line-height: 1.4;
@@ -153,6 +153,19 @@
 
 .posts-table tr.highlighted-post-green:nth-child(even):hover {
   background-color: #e5f0ea;
+}
+
+/* On dark themes, keep highlighted rows readable (accent border only) */
+html[data-theme="dim"] .posts-table tr[class*="highlighted-post"],
+html[data-theme="dark"] .posts-table tr[class*="highlighted-post"],
+html[data-theme="darker"] .posts-table tr[class*="highlighted-post"] {
+  background-color: var(--table-stripe);
+}
+
+html[data-theme="dim"] .posts-table tr[class*="highlighted-post"]:hover,
+html[data-theme="dark"] .posts-table tr[class*="highlighted-post"]:hover,
+html[data-theme="darker"] .posts-table tr[class*="highlighted-post"]:hover {
+  background-color: var(--table-hover);
 }
 
 /* Responsive adjustments for posts table */

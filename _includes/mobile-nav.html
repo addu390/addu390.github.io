@@ -3,16 +3,23 @@
         <span class="mobile-nav-bars" aria-hidden="true"></span>
     </button>
 
-    <a class="mobile-brand" href="{{ site.url }}">{{ site.title }}</a>
+    <a class="mobile-brand" href="/">{{ site.title }}</a>
 
     <div class="mobile-actions">
         <button class="mobile-search-toggle" type="button" aria-label="Toggle search" aria-controls="mobileSearchPanel" aria-expanded="false">
             <svg class="mobile-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
         </button>
-        <button class="mobile-theme-toggle" type="button" aria-label="Toggle dark mode">
-            <img id="m-icon-light" class="twemoji" src="{{ site.url }}/assets/img/emoji/light.svg" alt="Enable dark mode">
-            <img id="m-icon-dark" class="twemoji" src="{{ site.url }}/assets/img/emoji/dark.svg" style="display: none;" alt="Disable dark mode">
-        </button>
+        <span class="theme-grade mobile-theme-grade">
+            <button class="mobile-theme-toggle theme-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Theme">
+                <img id="m-theme-smiley" class="twemoji" src="/assets/img/emoji/smiley-light.svg" alt="Theme">
+            </button>
+            <ul class="theme-grade-menu" hidden>
+                <li><button type="button" data-grade="light"><img class="twemoji" src="/assets/img/emoji/smiley-light.svg" alt="">Light</button></li>
+                <li><button type="button" data-grade="dim"><img class="twemoji" src="/assets/img/emoji/smiley-dim.svg" alt="">Dim</button></li>
+                <li><button type="button" data-grade="dark"><img class="twemoji" src="/assets/img/emoji/smiley-dark.svg" alt="">Dark</button></li>
+                <li><button type="button" data-grade="darker"><img class="twemoji" src="/assets/img/emoji/smiley-darker.svg" alt="">Darker</button></li>
+            </ul>
+        </span>
     </div>
 </header>
 
@@ -24,21 +31,19 @@
 <div class="mobile-nav-overlay" hidden></div>
 
 <nav id="mobileNav" class="mobile-nav" aria-label="Primary navigation" aria-hidden="true">
-    <a class="mobile-nav-brand" href="{{ site.url }}">
-        <img class="mobile-nav-photo" src="{{ site.url }}/{{ site.header_image }}" alt="Photo of {{ site.author }}">
+    <a class="mobile-nav-brand" href="/">
+        <img class="mobile-nav-photo" src="/{{ site.header_image }}" alt="Photo of {{ site.author }}">
     </a>
     <p class="mobile-nav-tagline">{{ site.description | replace: 'id="showerButton"', '' }}</p>
 
     <ul class="mobile-nav-list">
-        <li><a href="{{ site.url }}"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/home.svg" alt="">Home</a></li>
-        <li><a href="{{ site.url }}/journals"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/book.svg" alt="">Journal</a></li>
-        <li><a href="{{ site.url }}/contact"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/horn.svg" alt="">Contact</a></li>
-        <li><a href="{{ site.url }}/about"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/face.svg" alt="">About</a></li>
-        <li><a href="{{ site.url }}/sponsor"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/luck.svg" alt="">Sponsor</a></li>
-        <li><a href="{{ site.url }}/privacy"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/cookie.svg" alt="">Privacy Policy</a></li>
-        <li><a href="{{ site.url }}/tags"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/tag.svg" alt="">Tags</a></li>
-        <li><a href="{{ site.url }}/categories"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/folder.svg" alt="">Categories</a></li>
-        <li><a href="{{ site.url }}/archive"><img class="twemoji" src="{{ site.url }}/assets/img/emoji/archive.svg" alt="">Archive</a></li>
+        <li><a href="/"><img class="twemoji" src="/assets/img/emoji/home.svg" alt="">Home</a></li>
+        <li><a href="/journals"><img class="twemoji" src="/assets/img/emoji/book.svg" alt="">Journal</a></li>
+        <li><a href="/contact"><img class="twemoji" src="/assets/img/emoji/horn.svg" alt="">Contact</a></li>
+        <li><a href="/about"><img class="twemoji" src="/assets/img/emoji/face.svg" alt="">About</a></li>
+        <li><a href="/privacy"><img class="twemoji" src="/assets/img/emoji/cookie.svg" alt="">Privacy Policy</a></li>
+        <li><a href="/tags"><img class="twemoji" src="/assets/img/emoji/tag.svg" alt="">Tags</a></li>
+        <li><a href="/archive"><img class="twemoji" src="/assets/img/emoji/archive.svg" alt="">Archive</a></li>
     </ul>
 
     <div class="mobile-nav-footer">
