@@ -1,0 +1,31 @@
+/* SLIDER CSS */
+.slider {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  min-width: 100%;
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.controls {
+  width: 100%;
+  text-align: center;
+}
+
+.verified-tag {
+  width: 22px;
+  vertical-align: baseline;
+  margin-left: 3px;
+}

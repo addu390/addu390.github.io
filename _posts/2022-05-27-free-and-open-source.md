@@ -5,7 +5,7 @@ date: 2022-05-27
 tags:
   - Open Source
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/foss-thankyou.png
+feature: assets/img/featured/foss-thankyou.png
 category: Leisure Seizure
 ---
 

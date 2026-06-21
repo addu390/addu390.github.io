@@ -7,7 +7,7 @@ tags:
   - Database
   - Python
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/geo-django-popeye.png
+feature: assets/img/featured/geo-django-popeye.png
 category: Django Rango
 ---
 

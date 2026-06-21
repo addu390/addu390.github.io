@@ -9,7 +9,7 @@ tags:
   - Docker
   - Python
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/aws-fargate-django.png
+feature: assets/img/featured/aws-fargate-django.png
 category: Django Rango
 ---
 

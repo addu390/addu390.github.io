@@ -5,35 +5,35 @@ date: 2022-03-20
 tags:
   - Gallery
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/popeye/luffy-popeye.png
+feature: assets/img/featured/popeye/luffy-popeye.png
 category: Comics
 ---
 
-<img src="./assets/featured/popeye/wb/luffy-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/luffy-popeye.png" /> 
 <p style="text-align: center;">Luffy vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/ralph-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/ralph-popeye.png" /> 
 <p style="text-align: center;">Wreck it Ralph vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/ben-grimm-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/ben-grimm-popeye.png" /> 
 <p style="text-align: center;">Ben Grimm vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/saitama-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/saitama-popeye.png" /> 
 <p style="text-align: center;">Saitama vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/goku-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/goku-popeye.png" /> 
 <p style="text-align: center;">Goku vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/hulk-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/hulk-popeye.png" /> 
 <p style="text-align: center;">Hulk vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/superman-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/superman-popeye.png" /> 
 <p style="text-align: center;">Superman vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/asterix-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/asterix-popeye.png" /> 
 <p style="text-align: center;">Asterix vs Popeye.</p>
 
-<img src="./assets/featured/popeye/wb/bluto-popeye.png" /> 
+<img src="./assets/img/featured/popeye/wb/bluto-popeye.png" /> 
 <p style="text-align: center;">Bluto vs Popeye.</p>
 
 

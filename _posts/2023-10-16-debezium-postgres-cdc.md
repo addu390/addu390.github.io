@@ -6,8 +6,8 @@ tags:
   - System Design
   - Database
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/webp/debezium-postgres-cdc.webp
-image: assets/featured/webp/debezium-postgres-cdc.webp
+feature: assets/img/featured/webp/debezium-postgres-cdc.webp
+image: assets/img/featured/webp/debezium-postgres-cdc.webp
 category: System Wisdom
 description: Using Debezium for PostgreSQL Change Data Capture (CDC) involves setting up a pipeline to capture and stream row-level changes from PostgreSQL to Kafka. The process includes configuring PostgreSQL, Kafka, Zookeeper, and Debezium using Docker. The article provides detailed steps for setting up each component, creating PostgreSQL tables, configuring Debezium connectors, and validating the pipeline by consuming Kafka messages. This setup enables real-time data synchronization and processing.
 ---
@@ -56,7 +56,7 @@ description: Using Debezium for PostgreSQL Change Data Capture (CDC) involves se
 
 <details><summary class="h3">3. Define Services (Docker-Compose)</summary>
 <p>As a generate note, If you use Mac M1/M2, ensure the docker image has <code>linux/arm64</code> OS/ARCH.</p>
-<p><img class="center-image" src="./assets/posts/docker-debezium-arch.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/docker-debezium-arch.png" /> </p>
 
 <p>Section 3.x covers the breakdown of each service/docker image used in <code>docker-compose.yaml</code> file, if you have worked with docker before, skip the section and pick up the entire file from section 4 instead.</p>
 
@@ -248,7 +248,7 @@ services:
 docker-compose up -d
 </code></pre>
 
-<p><img class="center-image" src="./assets/posts/debezium-docker-compose-up.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/debezium-docker-compose-up.png" /> </p>
 <p>Make a note of the assigned network name; from the above output, the network name is: <code>enricher_default</code>. To create a custom network, refer <a href="https://docs.docker.com/compose/networking/">Networking in Compose</a></p>
 
 </details>
@@ -262,18 +262,18 @@ docker-compose up -d
 <details open><summary class="h3">5.1. Create Postgres Tables</summary>
 
 <p>a. Login to pgAdmin <a href="http://localhost:5050">localhost:5050</a> with email/password (admin@admin.com/root) configured in <code>pgadmin</code> container (refer: <code>docker-compose.yaml</code>)</p>
-<p><img class="center-image" src="./assets/posts/debezium-pg-login.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/debezium-pg-login.png" /> </p>
 
 <hr class="hr">
 
 <p>b. Register database server with username/password (admin/root) and hostname (postgres) configured in <code>postgres</code> container (refer: <code>docker-compose.yaml</code>)</p>
-<p><img class="center-image" src="./assets/posts/debezium-pg-register.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/debezium-pg-register.png" /> </p>
 
 <hr class="hr">
 
 <p>c. Create and Alter table queries:</p>
 <p>Example: Create a table <code>user-profile</code> from the query tool to track data change events in this table. <b>Skip this</b>; if you already have your own schema for Postgres database tables for which CDC has to be configured.</p>
-<p><img class="center-image" style="width: 55%;" src="./assets/posts/debezium-pg-query-tool.png" /> </p>
+<p><img class="center-image" style="width: 55%;" src="./assets/img/posts/debezium-pg-query-tool.png" /> </p>
 
 <pre><code>CREATE TABLE user_profile (
   user_id INT NOT NULL,
@@ -297,7 +297,7 @@ ALTER TABLE user_profile REPLICA IDENTITY FULL;
 <p>a. Check the status of the Kafka Connect service:</p>
 <pre><code>curl -H "Accept:application/json" localhost:8083/</code></pre>
 
-<p><img src="./assets/posts/debezium-connector-status.png" /> </p>
+<p><img src="./assets/img/posts/debezium-connector-status.png" /> </p>
 
 <hr class="hr">
 
@@ -327,7 +327,7 @@ ALTER TABLE user_profile REPLICA IDENTITY FULL;
 
 <pre><code>curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" localhost:8083/connectors/ --data "@debezium.json"</code></pre>
 
-<p><img src="./assets/posts/debezium-connector-register.png" /> </p>
+<p><img src="./assets/img/posts/debezium-connector-register.png" /> </p>
 
 <hr class="hr">
 
@@ -335,7 +335,7 @@ ALTER TABLE user_profile REPLICA IDENTITY FULL;
 
 <pre><code>curl -H "Accept:application/json" localhost:8083/connectors/</code></pre>
 
-<p><img src="./assets/posts/debezium-connector-list.png" /> </p>
+<p><img src="./assets/img/posts/debezium-connector-list.png" /> </p>
 
 </details>
 
@@ -374,7 +374,7 @@ kafkacat -b kafka:9092 -C \
 -t topic_user_profile.public.user_profile
 </code></pre>
 
-<p><img src="./assets/posts/debezium-connector-error.png" /> </p>
+<p><img src="./assets/img/posts/debezium-connector-error.png" /> </p>
 
 <p>If you get the error <code>% ERROR: Topic topic_user_profile.public.user_profile error: Broker: Leader not available</code>, run the same command again!</p>
 
@@ -398,7 +398,7 @@ VALUES
 <p>b. Validate messages in Kafka topic:</p>
 <p>Consuming the Kafka messages, as mentioned in 3.2.4, section c, the output for inserting a new row:</p>
 
-<p><img src="./assets/posts/debezium-connector-cdc.png" /> </p>
+<p><img src="./assets/img/posts/debezium-connector-cdc.png" /> </p>
 
 <hr class="hr">
 
@@ -409,7 +409,7 @@ VALUES
 <pre><code>docker-compose down
 docker rm -f $(docker ps -a -q)</code></pre>
 
-<p><img class="center-image" src="./assets/posts/debezium-connector-kill.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/debezium-connector-kill.png" /> </p>
 
 </details>
 

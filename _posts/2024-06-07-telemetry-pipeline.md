@@ -11,8 +11,8 @@ tips:
   - <img class="twemoji" src="../assets/img/emoji/radio.svg" alt=""> Ponder on
   - <img class="twemoji" src="../assets/img/emoji/stoptrack.svg" alt=""> Alternatives
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/webp/telemetry-pipeline.webp
-image: assets/featured/webp/telemetry-pipeline.webp
+feature: assets/img/featured/webp/telemetry-pipeline.webp
+image: assets/img/featured/webp/telemetry-pipeline.webp
 category: System Wisdom
 description: A telemetry pipeline for real-time data processing involves data collection using Telegraf, ingestion via Kafka, processing with Apache Flink, and storage in databases like Cassandra and VictoriaMetrics. The article details implementation steps, emphasizing scalability, fault tolerance, and efficient data handling.
 ---
@@ -22,12 +22,12 @@ description: A telemetry pipeline for real-time data processing involves data co
 <details open class="text-container"><summary class="h4">0.1. Architecture</summary>
 <p>A <a href="https://en.wikipedia.org/wiki/Telemetry" target="_blank" rel="noopener noreferrer">telemetry</a> pipeline is a system that collects, ingests, processes, stores, and analyzes telemetry data (metrics, logs, traces) from various sources in real-time or near real-time to provide insights into the performance and health of applications and infrastructure.</p>
 
-<img class="telemetry-barebone center-image-90" src="./assets/posts/telemetry/telemetry-barebone.svg" /> 
+<img class="telemetry-barebone center-image-90" src="./assets/img/posts/telemetry/telemetry-barebone.svg" /> 
 <p class="figure-header">Figure 0: Barebone Telemetry Pipeline Architecture</p>
 
 <p>It typically involves tools like Telegraf for data collection, Kafka for ingestion, Flink for processing, and <a href="https://cassandra.apache.org/" target="_blank" rel="noopener noreferrer">Cassandra</a> and <a href="https://victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics</a> for storage and analysis.</p>
 
-<img class="telemetry-architecture" src="./assets/posts/telemetry/telemetry-architecture.svg" /> 
+<img class="telemetry-architecture" src="./assets/img/posts/telemetry/telemetry-architecture.svg" /> 
 <p class="figure-header">Figure 1: Detailed Telemetry Pipeline Architecture</p>
 </details>
 
@@ -52,7 +52,7 @@ description: A telemetry pipeline for real-time data processing involves data co
 
 <p>To start, we'll use <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener noreferrer">Telegraf</a>, a versatile open-source agent that collects metrics from various sources and writes them to different outputs. Telegraf supports a wide range of <a href="https://docs.influxdata.com/telegraf/v1/plugins/#input-plugins" target="_blank" rel="noopener noreferrer">input</a> and <a href="https://docs.influxdata.com/telegraf/v1/plugins/#output-plugins" target="_blank" rel="noopener noreferrer">output plugins</a>, making it easy to gather data from sensors, servers, GPS systems, and more.</p>
 
-<p><img class="center-image-0 center-image-80 telegraf-overview" src="./assets/posts/telemetry/telegraf-overview.svg" /> </p>
+<p><img class="center-image-0 center-image-80 telegraf-overview" src="./assets/img/posts/telemetry/telegraf-overview.svg" /> </p>
 <p class="figure-header">Figure 2: Telegraf for collecting metrics & data</p>
 
 <p>For this example, we'll focus on collecting the CPU temperature and Fan speed from a macOS system using the <a href="https://github.com/influxdata/telegraf/blob/release-1.30/plugins/inputs/exec/README.md" target="_blank" rel="noopener noreferrer">exec plugin</a> in Telegraf. And leverage the <a href="https://github.com/lavoiesl/osx-cpu-temp" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer">osx-cpu-temp</a> command line tool to fetch the CPU temperature.</p>
@@ -308,7 +308,7 @@ if __name__ == "__main__":
 <li><p><b>Fault Tolerance and Data Consistency</b>: Ensure fault tolerance with state saving for failure recovery and exactly-once processing.</p></li>
 <li><p><b>Ease of Use and Community Support</b>: Provide user-friendly APIs in multiple languages, comprehensive documentation, and active community support.</p></li>
 </ul>
-<img src="./assets/posts/telemetry/stateful-stream-processing.svg" />
+<img src="./assets/img/posts/telemetry/stateful-stream-processing.svg" />
 <p class="figure-header">Figure 3: Stateful Stream Processing</p>
 <ul>
 <li><p><b>Integration and Compatibility</b>: Seamlessly integrate with various data sources and sinks, and be compatible with other tools in your tech stack.</p></li>
@@ -413,7 +413,7 @@ services:
 
 <p>For example, to decide between Row-based vs Columar Storage. Or OLTP (Online Transaction Processing), OLAP (Online Analytical Processing), or a Hybrid approach:</p>
 
-<img class="center-image-90" src="./assets/posts/telemetry/storage-scan-direction.png" />
+<img class="center-image-90" src="./assets/img/posts/telemetry/storage-scan-direction.png" />
 <p class="figure-header">Figure 4: Row vs Columnnar Storage</p>
 
 <ul>
@@ -431,7 +431,7 @@ services:
 <p>Using a HTAP (Hybrid Transactional/Analytical Processing) database that's suitable for both transactional and analytical workloads is worth considering. Example: <a href="https://github.com/pingcap/tidb" target="_blank" rel="noopener noreferrer">TiDB</a>, <a href="https://www.timescale.com/" target="_blank" rel="noopener noreferrer">TimescaleDB</a> (Kind of).</p>
 
 <p>While you get some of the best from both worlds 🌎, you also inherit a few of the worst from each! <br/>Lucky for you, I have first hand experience with it 🤭:</p>
-<img src="./assets/posts/telemetry/of-both-worlds-h.png" />
+<img src="./assets/img/posts/telemetry/of-both-worlds-h.png" />
 <p class="figure-header">Figure 5: Detailed comparison of OLTP, OLAP and HTAP</p>
 
 <p><b>Analogy</b>: Choosing the right database is like picking the perfect ride. Need pay-as-you-go flexibility? Grab a taxi. Tackling heavy-duty tasks? 🚜 Bring in the bulldozer. For everyday use, 🚗 a Toyota fits. Bringing a war tank to a community center is overkill. Sometimes, you need a fleet—a car for daily use, and a truck for heavy loads.</p>
@@ -445,17 +445,17 @@ services:
 
 <p>Without getting into too much detail, it's crucial to choose the right partitioning strategy (Ex: Range, List, Hash) to ensure partitions don't bloat and effectively support primary read patterns (in this context, example: client_id + region + 1st Day of Month).</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/telemetry/index-types.svg" />
+<img class="center-image-0 center-image-70" src="./assets/img/posts/telemetry/index-types.svg" />
 <p class="figure-header">Figure 6: Types of Indexes and Materialized view</p>
 
 <p>Following this, clustering columns and indexes help organize data within partitions to optimize range queries and sorting. Secondary indexes (within the partition/local or across partitions/global) are valuable for query patterns where partition or primary keys don't apply. Materialized views for precomputing and storing complex query results, speeding up read operations for frequently accessed data.</p>
 
-<img src="./assets/posts/telemetry/partition-view.svg" />
+<img src="./assets/img/posts/telemetry/partition-view.svg" />
 <p class="figure-header">Figure 7: Partition Key, Clustering Keys, Local/Global Secondary Indexes and Materialized views</p>
 
 <p><b>Multi-dimensional Index (Spatial/Spatio-temporal)</b>: Indexes such as B+ trees and LSM trees are not designed to directly store higher-dimensional data. Spatial indexing uses structures like R-trees and <a href="/hybrid-spatial-index-conclusion" target="_blank">Quad-trees</a> and techniques like <a href="/geohash" target="_blank">geohash</a>. Space-filling curves like Z-order (Morton) and Hilbert curves interleave spatial and temporal dimensions, preserving locality and enabling efficient queries.</p>
 
-<img class="center-image-0" src="./assets/posts/spatial-index/spatial-index-types.svg" /> 
+<img class="center-image-0" src="./assets/img/posts/spatial-index/spatial-index-types.svg" /> 
 <p class="figure-header">Figure 8: Commonly Used: Types of Spatial Indexes</p>
 
 <p>🌵 <a href="https://www.geomesa.org/documentation/stable/index.html" target="_blank">GeoMesa</a>: spatio-temporal indexing on top of the Accumulo, HBase, Redis, Kafka, PostGIS and Cassandra. <a href="https://www.geomesa.org/documentation/stable/user/datastores/index_overview.html" target="_blank">XZ-Ordering</a>: Customizing Index Creation.</p>
@@ -470,12 +470,12 @@ services:
 
 <p>Typically, analytics are performed as batch queries on bounded datasets of recorded events, requiring reruns to incorporate new data.</p>
 
-<img class="center-image-65" src="./assets/posts/telemetry/telemetry-analytics.svg" />
+<img class="center-image-65" src="./assets/img/posts/telemetry/telemetry-analytics.svg" />
 <p class="figure-header">Figure 9: Analytics on Static, Relative and In-Motion Data</p>
 
 <p>In contrast, streaming queries ingest real-time event streams, continuously updating results as events are consumed, with outputs either written to an external database or maintained as internal state.</p>
 
-<img src="./assets/posts/telemetry/usecases-analytics.svg" />
+<img src="./assets/img/posts/telemetry/usecases-analytics.svg" />
 <p class="figure-header">Figure 10: Batch Analytics vs Stream Analytics</p>
 <div class="table-container">
 <table style="width: 800px;">

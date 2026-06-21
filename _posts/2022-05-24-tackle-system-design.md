@@ -7,7 +7,7 @@ tags:
   - Database
   - System Design
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/iphone-100x.png
+feature: assets/img/featured/iphone-100x.png
 category: System Wisdom
 ---
 
@@ -24,7 +24,7 @@ system know whether your system was able to establish the link.
 - System must be reliable, available and scalable.
 - System needs to persist the patient's ID from both the customer and the internal system.
 
-<img class="center-image" src="./assets/posts/linkage-system.png" /> 
+<img class="center-image" src="./assets/img/posts/linkage-system.png" /> 
 <p style="text-align: center;">Expected Design</p>
 
 <hr>
@@ -32,7 +32,7 @@ system know whether your system was able to establish the link.
 ## 2. Overview
 ### 2.1. Architecture Diagram
 
-<img class="center-image" src="./assets/posts/linking-system-design.png" /> 
+<img class="center-image" src="./assets/img/posts/linking-system-design.png" /> 
 <p style="text-align: center;">Architecture Diagram </p>
 
 Link: [https://drive.google.com/file/d/1xCP9EpqqrDzCT2jd47ke6WlX69TD4NSk/view?usp=sharing](https://drive.google.com/file/d/1xCP9EpqqrDzCT2jd47ke6WlX69TD4NSk/view?usp=sharing)

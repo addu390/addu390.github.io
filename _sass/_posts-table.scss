@@ -1,0 +1,199 @@
+/* Posts table container styles */
+.posts-table-container {
+  padding: 0 2em 80px 2em;
+  overflow: visible;
+  max-width: 100%;
+}
+
+/* Posts table specific styles */
+.posts-table {
+  margin-top: 1em;
+  border-collapse: collapse;
+  background-color: #fff;
+  overflow: hidden;
+  width: 100%;
+  table-layout: fixed;
+  border: 1px solid var(--py-black);
+}
+
+.posts-table th {
+  background-color: var(--py-black);
+  color: var(--white);
+  font-weight: 600;
+  text-align: left;
+  padding: 16px 12px;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.posts-table th:nth-child(1) { width: 15%; }  /* Date */
+.posts-table th:nth-child(2) { width: 55%; }  /* Title + Reading Time */
+.posts-table th:nth-child(3) { width: 30%; }  /* Tags */
+
+.posts-table td {
+  padding: 17.5px 12px;
+  vertical-align: middle;
+}
+
+.posts-table tr {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.posts-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.posts-table-title-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  line-height: 1.4;
+}
+
+.posts-table-title-link {
+  flex: 1;
+  text-decoration: underline !important;
+  color: var(--black) !important;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.posts-table-title-link:hover {
+  color: #222 !important;
+  text-decoration: underline !important;
+  font-weight: 500;
+}
+
+.posts-table-feature-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid #e0e0e0;
+}
+
+/* Simple text styling for comma-separated tags */
+.posts-table-tags-text {
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.posts-table a.posts-table-tag-link {
+  color: var(--black) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease;
+}
+
+.posts-table a.posts-table-tag-link:hover {
+  color: #222 !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important;
+}
+
+.posts-table-date {
+  color: #666;
+  font-size: 0.9em;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.posts-table-read-time {
+  color: #888;
+  font-size: 0.85em;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* Highlighted posts - preserve alternating pattern */
+.posts-table tr.highlighted-post:nth-child(odd) {
+  background-color: #f8f4ff;
+  border-left: 3px solid #6366f1;
+}
+
+.posts-table tr.highlighted-post:nth-child(even) {
+  background-color: #f0ebff;
+  border-left: 3px solid #6366f1;
+}
+
+.posts-table tr.highlighted-post:nth-child(odd):hover {
+  background-color: #f3f0ff;
+}
+
+.posts-table tr.highlighted-post:nth-child(even):hover {
+  background-color: #ebe5ff;
+}
+
+.posts-table tr.highlighted-post td {
+  background-color: inherit;
+}
+
+.posts-table tr.highlighted-post:hover td {
+  background-color: inherit;
+}
+
+/* Green highlighted posts */
+.posts-table tr.highlighted-post-green:nth-child(odd) {
+  background-color: #f3faf5;
+  border-left: 3px solid #22c55e;
+}
+
+.posts-table tr.highlighted-post-green:nth-child(even) {
+  border-left: 3px solid #22c55e;
+}
+
+.posts-table tr.highlighted-post-green:nth-child(odd):hover {
+  background-color: #eef7f1;
+}
+
+.posts-table tr.highlighted-post-green:nth-child(even):hover {
+  background-color: #e5f0ea;
+}
+
+/* Responsive adjustments for posts table */
+@media screen and (max-width: 48em) {
+  .posts-table th,
+  .posts-table td {
+    padding: 12px 8px;
+  }
+  
+  .posts-table th:nth-child(1) { width: 27%; }  /* Date - wider on mobile */
+  .posts-table th:nth-child(2) { width: 51%; }  /* Title + Reading Time */
+  .posts-table th:nth-child(3) { width: 22%; }  /* Tags */
+
+  .posts-table th {
+    font-size: 0.78em;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .posts-table-date { font-size: 12px; }
+  .posts-table-read-time { font-size: 12px; }
+  .posts-table-tags-text { font-size: 12px; }
+
+  .posts-table-title-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .posts-table-feature-img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .posts-table-container {
+    padding: 0 1em 70px 1em;
+  }
+  
+  .pagination {
+    padding: 12px 8px;
+    margin: 8px 8px 16px 8px;
+    left: 0;
+  }
+}

@@ -6,7 +6,7 @@ tags:
   - Dropwizard
   - Java
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/bob-mdc.png
+feature: assets/img/featured/bob-mdc.png
 category: Java Lava
 ---
 

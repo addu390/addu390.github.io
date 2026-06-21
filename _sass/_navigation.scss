@@ -1,0 +1,74 @@
+/* JEKYLL CSS */
+
+.content {
+  padding-top: 0;
+}
+
+#current-page {
+  padding: 0px 15px;
+}
+
+/* NAVIGATION */
+
+.menu {
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  border-bottom: var(--light-grey) 1px solid;
+  z-index: 1;
+}
+
+.menu > div {
+  text-align: center;
+  display: inline-block;
+}
+
+/* SEARCH */
+
+#search {
+  width: 50%;
+  position: relative;
+}
+
+#search,
+.search_res p,
+#results-container {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+a {
+  text-underline-offset: 0.2em;
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.home {
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.home a {
+  padding: 5px 8px;
+  border-radius: 5px;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.img-border {
+  border: 1px solid #d3d3d3;
+}
+
+#search-input {
+  width: 94%;
+  margin: 10px 0;
+  padding: 8px;
+  border: 1px var(--light-grey) solid;
+  border-radius: 5px;
+}
+
+.search-icon {
+  font-size: 24px;
+}

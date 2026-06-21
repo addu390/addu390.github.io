@@ -13,7 +13,7 @@ permalink: /about/
 <p>Since the start of 2024, I've been exploring the integration of videos and blogs. If you're like me and prefer reading documentations over watching videos but still appreciate visual aids, you're in the right place! <a class="underline" href="/">Pyblog</a> posts are rich with images and detailed explanations to help bridge the gap between text and visuals.</p>
 
 <div class="center-align">
-    <img style="border-radius: 5px" class="center-image" src="../assets/featured/for-hire.png" /> 
+    <img style="border-radius: 5px" class="center-image" src="../assets/img/featured/for-hire.png" /> 
 </div>
 
 <p>Recent Brags:</p>

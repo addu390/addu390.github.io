@@ -6,7 +6,7 @@ tags:
   - System Design
   - Machine Learning
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/porco-rosso.png
+feature: assets/img/featured/porco-rosso.png
 category: System Wisdom
 ---
 
@@ -24,7 +24,7 @@ Typically, any scaling problem is broadly addressed by scaling-up or scaling-out
 ### Data Parallelism 
 As the name suggests, the dataset is horizontally/vertically sharded and processed parallelly. Each worker node in the cluster trains a copy of the model on a different batch of training data, communicating the computation results to keep the model parameters and gradients in sync across all nodes. The computation results can be shared synchronously, i.e., at the end of each batch computation or asynchronously.
 
-<img class="center-image" src="./assets/posts/machine-learning/data-parallel-training.png" /> 
+<img class="center-image" src="./assets/img/posts/machine-learning/data-parallel-training.png" /> 
 <p style="text-align: center;">Figure 1: Data-Parallel training. </p>
 
 **One-liner:** The entire model is deployed to multiple nodes of the cluster, and each node represents the horizontal/vertical split of the sharded dataset and the model.
@@ -32,12 +32,12 @@ As the name suggests, the dataset is horizontally/vertically sharded and process
 ### Model Parallelism
 On the contrary, in model parallelism, the model itself is divided into parts/layers in situations where the model size is too large for a single worker; hence a set of layers are trained simultaneously across different worker nodes. The entire dataset is copied/available to all worker nodes, and they only share the global model parameters with other workers—typically just before forward or backward propagation. Furthermore, the layers can be partitioned vertically or horizontally.
 
-<img class="center-image" src="./assets/posts/machine-learning/model-parallel-training.png" /> 
+<img class="center-image" src="./assets/img/posts/machine-learning/model-parallel-training.png" /> 
 <p style="text-align: center;">Figure 2: Model-Parallel training. </p>
 
 **One-liner:** A layer or a group of layers of the model is deployed to multiple nodes of the cluster, and the entire dataset is copied to every node.
 
-<img class="center-image" src="./assets/posts/machine-learning/model-partitioning.png" /> 
+<img class="center-image" src="./assets/img/posts/machine-learning/model-partitioning.png" /> 
 <p style="text-align: center;">Figure 3: Model-Partitioning horizontally or
 vertically. </p>
 
@@ -62,22 +62,22 @@ Note: All the workers produce different gradients as they are trained on differe
 ### Reduce Algorithm
 Typically, a single node is used to complete aggregation. For instance, in the case shown in Figure 3, the bandwidth for Machine A increases as the number of machines/parameters increases.
 
-<img class="center-image" style="width: 65%" src="./assets/posts/machine-learning/single-reduce.png" /> 
+<img class="center-image" style="width: 65%" src="./assets/img/posts/machine-learning/single-reduce.png" /> 
 <p style="text-align: center;">Figure 4: Single node aggregator.</p>
 
 Following up on the reduce-algorithm mentioned in synchronous training, the idea behind the all-reduce algorithm is to share the load of storing and maintaining the global parameters to overcome the limitation of using the parameter server method. There are serval all-reduce algorithms that dictate how parameters are calculated and shared:
 
-<img class="center-image" style="width: 45%" src="./assets/posts/machine-learning/all-reduce.png" /> 
+<img class="center-image" style="width: 45%" src="./assets/img/posts/machine-learning/all-reduce.png" /> 
 <p style="text-align: center;">Figure 5: All Reduce: Aggregation task distributed to all nodes instead of a single node.</p>
 
 Like AllReduce, each node performs the aggregation task on a subset of parameters: machine A – parameter 1, machine B – parameter 2, etc. Instead of sending its version of parameters to all other nodes, each worker node sends its version to the next one.
 
-<img class="center-image" style="width: 45%" src="./assets/posts/machine-learning/ring-all-reduce.png" /> 
+<img class="center-image" style="width: 45%" src="./assets/img/posts/machine-learning/ring-all-reduce.png" /> 
 <p style="text-align: center;">Figure 6: Ring All Reduce.</p>
 
 Similarly, in tree-all-reduce, parameters are shared via a tree structure. Irrespective of the topology, all-reduce algorithms reduce synchronization overhead and make it easier to scale horizontally.
 
-<img class="center-image" style="width: 65%" src="./assets/posts/machine-learning/tree-all-reduce.png" /> 
+<img class="center-image" style="width: 65%" src="./assets/img/posts/machine-learning/tree-all-reduce.png" /> 
 <p style="text-align: center;">Figure 7: Tree All Reduce.</p>
 
 Each worker node holds a subset of data and computes the gradient(s); those values are passed up the tree and aggregated until a global aggregate value is calculated in the root node. Then, the global value is passed down to all other nodes. 
@@ -95,7 +95,7 @@ In distributed training, the cluster of workers performs just one task: training
 
 The parameter servers are responsible for holding the parameters of the model and are responsible for updating the global state of our model. At the same time, the training workers run the actual training loop and produce the gradients from the batch of data assigned to them.
 
-<img class="center-image" src="./assets/posts/machine-learning/centralized-data-parallel-training.png" /> 
+<img class="center-image" src="./assets/img/posts/machine-learning/centralized-data-parallel-training.png" /> 
 <p style="text-align: center;">Figure 8: Centralized training. </p>
 
 Hence the entire process for Centralized data-parallel training is as follows:
@@ -111,7 +111,7 @@ Some known disadvantages are:
 ### De-centralized Training
 On the flip side, In a de-centralized communication pattern, each worker node communicates with every other node to update the model parameters. The advantage of this approach is that peer-peer updates are faster, and there is no single point of failure.
 
-<img class="center-image" src="./assets/posts/machine-learning/decentralized-data-parallel-training.png" /> 
+<img class="center-image" src="./assets/img/posts/machine-learning/decentralized-data-parallel-training.png" /> 
 <p style="text-align: center;">Figure 9: De-centralized training. </p>
 
 <hr class="hr">

@@ -7,7 +7,7 @@ tags:
   - Django
   - Security
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/popeye-killswitch.png
+feature: assets/img/featured/popeye-killswitch.png
 category: Code on the Road
 ---
 
@@ -57,7 +57,7 @@ Lastly, when the rule has to be evaluated, the scheduler publishes a message to 
 
 Hence, the different **components** involved are as follows:
 
-<img class="center-image-0" src="./assets/posts/ad-system-design-v2.png" /> 
+<img class="center-image-0" src="./assets/img/posts/ad-system-design-v2.png" /> 
 <p style="text-align: center;">Anomaly Detection Service System Design </p>
 
 - **Key-value store (MongoDB):** 
@@ -102,7 +102,7 @@ The barebone implementation of KS: [https://github.com/addu390/kill-switch](http
 
 The different **components** involved are as follows:
 
-<img class="center-image-0" src="./assets/posts/ks-system-design.png" /> 
+<img class="center-image-0" src="./assets/img/posts/ks-system-design.png" /> 
 <p style="text-align: center;">Kill Switch Service System Design </p>
 
 - **Data Store (MySQL):** To validate and store the rule(s).

@@ -1,0 +1,247 @@
+/* LAYOUT CSS */
+.pure-img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+#layout {
+  padding: 0;
+}
+
+.sidebar {
+  background: #222;
+  color: var(--white);
+}
+
+.sidebar-info {
+  text-align: center;
+  top: auto;
+}
+
+.sidebar-info * {
+  font-family: "Open Sans", sans-serif;
+}
+
+.brand-photo {
+  margin: 0px 0 10px;
+  cursor: pointer;
+}
+
+.brand-title,
+.brand-tagline,
+.nav {
+  margin: 0;
+}
+
+.brand-title {
+  padding-top: 15px;
+  text-transform: uppercase;
+  font-size: 1.9em;
+}
+
+.brand-title a {
+  color: rgb(234, 234, 234);
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.brand-tagline {
+  font-weight: 300;
+  color: #ddd;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.pure-button {
+  border-radius: 5px;
+}
+
+.post-entry-toc .posts {
+  margin: 0 1em 0 0 !important;
+  max-width: 76%;
+}
+
+.posts {
+  margin-top: 3.3em;
+}
+
+.posts-right-bar {
+  margin: 4.8em 0em 0 0.7em;
+  max-width: 100%;
+  line-height: 1.5;
+}
+
+.post {
+  transition: transform 0.2s;
+}
+
+.post:hover {
+  transform: scale(1.02);
+}
+
+.post,
+.post-entry {
+  border: var(--light-grey) solid 1px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.post,
+.post-entry,
+.feed-header,
+.post-entry .post-body {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.post-entry .post-body {
+  padding-bottom: 1em;
+}
+
+.post,
+.post-entry {
+  margin-bottom: 1em;
+  padding-bottom: 0.2em;
+}
+
+.content {
+  background-color: var(--very-light-grey);
+}
+
+.post-entry {
+  margin: 4.8em 0 0 0;
+}
+
+.post-featured-image {
+  margin: 0.5em 0 0.3em 0;
+  text-align: center;
+}
+
+.post-featured-image img {
+  max-width: 50%;
+  height: auto;
+}
+
+.post-featured-image + header .post-title {
+  margin-top: 0;
+}
+
+.post-entry h1,
+.post-entry h2,
+.post-entry h3 {
+  margin-top: 25px;
+  margin-bottom: 0.2em;
+}
+
+.page h2 {
+  text-align: center;
+  font-size: 1.6em;
+}
+
+.post-header p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  margin-top: -12px;
+}
+
+.post-body p,
+.post-body li {
+  font-size: 17px;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.post-body blockquote p {
+  font-size: 22px;
+}
+
+.post-title {
+  font-size: 1.2em;
+  color: var(--black);
+  margin-bottom: 0.2em;
+  margin-top: 0.5em;
+}
+
+.post-vertical-line {
+  width: 1px;
+  background-color: var(--light-grey);
+  margin-top: 5px;
+}
+
+.post-avatar {
+  border-radius: 50px;
+  float: right;
+  margin-left: 1em;
+}
+
+.post-entry {
+  line-height: 1.5;
+}
+
+.post-title {
+  line-height: 1.15 !important;
+}
+
+.journals {
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.post-description p {
+  margin-top: 0.4em;
+}
+
+.post-description {
+  color: var(--black);
+  line-height: 1.6em;
+  font-size: 15px;
+}
+
+.archive-links {
+  font-size: 22px;
+  padding: 5px 0;
+  list-style-type: decimal;
+}
+
+.archive-links a,
+.post-body a,
+.posts-right-bar a {
+  color: var(--black);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.archives a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.archives a:hover,
+.archives a:focus {
+  text-decoration: underline;
+}
+
+.all-posts h3 {
+  font-weight: normal;
+}
+
+.tags a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tags a:hover,
+.tags a:focus {
+  text-decoration: underline;
+}
+
+.post-meta,
+.post-meta a {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #4e4d4d !important;
+  font-size: 14px;
+}

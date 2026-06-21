@@ -8,8 +8,8 @@ tags:
 - Database
 - Spatial Index
 author: Adesh Nalpet Adimurthy
-image: assets/featured/webp/space-tessellation.webp
-feature: assets/featured/webp/space-tessellation.webp
+image: assets/img/featured/webp/space-tessellation.webp
+feature: assets/img/featured/webp/space-tessellation.webp
 category: System Wisdom
 description: Tessellation for spatial indexing divides space into non-overlapping shapes for efficient data management. The Uber H3 grid system uses hexagonal cells, offering better uniformity and efficiency than squares or triangles. This system projects hexagons onto an icosahedron to minimize distortion, enhancing geographic algorithms. The article also provides a custom implementation of H3, explaining the process of converting latitude and longitude to 3D Cartesian coordinates, identifying icosahedron vertices, and encoding cell IDs into a 64-bit integer.
 ---
@@ -24,7 +24,7 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 
 <p>Maps are a good start and are the most common abstraction, with which most people are familiar. However, maps still contain all sorts of inconsistencies. This calls for a grid system, which takes the cluttered geographic space and provides a more clean and structured mathematical space, making it much easier to perform computations and queries.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/h3-why-grids.png" />
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/h3-why-grids.png" />
 <p class="figure-header">Figure 0: Tessellated View of Halifax</p>
 
 <p>The primary principle of the grid is to break the space into uniform cells. These cells are the units of analysis used in geographic systems. Think of it as pixels in an image.</p>
@@ -47,26 +47,26 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 </ul>
 <p>Brings down the number of options, with the most commonly used shapes being squares, equilateral triangles, and hexagons.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3-tile-options-2.svg" />
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/h3-tile-options-2.svg" />
 <p class="figure-header">Figure 1: Triangle vs Square vs Hexagon (neighbors)</p>
 
 <p>Another important property of tiles is uniform adjacency, i.e., how unambiguous the neighbors are. For example, squares have 4 unambiguous neighbors but also have 4 ambiguous neighbors at the corners, which may not provide the best perception of neighbors if you consider a circular radius.</p> 
 
 <p>Equilateral triangles are much worse, with 3 unambiguous neighbors and 9 ambiguous neighbors, which is one of the reasons why triangles are not commonly used, along with the rotation of cells necessary for tessellation. Lastly, hexagons are the best, with 6 unambiguous neighbors and a structure very close to finding neighbors by radius.</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/hex-square-tessellation.png" />
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/hex-square-tessellation.png" />
 <p class="figure-header">Figure 2: Square vs Hexagon (Optimal Space-Filling)</p>
 
 <p>Hexagons are more space-efficient and have optimal space-filling properties. This means that when filling a polygon with uniform cells, hexagons generally result in less over/under filling compared to squares.</p>
 
-<img class="center-image-0 center-image-50" src="./assets/posts/spatial-index/h3-tile-options-3.svg" />
+<img class="center-image-0 center-image-50" src="./assets/img/posts/spatial-index/h3-tile-options-3.svg" />
 <p class="figure-header">Figure 3: Square vs Hexagon (Child Containment)</p>
 
 <p>Hierarchical relationships between resolutions are another important property. Evidently, squares have hierarchical relationships with perfect child containment and can use algorithms such as quad trees to navigate up and down the hierarchy and space-filling curves to traverse the grid. Hexagons, while not having perfect child containment, can still function effectively with a tolerable margin of error.</p>
 
 <p>Without taking triangles into account, the summary of the comparison between squares and hexagons:</p>
 
-<img class="center-image-0 center-image-50" src="./assets/posts/spatial-index/h3-tile-options.svg" />
+<img class="center-image-0 center-image-50" src="./assets/img/posts/spatial-index/h3-tile-options.svg" />
 <p class="figure-header">Figure 4: Squares vs Hexagons (Full Comparison)</p>
 
 <p>More on Hexagons vs Squares at <a href="/cartograms-documentation#hexagonsvssquares">Conceptualization of a Cartogram</a></p>
@@ -77,7 +77,7 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 
 <p>Lastly, low shape and area distortion is more related to the projection than the shape of the tile. There are many types of projections, but the most commonly used are polyhedra. One such projection is the <a href="/spatial-index-grid-system#3-1-geohash-intuition">cylindrical projection</a>, used in <a href="/spatial-index-grid-system#3-geohash">Geohash</a>, which works well for squares but has the problem of distortion near the poles, making it hard to get equal surface area cells across the projection.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/uniform-shape-polyhedrons.png" />
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/uniform-shape-polyhedrons.png" />
 <p class="figure-header">Figure 5: Uniform Shape Polyhedrons</p>
 
 <p>The smaller the face, the lesser the distortion. An icosahedron, with 20 faces, is the better option among the uniform-face polyhedrons for fitting hexagons and triangles on them. Fitting squares on an icosahedron or even a tetrahedron is not ideal. Squares are mostly suitable for cubes (as seen in <a href="/spatial-index-grid-system#4-google-s2">S2</a>). Taking the best of both worlds, an icosahedron with hexagons is the way to go.</p>
@@ -86,9 +86,9 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 
 <p>Putting it all together, we take the polyhedron, the <a href="https://en.wikipedia.org/wiki/Icosahedron" target="_blank">icosahedron</a>, project it on the surface of the Earth, then each face on the icosahedron is split into hexagon cells. More specifically, 4 full hexagon cells are completely contained by the face, 3 cells are half contained, and 3 corners form the pentagon.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3-tessellation.svg" />
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/h3-tessellation.svg" />
 <p>Each hexagonal cell can be further subdivided into 7 hexagon cells with marginal error for containment. The number of levels decides the resolution.</p>
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/h3-tessellation-2.svg" />
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/h3-tessellation-2.svg" />
 <p class="figure-header">Figure 6: H3 Projection and Tessellation</p>
 
 <p>The H3 grid system divides the surface of the Earth into <code>122</code> (110 hexagons and 12 icosahedron vertex-centered pentagons) base cells (resolution 0), which are used as the foundation for higher resolution cells. Each base cell has a specific orientation relative to the face of the icosahedron it is on. This orientation determines how cells at higher resolutions are positioned and indexed.</p>
@@ -97,12 +97,12 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 
 <p>Looking at the icosahedron, the 5 faces come together at every vertex, and truncating that creates the base cell. Pentagons are unavoidable at the vertices. However, there are only 12 of them at every resolution. But again, for most cases dealing with spaces within a city where the resolution is higher than 9, the pentagons, if far off in the water, they are safe to ignore.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/dymaxion-layout.svg" />
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/dymaxion-layout.svg" />
 <p class="figure-header">Figure 7: Dymaxion layout (12 Vertices in Water)</p>
 
 <p>While the layout of the faces on the icosahedron can be done in any fashion, H3 uses the layout developed by Buckminster Fuller called the <a href="https://en.wikipedia.org/wiki/Dymaxion_map" target="_blank">Dymaxion layout</a>.</p>
 
-<img class="center-image-0 center-image-30" src="./assets/posts/spatial-index/h3-tessellation.gif" />
+<img class="center-image-0 center-image-30" src="./assets/img/posts/spatial-index/h3-tessellation.gif" />
 <p class="figure-header">Figure 8: H3 Projection and Tessellation (Animated)</p>
 
 <p>The benefit is that all the vertices end up in the water. For most applications, land is more important than water, and since the vertices are in the water, it reduces the need to deal with pentagons.</p>
@@ -130,7 +130,7 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 <h3>2.1. LatLong to Vec3D</h3>
 <p>Convert latitude and longitude to <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank">3D Cartesian coordinates</a> using the formulas (similar to Section <a href="/spatial-index-grid-system#4-2-1-lat-long-to-x-y-z-">4.2.1 in S2</a>):.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/ecef.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/ecef.svg" /> 
 <p class="figure-header">Figure 9: (lat, long) to (x, y, z) Transformation</p>
 
 <details class="code-container" open><summary class="p">2.1a. LatLong to Vec3D - Snippet</summary>
@@ -151,13 +151,13 @@ description: Tessellation for spatial indexing divides space into non-overlappin
 
 <p>The icosahedron has 12 vertices, 20 faces, and 30 edges. The 12 vertices are given by: <code>(±1, ±ϕ, 0)</code>, <code>(±ϕ, 0, ±1)</code>, <code>(0, ±1, ±ϕ)</code>. Lastly, the vertices need to be normalized to lie on the surface of a unit sphere.</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/golden-ratio.svg" /> 
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/golden-ratio.svg" /> 
 <p class="figure-header">Figure 10: Golden Ratio Rectangles</p>
 
 <p>To calculate the <code>20</code> face centers of the icosahedron:</p>
 <p>For each face, average the coordinates of its three vertices and normalize the resulting vector to lie on the unit sphere. Use the formula:</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/spatial-index/face-centers.svg" /> 
+<img class="center-image-0 center-image-65" src="./assets/img/posts/spatial-index/face-centers.svg" /> 
 <p class="figure-header">Figure 11: Icosahedron Face Center</p>
 
 <details class="code-container"><summary class="p">2.2a. Icosahedron Vertices - Snippet</summary>
@@ -204,7 +204,7 @@ private static double[] normalize(double[] v) {
 <li>Convert to local 2D Coordinates: Transform polar coordinates <code>(r, θ)</code> into Cartesian coordinates <code>(x, y)</code>.</li>   
 </ul>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/h3-to-vec2d.svg" /> 
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/h3-to-vec2d.svg" /> 
 <p class="figure-header">Figure 12: Gnomonic Projection (XYZ to rθ)</p>
 
 <details class="code-container"><summary class="p">2.3a. Vec3D to Vec2D - Snippet</summary>
@@ -245,7 +245,7 @@ public Vec2d toVec2d(int resolution, int face, double distance) {
 <h3>2.4. Vec2D to FaceIJK</h3>
 <p>Hexagonal grids have three primary axes, unlike the two we have for square grids. In <a href="https://www.redblobgames.com/grids/hexagons/#coordinates" target="_blank">Axial coordinates</a> or the Cube coordinates, the three coordinates (i, j, k) ensure that any point in the hexagonal grid can be described without ambiguity.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3-axial.png" /> 
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/h3-axial.png" /> 
 <p class="figure-header">Figure 13: Axial Coordinates (Class II and Class III)</p>
 
 <p>There are several other hex coordinate systems based, in this case, the constraints are <code>i + j + k = 0</code>, with <code>120°</code> axis separation.</p>
@@ -256,7 +256,7 @@ public Vec2d toVec2d(int resolution, int face, double distance) {
 <li>Reverse Conversion: Translate Cartesian coordinates into the hexagonal coordinate system by aligning them with the hex grid's axes.</li>
 <li>Quantize and Round: Convert floating-point coordinates to integer grid positions, determining the closest hexagon center.</li>
 </ul>
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3-vec2d-facexyz.svg" /> 
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/h3-vec2d-facexyz.svg" /> 
 <ul>
 <li>Check Hex Center and Round: Use remainders to accurately determine which hexagon the point falls into by rounding to the nearest hex center.</li>
 <pre><code>// Determine i and j based on r1 and r2
@@ -349,12 +349,12 @@ IF value.y < 0 THEN
 <h3>2.5. FaceIJK to H3 Index</h3>
 <p>Lastly, the <a href="https://h3geo.org/docs/core-library/latLngToCellDesc" target="_blank">face and face-centered ijk coordinates are converted to H3 Index</a>.</p> 
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/h3-index-structure.svg" /> 
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/h3-index-structure.svg" /> 
 <p class="figure-header">Figure 14: H3 Index Structure</p>
 
 <p>If the resolution is not uptill level 15, rest of the vits are set to 1s, for example: <code>83001dfffffffff</code>. The binary representation is as below (Figure 15); <code>Index mode = 1</code> i.e. indexes the regular hexagon type. Resolution = 3; Base Cell = 0; Resolution 1, 2 and 3 are 0, 3 and 5, rest are 1s.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/h3-index-structure-example.svg" /> 
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/h3-index-structure-example.svg" /> 
 <p class="figure-header">Figure 15: H3 Index Structure (Example: 83001dfffffffff)</p>
 
 <p>This primarily involves coverting to Direction bits, representing the hierarchical path from a base cell to a specific cell at a given resolution. These bits encode the sequence of directional steps taken within the hexagonal grid to reach the target cell from the base cell.</p>
@@ -421,7 +421,7 @@ public class H3Index {
 <details open><summary class="h3">3. H3 - Conclusion</summary>
 <p>So far, in the Spatial Index Series, we have seen the use of space-filling curves and their application in grid systems like Geohash and S2. Finally, we explored Uber's H3, which falls under grid systems and more specifically relies on tessellation. By now, it's likely clear that H3 indexes are not directly queryable on the database by ranges or prefixes, but they have more importance towards the accuracy of filling a polygon, nearby search by radius, high resolution, and many more.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/h3_level_0_1.png" /> 
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/h3_level_0_1.png" /> 
 <p class="figure-header">Figure 16: H3 grid segmentation (Level 0 and Level 1)</p>
 
 <p>If you missed the series, it starts with <a href="/spatial-index-space-filling-curve">Spatial Index: Space-Filling Curves</a>, followed by <a href="/spatial-index-grid-system">Spatial Index: Grid Systems</a>, and finally, the current post, <a href="#spatial-index-tessellation">Spatial Index: Tessellation</a>.</p>

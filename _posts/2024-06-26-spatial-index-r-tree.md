@@ -7,8 +7,8 @@ tags:
 - Database
 - Spatial Index
 author: Adesh Nalpet Adimurthy
-image: assets/featured/webp/rtree-spatial-index.webp
-feature: assets/featured/webp/rtree-spatial-index.webp
+image: assets/img/featured/webp/rtree-spatial-index.webp
+feature: assets/img/featured/webp/rtree-spatial-index.webp
 category: System Wisdom
 ---
 
@@ -22,7 +22,7 @@ category: System Wisdom
 
 <p>To do so, we can place rectangles around a building or group of buildings and then index them. Suppose there's a much bigger section of the map signifying a larger department, and we need to query all the buildings within a department. We can use the R-Tree to find all the buildings within (partially or fully contained) the larger section (query rectangle).</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/r-tree-campus-level-2.svg" />
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/r-tree-campus-level-2.svg" />
 <p class="figure-header">Figure 0: Layout with MBRs and Query Rectangle</p>
 
 <p>In the above figure, the red rectangle represent the query rectangle, used to ask the R-Tree to get all the buildings that intersect with the query rectangle (<code>R2, R3, R6</code>).</p>
@@ -33,14 +33,14 @@ category: System Wisdom
 
 <p>The inner node of an R-tree is as follows: We start with the root node, representing the large landscape. The inner nodes are guideposts that hold pointers to the child nodes we need to go down to in the tree. i.e. each entry of a node points to an area of the data space (described by MBR).</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/r-tree-inner-node.svg" />
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/r-tree-inner-node.svg" />
 <p class="figure-header">Figure 1: R-Tree Inner Node</p>
 
 <p>For instance, think of a <a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank">Binary Search Tree</a>. From the root node, we make a decision to go left or right. The R-tree is similar, but more of an <a href="/b-tree" target="_blank">M-way tree</a>, where each node can have multiple entries as seen above. Instead of having integer or string values (one-dimensional), the inner nodes consist of entries (multi-dimensional). In the example, there are 4 entries of rectangles.</p>
 
 <h3>2.1. MBR - Minimum Bounding Rectangle</h3>
 
-<img class="center-image-0 center-image-35" src="./assets/posts/spatial-index/r-tree-mbr.svg" />
+<img class="center-image-0 center-image-35" src="./assets/img/posts/spatial-index/r-tree-mbr.svg" />
 <p class="figure-header">Figure 2: R-Tree Minimum Bounding Rectangle</p>
 
 <p>Minimum Bounding Rectangles, <code>R1, R2, R3, R4</code>, contain the objects which are stored in the sub-trees in a minimal way. For instance, say we have 3 rectangles <code>R11, R12, R13</code>. <code>R1</code> is the smallest rectangle that can be created to completely contain all three rectangles, hence the name "minimum."</p>
@@ -49,7 +49,7 @@ category: System Wisdom
 
 <p>The search process in an R-tree is simple: for a query object/query rectangle; at an inner node, it is the decision to check if any of the entries in a node intersect with the query rectangle.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/r-tree-query-rectangle.svg" />
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/r-tree-query-rectangle.svg" />
 <p class="figure-header">Figure 3: R-Tree Query Rectangle(s)</p>
 
 <p>For example, consider a query rectangle <code>Q1</code>. It's clear that R1 intersects with <code>Q1</code>, so we would follow down the tree from <code>R1</code>. Similarly, <code>Q2</code> intersects with <code>R2</code>. However, in scenarios where the query rectangle intersects with multiple entries/rectangles (<code>Q3</code> with <code>R2, R3, R4</code>), all the intersecting rectangles have to be searched. This can happen if the indexing is not optimized and has to be avoided as it defeats the purpose of indexing in the first place.</p>
@@ -58,7 +58,7 @@ category: System Wisdom
 
 <p>Here's a bit of a larger example of an R-tree.</p>
 
-<img class="center-image-0 center-image-85" src="./assets/posts/spatial-index/r-tree-l-3.svg" />
+<img class="center-image-0 center-image-85" src="./assets/img/posts/spatial-index/r-tree-l-3.svg" />
 <p class="figure-header">Figure 4: R-Tree Level-2</p>
 
 <p>Every node in an R-tree has between <code>m</code> and <code>M</code> entries. More specifically, each node has between <code>m ≤ ⌈M/2⌉ and M</code> entries. The node has at least 2 entries unless it's a leaf.</p>
@@ -82,7 +82,7 @@ category: System Wisdom
 
 <p>Say, there's a new rectangle <code>R4</code> coming and it has to be inserted inside the leaf node. As you can see, in order to capture the new objects, the MBR is adjusted, i.e., enlarged to minimally contain <code>R1</code> to <code>R4</code>. Going on and inserting another object <code>R5</code>, the MBR is once again adjusted.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/r-tree-insert.svg" />
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/r-tree-insert.svg" />
 <p class="figure-header">Figure 5: R-Tree Insert (Adjusting MBR)</p>
 
 <p>On an insert, when the MBR is updated, i.e., contains more objects, the new MBR has to be updated not only for the node but also propagated to other lower levels and potentially (not always) up to the root node. This is to reflect that the sub-tree now contains more information.</p>
@@ -91,17 +91,17 @@ category: System Wisdom
 
 <p>Unlike the example, it's not always clear in which node/sub-tree an object should be inserted. Here: <code>MBR1</code>, <code>MBR2</code>, or <code>MBR3</code>.</p>
 
-<img class="center-image-0 center-image-55" src="./assets/posts/spatial-index/r-tree-insert-mbrs.svg" />
+<img class="center-image-0 center-image-55" src="./assets/img/posts/spatial-index/r-tree-insert-mbrs.svg" />
 <p class="figure-header">Figure 6: R-Tree Choice for Insert (1)</p>
 
 <p>The question is, in which MBR should we insert <code>R1</code> into? Setting aside any rules or justification for a second, <code>R1</code> can be inserted into any MBR.</p>
 
-<img class="center-image-0 center-image-55" src="./assets/posts/spatial-index/r-tree-insert-mbr1.svg" />
+<img class="center-image-0 center-image-55" src="./assets/img/posts/spatial-index/r-tree-insert-mbr1.svg" />
 <p class="figure-header">Figure 7: R-Tree Choice for Insert (2)</p>
 
 <p>Inserting into <code>MBR1</code> would need to immensely grow/expand <code>MBR1</code> to fully contain <code>R1</code>. The implication? Say there's a query rectangle <code>Q1</code>. After leading down the sub-tree to <code>MBR1</code>, we find that there's nothing (no objects). This is because, to contain <code>R1</code>, we have expanded <code>MBR1</code> so much that there is a lot of space without any objects. So, it's fair to conclude that one criterion to add is to insert into MBRs that need to expand the least.</p>
 
-<img class="center-image-0 center-image-55" src="./assets/posts/spatial-index/r-tree-insert-mbr2.svg" />
+<img class="center-image-0 center-image-55" src="./assets/img/posts/spatial-index/r-tree-insert-mbr2.svg" />
 <p class="figure-header">Figure 8: R-Tree Choice for Insert (3)</p>
 
 <p>Going by that, inserting into <code>MBR2</code> is a better option as opposed to <code>MBR1</code>. Similarly, <code>MBR3</code> may not be a bad option either, depending on the expansion factor.</p>
@@ -110,7 +110,7 @@ category: System Wisdom
 
 <p>Stating the obvious (for implementation), the minimum-bounding-rectangle (MBR) is defined as the rectangle that has the maximal and minimal values of all rectangles in each dimension.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/r-tree-overlap-criterion.svg" />
+<img class="center-image-0 center-image-90" src="./assets/img/posts/spatial-index/r-tree-overlap-criterion.svg" />
 <p class="figure-header">Figure 9: R-Tree MBR Implementation</p>
 
 <hr class="post-hr">
@@ -151,7 +151,7 @@ category: System Wisdom
 
 <p>A much simpler example of 8 objects, each object with one multidimensional attribute (Range or line-segments on x-axis) and one identity (Color). To insert these objects one by one in an empty R-tree of degree <code>M = 3</code> (maximum number of entries at each node) and <code>m ≥ M/2</code> (minimum number of entries at each node = 2).</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/r-tree-insert-example.svg" />
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/r-tree-insert-example.svg" />
 <p class="figure-header">Figure 10: R-Tree Insertion Example</p>
 
 <p>Observation: in the case where the selected leaf is already full, a splitting operation is performed. Let's understand the overflow problem better (the split problem):</p>
@@ -160,7 +160,7 @@ category: System Wisdom
 
 <p>In the case a node/leaf is full and a new entry cannot be stored anymore, a split needs to be performed, just as for a B+ Tree. The difference is that the split can be done arbitrarily and not only in the middle as for a B+ Tree.</p>
 
-<img class="center-image-0 center-image-30" src="./assets/posts/spatial-index/r-tree-split-problem.svg" />
+<img class="center-image-0 center-image-30" src="./assets/img/posts/spatial-index/r-tree-split-problem.svg" />
 <p class="figure-header">Figure 11: R-Tree Insertion: Overflow</p>
 
 <h3>4.3.1. The Split Problem</h3>
@@ -168,7 +168,7 @@ category: System Wisdom
 
 <p>To better understand the split problem, let's take a step back and consider 4 rectangles (<code>R1, R2, R3, R4</code>) that need to be assigned to two nodes (MBRs) in a meaningful way.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/r-tree-split-problem-example.svg" />
+<img class="center-image-0 center-image-90" src="./assets/img/posts/spatial-index/r-tree-split-problem-example.svg" />
 <p class="figure-header">Figure 12: R-Tree Insertion: Split Problem</p>
 
 <p>Why is one better than the other? As mentioned before (Section 4.1), the area of expansion of the poor split is much larger compared to the good split (despite the overlap). This leads to more empty spaces in the node/MBR that do not have any objects.</p>
@@ -188,7 +188,7 @@ category: System Wisdom
 </ul>
 </ul>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/r-tree-split-quadratic.svg" />
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/r-tree-split-quadratic.svg" />
 <p class="figure-header">Figure 13: R-Tree Insertion: Choosing MBR</p>
 
 <p>In this example, two nodes, <code>MBR1</code> and <code>MBR2</code>, are created. <code>R1</code> and <code>R2</code> in the same MBR would lead to creating the largest MBR. <code>R3</code> is then inserted into <code>MBR1</code> and not <code>MBR2</code>, as the area increase of <code>MBR1</code> is smaller compared to <code>MBR2</code>.</p>

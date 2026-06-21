@@ -5,7 +5,7 @@ date: 2022-03-10
 tags:
   - Github
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/gh-llama.png
+feature: assets/img/featured/gh-llama.png
 category: Code on the Road
 ---
 
@@ -22,7 +22,7 @@ At the end of the tutorial, you'll have a set-up, where all requests to example.
 - Go to the repository → Settings ⚙️ → Pages
 - Select `Source`; Choosing `master`/`main` branch will treat `README.md` as web `index.html` and choosing `/docs` will treat `/docs/README.md` as web `index.html`
 
-<img src="./assets/posts/gh/enable-gh-pages.png" /> 
+<img src="./assets/img/posts/gh/enable-gh-pages.png" /> 
 <p style="text-align: center;">Figure 1: Enable Gh Pages in GitHub Settings</p>
 
 - Theme Choose → Choose theme; Choose one among the default themes or clone your favorite from: [jamstackthemes.dev](https://jamstackthemes.dev/)
@@ -32,7 +32,7 @@ At the end of the tutorial, you'll have a set-up, where all requests to example.
 
 - Enter Custom domain: www.example.com
 
-<img src="./assets/posts/gh/gh-custom-domain.png" /> 
+<img src="./assets/img/posts/gh/gh-custom-domain.png" /> 
 <p style="text-align: center;">Figure 2: Set Custom Domain</p>
 
 - Note (recommended to use www.example.com):
@@ -57,7 +57,7 @@ Note: These can change over time, refer to the [documentation](https://docs.gith
 
 - Create a `CNAME` record to point www.example.com to `<GITHUB-USERNAME>.github.io`
 
-<img src="./assets/posts/gh/godaddy-dns-record.png" /> 
+<img src="./assets/img/posts/gh/godaddy-dns-record.png" /> 
 <p style="text-align: center;">Figure 3: Set A and CNAME Record(s)</p>
 
 ## Confirm DNS entries
@@ -70,7 +70,7 @@ Note: This can take between an hour and 3 hours for the DNS entries to resolve/p
 
 The `Enable HTTPS` checkbox is clickable if everything goes as expected.
 
-<img src="./assets/posts/gh/gh-custom-domain-2.png" /> 
+<img src="./assets/img/posts/gh/gh-custom-domain-2.png" /> 
 <p style="text-align: center;">Figure 4: Enable HTTPS</p>
 
 Note:
