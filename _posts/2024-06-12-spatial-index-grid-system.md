@@ -8,8 +8,8 @@ tags:
 - Database
 - Spatial Index
 author: Adesh Nalpet Adimurthy
-image: assets/featured/webp/space-grids.webp
-feature: assets/featured/webp/space-grids.webp
+image: assets/img/featured/webp/space-grids.webp
+feature: assets/img/featured/webp/space-grids.webp
 category: System Wisdom
 description: Grid systems in spatial indexing, including Geohash and Google S2, encode geographic locations for efficient spatial data management. Geohash uses a Z-order curve, offering ease of implementation but has proximity preservation issues. Google S2 subdivides the Earth into hierarchical cells using a spherical projection, providing better proximity handling. The article discusses their encoding processes, advantages, and limitations, with implementation examples.
 ---
@@ -24,27 +24,27 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 
 <p>Earth is round or more accurately, an ellipsoid. Map projection is a set of transformations represent the globe on a plane. In a map projection. Coordinates (latitude and longitude) of locations from the surface of the globe are transformed to coordinates on a plane. And GeoHash Uses <a href="https://en.wikipedia.org/wiki/Equirectangular_projection" target="_blank">Equirectangular projection</a></p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/projection.svg" /> 
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/projection.svg" /> 
 <p class="figure-header">Figure 21: Equirectangular projection/ Equidistant Cylindrical Projection</p>
 
 <p>The core of GeoHash is just an clever use of Z-order curves. Split the map-projection (rectangle) into 2 equal rectangles, each identified by unique bit strings.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/geohash-level-0.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/img/posts/spatial-index/geohash-level-0.svg" /> 
 <p class="figure-header">Figure 22: GeoHash Level 1 - Computation</p>
 
 <p>Observation: the divisions along X and Y axes are interleaved between bit strings. For example: an arbitrary bit string <code>01110 01011 00000</code>, follows:</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/geohash-bit-interleave.svg" />
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/geohash-bit-interleave.svg" />
 
 <p>By futher encoding this to Base32 (<code>0123456789bcdefghjkmnpqrstuvwxyz</code>), we map a unique string to a quadrant in a grid and quadrants that share the same prefix are closer to each other; e.g. <code>000000</code> and <code>000001</code>. By now we know that interleaving trace out a Z-order curve.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/geohash-z-order.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/img/posts/spatial-index/geohash-z-order.svg" /> 
 <p class="figure-header">Figure 23: GeoHash Level 1 - Z-Order Curve</p>
 
 <p>Higher levels (higher order z-curves) lead to higher precision. The geohash algorithm can be iteratively repeated for higher precision. That's one cool property of geohash, adding more characters increase precision of the location.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-level-1.svg" /> 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/geohash-level-2.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/geohash-level-1.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/geohash-level-2.svg" /> 
 <p class="figure-header">Figure 24: GeoHash Level 2</p>
 
 <p>Despite the easy implementation and wide usage of geohash, it inherits the disadvantages of Z-order curves (<a href="/spatial-index-space-filling-curve#2-5-z-order-curve-implementation">Section 2.5</a>): weakly preserved latitude-longitude proximity; does not always guarantee that locations that are physically close are also close on the Z-curve. </p>
@@ -174,7 +174,7 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 
 <p>Covert <code>p = (lattitude,longitude) => (x,y,z)</code> XYZ co-ordinate system (<code>x = [-1.0, 1.0], y = [-1.0, 1.0], z = [-1.0, -1.0]</code>), based on coordinates on the unit sphere (unit radius), which is similar to <a href="https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system" target="_blank">Earth-centered, Earth-fixed coordinate system</a>.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/ecef.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/ecef.svg" /> 
 <p class="figure-header">Figure 25: (lat, long) to (x, y, z) Transformation with ECEF</p>
 
 <p>Where, <code>(x, y, z)</code>: X-axis at latitude 0°, longitude 0° (equator and prime meridian intersection), Y-axis at latitude 0°, longitude 90° (equator and 90°E meridian intersection), Z-axis at latitude 90° (North Pole), Altitude (<code>PM</code> on Figure 25) = Height to the reference ellipsoid/Sphere (Zero for a Round Planet approximation)</p>
@@ -187,12 +187,12 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 
 <p>The projection can simply be imagined as a unit sphere circumscribed by a cube. And a ray is emitted from the center of the sphere to obtain the projection of the point on the sphere to the 6 faces of the cube, that is, the sphere is projected into a cube.</p>
 
-<img class="center-image-0 center-image" src="./assets/posts/spatial-index/s2-cell-step-1-2.svg" /> 
+<img class="center-image-0 center-image" src="./assets/img/posts/spatial-index/s2-cell-step-1-2.svg" /> 
 <p class="figure-header">Figure 26: (lat, long) to (x, y, z) and (x, y, z) to (face, u, v)</p>
 
 <p>The <code>face</code> denotes which of the 6 (0 to 5) cube faces a point on the sphere is mapped onto. Figure 27, shows the 6 faces of the cube (<a href="https://en.wikipedia.org/wiki/Cube_mapping" target="_blank">cube mapping</a>) after the projection. For a unit-sphere, for each face, the point <code>u,v = (0,0)</code> represent the center of the face.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-globe.svg" /> 
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/s2-globe.svg" /> 
 <p class="figure-header">Figure 27: Cube Face (Spherical) Projection</p>
 
 <p>The evident problem here is that, the linear projection leads to same-area cells on the cube having different sizes on the sphere (Length and Area Distortion), with the ratio of highest to lowest area of <code>5.2</code> (areas on the cube can be up to 5.2 times longer or shorter than the corresponding distances on the sphere).</p>
@@ -251,7 +251,7 @@ public static void main(String[] args) {
 </details>
 
 <p>The Cube <code>Face</code> is the largest absolute X,Y,Z component, when component is -ve, back faces are used.</p>
-<img class="center-image-0 center-image-60" src="./assets/posts/spatial-index/s2-xyz-uv.svg" /> 
+<img class="center-image-0 center-image-60" src="./assets/img/posts/spatial-index/s2-xyz-uv.svg" /> 
 <p>Face and XYZ is mapped to UV by using the other two X, Y, Z components (other than largest component of face) and diving it by the largest component, a value between <code>[-1, 1]</code>. Additionally, some faces of the cube are transposed (-ve) to produce the single continuous hilbert curve on the cube.</p>
 
 <hr class="hr">
@@ -260,7 +260,7 @@ public static void main(String[] args) {
 
 <p>The ST coordinate system is an extension of UV with an additional non-linear transformation layer to address the (Area Preservation) disproportionate sphere surface-area to cube cell mapping. Without which, cells near the cube face edges would be smaller than those near the cube face centers.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/spatial-index/s2-cell-step-3.svg" /> 
+<img class="center-image-0 center-image-80" src="./assets/img/posts/spatial-index/s2-cell-step-3.svg" /> 
 <p class="figure-header">Figure 28: (u, v) to (s, t)</p>
 
 <p>S2 uses Quadratic projection for <code>(u,v)</code> => <code>(s,t)</code>. Comparing <code>tan</code> and <code>quadratic</code> projections: The tan projection has the least Area/Distance Distortion. However, quadratic projection, which is an approximation of the tan projection - is much faster and almost as good as tangent.</p>
@@ -293,7 +293,7 @@ public static void main(String[] args) {
 
 <p><code>Cell → Point</code> and <code>Point → Cell</code> represents the transformation from (U, V) to (S, T) coordinates and vice versa.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/spatial-index/s2-uv-st-face-0.svg" /> 
+<img class="center-image-0 center-image-90" src="./assets/img/posts/spatial-index/s2-uv-st-face-0.svg" /> 
 <p class="figure-header">Figure 29: (face, u, v) to (face, s, t); for face = 0</p>
 
 <p>For the quadratic transformation: Apply a square root transformation; sqrt(1 + 3 * u) and to maintain the uniformity of the grid cells</p>
@@ -331,7 +331,7 @@ public static void main(String[] args) {
 
 <p>Why 2<sup>30</sup>? The i and j coordinates are each represented using 30 bits, which is <code>2<sup>30</sup></code> distinct values for both i and j coordinates (every cm² of the earth), this large range allows precise positioning within each face of the cube (high spatial resolution). The total number of unique cells is <code>6 x (2<sup>30</sup> × 2<sup>30</sup>)</code></p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-st-ij.svg" />
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/s2-st-ij.svg" />
 <p class="figure-header">Figure 30: (face, s, t) to (face, i, j); for face = 0</p>
 
 <details class="code-container"><summary class="p">4.2.4a. S2 ST to IJ - Snippet</summary>
@@ -348,7 +348,7 @@ public static void main(String[] args) {
 <h3>4.2.5. (Face,I,J) to S2 Cell ID</h3>
 <p>The hierarchical sub-division of each cube face into 4 equal quadrants calls for Hilbert Space-Filling Curve (<a href="/spatial-index-space-filling-curve#2-2-hilbert-curve-intuition">Section 2.2</a>): to enumerate cells along a Hilbert space-filling curve.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-ij-cell.svg" />
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/s2-ij-cell.svg" />
 <p class="figure-header">Figure 31: (face, i, j) to Hilbert Curve Position</p>
 
 <p>Hilbert Curve preserves spatial locality, meaning, the values that are close on the cube face/surface, are numerically close in the Hilbert curve position (illustration in Figure 31 - Level 3).</p>
@@ -390,7 +390,7 @@ public static void main(String[] args) {
 
 <p>The <b>S2 Cell ID</b> is represented by a <code>64-bit</code> integer,</p> 
 <ul>
-<img class="center-image-0 center-image-70" src="./assets/posts/spatial-index/s2-cell-id.svg" />
+<img class="center-image-0 center-image-70" src="./assets/img/posts/spatial-index/s2-cell-id.svg" />
 <p class="figure-header">Figure 32: (face, i, j) to S2 Cell ID</p>
 <li>the left <code>3 bits</code> are used to represent the cube face <code>[0-5],</code></li>
 <li>the next following <code>60 bits</code> represents the Hilbert Curve position,</li>
@@ -443,7 +443,7 @@ public static void main(String[] args) {
 <details open class="text-container"><summary class="h4">4.3. S2 - Conclusion</summary>
 <p>Google's S2 provides spatial indexing by using hierarchical decomposition of the sphere into cells through a combination of Hilbert curves and cube face (spherical) projection. This approach mitigates some of the spatial locality issues present in Z-order curves and offers more balanced surface area representations. S2's use of (face, u, v) coordinates, quadratic projection, and Hilbert space-filling curves ensures efficient and precise spatial indexing.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/spatial-index/s2-stats.svg" />
+<img class="center-image-0 center-image-100" src="./assets/img/posts/spatial-index/s2-stats.svg" />
 
 <p>Closing with a strong pro and a con, S2 offers a high resolution of as low as <code>0.48 cm²</code> cell size (level 30), but the number of cells required to cover a given polygon isn't the best. This makes it a good transition to talk about Uber's <a href="https://www.uber.com/en-CA/blog/h3/" target="_blank">H3</a>. The question is, <a href="/cartograms-documentation#hexagonsvssquares">Why Hexagons?</a></p>
 </details>

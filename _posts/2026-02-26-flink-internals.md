@@ -17,7 +17,7 @@ highlight: green
 
 <p>The user-facing side is the Client, where the application code lives. This includes the <code>DataStream</code> API calls, job configuration, and JAR packaging. The Client's job is to compile that code into a graph representation and submit it to the cluster.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-program.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/flink/flink-program.svg">
 
 <p>The system side consists of the <code>JobManager</code> and <code>TaskManagers</code>. The <code>JobManager</code> receives the submitted job, plans its execution, and coordinates the entire lifecycle: scheduling, checkpointing, failure recovery. <code>TaskManagers</code> are the workers that receive individual tasks from the <code>JobManager</code> and run the actual data processing.</p>
 
@@ -27,18 +27,18 @@ highlight: green
 
 <p>Consider a simple streaming job: read from a source, apply a map transformation, group by key, aggregate in a window, and write to a sink.</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/flink/flink-topology.svg">
+<img class="center-image-0 center-image-65" src="./assets/img/posts/flink/flink-topology.svg">
 
 <p>Code does not execute anything until env.execute() is called. Between that call and actual task execution, Flink builds a series of progressively more detailed graphs.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-planning.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-planning.svg">
 
 <h3>2.1. Transformations</h3>
 
 <p>Each API call (<code>fromSource, map, keyBy, window, apply, sinkTo</code>) creates a <code>Transformation</code> object and appends it to a list inside the <code>StreamExecutionEnvironment</code>. Each <code>Transformation</code> holds a reference to its input, its output type, its parallelism, and the operator logic.</p>
 <p>Because each one points back to its input(s), they implicitly form a DAG.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-transformations.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-transformations.svg">
 
 <details class="text-container"><summary class="p"> &nbsp;Relevant Packages and Classes</summary>
 <p>In <code>streaming/api/transformations/</code></p>
@@ -58,7 +58,7 @@ SinkTransformation
 
 <p>Non-physical Transformations like <code>PartitionTransformation</code> (created by keyBy) don't produce their own node. Instead, they attach partitioning information to the downstream edge. These are handled as virtual nodes during generation.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-logical-topology.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/flink/flink-logical-topology.svg">
 
 <p>The resulting StreamGraph is a direct representation of the job logic. No optimization has happened yet.</p>
 
@@ -81,7 +81,7 @@ etc.
 
 <p>The <code>StreamGraph</code> is compiled into a <code>JobGraph</code> by <code>StreamingJobGraphGenerator</code>. The key optimization here is operator chaining: operators that meet certain conditions are fused into a single <code>JobVertex</code>.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-operator-chaining.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/flink/flink-operator-chaining.svg">
 
 <p>Source and Map chain together (same parallelism, forward edge). The keyBy between Map and Window introduces a hash partitioner, a shuffle boundary, so those two cannot chain. Window and Sink also cannot chain because their parallelism differs (2 vs 1). That gives three JobVertices.</p>
 
@@ -105,7 +105,7 @@ JobEdge
 <p>Each operator runs at some parallelism, the number of parallel instances (subtasks) that execute it. At parallelism N, the operator's data stream is divided into N stream partitions.</p>
 
 <p>Using the same example:</p>
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-physical-topology.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-physical-topology.svg">
 
 <p>Each subtask produces a stream partition, an independent slice of the data.
 Between operators, data either flows forward or gets redistributed:</p>
@@ -135,7 +135,7 @@ In <code>streaming/api/graph/</code>
 
 <p>The <code>JobGraph</code> is submitted to the <code>JobManager</code>. The <code>JobMaster</code> takes each <code>JobVertex</code> and expands it by parallelism to produce the <code>ExecutionGraph</code>.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-execution-graph.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/flink/flink-execution-graph.svg">
 
 <p>Each <code>JobVertex</code> becomes an <code>ExecutionJobVertex</code>. Each parallel instance becomes an <code>ExecutionVertex</code>. Each <code>ExecutionVertex</code> tracks its current Execution attempt. If a subtask fails and needs to restart, a new Execution is created for the same <code>ExecutionVertex</code>.</p>
 
@@ -162,7 +162,7 @@ Execution.
 
 <p>Going back to the example, <code>keyBy(...).window(TumblingEventTimeWindows.of(Time.seconds(10)))</code>, the window operator collecting events for 10 seconds needs to store that data somewhere until the window fires. Each parallel subtask of a stateful operator maintains its own local state storage. This storage is embedded within the TaskManager process, so state access is fast and does not require any network calls.</p>
 
-<img class="center-image-0 center-image-60" src="./assets/posts/flink/flink-window-state.svg">
+<img class="center-image-0 center-image-60" src="./assets/img/posts/flink/flink-window-state.svg">
 
 <p>The storage engine behind this is called the State Backend. Flink provides two production-ready options:</p>
 
@@ -196,7 +196,7 @@ ForStStateBackend
 <h3>3.2.1. Keyed State</h3>
 <p>Keyed State is partitioned by key. In the example job, the <code>keyBy(...)</code> before the window means each window subtask only processes events for its assigned keys. The window operator internally uses keyed state to buffer incoming events until the window fires. In `MyJob` that buffer is a <code>ListState</code> scoped to each key, stored in whichever state backend is configured.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-state.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-state.svg">
 
 <p>Beyond the internal use by windows, Flink exposes keyed state primitives for custom operators:</p>
 <ul>
@@ -232,11 +232,11 @@ ForStStateBackend
 
 <div class="slider" id="slider2">
   <div class="slides center-image-0 center-image-70">
-    <img src="./assets/posts/flink/flink-checkpoint-1.svg" class="slide">
-    <img src="./assets/posts/flink/flink-checkpoint-2.svg" class="slide">
-    <img src="./assets/posts/flink/flink-checkpoint-3.svg" class="slide">
-    <img src="./assets/posts/flink/flink-checkpoint-4.svg" class="slide">
-    <img src="./assets/posts/flink/flink-checkpoint-5.svg" class="slide">
+    <img src="./assets/img/posts/flink/flink-checkpoint-1.svg" class="slide">
+    <img src="./assets/img/posts/flink/flink-checkpoint-2.svg" class="slide">
+    <img src="./assets/img/posts/flink/flink-checkpoint-3.svg" class="slide">
+    <img src="./assets/img/posts/flink/flink-checkpoint-4.svg" class="slide">
+    <img src="./assets/img/posts/flink/flink-checkpoint-5.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider2')" class="prev black-button">Prev</button>
@@ -266,7 +266,7 @@ SubtaskCheckpointCoordinator
 
 <p>For operators with multiple inputs (like after a shuffle), the barrier must arrive from all input channels before the snapshot is taken. This is called barrier alignment, and it ensures that no pre-checkpoint and post-checkpoint data gets mixed. This alignment can briefly pause processing on the faster channels, which is a tradeoff explored further in unaligned checkpoints.</p>
 
-<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-window-barrier.svg">
+<img class="center-image-0 center-image-75" src="./assets/img/posts/flink/flink-window-barrier.svg">
 
 <p>While aligned checkpoint (default) guarantees a clean cut: the snapshot contains exactly the state that results from all records before the barrier and none after, the pausing can cause backpressure. If one channel is significantly faster than another, the fast channel's data backs up, stalling upstream operators.</p>
 
@@ -282,7 +282,7 @@ AlternatingCollectingBarriersUnaligned
 
 <p>Instead of pausing, the operator reacts to the first barrier it sees from any channel. It immediately forwards the barrier downstream and continues processing all channels. The records that are already in the input/output buffers (in-flight data between the two barriers) are stored as part of the checkpoint state.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/flink/flink-unaligned-checkpoint.svg">
+<img class="center-image-0 center-image-80" src="./assets/img/posts/flink/flink-unaligned-checkpoint.svg">
 
 <p>The result: checkpoint duration becomes independent of throughput and alignment time. Barriers travel through the DAG as fast as possible. The tradeoff is larger checkpoint sizes (in-flight data is included) and more I/O.</p>
 
@@ -305,7 +305,7 @@ AlternatingCollectingBarriersUnaligned
 <p>Going back to the example job, the Window operator [2] buffers events in RocksDB until the 10 second window fires. With incremental checkpoints enabled and 2 retained checkpoints:</p>
 
 <div style="width: 100%; overflow-x: auto;">
-<img class="center-image-0 center-image-100" style="width: 135%; max-width: none; display: block;" src="./assets/posts/flink/flink-incremental-checkpoint.svg">
+<img class="center-image-0 center-image-100" style="width: 135%; max-width: none; display: block;" src="./assets/img/posts/flink/flink-incremental-checkpoint.svg">
 </div>
 
 <p>Flink tracks which SST files are new or deleted between checkpoints and only uploads the delta.</p>
@@ -346,7 +346,7 @@ AlternatingCollectingBarriersUnaligned
 <li><p>Processing resumes from that point. Every record after the checkpoint offset is reprocessed, but since the state has been rolled back to match, the end result is as if the failure never happened.</p></li>
 </ul>
 
-<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-state-restore.svg">
+<img class="center-image-0 center-image-75" src="./assets/img/posts/flink/flink-state-restore.svg">
 
 <p>This is what gives Flink <code>exactly-once</code> processing semantics. Records between the checkpoint and the failure are reprocessed, but the state they are applied to has been rolled back to before those records were processed the first time. No double counting.</p>
 
@@ -361,7 +361,7 @@ AlternatingCollectingBarriersUnaligned
 <li><p>Ingestion Time (least common/discouraged): The timestamp assigned when the event enters Flink. More stable than processing time, but still does not reflect actual event occurrence.</p></li>
 </ul>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-times.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-times.svg">
 
 <p>In the example job, <code>TumblingEventTimeWindows.of(Time.seconds(10))</code> uses event time. The window boundaries are determined by the timestamps in the data, not by when the records happen to arrive. This makes the results deterministic and reproducible.</p>
 
@@ -369,7 +369,7 @@ AlternatingCollectingBarriersUnaligned
 
 <p>Processing time is always monotonically increasing, the wall clock only moves forward. Event time has no such guarantee. In distributed systems, events produced in order can arrive at Flink out of order due to network delays, partitioning, or upstream buffering.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/flink/flink-disorder.svg">
+<img class="center-image-0 center-image-80" src="./assets/img/posts/flink/flink-disorder.svg">
 
 <p>A window covering <code>t=1</code> to <code>t=5</code> cannot simply close when it sees <code>t=6</code>, because <code>t=4</code> or <code>t=5</code> might still be in transit. The system needs a way to know when it is safe to fire the window.</p>
 
@@ -377,7 +377,7 @@ AlternatingCollectingBarriersUnaligned
 
 <p>Watermarks are Flink's solution to the disorder problem. A watermark is a special marker that flows through the data stream carrying a timestamp <code>t</code>. It declares: "no more events with a <code>timestamp ≤ t</code> will arrive."</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/flink/flink-watermarks.svg">
+<img class="center-image-0 center-image-80" src="./assets/img/posts/flink/flink-watermarks.svg">
 
 <p>When the window operator receives a watermark that passes the window's end time, it knows the window is complete and fires it. Until that watermark arrives, the window holds its state.</p>
 
@@ -409,7 +409,7 @@ InternalTimerService
 
 <p>A running Flink cluster consists of two types of JVM processes: one <code>JobManager</code> and one or more <code>TaskManagers</code>.</p>
 
-<img class="center-image-0 center-image-45" src="./assets/posts/flink/flink-runtime.svg">
+<img class="center-image-0 center-image-45" src="./assets/img/posts/flink/flink-runtime.svg">
 
 <h3>5.1. Job Manager</h3>
 
@@ -441,7 +441,7 @@ InternalTimerService
 Importantly, the ResourceManager knows nothing about job logic. It deals purely in slots: who has them, who needs them, and how to provision more.</p>
 
 <p>Slot Allocation Flow:</p>
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-allocation-flow.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-allocation-flow.svg">
 
 <h3>5.1.3. Job Master</h3>
 
@@ -457,7 +457,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>The scheduler works with the <code>SlotPool</code>, which is the JobMaster's local view of allocated slots. The SlotPool uses a declarative resource model: it declares how many slots of what profile it needs, the <code>ResourceManager</code> fulfills them, and TaskManagers offer the allocated slots back to the JobMaster. Once slots are available, the scheduler assigns <code>ExecutionVertex</code> instances to them and triggers deployment.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-jobmaster.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-jobmaster.svg">
 
 <p>For a pure streaming job like <code>MyJob</code>, the entire job is one pipelined region. On scheduling start, it finds all source regions and schedules them. Since everything is one region, all tasks launch at once.<p>
 
@@ -488,7 +488,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>Suspension (HA only): <code>RUNNING → SUSPENDED</code>. <code>SUSPENDED</code> only occurs when high availability is configured and the JobMaster loses leadership. The job is not removed from the HA store, it just means this particular JobMaster has stopped managing it. Another <code>JobMaster</code> (or the same one after regaining leadership) will pick the job back up and restart it.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-job-cycle.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/flink/flink-job-cycle.svg">
 
 <h3>5.2. Task Manager</h3>
 
@@ -506,7 +506,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>By default, Flink places all operators of a job into the same <code>SlotSharingGroup</code>. This means one subtask from each operator in the pipeline can be co-located in a single slot. For the running <code>MyJob</code> example:</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/flink/flink-task-slot.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/flink/flink-task-slot.svg">
 
 <p>The design motivation is twofold. First, it means a job with N pipeline stages does not need <code>N × parallelism</code> slots. The number of slots needed equals the maximum parallelism across all operators (here: 2). Second, co-locating a full pipeline slice in one slot enables forward connections to stay local (in-memory data exchange, no network serialization).</p>
 
@@ -522,7 +522,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>For MyJob (Source+Map chained, parallelism 2 → Window parallelism 2 → Sink parallelism 1):</p>
 
-<img class="center-image-0 center-image-50" src="./assets/posts/flink/flink-task-execution-model.svg">
+<img class="center-image-0 center-image-50" src="./assets/img/posts/flink/flink-task-execution-model.svg">
 
 <p>Source and Map are chained, so they share a thread with no serialization between them. The <code>keyBy</code> triggers an all-to-all shuffle: each SourceMap subtask's ResultPartition has 2 SubPartitions (one per Window subtask), and each Window subtask's InputGate has 2 InputChannels (one per SourceMap subtask).</p> 
 
@@ -540,7 +540,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p><b>Memory</b> is handled by the per-slot <code>MemoryManager</code> (managed off-heap memory) and the <code>IOManager</code> (disk spill). Within managed memory, <code>SharedResources</code> enables reference-counted sharing of resources like RocksDB caches across operators in the same slot. State backends like RocksDB/ForSt and operators that sort or hash data use managed memory. The <code>IOManager</code> provides temporary file channels for spilling when memory is exhausted.</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/flink/flink-task-executor-services.svg">
+<img class="center-image-0 center-image-65" src="./assets/img/posts/flink/flink-task-executor-services.svg">
 
 <p><b>State and Checkpointing</b> services support fault tolerance. The <code>LocalStateStoresManager</code> maintains local copies of state on disk for faster recovery (instead of always fetching from the distributed checkpoint store). The <code>FileMergingManager</code> is a newer optimization that merges many small checkpoint files into fewer larger ones to reduce file system pressure. The <code>ChangelogStoragesManager</code> supports the changelog state backend. The <code>ChannelStateExecutorFactory</code> handles snapshotting in-flight network buffers for unaligned checkpoints.</p>
 
@@ -558,13 +558,13 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>Within Total Flink Memory, the heap is split into Framework and Task. Both live in the same JVM heap at runtime; Flink does not enforce isolation between them. The separation exists for budgeting: it ensures the framework always has enough headroom for coordination even when user code is memory intensive. Task Heap has no fixed default because it is the remainder after every other component is subtracted from Total Flink Memory.</p>
 
-<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-total-memory.svg">
+<img class="center-image-0 center-image-75" src="./assets/img/posts/flink/flink-total-memory.svg">
 
 <p>The off-heap region covers Framework Off-Heap, Task Off-Heap, and Network Memory. All three are counted toward <code>-XX:MaxDirectMemorySize</code>. Network Memory is allocated as JVM direct memory (<code>ByteBuffer.allocateDirect()</code>), used exclusively for the network buffer pool that moves data between tasks. Framework and Task Off-Heap budget for both JVM direct memory and native memory; Flink counts their full configured amount toward the JVM direct memory limit as a conservative measure.</p>
 
 <p>Managed Memory in practice is scoped per slot, not per task. Each slot gets its own <code>MemoryManager</code> with a budget of total managed memory divided by the number of slots. All tasks sharing a slot (through slot sharing) share this budget. For the <code>MyJob</code> example:</p>
 
-<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-task-memory-budget.svg">
+<img class="center-image-0 center-image-75" src="./assets/img/posts/flink/flink-task-memory-budget.svg">
 
 <p>Managed Memory is different: it lives outside JVM direct memory entirely. For stateful operators using RocksDB, Flink reserves a budget and RocksDB allocates its own native memory through JNI. (invisible to <code>-XX:MaxDirectMemorySize</code>). This means Managed Memory and Network Memory never compete for the same JVM budget, and the state backend (RocksDB/ForSt) cannot accidentally starve the network layer.</p>
 
@@ -582,11 +582,11 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 <p>As covered in the Task Execution Model, slot sharing places each pipeline slice into a single slot. With a small twist for this section, the two slots sit on two different TaskManagers. This means some connections are <code>local</code> (same TM) and some are <code>remote</code> (cross-TM, over TCP via Netty).</p>
 
 <p>Whether a connection is local or remote depends entirely on where the subtasks land:</p>
-<img class="center-image-0 center-image-75" src="./assets/posts/flink/flink-example-recap.svg">
+<img class="center-image-0 center-image-75" src="./assets/img/posts/flink/flink-example-recap.svg">
 
 <p>Each remote connection gets its own <code>TCP</code> channel. Consider a higher parallelism, i.e. parallelism 4 across two TaskManagers offering 2 slots each, multiple subtasks of the same task share a <code>TaskManager</code>. Their remote connections toward the same destination TaskManager are then multiplexed over a single TCP channel, reducing resource usage.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/flink/flink-tcp-channel.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/flink/flink-tcp-channel.svg">
 
 <p>Each subtask's output is a <code>ResultPartition</code>, split into <code>ResultSubpartitions</code>, one per downstream consumer. In the example, each SourceMap subtask has a <code>ResultPartition</code> with 4 ResultSubpartitions (one for each Window subtask). Each Window subtask has a ResultPartition with 1 ResultSubpartition (the single Sink subtask).</p>
 
@@ -608,7 +608,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 <li>Floating buffers (8 per gate): shared across all channels in the gate, borrowed on demand.</li>
 </ul>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/flink/flink-flow-control.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/flink/flink-flow-control.svg">
 
 <p>If there are not enough floating buffers available globally, each buffer pool gets a share proportional to its capacity of whatever is available. The cycle:</p>
 
@@ -635,7 +635,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 <li><p>Special event: checkpoint barriers, end-of-partition events, etc. These finish all in-progress buffers immediately and add the event to every subpartition.</p></li>
 </ul>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/flink/flink-buffer-flushing.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/flink/flink-buffer-flushing.svg">
 
 <p>The buffer is added to the subpartition queue while still being written to (via the <code>BufferBuilder</code> / <code>BufferConsumer</code> pair). The writer appends through the <code>BufferBuilder</code>, Netty reads through the BufferConsumer. This avoids synchronization on every record, the two sides only coordinate through the buffer's reader and writer indices.</p>
 
@@ -645,7 +645,7 @@ Importantly, the ResourceManager knows nothing about job logic. It deals purely 
 
 <p>The very first section introduced the high-level picture: Client, JobManager, TaskManagers. Here is the same diagram, redrawn with everything covered since.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/flink/flink-end-to-end.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/flink/flink-end-to-end.svg">
 
 <p>If you made it this far, you now have a solid mental model of what happens inside a running Flink job, from graph compilation and operator chaining to state snapshots, flow control, and much more. Not everything Flink does, but enough to reason about what is actually going on when a job runs.</p>
 

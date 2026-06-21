@@ -5,7 +5,7 @@ date: 2022-11-30
 tags:
   - Wisdom
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/alright.png
+feature: assets/img/featured/alright.png
 category: Life
 ---
 

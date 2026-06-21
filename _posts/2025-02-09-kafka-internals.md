@@ -6,8 +6,8 @@ tags:
 - System Design
 - Realtime
 author: Adesh Nalpet Adimurthy
-image: assets/featured/webp/the-kafka.webp
-feature: assets/featured/webp/the-kafka.webp
+image: assets/img/featured/webp/the-kafka.webp
+feature: assets/img/featured/webp/the-kafka.webp
 category: System Wisdom
 ---
 <div class="blog-reference">
@@ -16,7 +16,7 @@ category: System Wisdom
 
 <p><code>14 years</code> of <a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>! Kafka is the de facto standard for event streaming, just like AWS S3 is for object storage and PostgreSQL is for RDBMS. While every TD&H (SWE) has likely used Kafka, managing a Kafka cluster is a whole other game. The long list of <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">high-importance configurations</a> is a testament to this. In this blog post, the goal is to understand Kafka's internals enough to make sense of its many configurations and highlight best practices.</p>
 
-<img class="center-image-0 center-image-50" src="./assets/posts/kafka/kafka-api.webp">
+<img class="center-image-0 center-image-50" src="./assets/img/posts/kafka/kafka-api.webp">
 
 <p>On a completely different note, the cost and operational complexity of Kafka have led to the emergence of alternatives, making the <code>Kafka API</code> the de facto standard for event streaming, similar to the S3 API and PG Wire. Some examples include: Confluent Kafka, RedPanda, WrapStream, AutoMQ, AWS MSK, Pulsar, and many more!</p>
 
@@ -26,7 +26,7 @@ category: System Wisdom
 <p>The core concept of Kafka revolves around streaming events. An event can be anything, typically representing an action or information of what happened such as a button click or a temperature reading.</p> 
 <p>Each event is modeled as a <code>record</code> in Kafka with a <code>timestamp</code>, <code>key</code>, <code>value</code>, and optional <code>headers</code>.</p> 
 
-<img class="center-image-0 center-image-70" src="./assets/posts/kafka/event-stream.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/kafka/event-stream.svg">
 
 <p>The payload or event data is included in the <code>value</code>, and the <code>key</code> is used for:</p>
 
@@ -43,14 +43,14 @@ category: System Wisdom
 <h3>2. Kafka Topics</h3>
 <p>As for comparison, <code>topics</code> are like tables in a database. In the context of Kafka, they are used to organize events of the same type, hence the same schema, together. Therefore, the producer specifies which topic to publish to, and the subscriber or consumer specifies which topic(s) to read from. Note: the stream is immutable and append-only.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/kafka/kafka-cluster.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/kafka/kafka-cluster.svg">
 
 <p>The immediate question is, how do we distribute data in topics across different nodes in the Kafka cluster? This calls for a way to distribute data within the topic. That's where <code>partitions</code> come into play.</p>
 
 <h3>2.1. Kafka Topic Partitions</h3>
 <p>A Kafka topic can have one or more <code>partitions</code>, and a partition can be regarded as the unit of data distribution and also a unit of <code>parallelism</code>. Partitions of a topic can reside on different nodes of the Kafka cluster. Each partition can be accessed independently, hence you can only have as many consumers as the number of partitions (strongly dictating horizontal scalability of consumers).</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/kafka/kafka-partitions.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/kafka/kafka-partitions.svg">
 
 <p>Furthermore, each event/record within the partition has a unique ID called the <code>offset</code>, which is a monotonically increasing number, once an offset number is assigned, it's never reused. The events in the partition are delivered to the consumer in assigned offset order.</p>
 
@@ -64,7 +64,7 @@ category: System Wisdom
 <li>More partitions mean more consumers in a <code>consumer group</code>, leading to higher throughput. Each consumer can consume messages from multiple partitions, but one partition cannot be shared across consumers in the same consumer group.</li>
 </ul>
 
-<img class="center-image-0 center-image-85" src="./assets/posts/kafka/kafka-cluster-example.svg">
+<img class="center-image-0 center-image-85" src="./assets/img/posts/kafka/kafka-cluster-example.svg">
 
 <p>However, it's important to strike a balance when choosing the number of partitions. More partitions may increase unavailability/downtime periods.</p>
 <ul>
@@ -80,7 +80,7 @@ category: System Wisdom
 
 <p>The idea behind choosing the number of partitions is to measure the maximum throughput that can be achieved on a single partition (for both production and consumption) and choose the number of partitions to accommodate the <code>target throughput</code>.</p>
 
-<img class="center-image-0 center-image-60" src="./assets/posts/kafka/partitions-equation.svg">
+<img class="center-image-0 center-image-60" src="./assets/img/posts/kafka/partitions-equation.svg">
 
 <p>The reason for running these benchmarks to determine the number of partitions is that it depends on several factors such as: batching size, compression codec, type of acknowledgment, replication factor, etc. To accommodate for the buffer, choose <code>(1.2 * P)</code> or higher; It's a common practice to <code>over-partition</code> by a bit.</p>
 
@@ -93,7 +93,7 @@ category: System Wisdom
 
 <p>Diving into the workings of the data plane, there are two types of requests the Kafka broker handles: the put requests from the producer and the get requests from the consumer.</p>
 
-<img class="center-image-0 center-image-70" src="./assets/posts/kafka/record-batch.svg">
+<img class="center-image-0 center-image-70" src="./assets/img/posts/kafka/record-batch.svg">
 
 <h3>3.1. Producer</h3>
 <p>The <b>producer</b> requests start with the producer application, sending the request with the key and value. The Kafka producer library determines which partition the messages should be produced to. This is done by using a hash algorithm to assign a partition based on the supplied partition key. Hence, records with the same key always go to the same partition. When a partition key is not assigned, the default mechanism is to use round-robin to choose the next partition.</p>
@@ -108,7 +108,7 @@ category: System Wisdom
 
 <p>To avoid network threads being overwhelmed by incoming data, a <code>socket buffer</code> stands before the network threads that buffers incoming requests.</p>
 
-<img class="center-image-0 center-image-80" src="./assets/posts/kafka/network-thread-producer.svg">
+<img class="center-image-0 center-image-80" src="./assets/img/posts/kafka/network-thread-producer.svg">
 
 <p>The network handles each producer/client request throughout the rest of its lifecycle (the same network thread keeps track of the request through the entire process; the request is fully handled and the response is sent). For example, if a producer sends messages to a Kafka topic:</p>
 <ul>
@@ -123,7 +123,7 @@ category: System Wisdom
 
 <p>Note: In order to guarantee the order of requests from a client, the network thread handles one request per client at a time; i.e., only after completing a request (with a response), does the network thread take another request from the same client.</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/kafka/i-o-threads.svg">
+<img class="center-image-0 center-image-65" src="./assets/img/posts/kafka/i-o-threads.svg">
 
 <p>The second main pool in Kafka, the <code>I/O threads</code>, picks requests from the shared <code>request queue</code>. The I/O threads handle requests from any client, unlike the network threads.</p> 
 
@@ -142,7 +142,7 @@ category: System Wisdom
 
 <p>The suffix (<code>0, 25 & 4580</code>) in the segment's file name represents the base offset (i.e., the offset of the first message) of the segment.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/kafka/segment.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/kafka/segment.svg">
 
 <p>The commit log (per partition) is organized on <code>disk</code> as <code>segments</code>. Each segment has two main parts: the actual <code>data</code> and the <code>index</code> (<code>.log</code> and <code>.index</code>), which stores the position inside the log file. By default, the broker acknowledges the produce request only after replicating across other brokers (based on the <code>replication factor</code>), since Kafka offers high durability via replication.</p>
 
@@ -152,7 +152,7 @@ category: System Wisdom
 
 <p>While waiting for full replication, the I/O thread is not blocked. Instead, the pending produce requests are stashed in the <code>purgatory</code>, and the I/O Thread is freed up to process the next set of requests.</p>
 
-<img class="center-image-0 center-image-65" src="./assets/posts/kafka/purgatory.svg">
+<img class="center-image-0 center-image-65" src="./assets/img/posts/kafka/purgatory.svg">
 
 <p>Once the data of the pending producer request is fully replicated, the request is then moved out of the purgatory</p>
 
@@ -160,7 +160,7 @@ category: System Wisdom
 
 <p>and then sent to the <code>shared response queue</code>, which is then picked up by the network thread and sent through the <code>socket send buffer</code>.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/kafka/broker-client.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/kafka/broker-client.svg">
 
 <h3>3.2. Consumer</h3>
 
@@ -181,13 +181,13 @@ category: System Wisdom
 
 <p>Tiered storage in Kafka was introduced as an early access feature in 3.6.0 (October 10, 2023).</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/kafka/broker-local-storage.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/kafka/broker-local-storage.svg">
 
 <p><code>Tiered storage</code> is a common storage architecture that uses different classes/layers/tiers of storage to efficiently store and manage data based on access patterns, performance needs, and cost. A typical tier model has frequently accessed data or "hot" data, and less frequently accessed data is moved (not copied) to a lower-cost, lower-performance storage ("warm"). Outside of the tiers, "cold" storage is a common practice for storing backups.</p>
 
 <p>Kafka is designed to ingest large volumes of data. Without tiered storage, a single broker is responsible for hosting an entire replica of a topic partition, adding a limit to how much data can be stored. This isn't much of a concern in real-time applications where older data is not relevant.</p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/kafka/broker-tiered-storage.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/kafka/broker-tiered-storage.svg">
 
 <p>But in cases where historical data is necessary, tiered storage allows storing less frequently accessed data in remote storage (not present locally in the broker).</p>
 
@@ -200,7 +200,7 @@ category: System Wisdom
 
 <p>Coming back to the fetch request (from consumer) with <code>tiered storage</code> enabled: If the consumer requests from an <code>offset</code>, the data is served the same way as before from the <code>page cache</code>. </p>
 
-<img class="center-image-0 center-image-90" src="./assets/posts/kafka/broker-consumer-tiered-storage.svg">
+<img class="center-image-0 center-image-90" src="./assets/img/posts/kafka/broker-consumer-tiered-storage.svg">
 
 <p>The chances of most local data being in the page cache are also higher (due to smaller local data). However, if the data is not present locally and is in the <code>remote store</code>, the broker will stream the remote data from the object store into an in-memory buffer via the <code>Tiered Fetch Threads</code>, all the way to the remote <code>socket send buffer</code> in the network thread.</p> 
 
@@ -212,7 +212,7 @@ category: System Wisdom
 
 <p>Each partition of the topic will be replicated across replicas (<code>replication factor</code>).</p>
 
-<img class="center-image-0 center-image-95" src="./assets/posts/kafka/data-replication.svg">
+<img class="center-image-0 center-image-95" src="./assets/img/posts/kafka/data-replication.svg">
 
 <p>One of the replicas is assigned to be the <code>leader</code> of that partition, and the rest are called <code>followers</code>. The producer sends the data to the leader, and the followers retrieve the data from the leader for replication. In a similar fashion, the consumer reads from the leader; however, the consumer(s) can also read from the follower(s).</p>
 

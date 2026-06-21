@@ -7,7 +7,7 @@ tags:
   - Python
   - Data Structures
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/external-sorting-totoro.png
+feature: assets/img/featured/external-sorting-totoro.png
 category: Code on the Road
 ---
 
@@ -145,8 +145,8 @@ The final output: `1, 2, 3, 4, 5, 6, 7, 8, 9, 10` 😎
 Since you are anyway here, Checkout [sorting-algorithms](https://github.com/addu390/sorting-algorithms) 🚀 to compare sort algorithms; here’s a comparison of the external sort with in-memory merge sort.
 
 
-<img src="./assets/posts/powers_of_2.png" /> 
+<img src="./assets/img/posts/powers_of_2.png" /> 
 <p style="text-align: center;">Figure 1: For Powers of 2</p>
 
-<img src="./assets/posts/powers_of_10.png" /> 
+<img src="./assets/img/posts/powers_of_10.png" /> 
 <p style="text-align: center;">Figure 2: For Powers of 10</p>

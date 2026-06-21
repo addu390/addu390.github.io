@@ -7,7 +7,7 @@ tags:
   - C++
   - Data Structures
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/popeye-convex-hull.png
+feature: assets/img/featured/popeye-convex-hull.png
 category: Code on the Road
 ---
 
@@ -70,7 +70,7 @@ float_orient(p2, p3, p4) > 0
 float_orient(p3, p1, p4) > 0 (??)
 ```
 
-<img width="80%" src="./assets/posts/convex-hull-failure-1.png" /> 
+<img width="80%" src="./assets/img/posts/convex-hull-failure-1.png" /> 
 <p style="text-align: center;">Figure 1: Computer Convex Hull</p>
 
 The above figure shows the computed convex hull, where a point that is clearly extreme is left out of the convex hull; `p1 ≈ (17, 17), p2 ≈ (24, 24) ≈ p3`
@@ -120,7 +120,7 @@ float orient(p2, p3, p4) < 0
 float orient(p3, p1, p4) < 0 (??) 
 ```
 
-<img src="./assets/posts/convex-hull-failure-2.png" /> 
+<img src="./assets/img/posts/convex-hull-failure-2.png" /> 
 <p style="text-align: center;">Figure 2: Schematic view of Failure 3: The point p4 sees all edges of the triangle (p1, p2, p3)</p>
 
 The first three points form a counterclockwise oriented triangle, and according to `float_orient`, the algorithm believes that `p4` can see all edges of the triangle.

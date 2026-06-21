@@ -6,7 +6,7 @@ tags:
   - Design Patterns
   - Java
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/java-visitor-pattern.png
+feature: assets/img/featured/java-visitor-pattern.png
 category: Java Lava
 ---
 

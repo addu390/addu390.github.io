@@ -7,8 +7,8 @@ tags:
 - Data Structures
 author: Adesh Nalpet Adimurthy
 premium: true
-image: assets/featured/webp/graph-theory-search.webp
-feature: assets/featured/webp/graph-theory-search.webp
+image: assets/img/featured/webp/graph-theory-search.webp
+feature: assets/img/featured/webp/graph-theory-search.webp
 category: Code on the Road
 ---
 
@@ -24,14 +24,14 @@ category: Code on the Road
 
 <div class="slider" id="slider1">
   <div class="slides center-image-0 center-image-40">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-basic/dfs-basic-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-basic/dfs-basic-Page-8.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider1')" class="prev black-button">Prev</button>
@@ -59,20 +59,20 @@ category: Code on the Road
 <p>In the previous example, we understood to <a href="https://en.wikipedia.org/wiki/Backtracking" target="_blank">back-track</a> when we reach a leaf node. Taking an example with a graph this time to cover the "detecting a cycle" scenario, i.e., visiting a node that was previously visited.</p>
 <div class="slider" id="slider2">
   <div class="slides center-image-0 center-image-60">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-8.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-9.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-10.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-11.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-12.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-13.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-graph/dfs-graph-Page-14.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-9.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-10.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-11.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-12.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-13.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-graph/dfs-graph-Page-14.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider2')" class="prev black-button">Prev</button>
@@ -90,20 +90,20 @@ category: Code on the Road
 <h3>1.2.1. DFS: Stack</h3>
 <p>The intuition behind using a <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)" target="_blank">stack</a> is that when we reach a dead-end, we want to get to the previously added node (LIFO: Last-In First-Out) and explore other paths. This helps you explore each path deeply before backtracking, done using a stack to go back to the last node.</p>
 
-<img class="slides center-image-0" style="width: 28%" src="./assets/posts/graph-theory/stack-ds.svg">
+<img class="slides center-image-0" style="width: 28%" src="./assets/img/posts/graph-theory/stack-ds.svg">
 
 <p>Easier to understand with visualization:</p>
 
 <div class="slider" id="slider3">
   <div class="slides center-image-0 center-image-80">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-stack/dfs-tree-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-stack/dfs-tree-Page-8.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider3')" class="prev black-button">Prev</button>
@@ -197,18 +197,18 @@ category: Code on the Road
 
 <div class="slider" id="slider4">
   <div class="slides center-image-0 center-image-80">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-8.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-9.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-10.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-11.svg" class="slide">
-    <img src="./assets/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-12.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-9.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-10.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-11.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/dfs-call-stack/dfs-call-stack-Page-12.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider4')" class="prev black-button">Prev</button>
@@ -330,14 +330,14 @@ category: Code on the Road
 
 <div class="slider" id="slider5">
   <div class="slides center-image-0 center-image-40">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-basic/bfs-basic-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-basic/bfs-basic-Page-8.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider5')" class="prev black-button">Prev</button>
@@ -362,20 +362,20 @@ category: Code on the Road
 
 <p>Similar to DFS, we need to know if a node is "visited" in order to prevent cycles, i.e., re-visiting a node. Typically, BFS is implemented using a <a href="https://en.wikipedia.org/wiki/Queue_(abstract_data_type)" target="_blank">queue</a> (FIFO: First-In First-Out) data structure. I wouldn't necessarily say that it's impossible to solve it with a stack, but it's definitely not conventional and introduces complexity.</p>
 
-<img class="slides center-image-0 center-image-35" src="./assets/posts/graph-theory/queue-ds.svg">
+<img class="slides center-image-0 center-image-35" src="./assets/img/posts/graph-theory/queue-ds.svg">
 
 <p>Fun Fact: in the worst-case scenario (for Trees), a stack-based BFS performs better than a queue-based BFS. I'll explain more on this in a different post dedicated to Trees.</p>
 
 <div class="slider" id="slider6">
   <div class="slides center-image-0 center-image-80">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-8.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider6')" class="prev black-button">Prev</button>
@@ -469,20 +469,20 @@ With the source node (or root node) in the queue, the process is to visit a node
 
 <div class="slider" id="slider7">
   <div class="slides center-image-0 center-image-90">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-8.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-9.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-10.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-11.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-12.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-13.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-queue/bfs-queue-Page-14.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-9.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-10.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-11.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-12.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-13.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-queue/bfs-queue-Page-14.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider7')" class="prev black-button">Prev</button>

@@ -5,7 +5,7 @@ date: 2022-06-26
 tags:
   - System Design
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/reinvent-the-wheel.png
+feature: assets/img/featured/reinvent-the-wheel.png
 category: System Wisdom
 ---
 
@@ -15,7 +15,7 @@ On these lines, it almost always gets to my core when someone overuses "Don't re
 
 Starting with the obvious, the wheel would still look like a big chunk of stone that rolls if we didn't reinvent the wheel. While some may say that it's an upgrade rather than reinvention, going by the definition "change (something) so much that it appears to be entirely new," reinvention is more than fair in this context.
 
-<img src="./assets/posts/wheel-evolution.png" /> 
+<img src="./assets/img/posts/wheel-evolution.png" /> 
 <p style="text-align: center;">Evolution of Wheel! </p>
 
 The primitive wheel did the job thousands of years ago but completely unprepared for today's world. If not for the natural innovators around the world who insisted and invested in reinventing the wheel from time to time.
@@ -27,7 +27,7 @@ While I agree that all of these are subjective and among the common examples tha
 English, Physics, Chemistry, and Mathematics - no doubt these are essential, but it seems unfair to ask students to pause their passions while they put all of their time and work into these "core" subjects. 
 Imagine a world where students go to school and teachers help them explore their passion and are more concerned about equipping students with the skills and opportunities rather than teaching the same generic content over and over again. No doubt the education system is stuck in a timeline, and it's about time to reinvent the wheel of education suited to the road of 2022 and beyond.
 
-<img class="center-image" style="width: 65%" src="./assets/posts/wheel-animal.png" /> 
+<img class="center-image" style="width: 65%" src="./assets/img/posts/wheel-animal.png" /> 
 <p style="text-align: center;">**End of philosophical thinking**</p>
 
 <hr class="hr">

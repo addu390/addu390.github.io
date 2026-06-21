@@ -6,7 +6,7 @@ tags:
   - Project
   - Design Patterns
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/refactor-tomato.png
+feature: assets/img/featured/refactor-tomato.png
 category: Leisure Seizure
 ---
 
@@ -46,7 +46,7 @@ Again, from the business point of view, making any changes to a stable product h
 ### Refactoring is NOT a One-time Gig
 Despite extensive solutioning and following all the best practices, the product requirements, customer needs, and business goals aren't as predictable as we think and are likely to change drastically over time. Fortunately, the changes aren't overnight either; 
 
-<img class="center-image" src="./assets/posts/git-changes.png" /> 
+<img class="center-image" src="./assets/img/posts/git-changes.png" /> 
 
 - The best way to avoid heavy refactoring is to do your refactoring a lot more often.
 - Revalidate the existing low-level design when you touch older sections of the codebase. 
@@ -70,7 +70,7 @@ Head back to "Don't Rebuild; Build the Right Things" and come up with metrics to
 ### Pause new development while refactoring
 Imagine refactoring, and the other developers are also making changes or even refactoring the same class you are - leading to a merge-conflicts nightmare. So, communicate beforehand about the changes you plan on doing, and make sure to refactor in stages so that it doesn't end up being a blocker for too long.
 
-<img class="center-image" src="./assets/posts/merge-conflicts.png" /> 
+<img class="center-image" src="./assets/img/posts/merge-conflicts.png" /> 
 
 ### Define the scope of your refactoring
 Refactoring is not different from working on a feature; start with

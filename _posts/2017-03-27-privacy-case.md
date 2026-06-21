@@ -7,7 +7,7 @@ tags:
   - 3D Printing
   - Security
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/3d-print-privacy-case.png
+feature: assets/img/featured/3d-print-privacy-case.png
 category: Leisure Seizure
 ---
 
@@ -31,7 +31,7 @@ For this very reason, I’m designing a phone case that can be 3D printed. Like 
 
 Prototype V1 - 1          |  Prototype V1 - 2
 :-------------------------:|:-------------------------:
-![](../assets/posts/case/prototype-1.png)  |  ![](../assets/posts/case/prototype-2.png)
+![](../assets/img/posts/case/prototype-1.png)  |  ![](../assets/img/posts/case/prototype-2.png)
 
 <p style="text-align: center;">Figure 1: Fusion 360 Phone Case Design Version 1</p>
 
@@ -46,13 +46,13 @@ In the following design, I will be fixing all of the above drawbacks. Stay tuned
 
 Prototype V2 - 1          |  Prototype V2 - 2
 :-------------------------:|:-------------------------:
-![](../assets/posts/case/prototype-3.png)  |  ![](../assets/posts/case/prototype-4.png)
+![](../assets/img/posts/case/prototype-3.png)  |  ![](../assets/img/posts/case/prototype-4.png)
 
 <p style="text-align: center;">Figure 2: Fusion 360 Phone Case Design Version 2</p>
 
 Prototype V2 - 3          |  Prototype V2 - 4
 :-------------------------:|:-------------------------:
-![](../assets/posts/case/prototype-5.jpeg)  |  ![](../assets/posts/case/prototype-6.jpeg)
+![](../assets/img/posts/case/prototype-5.jpeg)  |  ![](../assets/img/posts/case/prototype-6.jpeg)
 
 <p style="text-align: center;">Figure 3: Fusion 360 Phone Case Design Version 2 — 3D Print</p>
 
@@ -64,7 +64,7 @@ As a way easy out, I decided to manufacture only the slider mechanism and outsou
 
 Prototype V3 - 1          |  Prototype V3 - 2
 :-------------------------:|:-------------------------:
-![](../assets/posts/case/prototype-7.png)  |  ![](../assets/posts/case/prototype-8.png)
+![](../assets/img/posts/case/prototype-7.png)  |  ![](../assets/img/posts/case/prototype-8.png)
 
 <p style="text-align: center;">Figure 4: Fusion 360 Phone Case Design Version 4</p>
 
@@ -74,13 +74,13 @@ To be explicit, a silicon phone case would be placed on top of it.
 
 Prototype V4 - 1          |  Prototype V4 - 2
 :-------------------------:|:-------------------------:
-![](../assets/posts/case/prototype-9.png)  |  ![](../assets/posts/case/prototype-10.png)
+![](../assets/img/posts/case/prototype-9.png)  |  ![](../assets/img/posts/case/prototype-10.png)
 
 <p style="text-align: center;">Figure 5: Fusion 360 Phone Case Design Version 5</p>
 
 Prototype V4 - 1          |  Prototype V4 - 2
 :-------------------------:|:-------------------------:
-![](../assets/posts/case/prototype-11.jpeg)  |  ![](../assets/posts/case/prototype-12.jpeg)
+![](../assets/img/posts/case/prototype-11.jpeg)  |  ![](../assets/img/posts/case/prototype-12.jpeg)
 
 <p style="text-align: center;">Figure 6: Fusion 360 Phone Case Design Version 5–3D Print</p>
 

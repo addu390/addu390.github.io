@@ -6,7 +6,7 @@ tags:
   - Dropwizard
   - Java
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/stock-pile.png
+feature: assets/img/featured/stock-pile.png
 category: Java Lava
 ---
 

@@ -6,7 +6,7 @@ tags:
   - System Design
   - Database
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/neo4j-vs-pgsql.png
+feature: assets/img/featured/neo4j-vs-pgsql.png
 category: System Wisdom
 ---
 
@@ -17,7 +17,7 @@ Before jumping into using a relational database like MySQL or PostgreSQL as a gr
 ## What is a Graph?
 A graph is a set of vertices/nodes interconnected by edges/links. The edges can be directed (unidirectional or bidirectional) or undirected (no orientation, only infers a connection between nodes). 
 
-<img class="center-image" style="width: 75%;" src="./assets/posts/graph-types.png" /> 
+<img class="center-image" style="width: 75%;" src="./assets/img/posts/graph-types.png" /> 
 <p style="text-align: center;">Figure 1: (Left to Right) Undirected, Unidirectional and Bidirectional</p>
 
 ## Graph Data Structure in Java
@@ -67,7 +67,7 @@ Graph createGraph() {
     return graph;
 }
 ```
-<img class="center-image" style="width: 75%;" src="./assets/posts/graph-example-1.png" /> 
+<img class="center-image" style="width: 75%;" src="./assets/img/posts/graph-example-1.png" /> 
 <p style="text-align: center;">Figure 2: Graph visual and map data-structure representation</p>
 
 ## Graph Data Structures in Postgres
@@ -97,7 +97,7 @@ Ideally, each element in the `graph` -> `vertices` array should represent foreig
 Relational databases operate most efficiently on properly normalized data models. Arrays are not relational data structures, by definition they are sets; while the SQL standard supports defining foreign keys on array elements, PostgreSQL currently does not support it. However, there is an ongoing effort to implement this.
 
 A better way to store a graph in Postgres is by creating two tables: `vertex` and `edge`
-<img class="center-image" style="width: 90%;" src="./assets/posts/graph-example-2.png" /> 
+<img class="center-image" style="width: 90%;" src="./assets/img/posts/graph-example-2.png" /> 
 <p style="text-align: center;">Figure 3: Graph representation - List of Edges</p>
 
 ```
@@ -123,7 +123,7 @@ The table `edge` represents the relationship between two vertices; the composite
 - Zigbee Router (ZR)
 - Zigbee Endpoint Device (ZED)
 
-<img class="center-image" style="width: 60%;" src="./assets/posts/zigbee-example-1.png" />
+<img class="center-image" style="width: 60%;" src="./assets/img/posts/zigbee-example-1.png" />
 <p style="text-align: center;">Figure 4: Zigbee Mesh Topology</p>
 
  The Zigbee network has exactly one **Zigbee Coordinator (ZC)** responsible for forming and coordinating the network. The **Zigbee Router (ZR)** represents intermediate nodes to assist in relaying data between nodes in the network and is instrumental in building the Zigbee network. The **Zigbee Endpoint Device (ZED)** are nodes that are logically attached to a Zigbee Router (ZR) and are typically devices such as lights, sensors, switches, etc., and communicates only with the Zigbee Router (parent).
@@ -157,7 +157,7 @@ INSERT INTO router (serial_number, role) VALUES ('ACX7100-67605', 'ZR');
 INSERT INTO router (serial_number, role) VALUES ('ACX7100-67606', 'ZR');
 ```
 
-<img class="center-image img-border" style="width: 60%;" src="./assets/posts/postgres-router.png" />
+<img class="center-image img-border" style="width: 60%;" src="./assets/img/posts/postgres-router.png" />
 <p style="text-align: center;">Figure 5: Entries in Router</p>
 
 ```
@@ -169,7 +169,7 @@ INSERT INTO neighbor (source_router, target_router) VALUES (3, 5);
 INSERT INTO neighbor (source_router, target_router) VALUES (6, 7);
 ```
 
-<img class="center-image img-border" style="width: 35%;" src="./assets/posts/postgres-neighbor.png" />
+<img class="center-image img-border" style="width: 35%;" src="./assets/img/posts/postgres-neighbor.png" />
 <p style="text-align: center;">Figure 6: Entries in Neighbor</p>
 
 ### Select Queries
@@ -194,7 +194,7 @@ SELECT router.id, router.serial_number
 FROM router
 JOIN all_neighbors ON router.id = all_neighbors.target_router;
 ```
-<img class="center-image img-border" style="width: 40%;" src="./assets/posts/postgres-all-neighbors.png" />
+<img class="center-image img-border" style="width: 40%;" src="./assets/img/posts/postgres-all-neighbors.png" />
 <p style="text-align: center;">Figure 7: All interconnected neighbors</p>
 
 Get all neighbors (neighbors of neighbors - relationships) for a given router id
@@ -214,7 +214,7 @@ WITH RECURSIVE all_neighbors AS (
 SELECT all_neighbors.source_router, all_neighbors.target_router FROM all_neighbors;
 ```
 
-<img class="center-image img-border" style="width: 35%;" src="./assets/posts/postgres-neighbors-of-neighbors.png" />
+<img class="center-image img-border" style="width: 35%;" src="./assets/img/posts/postgres-neighbors-of-neighbors.png" />
 <p style="text-align: center;">Figure 8: Neighbors of neighbors</p>
 
 **Note**: Postgres recursive queries work with circular graphs and will not lead to an infinite loop.

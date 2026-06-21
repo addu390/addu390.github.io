@@ -8,7 +8,7 @@ tags:
   - AWS
   - Docker
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/aws-ec2-django.png
+feature: assets/img/featured/aws-ec2-django.png
 category: Django Rango
 ---
 
@@ -59,7 +59,7 @@ Note: To run docker-compose without sudo: `sudo usermod -aG docker $USER`
 - Launch an EC2 instance with docker pre-installed.
 - Configure user data; to include environment variables and start-up script.
 
-<img src="./assets/posts/create-ami.png" /> 
+<img src="./assets/img/posts/create-ami.png" /> 
 <p style="text-align: center;">Figure 1: Create AMI from EC2 instance</p>
 
 ## Launch an EC2 instance with docker pre-installed:
@@ -102,18 +102,18 @@ source /etc/profile
 
 Note: The user data script shown above works on first-boot and re-boots/restarts.
 
-<img src="./assets/posts/select-custom-ami.png" /> 
+<img src="./assets/img/posts/select-custom-ami.png" /> 
 <p style="text-align: center;">Figure 2: Launch EC2 instance from Custom Docker AMI</p>
 
 Note: A better practice is to save the user data in a file, convert it to base64.
 
-<img src="./assets/posts/set-user-data.png" /> 
+<img src="./assets/img/posts/set-user-data.png" /> 
 <p style="text-align: center;">Figure 3: Set user data for EC2 instance (Docker AMI)</p>
 
 Last but not the least, in the user-data, include how’d want to get your docker-compose.yml file. If it’s git, include a `git clone <repo>.git` and `docker-compose up`
 
 
-<img src="./assets/posts/ec2-security-inbound.png" /> 
+<img src="./assets/img/posts/ec2-security-inbound.png" /> 
 <p style="text-align: center;">Figure 4: EC2 Security Group</p>
 
 The EC2 security group is configured to receive public traffic; typically, HTTP traffic would only be from the load balancer.
@@ -134,7 +134,7 @@ If you are following up with my prior post on dockerizing the Django application
 
 If the database set-up is not for production use, make sure to use free tier, disable auto-scaling, backups, enhanced monitoring, and multi-AZ, and don’t set the RDS to “public”; use it within the private network. Instead, attach the EC2 security group to RDS inbound rules at port 3306.
 
-<img src="./assets/posts/database-setup.png" /> 
+<img src="./assets/img/posts/database-setup.png" /> 
 <p style="text-align: center;">Figure 5: RDS Set-up in the private network</p>
 
 And yes 🗄 make sure RDS and EC2 are within the same VPC.

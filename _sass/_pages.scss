@@ -1,0 +1,17 @@
+.page {
+  border: none;
+  background-color: transparent;
+  margin-top: 4em;
+}
+
+.page .text-container {
+  background-color: var(--og-white);
+}
+
+.text-overflow {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

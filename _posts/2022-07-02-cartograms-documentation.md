@@ -10,7 +10,7 @@ tags:
   - Algorithms
   - Open Source
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/solar-system-cartogram.png
+feature: assets/img/featured/solar-system-cartogram.png
 category: Comics
 ---
 
@@ -34,7 +34,7 @@ category: Comics
 
 <p>While generating a cartogram algorithmically yields good results, the best cartograms out there are the ones that as designed artistically/manually. This boils down to finding a balance between using algorithms to generate cartograms and manually nitpicking fine details - that's where the grids come into the picture.</p>
 
-<p><img src="./assets/posts/cartograms/hex-grid-cartogram.png" /> </p>
+<p><img src="./assets/img/posts/cartograms/hex-grid-cartogram.png" /> </p>
 
 <p style="text-align: center;">Figure 1: Hex grid cartogram. </p>
 
@@ -74,7 +74,7 @@ category: Comics
 
 <p>Hexagonal grids are the next commonly used grids, as they offer less distortion of distances than square grids because each hexagon has more non-diagonal neighbors than a square (diagonals distort grid distances). Moreover, hexagons have a pleasing appearance (the honeycomb is a good example). As for the grids, the position is either pointy tops and flat sides or flat tops and pointy sides.</p>
 
-<p><img class="center-image" src="./assets/posts/cartograms/hexagon-grid-details.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/cartograms/hexagon-grid-details.png" /> </p>
 
 <p style="text-align: center;">Figure 2: Modified from original Image source: <a href="https://www.redblobgames.com/grids/hexagons" target="_blank">@redblobgames</a></p>
 
@@ -118,7 +118,7 @@ category: Comics
 <li><p>Better fit to curved surfaces: when dealing with large areas, where the curvature of the earth becomes important, hexagons are better able to fit this curvature than squares (this is why soccer balls are constructed of hexagonal panels).</p></li>
 </ul>
 
-<p><img class="center-image" src="./assets/posts/cartograms/hex-square-tessellation.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/cartograms/hex-square-tessellation.png" /> </p>
 
 <p style="text-align: center;">Figure 3: Tessellation of the plane (Square and Hexagon). </p>
 
@@ -144,7 +144,7 @@ category: Comics
 
 <details><summary class="h4" id="projection"> 5.1. Projection</summary>
 
-<p><img class="center-image" src="./assets/posts/cartograms/earth-projection.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/cartograms/earth-projection.png" /> </p>
 
 <p style="text-align: center;">Figure 4: Mercator projection. </p>
 
@@ -152,7 +152,7 @@ category: Comics
 
 <p>D3 offers a range of built-in <a href="https://github.com/d3/d3-geo-projection">projections</a>; however, no projection accurately depicts all points in the globe, so it's important to choose the appropriate projection for the use case. The purpose is simple: translate the latitude and longitude pair to a pair of X and Y coordinates on SVG. Lastly, to fit the coordinates to the SVG element, the <code>fitExtent</code> and <code>rotate</code> are handly, as the projection has no knowledge of the size or extent of the SVG element.</p>
 
-<p><img style="text-align: center" src="./assets/posts/cartograms/projection-function.png" /> </p>
+<p><img style="text-align: center" src="./assets/img/posts/cartograms/projection-function.png" /> </p>
 
 <p style="text-align: center;">Figure 5: Projection function to map coordinate. </p>
 
@@ -203,7 +203,7 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 
 <p>Figure 3 shows the tessellation of Sri Lanka using a Hexagon and Square as the tile/cell. However, with the tessellation of a polygon, only the tiles within the polygon are arranged in the same order. Whereas, when dealing with multiple polygons in the same grid, the arrangement of tiles has to be based on the nearest tile that fits in the grid - implying the need for a point grid.</p>
 
-<p><img class="center-image" src="./assets/posts/cartograms/hex-grid-tessellation.png" /> </p>
+<p><img class="center-image" src="./assets/img/posts/cartograms/hex-grid-tessellation.png" /> </p>
 
 <p style="text-align: center;">Figure 6: Consistent Tessellation in a Grid. </p>
 
@@ -223,25 +223,25 @@ The <code>d</code> attribute in <code>&lt;path&gt;&lt;/path&gt;</code> defines t
 <li>Finally, tessellate each of the polygons by ensuring the tiles chosen are from the previously formed grid of tiles.</li>
 </ul>
 
-<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid.png" /> </p>
+<p><img class="center-image" style="width: 100%" src="./assets/img/posts/cartograms/point-grid.png" /> </p>
 
 <p style="text-align: center;">Figure 7: Point grid of (Width x Height). </p>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+<p><img class="center-image" style="width: 5%" src="./assets/img/posts/down-arrow.png" /> </p>
 
-<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-cell.png" /> </p>
+<p><img class="center-image" style="width: 100%" src="./assets/img/posts/cartograms/point-grid-cell.png" /> </p>
 
 <p style="text-align: center;">Figure 8: Tessellate points with hexagons </p>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+<p><img class="center-image" style="width: 5%" src="./assets/img/posts/down-arrow.png" /> </p>
 
-<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-polygon.png" /> </p>
+<p><img class="center-image" style="width: 100%" src="./assets/img/posts/cartograms/point-grid-polygon.png" /> </p>
 
 <p style="text-align: center;">Figure 9: Draw the TopoJSON on Canvas (the above TopoJSON is the world map scaled by population of 2018). </p>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+<p><img class="center-image" style="width: 5%" src="./assets/img/posts/down-arrow.png" /> </p>
 
-<p><img class="center-image" style="width: 100%" src="./assets/posts/cartograms/point-grid-hex-cartogram.png" /> </p>
+<p><img class="center-image" style="width: 100%" src="./assets/img/posts/cartograms/point-grid-hex-cartogram.png" /> </p>
 
 <p style="text-align: center;">Figure 10: Regularly tessellate each country/polygon in the world-map with hexagons. </p>
 
@@ -257,7 +257,7 @@ This section is a word in progress, stay tuned! 🤓
 
 <p>The research paper: <a href="http://lambert.nico.free.fr/tp/biblio/Dougeniketal1985.pdf">An Algorithm to Construct Continous Area Cartograms</a>. Without getting into the exact details, line-by-line, the procedure to produce cartograms is as follows: </p>
 
-<p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/world-map-centroids.png" /> </p>
+<p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/img/posts/cartograms/world-map-centroids.png" /> </p>
 
 <p style="text-align: center;">Figure 11: Centroid of all polygons/countries. </p>
 
@@ -269,13 +269,13 @@ This section is a word in progress, stay tuned! 🤓
 
 <p><strong>Fixed:</strong> The cell size is <code>fixed</code> across years. The cell size is the population count of each cell (a country with a population of 10 million has 20 cells when the cell size is 0.5 million). Irrespective of the year/total population, the cell size remains the same in the <code>Fixed</code> mode.</p>
 
-<p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/cartogram-fixed.gif" /> </p>
+<p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/img/posts/cartograms/cartogram-fixed.gif" /> </p>
 
 <p style="text-align: center;">Figure 13: Cartogram scaled from 1950 to 1990 in Fixed mode </p>
 
 <p><strong>Fluid:</strong> On the other hand, in the fluid mode, as the year/total population changes, the cell size is adjusted accordingly to best utilize the entire screen/container to display the cartogram. For example: A region with a total population of 20 million and a cell size of 0.5 million would have the same view when the total population is 40 million, and the cell size is 1 million.</p>
 
-<p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/posts/cartograms/cartogram-fluid.gif" /> </p>
+<p><img class="center-image" style="width: 100%; border: 1px solid #000;" src="./assets/img/posts/cartograms/cartogram-fluid.gif" /> </p>
 
 <p style="text-align: center;">Figure 14: Cartogram scaled from 1950 to 1990 in Fluid mode </p>
 
@@ -417,7 +417,7 @@ This section is a word in progress, stay tuned! 🤓
     }
 </code></pre>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+<p><img class="center-image" style="width: 5%" src="./assets/img/posts/down-arrow.png" /> </p>
 
 <h3 id="plotthehexagonalgridplayground">Plot the hexagonal grid playground</h3>
 
@@ -500,7 +500,7 @@ For example: A single point in a point-grid represents the top-right corner of a
   }
 </code></pre>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+<p><img class="center-image" style="width: 5%" src="./assets/img/posts/down-arrow.png" /> </p>
 
 <h3 id="createthebasecartogram">Create the base cartogram</h3>
 
@@ -551,7 +551,7 @@ For example: A single point in a point-grid represents the top-right corner of a
   }
 </code></pre>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+<p><img class="center-image" style="width: 5%" src="./assets/img/posts/down-arrow.png" /> </p>
 
 <h3>Flatten the features of the cartogram/topojson.</h3>
 
@@ -577,7 +577,7 @@ For example: A single point in a point-grid represents the top-right corner of a
 }
 </code></pre>
 
-<p><img class="center-image" style="width: 5%" src="./assets/posts/down-arrow.png" /> </p>
+<p><img class="center-image" style="width: 5%" src="./assets/img/posts/down-arrow.png" /> </p>
 
 <h3>Fill the polygons/regions of the base cartogram with hexagons (tessellation)</h3>
 

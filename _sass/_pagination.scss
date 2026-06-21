@@ -1,0 +1,104 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px 20px 10px;
+  padding: 15px 10px;
+  position: fixed;
+  bottom: -15px;
+  left: 20%;
+  right: 0;
+  z-index: 10;
+}
+
+.pagination-box {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.pagination-box-idle {
+  background-color: var(--very-light-grey);
+  border: 1.5px solid #ccc;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 50%;
+}
+
+.pagination-box-idle:hover {
+  border: var(--py-black) 1.5px solid;
+}
+
+.pagination-box-hit {
+  background-color: var(--py-black);
+  color: #fff;
+  border: 1.5px solid var(--py-black);
+  border-radius: 50%;
+}
+
+.pagination-box-disabled {
+  background-color: var(--very-light-grey);
+  color: #ccc;
+  border: 1.5px solid #eee;
+  border-radius: 50%;
+  cursor: not-allowed;
+}
+
+.pagination-box-disabled.pagination-box-swipe-right,
+.pagination-box-disabled.pagination-box-swipe-left {
+  /* Copy exact enabled arrow styles */
+  display: inline-block !important;
+  padding: 8px 12px !important;
+  margin: 0 5px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  font-size: 16px !important;
+  
+  /* Then apply swipe overrides exactly like enabled */
+  border: none !important;
+  font-size: 30px !important;
+  padding-top: 3px !important;
+  background-color: transparent !important;
+  color: var(--black) !important;
+  
+  /* Only difference - disabled appearance */
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+.pagination a {
+  text-decoration: none;
+}
+
+.pagination-box-swipe-right,
+.pagination-box-swipe-left {
+  border: none !important;
+  font-size: 30px;
+  padding-top: 3px;
+  background-color: transparent !important;
+  color: #222 !important;
+  font-weight: 600;
+}
+
+.pagination-box-swipe-right:hover,
+.pagination-box-swipe-left:hover {
+  background-color: transparent;
+}
+
+.pagination-box-disabled.pagination-box-swipe-right:hover,
+.pagination-box-disabled.pagination-box-swipe-left:hover {
+  background-color: transparent;
+  border: none;
+}
+
+.pagination-box-swipe-right,
+.pagination-box-disabled.pagination-box-swipe-right {
+  padding-left: 3px !important;
+}
+
+.pagination-box-swipe-left,
+.pagination-box-disabled.pagination-box-swipe-left {
+  padding-right: 3px !important;
+}

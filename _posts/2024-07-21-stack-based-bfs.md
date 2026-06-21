@@ -6,8 +6,8 @@ tags:
 - Graph Theory
 - Data Structures
 author: Adesh Nalpet Adimurthy
-image: assets/featured/webp/stack-bfs.webp
-feature: assets/featured/webp/stack-bfs.webp
+image: assets/img/featured/webp/stack-bfs.webp
+feature: assets/img/featured/webp/stack-bfs.webp
 category: Code on the Road
 ---
 
@@ -16,14 +16,14 @@ category: Code on the Road
 
 <div class="slider" id="slider8">
   <div class="slides center-image-0 center-image-80">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-1.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-2.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-3.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-4.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-5.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-6.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-7.svg" class="slide">
-    <img src="./assets/posts/graph-theory/bfs-tree/bfs-tree-Page-8.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-1.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-2.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-3.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-4.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-5.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-6.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-7.svg" class="slide">
+    <img src="./assets/img/posts/graph-theory/bfs-tree/bfs-tree-Page-8.svg" class="slide">
   </div>
   <div class="controls">
     <button onclick="plusSlides(-1, 'slider8')" class="prev black-button">Prev</button>
@@ -36,7 +36,7 @@ category: Code on the Road
 <h3>2. Problem: Space Complexity</h3>
 <p>The problem with this solution is adding all the immediate children to the queue before visiting them. While this isn't much of a concern for a binary tree, imagine a non-binary tree where at each level the number of nodes grows exponentially. In the example below, when the second-level <code>node G</code> is visited, the queue now has 49 entries. For the nth level: <code>7^(N-1)</code> nodes. For level 100, there would be <code>282,475,249</code> entries in the queue. Nearly 300 million entries and a 4-byte address pointer per entry would lead to around ~1 MB.</p>
 
-<img class="center-image-0 center-image-100" src="./assets/posts/graph-theory/bfs-stack-problem.svg">
+<img class="center-image-0 center-image-100" src="./assets/img/posts/graph-theory/bfs-stack-problem.svg">
 
 <h3>3. Solution: BFS using Stack</h3>
 <p>The recursive approach below, the space coordinate depends on the number of levels. In a balanced tree, the space complexity is now <code>O(log(n))</code>, where <code>n</code> is the total number of nodes.</p>
@@ -68,7 +68,7 @@ END
 
 <p>Going back to the same example for a balanced binary tree with nodes: <code>A, B, C, D, E, F, G</code></p>
 
-<img class="center-image-0" style="width: 48%" src="./assets/posts/graph-theory/binary-tree.svg">
+<img class="center-image-0" style="width: 48%" src="./assets/img/posts/graph-theory/binary-tree.svg">
 
 <p>Initializing the root node and setting the initial target level to 0. The main BFS loop iterates through each level of the tree, incrementing the target level after processing each one.</p>
 

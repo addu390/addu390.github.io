@@ -1,0 +1,123 @@
+/* RESPONSIVE CSS */
+
+@media (min-width: 48em) {
+  .sm-display {
+    display: none;
+  }
+
+  .content {
+    margin-left: 20%;
+  }
+
+  .sidebar-info {
+    margin-top: 0.5em;
+    text-align: center;
+  }
+
+  .brand-photo {
+    width: 85%;
+    max-width: 215px;
+  }
+
+  .brand-title,
+  .brand-tagline {
+    text-align: center;
+  }
+
+  .sidebar {
+    position: fixed;
+    height: 100vh;
+    z-index: 2;
+  }
+
+  .post-entry-toc .posts,
+  .post-entry {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 48em) {
+  .subscribe-gooshi {
+    margin-top: 40px !important;
+  }
+
+  .expand-image {
+    width: 100% !important;
+  }
+
+  .blog-content {
+    padding-top: 0% !important;
+  }
+
+  .blog-image-container {
+    width: 100% !important;
+  }
+
+  .sidebar-list,
+  .md-display {
+    display: none !important;
+  }
+
+  .pure-g {
+    letter-spacing: normal;
+  }
+
+  .post-title {
+    font-size: 1.4em;
+  }
+
+  .posts {
+    margin-top: 0.5em;
+  }
+
+  .posts,
+  .post-entry-toc .posts {
+    max-width: 100%;
+  }
+
+  .post-entry-toc .posts {
+    margin: 0 0 0 0 !important;
+  }
+
+  .post .center-image {
+    width: 95%;
+  }
+
+  .brand-title,
+  .brand-tagline {
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  .brand-photo {
+    max-width: 200px;
+  }
+
+  .post-entry {
+    width: 100%;
+    word-break: break-word;
+    hyphens: auto;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .tags {
+    width: 49%;
+  }
+
+  .journals {
+    max-width: 100%;
+  }
+
+  footer .pure-menu-link {
+    padding: 0 20px;
+  }
+
+  .all-posts {
+    margin: 0 0.5em 0 0.5em !important;
+  }
+
+  .page-entry {
+    margin-top: 0 !important;
+  }
+}

@@ -7,7 +7,7 @@ tags:
   - AWS
   - Docker
 author: Adesh Nalpet Adimurthy
-feature: assets/featured/docker-django.png
+feature: assets/img/featured/docker-django.png
 category: Django Rango
 ---
 

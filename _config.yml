@@ -30,6 +30,10 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
+sass:
+  style: expanded
+  sourcemap: never
+
 theme: null
 plugins:
   - jekyll-feed
@@ -46,7 +50,7 @@ defaults:
     values:
       layout: "post"
       author: Adesh Nalpet Adimurthy
-      avatar: assets/avatar.png
+      avatar: assets/img/avatar.png
   - scope:
       path: ""
       type: notes
