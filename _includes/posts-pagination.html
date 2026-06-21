@@ -1,10 +1,12 @@
 {% if paginator.total_pages > 1 %}
+{% capture chevron_left %}<svg class="pg-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>{% endcapture %}
+{% capture chevron_right %}<svg class="pg-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>{% endcapture %}
 <div class="pagination">
     {% if paginator.previous_page %}
-    <a class="pagination-box pagination-box-idle pagination-box-swipe-left"
-        href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a>
+    <a class="pagination-box pagination-box-swipe-left" aria-label="Previous page"
+        href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ chevron_left }}</a>
     {% else %}
-    <a class="pagination-box pagination-box-disabled pagination-box-swipe-left">&laquo;</a>
+    <span class="pagination-box pagination-box-disabled pagination-box-swipe-left" aria-hidden="true">{{ chevron_left }}</span>
     {% endif %}
 
     {% for page in (1..paginator.total_pages) %}
@@ -21,10 +23,10 @@
     {% endfor %}
 
     {% if paginator.next_page %}
-    <a class="pagination-box pagination-box-idle pagination-box-swipe-right"
-        href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"> &raquo;</a>
+    <a class="pagination-box pagination-box-swipe-right" aria-label="Next page"
+        href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ chevron_right }}</a>
     {% else %}
-    <a class="pagination-box pagination-box-disabled pagination-box-swipe-right">&raquo;</a>
+    <span class="pagination-box pagination-box-disabled pagination-box-swipe-right" aria-hidden="true">{{ chevron_right }}</span>
     {% endif %}
 </div>
 {% endif %}

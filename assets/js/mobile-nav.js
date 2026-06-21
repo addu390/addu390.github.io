@@ -105,9 +105,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       mResults.innerHTML = hits.map(function (it) {
         return "<li class='search_res' style='list-style: none;'>"
-          + "<a href='" + escapeHtml(it.url) + "'><p><span class='dice-index'>"
-          + "<img class='twemoji' src='/assets/img/emoji/" + escapeHtml(it.index) + ".svg' alt=''></span> &nbsp;"
-          + escapeHtml(it.title) + "</p></a></li>";
+          + "<a href='" + escapeHtml(it.url) + "'>"
+          + "<p class='search-res-title'>" + escapeHtml(it.title) + "</p>"
+          + "<span class='search-res-date'>" + escapeHtml(it.date) + "</span>"
+          + "</a></li>";
       }).join('');
     }
 

@@ -22,50 +22,28 @@
 
 .pagination-box-idle {
   background-color: var(--surface);
-  border: 1.5px solid var(--border-strong);
+  border: 1px solid var(--border-strong);
   transition: background-color 0.3s, color 0.3s;
   border-radius: 50%;
 }
 
 .pagination-box-idle:hover {
-  border: var(--border-strong) 1.5px solid;
+  border: var(--border-strong) 1px solid;
 }
 
 .pagination-box-hit {
   background-color: var(--py-black);
   color: var(--white);
-  border: 1.5px solid var(--py-black);
+  border: 1px solid var(--py-black);
   border-radius: 50%;
 }
 
 .pagination-box-disabled {
   background-color: var(--surface);
   color: var(--text-muted);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 50%;
   cursor: not-allowed;
-}
-
-.pagination-box-disabled.pagination-box-swipe-right,
-.pagination-box-disabled.pagination-box-swipe-left {
-  /* Copy exact enabled arrow styles */
-  display: inline-block !important;
-  padding: 8px 12px !important;
-  margin: 0 5px !important;
-  border-radius: 4px !important;
-  text-decoration: none !important;
-  font-size: 16px !important;
-  
-  /* Then apply swipe overrides exactly like enabled */
-  border: none !important;
-  font-size: 30px !important;
-  padding-top: 3px !important;
-  background-color: transparent !important;
-  color: var(--black) !important;
-  
-  /* Only difference - disabled appearance */
-  opacity: 0.3 !important;
-  cursor: not-allowed !important;
 }
 
 .pagination a {
@@ -74,12 +52,24 @@
 
 .pagination-box-swipe-right,
 .pagination-box-swipe-left {
-  border: none !important;
-  font-size: 30px;
-  padding-top: 3px;
-  background-color: transparent !important;
-  color: var(--text) !important;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  color: var(--text);
+  padding: 8px;
+}
+
+.pg-chevron {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
 }
 
 .pagination-box-swipe-right:hover,
@@ -87,18 +77,10 @@
   background-color: transparent;
 }
 
-.pagination-box-disabled.pagination-box-swipe-right:hover,
-.pagination-box-disabled.pagination-box-swipe-left:hover {
-  background-color: transparent;
-  border: none;
-}
-
-.pagination-box-swipe-right,
-.pagination-box-disabled.pagination-box-swipe-right {
-  padding-left: 3px !important;
-}
-
-.pagination-box-swipe-left,
+.pagination-box-disabled.pagination-box-swipe-right,
 .pagination-box-disabled.pagination-box-swipe-left {
-  padding-right: 3px !important;
+  color: var(--text-muted);
+  opacity: 0.35;
+  cursor: not-allowed;
+  background-color: transparent;
 }

@@ -4,8 +4,8 @@
         <input autocomplete="off" id="search-input" oninput="changeResultContainerDisp(this.value)" placeholder=" Search..." type="text"/>
         <span class="search-power-text">Powered by Simple Search</span>
     </label>
+    <ul id="results-container" style="display: none"></ul>
 </div>
-<ul id="results-container" style="display: none"></ul>
 <script src="/assets/js/search.js"></script>
 <script>
     function changeResultContainerDisp(val) {
@@ -36,7 +36,7 @@
         searchInput: document.getElementById("search-input"),
         resultsContainer: document.getElementById("results-container"),
         json: "/search.json",
-        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='{url}' color: #555555;'><p><span class='dice-index'><img class='twemoji' src='/assets/img/emoji/{index}.svg'></span> &nbsp;{title}</p></a></li>",
+        searchResultTemplate: "<li class='search_res' style='list-style: none;'><a href='{url}'><p class='search-res-title'>{title}</p><span class='search-res-date'>{date}</span></a></li>",
         noResultsText: "No results found. Try another search.",
         fuzzy: false,
         limit: 5

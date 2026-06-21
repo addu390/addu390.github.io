@@ -300,7 +300,10 @@ table {
   cursor: pointer;
 }
 
-#search-input:focus,
+#search-input:focus {
+  outline: none;
+}
+
 .ml-validate-email input:focus {
   outline-color: var(--black);
 }
@@ -328,7 +331,7 @@ table {
 
 #search .icon {
   position: absolute;
-  left: 1.9em;
+  left: 42px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -453,6 +456,19 @@ table {
 
 .theme-grade-menu[hidden] {
   display: none;
+}
+
+.menu .theme-grade:hover .theme-grade-menu {
+  display: block;
+}
+
+.menu .theme-grade-menu::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
 }
 
 .theme-grade-menu li {

@@ -4,6 +4,7 @@
 <div class="posts posts-table-container">
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     
+    <div class="posts-table-wrap">
     <table class="posts-table">
         <thead>
             <tr>
@@ -48,6 +49,7 @@
             {%- endfor -%}
         </tbody>
     </table>
-    
+    </div>
+
     {%- include posts-pagination.html -%}
 </div>

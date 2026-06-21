@@ -138,7 +138,7 @@
   }
 
   #search-input-mobile:focus {
-    outline-color: var(--black);
+    outline: none;
   }
 
   .mobile-search-results {
@@ -151,6 +151,9 @@
 
   .mobile-search-results .search_res a {
     color: var(--black);
+    display: block;
+    padding: 8px 4px;
+    text-decoration: none;
   }
 
   .mobile-nav-overlay {
