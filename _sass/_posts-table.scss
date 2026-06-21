@@ -25,12 +25,12 @@
 .posts-table th,
 .posts-table td {
   border: 0;
-  border-bottom: 1px solid var(--bg);
+  border-bottom: 1px solid var(--border);
 }
 
 .posts-table th:not(:last-child),
 .posts-table td:not(:last-child) {
-  border-right: 1px solid var(--bg);
+  border-right: 1px solid var(--border);
 }
 
 .posts-table tbody tr:last-child td {
