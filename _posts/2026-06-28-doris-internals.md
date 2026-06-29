@@ -10,9 +10,9 @@ author: Adesh Nalpet Adimurthy
 highlight: green
 ---
 
+<p>Apache Doris is an MPP-based real-time data warehouse known for its high query speeds, handling high concurrency and throughput, and speaking the MySQL protocol. Commonly used for real-time analytics, lakehouse analytics that federate queries over data lakes such as Iceberg and Hive, and hybrid search that runs text and vector search alongside aggregation.</p>
 
-
-<p>Apache Doris is an MPP-based real-time data warehouse known for its high query speeds, handling high concurrency and throughput, and speaking the MySQL protocol. It is commonly used for real-time analytics.</p>
+<p>Its growth has not been linear. While still incubating at the ASF, the <a href="https://lists.apache.org/thread/23ry2zdzpgnr44qn3p34175ml2zox1c7" target="_blank" rel="noopener noreferrer">DorisDB fork infringed the trademark</a> and stalled the project's graduation, before it was later rebranded as StarRocks. Doris has since recovered as a top-level Apache project with broad production use.</p>
 
 <h3>1. Architecture</h3>
 
