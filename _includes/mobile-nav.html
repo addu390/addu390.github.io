@@ -34,13 +34,10 @@
     <a class="mobile-nav-brand" href="/">
         <img class="mobile-nav-photo" src="/{{ site.header_image }}" alt="Photo of {{ site.author }}">
     </a>
-    <p class="mobile-nav-tagline">{{ site.description | replace: 'id="showerButton"', '' }}</p>
-
     <ul class="mobile-nav-list">
-        <li><a href="/"><img class="twemoji" src="/assets/img/emoji/home.svg" alt="">Home</a></li>
+        <li><a href="/">{% include house-up-icon.svg %}Home</a></li>
         <li><a href="/journals"><img class="twemoji" src="/assets/img/emoji/book.svg" alt="">Journal</a></li>
         <li><a href="/contact"><img class="twemoji" src="/assets/img/emoji/horn.svg" alt="">Contact</a></li>
-        <li><a href="/about"><img class="twemoji" src="/assets/img/emoji/face.svg" alt="">About</a></li>
         <li><a href="/privacy"><img class="twemoji" src="/assets/img/emoji/cookie.svg" alt="">Privacy Policy</a></li>
         <li><a href="/tags"><img class="twemoji" src="/assets/img/emoji/tag.svg" alt="">Tags</a></li>
         <li><a href="/archive"><img class="twemoji" src="/assets/img/emoji/archive.svg" alt="">Archive</a></li>

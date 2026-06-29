@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="470px" viewBox="0 0 1000 470"><defs/><g>
+
+<text x="500" y="28" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Nereids: from SQL to a distributed plan</text>
+
+<rect x="120" y="56" width="240" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="240" y="83" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">SQL text</text>
+<text x="400" y="83" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">the statement the client sent</text>
+
+<rect x="120" y="124" width="240" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="240" y="151" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Parse</text>
+<text x="400" y="151" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">the text becomes a logical plan tree</text>
+
+<rect x="120" y="192" width="240" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="240" y="219" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Analyze</text>
+<text x="400" y="219" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">bind names and types against the catalog</text>
+
+<rect x="120" y="260" width="240" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="240" y="287" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Rewrite (RBO)</text>
+<text x="400" y="287" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">rules push filters down and prune columns and partitions</text>
+
+<rect x="120" y="328" width="240" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="240" y="355" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Optimize (CBO)</text>
+<text x="400" y="355" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">a Memo explores plans, cost picks join order and distribution</text>
+
+<rect x="120" y="396" width="240" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="240" y="423" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Cut into fragments</text>
+<text x="400" y="423" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">split the physical plan at exchange boundaries</text>
+
+<path d="M 240 100 L 240 118.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 124 L 236.5 117 L 240 118.75 L 243.5 117 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 168 L 240 186.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 192 L 236.5 185 L 240 186.75 L 243.5 185 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 236 L 240 254.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 260 L 236.5 253 L 240 254.75 L 243.5 253 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 304 L 240 322.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 328 L 236.5 321 L 240 322.75 L 243.5 321 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 372 L 240 390.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 396 L 236.5 389 L 240 390.75 L 243.5 389 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+
+</g></svg>

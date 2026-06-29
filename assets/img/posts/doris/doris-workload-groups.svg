@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="420px" viewBox="0 0 1000 420"><defs/><g>
+
+<text x="500" y="28" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Two levels of isolation: compute groups and workload groups</text>
+
+<!-- compute group container -->
+<rect x="60" y="52" width="680" height="296" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="78" y="74" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Compute group A - shared BE nodes (node-level isolation)</text>
+
+<!-- BE 1 -->
+<rect x="86" y="90" width="300" height="240" fill="#fff7f0" stroke="#000000" pointer-events="all"/>
+<text x="236" y="114" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 1</text>
+<text x="104" y="156" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">CPU</text>
+<rect x="150" y="140" width="216" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<rect x="280" y="140" width="86" height="30" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="215" y="160" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">60%</text>
+<text x="323" y="160" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">40%</text>
+<text x="104" y="208" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">MEM</text>
+<rect x="150" y="192" width="108" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<rect x="258" y="192" width="108" height="30" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="204" y="212" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">50%</text>
+<text x="312" y="212" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">50%</text>
+<text x="236" y="258" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">cgroup cpu.max / cpu.weight</text>
+<text x="236" y="278" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">+ memory limit per group</text>
+
+<!-- BE 2 -->
+<rect x="412" y="90" width="300" height="240" fill="#fff7f0" stroke="#000000" pointer-events="all"/>
+<text x="562" y="114" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 2</text>
+<text x="430" y="156" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">CPU</text>
+<rect x="476" y="140" width="216" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<rect x="606" y="140" width="86" height="30" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="541" y="160" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">60%</text>
+<text x="649" y="160" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">40%</text>
+<text x="430" y="208" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">MEM</text>
+<rect x="476" y="192" width="108" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<rect x="584" y="192" width="108" height="30" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="530" y="212" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">50%</text>
+<text x="638" y="212" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">50%</text>
+<text x="562" y="258" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">same workload groups,</text>
+<text x="562" y="278" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">applied on every node</text>
+
+<!-- legend / placement note -->
+<rect x="760" y="90" width="200" height="240" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="776" y="114" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Workload groups</text>
+<rect x="776" y="128" width="16" height="16" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="800" y="141" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">reports</text>
+<rect x="776" y="152" width="16" height="16" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="800" y="165" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">ingest</text>
+<text x="776" y="202" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">A query is placed</text>
+<text x="776" y="222" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">twice:</text>
+<text x="776" y="246" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">a compute group</text>
+<text x="776" y="266" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">(which nodes), and</text>
+<text x="776" y="286" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">a workload group</text>
+<text x="776" y="306" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">(share of them).</text>
+
+<!-- captions -->
+<text x="500" y="378" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Compute groups isolate workloads by node. Workload groups divide each node's CPU and memory,</text>
+<text x="500" y="398" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">so one compute group can host several workload groups on the very same backends.</text>
+
+</g></svg>

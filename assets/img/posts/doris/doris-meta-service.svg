@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="520px" viewBox="0 0 1000 520"><defs/><g>
+
+<text x="500" y="28" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Control plane and data plane</text>
+
+<!-- FE client -->
+<rect x="60" y="56" width="300" height="64" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="210" y="82" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Frontend (FE)</text>
+<text x="210" y="104" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">parse, plan, hold catalog</text>
+
+<!-- BE client -->
+<rect x="440" y="56" width="300" height="64" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="590" y="82" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Backend (BE)</text>
+<text x="590" y="104" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">stateless compute</text>
+
+<!-- Meta Service -->
+<rect x="60" y="190" width="470" height="110" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="295" y="216" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Meta Service</text>
+<text x="295" y="236" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">doris_cloud, stateless instances</text>
+<rect x="80" y="252" width="130" height="30" fill="#f0eaf3" stroke="#000000" pointer-events="all"/>
+<text x="145" y="272" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">MS 1</text>
+<rect x="225" y="252" width="130" height="30" fill="#f0eaf3" stroke="#000000" pointer-events="all"/>
+<text x="290" y="272" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">MS 2</text>
+<rect x="370" y="252" width="130" height="30" fill="#f0eaf3" stroke="#000000" pointer-events="all"/>
+<text x="435" y="272" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">MS 3</text>
+
+<!-- Recycler -->
+<rect x="560" y="190" width="180" height="110" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="650" y="224" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Recycler</text>
+<text x="650" y="246" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">doris_cloud</text>
+<text x="650" y="268" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">--recycler</text>
+
+<!-- FoundationDB -->
+<rect x="60" y="380" width="680" height="84" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="400" y="412" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">FoundationDB</text>
+<text x="400" y="434" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">durable metadata, ordered key-value</text>
+<text x="400" y="454" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">(the real state)</text>
+
+<!-- Storage Vault -->
+<rect x="790" y="190" width="150" height="274" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="865" y="310" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Storage Vault</text>
+<text x="865" y="336" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">data bytes</text>
+<text x="865" y="362" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">(Section 2.1)</text>
+
+<!-- FE -> MS -->
+<path d="M 210 120 L 210 184.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 210 190 L 206.5 183 L 210 184.75 L 213.5 183 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="224" y="158" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">metadata</text>
+
+<!-- BE -> MS -->
+<path d="M 560 120 L 466 183.5" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 461.5 186.5 L 465.5 179.5 L 466.5 183.4 L 470.3 184.4 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="540" y="158" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">metadata</text>
+
+<!-- MS <-> FDB -->
+<path d="M 295 300 L 295 380" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 295 374 L 291.5 381 L 295 379.25 L 298.5 381 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 295 306 L 291.5 299 L 295 300.75 L 298.5 299 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="285" y="344" fill="#000000" font-family="monospace" font-size="14px" text-anchor="end">every op = one transaction</text>
+
+<!-- Recycler -> FDB -->
+<path d="M 650 300 L 650 374.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 650 380 L 646.5 373 L 650 374.75 L 653.5 373 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="640" y="344" fill="#000000" font-family="monospace" font-size="14px" text-anchor="end">scan recycle entries</text>
+
+<!-- BE -> Vault (data plane) -->
+<path d="M 740 100 L 860 185.5" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 864.5 188.5 L 856.7 186.5 L 860.4 185.2 L 861.6 181.4 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="812" y="135" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="middle">read / write data</text>
+
+<!-- Recycler -> Vault (delete) -->
+<path d="M 740 245 L 784.75 245" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 790 245 L 783 248.5 L 784.75 245 L 783 241.5 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="765" y="237" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="middle">delete files</text>
+
+<!-- caption -->
+<text x="500" y="490" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Control plane: clients reach the Meta Service, which keeps all state in FoundationDB.</text>
+<text x="500" y="510" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Data plane: backends read and write the vault directly. Metadata names the bytes, never holds them.</text>
+
+</g></svg>

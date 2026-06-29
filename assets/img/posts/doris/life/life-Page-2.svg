@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="552px" viewBox="0 0 1000 552"><defs/><g>
+<text x="500" y="26" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Life of a row: one key through the storage engine</text>
+<rect x="40" y="44" width="920" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="52" y="69" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Operation:</text>
+<text x="168" y="69" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">flush  ->  build segment + indexes</text>
+<rect x="40" y="100" width="230" height="80" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="155" y="124" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">MemTable</text>
+<text x="155" y="143" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">(sort by key)</text>
+<text x="155" y="165" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">idle</text>
+<path d="M 155 180 L 155 204.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 155 210 L 151.5 203 L 155 204.75 L 158.5 203 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="167" y="199" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">flush</text>
+<text x="300" y="118" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">bucket: store_id = 7</text>
+<text x="300" y="138" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">key = sale_date,  value = amount</text>
+<text x="300" y="158" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">model: Unique (merge-on-write)</text>
+<rect x="40" y="210" width="920" height="210" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="54" y="230" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Tablet 10001</text>
+<rect x="56" y="244" width="170" height="26" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="141.0" y="263" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">v[2-2]</text>
+<rect x="56" y="270" width="170" height="134" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="68" y="289" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">segment</text>
+<text x="72" y="313" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">01-02 = 10</text>
+<text x="72" y="335" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">01-05 = 20</text>
+<text x="68" y="362" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">bitmap: 0 0</text>
+<text x="68" y="384" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">idx: zone / key / inv</text>
+<rect x="300" y="286" width="420" height="102" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="312" y="308" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">one segment holds, for each column:</text>
+<text x="312" y="328" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">encoded + compressed data pages,</text>
+<text x="312" y="348" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">zone map / short key / ordinal / PK index,</text>
+<text x="312" y="368" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">and an inverted index in a sidecar .idx file</text>
+<path d="M 226 388 L 226 314.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 226 320 L 222.5 313 L 226 314.75 L 229.5 313 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<rect x="784" y="244" width="160" height="26" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="864" y="263" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">PK index</text>
+<rect x="784" y="270" width="160" height="134" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="794" y="292" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">01-02 -> v2:0</text>
+<text x="794" y="316" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">01-05 -> v2:1</text>
+<rect x="40" y="436" width="920" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="52" y="461" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">A read returns:</text>
+<text x="210" y="461" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">01-02=10, 01-05=20</text>
+<rect x="770" y="442" width="180" height="28" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="860" y="461" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">score: 1</text>
+<text x="500" y="502" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Step 2 / 9 - the flush encodes column pages and builds every index for that segment</text>
+
+</g></svg>

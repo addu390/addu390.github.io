@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="720px" height="350px" viewBox="0 0 720 350"><defs/><g>
+<!-- left panel: Thrift control -->
+<rect x="20" y="20" width="330" height="310" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="185" y="46" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">THRIFT - control plane</text>
+<rect x="40" y="62" width="290" height="96" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="185" y="80" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">FrontendService (FE)</text>
+<text x="185" y="102" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">getDbNames / describeTables</text>
+<text x="185" y="122" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">loadTxnBegin / commitTxn</text>
+<text x="185" y="142" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">forward -&gt; master</text>
+<rect x="40" y="170" width="290" height="74" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="185" y="188" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">BackendService (BE)</text>
+<text x="185" y="210" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">submit_tasks (create/clone)</text>
+<text x="185" y="230" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">get_tablet_stat / snapshot</text>
+<rect x="40" y="256" width="290" height="56" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="185" y="274" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">HeartbeatService (BE)</text>
+<text x="185" y="296" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">heartbeat (master -&gt; BE)</text>
+<!-- right panel: bRPC data -->
+<rect x="370" y="20" width="330" height="310" fill="#f8cecc" stroke="#000000" pointer-events="all"/>
+<text x="535" y="46" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">bRPC / Protobuf - data plane</text>
+<rect x="390" y="62" width="290" height="250" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="535" y="80" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">PBackendService (BE)</text>
+<text x="535" y="104" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">exec_plan_fragment / cancel</text>
+<text x="535" y="128" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">transmit_block (BE &lt;-&gt; BE)</text>
+<text x="535" y="152" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">fetch_data / fetch_arrow_data</text>
+<text x="535" y="176" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">tablet_writer_add_block</text>
+<text x="535" y="200" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">open_load_stream (load)</text>
+<text x="535" y="224" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">merge_filter / apply_filter</text>
+<text x="535" y="248" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">fold_constant_expr, lookups</text>
+<text x="535" y="284" fill="#b85450" font-family="monospace" font-size="12px" text-anchor="middle">= the entire query / load</text>
+<text x="535" y="300" fill="#b85450" font-family="monospace" font-size="12px" text-anchor="middle">hot path</text>
+</g></svg>

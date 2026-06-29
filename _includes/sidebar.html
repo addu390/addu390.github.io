@@ -10,14 +10,11 @@
                 class="clickable-div verified-tag" src="/assets/img/profile/verified.svg"
                 alt="Verified Tag" />
         </h1>
-        <br>
-        <h2 class="brand-tagline">{{site.description}}</h2>
         <p></p>
     </div>
 
     <ul class="sidebar-list">
-        <li class="clickable-div" onclick="location.href='/';"><span class="sidebar-index"><img
-                    class="twemoji" src="/assets/img/emoji/home.svg" alt="home"></span>&nbsp; Home</li>
+        <li class="clickable-div" onclick="location.href='/';"><span class="sidebar-index">{% include house-up-icon.svg %}</span>&nbsp; Home</li>
         <li class="clickable-div" onclick="location.href='/journals';"><span
                 class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/book.svg"
                     alt="journal"></span>&nbsp;
@@ -26,10 +23,6 @@
                 class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/horn.svg"
                     alt="contact"></span>&nbsp;
             Contact</li>
-        <li class="clickable-div" onclick="location.href='/about';"><span
-                class="sidebar-index"><img style="vertical-align: top; width: 21px;" class="twemoji"
-                    src="/assets/img/emoji/face.svg" alt="archive"></span>&nbsp;
-            About</li>
         <li class="clickable-div" onclick="location.href='/privacy';"><span
                 class="sidebar-index"><img class="twemoji" src="/assets/img/emoji/cookie.svg"
                     alt="privacy policy"></span>&nbsp;
@@ -50,3 +43,4 @@
 </aside>
 
 <script src="{{ '../assets/js/sidebar.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/up-balloons.js' | relative_url }}"></script>

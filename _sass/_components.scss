@@ -50,8 +50,8 @@ code {
   width: 20%;
   padding: 0px;
   position: fixed;
-  overflow-y: scroll;
-  height: 20em;
+  overflow-y: auto;
+  max-height: calc(100vh - 2em);
   margin-top: 1em;
 }
 
@@ -81,12 +81,13 @@ code {
   color: var(--sidebar-text);
 }
 
-.sidebar-list li:nth-child(odd) {
-  background-color: var(--sidebar-bg-odd);
+.sidebar-list li:first-child {
+  padding-top: 0.4em;
+  padding-bottom: 0.8em;
 }
 
-.sidebar-list li:nth-child(even) {
-  background-color: var(--sidebar-bg-even);
+.sidebar-list li {
+  background-color: var(--sidebar-bg);
 }
 
 .sidebar-list li:hover {
@@ -352,6 +353,19 @@ table {
 .twemoji {
   width: 20px;
   vertical-align: bottom;
+}
+
+.sidebar-index .icon-up,
+.mobile-nav-list a .icon-up {
+  width: 24px;
+  height: auto;
+  margin: 0 -2px;
+  vertical-align: bottom;
+}
+
+.up-strings,
+.up-balloons {
+  transition: opacity 0.12s ease;
 }
 
 .figure-header .twemoji,

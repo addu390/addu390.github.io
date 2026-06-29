@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="478px" viewBox="0 0 1000 478"><defs/><g>
+
+<text x="500" y="28" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">The reference query cut into fragments</text>
+
+<!-- F3 top -->
+<rect x="150" y="88" width="400" height="64" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="350" y="114" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Fragment 3 - one instance</text>
+<text x="350" y="136" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">merge top-N, limit 10, result to client</text>
+
+<!-- F1 bottom-left -->
+<rect x="120" y="262" width="380" height="130" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="310" y="290" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Fragment 1 - on sales tablets</text>
+<text x="310" y="316" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">scan sales, filter sale_date</text>
+<text x="310" y="342" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">broadcast hash join with stores</text>
+<text x="310" y="368" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">aggregate + local top-N by store_id</text>
+
+<!-- F2 bottom-right -->
+<rect x="620" y="285" width="300" height="84" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="770" y="315" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Fragment 2 - on stores tablets</text>
+<text x="770" y="337" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">scan stores, filter region = EU</text>
+
+<!-- broadcast F2 -> F1 (data) -->
+<path d="M 620 327 L 505.25 327" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 500 327 L 507 323.5 L 505.25 327 L 507 330.5 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="560" y="319" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="middle">broadcast</text>
+
+<!-- gather F1 -> F3 (data) -->
+<path d="M 310 262 L 310 157.25" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 310 152 L 306.5 159 L 310 157.25 L 313.5 159 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="322" y="211" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="start">gather</text>
+
+<!-- caption -->
+<text x="500" y="424" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">A fragment is a chain of operators on one backend, and the red arrows are data crossing the network.</text>
+<text x="500" y="444" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">stores is broadcast into the sales scan, the aggregate stays local because sales is hash-distributed by store_id,</text>
+<text x="500" y="464" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">and one instance gathers each backend's local top ten into the final ordered limit.</text>
+
+</g></svg>

@@ -246,6 +246,13 @@
     text-decoration: none;
   }
 
+  /* The Home row's balloon icon is taller, so trim its vertical padding to
+     keep the row height in line with the rest. */
+  .mobile-nav-list li:first-child a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
   .mobile-nav-list a:hover,
   .mobile-nav-list a:focus {
     background: var(--sidebar-hover);
