@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="360px" viewBox="0 0 1000 360"><defs/><g>
+
+<text x="500" y="24" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Inside the data region: columns, pages, and skipping</text>
+<text x="500" y="46" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">filter: WHERE sale_date &gt;= '2026-01-05'</text>
+
+<!-- sale_date lane -->
+<text x="56" y="96" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">sale_date</text>
+<rect x="150" y="80" width="72" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="186" y="100" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">skip</text>
+<rect x="230" y="80" width="72" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="266" y="100" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">skip</text>
+<rect x="310" y="80" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="346" y="100" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">read</text>
+<rect x="390" y="80" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="426" y="100" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">read</text>
+<text x="56" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">page max:</text>
+<text x="186" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">01-02</text>
+<text x="266" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">01-04</text>
+<text x="346" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">01-06</text>
+<text x="426" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">01-09</text>
+
+<!-- store_id lane -->
+<text x="56" y="172" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">store_id</text>
+<rect x="150" y="156" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="186" y="176" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+<rect x="230" y="156" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="266" y="176" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+<rect x="310" y="156" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="346" y="176" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+
+<!-- product_id lane -->
+<text x="56" y="232" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">product_id</text>
+<rect x="150" y="216" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="186" y="236" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+<rect x="230" y="216" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="266" y="236" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+<rect x="310" y="216" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="346" y="236" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+<rect x="390" y="216" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="426" y="236" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+
+<!-- amount lane -->
+<text x="56" y="292" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">amount</text>
+<rect x="150" y="276" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="186" y="296" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+<rect x="230" y="276" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="266" y="296" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+<rect x="310" y="276" width="72" height="30" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="346" y="296" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">page</text>
+
+<!-- notes -->
+<text x="520" y="92" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">zone maps keep each page's min/max,</text>
+<text x="520" y="110" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">so a filter skips pages that can't match</text>
+<text x="520" y="172" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">each column is stored and</text>
+<text x="520" y="190" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">compressed on its own</text>
+<text x="520" y="232" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">a page is about 64 KB: encoded</text>
+<text x="520" y="250" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">(bit-shuffle / RLE / dict / FOR),</text>
+<text x="520" y="268" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">then compressed (LZ4 / ZSTD)</text>
+<text x="520" y="300" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">the short-key index seeks to a row block,</text>
+<text x="520" y="318" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">and inverted indexes live in separate files</text>
+
+</g></svg>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="500px" viewBox="0 0 1000 500"><defs/><g>
+
+<text x="500" y="28" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Running a compaction job</text>
+
+<!-- actors -->
+<rect x="60" y="50" width="200" height="48" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="160" y="79" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Backend (BE)</text>
+<rect x="420" y="50" width="200" height="48" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="520" y="79" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Meta Service</text>
+<rect x="760" y="50" width="180" height="48" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="850" y="79" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Storage Vault</text>
+
+<!-- lifelines -->
+<path d="M 160 98 L 160 322" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 520 98 L 520 326" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 850 98 L 850 252" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+
+<!-- 1 start_tablet_job -->
+<path d="M 160 128 L 514.75 128" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 520 128 L 513 131.5 L 514.75 128 L 513 124.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="340" y="120" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">1  start_tablet_job (acquire lease)</text>
+
+<!-- lease granted -->
+<path d="M 520 158 L 165.25 158" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="4 4"/>
+<path d="M 160 158 L 167 161.5 L 165.25 158 L 167 154.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="340" y="152" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">lease granted</text>
+<text x="340" y="182" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">only if no other BE holds it and the view is current</text>
+
+<!-- 2 read inputs (data plane) -->
+<path d="M 850 212 L 165.25 212" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 160 212 L 167 215.5 L 165.25 212 L 167 208.5 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="505" y="204" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="middle">2  read input rowsets</text>
+
+<!-- 3 write output (data plane) -->
+<path d="M 160 248 L 844.75 248" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 850 248 L 843 251.5 L 844.75 248 L 843 244.5 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="505" y="240" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="middle">3  write merged output rowset</text>
+<text x="400" y="270" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">merge in key order, apply the table model</text>
+
+<!-- 4 finish_tablet_job -->
+<path d="M 160 300 L 514.75 300" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 520 300 L 513 303.5 L 514.75 300 L 513 296.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="340" y="292" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">4  finish_tablet_job (commit)</text>
+
+<!-- commit transaction box -->
+<rect x="300" y="324" width="440" height="126" fill="#f0eaf3" stroke="#000000" pointer-events="all"/>
+<text x="520" y="348" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">finish = one FoundationDB transaction</text>
+<text x="320" y="376" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">output  ->  rowset  v[11-14]</text>
+<text x="320" y="402" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">inputs  v11..v14  ->  marked for recycle</text>
+<text x="320" y="428" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">advance cumulative point, drop the job</text>
+
+<!-- caption -->
+<text x="500" y="470" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">A lease pins the tablet to one backend and is renewed while the job runs, so no two backends compact it at once.</text>
+<text x="500" y="490" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">The input rowsets stay in the vault until the recycler removes them.</text>
+
+</g></svg>

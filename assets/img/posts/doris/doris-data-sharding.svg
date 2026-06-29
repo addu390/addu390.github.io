@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="338px" viewBox="0 0 1000 338"><defs/><g>
+
+<text x="500" y="26" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">From a table to tablets</text>
+<text x="500" y="46" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">bucketing is required and partitioning is optional, and every partition-and-bucket pair is one tablet</text>
+
+<!-- table -->
+<rect x="240" y="60" width="200" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="340" y="82" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Table  sales</text>
+<text x="340" y="98" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">key (sale_date, store_id)</text>
+
+<!-- split table -> partitions -->
+<path d="M 340 104 L 340 118" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 190 118 L 490 118" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 190 118 L 190 128.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 190 134 L 186.5 127 L 190 128.75 L 193.5 127 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 490 118 L 490 128.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 490 134 L 486.5 127 L 490 128.75 L 493.5 127 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+
+<!-- partitions -->
+<rect x="60" y="134" width="260" height="46" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="190" y="156" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Partition  2026-01</text>
+<text x="190" y="173" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">current version  v4</text>
+<rect x="360" y="134" width="260" height="46" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="490" y="156" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Partition  2026-02</text>
+<text x="490" y="173" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">current version  v2</text>
+
+<!-- partition -> buckets -->
+<path d="M 190 180 L 190 200.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 190 206 L 186.5 199 L 190 200.75 L 193.5 199 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 490 180 L 490 200.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 490 206 L 486.5 199 L 490 200.75 L 493.5 199 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+
+<!-- bucket container 1 -->
+<rect x="60" y="206" width="260" height="116" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="190" y="224" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">3 buckets  =  3 tablets</text>
+<rect x="66" y="234" width="78" height="56" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="105" y="256" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">bucket 0</text>
+<text x="105" y="274" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">10001</text>
+<rect x="151" y="234" width="78" height="56" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="190" y="256" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">bucket 1</text>
+<text x="190" y="274" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">10002</text>
+<rect x="236" y="234" width="78" height="56" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="275" y="256" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">bucket 2</text>
+<text x="275" y="274" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">10003</text>
+<text x="190" y="310" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">hash(store_id) mod 3</text>
+
+<!-- bucket container 2 -->
+<rect x="360" y="206" width="260" height="116" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="490" y="224" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">3 buckets  =  3 tablets</text>
+<rect x="366" y="234" width="78" height="56" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="405" y="256" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">bucket 0</text>
+<text x="405" y="274" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">10004</text>
+<rect x="451" y="234" width="78" height="56" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="490" y="256" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">bucket 1</text>
+<text x="490" y="274" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">10005</text>
+<rect x="536" y="234" width="78" height="56" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="575" y="256" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">bucket 2</text>
+<text x="575" y="274" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">10006</text>
+<text x="490" y="310" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">hash(store_id) mod 3</text>
+
+<!-- notes -->
+<rect x="660" y="60" width="316" height="80" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="668" y="80" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Partition  (optional)</text>
+<text x="668" y="100" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">PARTITION BY RANGE(sale_date)</text>
+<text x="668" y="118" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">pruned by date, dropped as a unit,</text>
+<text x="668" y="134" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">and each carries its own version.</text>
+
+<rect x="660" y="150" width="316" height="80" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="668" y="170" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Distribute  (required)</text>
+<text x="668" y="190" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">DISTRIBUTED BY HASH(store_id)</text>
+<text x="668" y="208" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">BUCKETS 3  ->  hash mod 3 = bucket</text>
+<text x="668" y="224" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">same store -> same bucket.</text>
+
+<rect x="660" y="240" width="316" height="82" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="668" y="260" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">So</text>
+<text x="668" y="280" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">tablets = partitions x buckets</text>
+<text x="668" y="298" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">= 2 x 3 = 6 tablets here.</text>
+<text x="668" y="316" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">each holds rowsets + segments.</text>
+
+</g></svg>

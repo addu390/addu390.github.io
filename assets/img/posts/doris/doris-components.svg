@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1120px" height="720px" viewBox="0 0 1120 720"><defs/><g>
+
+<!-- client -->
+<rect x="165" y="22" width="310" height="34" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="320" y="44" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">SQL / HTTP / Arrow Flight client</text>
+<path d="M 320 56 L 320 94.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 320 100 L 316.5 93 L 320 94.75 L 323.5 93 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+
+<!-- ============ Frontend (FE) ============ -->
+<rect x="40" y="100" width="560" height="210" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="320" y="118" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Frontend (FE)</text>
+
+<rect x="56" y="130" width="254" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="183" y="148" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">front door</text>
+<text x="183" y="164" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">MySQL / HTTP / Arrow Flight</text>
+<rect x="330" y="130" width="254" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="457" y="148" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">in-memory catalog</text>
+<text x="457" y="164" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">databases / tables / views</text>
+
+<rect x="56" y="186" width="254" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="183" y="204" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Nereids planner</text>
+<text x="183" y="220" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">parse / analyze / optimize</text>
+<rect x="330" y="186" width="254" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="457" y="204" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">edit log + checkpoint</text>
+<text x="457" y="220" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">metadata journal</text>
+
+<rect x="56" y="242" width="254" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="183" y="260" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">coordinator</text>
+<text x="183" y="276" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">dispatch + schedule</text>
+<rect x="330" y="242" width="254" height="44" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="457" y="260" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">HA roles</text>
+<text x="457" y="276" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">master/follower/observer</text>
+
+<!-- ============ Meta Service ============ -->
+<rect x="760" y="100" width="320" height="490" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="920" y="120" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Meta Service</text>
+<text x="920" y="136" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">(FoundationDB-backed)</text>
+
+<rect x="776" y="152" width="288" height="64" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="920" y="178" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">metadata store</text>
+<text x="920" y="194" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">schemas / tablets / rowsets</text>
+
+<rect x="776" y="239" width="288" height="64" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="920" y="265" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">transactions + versions</text>
+<text x="920" y="281" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">MVCC commit / publish</text>
+
+<rect x="776" y="326" width="288" height="64" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="920" y="352" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">resource registry</text>
+<text x="920" y="368" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">nodes / compute groups</text>
+
+<rect x="776" y="413" width="288" height="64" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="920" y="439" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">recycler</text>
+<text x="920" y="455" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">object-storage GC</text>
+
+<rect x="776" y="500" width="288" height="64" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="920" y="536" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">FoundationDB (txn KV store)</text>
+
+<!-- ============ Backend (BE) ============ -->
+<rect x="40" y="350" width="560" height="240" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="320" y="370" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Backend (BE)</text>
+<text x="320" y="386" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">stateless nodes / elastic compute groups</text>
+
+<rect x="56" y="398" width="124" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="118" y="421" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">pipeline exec</text>
+<rect x="190" y="398" width="124" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="252" y="421" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">tablet scan</text>
+<rect x="324" y="398" width="124" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="386" y="421" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">file cache</text>
+<rect x="458" y="398" width="124" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="520" y="421" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">agent loop</text>
+
+<rect x="56" y="448" width="254" height="130" fill="none" stroke="#000000" stroke-dasharray="4 4" pointer-events="all"/>
+<text x="183" y="466" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Compute Group 1</text>
+<rect x="72" y="480" width="68" height="72" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="106" y="520" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">BE</text>
+<rect x="150" y="480" width="68" height="72" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="184" y="520" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">BE</text>
+<rect x="228" y="480" width="68" height="72" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="262" y="520" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">BE</text>
+
+<rect x="330" y="448" width="254" height="130" fill="none" stroke="#000000" stroke-dasharray="4 4" pointer-events="all"/>
+<text x="457" y="466" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Compute Group 2</text>
+<rect x="346" y="480" width="68" height="72" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="380" y="520" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">BE</text>
+<rect x="424" y="480" width="68" height="72" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="458" y="520" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">BE</text>
+<rect x="502" y="480" width="68" height="72" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="536" y="520" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">BE</text>
+
+<!-- ============ Storage ============ -->
+<rect x="40" y="628" width="1040" height="78" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="540" y="648" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Storage : shared object storage (durable)</text>
+<rect x="56" y="660" width="150" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="131" y="683" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">S3</text>
+<rect x="223" y="660" width="150" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="298" y="683" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">HDFS</text>
+<rect x="390" y="660" width="150" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="465" y="683" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">OSS</text>
+<rect x="557" y="660" width="150" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="632" y="683" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">Azure Blob</text>
+<rect x="770" y="660" width="300" height="38" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="920" y="683" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">tablets &#8594; rowsets &#8594; segments</text>
+
+<!-- ============ connectors ============ -->
+<!-- FE <-> Meta Service -->
+<path d="M 605.25 150 L 754.75 150" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 600 150 L 607 146.5 L 605.25 150 L 607 153.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 760 150 L 753 146.5 L 754.75 150 L 753 153.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="680" y="142" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">metadata + txn</text>
+
+<!-- FE -> BE -->
+<path d="M 140 310 L 140 344.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 140 350 L 136.5 343 L 140 344.75 L 143.5 343 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="240" y="334" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">fragments (bRPC)</text>
+
+<!-- BE <-> Meta Service -->
+<path d="M 605.25 470 L 754.75 470" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 600 470 L 607 466.5 L 605.25 470 L 607 473.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 760 470 L 753 466.5 L 754.75 470 L 753 473.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="680" y="448" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">tablet meta</text>
+<text x="680" y="462" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">commit version</text>
+
+<!-- BE <-> Storage (data plane) -->
+<path d="M 240 595.25 L 240 622.75" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 240 590 L 236.5 597 L 240 595.25 L 243.5 597 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 240 628 L 236.5 621 L 240 622.75 L 243.5 621 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="340" y="612" fill="#b85450" font-family="monospace" font-size="15px" text-anchor="middle">read / write</text>
+
+<!-- Meta Service -> Storage -->
+<path d="M 920 590 L 920 622.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 920 628 L 916.5 621 L 920 622.75 L 923.5 621 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="920" y="612" fill="#000000" font-family="monospace" font-size="15px" text-anchor="middle">delete unreferenced files</text>
+
+</g></svg>

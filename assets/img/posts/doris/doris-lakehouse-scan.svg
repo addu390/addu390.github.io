@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="372px" viewBox="0 0 1000 372"><defs/><g>
+
+<text x="500" y="26" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Reading an external table without moving it</text>
+<text x="500" y="46" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">the decoupled file-cache machinery turns slow object storage into local reads</text>
+
+<!-- FE plan -->
+<rect x="210" y="66" width="580" height="70" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="500" y="88" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Frontend plan</text>
+<text x="500" y="108" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">prune to the files that matter (manifests / dirs, metadata cache)</text>
+<text x="500" y="126" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">push filters and column projection into the scan</text>
+<path d="M 500 136 L 500 150.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 500 156 L 496.5 149 L 500 150.75 L 503.5 149 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+
+<!-- BE scan -->
+<rect x="70" y="156" width="860" height="150" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="86" y="176" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Backend scan  (one Parquet / ORC file)</text>
+
+<rect x="86" y="210" width="150" height="64" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="161" y="240" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">scanner</text>
+<text x="161" y="258" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">vectorized</text>
+
+<rect x="272" y="210" width="180" height="64" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="362" y="240" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Page cache</text>
+<text x="362" y="258" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">decoded pages, mem</text>
+
+<rect x="488" y="210" width="210" height="64" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="593" y="240" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Data cache</text>
+<text x="593" y="258" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">1 MB blocks, local disk</text>
+
+<rect x="734" y="210" width="180" height="64" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="824" y="240" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Object storage</text>
+<text x="824" y="258" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">ranged GET (S3/HDFS)</text>
+
+<path d="M 236 242 L 266.75 242" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 272 242 L 265 238.5 L 266.75 242 L 265 245.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="470" y="200" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">miss</text>
+<path d="M 452 242 L 482.75 242" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 488 242 L 481 238.5 L 482.75 242 L 481 245.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="716" y="200" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">miss</text>
+<path d="M 698 242 L 728.75 242" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 734 242 L 727 238.5 L 728.75 242 L 727 245.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+
+<text x="86" y="296" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">a hit returns from the first layer that holds it, and only a full miss reaches object storage</text>
+
+<!-- caption -->
+<text x="500" y="334" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">The Data cache is the same block machinery as the decoupled file cache (Section 2.3.3), over Parquet.</text>
+<text x="500" y="354" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">First read pays object storage once, every repeat is local, and pushdown skips row groups and columns.</text>
+
+</g></svg>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="360px" viewBox="0 0 1000 360"><defs/><g>
+
+<text x="500" y="26" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">The inverted index</text>
+<text x="500" y="46" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">a term points straight at the rows that contain it, so a match reads only those rows</text>
+
+<!-- message column -->
+<rect x="40" y="86" width="250" height="194" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="56" y="110" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">message column</text>
+<path d="M 40 120 L 290 120" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<rect x="56" y="134" width="218" height="34" fill="#fff2e5" stroke="#000000" pointer-events="all"/>
+<text x="72" y="156" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">1   disk error</text>
+<rect x="56" y="176" width="218" height="34" fill="#fff2e5" stroke="#000000" pointer-events="all"/>
+<text x="72" y="198" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">2   ok</text>
+<rect x="56" y="218" width="218" height="34" fill="#fff2e5" stroke="#000000" pointer-events="all"/>
+<text x="72" y="240" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">3   read error</text>
+
+<!-- inverted index -->
+<rect x="370" y="86" width="260" height="194" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="386" y="110" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">inverted index</text>
+<path d="M 370 120 L 630 120" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<rect x="386" y="134" width="228" height="30" fill="#ecf3fd" stroke="#000000" pointer-events="all"/>
+<text x="402" y="154" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">disk    -&gt; 1</text>
+<rect x="386" y="168" width="228" height="30" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="402" y="188" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">error   -&gt; 1, 3</text>
+<rect x="386" y="202" width="228" height="30" fill="#ecf3fd" stroke="#000000" pointer-events="all"/>
+<text x="402" y="222" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">ok      -&gt; 2</text>
+<rect x="386" y="236" width="228" height="30" fill="#ecf3fd" stroke="#000000" pointer-events="all"/>
+<text x="402" y="256" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">read    -&gt; 3</text>
+
+<!-- query result -->
+<rect x="710" y="86" width="250" height="194" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="726" y="110" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">MATCH 'error'</text>
+<path d="M 710 120 L 960 120" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<rect x="726" y="134" width="218" height="34" fill="#eaf3e9" stroke="#000000" pointer-events="all"/>
+<text x="742" y="156" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">1   disk error</text>
+<rect x="726" y="176" width="218" height="34" fill="#f8cecc" stroke="#000000" pointer-events="all"/>
+<text x="742" y="198" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">2   ok      skipped</text>
+<rect x="726" y="218" width="218" height="34" fill="#eaf3e9" stroke="#000000" pointer-events="all"/>
+<text x="742" y="240" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">3   read error</text>
+
+<!-- arrows -->
+<path d="M 290 185 L 364.75 185" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 370 185 L 363 181.5 L 364.75 185 L 363 188.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="327" y="177" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">tokenize</text>
+
+<path d="M 630 185 L 704.75 185" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 710 185 L 703 181.5 L 704.75 185 L 703 188.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="670" y="177" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">look up</text>
+
+<!-- lifecycle -->
+<rect x="40" y="302" width="920" height="38" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="500" y="326" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">built at load   -&gt;   merged during compaction   -&gt;   cached and queried at read</text>
+
+</g></svg>

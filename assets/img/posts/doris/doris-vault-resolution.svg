@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="360px" viewBox="0 0 1000 360"><defs/><g>
+
+<!-- Stage 1: define -->
+<text x="70" y="34" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">1 &#8212; define the vault</text>
+<rect x="70" y="44" width="360" height="64" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="250" y="72" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">CREATE STORAGE VAULT v1</text>
+<text x="250" y="92" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">s3: endpoint, bucket, prefix, creds</text>
+<path d="M 430 76 L 554.75 76" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 560 76 L 553 72.5 L 554.75 76 L 553 79.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="495" y="62" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">register</text>
+<rect x="560" y="44" width="380" height="64" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="750" y="70" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Meta Service: vault registry</text>
+<text x="688" y="92" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">v1 -&gt;</text>
+<rect x="738" y="77" width="74" height="22" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="775" y="92" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">vault 7</text>
+
+<!-- Stage 2: bind -->
+<text x="70" y="134" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">2 &#8212; bind a table</text>
+<rect x="70" y="144" width="360" height="64" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="250" y="172" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">CREATE TABLE t (...)</text>
+<text x="250" y="192" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">storage_vault_name = v1</text>
+<path d="M 430 176 L 554.75 176" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 560 176 L 553 172.5 L 554.75 176 L 553 179.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="495" y="162" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">resolve + bind</text>
+<rect x="560" y="144" width="380" height="64" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="750" y="170" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Meta Service: table binding</text>
+<text x="667" y="192" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">table t -&gt;</text>
+<rect x="759" y="177" width="74" height="22" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="796" y="192" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">vault 7</text>
+
+<!-- Stage 3: locate -->
+<text x="70" y="234" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">3 &#8212; locate a file</text>
+<rect x="70" y="244" width="360" height="64" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="250" y="272" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">load writes a segment</text>
+<text x="250" y="292" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">tablet 10001, rowset r, seg 0</text>
+<path d="M 430 276 L 554.75 276" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 560 276 L 553 272.5 L 554.75 276 L 553 279.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="495" y="262" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">compute path</text>
+<rect x="560" y="244" width="380" height="64" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<rect x="680" y="255" width="74" height="22" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="717" y="270" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">vault 7</text>
+<text x="762" y="270" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">backend</text>
+<text x="750" y="292" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">&lt;bucket&gt;/&lt;prefix&gt;/data/10001/r_0.dat</text>
+
+<!-- caption -->
+<text x="500" y="344" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">The final path is assembled from all three: vault location, table binding, and tablet / rowset / segment ids</text>
+
+</g></svg>

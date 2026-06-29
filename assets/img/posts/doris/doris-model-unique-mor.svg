@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="300px" viewBox="0 0 1000 300"><defs/><g>
+
+<text x="500" y="26" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Unique Key model, Merge-on-Read</text>
+<text x="500" y="46" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">a repeated key upserts, and on every read the newest version wins</text>
+
+<!-- loads -->
+<rect x="40" y="70" width="200" height="84" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="140" y="90" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Load 1</text>
+<path d="M 40 98 L 240 98" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 140 98 L 140 154" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<text x="95" y="120" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">1</text>
+<text x="190" y="120" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">10</text>
+<text x="95" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">2</text>
+<text x="190" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">20</text>
+
+<rect x="40" y="174" width="200" height="84" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="140" y="194" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Load 2</text>
+<path d="M 40 202 L 240 202" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 140 202 L 140 258" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<text x="95" y="224" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">1</text>
+<text x="190" y="224" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">5</text>
+<text x="95" y="246" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">3</text>
+<text x="190" y="246" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">30</text>
+
+<text x="140" y="284" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">id  |  v</text>
+
+<!-- arrows loads -> rowsets -->
+<path d="M 240 112 L 354.75 112" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 360 112 L 353 108.5 L 354.75 112 L 353 115.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 240 216 L 354.75 216" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 360 216 L 353 212.5 L 354.75 216 L 353 219.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+
+<!-- rowsets on disk -->
+<text x="470" y="64" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">stored as immutable rowsets (older + newer)</text>
+<rect x="360" y="70" width="220" height="84" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="470" y="90" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">rowset v[2-2]  (older)</text>
+<path d="M 360 98 L 580 98" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 470 98 L 470 154" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<text x="425" y="120" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">1</text>
+<text x="520" y="120" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">10</text>
+<text x="425" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">2</text>
+<text x="520" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">20</text>
+
+<rect x="360" y="174" width="220" height="84" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="470" y="194" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">rowset v[3-3]  (newer)</text>
+<path d="M 360 202 L 580 202" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 470 202 L 470 258" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<text x="425" y="224" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">1</text>
+<text x="520" y="224" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">5</text>
+<text x="425" y="246" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">3</text>
+<text x="520" y="246" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">30</text>
+
+<!-- arrow rowsets -> result -->
+<path d="M 584 164 L 714.75 164" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 720 164 L 713 160.5 L 714.75 164 L 713 167.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="650" y="150" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">read</text>
+<text x="650" y="185" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">merge,</text>
+<text x="650" y="202" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">newest wins</text>
+
+<!-- result -->
+<rect x="720" y="104" width="220" height="120" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="830" y="124" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">query result</text>
+<path d="M 720 132 L 940 132" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 830 132 L 830 224" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<text x="785" y="154" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">1</text>
+<text x="880" y="154" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">5</text>
+<text x="785" y="176" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">2</text>
+<text x="880" y="176" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">20</text>
+<text x="785" y="198" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">3</text>
+<text x="880" y="198" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">30</text>
+
+</g></svg>

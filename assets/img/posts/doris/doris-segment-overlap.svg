@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="240px" viewBox="0 0 1000 240"><defs/><g>
+
+<!-- Left panel: freshly loaded -->
+<text x="245" y="32" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Freshly loaded rowset</text>
+<text x="245" y="52" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">segments OVERLAPPING</text>
+
+<rect x="180" y="84" width="120" height="76" fill="#f8cecc" stroke="none" pointer-events="all"/>
+<text x="240" y="79" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="middle">overlap</text>
+
+<rect x="70" y="90" width="230" height="28" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="185" y="108" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">seg 0</text>
+<rect x="180" y="130" width="240" height="28" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="300" y="148" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">seg 1</text>
+
+<path d="M 60 174 L 424.75 174" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 430 174 L 423 177.5 L 424.75 174 L 423 170.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="245" y="194" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">sort key (sale_date, store_id)</text>
+<text x="245" y="218" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">a key can fall in any segment</text>
+
+<!-- compaction arrow -->
+<path d="M 440 124 L 554.75 124" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 560 124 L 553 127.5 L 554.75 124 L 553 120.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="500" y="116" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">compaction</text>
+
+<!-- Right panel: after compaction -->
+<text x="765" y="32" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">After compaction</text>
+<text x="765" y="52" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">segments NON-OVERLAPPING</text>
+
+<rect x="590" y="110" width="116" height="28" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="648" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">seg 0</text>
+<rect x="710" y="110" width="116" height="28" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="768" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">seg 1</text>
+<rect x="830" y="110" width="116" height="28" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="888" y="128" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">seg 2</text>
+
+<path d="M 580 174 L 944.75 174" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 950 174 L 943 177.5 L 944.75 174 L 943 170.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="765" y="194" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">sort key (sale_date, store_id)</text>
+<text x="765" y="218" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">each key range lives in one segment</text>
+
+</g></svg>

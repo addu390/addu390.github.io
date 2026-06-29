@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="820px" height="500px" viewBox="0 0 820 500"><defs/><g>
+<!-- client -->
+<rect x="175" y="20" width="150" height="34" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="250" y="41" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">SQL client</text>
+<path d="M 250 54 L 250 72.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 250 78 L 246.5 71 L 250 72.75 L 253.5 71 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<!-- FE -->
+<rect x="110" y="78" width="280" height="50" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="250" y="107" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">FE : parse / plan / coordinate</text>
+<!-- Meta Service -->
+<rect x="560" y="78" width="240" height="222" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="680" y="98" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">Meta Service</text>
+<text x="680" y="114" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">(stateless, FoundationDB-backed)</text>
+<rect x="575" y="128" width="210" height="150" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="585" y="146" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">stores all metadata:</text>
+<text x="585" y="166" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">- tablet + rowset meta</text>
+<text x="585" y="184" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">- transactions + versions</text>
+<text x="585" y="202" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">- schemas + partitions</text>
+<text x="585" y="220" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">- compute groups + nodes</text>
+<text x="585" y="238" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">- tablet statistics</text>
+<!-- FE <-> MS -->
+<path d="M 395.25 103 L 554.75 103" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 390 103 L 397 99.5 L 395.25 103 L 397 106.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 560 103 L 553 99.5 L 554.75 103 L 553 106.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="475" y="95" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">metadata + txn</text>
+<!-- FE -> compute groups -->
+<path d="M 250 128 L 250 180" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 165 180 L 345 180" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 165 180 L 165 194.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 165 200 L 161.5 193 L 165 194.75 L 168.5 193 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 345 180 L 345 194.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 345 200 L 341.5 193 L 345 194.75 L 348.5 193 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="320" y="150" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">fragments (bRPC)</text>
+<!-- compute groups container -->
+<rect x="60" y="200" width="380" height="130" fill="none" stroke="#000000" stroke-dasharray="4 4" pointer-events="all"/>
+<text x="70" y="218" fill="#000000" font-family="monospace" font-size="12px" text-anchor="start">Compute groups : stateless BE + file cache</text>
+<rect x="80" y="232" width="170" height="88" fill="none" stroke="#000000" stroke-dasharray="2 2" pointer-events="all"/>
+<text x="165" y="248" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">Compute Group 1</text>
+<rect x="96" y="260" width="64" height="32" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="128" y="280" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">BE</text>
+<rect x="174" y="260" width="64" height="32" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="206" y="280" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">BE</text>
+<rect x="96" y="298" width="142" height="18" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="167" y="311" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">file cache</text>
+<rect x="260" y="232" width="170" height="88" fill="none" stroke="#000000" stroke-dasharray="2 2" pointer-events="all"/>
+<text x="345" y="248" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">Compute Group 2</text>
+<rect x="276" y="260" width="64" height="32" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="308" y="280" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">BE</text>
+<rect x="354" y="260" width="64" height="32" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="386" y="280" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">BE</text>
+<rect x="276" y="298" width="142" height="18" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="347" y="311" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">file cache</text>
+<!-- compute groups <-> MS -->
+<path d="M 445.25 270 L 554.75 270" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 440 270 L 447 266.5 L 445.25 270 L 447 273.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 560 270 L 553 266.5 L 554.75 270 L 553 273.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="500" y="252" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">tablet meta +</text>
+<text x="500" y="266" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">commit version</text>
+<!-- compute groups <-> storage (data plane) -->
+<path d="M 250 335.25 L 250 394.75" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 250 330 L 246.5 337 L 250 335.25 L 253.5 337 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 250 400 L 246.5 393 L 250 394.75 L 253.5 393 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="362" y="368" fill="#b85450" font-family="monospace" font-size="12px" text-anchor="middle">read / write (file cache)</text>
+<!-- storage vault -->
+<rect x="60" y="400" width="380" height="80" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="250" y="418" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">Storage Vault : object storage</text>
+<rect x="80" y="434" width="100" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="130" y="453" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">S3</text>
+<rect x="190" y="434" width="100" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="240" y="453" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">HDFS</text>
+<rect x="300" y="434" width="120" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="360" y="453" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">OSS / Blob</text>
+<!-- recycler -->
+<rect x="560" y="400" width="240" height="70" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="680" y="422" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">Recycler</text>
+<text x="680" y="440" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">GC of object storage</text>
+<!-- recycler <-> MS -->
+<path d="M 680 300 L 680 394.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 680 300 L 676.5 307 L 680 305.25 L 683.5 307 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 680 400 L 676.5 393 L 680 394.75 L 683.5 393 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="606" y="352" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">consults meta</text>
+<!-- recycler -> storage -->
+<path d="M 445.25 440 L 555 440" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 440 440 L 447 436.5 L 445.25 440 L 447 443.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="500" y="432" fill="#000000" font-family="monospace" font-size="12px" text-anchor="middle">delete files</text>
+</g></svg>

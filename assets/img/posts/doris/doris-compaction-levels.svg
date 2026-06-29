@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="356px" viewBox="0 0 1000 356"><defs/><g>
+
+<text x="500" y="26" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Compaction: cumulative and base</text>
+<text x="500" y="46" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">each load adds a small rowset above the cumulative point, then compaction folds them down</text>
+<text x="838" y="66" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">older  to  newer  (version)</text>
+
+<!-- stage A -->
+<text x="470" y="66" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">cumulative point</text>
+<rect x="150" y="76" width="260" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="280" y="104" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">base rowset  v[0-10]</text>
+<path d="M 428 70 L 428 128" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="4 4"/>
+<rect x="440" y="76" width="56" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="468" y="104" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">11</text>
+<rect x="500" y="76" width="56" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="528" y="104" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">12</text>
+<rect x="560" y="76" width="56" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="588" y="104" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">13</text>
+<rect x="620" y="76" width="56" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="648" y="104" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">14</text>
+<text x="760" y="96" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">each load is</text>
+<text x="760" y="114" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">a tiny rowset</text>
+
+<!-- arrow A -> B -->
+<path d="M 558 124 L 558 168.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 558 174 L 554.5 167 L 558 168.75 L 561.5 167 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="578" y="152" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">cumulative compaction (frequent)</text>
+
+<!-- stage B -->
+<rect x="150" y="176" width="260" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="280" y="204" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">base rowset  v[0-10]</text>
+<rect x="440" y="176" width="200" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="540" y="204" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">v[11-14]</text>
+<path d="M 652 170 L 652 228" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="4 4"/>
+<text x="690" y="240" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">point advanced</text>
+
+<!-- arrow B -> C -->
+<path d="M 300 224 L 300 268.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 300 274 L 296.5 267 L 300 268.75 L 303.5 267 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="320" y="252" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">base compaction (occasional)</text>
+
+<!-- stage C -->
+<rect x="150" y="276" width="490" height="46" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="395" y="304" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">base rowset  v[0-14]</text>
+<text x="690" y="304" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">one sorted base, fewer files to read</text>
+
+</g></svg>

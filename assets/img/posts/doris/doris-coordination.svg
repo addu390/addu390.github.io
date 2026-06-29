@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="506px" viewBox="0 0 1000 506"><defs/><g>
+
+<text x="500" y="28" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Scheduling: fragments become instances on backends</text>
+
+<!-- client -->
+<rect x="430" y="44" width="140" height="34" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="500" y="66" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">client</text>
+
+<!-- coordinator -->
+<rect x="340" y="120" width="320" height="72" fill="#dae8fc" stroke="#000000" pointer-events="all"/>
+<text x="500" y="148" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Frontend coordinator</text>
+<text x="500" y="170" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">place instances, pin version, collect</text>
+
+<!-- meta service -->
+<rect x="60" y="128" width="210" height="56" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="165" y="152" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Meta Service</text>
+<text x="165" y="174" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">current version -&gt; v34</text>
+
+<!-- compute group -->
+<rect x="120" y="252" width="760" height="176" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="136" y="274" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Compute group</text>
+
+<rect x="150" y="292" width="220" height="120" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="260" y="318" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 1</text>
+<text x="260" y="344" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">F1: scan sales</text>
+<text x="260" y="370" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">F2: scan stores</text>
+<text x="260" y="396" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">F3: gather + result</text>
+
+<rect x="390" y="292" width="220" height="120" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="500" y="318" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 2</text>
+<text x="500" y="344" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">F1: scan sales</text>
+
+<rect x="630" y="292" width="220" height="120" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="740" y="318" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 3</text>
+<text x="740" y="344" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">F1: scan sales</text>
+
+<!-- client <-> coordinator -->
+<path d="M 500 83.25 L 500 114.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 500 78 L 496.5 85 L 500 83.25 L 503.5 85 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 500 120 L 496.5 113 L 500 114.75 L 503.5 113 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="512" y="103" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">query / rows</text>
+
+<!-- coordinator -> MS -->
+<path d="M 340 156 L 275.25 156" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 270 156 L 277 152.5 L 275.25 156 L 277 159.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="305" y="148" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">version</text>
+
+<!-- dispatch -->
+<path d="M 440 192 L 440 246.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 440 252 L 436.5 245 L 440 246.75 L 443.5 245 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="434" y="226" fill="#000000" font-family="monospace" font-size="14px" text-anchor="end">dispatch @ v34</text>
+
+<!-- results (data) -->
+<path d="M 560 252 L 560 197.25" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 560 192 L 556.5 199 L 560 197.25 L 563.5 199 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="572" y="226" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="start">results</text>
+
+<!-- caption -->
+<text x="500" y="452" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">The coordinator pins one version from the Meta Service and stamps it into every scan.</text>
+<text x="500" y="472" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">It places scan instances on the backends that own the tablets, plus one gather instance to finish,</text>
+<text x="500" y="492" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">then streams the result back to the client.</text>
+
+</g></svg>

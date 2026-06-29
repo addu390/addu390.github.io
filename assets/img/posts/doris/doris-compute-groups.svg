@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="485px" viewBox="0 0 1000 485"><defs/><g>
+
+<text x="500" y="28" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Compute groups and tablet affinity</text>
+
+<!-- Group A -->
+<rect x="60" y="52" width="600" height="270" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="75" y="74" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Compute group A (interactive)</text>
+<text x="75" y="96" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">each tablet routes to one BE by partition+bucket hash (warm cache)</text>
+
+<rect x="75" y="116" width="180" height="150" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="165" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 1</text>
+<rect x="95" y="172" width="64" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="127" y="192" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">t1</text>
+<rect x="171" y="172" width="64" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="203" y="192" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">t4</text>
+
+<rect x="270" y="116" width="180" height="150" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="360" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 2</text>
+<rect x="328" y="172" width="64" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="360" y="192" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">t2</text>
+
+<rect x="465" y="116" width="180" height="150" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="555" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 3</text>
+<rect x="523" y="172" width="64" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="555" y="192" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">t3</text>
+
+<!-- Group B -->
+<rect x="680" y="52" width="260" height="270" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="695" y="74" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">Compute group B (ETL)</text>
+<text x="695" y="96" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">separate nodes, same vault</text>
+<rect x="700" y="116" width="220" height="66" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="810" y="153" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 4</text>
+<rect x="700" y="196" width="220" height="66" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="810" y="233" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE 5</text>
+
+<!-- Storage Vault -->
+<rect x="60" y="360" width="880" height="60" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="500" y="396" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Storage Vault - one shared copy</text>
+
+<!-- Group A <-> vault -->
+<path d="M 360 327.25 L 360 354.75" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 360 360 L 356.5 353 L 360 354.75 L 363.5 353 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 360 322 L 356.5 329 L 360 327.25 L 363.5 329 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+
+<!-- Group B <-> vault -->
+<path d="M 810 327.25 L 810 354.75" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 810 360 L 806.5 353 L 810 354.75 L 813.5 353 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 810 322 L 806.5 329 L 810 327.25 L 813.5 329 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+
+<!-- caption -->
+<text x="500" y="448" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">A tablet keeps routing to the same backend, so its file cache stays warm.</text>
+<text x="500" y="468" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Groups scale and pause independently, and by default the rebalancer re-warms a tablet's cache when it moves.</text>
+
+</g></svg>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000px" height="470px" viewBox="0 0 1000 470"><defs/><g>
+
+<!-- Meta Service -->
+<rect x="300" y="20" width="400" height="74" fill="#e1d5e7" stroke="#000000" pointer-events="all"/>
+<text x="500" y="44" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Meta Service</text>
+<rect x="316" y="54" width="368" height="28" fill="#f0eaf3" stroke="#000000" pointer-events="all"/>
+<text x="500" y="73" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">vault registry  +  table -&gt; vault</text>
+
+<!-- MS -> Vault -->
+<path d="M 500 94 L 500 114.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 500 120 L 496.5 113 L 500 114.75 L 503.5 113 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="596" y="110" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">vault config + binding</text>
+
+<!-- BE -->
+<rect x="40" y="120" width="220" height="48" fill="#ffe6cc" stroke="#000000" pointer-events="all"/>
+<text x="150" y="142" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">BE (compute group)</text>
+<text x="150" y="160" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">read + write segments</text>
+
+<!-- BE -> Vault (data plane) -->
+<path d="M 260 144 L 359.25 144" fill="none" stroke="#b85450" stroke-miterlimit="10"/>
+<path d="M 365 144 L 358 140.5 L 359.75 144 L 358 147.5 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10"/>
+<text x="312" y="137" fill="#b85450" font-family="monospace" font-size="14px" text-anchor="middle">read / write</text>
+
+<!-- Recycler -->
+<rect x="40" y="190" width="220" height="48" fill="#fff2cc" stroke="#000000" pointer-events="all"/>
+<text x="150" y="212" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Recycler</text>
+<text x="150" y="230" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">delete segments</text>
+
+<!-- Recycler -> Vault -->
+<path d="M 260 214 L 359.25 214" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 365 214 L 358 210.5 L 359.75 214 L 358 217.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="312" y="207" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">delete</text>
+
+<!-- Storage Vault (focus) -->
+<rect x="365" y="120" width="300" height="120" fill="#d5e8d4" stroke="#000000" pointer-events="all"/>
+<text x="515" y="150" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Storage Vault</text>
+<text x="515" y="174" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">uniform file interface</text>
+<rect x="385" y="190" width="120" height="30" fill="#eaf3e9" stroke="#000000" pointer-events="all"/>
+<text x="445" y="210" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">S3-compatible</text>
+<rect x="535" y="190" width="110" height="30" fill="#eaf3e9" stroke="#000000" pointer-events="all"/>
+<text x="590" y="210" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">HDFS</text>
+
+<!-- Vault -> store -->
+<path d="M 515 240 L 515 294.75" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+<path d="M 515 300 L 511.5 293 L 515 294.75 L 518.5 293 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10"/>
+<text x="600" y="272" fill="#000000" font-family="monospace" font-size="14px" text-anchor="start">one durable copy</text>
+
+<!-- Physical store -->
+<rect x="150" y="300" width="700" height="118" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="500" y="326" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">Object store bucket  /  HDFS directory</text>
+<rect x="180" y="340" width="640" height="30" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+<text x="500" y="360" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">&lt;bucket&gt;/&lt;prefix&gt;/data/{tablet_id}/{rowset_id}_{seg_id}.dat</text>
+<text x="500" y="392" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">+ a separate inverted-index file per segment</text>
+
+<!-- caption -->
+<text x="500" y="446" fill="#000000" font-family="monospace" font-size="14px" text-anchor="middle">S3-type vault = AWS S3, OSS, COS, OBS, BOS, GCP, Azure, MinIO and similar. HDFS is the other backend</text>
+
+</g></svg>
