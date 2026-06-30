@@ -61,8 +61,50 @@ layout: default
     </div>
 
     {%- include np-foot-rule.html -%}
+
+    <button id="np-to-top" class="np-to-top" type="button" aria-label="Scroll to top" title="Scroll to top">
+        <span class="np-to-top-arrow" aria-hidden="true">&#8593;</span>
+        <span class="np-to-top-label">Scroll to Top</span>
+    </button>
 </div>
 
 <script src="{{ '../assets/js/toc.js' | relative_url }}"></script>
 <script src="{{ './assets/js/slider.js' | relative_url }}"></script>
+<script>
+    (function () {
+        var btn = document.getElementById("np-to-top");
+        if (!btn) return;
+        var toc = document.querySelector(".np-toc-box");
+        var place = function () {
+            if (!toc) return;
+            var r = toc.getBoundingClientRect();
+            if (r.width > 0) {
+                btn.style.left = r.left + "px";
+                btn.style.width = r.width + "px";
+            }
+        };
+        var scrollTop = function () {
+            return document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset || 0;
+        };
+        var toggle = function () {
+            if (scrollTop() > 600) {
+                place();
+                btn.classList.add("is-visible");
+            } else {
+                btn.classList.remove("is-visible");
+            }
+        };
+        window.addEventListener("scroll", toggle, true);
+        window.addEventListener("resize", place);
+        window.addEventListener("load", place);
+        btn.addEventListener("click", function () {
+            var opts = { top: 0, behavior: "smooth" };
+            (document.scrollingElement || document.documentElement).scrollTo(opts);
+            document.body.scrollTo(opts);
+            window.scrollTo(opts);
+        });
+        place();
+        toggle();
+    })();
+</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.6/tex-mml-chtml.js"></script>

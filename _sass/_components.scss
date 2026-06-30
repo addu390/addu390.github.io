@@ -1,27 +1,32 @@
 .black-button {
-  background-color: var(--surface);
   display: inline-block;
-  padding: 0.35em 0.8em !important;
-  border: 0.1em solid var(--text);
-  margin: 1em 0.3em 0em 0.3em !important;
-  border-radius: 5px;
+  padding: 6px 16px;
+  margin: 0 4px;
+  border: 1px solid var(--np-ink);
+  border-radius: 0;
   box-sizing: border-box;
+  background: var(--np-paper);
+  color: var(--np-ink);
+  font-family: var(--np-text);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   text-decoration: none;
-  color: var(--text);
   text-align: center;
-  transition: all 0.2s;
   cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .black-button:disabled {
   cursor: not-allowed;
-  color: var(--text-muted);
-  border: 0.1em solid var(--border-strong);
+  color: var(--np-soft);
+  border-color: var(--np-hair);
 }
 
 .black-button:hover:enabled {
-  color: var(--white);
-  background-color: var(--py-black);
+  color: var(--np-paper);
+  background: var(--np-ink);
 }
 
 .highlighter-rouge,
@@ -151,23 +156,6 @@ code {
   text-underline-offset: 0.2em;
 }
 
-.code-container {
-  background-color: #fffff0;
-  border: 1px solid rgb(225, 225, 186);
-  padding: 10px 15px 10px 15px;
-  border-radius: 5px;
-  color: #222;
-}
-
-.code-container .p {
-  font-size: 17px;
-}
-
-.code-container pre,
-.code-container code {
-  background-color: #ececcf;
-}
-
 .text-container {
   border: 1px solid var(--light-grey);
   padding: 10px 15px 10px 15px;
@@ -188,15 +176,7 @@ code {
 }
 
 .sidebar-scrollable-div {
-  overflow-y: scroll;
-  max-height: 20em;
   scroll-behavior: smooth;
-}
-
-.sidebar-toc-div {
-  max-height: 40em !important;
-  position: fixed;
-  margin-right: 1.7em;
 }
 
 .sidebar-scrollable-div a,

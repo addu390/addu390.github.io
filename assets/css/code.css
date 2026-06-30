@@ -8,51 +8,46 @@
 
 .highlight,
 .highlight .w {
-    color: #586e75;
+    color: #1f1f1f;
 }
 
 .highlight .err {
-    color: #002b36;
-    background-color: #dc322f;
+    color: #9c2f27;
+    background-color: transparent;
 }
 
 .highlight .c,
 .highlight .cd,
 .highlight .cm,
 .highlight .c1,
-.highlight .cs {
-    color: #657b83;
-}
-
+.highlight .cs,
 .highlight .cp {
-    color: #b58900;
+    color: #8a8a8a;
+    font-style: italic;
 }
 
 .highlight .nt {
-    color: #b58900;
+    color: #9c2f27;
 }
 
 .highlight .o,
-.highlight .ow {
-    color: #93a1a1;
-}
-
+.highlight .ow,
 .highlight .p,
 .highlight .pi {
-    color: #93a1a1;
+    color: #555555;
 }
 
 .highlight .gi {
-    color: #859900;
+    color: #4f6b2f;
 }
 
 .highlight .gd {
-    color: #dc322f;
+    color: #9c2f27;
 }
 
 .highlight .gh {
-    color: #268bd2;
-    background-color: #002b36;
+    color: #2f5a78;
+    background-color: transparent;
     font-weight: bold;
 }
 
@@ -60,20 +55,12 @@
 .highlight .kn,
 .highlight .kp,
 .highlight .kr,
-.highlight .kv {
-    color: #6c71c4;
-}
-
-.highlight .kc {
-    color: #cb4b16;
-}
-
-.highlight .kt {
-    color: #cb4b16;
-}
-
+.highlight .kv,
+.highlight .kc,
+.highlight .kt,
 .highlight .kd {
-    color: #cb4b16;
+    color: #9c2f27;
+    font-weight: 600;
 }
 
 .highlight .s,
@@ -83,36 +70,26 @@
 .highlight .s2,
 .highlight .sh,
 .highlight .sx,
-.highlight .s1 {
-    color: #859900;
+.highlight .s1,
+.highlight .sr,
+.highlight .ss {
+    color: #4f6b2f;
 }
 
-.highlight .sr {
-    color: #2aa198;
-}
-
-.highlight .si {
-    color: #d33682;
-}
-
+.highlight .si,
 .highlight .se {
-    color: #d33682;
+    color: #9c2f27;
 }
 
-.highlight .nn {
-    color: #b58900;
-}
-
-.highlight .nc {
-    color: #b58900;
-}
-
+.highlight .nn,
+.highlight .nc,
 .highlight .no {
-    color: #b58900;
+    color: #2f5a78;
+    font-weight: 600;
 }
 
 .highlight .na {
-    color: #268bd2;
+    color: #2f5a78;
 }
 
 .highlight .m,
@@ -123,9 +100,5 @@
 .highlight .mo,
 .highlight .mb,
 .highlight .mx {
-    color: #859900;
-}
-
-.highlight .ss {
-    color: #859900;
+    color: #2f5a78;
 }

@@ -86,8 +86,9 @@ img {
 }
 
 mark {
-  background-color: #fffaa1;
-  color: #222;
+  background-color: var(--np-accent-tint);
+  color: var(--np-ink);
+  padding: 0 2px;
 }
 
 blockquote {
