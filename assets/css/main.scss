@@ -1,7 +1,6 @@
 ---
 ---
 @use "base";
-@use "posts-table";
 @use "layout";
 @use "responsive";
 @use "navigation";
@@ -11,3 +10,4 @@
 @use "pages";
 @use "pagination";
 @use "mobile-nav";
+@use "newspaper";

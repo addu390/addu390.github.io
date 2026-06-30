@@ -1,0 +1,39 @@
+<div class="np-search" id="np-search">
+    <label class="np-search-field">
+        <svg class="np-search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg>
+        <input autocomplete="off" id="np-search-input" oninput="npSearchToggle(this.value)" placeholder="Search the archives" type="text"/>
+    </label>
+    <ul id="np-results-container" class="np-results" style="display:none"></ul>
+</div>
+<script src="/assets/js/search.js"></script>
+<script>
+    (function () {
+        var box = document.getElementById("np-search");
+        var input = document.getElementById("np-search-input");
+        var rc = document.getElementById("np-results-container");
+        if (!input || !rc) return;
+
+        window.npSearchToggle = function (val) {
+            rc.style.display = val ? "block" : "none";
+        };
+
+        document.addEventListener("click", function (e) {
+            if (!box.contains(e.target)) rc.style.display = "none";
+        });
+        input.addEventListener("focus", function () {
+            if (input.value) rc.style.display = "block";
+        });
+
+        if (window.SimpleJekyllSearch) {
+            SimpleJekyllSearch({
+                searchInput: input,
+                resultsContainer: rc,
+                json: "/search.json",
+                searchResultTemplate: "<li class='np-search-res'><a href='{url}'><span class='np-search-res-title'>{title}</span><span class='np-search-res-date'>{date}</span></a></li>",
+                noResultsText: "<li class='np-search-empty'>No dispatches found.</li>",
+                fuzzy: false,
+                limit: 6
+            });
+        }
+    })();
+</script>

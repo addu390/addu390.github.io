@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Dockerizing Django — Gunicorn and Nginx"
+description: "A step-by-step guide to containerizing a Django app with MySQL, served by Gunicorn behind an Nginx reverse proxy and wired together with Docker Compose."
 date: 2022-02-11
 tags:
   - Django

@@ -1,32 +1,26 @@
 ---
-layout: post
+layout: index
 title: By Date
+kicker: Index
+deck: The newsroom log, in the order posts ran.
 permalink: /dates/
 content-type: eg
 ---
 
-<style>
-.date-content a {
-    text-decoration: none;
-    color: #4183c4;
-}
-
-.date-content a:hover {
-    text-decoration: underline;
-    color: #4183c4;
-}
-</style>
-
-<main>
-    {% assign postsByDay =
-    site.posts | group_by_exp:"post", "post.date | date: '%d-%B-%Y'" %}
-
-    {% for day in postsByDay %}
-      <h3 id="{{ day.name }}">{{ day.name }}</h3>
-          {% for post in day.items %}
-            <li id="date-content" style="padding-bottom: 0.6em; list-style: none;"><a href="{{ post.url }}">{{ post.title }}</a></li>
-          {% endfor %}
+<div class="np-index-body-inner">
+{% assign postsByMonth = site.posts | group_by_exp: "post", "post.date | date: '%B %Y'" %}
+{% for month in postsByMonth %}
+<section class="np-ledger">
+    <div class="np-section-title" id="{{ month.name | slugify }}">{{ month.name }}</div>
+    <ul class="np-ledger-list">
+    {% for post in month.items %}
+        <li>
+            <a class="np-lg-title" href="{{ post.url }}">{{ post.title }}</a>
+            <span class="np-lg-dots" aria-hidden="true"></span>
+            <span class="np-lg-meta">{{ post.date | date: "%b %-d" }} &middot; {{ post.tags | first | default: "Dispatch" }}</span>
+        </li>
     {% endfor %}
-        <br/>
-        <br/>
-</main>
+    </ul>
+</section>
+{% endfor %}
+</div>

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Hybrid Spatial Data Structures: Introduction"
+description: "An introduction to spatial indexing, comparing space-driven structures like the quadtree and KD-tree with data-driven ones like the R-tree."
 date: 2022-03-06
 tags:
   - Spatial Index

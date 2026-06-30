@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Deploying Django on AWS Fargate in 8 minutes"
+description: "Running a dockerized Django app on AWS Fargate with the ECS CLI, configuring the cluster, task definition, service, and log group, with no servers to manage."
 date: 2022-02-22
 premium: true
 tags:

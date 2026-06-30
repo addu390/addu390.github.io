@@ -3,11 +3,10 @@
 
 {%- include head.html -%}
 
-<body>
+<body class="layout-{{ page.layout }}">
     {%- include mobile-nav.html -%}
     <div id="layout" class="pure-g">
-        {%- include sidebar.html -%}
-        <div class="content pure-u-1 pure-u-md-4-5">
+        <div class="content pure-u-1">
             <div id="showerContainer"></div>
             <div class="md-display">
                 {%- include links.html -%}
@@ -18,6 +17,7 @@
         </div>
     </div>
     <div class="site-copyright">PyBlog &copy; 2016 - {{ site.time | date: "%Y" }}.</div>
+    <script src="{{ '/assets/js/up-balloons.js' | relative_url }}"></script>
 </body>
 
 </html>

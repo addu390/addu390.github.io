@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Apache Kafka Internals"
+description: "A tour of Apache Kafka's internals that makes sense of its many configurations, covering the event stream, brokers, and best practices for running a cluster."
 date: 2025-02-09
 tags:
   - Internals

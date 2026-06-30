@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "3D Printing iPhone 8 Privacy Case"
+description: "Designing and 3D printing a phone case that physically covers both the front and rear smartphone cameras, and why camera privacy matters more than ever."
 date: 2017-03-27
 tags:
   - Projects

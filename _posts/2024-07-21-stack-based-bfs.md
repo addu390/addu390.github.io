@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Breath-First Search using Stack"
+description: "Implementing breadth-first search with a stack instead of the usual queue, and what changes when you flip the underlying data structure."
 date: 2024-07-21
 tags:
   - Graph Theory

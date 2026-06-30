@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Graph Theory: Search and Traversal"
+description: "Understanding BFS and DFS graph traversal, the difference between visiting and exploring a node, with implementations and examples."
 date: 2024-07-17
 tags:
   - Graph Theory

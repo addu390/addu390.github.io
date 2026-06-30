@@ -16,13 +16,11 @@
 
 {%- include head.html -%}
 
-<body>
-    <div>
-        {%- include sidebar.html -%}
-        <div class="content pure-u-1 pure-u-md-4-5">
-            <div class="md-display" style="z-index: 1; position: relative;">
-                {%- include links.html -%}
-            </div>
+<body class="layout-geohash">
+    {%- include mobile-nav.html -%}
+    <div class="content">
+        <div class="newspaper np-article np-demo">
+            {%- include np-running-head.html -%}
             <div>
                 <div id="map"></div>
                 <div class="gmnoprint" id="geo-container">

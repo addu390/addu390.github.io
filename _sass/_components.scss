@@ -45,59 +45,13 @@ code {
   text-align: center;
 }
 
-.sidebar-list {
-  list-style-type: none;
-  width: 20%;
-  padding: 0px;
-  position: fixed;
-  overflow-y: auto;
-  max-height: calc(100vh - 2em);
-  margin-top: 1em;
-}
-
-.sidebar-list::-webkit-scrollbar,
 .sidebar-scrollable-div::-webkit-scrollbar {
   width: 7px;
-}
-
-.sidebar-list::-webkit-scrollbar-thumb {
-  background: #4e4d4d;
 }
 
 .sidebar-scrollable-div::-webkit-scrollbar-thumb {
   background: #e1e1e1;
   border-radius: 5px;
-}
-
-.sidebar-list * {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
-}
-
-.sidebar-list li {
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 3em;
-  color: var(--sidebar-text);
-}
-
-.sidebar-list li:first-child {
-  padding-top: 0.4em;
-  padding-bottom: 0.8em;
-}
-
-.sidebar-list li {
-  background-color: var(--sidebar-bg);
-}
-
-.sidebar-list li:hover {
-  background: var(--sidebar-hover);
-}
-
-.sidebar-list li a {
-  color: var(--sidebar-text);
-  text-decoration: none;
-  display: block;
 }
 
 .featured {
@@ -250,7 +204,6 @@ code {
   color: var(--black);
 }
 
-/* TOC links - only underline on hover, not on auto-scroll highlight */
 #toc a {
   text-decoration: none !important;
   color: var(--black) !important;
@@ -261,7 +214,6 @@ code {
   text-decoration: underline !important;
 }
 
-/* Auto-scroll highlighting - keep it working but no underline */
 #toc a.underline {
   text-decoration: none !important;
   font-weight: 600 !important;
@@ -312,10 +264,6 @@ table {
 .post .clickable-sidebar-div a:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
-}
-
-.post-meta-dots {
-  padding: 0 4px 0 4px;
 }
 
 .state-tag {
@@ -374,8 +322,7 @@ table {
 }
 
 .posts-right-bar .twemoji,
-.flex-box .twemoji,
-.brand-tagline .twemoji {
+.flex-box .twemoji {
   vertical-align: sub;
 }
 
@@ -598,7 +545,7 @@ summary {
 .svg-bg-dark-mode::before {
   background-blend-mode: screen;
   background-color: white;
-  z-index: -1; /* Place the background behind the image */
+  z-index: -1;
 }
 
 .black-border {

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Why You Should Reinvent the Wheel"
+description: "A reflection on why challenging existing solutions and reinventing the wheel drives real progress, despite the popular advice against it."
 date: 2022-06-26
 tags:
   - System Design

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Graph Theory: Introduction"
+description: "A diagram-first introduction to graph theory from a computer science angle, covering what graphs are, the different kinds, and their real-world uses."
 date: 2024-07-14
 tags:
   - Graph Theory

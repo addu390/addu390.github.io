@@ -1,15 +1,20 @@
 ---
 layout: default
 ---
+<div class="newspaper np-article np-page">
+    {%- include np-running-head.html -%}
 
-<article class="page post-entry page-entry">
+    <article class="post-entry np-page-entry" itemscope itemtype="http://schema.org/WebPage">
+        <div class="np-kicker np-article-kicker">{{ page.kicker | default: "PyBlog" }}</div>
+        <h2 class="post-title np-article-head" itemprop="name headline">{{ page.title | escape }}</h2>
+        {%- if page.deck -%}
+        <p class="np-article-deck">{{ page.deck }}</p>
+        {%- endif -%}
 
-    <header>
-        <h2>{{ page.title | escape }}</h2>
-    </header>
+        <div class="post-body np-article-body" itemprop="mainContentOfPage">
+            {{ content }}
+        </div>
+    </article>
 
-    <div class="page-content">
-        {{ content }}
-    </div>
-
-</article>
+    {%- include np-foot-rule.html -%}
+</div>

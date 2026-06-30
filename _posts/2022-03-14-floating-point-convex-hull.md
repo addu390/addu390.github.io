@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Floating Point Round Off Errors in Geometric Algorithms"
+description: "Why geometric algorithms like the convex hull break under floating point arithmetic, and the round off errors that produce non-convex or never-ending results."
 date: 2022-03-14
 tags:
   - Algorithms

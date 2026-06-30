@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Sponsor"
+kicker: Patronage
 permalink: /sponsor/
 ---
 

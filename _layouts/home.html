@@ -1,14 +1,150 @@
 ---
 layout: default
 ---
-{{ content }}
-
 {% if site.paginate %}
 {% assign posts = paginator.posts %}
+{% assign pagenum = paginator.page %}
 {% else %}
 {% assign posts = site.posts %}
+{% assign pagenum = 1 %}
 {% endif %}
 
-<div class="pure-g" style="width: 100%; justify-content: center">
-    {%- include grid-posts.html -%}
+<div class="newspaper{% if pagenum > 1 %} np-inside{% endif %}">
+
+{%- include np-colorbar.html -%}
+
+{%- if pagenum > 1 -%}
+    <header class="np-folio">
+        <a class="np-folio-name" href="/">PyBlog</a>
+        <span class="np-folio-section">The Archives &middot; Continued</span>
+        <span class="np-folio-meta">Page {{ pagenum }} &middot; {{ site.time | date: "%B %-d, %Y" }}</span>
+    </header>
+
+    <div class="np-feature-row">
+        {%- for post in posts limit:2 -%}
+        {%- assign words = post.content | number_of_words -%}
+        {%- assign mins = words | divided_by: 275 -%}
+        {%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
+        <article class="np-feature">
+            <div class="np-kicker">{{ post.tags | first | default: "Dispatch" }}</div>
+            <h2 class="np-feat-head"><a href="{{ post.url | relative_url }}">{{ post.title }}<span class="np-go" aria-hidden="true">&#160;&rsaquo;</span></a></h2>
+            <p class="np-byline">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ mins }} min read</p>
+            <div class="np-feat-body">
+                <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 44 }}</p>
+                <p class="np-readon"><a href="{{ post.url | relative_url }}">Continue reading &rarr;</a></p>
+            </div>
+        </article>
+        {%- endfor -%}
+    </div>
+
+    <div class="np-section-title np-more-title">More from the Archives</div>
+    <div class="np-grid">
+        {%- for post in posts offset:2 -%}
+        {%- assign words = post.content | number_of_words -%}
+        {%- assign mins = words | divided_by: 275 -%}
+        {%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
+        <div class="np-brief">
+            <span class="np-b-kicker">{{ post.tags | first | default: "Dispatch" }}</span>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="np-go" aria-hidden="true">&rsaquo;</span></h3>
+            <div class="np-b-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ mins }} min</div>
+            <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 22 }}</p>
+        </div>
+        {%- endfor -%}
+    </div>
+
+{%- else -%}
+    {%- include masthead.html -%}
+
+    {%- assign lead = posts[0] -%}
+    {%- assign leadwords = lead.content | number_of_words -%}
+    {%- assign leadmins = leadwords | divided_by: 275 -%}
+    {%- if leadmins == 0 %}{% assign leadmins = 1 %}{% endif -%}
+
+    <div class="np-frontpage">
+        <article class="np-col np-lead">
+            <div class="np-kicker">{{ lead.tags | first | default: "Special Report" }}</div>
+            <h2 class="np-lead-head"><a href="{{ lead.url | relative_url }}">{{ lead.title }}<span class="np-go" aria-hidden="true">&#160;&rsaquo;</span></a></h2>
+            {%- if lead.deck -%}
+            <p class="np-deck">{{ lead.deck }}</p>
+            {%- endif -%}
+            <p class="np-byline">By {{ lead.author | default: site.author }} &middot; {{ leadmins }} min read</p>
+
+            {%- if lead.deck == nil and lead.description -%}
+            <p class="np-deck">{{ lead.description }}</p>
+            {%- endif -%}
+            <div class="np-body drop np-lead-preview">
+                {{ lead.content }}
+            </div>
+            <p class="np-readon"><a href="{{ lead.url | relative_url }}">Continue reading &rarr;</a></p>
+        </article>
+
+        <section class="np-col">
+            <div class="np-section-title">From the Archives</div>
+            {%- for post in posts limit:5 offset:1 -%}
+            {%- assign words = post.content | number_of_words -%}
+            {%- assign mins = words | divided_by: 275 -%}
+            {%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
+            <div class="np-brief">
+                <span class="np-b-kicker">{{ post.tags | first | default: "Dispatch" }}</span>
+                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="np-go" aria-hidden="true">&rsaquo;</span></h3>
+                <div class="np-b-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ mins }} min</div>
+                <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 22 }}</p>
+            </div>
+            {%- endfor -%}
+        </section>
+
+        <aside class="np-col np-aside">
+            {%- include np-search.html -%}
+
+            <div class="np-index-box">
+                <h4>Sections</h4>
+                <ul>
+                    <li><a href="/">Front Page</a></li>
+                    <li><a href="/journals">Journal</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy</a></li>
+                    <li><a href="/tags">Tags</a></li>
+                    <li><a href="/archive">Archive</a></li>
+                </ul>
+            </div>
+
+            {%- for post in posts limit:4 offset:6 -%}
+            {%- assign words = post.content | number_of_words -%}
+            {%- assign mins = words | divided_by: 275 -%}
+            {%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
+            <div class="np-brief">
+                <span class="np-b-kicker">{{ post.tags | first | default: "Dispatch" }}</span>
+                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="np-go" aria-hidden="true">&rsaquo;</span></h3>
+                <div class="np-b-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ mins }} min</div>
+            </div>
+            {%- endfor -%}
+
+            {%- assign tag_rank = "" | split: "" -%}
+            {%- for t in site.tags -%}
+            {%- assign padded = t[1].size | prepend: "0000" | slice: -4, 4 -%}
+            {%- capture entry -%}{{ padded }}|{{ t[0] }}{%- endcapture -%}
+            {%- assign tag_rank = tag_rank | push: entry -%}
+            {%- endfor -%}
+            {%- assign tag_rank = tag_rank | sort | reverse | slice: 0, 6 -%}
+            <div class="np-weather">
+                <span class="np-weather-head">The Beat</span>
+                {% for item in tag_rank %}{{ item | split: "|" | last }}{% unless forloop.last %}, {% endunless %}{% endfor %}
+            </div>
+        </aside>
+    </div>
+
+    {%- assign series_posts = site.posts | where: "series", "spatial-index" | sort: "date" -%}
+    {%- if series_posts.size > 0 -%}
+    {%- assign series_title = "The Spatial Index" -%}
+    {%- assign series_standfirst = "A four-part field guide to multi-dimensional indexing, read best in order." -%}
+    {%- assign series_strip = "Spatial Index: " -%}
+    {%- include np-series.html -%}
+    {%- endif -%}
+{%- endif -%}
+
+    {{ content }}
+
+    {%- include posts-pagination.html -%}
+
+    {%- include np-foot-rule.html -%}
 </div>

@@ -2,6 +2,8 @@
 layout: post
 title: "Spatial Index: Grid Systems"
 date: 2024-06-12
+series: spatial-index
+series_art: assets/img/series/grid-systems.svg
 highlight: true
 premium: true
 tags:

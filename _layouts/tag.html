@@ -1,8 +1,18 @@
 ---
 layout: default
 ---
+{% assign briefs = page.posts %}
 
-{{ content }}
-<div class="pure-g" style="width: 100%; justify-content: center">
-  {%- include grid-posts.html -%}
+<div class="newspaper np-article np-page np-list">
+    {%- include np-running-head.html -%}
+
+    <header class="np-list-head">
+        <div class="np-kicker np-article-kicker">Subject</div>
+        <h2 class="post-title np-article-head">{{ page.tag | default: page.title | capitalize }}</h2>
+        <p class="np-article-deck">Every dispatch filed under &ldquo;{{ page.tag | default: page.title }}&rdquo; &middot; {{ briefs | size }} {% if briefs.size == 1 %}entry{% else %}entries{% endif %}.</p>
+    </header>
+
+    {%- include np-briefs.html -%}
+
+    {%- include np-foot-rule.html -%}
 </div>

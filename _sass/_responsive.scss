@@ -1,42 +1,6 @@
-/* RESPONSIVE CSS */
-
 @media (min-width: 48em) {
   .sm-display {
     display: none;
-  }
-
-  .content {
-    margin-left: 20%;
-  }
-
-  .sidebar-info {
-    margin-top: 0.5em;
-    text-align: center;
-  }
-
-  .brand-photo {
-    width: 85%;
-    max-width: 215px;
-  }
-
-  .brand-title,
-  .brand-tagline {
-    text-align: center;
-  }
-
-  .sidebar {
-    position: fixed;
-    height: 100vh;
-    z-index: 2;
-  }
-
-  .sidebar-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 20%;
-    background: var(--sidebar-bg);
-    z-index: 3;
   }
 
   .post-entry-toc .posts,
@@ -62,7 +26,6 @@
     width: 100% !important;
   }
 
-  .sidebar-list,
   .md-display {
     display: none !important;
   }
@@ -96,20 +59,9 @@
     width: 95%;
   }
 
-  .brand-title,
-  .brand-tagline {
-    margin: 0;
-    padding: 0 10px;
-  }
-
-  .brand-photo {
-    max-width: 200px;
-  }
-
   .post-entry {
     width: 100%;
-    word-break: break-word;
-    hyphens: auto;
+    overflow-wrap: break-word;
     margin: 0;
     border-radius: 0;
   }

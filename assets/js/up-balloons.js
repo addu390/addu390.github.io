@@ -1,100 +1,70 @@
 (function () {
   'use strict';
 
-  // Easter egg: clicking the little house detaches the balloons, which drift
-  // up and off the top of the screen, growing as they go.
   function flyAway(svg) {
-    var balloons = svg.querySelector('.up-balloons');
-    if (!balloons || balloons.getAttribute('data-flying')) return;
-    balloons.setAttribute('data-flying', '1');
+    if (svg.getAttribute('data-flying')) return;
+    svg.setAttribute('data-flying', '1');
 
-    var strings = svg.querySelector('.up-strings');
-    var circles = svg.querySelectorAll('.up-balloons circle');
+    var box = svg.getBoundingClientRect();
 
     var overlay = document.createElement('div');
     overlay.style.cssText =
       'position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:99999;';
     document.body.appendChild(overlay);
 
-    var maxLife = 0;
+    var clone = svg.cloneNode(true);
+    clone.removeAttribute('data-flying');
+    clone.style.cssText =
+      'position:absolute;will-change:transform,opacity;' +
+      'left:' + box.left + 'px;top:' + box.top + 'px;' +
+      'width:' + box.width + 'px;height:' + box.height + 'px;' +
+      'transform-origin:50% 70%;';
+    overlay.appendChild(clone);
 
-    Array.prototype.forEach.call(circles, function (c) {
-      var box = c.getBoundingClientRect();
-      var size = box.width;
-      var fill = c.getAttribute('fill') || '#ccc';
-      var strLen = size * (1.3 + Math.random() * 0.7); // short, cut "baby" string
-      var strW = Math.max(1, size * 0.12);
+    var dir = Math.random() < 0.5 ? -1 : 1;
+    var sway = 26 + Math.random() * 18;
+    var drift = dir * (40 + Math.random() * 40);
+    var dy = -(box.top + box.height + 140 + Math.random() * 160);
+    var tilt = 5 + Math.random() * 5;
+    var scale = 1.25 + Math.random() * 0.35;
+    var dur = 5200 + Math.random() * 1800;
 
-      // wrapper holds the balloon + its trailing string so they move together
-      var wrap = document.createElement('div');
-      wrap.style.cssText =
-        'position:absolute;will-change:transform,opacity;' +
-        'left:' + box.left + 'px;top:' + box.top + 'px;' +
-        'width:' + size + 'px;height:' + (size + strLen) + 'px;' +
-        'transform-origin:50% ' + (size / 2).toFixed(1) + 'px;';
+    clone.animate(
+      [
+        { transform: 'translate(0px,0px) scale(1) rotate(0deg)', opacity: 1, offset: 0 },
+        {
+          transform: 'translate(' + (drift * 0.25 + dir * sway).toFixed(1) + 'px,' + (dy * 0.22).toFixed(1) +
+            'px) scale(' + (1 + (scale - 1) * 0.25).toFixed(2) + ') rotate(' + (dir * tilt).toFixed(1) + 'deg)',
+          opacity: 1, offset: 0.28
+        },
+        {
+          transform: 'translate(' + (drift * 0.5 - dir * sway).toFixed(1) + 'px,' + (dy * 0.5).toFixed(1) +
+            'px) scale(' + (1 + (scale - 1) * 0.5).toFixed(2) + ') rotate(' + (-dir * tilt).toFixed(1) + 'deg)',
+          opacity: 1, offset: 0.55
+        },
+        {
+          transform: 'translate(' + (drift * 0.78 + dir * sway * 0.7).toFixed(1) + 'px,' + (dy * 0.78).toFixed(1) +
+            'px) scale(' + (1 + (scale - 1) * 0.78).toFixed(2) + ') rotate(' + (dir * tilt * 0.6).toFixed(1) + 'deg)',
+          opacity: 1, offset: 0.82
+        },
+        {
+          transform: 'translate(' + drift.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' +
+            scale.toFixed(2) + ') rotate(' + (-dir * tilt * 0.4).toFixed(1) + 'deg)',
+          opacity: 0, offset: 1
+        }
+      ],
+      { duration: dur, easing: 'cubic-bezier(.37,0,.63,1)', fill: 'forwards' }
+    );
 
-      var ball = document.createElement('div');
-      ball.style.cssText =
-        'position:absolute;left:0;top:0;width:' + size + 'px;height:' + size + 'px;' +
-        'border-radius:50% 50% 49% 49%;background:' + fill + ';' +
-        'box-shadow:inset -' + (size * 0.16).toFixed(1) + 'px -' + (size * 0.16).toFixed(1) +
-        'px ' + (size * 0.28).toFixed(1) + 'px rgba(0,0,0,.12);';
-
-      var str = document.createElement('div');
-      str.style.cssText =
-        'position:absolute;left:50%;top:' + (size - 1).toFixed(1) + 'px;' +
-        'width:' + strW.toFixed(1) + 'px;height:' + strLen.toFixed(1) + 'px;' +
-        'background:#8A8D91;opacity:.55;border-radius:' + strW.toFixed(1) + 'px;' +
-        'transform:translateX(-50%);';
-
-      wrap.appendChild(ball);
-      wrap.appendChild(str);
-      overlay.appendChild(wrap);
-
-      var dx = (Math.random() * 2 - 1) * 130;        // gentle horizontal drift
-      var sway = (Math.random() * 2 - 1) * 36;        // side-to-side wobble
-      var dy = -(box.top + box.height + 130 + Math.random() * 180); // just clears the top
-      var rot = (Math.random() * 2 - 1) * 20;         // gentle tilt
-      var scale = 1.4 + Math.random() * 0.5;           // slight, visible growth
-      var dur = 5000 + Math.random() * 2600;           // slow helium rise
-      var delay = Math.random() * 600;
-      if (dur + delay > maxLife) maxLife = dur + delay;
-
-      wrap.animate(
-        [
-          { transform: 'translate(0px,0px) scale(1) rotate(0deg)', opacity: 1, offset: 0 },
-          {
-            transform: 'translate(' + (dx * 0.35 + sway).toFixed(1) + 'px,' + (dy * 0.32).toFixed(1) +
-              'px) scale(' + (1 + (scale - 1) * 0.38).toFixed(2) + ') rotate(' + (rot * 0.7).toFixed(1) + 'deg)',
-            opacity: 1, offset: 0.45
-          },
-          {
-            transform: 'translate(' + (dx * 0.7 - sway).toFixed(1) + 'px,' + (dy * 0.7).toFixed(1) +
-              'px) scale(' + (1 + (scale - 1) * 0.72).toFixed(2) + ') rotate(' + (-rot * 0.5).toFixed(1) + 'deg)',
-            opacity: 1, offset: 0.8
-          },
-          {
-            transform: 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' +
-              scale.toFixed(2) + ') rotate(' + rot.toFixed(1) + 'deg)',
-            opacity: 0, offset: 1
-          }
-        ],
-        { duration: dur, delay: delay, easing: 'cubic-bezier(.42,0,.58,1)', fill: 'forwards' }
-      );
-    });
-
-    balloons.style.opacity = '0';
-    if (strings) strings.style.opacity = '0';
+    svg.style.opacity = '0';
 
     setTimeout(function () {
       if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-    }, maxLife + 400);
-    // Re-inflate after they've drifted off, so the egg can be triggered again.
+    }, dur + 300);
     setTimeout(function () {
-      balloons.style.opacity = '';
-      if (strings) strings.style.opacity = '';
-      balloons.removeAttribute('data-flying');
-    }, maxLife + 700);
+      svg.style.opacity = '';
+      svg.removeAttribute('data-flying');
+    }, dur + 500);
   }
 
   function closestSvg(node) {

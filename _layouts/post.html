@@ -1,58 +1,67 @@
 ---
 layout: default
 ---
-<div></div>
 {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-<div class="pure-g post-entry-toc" style="width: 100%; justify-content: center">
-    <div class="posts pure-u-md-5-6">
-        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+{%- assign words = page.content | number_of_words -%}
+{%- assign mins = words | divided_by: 275 -%}
+{%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
 
-            <!-- {%- if page.feature or page.image -%}
-            <div class="post-featured-image">
-                <img class="center-image-100" 
-                     src="/{{ page.feature | default: page.image }}" 
-                     alt="Featured Image for {{ page.title | escape }}" />
-            </div>
-            {%- endif -%} -->
+<div class="newspaper np-article">
+    {%- include np-running-head.html -%}
 
-            <header class="feed-header">
-                <h2 class="post-title" style="font-size: 1.6em;" itemprop="name headline">{{ page.title | escape }}
+    <div class="post-entry-toc pure-g">
+        <div class="posts pure-u-md-5-6">
+            <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="np-kicker np-article-kicker">{{ page.tags | first | default: "Dispatch" }}</div>
+                <h2 class="post-title np-article-head" itemprop="name headline">{{ page.title | escape }}
                     {%- if page.state -%}
-                    <span style="margin-left: 0.8em;" class="state-tag">{{ page.state }}</span>
+                    <span class="state-tag">{{ page.state }}</span>
                     {%- endif %}
                 </h2>
-                {%- include post-data.html -%}
-            </header>
+                {%- if page.deck -%}
+                <p class="np-article-deck">{{ page.deck }}</p>
+                {%- endif -%}
+                <div class="np-article-byline">
+                    <span class="np-byline-author">By {{ page.author | default: site.author }}</span>
+                    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
+                    <span>{{ mins }} min read</span>
+                </div>
 
-            <div articlebody" class="post-body itemprop=">
-                {{ content }}
+                <div class="post-body np-article-body" itemprop="articleBody">
+                    {{ content }}
+                </div>
+                <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+            </article>
+
+            <div class="blog-reference np-cite">
+                <p>Cite this article as: {{ page.author }}. ({{ page.date | date: date_format }}). {{ page.title | escape }}.
+                    PyBlog. <a href="{{ page.url | relative_url }}">https://www.pyblog.xyz{{ page.url | relative_url }}</a>
+                </p>
             </div>
-            <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-        </article>
-        <div class="blog-reference">
-            <p>Cite this article as: {{ page.author }}. ({{ post.date | date: date_format }}). {{ page.title | escape
-                }}.
-                PyBlog. <a href="{{ page.url | relative_url }}">https://www.pyblog.xyz{{ page.url | relative_url }}</a>
-            </p>
-        </div>
-        <div style="margin-left: 1.5em; margin-right: 1.5em; margin-bottom: 2em;" id="comments-script">
-            <script src="https://giscus.app/client.js" data-repo="addu390/addu390.github.io"
-                data-repo-id="MDEwOlJlcG9zaXRvcnkyOTk0MDg4NDY=" data-category="Q&A"
-                data-category-id="DIC_kwDOEdidzs4ChB1Z" data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
-                data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" data-loading="lazy"
-                crossorigin="anonymous" async>
-                </script>
-        </div>
 
+            <div class="np-section-title np-discussion-title">Letters to the Editor</div>
+            <div id="comments-script" class="np-comments">
+                <script src="https://giscus.app/client.js" data-repo="addu390/addu390.github.io"
+                    data-repo-id="MDEwOlJlcG9zaXRvcnkyOTk0MDg4NDY=" data-category="Q&A"
+                    data-category-id="DIC_kwDOEdidzs4ChB1Z" data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+                    data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" data-loading="lazy"
+                    crossorigin="anonymous" async>
+                    </script>
+            </div>
+
+        </div>
+        <div class="posts-right-bar pure-u-md-1-6">
+            <section class="sidebar-scrollable-div sidebar-toc-div np-toc-box">
+                <h3 class="np-toc-head">In&nbsp;This&nbsp;Article <span class="sub-header">table of contents</span></h3>
+                <div id="toc"></div>
+            </section>
+        </div>
     </div>
-    <div class="posts-right-bar pure-u-md-1-6" style="display: flex; flex-direction: column;">
-        <section class="post sidebar-scrollable-div sidebar-toc-div">
-            <h3><img class="twemoji" src="../assets/img/emoji/snake.svg" alt=""> #index <span class="sub-header">table
-                    of contents</span></h3>
-            <div id="toc"></div>
-        </section>
-    </div>
+
+    {%- include np-foot-rule.html -%}
 </div>
+
 <script src="{{ '../assets/js/toc.js' | relative_url }}"></script>
 <script src="{{ './assets/js/slider.js' | relative_url }}"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.6/tex-mml-chtml.js"></script>

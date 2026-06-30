@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Stockpile — Store Request and Response"
+description: "A Java annotation and method interceptor that encrypts and persists the request and response of sensitive API calls."
 date: 2019-01-19
 tags:
   - Java

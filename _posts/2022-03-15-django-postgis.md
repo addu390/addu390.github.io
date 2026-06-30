@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Location-based application using Django and PostGIS"
+description: "Building a location-based web app with Django, PostgreSQL with PostGIS, GeoDjango, and Leaflet to store and query spatial data at scale."
 date: 2022-03-15
 tags:
   - Django

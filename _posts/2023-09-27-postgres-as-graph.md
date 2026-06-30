@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Postgres as a Graph Database"
+description: "Modeling and querying graph data in PostgreSQL when a dedicated graph database would be overkill, starting from graph fundamentals."
 date: 2023-09-27
 tags:
   - Databases

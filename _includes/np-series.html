@@ -1,0 +1,26 @@
+<section class="np-series">
+    <div class="np-series-head">
+        <span class="np-flag">Featured Series</span>
+        <h2 class="np-series-title">{{ series_title }}</h2>
+        {%- if series_standfirst -%}
+        <p class="np-series-standfirst">{{ series_standfirst }}</p>
+        {%- endif -%}
+    </div>
+
+    <ol class="np-series-grid">
+        {%- for post in series_posts -%}
+        {%- assign label = post.title -%}
+        {%- if series_strip -%}{%- assign label = label | remove: series_strip -%}{%- endif -%}
+        <li class="np-series-item">
+            <a class="np-series-link" href="{{ post.url | relative_url }}">
+                {%- if post.series_art -%}
+                <span class="np-series-art"><img src="/{{ post.series_art }}" alt="" loading="lazy"></span>
+                {%- endif -%}
+                <span class="np-series-no">No. {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+                <span class="np-series-name">{{ label }}<span class="np-go" aria-hidden="true">&rsaquo;</span></span>
+                <span class="np-series-blurb">{{ post.description | default: post.excerpt | strip_html | truncatewords: 18 }}</span>
+            </a>
+        </li>
+        {%- endfor -%}
+    </ol>
+</section>

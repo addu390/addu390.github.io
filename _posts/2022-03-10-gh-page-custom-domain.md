@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Custom domain for GitHub pages"
+description: "Pointing a custom domain and its www subdomain at GitHub Pages, with HTTPS and redirects configured end to end."
 date: 2022-03-10
 tags:
   - DevOps

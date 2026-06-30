@@ -1,11 +1,26 @@
 ---
 layout: default
 ---
-{{ content }}
+{% assign briefs = site.notes | reverse %}
+{% assign hide_excerpt = true %}
 
-{% assign posts = site.notes | reverse %}
-{% assign disable-meta-click = true %}
+<div class="newspaper np-article np-page np-list">
+    {%- include np-running-head.html -%}
 
-<div class="pure-g" style="width: 100%; justify-content: center">
-    {%- include grid-posts.html -%}
+    <header class="np-list-head">
+        <div class="np-kicker np-article-kicker">{{ page.kicker | default: "Marginalia" }}</div>
+        <h2 class="post-title np-article-head">{{ page.title | default: "Field Notes" }}</h2>
+        {%- if page.deck -%}
+        <p class="np-article-deck">{{ page.deck }}</p>
+        {%- endif -%}
+    </header>
+
+    {%- assign body = content | strip -%}
+    {%- if body != "" -%}
+    <div class="np-article-body">{{ content }}</div>
+    {%- endif -%}
+
+    {%- include np-briefs.html -%}
+
+    {%- include np-foot-rule.html -%}
 </div>

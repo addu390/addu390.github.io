@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<div class="newspaper np-article np-page np-list np-index-page">
+    {%- include np-running-head.html -%}
+
+    <header class="np-list-head">
+        <div class="np-kicker np-article-kicker">{{ page.kicker | default: "Index" }}</div>
+        <h2 class="post-title np-article-head">{{ page.title }}</h2>
+        {%- if page.deck -%}
+        <p class="np-article-deck">{{ page.deck }}</p>
+        {%- endif -%}
+    </header>
+
+    <div class="np-index-body">
+        {{ content }}
+    </div>
+
+    {%- include np-foot-rule.html -%}
+</div>

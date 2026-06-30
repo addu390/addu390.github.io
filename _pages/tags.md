@@ -1,21 +1,25 @@
 ---
-layout: page
-title: Organized by Tags
+layout: index
+title: Subject Index
+kicker: Index
+deck: "Every dispatch, filed by subject. The back-of-book index."
 permalink: /tags/
 content-type: eg
 ---
 
-<p></p>
-<main class="all-posts text-container">
-    {% for tag in site.tags %}
-        <div class="pure-u-1 tags">
-        <h3 style="margin-top: 0.5em;" id="{{ tag | first }}"><a href="/tags/{{ tag | first | slugify }}">{{ tag | first  }}</a></h3>
-            <ul style="padding: 0 2em 0 1em;">
+<div class="np-subject-index">
+    {% assign tags = site.tags | sort %}
+    {% for tag in tags %}
+    <section class="np-subject">
+        <h3 class="np-subject-head" id="{{ tag | first | slugify }}">
+            <a href="/tags/{{ tag | first | slugify }}">{{ tag | first }}</a>
+            <span class="np-subject-count">{{ tag | last | size }}</span>
+        </h3>
+        <ul class="np-subject-list">
             {% for post in tag.last %}
-                <li id="category-content" style="padding-bottom: 0.6em;"><a href="{{post.url}}">{{ post.title }}</a></li>
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
             {% endfor %}
-            </ul>
-        </div>
+        </ul>
+    </section>
     {% endfor %}
-</main>
-<br/>
+</div>

@@ -1,7 +1,10 @@
 ---
 layout: post
 title: "Spatial Index: R Trees"
+description: "A deep dive into the R-tree, the data-driven spatial index built on bounding rectangles, and how it powers range and nearest-neighbor queries."
 date: 2024-06-26
+series: spatial-index
+series_art: assets/img/series/r-trees.svg
 highlight: true
 tags:
   - Spatial Index

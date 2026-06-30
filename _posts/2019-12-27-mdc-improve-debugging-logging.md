@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "MDC : Improving debugging/logging"
+description: "Using Mapped Diagnostic Context to tag every log line with request and user IDs, so logs stay traceable across threads and concurrent requests."
 date: 2019-12-27
 tags:
   - Java

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Deploying Django on AWS EC2 and Docker"
+description: "Deploying a dockerized Django application to AWS EC2 without an orchestrator, including building a reusable Docker AMI to skip repeat setup."
 date: 2022-02-17
 premium: true
 tags:

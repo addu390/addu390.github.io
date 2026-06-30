@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Apache Flink Internals"
+description: "Tracing a single Flink job end to end through the Client, JobManager, and TaskManagers to understand Flink's architecture, choosing depth over breadth."
 date: 2026-02-26
 tags:
   - Internals

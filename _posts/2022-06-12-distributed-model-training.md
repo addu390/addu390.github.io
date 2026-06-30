@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Distributed Model Training"
+description: "How distributed training accelerates deep learning across many processors, using data parallelism and model parallelism to cut training time."
 date: 2022-06-26
 tags:
   - Distributed Systems

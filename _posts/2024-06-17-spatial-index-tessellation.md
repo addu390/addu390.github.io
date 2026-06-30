@@ -2,6 +2,8 @@
 layout: post
 title: "Spatial Index: Tessellation"
 date: 2024-06-17
+series: spatial-index
+series_art: assets/img/series/tessellation.svg
 highlight: true
 premium: true
 tags:

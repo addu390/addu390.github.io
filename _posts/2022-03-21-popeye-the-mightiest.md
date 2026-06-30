@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Popeye the Mightiest"
+description: "A playful illustration series pitting Popeye against Luffy, Saitama, Goku, Hulk, Superman, and more."
 date: 2022-03-20
 tags:
   - Art

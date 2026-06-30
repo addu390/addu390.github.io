@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Hybrid Spatial Index: Quad-KD and R-KD trees"
+description: "Introducing hybrid quad-kd and r-kd tree structures that combine the quadtree, KD-tree, and R-tree to speed up search over mixed point and polygon data."
 date: 2022-04-10
 highlight: true
 tags:

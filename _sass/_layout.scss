@@ -1,4 +1,3 @@
-/* LAYOUT CSS */
 .pure-img-responsive {
   max-width: 100%;
   height: auto;
@@ -8,39 +7,6 @@
   padding: 0;
 }
 
-.sidebar {
-  background: var(--sidebar-bg);
-  color: var(--sidebar-text);
-}
-
-.sidebar-footer {
-  padding: 1.2em 0 1em;
-  text-align: center;
-}
-
-.sidebar-footer .social-icons a {
-  margin: 0 6px;
-}
-
-.sidebar-footer .svg-icon {
-  width: 22px;
-  filter: invert(80%) !important;
-}
-
-.sidebar-footer .figure-header {
-  color: var(--sidebar-muted);
-  margin-top: 0.8em;
-}
-
-.sidebar-footer .figure-header .twemoji {
-  vertical-align: middle;
-}
-
-.sidebar-footer .figure-header a {
-  color: var(--sidebar-text);
-  text-decoration: underline;
-}
-
 .site-copyright {
   position: fixed;
   right: 2em;
@@ -48,45 +14,6 @@
   font-size: 14px;
   color: var(--text-muted);
   z-index: 2;
-}
-
-.sidebar-info {
-  text-align: center;
-  top: auto;
-}
-
-.sidebar-info * {
-  font-family: "Open Sans", sans-serif;
-}
-
-.brand-photo {
-  margin: 0px 0 10px;
-  cursor: pointer;
-}
-
-.brand-title,
-.brand-tagline,
-.nav {
-  margin: 0;
-}
-
-.brand-title {
-  padding-top: 15px;
-  text-transform: uppercase;
-  font-size: 1.9em;
-}
-
-.brand-title a {
-  color: var(--sidebar-text);
-  text-decoration: none;
-  vertical-align: middle;
-}
-
-.brand-tagline {
-  font-weight: 300;
-  color: var(--sidebar-muted);
-  font-size: 17px;
-  line-height: 1.5;
 }
 
 .pure-button {
@@ -274,11 +201,3 @@
   text-decoration: underline;
 }
 
-.post-meta,
-.post-meta a {
-  margin-top: 0.5em;
-  margin-bottom: 0;
-  line-height: 1.5;
-  color: var(--text-muted) !important;
-  font-size: 14px;
-}

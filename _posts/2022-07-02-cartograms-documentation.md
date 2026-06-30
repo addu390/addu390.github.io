@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Conceptualization of a Cartogram"
+description: "What a cartogram is and how it reshapes geography by statistical data such as population, laying the conceptual groundwork for building one."
 date: 2022-07-02
 premium: true
 tags:

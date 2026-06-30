@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Anomaly Detection and Remediation"
+description: "Designing a system that detects abnormal incidents through configurable rules and automatically contains them, covering both detection and remediation."
 date: 2022-04-17
 tags:
   - Security

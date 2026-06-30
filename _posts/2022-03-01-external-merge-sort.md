@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "External Merge Sort using Priority Queue"
+description: "How external merge sort handles datasets too large for memory, using a split phase and a priority queue driven K-way merge, walked through in Python."
 date: 2022-03-01
 tags:
   - Algorithms

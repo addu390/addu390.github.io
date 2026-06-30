@@ -2,6 +2,8 @@
 layout: post
 title: "Spatial Index: Space-Filling Curves"
 date: 2024-06-11
+series: spatial-index
+series_art: assets/img/series/space-filling-curve.svg
 highlight: true
 premium: true
 tags:
