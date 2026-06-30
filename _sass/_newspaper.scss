@@ -613,15 +613,73 @@ body:has(.newspaper) .site-copyright {
 }
 
 .np-foot-rule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   border-top: 3px double var(--np-ink);
   margin-top: 22px;
   padding-top: 8px;
-  text-align: center;
   font-family: var(--np-text);
   font-size: var(--fs-label);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--np-soft);
+}
+
+.np-colophon {
+  text-align: left;
+}
+
+.np-foot-barcode {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.np-barcode {
+  display: block;
+  width: 116px;
+  height: 30px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--np-ink) 0 2px, transparent 2px 4px,
+    var(--np-ink) 4px 5px, transparent 5px 8px,
+    var(--np-ink) 8px 11px, transparent 11px 12px,
+    var(--np-ink) 12px 13px, transparent 13px 16px,
+    var(--np-ink) 16px 19px, transparent 19px 21px,
+    var(--np-ink) 21px 22px, transparent 22px 25px,
+    var(--np-ink) 25px 28px, transparent 28px 30px,
+    var(--np-ink) 30px 31px, transparent 31px 34px
+  );
+}
+
+.np-barcode-num {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--np-ink);
+}
+
+.np-endmark {
+  margin: 0.7em 0 0;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--np-ink);
+}
+
+@media screen and (max-width: 47.99em) {
+  .np-foot-rule {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .np-colophon {
+    text-align: center;
+  }
 }
 
 .np-readon a {

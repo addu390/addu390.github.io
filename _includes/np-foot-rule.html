@@ -1,3 +1,10 @@
+{%- assign np_year = site.time | date: "%Y" | plus: 0 -%}
+{%- assign np_doy = site.time | date: "%j" | plus: 0 -%}
+{%- assign np_issue = np_year | minus: 2016 | times: 365 | plus: np_doy -%}
 <div class="np-foot-rule">
-    {{ site.title }} &copy; 2016 &ndash; {{ site.time | date: "%Y" }} &middot; Set in Playfair Display &amp; Open Sans &middot; Printed on the web
+    <span class="np-colophon">{{ site.title }} &copy; 2016 &ndash; {{ site.time | date: "%Y" }} &middot; Set in Playfair Display &amp; Open Sans &middot; Printed on the web</span>
+    <span class="np-foot-barcode" aria-hidden="true">
+        <span class="np-barcode"></span>
+        <span class="np-barcode-num">9 772016 {{ np_issue }}</span>
+    </span>
 </div>
