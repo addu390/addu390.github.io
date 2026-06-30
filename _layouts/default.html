@@ -7,17 +7,12 @@
     {%- include mobile-nav.html -%}
     <div id="layout" class="pure-g">
         <div class="content pure-u-1">
-            <div id="showerContainer"></div>
-            <div class="md-display">
-                {%- include links.html -%}
-            </div>
             <div>
                 {{ content }}
             </div>
         </div>
     </div>
     <div class="site-copyright">PyBlog &copy; 2016 - {{ site.time | date: "%Y" }}.</div>
-    <script src="{{ '/assets/js/up-balloons.js' | relative_url }}"></script>
 </body>
 
 </html>

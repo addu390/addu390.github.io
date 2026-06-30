@@ -253,10 +253,6 @@ table {
   cursor: pointer;
 }
 
-#search-input:focus {
-  outline: none;
-}
-
 .ml-validate-email input:focus {
   outline-color: var(--black);
 }
@@ -303,19 +299,6 @@ table {
   vertical-align: bottom;
 }
 
-.sidebar-index .icon-up,
-.mobile-nav-list a .icon-up {
-  width: 24px;
-  height: auto;
-  margin: 0 -2px;
-  vertical-align: bottom;
-}
-
-.up-strings,
-.up-balloons {
-  transition: opacity 0.12s ease;
-}
-
 .figure-header .twemoji,
 .flex-box .twemoji {
   width: 16px;
@@ -348,123 +331,6 @@ table {
   margin-right: 1em;
   margin-bottom: 1em;
   border-radius: 8px;
-}
-
-.audio-icon {
-  width: 35px;
-  position: absolute;
-  cursor: pointer;
-  z-index: 999;
-  top: 1.7em;
-  transform: translateY(-50%);
-  left: 75.5%;
-}
-
-.rss-icon {
-  width: 24px;
-  position: absolute;
-  cursor: pointer;
-  z-index: 999;
-  top: 1.7em;
-  transform: translateY(-50%);
-  left: 72%;
-}
-
-.theme-icon {
-  width: 24px;
-  cursor: pointer;
-  vertical-align: middle;
-}
-
-.theme-grade {
-  display: inline-block;
-}
-
-.menu .theme-grade {
-  position: absolute;
-  left: 68%;
-  top: 1.7em;
-  transform: translateY(-50%);
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  line-height: 0;
-}
-
-.theme-trigger {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.theme-grade-menu {
-  position: absolute;
-  margin: 0;
-  padding: 6px 0;
-  list-style: none;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-  min-width: 150px;
-}
-
-.menu .theme-grade-menu {
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 1002;
-}
-
-.theme-grade-menu[hidden] {
-  display: none;
-}
-
-.menu .theme-grade:hover .theme-grade-menu {
-  display: block;
-}
-
-.menu .theme-grade-menu::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 0;
-  right: 0;
-  height: 10px;
-}
-
-.theme-grade-menu li {
-  margin: 0;
-  padding: 0;
-}
-
-.theme-grade-menu button {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: 0;
-  padding: 8px 16px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  color: var(--text);
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.theme-grade-menu button .twemoji {
-  width: 18px;
-  vertical-align: middle;
-}
-
-.theme-grade-menu button:hover {
-  background-color: var(--surface-alt);
-}
-
-.theme-grade-menu button.active {
-  font-weight: 600;
-  background-color: var(--surface-alt);
 }
 
 .underline {
@@ -540,12 +406,6 @@ summary {
 
 .hidden-a:hover {
   text-decoration: none;
-}
-
-.svg-bg-dark-mode::before {
-  background-blend-mode: screen;
-  background-color: white;
-  z-index: -1;
 }
 
 .black-border {

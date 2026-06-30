@@ -5,11 +5,6 @@
   padding: 6px 18px 60px;
 }
 
-.content:has(.newspaper) #showerContainer,
-.content:has(.newspaper) .md-display {
-  display: none;
-}
-
 body:has(.newspaper) .site-copyright {
   display: none;
 }
