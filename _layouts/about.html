@@ -1,0 +1,534 @@
+---
+layout: default
+---
+
+<style>
+    .ab-wrap {
+        max-width: 900px;
+        margin: 1.4em auto 0;
+        text-align: left;
+        --np-cell0: #efe7e6;
+        --np-cell1: #edb8b2;
+        --np-cell2: #d97b70;
+        --np-cell3: #b23c31;
+        --np-cell4: #7f1d17;
+    }
+
+    .ab-profile {
+        display: flex;
+        gap: 26px;
+        align-items: flex-start;
+        border-bottom: 3px double var(--np-ink);
+        padding-bottom: 22px;
+    }
+
+    .ab-avatar {
+        flex: 0 0 auto;
+        width: 132px;
+        height: 132px;
+        border-radius: 16px;
+        border: 1px solid var(--np-ink);
+        background: var(--np-paper-2);
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .ab-avatar svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .ab-id {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .ab-kicker {
+        font-family: var(--np-text);
+        font-size: 0.72em;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--np-accent);
+        font-weight: 700;
+    }
+
+    .ab-name {
+        font-family: var(--np-display);
+        font-size: 2.1em;
+        font-weight: 700;
+        line-height: 1.05;
+        color: var(--np-ink);
+        margin: 2px 0 1px;
+    }
+
+    .ab-handle {
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 0.9em;
+        color: var(--np-soft);
+    }
+
+    .ab-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+        font-family: var(--np-text);
+        font-size: 0.82em;
+        color: var(--np-soft);
+        margin: 12px 0;
+    }
+
+    .ab-meta span::before {
+        content: "\25AA";
+        color: var(--np-accent);
+        margin-right: 6px;
+    }
+
+    .ab-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .ab-links a {
+        font-family: var(--np-text);
+        font-size: 0.78em;
+        font-weight: 600;
+        letter-spacing: .03em;
+        color: var(--np-ink);
+        border: 1px solid var(--np-ink);
+        padding: 5px 12px;
+        text-decoration: none;
+        transition: background .15s ease, color .15s ease;
+    }
+
+    .ab-links a:hover {
+        background: var(--np-ink);
+        color: var(--np-paper);
+    }
+
+    .ab-section {
+        margin-bottom: 34px;
+        margin-top: 30px;
+    }
+
+    .ab-sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        border-bottom: 2px solid var(--np-ink);
+        padding-bottom: 6px;
+        margin-bottom: 16px;
+    }
+
+    .ab-sec-head h3 {
+        font-family: var(--np-display);
+        font-size: 1.3em;
+        font-weight: 700;
+        color: var(--np-ink);
+        margin: 0;
+    }
+
+    .ab-sec-note {
+        font-family: var(--np-text);
+        font-size: 0.8em;
+        font-style: italic;
+        color: var(--np-soft);
+    }
+
+    .ab-graph-scroll {
+        overflow-x: auto;
+        padding-bottom: 6px;
+    }
+
+    .ab-months {
+        display: flex;
+        margin-left: 30px;
+        font-family: var(--np-text);
+        font-size: 0.68em;
+        color: var(--np-soft);
+        height: 14px;
+    }
+
+    .ab-grid-row {
+        display: flex;
+        gap: 6px;
+    }
+
+    .ab-days {
+        display: grid;
+        grid-template-rows: repeat(7, 13px);
+        gap: 3px;
+        font-family: var(--np-text);
+        font-size: 0.62em;
+        color: var(--np-soft);
+        width: 24px;
+    }
+
+    .ab-days span {
+        line-height: 13px;
+    }
+
+    .ab-cells {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(7, 13px);
+        grid-auto-columns: 13px;
+        gap: 3px;
+    }
+
+    .ab-cell {
+        width: 13px;
+        height: 13px;
+        border-radius: 2px;
+        background: var(--np-cell0);
+    }
+
+    .ab-anim .ab-cell {
+        opacity: 0;
+        transform: scale(.4);
+        transition: opacity .4s ease, transform .4s ease;
+    }
+
+    .ab-anim.ab-in .ab-cell {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .ab-legend {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        justify-content: flex-end;
+        font-family: var(--np-text);
+        font-size: 0.72em;
+        color: var(--np-soft);
+        margin-top: 10px;
+    }
+
+    .ab-key {
+        width: 13px;
+        height: 13px;
+        border-radius: 2px;
+    }
+
+    .ab-repos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .ab-repo {
+        display: block;
+        border: 1px solid var(--np-hair);
+        border-left: 3px solid var(--np-accent);
+        padding: 13px 15px;
+        text-decoration: none;
+        color: var(--np-ink);
+        transition: border-color .15s ease, background .15s ease;
+    }
+
+    .ab-repo:hover {
+        background: var(--np-accent-tint);
+        border-color: var(--np-accent);
+    }
+
+    .ab-repo-org {
+        font-family: var(--np-text);
+        font-size: 0.68em;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--np-soft);
+    }
+
+    .ab-repo-name {
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 0.98em;
+        font-weight: 700;
+        color: var(--np-accent);
+    }
+
+    .ab-repo-desc code {
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 0.86em;
+        background: var(--np-accent-tint);
+        padding: 1px 4px;
+    }
+
+    .ab-badge {
+        margin-left: auto;
+        font-family: var(--np-text);
+        font-size: 0.68em;
+        font-weight: 700;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: var(--np-paper);
+        background: var(--np-accent);
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+
+    .ab-badge-open {
+        color: var(--np-accent);
+        background: transparent;
+        border: 1px solid var(--np-accent);
+    }
+
+    .ab-repo-desc {
+        font-family: var(--np-text);
+        font-size: 0.83em;
+        color: var(--np-ink);
+        margin: 7px 0 11px;
+        line-height: 1.45;
+    }
+
+    .ab-repo-foot {
+        display: flex;
+        gap: 16px;
+        font-family: var(--np-text);
+        font-size: 0.76em;
+        color: var(--np-soft);
+        align-items: center;
+    }
+
+    .ab-lang {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .ab-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    @media screen and (max-width: 620px) {
+        .ab-profile {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .ab-meta,
+        .ab-links {
+            justify-content: center;
+        }
+
+        .ab-repos {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="newspaper np-article np-page">
+    {%- include np-running-head.html -%}
+    <div class="ab-wrap">
+        <header class="ab-profile">
+            <div class="ab-avatar" id="ab-avatar" title="Not my face. A GitHub-style identicon." aria-label="Identicon"></div>
+            <div class="ab-id">
+                <div class="ab-kicker">The Contributor</div>
+                <h1 class="ab-name">Adesh Nalpet Adimurthy</h1>
+                <div class="ab-handle">@addu390</div>
+                <div class="ab-meta">
+                    <span>Terminal</span>
+                    <span>Toronto, Canada</span>
+                    <span>On GitHub since 2017</span>
+                </div>
+                <div class="ab-links">
+                    <a href="https://github.com/addu390" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://pyblog.xyz" target="_blank" rel="noopener">Blog</a>
+                    <a href="https://www.linkedin.com/in/adesh-nalpet-adimurthy" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="ab-section">
+            <div class="ab-sec-head">
+                <h3>The Ledger</h3>
+                <span class="ab-sec-note">the last twelve months of commits</span>
+            </div>
+            <div class="ab-graph-scroll">
+                <div class="ab-months" id="ab-months"></div>
+                <div class="ab-grid-row">
+                    <div class="ab-days"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span></span></div>
+                    <div class="ab-cells ab-anim" id="ab-cells"></div>
+                </div>
+            </div>
+            <div class="ab-legend">
+                <span>Less</span>
+                <span class="ab-key" style="background:var(--np-cell0)"></span>
+                <span class="ab-key" style="background:var(--np-cell1)"></span>
+                <span class="ab-key" style="background:var(--np-cell2)"></span>
+                <span class="ab-key" style="background:var(--np-cell3)"></span>
+                <span class="ab-key" style="background:var(--np-cell4)"></span>
+                <span>More</span>
+            </div>
+        </section>
+
+        <section class="ab-section">
+            <div class="ab-sec-head">
+                <h3>Open Source</h3>
+                <span class="ab-sec-note">merged upstream at Apache, Pulumi, and more</span>
+            </div>
+            <div class="ab-repos">
+                <a class="ab-repo" href="https://github.com/apache/flink-agents/pulls?q=is%3Apr+author%3Aaddu390" target="_blank" rel="noopener">
+                    <div class="ab-repo-org">apache</div>
+                    <div class="ab-repo-name">flink-agents</div>
+                    <div class="ab-repo-desc">Cross-language actions and the OpenAI Responses API integration for the Java runtime.</div>
+                    <div class="ab-repo-foot">
+                        <span class="ab-lang"><span class="ab-dot" style="background:#b07219"></span>Java &middot; Python</span>
+                        <span class="ab-badge">6 merged</span>
+                    </div>
+                </a>
+                <a class="ab-repo" href="https://github.com/apache/doris-flink-connector/pulls?q=is%3Apr+author%3Aaddu390" target="_blank" rel="noopener">
+                    <div class="ab-repo-org">apache</div>
+                    <div class="ab-repo-name">doris-flink-connector</div>
+                    <div class="ab-repo-desc">Fixed a writer deadlock caused by <code>currentCacheBytes</code> drift in batch writes.</div>
+                    <div class="ab-repo-foot">
+                        <span class="ab-lang"><span class="ab-dot" style="background:#b07219"></span>Java</span>
+                        <span class="ab-badge">merged</span>
+                    </div>
+                </a>
+                <a class="ab-repo" href="https://github.com/apache/doris-spark-connector/pulls?q=is%3Apr+author%3Aaddu390" target="_blank" rel="noopener">
+                    <div class="ab-repo-org">apache</div>
+                    <div class="ab-repo-name">doris-spark-connector</div>
+                    <div class="ab-repo-desc">Use <code>Array[String]</code> instead of defaulting to a single string on read.</div>
+                    <div class="ab-repo-foot">
+                        <span class="ab-lang"><span class="ab-dot" style="background:#c22d40"></span>Scala</span>
+                        <span class="ab-badge">merged</span>
+                    </div>
+                </a>
+                <a class="ab-repo" href="https://github.com/pulumi/pulumi-java/pulls?q=is%3Apr+author%3Aaddu390" target="_blank" rel="noopener">
+                    <div class="ab-repo-org">pulumi</div>
+                    <div class="ab-repo-name">pulumi-java</div>
+                    <div class="ab-repo-desc">Let child resources override a parent's <code>protect</code> setting.</div>
+                    <div class="ab-repo-foot">
+                        <span class="ab-lang"><span class="ab-dot" style="background:#b07219"></span>Java</span>
+                        <span class="ab-badge">merged</span>
+                    </div>
+                </a>
+                <a class="ab-repo" href="https://github.com/apache/fluss/pulls?q=is%3Apr+author%3Aaddu390" target="_blank" rel="noopener">
+                    <div class="ab-repo-org">apache</div>
+                    <div class="ab-repo-name">fluss</div>
+                    <div class="ab-repo-desc">Rate-limit support for Spark streaming reads.</div>
+                    <div class="ab-repo-foot">
+                        <span class="ab-lang"><span class="ab-dot" style="background:#b07219"></span>Java</span>
+                        <span class="ab-badge ab-badge-open">open</span>
+                    </div>
+                </a>
+                <a class="ab-repo" href="https://github.com/owid/cartograms/pulls?q=is%3Apr+author%3Aaddu390" target="_blank" rel="noopener">
+                    <div class="ab-repo-org">owid</div>
+                    <div class="ab-repo-name">cartograms</div>
+                    <div class="ab-repo-desc">Square &amp; hexagon cells, topo export, and drag/click interaction fixes for Our World in Data.</div>
+                    <div class="ab-repo-foot">
+                        <span class="ab-lang"><span class="ab-dot" style="background:#f1e05a"></span>JavaScript</span>
+                        <span class="ab-badge">4 merged</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+    {%- include np-foot-rule.html -%}
+</div>
+
+<script>
+    (function () {
+        "use strict";
+
+        var av = document.getElementById("ab-avatar");
+        if (av) {
+            var name = "addu390";
+            var h = 0;
+            for (var ci = 0; ci < name.length; ci++) h = (Math.imul(h, 31) + name.charCodeAt(ci)) | 0;
+            h = h >>> 0;
+            var reds = ["#d97b70", "#b23c31", "#9c2f27", "#7f1d17"];
+            var color = reds[h % reds.length];
+            var svg = '<svg viewBox="0 0 5 5" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">';
+            for (var col = 0; col < 3; col++) {
+                for (var row = 0; row < 5; row++) {
+                    if ((h >> (col * 5 + row)) & 1) {
+                        svg += '<rect x="' + col + '" y="' + row + '" width="1" height="1" fill="' + color + '"/>';
+                        if (col < 2) svg += '<rect x="' + (4 - col) + '" y="' + row + '" width="1" height="1" fill="' + color + '"/>';
+                    }
+                }
+            }
+            av.innerHTML = svg + "</svg>";
+        }
+
+        var cells = document.getElementById("ab-cells");
+        var months = document.getElementById("ab-months");
+        if (!cells) return;
+
+        function mulberry32(a) {
+            return function () {
+                a |= 0; a = a + 0x6D2B79F5 | 0;
+                var t = Math.imul(a ^ a >>> 15, 1 | a);
+                t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+                return ((t ^ t >>> 14) >>> 0) / 4294967296;
+            };
+        }
+        var rand = mulberry32(20170523);
+        var WEEKS = 53;
+        var CELL = 16;
+
+        var today = new Date();
+        var start = new Date(today);
+        start.setDate(start.getDate() - (WEEKS - 1) * 7 - today.getDay());
+
+        var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var lastMonth = -1;
+        var monthSpans = [];
+        for (var w = 0; w < WEEKS; w++) {
+            var d = new Date(start);
+            d.setDate(d.getDate() + w * 7);
+            var m = d.getMonth();
+            if (m !== lastMonth) {
+                monthSpans.push({ label: MON[m], week: w });
+                lastMonth = m;
+            }
+        }
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < monthSpans.length; i++) {
+            var span = document.createElement("span");
+            var next = (i + 1 < monthSpans.length) ? monthSpans[i + 1].week : WEEKS;
+            span.style.width = (next - monthSpans[i].week) * CELL + "px";
+            span.textContent = (next - monthSpans[i].week) >= 3 ? monthSpans[i].label : "";
+            frag.appendChild(span);
+        }
+        months.appendChild(frag);
+
+        var cf = document.createDocumentFragment();
+        for (var week = 0; week < WEEKS; week++) {
+            for (var day = 0; day < 7; day++) {
+                var r = rand();
+                var lvl = r < 0.52 ? 0 : r < 0.72 ? 1 : r < 0.87 ? 2 : r < 0.96 ? 3 : 4;
+                var when = new Date(start);
+                when.setDate(when.getDate() + week * 7 + day);
+                if (when > today) lvl = 0;
+                var cell = document.createElement("div");
+                cell.className = "ab-cell";
+                cell.style.background = "var(--np-cell" + lvl + ")";
+                cell.style.transitionDelay = (week * 12) + "ms";
+                var n = lvl === 0 ? 0 : lvl * 3 + Math.floor(rand() * 4);
+                cell.title = (n === 0 ? "No commits" : n + " commits") + " on " + when.toDateString();
+                cf.appendChild(cell);
+            }
+        }
+        cells.appendChild(cf);
+
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) {
+            cells.classList.remove("ab-anim");
+        } else if ("IntersectionObserver" in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { if (e.isIntersecting) { cells.classList.add("ab-in"); io.disconnect(); } });
+            }, { threshold: 0.2 });
+            io.observe(cells);
+        } else {
+            cells.classList.add("ab-in");
+        }
+    })();
+</script>
