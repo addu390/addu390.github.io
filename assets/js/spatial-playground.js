@@ -20,19 +20,25 @@
         query: null, qlon: 0, qlat: 0,
         kdLines: true, kdDepth: true, kdNN: true,
         qtCap: 2, qtDepth: 6, qtGrid: true,
-        ghPrec: 3, ghLabels: true
+        ghPrec: 3, ghLabels: true,
+        hyCap: 6, hyDepth: 6, hyCells: true, hyKd: true,
+        rkCap: 6, rkRects: true, rkKd: true
     };
 
     var DESC = {
         kd: "A k-d tree splits points by alternating axes. Click to drop points; hover to find the nearest neighbour.",
         quadtree: "A point-region quadtree splits a cell into four once it overflows. Click to add points; tune capacity and depth.",
-        geohash: "Geohash interleaves longitude and latitude bits into a base-32 string, recursively boxing the globe. Click to place a point."
+        geohash: "Geohash interleaves longitude and latitude bits into a base-32 string, recursively boxing the globe. Click to place a point.",
+        hybrid: "A quad-kd tree combines both: a quadtree partitions space into bounding cells, and the points inside each cell are indexed by a local k-d tree. Click to add points.",
+        rkd: "An r-kd tree groups nearby points into r-tree bounding rectangles (which can overlap), then indexes the points inside each rectangle with a local k-d tree. Click to add points."
     };
-    var TITLE = { kd: "k-d Tree", quadtree: "Quadtree", geohash: "Geohash" };
+    var TITLE = { kd: "k-d Tree", quadtree: "Quadtree", geohash: "Geohash", hybrid: "Quad-KD Tree", rkd: "R-KD Tree" };
     var HINT = {
         kd: "Click to add a point. Hover to query the nearest neighbour.",
         quadtree: "Click to add a point and watch the cells subdivide.",
-        geohash: "Click anywhere to geohash that location."
+        geohash: "Click anywhere to geohash that location.",
+        hybrid: "Click to add points: the quadtree splits space, a k-d tree partitions the points inside each cell.",
+        rkd: "Click to add points: the r-tree groups them into bounding rectangles, a k-d tree partitions the points inside each."
     };
 
     function clampi(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
@@ -104,10 +110,12 @@
     }
 
     function makeCell(x, y, w, h, depth) { return { x: x, y: y, w: w, h: h, depth: depth, pts: [], kids: null }; }
-    function qtInsert(cell, p) {
-        if (cell.kids) { qtInsert(cell.kids[qtQuad(cell, p)], p); return; }
+    function qtInsert(cell, p, cap, maxDepth) {
+        if (cap == null) cap = state.qtCap;
+        if (maxDepth == null) maxDepth = state.qtDepth;
+        if (cell.kids) { qtInsert(cell.kids[qtQuad(cell, p)], p, cap, maxDepth); return; }
         cell.pts.push(p);
-        if (cell.pts.length > state.qtCap && cell.depth < state.qtDepth) {
+        if (cell.pts.length > cap && cell.depth < maxDepth) {
             var hw = cell.w / 2, hh = cell.h / 2;
             cell.kids = [
                 makeCell(cell.x, cell.y, hw, hh, cell.depth + 1),
@@ -116,7 +124,7 @@
                 makeCell(cell.x + hw, cell.y + hh, hw, hh, cell.depth + 1)
             ];
             var old = cell.pts; cell.pts = [];
-            for (var i = 0; i < old.length; i++) qtInsert(cell.kids[qtQuad(cell, old[i])], old[i]);
+            for (var i = 0; i < old.length; i++) qtInsert(cell.kids[qtQuad(cell, old[i])], old[i], cap, maxDepth);
         }
     }
     function qtQuad(cell, p) {
@@ -139,6 +147,97 @@
         drawQuad(root);
         for (var k = 0; k < state.points.length; k++) dot(state.points[k].x, state.points[k].y, 3.5, INK);
         setReadout(state.points.length + " points, capacity " + state.qtCap);
+    }
+
+    function drawKDCell(node, x0, x1, y0, y1) {
+        if (!node) return;
+        var p = node.point;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = ACCENT;
+        ctx.globalAlpha = 0.8;
+        if (node.axis === 0) seg(p.x, y0, p.x, y1); else seg(x0, p.y, x1, p.y);
+        ctx.globalAlpha = 1;
+        if (node.axis === 0) {
+            drawKDCell(node.left, x0, p.x, y0, y1);
+            drawKDCell(node.right, p.x, x1, y0, y1);
+        } else {
+            drawKDCell(node.left, x0, x1, y0, p.y);
+            drawKDCell(node.right, x0, x1, p.y, y1);
+        }
+    }
+    function collectLeaves(cell, out) {
+        if (cell.kids) { for (var i = 0; i < 4; i++) collectLeaves(cell.kids[i], out); }
+        else out.push(cell);
+    }
+    function renderHybrid() {
+        clear();
+        var root = makeCell(M, M, W - 2 * M, H - 2 * M, 0);
+        for (var i = 0; i < state.points.length; i++) qtInsert(root, state.points[i], state.hyCap, state.hyDepth);
+        if (state.hyCells) {
+            (function walk(cell) {
+                ctx.strokeStyle = HAIR; ctx.lineWidth = 1;
+                ctx.globalAlpha = clampi(1 - cell.depth * 0.07, 0.4, 1);
+                ctx.strokeRect(cell.x, cell.y, cell.w, cell.h);
+                ctx.globalAlpha = 1;
+                if (cell.kids) for (var j = 0; j < 4; j++) walk(cell.kids[j]);
+            })(root);
+        }
+        var leaves = []; collectLeaves(root, leaves);
+        var filled = 0;
+        for (var L = 0; L < leaves.length; L++) {
+            var c = leaves[L];
+            if (!c.pts.length) continue;
+            filled++;
+            if (state.hyKd && c.pts.length > 1) {
+                var kroot = buildKD(c.pts.slice(), 0);
+                drawKDCell(kroot, c.x, c.x + c.w, c.y, c.y + c.h);
+            }
+        }
+        for (var k = 0; k < state.points.length; k++) dot(state.points[k].x, state.points[k].y, 3.5, INK);
+        setReadout(state.points.length + " points in " + filled + " cells  \u00b7  grey: quadtree, red: k-d");
+    }
+
+    function buildRLeaves(points, cap) {
+        var pts = points.slice();
+        var n = pts.length;
+        if (!n) return [];
+        var leafCount = Math.ceil(n / cap);
+        var sliceCount = Math.max(1, Math.round(Math.sqrt(leafCount)));
+        var perSlice = Math.ceil(n / sliceCount) || 1;
+        pts.sort(function (a, b) { return a.x - b.x; });
+        var leaves = [];
+        for (var s = 0; s < n; s += perSlice) {
+            var slice = pts.slice(s, s + perSlice);
+            slice.sort(function (a, b) { return a.y - b.y; });
+            for (var g = 0; g < slice.length; g += cap) leaves.push(slice.slice(g, g + cap));
+        }
+        return leaves;
+    }
+    function renderRKD() {
+        clear();
+        var leaves = buildRLeaves(state.points, state.rkCap);
+        var pad = 5;
+        for (var L = 0; L < leaves.length; L++) {
+            var grp = leaves[L];
+            var minx = Infinity, miny = Infinity, maxx = -Infinity, maxy = -Infinity;
+            for (var i = 0; i < grp.length; i++) {
+                if (grp[i].x < minx) minx = grp[i].x;
+                if (grp[i].y < miny) miny = grp[i].y;
+                if (grp[i].x > maxx) maxx = grp[i].x;
+                if (grp[i].y > maxy) maxy = grp[i].y;
+            }
+            var x0 = minx - pad, y0 = miny - pad, x1 = maxx + pad, y1 = maxy + pad;
+            if (state.rkRects) {
+                ctx.strokeStyle = SOFT; ctx.lineWidth = 1; ctx.globalAlpha = 0.85;
+                ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+                ctx.globalAlpha = 1;
+            }
+            if (state.rkKd && grp.length > 1) {
+                drawKDCell(buildKD(grp.slice(), 0), x0, x1, y0, y1);
+            }
+        }
+        for (var k = 0; k < state.points.length; k++) dot(state.points[k].x, state.points[k].y, 3.5, INK);
+        setReadout(state.points.length + " points in " + leaves.length + " rectangles  \u00b7  grey: r-tree MBRs, red: k-d");
     }
 
     function geohashChar(col, row, parity) {
@@ -232,6 +331,8 @@
     function render() {
         if (state.structure === "kd") renderKD();
         else if (state.structure === "quadtree") renderQuad();
+        else if (state.structure === "hybrid") renderHybrid();
+        else if (state.structure === "rkd") renderRKD();
         else renderGeohash();
     }
 
@@ -245,6 +346,8 @@
         document.getElementById("sp-knobs-kd").hidden = s !== "kd";
         document.getElementById("sp-knobs-quadtree").hidden = s !== "quadtree";
         document.getElementById("sp-knobs-geohash").hidden = s !== "geohash";
+        document.getElementById("sp-knobs-hybrid").hidden = s !== "hybrid";
+        document.getElementById("sp-knobs-rkd").hidden = s !== "rkd";
         render();
     }
 
@@ -297,6 +400,21 @@
         state.ghPrec = +this.value; document.getElementById("gh-prec-val").textContent = this.value; render();
     });
     document.getElementById("gh-labels").addEventListener("change", function () { state.ghLabels = this.checked; render(); });
+
+    document.getElementById("hy-cap").addEventListener("input", function () {
+        state.hyCap = +this.value; document.getElementById("hy-cap-val").textContent = this.value; render();
+    });
+    document.getElementById("hy-depth").addEventListener("input", function () {
+        state.hyDepth = +this.value; document.getElementById("hy-depth-val").textContent = this.value; render();
+    });
+    document.getElementById("hy-cells").addEventListener("change", function () { state.hyCells = this.checked; render(); });
+    document.getElementById("hy-kd").addEventListener("change", function () { state.hyKd = this.checked; render(); });
+
+    document.getElementById("rk-cap").addEventListener("input", function () {
+        state.rkCap = +this.value; document.getElementById("rk-cap-val").textContent = this.value; render();
+    });
+    document.getElementById("rk-rects").addEventListener("change", function () { state.rkRects = this.checked; render(); });
+    document.getElementById("rk-kd").addEventListener("change", function () { state.rkKd = this.checked; render(); });
 
     setStructure("kd");
 

@@ -9,7 +9,7 @@ date: 2024-06-25
 
 {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
 
-<div class="all-posts">
+<div class="all-posts np-legal">
 
 <p>Last updated on {{ page.date | date: date_format }}.</p>
 

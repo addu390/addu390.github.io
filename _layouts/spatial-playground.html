@@ -16,6 +16,8 @@ layout: default
                     <button class="sp-tab is-active" data-structure="kd" type="button">k-d Tree</button>
                     <button class="sp-tab" data-structure="quadtree" type="button">Quadtree</button>
                     <button class="sp-tab" data-structure="geohash" type="button">Geohash</button>
+                    <button class="sp-tab" data-structure="hybrid" type="button">Quad-KD</button>
+                    <button class="sp-tab" data-structure="rkd" type="button">R-KD</button>
                 </div>
 
                 <div class="sp-actions">
@@ -50,6 +52,28 @@ layout: default
                         <label class="sp-check"><input type="checkbox" id="gh-labels" checked> Show cell codes</label>
                     </div>
 
+                    <div id="sp-knobs-hybrid" hidden>
+                        <div class="sp-knob">
+                            <label>Points per cell (bounding box): <span class="sp-val" id="hy-cap-val">6</span></label>
+                            <input type="range" id="hy-cap" min="2" max="16" value="6">
+                        </div>
+                        <div class="sp-knob">
+                            <label>Max quadtree depth: <span class="sp-val" id="hy-depth-val">6</span></label>
+                            <input type="range" id="hy-depth" min="2" max="8" value="6">
+                        </div>
+                        <label class="sp-check"><input type="checkbox" id="hy-cells" checked> Show quadtree cells</label>
+                        <label class="sp-check"><input type="checkbox" id="hy-kd" checked> Show k-d partitions</label>
+                    </div>
+
+                    <div id="sp-knobs-rkd" hidden>
+                        <div class="sp-knob">
+                            <label>Points per rectangle: <span class="sp-val" id="rk-cap-val">6</span></label>
+                            <input type="range" id="rk-cap" min="2" max="16" value="6">
+                        </div>
+                        <label class="sp-check"><input type="checkbox" id="rk-rects" checked> Show r-tree rectangles</label>
+                        <label class="sp-check"><input type="checkbox" id="rk-kd" checked> Show k-d partitions</label>
+                    </div>
+
                     <div class="sp-readout" id="sp-readout"><span class="sp-muted">&nbsp;</span></div>
                 </div>
             </div>
@@ -59,6 +83,8 @@ layout: default
                 <p class="sp-hint" id="sp-hint">Click the canvas to add a point.</p>
             </div>
         </div>
+
+        {% include np-demo-related.html href="/hybrid-spatial-index-conclusion" title="Hybrid Spatial Index: Quad-KD and R-KD trees" %}
     </div>
 </div>
 

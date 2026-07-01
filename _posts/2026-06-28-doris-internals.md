@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Apache Doris Internals"
-description: "A diagram-heavy tour of Apache Doris, the MPP real-time data warehouse that speaks MySQL, covering its storage engine, meta service, backend, and frontend."
+description: "A detailed breakdown of Apache Doris, the MPP real-time data warehouse that speaks the MySQL protocol, covering its storage engine, meta service, backend, and frontend."
 date: 2026-06-28
 tags:
   - Internals
@@ -9,7 +9,7 @@ tags:
   - Distributed Systems
 author: Adesh Nalpet Adimurthy
 highlight: green
-deck: "A diagram-heavy tour of the storage engine, meta service, backend, and frontend, going deeper than the official manual."
+deck: "A detailed breakdown of the storage engine, meta service, backend, and frontend, going deeper than the official manual."
 ---
 
 <p>Apache Doris is an MPP-based real-time data warehouse known for its high query speeds, handling high concurrency and throughput, and speaking the MySQL protocol. Commonly used for real-time analytics, lakehouse analytics that federate queries over data lakes such as Iceberg and Hive, and hybrid search that runs text and vector search alongside aggregation.</p>

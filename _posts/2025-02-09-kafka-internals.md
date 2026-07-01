@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Apache Kafka Internals"
-description: "A tour of Apache Kafka's internals that makes sense of its many configurations, covering the event stream, brokers, and best practices for running a cluster."
+description: "How Apache Kafka works internally, making sense of its many configurations across the event stream, brokers, and best practices for running a cluster."
 date: 2025-02-09
 tags:
   - Internals
@@ -11,11 +11,7 @@ author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/the-kafka.webp
 feature: assets/img/featured/webp/the-kafka.webp
 ---
-<div class="blog-reference">
-<p>This post is a work in progress, but feel free to explore what’s here so far. Stay tuned for more!</p>
-</div>
-
-<p><code>14 years</code> of <a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>! Kafka is the de facto standard for event streaming, just like AWS S3 is for object storage and PostgreSQL is for RDBMS. While every TD&H (SWE) has likely used Kafka, managing a Kafka cluster is a whole other game. The long list of <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">high-importance configurations</a> is a testament to this. In this blog post, the goal is to understand Kafka's internals enough to make sense of its many configurations and highlight best practices.</p>
+<p class="np-numcap"><code><span class="np-cap2">14</span> years</code> of <a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>! Kafka is the de facto standard for event streaming, just like AWS S3 is for object storage and PostgreSQL is for RDBMS. While every TD&H (SWE) has likely used Kafka, managing a Kafka cluster is a whole other game. The long list of <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">high-importance configurations</a> is a testament to this. In this blog post, the goal is to understand Kafka's internals enough to make sense of its many configurations and highlight best practices.</p>
 
 <img class="center-image-0 center-image-50" src="./assets/img/posts/kafka/kafka-api.webp">
 
