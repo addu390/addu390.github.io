@@ -3,43 +3,264 @@ layout: default
 ---
 
 <style>
+    .pf-wrap {
+        max-width: 1120px;
+        margin: 1.4em auto 0;
+        text-align: left;
+    }
+
+    .pf-layout {
+        display: flex;
+        gap: 28px;
+        align-items: flex-start;
+    }
+
+    .pf-left {
+        flex: 0 0 340px;
+        max-width: 340px;
+    }
+
+    .pf-right {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .pf-head {
+        border-bottom: 2px solid var(--np-ink);
+        padding-bottom: 10px;
+        margin-bottom: 16px;
+    }
+
+    .pf-title {
+        font-family: var(--np-display);
+        font-size: 1.9em;
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--np-ink);
+    }
+
+    .pf-desc {
+        font-family: var(--np-text);
+        font-size: 0.95em;
+        color: var(--np-soft);
+        margin-top: 4px;
+    }
+
+    .pf-featured {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .pf-card {
+        border: 1px solid var(--np-hair);
+        background: var(--np-paper);
+        padding: 4px 4px 2px;
+        cursor: pointer;
+        text-align: center;
+        transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+
+    .pf-card:hover {
+        border-color: var(--np-soft);
+        transform: translateY(-2px);
+    }
+
+    .pf-card.is-active {
+        border-color: var(--np-accent);
+        box-shadow: inset 0 0 0 1px var(--np-accent);
+    }
+
+    .pf-card canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .pf-card-label {
+        font-family: var(--np-text);
+        font-size: 0.62em;
+        letter-spacing: .02em;
+        color: var(--np-soft);
+        margin-top: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .pf-card.is-active .pf-card-label {
+        color: var(--np-accent);
+        font-weight: 600;
+    }
+
+    .pf-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: stretch;
+        margin-bottom: 12px;
+    }
+
+    .pf-select {
+        flex: 1 1 220px;
+        min-width: 160px;
+        padding: 8px 10px;
+        font-family: var(--np-text);
+        font-size: 0.9em;
+        color: var(--np-ink);
+        background: var(--np-paper);
+        border: 1px solid var(--np-ink);
+        border-radius: 0;
+        cursor: pointer;
+    }
+
+    .pf-btn {
+        padding: 8px 14px;
+        font-family: var(--np-text);
+        font-size: 0.82em;
+        font-weight: 600;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        color: var(--np-ink);
+        background: var(--np-paper);
+        border: 1px solid var(--np-ink);
+        cursor: pointer;
+        transition: background .15s ease, color .15s ease;
+    }
+
+    .pf-btn:hover {
+        background: var(--np-ink);
+        color: var(--np-paper);
+    }
+
+    .pf-btn.pf-shuffle:hover {
+        background: var(--np-accent);
+        border-color: var(--np-accent);
+    }
+
+    .pf-toggles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 10px 0 0;
+        border-top: 1px solid var(--np-hair);
+        font-family: var(--np-text);
+        font-size: 0.85em;
+        color: var(--np-ink);
+    }
+
+    .pf-toggles label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .pf-toggles input {
+        accent-color: var(--np-accent);
+    }
+
     #map {
         text-align: center;
-        background-color: #fff;
+        margin-top: 0;
     }
 
-    #face-container {
-        padding: 4.8em 1em 0 1em;
-        font-weight: bold;
-        background-color: #fff;
+    #map canvas {
+        max-width: 100%;
+        height: auto;
+        cursor: grab;
+        touch-action: none;
     }
 
-    #projection-menu {
-        width: 40%;
-        padding: 8px;
-        border: 2px #222 solid;
-        border-radius: 5px;
+    #map canvas:active {
+        cursor: grabbing;
+    }
+
+    .pf-hint {
+        font-family: var(--np-text);
+        font-size: 0.8em;
+        color: var(--np-soft);
+        text-align: center;
+        margin-top: 8px;
+        font-style: italic;
+    }
+
+    @media screen and (max-width: 900px) {
+        .pf-layout {
+            flex-direction: column;
+        }
+
+        .pf-left {
+            flex: none;
+            max-width: none;
+            width: 100%;
+        }
+
+        .pf-featured {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .pf-right {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .pf-featured {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 </style>
 
 <div class="newspaper np-article np-demo">
     {%- include np-running-head.html -%}
-    <div id="face-container">
-        <select id="projection-menu" name="Equirectangular (Plate Carrée)"></select>
+    <div class="pf-wrap">
+        <div class="pf-layout">
+            <div class="pf-left">
+                <div class="pf-head">
+                    <div class="pf-title" id="pf-name">Projection Atlas</div>
+                    <div class="pf-desc" id="pf-desc">The sphere, its graticule, and the S2 cube face, cast through every map projection.</div>
+                </div>
+
+                <div class="pf-featured" id="pf-featured"></div>
+
+                <div class="pf-controls">
+                    <button class="pf-btn" id="pf-prev" type="button">&lsaquo; Prev</button>
+                    <select id="projection-menu" class="pf-select"></select>
+                    <button class="pf-btn" id="pf-next" type="button">Next &rsaquo;</button>
+                    <button class="pf-btn pf-shuffle" id="pf-shuffle" type="button">Shuffle</button>
+                </div>
+
+                <div class="pf-toggles">
+                    <label><input type="checkbox" id="pf-grat" checked> Graticule</label>
+                    <label><input type="checkbox" id="pf-sphere" checked> Sphere</label>
+                    <label><input type="checkbox" id="pf-face" checked> S2 Face</label>
+                    <label><input type="checkbox" id="pf-rotate"> Auto-rotate</label>
+                </div>
+            </div>
+
+            <div class="pf-right">
+                <div id="map"></div>
+                <p class="pf-hint">Drag the map to spin the globe.</p>
+            </div>
+        </div>
     </div>
-    <div id="map"></div>
 </div>
-
-
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
 <script src="https://d3js.org/d3.geo.polyhedron.v0.min.js"></script>
 <script>
+    var INK = "#161616", SOFT = "#cfcfcf", ACCENT = "#9c2f27", ACCENT_TINT = "rgba(156,47,39,0.10)";
 
     var ratio = window.devicePixelRatio || 1,
-        width = 630 * 1.3 * ratio,
+        BASEW = 630 * 1.3,
+        width = BASEW * ratio,
         height = 450 * 1.3 * ratio;
+
+    function clamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
 
     var options = [
         { name: "Natural Earth (Default)", projection: d3.geo.naturalEarth() },
@@ -89,13 +310,13 @@ layout: default
         { name: "Mollweide", projection: d3.geo.mollweide().scale(165) },
         { name: "Natural Earth", projection: d3.geo.naturalEarth() },
         { name: "Nell–Hammer", projection: d3.geo.nellHammer() },
-        { name: "Orthographic", projection: d3.geo.orthographic().scale(200) },
+        { name: "Orthographic", projection: d3.geo.orthographic().scale(200).clipAngle(90) },
         { name: "Polyconic", projection: d3.geo.polyconic().scale(100) },
         { name: "Rectangular Polyconic", projection: d3.geo.rectangularPolyconic().scale(120) },
         { name: "Robinson", projection: d3.geo.robinson() },
         { name: "Sinusoidal", projection: d3.geo.sinusoidal() },
         { name: "Sinu-Mollweide", projection: d3.geo.sinuMollweide() },
-        { name: "Stereographic", projection: d3.geo.stereographic() },
+        { name: "Stereographic", projection: d3.geo.stereographic().clipAngle(120) },
         { name: "Times", projection: d3.geo.times().scale(140) },
         { name: "Van der Grinten", projection: d3.geo.vanDerGrinten().scale(75) },
         { name: "Van der Grinten II", projection: d3.geo.vanDerGrinten2().scale(75) },
@@ -108,34 +329,50 @@ layout: default
         { name: "Winkel Tripel", projection: d3.geo.winkel3() }
     ];
 
-    var menu = d3.select("#projection-menu")
-        .on("change", change);
+    var descriptions = {
+        "Orthographic": "The view from space — one hemisphere at a time. Drag to spin it.",
+        "Waterman": "Steve Waterman's butterfly, unfolding the globe from a polyhedron.",
+        "Winkel Tripel": "National Geographic's world map; balances area, direction and distance.",
+        "Robinson": "A hand-tuned compromise that simply looks right.",
+        "Mollweide": "An equal-area ellipse, ideal for global distributions.",
+        "Mercator": "Conformal and famous for navigation — and for inflating the poles.",
+        "HEALPix": "An equal-area scheme born in cosmology, tiling the sphere.",
+        "Hammer": "Equal-area and elliptical, with gentler shape distortion than Mollweide.",
+        "Van der Grinten": "The whole world in a circle — the old National Geographic look.",
+        "Guyou": "Peirce-style: the sphere folded into squares.",
+        "Aitoff": "The azimuthal cousin that inspired the Winkel Tripel.",
+        "Natural Earth (Default)": "A rounded compromise projection designed for world maps."
+    };
 
-    menu.selectAll("option")
-        .data(options)
-        .enter().append("option")
-        .text(function (d) { return d.name; });
+    var featuredNames = [
+        "Orthographic", "Waterman", "Winkel Tripel", "Robinson", "Mollweide", "Mercator",
+        "HEALPix", "Hammer", "Van der Grinten", "Guyou", "Aitoff", "Natural Earth (Default)"
+    ];
 
-    function change() {
-        update(options[this.selectedIndex]);
+    function indexOfName(name) {
+        for (var k = 0; k < options.length; k++) if (options[k].name === name) return k;
+        return 0;
     }
 
-    var i = 0,
-        n = options.length - 1;
+    var graticule = d3.geo.graticule()();
+    var face = null;
+    var rotation = [0, 0];
+    var current = indexOfName("Orthographic");
+    var transitioning = false, dragging = false, autorotate = false;
+    var showGrat = true, showSphere = true, showFace = true;
 
-
-    var projection = options[i].projection;
-
+    options.forEach(function (o) { o.origScale = o.projection.scale(); });
     options.forEach(function (option) {
         option.projection
             .translate([width / 2, height / 2])
-            .scale(option.projection.scale() * ratio)
+            .scale(option.origScale * ratio)
             .clipExtent([[2 * ratio, 2 * ratio], [width - 2 * ratio, height - 2 * ratio]]);
     });
 
-    var graticule = d3.geo.graticule()(),
-        face,
-        boundaries;
+    var projection = options[current].projection;
+
+    var menu = d3.select("#projection-menu").on("change", function () { select(this.selectedIndex, true); });
+    menu.selectAll("option").data(options).enter().append("option").text(function (d) { return d.name; });
 
     var canvas = d3.select("#map").append("canvas")
         .attr("width", width)
@@ -144,71 +381,180 @@ layout: default
         .style("height", height / ratio + "px");
 
     var context = canvas.node().getContext("2d");
-    context.fillStyle = "#f9f9f9";
-    context.strokeStyle = "#000";
+    var path = d3.geo.path().projection(projection).context(context);
 
-    var path = d3.geo.path()
-        .projection(projection)
-        .context(context);
-
-    function rando() {
-        var j = Math.floor(Math.random() * n);
-        i = j + (j >= i);
-        menu.property("selectedIndex", i = j + (j >= i));
+    function descFor(name) {
+        return descriptions[name] || ("The sphere, graticule and S2 cube face under the " + name + " projection.");
     }
 
-    function change() {
-        update(options[this.selectedIndex]);
+    function drawInto(ctx, pathGen, w, h) {
+        ctx.clearRect(0, 0, w, h);
+        if (showGrat) {
+            ctx.lineWidth = 0.5 * ratio;
+            ctx.strokeStyle = SOFT;
+            ctx.beginPath(); pathGen(graticule); ctx.stroke();
+        }
+        if (showSphere) {
+            ctx.lineWidth = 1 * ratio;
+            ctx.strokeStyle = INK;
+            ctx.beginPath(); pathGen({ type: "Sphere" }); ctx.stroke();
+        }
+        if (showFace && face) {
+            ctx.beginPath(); pathGen(face);
+            ctx.fillStyle = ACCENT_TINT; ctx.fill();
+            ctx.lineWidth = 2 * ratio; ctx.strokeStyle = ACCENT; ctx.stroke();
+        }
     }
+
+    function redraw(pathGen) { drawInto(context, pathGen, width, height); }
 
     function pathTween(projection0, projection1) {
         var t = 0,
-            projection = d3.geo.projection(function (λ, φ) {
+            proj = d3.geo.projection(function (λ, φ) {
                 λ *= 180 / Math.PI, φ *= 180 / Math.PI;
                 var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
                 return [(1 - t) * p0[0] + t * p1[0], (1 - t) * -p0[1] + t * -p1[1]];
-            })
-                .scale(1)
-                .translate([width / 2, height / 2])
-                .clipExtent(projection0.clipExtent()),
-            path = d3.geo.path().projection(projection).context(context);
-        return function () {
-            return function (u) {
-                t = u;
-                redraw(path);
-            };
-        };
+            }).scale(1).translate([width / 2, height / 2]).clipExtent(projection0.clipExtent()),
+            tweenPath = d3.geo.path().projection(proj).context(context);
+        return function () { return function (u) { t = u; redraw(tweenPath); }; };
     }
 
     function update(option) {
+        transitioning = true;
+        option.projection.rotate(rotation);
+        projection.rotate(rotation);
         canvas.transition()
             .duration(750)
             .ease(d3.ease("quad"))
-            .tween("path", pathTween(projection, projection = option.projection));
+            .tween("path", pathTween(projection, projection = option.projection))
+            .each("end", function () {
+                transitioning = false;
+                path.projection(projection);
+                redraw(path);
+            });
         path.projection(projection);
     }
 
-    function redraw(path) {
-        context.clearRect(0, 0, width, height);
-        context.lineWidth = .5 * ratio;
+    function select(index, animate) {
+        current = index;
+        menu.property("selectedIndex", index);
+        var name = options[index].name;
+        d3.select("#pf-name").text(name);
+        d3.select("#pf-desc").text(descFor(name));
+        d3.selectAll(".pf-card").classed("is-active", function () {
+            return +this.getAttribute("data-index") === index;
+        });
+        if (animate) {
+            update(options[index]);
+        } else {
+            projection = options[index].projection;
+            projection.rotate(rotation);
+            path.projection(projection);
+            redraw(path);
+        }
+    }
 
-        context.strokeStyle = "#999";
-        context.beginPath(), path(graticule), context.stroke();
-
-        context.beginPath(), path({ type: "Sphere" }), context.stroke();
-
-        context.lineWidth = 2 * ratio;
-
+    function drawMini(cv, option) {
+        var mctx = cv.getContext("2d");
+        var mw = cv.width, mh = cv.height;
+        var proj = option.projection;
+        var bt = proj.translate(), bs = proj.scale(), bc = proj.clipExtent ? proj.clipExtent() : null, br = proj.rotate();
+        proj.rotate([0, 0]).translate([mw / 2, mh / 2]).scale(option.origScale * mw / BASEW);
+        if (proj.clipExtent) proj.clipExtent([[0, 0], [mw, mh]]);
+        var mpath = d3.geo.path().projection(proj).context(mctx);
+        mctx.clearRect(0, 0, mw, mh);
+        mctx.lineWidth = 0.5 * ratio; mctx.strokeStyle = SOFT;
+        mctx.beginPath(); mpath(graticule); mctx.stroke();
+        mctx.lineWidth = 0.9 * ratio; mctx.strokeStyle = INK;
+        mctx.beginPath(); mpath({ type: "Sphere" }); mctx.stroke();
         if (face) {
-            context.strokeStyle = "#000";
-            context.lineWidth = 2;
-            context.beginPath(), path(face), context.stroke();
+            mctx.beginPath(); mpath(face);
+            mctx.fillStyle = ACCENT_TINT; mctx.fill();
+            mctx.lineWidth = 1.4 * ratio; mctx.strokeStyle = ACCENT; mctx.stroke();
+        }
+        proj.rotate(br).translate(bt).scale(bs);
+        if (bc && proj.clipExtent) proj.clipExtent(bc);
+    }
+
+    var featuredCards = [];
+    (function buildFeatured() {
+        var host = d3.select("#pf-featured");
+        var mw = 104, mh = 74;
+        featuredNames.forEach(function (name) {
+            var idx = indexOfName(name);
+            var card = host.append("div").attr("class", "pf-card").attr("data-index", idx)
+                .on("click", function () { select(idx, true); });
+            var cv = card.append("canvas")
+                .attr("width", mw * ratio).attr("height", mh * ratio)
+                .style("width", mw + "px").style("height", mh + "px").node();
+            card.append("div").attr("class", "pf-card-label").text(name.replace(" (Default)", ""));
+            featuredCards.push({ canvas: cv, option: options[idx], index: idx });
+        });
+    })();
+
+    function stepBy(delta) {
+        var n = options.length;
+        select(((current + delta) % n + n) % n, true);
+    }
+    d3.select("#pf-prev").on("click", function () { stepBy(-1); });
+    d3.select("#pf-next").on("click", function () { stepBy(1); });
+    d3.select("#pf-shuffle").on("click", function () {
+        var j = current;
+        while (j === current) j = Math.floor(Math.random() * options.length);
+        select(j, true);
+    });
+
+    d3.select("#pf-grat").on("change", function () { showGrat = this.checked; if (!transitioning) redraw(path); });
+    d3.select("#pf-sphere").on("change", function () { showSphere = this.checked; if (!transitioning) redraw(path); });
+    d3.select("#pf-face").on("change", function () { showFace = this.checked; if (!transitioning) redraw(path); });
+    d3.select("#pf-rotate").on("change", function () {
+        autorotate = this.checked;
+        if (autorotate) d3.timer(tick);
+    });
+
+    function tick() {
+        if (!autorotate) return true;
+        if (!transitioning && !dragging) {
+            rotation[0] = (rotation[0] + 0.3) % 360;
+            projection.rotate([rotation[0], rotation[1]]);
+            redraw(path);
+        }
+        return false;
+    }
+
+    var lastX = 0, lastY = 0;
+    canvas.on("mousedown", function () {
+        d3.event.preventDefault(); dragging = true;
+        lastX = d3.event.clientX; lastY = d3.event.clientY;
+    });
+    canvas.on("touchstart", function () {
+        var t = d3.event.touches[0]; if (!t) return;
+        d3.event.preventDefault(); dragging = true;
+        lastX = t.clientX; lastY = t.clientY;
+    });
+    canvas.on("touchmove", function () {
+        if (!dragging) return; var t = d3.event.touches[0]; if (!t) return;
+        d3.event.preventDefault(); dragMove(t.clientX, t.clientY);
+    });
+    canvas.on("touchend", function () { dragging = false; });
+    d3.select(window)
+        .on("mousemove.pf", function () { if (dragging) dragMove(d3.event.clientX, d3.event.clientY); })
+        .on("mouseup.pf", function () { dragging = false; });
+
+    function dragMove(cx, cy) {
+        var dx = cx - lastX, dy = cy - lastY;
+        lastX = cx; lastY = cy;
+        rotation[0] = (rotation[0] + dx * 0.4) % 360;
+        rotation[1] = clamp(rotation[1] - dy * 0.4, -90, 90);
+        if (!transitioning) {
+            projection.rotate([rotation[0], rotation[1]]);
+            redraw(path);
         }
     }
 
     d3.json("./assets/demos/geohash/face.geojson", function (error, data) {
         face = data;
-        redraw(path)
+        featuredCards.forEach(function (c) { drawMini(c.canvas, c.option); });
+        select(current, false);
     });
-
 </script>

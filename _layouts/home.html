@@ -108,6 +108,14 @@ layout: default
                 </ul>
             </div>
 
+            <div class="np-index-box">
+                <h4>Playground</h4>
+                <ul>
+                    <li><a href="/face-projection">Map Projection Atlas</a></li>
+                    <li><a href="/spatial-playground">Spatial Index Playground</a></li>
+                </ul>
+            </div>
+
             {%- for post in posts limit:4 offset:6 -%}
             {%- assign words = post.content | number_of_words -%}
             {%- assign mins = words | divided_by: 275 -%}

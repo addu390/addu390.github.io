@@ -140,8 +140,6 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 <p>Neighbor Searches: Generate geohashes for a target location and its neighbors to quickly retrieve nearby points. Which also extends to Area Searches: Calculate geohash ranges that cover a specific area and perform range queries to find all relevant points within that region.</p>
 
 <p>Popular databases such as <a href="https://clickhouse.com/docs/en/sql-reference/functions/geo/geohash" target="_blank">ClickHouse</a>, <a href="https://dev.mysql.com/doc/refman/8.4/en/spatial-geohash-functions.html" target="_blank">MySQL</a>, <a href="https://postgis.net/docs/ST_GeoHash.html" target="_blank">PostGIS</a>, <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geohash" target="_blank">BigQuery</a>, <a href="https://docs.aws.amazon.com/redshift/latest/dg/ST_GeoHash-function.html" target="_blank">RedShift</a> and many others offer built-in geohash function. And many variations have been developed, such as the <a href="https://github.com/yinqiwen/geohash-int" target="_blank">64-bit Geohash</a> and <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2404058" target="_blank">Hilbert-Geohash</a></p>
-
-<p>Interactive Geohash Visualization: <a href="/geohash" target="_blank">/geohash</a></p>
 </details>
 
 <hr class="clear-hr">
@@ -153,7 +151,7 @@ description: Grid systems in spatial indexing, including Geohash and Google S2, 
 
 <p>Google's S2 library was released more than 10 years ago and didn't exactly the get the attention it deserved, much later in 2017, Google announced the release of open-source C++ <a href="https://github.com/google/s2geometry" target="_blank">s2geometry library</a>. With the use of Hilbert Curve (<a href="/spatial-index-space-filling-curve#2-2-hilbert-curve-intuition">Section 2.2</a>) and cube face (spherical) projection instead of geohash's Z-order curve and equirectangular projection; S2 addresses (to an extent) the large jumps (<a href="/spatial-index-space-filling-curve#2-5-z-order-curve-implementation">Section 2.5</a>) problem with Z-order curves and disproportional surface areas associated with equirectangular projection.</p>
 
-<p>The core of S2 is the hierarchical decomposition of the sphere into "cells"; done using a <a href="/quadtree" target="_blank">Quad-tree</a>, where a quadrant is recursively subdivided into four equal sub-cells and the use of Hilbet Curve goes hand-in-hand - runs across the centers of the quad-tree’s leaf nodes.</p>
+<p>The core of S2 is the hierarchical decomposition of the sphere into "cells"; done using a <a href="/spatial-playground">Quad-tree</a>, where a quadrant is recursively subdivided into four equal sub-cells and the use of Hilbet Curve goes hand-in-hand - runs across the centers of the quad-tree’s leaf nodes.</p>
 </details>
 
 <hr class="sub-hr">
