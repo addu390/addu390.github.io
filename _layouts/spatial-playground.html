@@ -5,31 +5,31 @@ layout: default
 <div class="newspaper np-article np-demo">
     {%- include np-running-head.html -%}
     <div class="sp-wrap">
-        <div class="sp-layout">
-            <div class="sp-left">
-                <div class="sp-head">
-                    <div class="sp-title" id="sp-title">Spatial Index Playground</div>
-                    <div class="sp-desc" id="sp-desc">Pick a structure and start clicking.</div>
+        <div class="np-demo-split">
+            <div class="np-demo-side">
+                <div class="np-demo-head">
+                    <div class="np-demo-title" id="sp-title">Spatial Index Playground</div>
+                    <div class="np-demo-desc" id="sp-desc">Pick a structure and start clicking.</div>
                 </div>
 
-                <div class="sp-tabs">
-                    <button class="sp-tab is-active" data-structure="kd" type="button">k-d Tree</button>
-                    <button class="sp-tab" data-structure="quadtree" type="button">Quadtree</button>
-                    <button class="sp-tab" data-structure="geohash" type="button">Geohash</button>
-                    <button class="sp-tab" data-structure="hybrid" type="button">Quad-KD</button>
-                    <button class="sp-tab" data-structure="rkd" type="button">R-KD</button>
+                <div class="np-tabs">
+                    <button class="np-tab is-active" data-structure="kd" type="button">k-d Tree</button>
+                    <button class="np-tab" data-structure="quadtree" type="button">Quadtree</button>
+                    <button class="np-tab" data-structure="geohash" type="button">Geohash</button>
+                    <button class="np-tab" data-structure="hybrid" type="button">Quad-KD</button>
+                    <button class="np-tab" data-structure="rkd" type="button">R-KD</button>
                 </div>
 
                 <div class="sp-actions">
-                    <button class="sp-btn" id="sp-random" type="button">Random</button>
-                    <button class="sp-btn" id="sp-clear" type="button">Clear</button>
+                    <button class="np-btn" id="sp-random" type="button">Random</button>
+                    <button class="np-btn" id="sp-clear" type="button">Clear</button>
                 </div>
 
                 <div class="sp-knobs">
                     <div id="sp-knobs-kd">
-                        <label class="sp-check"><input type="checkbox" id="kd-lines" checked> Partition lines</label>
-                        <label class="sp-check"><input type="checkbox" id="kd-depth" checked> Colour by depth</label>
-                        <label class="sp-check"><input type="checkbox" id="kd-nn" checked> Nearest neighbour on hover</label>
+                        <label class="np-check"><input type="checkbox" id="kd-lines" checked> Partition lines</label>
+                        <label class="np-check"><input type="checkbox" id="kd-depth" checked> Colour by depth</label>
+                        <label class="np-check"><input type="checkbox" id="kd-nn" checked> Nearest neighbour on hover</label>
                     </div>
 
                     <div id="sp-knobs-quadtree" hidden>
@@ -41,7 +41,7 @@ layout: default
                             <label>Max depth: <span class="sp-val" id="qt-depth-val">6</span></label>
                             <input type="range" id="qt-depth" min="2" max="8" value="6">
                         </div>
-                        <label class="sp-check"><input type="checkbox" id="qt-grid" checked> Show subdivisions</label>
+                        <label class="np-check"><input type="checkbox" id="qt-grid" checked> Show subdivisions</label>
                     </div>
 
                     <div id="sp-knobs-geohash" hidden>
@@ -49,7 +49,7 @@ layout: default
                             <label>Precision (characters): <span class="sp-val" id="gh-prec-val">3</span></label>
                             <input type="range" id="gh-prec" min="1" max="6" value="3">
                         </div>
-                        <label class="sp-check"><input type="checkbox" id="gh-labels" checked> Show cell codes</label>
+                        <label class="np-check"><input type="checkbox" id="gh-labels" checked> Show cell codes</label>
                     </div>
 
                     <div id="sp-knobs-hybrid" hidden>
@@ -61,8 +61,8 @@ layout: default
                             <label>Max quadtree depth: <span class="sp-val" id="hy-depth-val">6</span></label>
                             <input type="range" id="hy-depth" min="2" max="8" value="6">
                         </div>
-                        <label class="sp-check"><input type="checkbox" id="hy-cells" checked> Show quadtree cells</label>
-                        <label class="sp-check"><input type="checkbox" id="hy-kd" checked> Show k-d partitions</label>
+                        <label class="np-check"><input type="checkbox" id="hy-cells" checked> Show quadtree cells</label>
+                        <label class="np-check"><input type="checkbox" id="hy-kd" checked> Show k-d partitions</label>
                     </div>
 
                     <div id="sp-knobs-rkd" hidden>
@@ -70,17 +70,17 @@ layout: default
                             <label>Points per rectangle: <span class="sp-val" id="rk-cap-val">6</span></label>
                             <input type="range" id="rk-cap" min="2" max="16" value="6">
                         </div>
-                        <label class="sp-check"><input type="checkbox" id="rk-rects" checked> Show r-tree rectangles</label>
-                        <label class="sp-check"><input type="checkbox" id="rk-kd" checked> Show k-d partitions</label>
+                        <label class="np-check"><input type="checkbox" id="rk-rects" checked> Show r-tree rectangles</label>
+                        <label class="np-check"><input type="checkbox" id="rk-kd" checked> Show k-d partitions</label>
                     </div>
 
                     <div class="sp-readout" id="sp-readout"><span class="sp-muted">&nbsp;</span></div>
                 </div>
             </div>
 
-            <div class="sp-right">
+            <div class="np-demo-main">
                 <canvas id="sp-canvas"></canvas>
-                <p class="sp-hint" id="sp-hint">Click the canvas to add a point.</p>
+                <p class="np-hint" id="sp-hint">Click the canvas to add a point.</p>
             </div>
         </div>
 

@@ -12,7 +12,6 @@ tags:
   - Data Structures
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/rtree-spatial-index.webp
-feature: assets/img/featured/webp/rtree-spatial-index.webp
 ---
 
 <p>If you have been following the <a href="/tags/spatial-index">Spatial Index Series</a>, it started with the need for multi-dimensional indexes and an introduction to <a href="/spatial-index-space-filling-curve">space-filling curves</a>, followed by a deep dive into <a href="/spatial-index-grid-system">grid systems</a> (GeoHash and Google S2) and <a href="/spatial-index-tessellation">tessellation</a> (Uber H3).</p>

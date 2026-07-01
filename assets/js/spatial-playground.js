@@ -341,7 +341,7 @@
         document.getElementById("sp-title").textContent = TITLE[s];
         document.getElementById("sp-desc").textContent = DESC[s];
         document.getElementById("sp-hint").textContent = HINT[s];
-        var tabs = document.querySelectorAll(".sp-tab");
+        var tabs = document.querySelectorAll(".np-tab");
         for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle("is-active", tabs[i].getAttribute("data-structure") === s);
         document.getElementById("sp-knobs-kd").hidden = s !== "kd";
         document.getElementById("sp-knobs-quadtree").hidden = s !== "quadtree";
@@ -368,7 +368,7 @@
     });
     canvas.addEventListener("mouseleave", function () { if (state.hover) { state.hover = null; render(); } });
 
-    document.querySelectorAll(".sp-tab").forEach(function (t) {
+    document.querySelectorAll(".np-tab").forEach(function (t) {
         t.addEventListener("click", function () { setStructure(this.getAttribute("data-structure")); });
     });
 

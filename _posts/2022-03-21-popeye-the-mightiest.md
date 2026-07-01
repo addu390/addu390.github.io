@@ -7,7 +7,6 @@ published: false
 tags:
   - Art
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/popeye/luffy-popeye.png
 ---
 
 <img src="./assets/img/featured/popeye/wb/luffy-popeye.png" /> 

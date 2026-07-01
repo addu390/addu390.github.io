@@ -5,33 +5,33 @@ layout: default
 <div class="newspaper np-article np-demo">
     {%- include np-running-head.html -%}
     <div class="pf-wrap">
-        <div class="pf-layout">
-            <div class="pf-left">
-                <div class="pf-head">
-                    <div class="pf-title" id="pf-name">Projection Atlas</div>
-                    <div class="pf-desc" id="pf-desc">The sphere, its graticule, and the S2 cube face, cast through every map projection.</div>
+        <div class="np-demo-split">
+            <div class="np-demo-side">
+                <div class="np-demo-head">
+                    <div class="np-demo-title" id="pf-name">Projection Atlas</div>
+                    <div class="np-demo-desc" id="pf-desc">The sphere, its graticule, and the S2 cube face, cast through every map projection.</div>
                 </div>
 
                 <div class="pf-featured" id="pf-featured"></div>
 
                 <div class="pf-controls">
-                    <button class="pf-btn" id="pf-prev" type="button">&lsaquo; Prev</button>
-                    <select id="projection-menu" class="pf-select"></select>
-                    <button class="pf-btn" id="pf-next" type="button">Next &rsaquo;</button>
-                    <button class="pf-btn pf-shuffle" id="pf-shuffle" type="button">Shuffle</button>
+                    <button class="np-btn" id="pf-prev" type="button">&lsaquo; Prev</button>
+                    <select id="projection-menu" class="np-field pf-select"></select>
+                    <button class="np-btn" id="pf-next" type="button">Next &rsaquo;</button>
+                    <button class="np-btn pf-shuffle" id="pf-shuffle" type="button">Shuffle</button>
                 </div>
 
                 <div class="pf-toggles">
-                    <label><input type="checkbox" id="pf-grat" checked> Graticule</label>
-                    <label><input type="checkbox" id="pf-sphere" checked> Sphere</label>
-                    <label><input type="checkbox" id="pf-face" checked> S2 Face</label>
-                    <label><input type="checkbox" id="pf-rotate"> Auto-rotate</label>
+                    <label class="np-check"><input type="checkbox" id="pf-grat" checked> Graticule</label>
+                    <label class="np-check"><input type="checkbox" id="pf-sphere" checked> Sphere</label>
+                    <label class="np-check"><input type="checkbox" id="pf-face" checked> S2 Face</label>
+                    <label class="np-check"><input type="checkbox" id="pf-rotate"> Auto-rotate</label>
                 </div>
             </div>
 
-            <div class="pf-right">
+            <div class="np-demo-main">
                 <div id="map"></div>
-                <p class="pf-hint">Drag the map to spin the globe.</p>
+                <p class="np-hint">Drag the map to spin the globe.</p>
             </div>
         </div>
 

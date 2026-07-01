@@ -8,7 +8,6 @@ tags:
   - Django
   - DevOps
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/aws-ec2-django.png
 ---
 
 If you are here, you are probably looking to deploy a Django project using AWS EC2 and docker without an orchestrator (ECS, EKS, or Docker Swarm – [don’t use swarm](https://www.mirantis.com/blog/mirantis-will-continue-to-support-and-develop-docker-swarm/)), you are at the right place.

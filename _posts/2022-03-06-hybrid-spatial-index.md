@@ -9,7 +9,6 @@ tags:
   - Data Structures
   - Java
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/hybrid-spatial-index-totoro.png
 ---
 
 ## What’s a Spatial Index?

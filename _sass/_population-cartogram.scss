@@ -4,25 +4,7 @@
   text-align: left;
 }
 
-.pc-head {
-  border-bottom: 2px solid var(--np-ink);
-  padding-bottom: 10px;
-  margin-bottom: 16px;
-}
-
-.pc-title {
-  font-family: var(--np-display);
-  font-size: 1.9em;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--np-ink);
-}
-
 .pc-desc {
-  font-family: var(--np-text);
-  font-size: 0.95em;
-  color: var(--np-soft);
-  margin-top: 4px;
   max-width: 740px;
 }
 
@@ -158,7 +140,7 @@
 }
 
 .pc-tool:hover {
-  background: #ededed;
+  background: var(--np-btn-hover);
 }
 
 .pc-tool.is-active {
@@ -413,12 +395,7 @@
 }
 
 .pc-hint {
-  font-family: var(--np-text);
-  font-size: 0.8em;
-  color: var(--np-soft);
-  text-align: center;
   margin-top: 12px;
-  font-style: italic;
 }
 
 @media screen and (max-width: 760px) {

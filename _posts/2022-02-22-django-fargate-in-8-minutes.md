@@ -9,7 +9,6 @@ tags:
   - DevOps
   - Python
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/aws-fargate-django.png
 ---
 
 So far, we have seen how to [dockerize the Django application](https://pyblog.medium.com/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f) and [deploy the application on EC2](https://pyblog.medium.com/deploying-django-application-on-aws-ec2-and-docker-10a1f7c29573).

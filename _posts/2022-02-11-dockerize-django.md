@@ -7,7 +7,6 @@ tags:
   - Django
   - DevOps
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/docker-django.png
 ---
 
 A step-by-step tutorial on dockerizing a Django application with MySQL database using Guinicorn and Nginx.

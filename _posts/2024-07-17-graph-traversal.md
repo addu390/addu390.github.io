@@ -10,7 +10,6 @@ tags:
 author: Adesh Nalpet Adimurthy
 premium: true
 image: assets/img/featured/webp/graph-theory-search.webp
-feature: assets/img/featured/webp/graph-theory-search.webp
 ---
 
 <h3>0. Graph Traversal</h3>

@@ -12,7 +12,6 @@ tags:
   - Algorithms
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/space-grids.webp
-feature: assets/img/featured/webp/space-grids.webp
 description: Grid systems in spatial indexing, including Geohash and Google S2, encode geographic locations for efficient spatial data management. Geohash uses a Z-order curve, offering ease of implementation but has proximity preservation issues. Google S2 subdivides the Earth into hierarchical cells using a spherical projection, providing better proximity handling. The article discusses their encoding processes, advantages, and limitations, with implementation examples.
 ---
 

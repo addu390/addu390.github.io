@@ -8,7 +8,6 @@ tags:
   - Machine Learning
   - System Design
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/porco-rosso.png
 ---
 
 ## Distributed Training

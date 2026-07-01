@@ -8,7 +8,6 @@ tags:
   - 3D Printing
   - Python
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/ironman-myro.png
 ---
 
 ## Deprecated

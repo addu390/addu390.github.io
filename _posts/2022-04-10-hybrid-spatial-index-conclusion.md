@@ -10,7 +10,6 @@ tags:
   - Data Structures
   - Java
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/popeye/wb/ben-grimm-popeye.png
 ---
 
 ## 1. Abstract

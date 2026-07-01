@@ -4,43 +4,6 @@
   text-align: left;
 }
 
-.pf-layout {
-  display: flex;
-  gap: 28px;
-  align-items: flex-start;
-}
-
-.pf-left {
-  flex: 0 0 340px;
-  max-width: 340px;
-}
-
-.pf-right {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.pf-head {
-  border-bottom: 2px solid var(--np-ink);
-  padding-bottom: 10px;
-  margin-bottom: 16px;
-}
-
-.pf-title {
-  font-family: var(--np-display);
-  font-size: 1.9em;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--np-ink);
-}
-
-.pf-desc {
-  font-family: var(--np-text);
-  font-size: 0.95em;
-  color: var(--np-soft);
-  margin-top: 4px;
-}
-
 .pf-featured {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -100,38 +63,12 @@
 .pf-select {
   flex: 1 1 220px;
   min-width: 160px;
-  padding: 8px 10px;
-  font-family: var(--np-text);
-  font-size: 0.9em;
-  color: var(--np-ink);
-  background: var(--np-paper);
-  border: 1px solid var(--np-ink);
-  border-radius: 0;
-  cursor: pointer;
 }
 
-.pf-btn {
-  padding: 8px 14px;
-  font-family: var(--np-text);
-  font-size: 0.82em;
-  font-weight: 600;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--np-ink);
-  background: var(--np-paper);
-  border: 1px solid var(--np-ink);
-  cursor: pointer;
-  transition: background .15s ease, color .15s ease;
-}
-
-.pf-btn:hover {
-  background: var(--np-ink);
-  color: var(--np-paper);
-}
-
-.pf-btn.pf-shuffle:hover {
+.np-btn.pf-shuffle:hover {
   background: var(--np-accent);
   border-color: var(--np-accent);
+  color: var(--np-paper);
 }
 
 .pf-toggles {
@@ -143,18 +80,6 @@
   font-family: var(--np-text);
   font-size: 0.85em;
   color: var(--np-ink);
-}
-
-.pf-toggles label {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.pf-toggles input {
-  accent-color: var(--np-accent);
 }
 
 #map {
@@ -173,32 +98,9 @@
   cursor: grabbing;
 }
 
-.pf-hint {
-  font-family: var(--np-text);
-  font-size: 0.8em;
-  color: var(--np-soft);
-  text-align: center;
-  margin-top: 8px;
-  font-style: italic;
-}
-
 @media screen and (max-width: 900px) {
-  .pf-layout {
-    flex-direction: column;
-  }
-
-  .pf-left {
-    flex: none;
-    max-width: none;
-    width: 100%;
-  }
-
   .pf-featured {
     grid-template-columns: repeat(6, 1fr);
-  }
-
-  .pf-right {
-    width: 100%;
   }
 }
 

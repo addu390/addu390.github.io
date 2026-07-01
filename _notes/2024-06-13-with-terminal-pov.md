@@ -5,7 +5,6 @@ date: 2024-06-13
 tags:
   - Projects
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/hex-spiderman.png
 ---
 
 <img class="center-image-0 center-image-40" src="../assets/img/notes/with-terminal-what.svg" />

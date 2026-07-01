@@ -6,7 +6,6 @@ date: 2022-06-26
 tags:
   - System Design
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/reinvent-the-wheel.png
 ---
 
 As I get slightly older and slightly wiser - to me, it's more and more apparent that we humans live a life full of contradiction, are rarely self-satisfied, and thrive on learning and discovering new things. It's as if a duty to contribute with all the might to a better future, not for oneself, but for the future, that's way beyond imagination and self-existence.

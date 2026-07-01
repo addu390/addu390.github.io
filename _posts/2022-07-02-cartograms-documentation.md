@@ -10,7 +10,6 @@ tags:
   - Algorithms
   - Projects
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/solar-system-cartogram.png
 ---
 
 # Explanation

@@ -1,0 +1,131 @@
+.np-demo-split {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.np-demo-side {
+  flex: 0 0 340px;
+  max-width: 340px;
+}
+
+.np-demo-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.np-demo-head {
+  border-bottom: 2px solid var(--np-ink);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.np-demo-title {
+  font-family: var(--np-display);
+  font-size: 1.9em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--np-ink);
+}
+
+.np-demo-desc {
+  font-family: var(--np-text);
+  font-size: 0.95em;
+  color: var(--np-soft);
+  margin-top: 4px;
+}
+
+.np-btn,
+.np-tab {
+  font-family: var(--np-text);
+  font-weight: 600;
+  color: var(--np-ink);
+  background: var(--np-paper);
+  border: 1px solid var(--np-ink);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.np-btn {
+  padding: 8px 14px;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.np-tab {
+  padding: 10px 6px;
+  font-size: 0.82em;
+  letter-spacing: 0.03em;
+}
+
+.np-btn:hover,
+.np-tab:hover {
+  background: var(--np-btn-hover);
+}
+
+.np-btn.is-active,
+.np-tab.is-active {
+  background: var(--np-ink);
+  color: var(--np-paper);
+}
+
+.np-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.np-tabs .np-tab {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.np-field {
+  padding: 8px 10px;
+  font-family: var(--np-text);
+  font-size: 0.9em;
+  color: var(--np-ink);
+  background: var(--np-paper);
+  border: 1px solid var(--np-ink);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.np-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.np-check input {
+  accent-color: var(--np-accent);
+}
+
+.np-hint {
+  font-family: var(--np-text);
+  font-size: 0.8em;
+  color: var(--np-soft);
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+@media screen and (max-width: 900px) {
+  .np-demo-split {
+    flex-direction: column;
+  }
+
+  .np-demo-side {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+
+  .np-demo-main {
+    width: 100%;
+  }
+}

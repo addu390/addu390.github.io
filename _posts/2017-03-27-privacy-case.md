@@ -8,7 +8,6 @@ tags:
   - Security
   - 3D Printing
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/3d-print-privacy-case.png
 ---
 
 “Should You Cover Your Smartphone Camera?” is a question trending since 2015

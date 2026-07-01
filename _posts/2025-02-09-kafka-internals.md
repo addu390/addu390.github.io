@@ -9,7 +9,6 @@ tags:
   - Distributed Systems
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/the-kafka.webp
-feature: assets/img/featured/webp/the-kafka.webp
 ---
 <p class="np-numcap"><code><span class="np-cap2">14</span> years</code> of <a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>! Kafka is the de facto standard for event streaming, just like AWS S3 is for object storage and PostgreSQL is for RDBMS. While every TD&H (SWE) has likely used Kafka, managing a Kafka cluster is a whole other game. The long list of <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">high-importance configurations</a> is a testament to this. In this blog post, the goal is to understand Kafka's internals enough to make sense of its many configurations and highlight best practices.</p>
 

@@ -9,7 +9,6 @@ tags:
   - Algorithms
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/graph-theory-101.webp
-feature: assets/img/featured/webp/graph-theory-101.webp
 ---
 
 <p>Before heading into details of how we store, represent, and traverse various kinds of graphs, this post is more of a ramp-up to better understand what graphs are and the different kinds from a computer science point of view, rather than a mathematical one. So, no proofs and equations, mostly just diagrams and implementation details, with an emphasis on how to apply graph theory to real-world applications.</p>

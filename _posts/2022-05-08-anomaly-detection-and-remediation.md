@@ -8,7 +8,6 @@ tags:
   - Django
   - Python
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/popeye-killswitch.png
 ---
 
 ## 1. Introduction

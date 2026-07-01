@@ -5,7 +5,6 @@ date: 2024-07-10
 tags:
   - Life
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/arnold-terminator.png
 ---
 
 <!-- <img class="center-image" src="../assets/img/featured/webp/arnold-as-me.webp" />  -->

@@ -9,7 +9,6 @@ tags:
   - Algorithms
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/stack-bfs.webp
-feature: assets/img/featured/webp/stack-bfs.webp
 ---
 
 <h3>1. BFS using Queue</h3>

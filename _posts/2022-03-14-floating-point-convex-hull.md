@@ -8,7 +8,6 @@ tags:
   - Data Structures
   - C++
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/popeye-convex-hull.png
 ---
 
 ## Floating Point Precision in Geometric Algorithms

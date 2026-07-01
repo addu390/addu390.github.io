@@ -12,7 +12,6 @@ tags:
   - Algorithms
 author: Adesh Nalpet Adimurthy
 image: assets/img/featured/webp/space-tessellation.webp
-feature: assets/img/featured/webp/space-tessellation.webp
 description: Tessellation for spatial indexing divides space into non-overlapping shapes for efficient data management. The Uber H3 grid system uses hexagonal cells, offering better uniformity and efficiency than squares or triangles. This system projects hexagons onto an icosahedron to minimize distortion, enhancing geographic algorithms. The article also provides a custom implementation of H3, explaining the process of converting latitude and longitude to 3D Cartesian coordinates, identifying icosahedron vertices, and encoding cell IDs into a 64-bit integer.
 ---
 

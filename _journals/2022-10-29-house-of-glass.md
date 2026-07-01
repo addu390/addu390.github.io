@@ -6,7 +6,6 @@ tags:
   - Life
   - Art
 author: Adesh Nalpet Adimurthy
-feature: assets/img/featured/rage.png
 published: false
 ---
 
