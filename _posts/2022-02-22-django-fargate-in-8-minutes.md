@@ -14,11 +14,11 @@ feature: assets/img/featured/aws-fargate-django.png
 
 So far, we have seen how to [dockerize the Django application](https://pyblog.medium.com/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f) and [deploy the application on EC2](https://pyblog.medium.com/deploying-django-application-on-aws-ec2-and-docker-10a1f7c29573).
 
-Installing Docker Engine on every EC2 instance and running the Dockerized Django application does not scale and make it harder to maintain ⚠️. However, it’s probably the right choice for a staging environment or an application with 1–2 EC2 instances.
+Installing Docker Engine on every EC2 instance and running the Dockerized Django application does not scale and make it harder to maintain. However, it’s probably the right choice for a staging environment or an application with 1–2 EC2 instances.
 
-That said, let’s get to it 😎
+That said, let’s get to it
 
-## The plan ✈️
+## The plan
 
 - Install AWS CLI.
 - Install ECS CLI.
@@ -47,13 +47,13 @@ To define a `<cluster-name>` with FARGATE launch type in `<aws-region>`,
 
 Run: `ecs-cli configure --cluster <CLUSTER-NAME> --default-launch-type FARGATE --config-name <CONFIG-NAME> --region <AWS-REGION>`
 
-Tip ⚠️ I often found instances of mixing up the cluster name and the configuration name, so choose the same name for `<CLUSTER-NAME>` and `<CONFIG-NAME>` to avoid confusion. Example: `ecs-cli configure --cluster ecs-cluster --default-launch-type FARGATE --config-name ecs-cluster --region ca-central-1`
+Tip I often found instances of mixing up the cluster name and the configuration name, so choose the same name for `<CLUSTER-NAME>` and `<CONFIG-NAME>` to avoid confusion. Example: `ecs-cli configure --cluster ecs-cluster --default-launch-type FARGATE --config-name ecs-cluster --region ca-central-1`
 
 ### Launch/deploy the cluster:
 
 If you already have a VPC and subnet(s): `ecs-cli up --cluster-config test --vpc <VPC-ID> --subnets <SUBNET-ID-1>, <SUBNET-ID-2>`
 OR let the CLI create one for us: `ecs-cli up --cluster-config <CONFIG-NAME>`
-Note ⚠️ The `<CONFIG-NAME>` is the same as the one used before.
+Note The `<CONFIG-NAME>` is the same as the one used before.
 
 Make a note of the VPC and Subnet(s), looks like:
 
@@ -188,7 +188,7 @@ server {    listen 80 default_server;
     }}
 ```
 
-⚠️ Notice that the proxy_pass is http://127.0.0.1:8000 and not http://web:8000.
+Notice that the proxy_pass is http://127.0.0.1:8000 and not http://web:8000.
 
 ## Step 6: ECS Configuration file
 
@@ -222,4 +222,4 @@ Finally! it’s time to spin up the resources, run:
 - `ecs-cli compose --project-name <CLUSTER-NAME> service up --create-log-groups --cluster-config <CONFIG-NAME>`
 - `Check the status: ecs-cli compose --project-name <CLUSTER-NAME> service ps --cluster-config <CONFIG-NAME>`
 
-Look for the IP address of the Nginx machine, as shown in Figure 1. Visit `http://<ip-address>/admin` to view the admin page of the Django application or hit an API of your application 🚀
+Look for the IP address of the Nginx machine, as shown in Figure 1. Visit `http://<ip-address>/admin` to view the admin page of the Django application or hit an API of your application

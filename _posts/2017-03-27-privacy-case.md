@@ -11,7 +11,7 @@ author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/3d-print-privacy-case.png
 ---
 
-“Should You Cover Your Smartphone Camera?” is a question trending since 2015 🤭
+“Should You Cover Your Smartphone Camera?” is a question trending since 2015
 
 Covering laptop cameras with a piece of tape/slider to prevent surveillance is a common cybersecurity practice.
 
@@ -20,14 +20,14 @@ However, most of us fail to follow the same practice with smartphones. Naked sma
 Objectively, there are more reasons to cover smartphone cameras than laptop cameras.
 Furthermore, most laptops have a tiny red LED indicating us when the camera is on, and smartphones did not, but the recent update on IOS and Android, a tiny dot appears in the top right corner of the phone’s display. If it’s green, it means that an app is using your camera.
 
-In early November of 2019, Google confirmed an Android Smartphone Camera vulnerability discovered in July 2019 that affected millions of users, including Google Pixel and Samsung devices, allowing hackers to eavesdrop on someone. Another vulnerability was revealed in the same month when Facebook acknowledged that a bug let the social network’s app access users’ [iPhone cameras as they scrolled through their News Feeds](https://indianexpress.com/article/technology/social/facebook-bug-secretly-accesses-iphones-camera-when-users-scroll-through-news-feed-6117235/) (that’s very creepy for a bug) 🤯
+In early November of 2019, Google confirmed an Android Smartphone Camera vulnerability discovered in July 2019 that affected millions of users, including Google Pixel and Samsung devices, allowing hackers to eavesdrop on someone. Another vulnerability was revealed in the same month when Facebook acknowledged that a bug let the social network’s app access users’ [iPhone cameras as they scrolled through their News Feeds](https://indianexpress.com/article/technology/social/facebook-bug-secretly-accesses-iphones-camera-when-users-scroll-through-news-feed-6117235/) (that’s very creepy for a bug)
 
 Both companies (Google and Facebook) have patched their bugs and rolled out updates. Still, vulnerabilities such as these are an excellent indicator to cover smartphone cameras.
 
 As an individual, even if I’m convinced to cover your smartphone camera, there are not many alternatives available in the market to cover both the front and rear cameras of the smartphone.
 One way is to use a camera patch/slider and a rear camera protection case (usually available for iPhones and limited Samsung models).
 
-For this very reason, I’m designing a phone case that can be 3D printed. Like any other design, it all starts with a prototype 🧪
+For this very reason, I’m designing a phone case that can be 3D printed. Like any other design, it all starts with a prototype
 
 Prototype V1 - 1          |  Prototype V1 - 2
 :-------------------------:|:-------------------------:
@@ -87,6 +87,6 @@ Prototype V4 - 1          |  Prototype V4 - 2
 
 I have placed the prototype on the iPhone 8 for the sake of reference, and the actual placement would be on a phone case with an opening to place the upper step of the camera cover.
 
-Well, at the end of it, it was a fun project to work on, and more importantly, understanding the complexities in prototyping and factors to consider to launch it to an open market was worth the time spent 🚀
+Well, at the end of it, it was a fun project to work on, and more importantly, understanding the complexities in prototyping and factors to consider to launch it to an open market was worth the time spent
 
-Ohh yeah 🤪, I did sell a few back in 2019
+Ohh yeah, I did sell a few back in 2019

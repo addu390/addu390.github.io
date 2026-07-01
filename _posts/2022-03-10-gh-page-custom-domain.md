@@ -19,7 +19,7 @@ At the end of the tutorial, you'll have a set-up, where all requests to example.
 
 ## Enable GitHub pages in GitHub settings
 
-- Go to the repository → Settings ⚙️ → Pages
+- Go to the repository → Settings → Pages
 - Select `Source`; Choosing `master`/`main` branch will treat `README.md` as web `index.html` and choosing `/docs` will treat `/docs/README.md` as web `index.html`
 
 <img src="./assets/img/posts/gh/enable-gh-pages.png" /> 
@@ -79,7 +79,7 @@ Note:
 
 Github Support is amazing; in case it takes longer than expected, create a ticket: [Github Support](https://support.github.com/tickets/personal)
 
-That's about it! 🚀
+That's about it!
 
 
 

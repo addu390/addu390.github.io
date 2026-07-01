@@ -15,7 +15,7 @@ description: Using Debezium for PostgreSQL Change Data Capture (CDC) involves se
 <details open><summary class="h3">1. Goal</summary>
 <p>Set up Debezium to capture row-level changes in the schemas of a PostgreSQL database and publish to Kafka topic(s).</p>
 
-<p>The high-level architecture is unquestionably explained in the above diagram 😎. Pikachu, aka Debezium PostgreSQL Connector, detects and carries/publishes row-level change events to Kafka topic(s) for configured Postgres tables.</p>
+<p>The high-level architecture is unquestionably explained in the above diagram. Pikachu, aka Debezium PostgreSQL Connector, detects and carries/publishes row-level change events to Kafka topic(s) for configured Postgres tables.</p>
 </details>
 
 <hr class="hr">
@@ -384,7 +384,7 @@ kafkacat -b kafka:9092 -C \
 
 <hr class="hr">
 
-<details open><summary class="h3">6. Moment of Truth 🚀</summary>
+<details open><summary class="h3">6. Moment of Truth</summary>
 
 <p>a. Insert/Update a row in Postgres table:</p>
 <p>For the table, Debezium CDC is configured; Following the example, creating a row in <code>user_profile</code></p>

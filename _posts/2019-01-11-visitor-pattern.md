@@ -193,5 +193,3 @@ As compared to disadvantages with switch-case
 
 Warning: don’t misuse the Visitor pattern for very simple use cases, it would only complicate it rather than simplifying.
 A typical [Visitor pattern example](https://dzone.com/articles/design-patterns-visitor).
-
-That’s it 🚀 

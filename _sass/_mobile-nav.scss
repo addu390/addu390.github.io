@@ -85,24 +85,36 @@
     display: none;
   }
 
+  .mobile-search-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #161616;
+    background: #f5f5f5;
+    padding: 7px 10px;
+  }
+
+  .mobile-search-icon {
+    width: 15px;
+    height: 15px;
+    flex: none;
+    fill: #555555;
+  }
+
   #search-input-mobile {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #161616;
-    border-radius: 0;
+    border: 0;
+    background: transparent;
+    outline: none;
     font-family: "Open Sans", "PT Sans", Calibri, Tahoma, sans-serif;
     font-size: 16px;
-    background-color: #ffffff;
+    letter-spacing: 0.02em;
     color: #161616;
   }
 
   #search-input-mobile::placeholder {
-    color: #888888;
+    color: #555555;
     font-style: italic;
-  }
-
-  #search-input-mobile:focus {
-    outline: none;
   }
 
   .mobile-search-results {
@@ -111,14 +123,59 @@
     padding: 0;
     max-height: 50vh;
     overflow-y: auto;
+    border-top: 2px solid #161616;
+  }
+
+  .mobile-search-results .search_res {
+    list-style: none;
+    border-bottom: 1px solid #dcdcdc;
+  }
+
+  .mobile-search-results .search_res:last-child {
+    border-bottom: 0;
   }
 
   .mobile-search-results .search_res a {
-    color: #161616;
-    display: block;
-    padding: 8px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 7px 4px;
     text-decoration: none;
-    border-bottom: 1px solid #dcdcdc;
+    transition: background 0.15s ease;
+  }
+
+  .mobile-search-results .search_res a:hover {
+    background: rgba(156, 47, 39, 0.07);
+  }
+
+  .mobile-search-results .search-res-title {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.15;
+    color: #161616;
+    margin: 0;
+  }
+
+  .mobile-search-results .search_res a:hover .search-res-title {
+    color: #9c2f27;
+  }
+
+  .mobile-search-results .search-res-date {
+    font-family: "Open Sans", "PT Sans", Calibri, Tahoma, sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #555555;
+  }
+
+  .mobile-search-results .search_res > p {
+    margin: 0;
+    padding: 7px 4px;
+    font-family: "Open Sans", "PT Sans", Calibri, Tahoma, sans-serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #555555;
   }
 
   .mobile-nav-overlay {

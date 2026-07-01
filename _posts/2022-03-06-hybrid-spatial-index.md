@@ -56,7 +56,7 @@ Similarly, we can think of a hybrid tree data structure that combines the featur
 
 In order to verify the performance of the hybrid tree structures to retrieve spatial objects: [hybrid-spatial-index](https://github.com/addu390/hybrid-spatial-index) is a simple comparison of hybrid trees to search points and rectangles on a 2D plane.
 
-However, the project is a WORK IN PROGRESS ⚠️, and stay tuned for more updates 🚀
+However, the project is a WORK IN PROGRESS, and stay tuned for more updates
 
 <hr>
 

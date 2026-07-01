@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="634px" height="469px" viewBox="28 -12 634 469"
+     style="background: transparent; color-scheme: light;" version="1.1">
+
+  <g fill="none" stroke="#000000">
+    <line x1="345" y1="173" x2="262" y2="249"/>
+    <line x1="345" y1="173" x2="438" y2="249"/>
+    <line x1="345" y1="173" x2="451" y2="116"/>
+    <line x1="262" y1="249" x2="193" y2="193"/>
+    <line x1="262" y1="249" x2="199" y2="305"/>
+    <line x1="451" y1="116" x2="405" y2="37"/>
+    <line x1="451" y1="116" x2="531" y2="46"/>
+    <line x1="531" y1="46" x2="627" y2="23"/>
+    <line x1="531" y1="46" x2="608" y2="106"/>
+    <line x1="438" y1="249" x2="372" y2="339"/>
+    <line x1="438" y1="249" x2="525" y2="325"/>
+    <line x1="372" y1="339" x2="289" y2="398"/>
+    <line x1="372" y1="339" x2="392" y2="422"/>
+    <line x1="525" y1="325" x2="617" y2="332"/>
+    <line x1="525" y1="325" x2="531" y2="415"/>
+  </g>
+
+  <g fill="#fff2cc" stroke="#000000">
+    <circle cx="193" cy="193" r="25"/>
+    <circle cx="199" cy="305" r="25"/>
+    <circle cx="405" cy="37" r="25"/>
+    <circle cx="627" cy="23" r="25"/>
+    <circle cx="608" cy="106" r="25"/>
+    <circle cx="289" cy="398" r="25"/>
+    <circle cx="392" cy="422" r="25"/>
+    <circle cx="617" cy="332" r="25"/>
+    <circle cx="531" cy="415" r="25"/>
+  </g>
+
+  <g fill="#dae8fc" stroke="#000000">
+    <circle cx="262" cy="249" r="25"/>
+    <circle cx="438" cy="249" r="25"/>
+    <circle cx="372" cy="339" r="25"/>
+    <circle cx="525" cy="325" r="25"/>
+    <circle cx="451" cy="116" r="25"/>
+    <circle cx="531" cy="46" r="25"/>
+  </g>
+
+  <circle cx="345" cy="173" r="25" fill="#f8cecc" stroke="#000000"/>
+
+  <g font-family="monospace" font-size="18px" fill="#000000" text-anchor="middle">
+    <text x="345" y="179">1</text>
+    <text x="262" y="255">2</text>
+    <text x="438" y="255">3</text>
+    <text x="372" y="345">4</text>
+    <text x="525" y="331">5</text>
+    <text x="451" y="122">6</text>
+    <text x="531" y="52">7</text>
+  </g>
+
+  <circle cx="63" cy="93" r="25" fill="#f8cecc" stroke="#000000"/>
+  <text x="63" y="99" text-anchor="middle" font-family="monospace" font-size="18px" fill="#000000">ZC</text>
+  <circle cx="63" cy="236" r="25" fill="#dae8fc" stroke="#000000"/>
+  <text x="63" y="242" text-anchor="middle" font-family="monospace" font-size="18px" fill="#000000">ZR</text>
+  <circle cx="63" cy="372" r="25" fill="#fff2cc" stroke="#000000"/>
+  <text x="63" y="378" text-anchor="middle" font-family="monospace" font-size="18px" fill="#000000">ZED</text>
+</svg>

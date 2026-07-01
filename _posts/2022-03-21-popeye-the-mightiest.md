@@ -3,6 +3,7 @@ layout: post
 title: "Popeye the Mightiest"
 description: "A playful illustration series pitting Popeye against Luffy, Saitama, Goku, Hulk, Superman, and more."
 date: 2022-03-20
+published: false
 tags:
   - Art
 author: Adesh Nalpet Adimurthy
@@ -38,4 +39,4 @@ feature: assets/img/featured/popeye/luffy-popeye.png
 
 
 Work In Progress.
-Until then, who do you think is going to win? 🤔
+Until then, who do you think is going to win?

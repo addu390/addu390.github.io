@@ -16,18 +16,18 @@ This post assumes that you have some familiarity with Django and likely have a l
 
 In the later section of the post, we’ll see how to deploy the project on AWS EC2.
 
-## Checklist 🚧 
+## Checklist
 
 - Check if the application is running in your local machine: python manage.py runserver, accessible at `http://localhost:8000`
 - Don’t forget to run: `python manage.py makemigrations`, `python manage.py migrate`, and `python manage.py collectstatic`
 
-## The plan 🛠
+## The plan
 
 - We cannot use the Django development server on production; it’s meant for local development and cannot handle concurrent requests – this is why we’ll use a combination of Guinicorn and Nginx.
 - Create docker-file(s) for the Django application running in port 8000 and use Nginx to proxy the incoming request at port 80 to port 8000.
 - A docker-compose file to put it all together, define the network, links, and volumes to server static and media files.
 
-## A Dockerfile for the Django application 💻
+## A Dockerfile for the Django application
 
 - Make sure you have the requirements.txt file with all the dependencies. You can generate one with: pip freeze > requirements.txt
 - The example Dockerfile below is for a Django Application with MySQL database and might need minor changes for other DBs.
@@ -54,7 +54,7 @@ EXPOSE 8000
 At the time of writing this post, Ubuntu:20.04 and python:3.9 are the stable latest versions.
 Place the docker file at the root of the project, in the same directory as manage.py
 
-## A Dockerfile for Nginx 📄
+## A Dockerfile for Nginx
 
 - Create a directory nginx with two files: Dockerfile and default.conf (the directory name can be anything).
 - The contents of these two files are as follows:
@@ -94,9 +94,9 @@ server {
 
 Why is it `proxy_pass http://web:8000`? We’ll come to that in a second.
 
-## The docker-compose file 📄
+## The docker-compose file
 
-Even before pushing the image to the Docker hub, the best practice is to test the application a couple of times by building the docker image locally. Hence, two docker-compose files, one of local development 🛺 and the other for production use ✈️.
+Even before pushing the image to the Docker hub, the best practice is to test the application a couple of times by building the docker image locally. Hence, two docker-compose files, one of local development and the other for production use.
 
 ```
 version: '3.8'
@@ -265,7 +265,7 @@ HOST_ENDPOINT = 'host.docker.internal'
 REDIS_LOCATION = 'redis://127.0.0.1:6379/'
 ```
 
-Wohoo 🚀 Launch ready!
+Wohoo Launch ready!
 
 Everything is a lot easier if there’s a project for reference; here it is: [licensing-as-a-platform](https://github.com/addu390/licensing-as-a-platform)
 
@@ -276,6 +276,6 @@ Everything is a lot easier if there’s a project for reference; here it is: [li
 - Terminate and Launch a new instance with Docker AMI previously created as the base AMI for EC2, configure as per your need, include the necessary user data, import docker-compose.yml (most likely by git), and run docker-compose up.
 - You will, of course, have to write a shell script to automate the launch of EC2 instances.
 
-Typically, create an ALB (Application Load Balancer) with a target group and auto-scaling group 🚁
+Typically, create an ALB (Application Load Balancer) with a target group and auto-scaling group
 
 I will soon write a follow-up post covering AMI, EC2, RDS, ALB, VPC, Security groups, and everything else necessary for a scalable web application.

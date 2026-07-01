@@ -11,7 +11,7 @@ author: Adesh Nalpet Adimurthy
 feature: assets/img/featured/ironman-myro.png
 ---
 
-## Deprecated ⛔️
+## Deprecated
 
 ## Resources
 

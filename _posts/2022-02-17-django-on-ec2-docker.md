@@ -15,7 +15,7 @@ If you are here, you are probably looking to deploy a Django project using AWS E
 
 PS: I’d still recommend using Kubernetes or at least ECS in the longer run!
 
-## Let’s get started 🤪
+## Let’s get started
 
 This post assumes that you are familiar with AWS basic operations, such as spinning up an EC2 instance or other services and attaching a security group with relevant inbound and outbound traffic.
 
@@ -63,7 +63,7 @@ Note: To run docker-compose without sudo: `sudo usermod -aG docker $USER`
 
 ## Launch an EC2 instance with docker pre-installed:
 
-- 👻 We are almost done! On the EC2 dashboard, select the EC2 instance, go to “actions > image and templates > create image” and give the AMI a name.
+- We are almost done! On the EC2 dashboard, select the EC2 instance, go to “actions > image and templates > create image” and give the AMI a name.
 - Terminate and launch another EC2 instance (to test) from the new AMI (choose custom AMI while launching EC2 instance).
 - In the configure section, the user-data area is as follows (using cloud-init): 
 
@@ -136,8 +136,8 @@ If the database set-up is not for production use, make sure to use free tier, di
 <img src="./assets/img/posts/database-setup.png" /> 
 <p style="text-align: center;">Figure 5: RDS Set-up in the private network</p>
 
-And yes 🗄 make sure RDS and EC2 are within the same VPC.
+And yes make sure RDS and EC2 are within the same VPC.
 
-You are good to go 🚀
+You are good to go
 
 Don’t forget to update the hostnames and passwords in user data (env variables) and configure the security group EC2 instances.

@@ -163,5 +163,3 @@ public Response externalServiceCommandOne(@Item final SensitiveInformationReques
   return response
 }
 ```
-
-That’s it! Done 🚀 

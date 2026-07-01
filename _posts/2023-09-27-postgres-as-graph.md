@@ -18,7 +18,7 @@ Before jumping into using a relational database like MySQL or PostgreSQL as a gr
 ## What is a Graph?
 A graph is a set of vertices/nodes interconnected by edges/links. The edges can be directed (unidirectional or bidirectional) or undirected (no orientation, only infers a connection between nodes). 
 
-<img class="center-image" style="width: 75%;" src="./assets/img/posts/graph-types.png" /> 
+<img class="center-image-0 center-image-55" src="./assets/img/posts/graph-types.svg" /> 
 <p style="text-align: center;">Figure 1: (Left to Right) Undirected, Unidirectional and Bidirectional</p>
 
 ## Graph Data Structure in Java
@@ -68,7 +68,7 @@ Graph createGraph() {
     return graph;
 }
 ```
-<img class="center-image" style="width: 75%;" src="./assets/img/posts/graph-example-1.png" /> 
+<img class="center-image-0 center-image-70" src="./assets/img/posts/graph-example-1.svg" /> 
 <p style="text-align: center;">Figure 2: Graph visual and map data-structure representation</p>
 
 ## Graph Data Structures in Postgres
@@ -98,7 +98,7 @@ Ideally, each element in the `graph` -> `vertices` array should represent foreig
 Relational databases operate most efficiently on properly normalized data models. Arrays are not relational data structures, by definition they are sets; while the SQL standard supports defining foreign keys on array elements, PostgreSQL currently does not support it. However, there is an ongoing effort to implement this.
 
 A better way to store a graph in Postgres is by creating two tables: `vertex` and `edge`
-<img class="center-image" style="width: 90%;" src="./assets/img/posts/graph-example-2.png" /> 
+<img class="center-image-0 center-image-90" src="./assets/img/posts/graph-example-2.svg" /> 
 <p style="text-align: center;">Figure 3: Graph representation - List of Edges</p>
 
 ```
@@ -124,7 +124,7 @@ The table `edge` represents the relationship between two vertices; the composite
 - Zigbee Router (ZR)
 - Zigbee Endpoint Device (ZED)
 
-<img class="center-image" style="width: 60%;" src="./assets/img/posts/zigbee-example-1.png" />
+<img class="center-image-0 center-image-70" src="./assets/img/posts/zigbee-example-1.svg" />
 <p style="text-align: center;">Figure 4: Zigbee Mesh Topology</p>
 
  The Zigbee network has exactly one **Zigbee Coordinator (ZC)** responsible for forming and coordinating the network. The **Zigbee Router (ZR)** represents intermediate nodes to assist in relaying data between nodes in the network and is instrumental in building the Zigbee network. The **Zigbee Endpoint Device (ZED)** are nodes that are logically attached to a Zigbee Router (ZR) and are typically devices such as lights, sensors, switches, etc., and communicates only with the Zigbee Router (parent).

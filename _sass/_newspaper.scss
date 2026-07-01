@@ -1948,10 +1948,16 @@ body:has(.newspaper) .site-copyright {
   margin-bottom: 12px;
 }
 
-.np-series-art img {
+.np-series-art img,
+.np-series-art svg.np-series-svg {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.np-series-art svg.np-series-svg {
+  overflow: visible;
+  touch-action: pan-y;
 }
 
 .np-series-no {

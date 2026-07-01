@@ -140,9 +140,9 @@ Example:
                  MAX_INT MAX_INT        
 ```
 
-The final output: `1, 2, 3, 4, 5, 6, 7, 8, 9, 10` 😎
+The final output: `1, 2, 3, 4, 5, 6, 7, 8, 9, 10`
 
-Since you are anyway here, Checkout [sorting-algorithms](https://github.com/addu390/sorting-algorithms) 🚀 to compare sort algorithms; here’s a comparison of the external sort with in-memory merge sort.
+Since you are anyway here, Checkout [sorting-algorithms](https://github.com/addu390/sorting-algorithms) to compare sort algorithms; here’s a comparison of the external sort with in-memory merge sort.
 
 
 <img src="./assets/img/posts/powers_of_2.png" /> 

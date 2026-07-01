@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign briefs = site.journals | where_exp: "item", "item.hide != true" | reverse %}
+{% assign briefs = site.journals | reverse %}
 
 <div class="newspaper np-article np-page np-list">
     {%- include np-running-head.html -%}
