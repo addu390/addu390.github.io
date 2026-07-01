@@ -1,0 +1,453 @@
+.pc-wrap {
+  max-width: 1080px;
+  margin: 1.4em auto 0;
+  text-align: left;
+}
+
+.pc-head {
+  border-bottom: 2px solid var(--np-ink);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.pc-title {
+  font-family: var(--np-display);
+  font-size: 1.9em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--np-ink);
+}
+
+.pc-desc {
+  font-family: var(--np-text);
+  font-size: 0.95em;
+  color: var(--np-soft);
+  margin-top: 4px;
+  max-width: 740px;
+}
+
+/* ---- retro window ---- */
+.pc-board {
+  border: 1px solid var(--np-ink);
+  background: var(--np-paper);
+  box-shadow: 4px 4px 0 var(--np-hair);
+}
+
+.pc-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--np-ink);
+  color: var(--np-paper);
+  padding: 7px 10px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.78em;
+}
+
+.pc-tb-lamps {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.pc-tb-lamps i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.pc-tb-lamps i:nth-child(1) {
+  background: #ff5f56;
+}
+
+.pc-tb-lamps i:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.pc-tb-lamps i:nth-child(3) {
+  background: #27c93f;
+}
+
+.pc-tb-title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pc-tb-spacer {
+  flex: 1;
+}
+
+.pc-tb-meta {
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.pc-tb-export {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.pc-tb-export select,
+.pc-tb-export button {
+  font-family: inherit;
+  font-size: 0.92em;
+  color: var(--np-paper);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 3px 7px;
+  cursor: pointer;
+}
+
+.pc-tb-export button:hover {
+  background: var(--np-accent);
+  border-color: var(--np-accent);
+}
+
+.pc-tb-export select option {
+  color: var(--np-ink);
+}
+
+.pc-body {
+  display: flex;
+  align-items: stretch;
+}
+
+.pc-toolrail {
+  flex: 0 0 138px;
+  border-right: 1px solid var(--np-ink);
+  background: var(--np-paper-2);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pc-rail-label {
+  font-family: var(--np-text);
+  font-size: 0.6em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--np-soft);
+  margin-top: 2px;
+}
+
+.pc-rail-sep {
+  height: 1px;
+  background: var(--np-hair);
+  margin: 5px 0;
+}
+
+.pc-tool {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 9px;
+  font-family: var(--np-text);
+  font-size: 0.76em;
+  font-weight: 600;
+  color: var(--np-ink);
+  background: var(--np-paper);
+  border: 1px solid var(--np-ink);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.pc-tool svg {
+  flex: 0 0 auto;
+}
+
+.pc-tool:hover {
+  background: #ededed;
+}
+
+.pc-tool.is-active {
+  background: var(--np-ink);
+  color: var(--np-paper);
+}
+
+.pc-tool-wide {
+  justify-content: center;
+}
+
+.pc-stepper {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--np-ink);
+  background: var(--np-paper);
+}
+
+.pc-stepper button {
+  flex: 0 0 30px;
+  border: 0;
+  background: var(--np-paper);
+  color: var(--np-ink);
+  font-size: 1.1em;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.pc-stepper button:hover {
+  background: var(--np-ink);
+  color: var(--np-paper);
+}
+
+.pc-stepper span {
+  flex: 1;
+  text-align: center;
+  align-self: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: var(--np-ink);
+}
+
+.pc-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 220px;
+  padding: 10px;
+  box-shadow: inset 0 0 0 1px var(--np-hair);
+}
+
+#container {
+  text-align: center;
+}
+
+#container svg {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.pc-countries path {
+  transition: fill-opacity 0.12s ease;
+}
+
+.pc-tip {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  transform: translate(14px, 14px);
+  pointer-events: none;
+  background: var(--np-ink);
+  color: var(--np-paper);
+  font-family: var(--np-text);
+  font-size: 0.72em;
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pc-tip[hidden] {
+  display: none;
+}
+
+.pc-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(247, 243, 238, 0.6);
+  z-index: 2;
+}
+
+.pc-loader.hide {
+  display: none;
+}
+
+.pc-spinner {
+  width: 26px;
+  height: 26px;
+  border: 3px solid var(--np-hair);
+  border-top-color: var(--np-accent);
+  border-radius: 50%;
+  animation: pc-spin 0.8s linear infinite;
+}
+
+@keyframes pc-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- palette ---- */
+.pc-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 9px 12px;
+  border-top: 1px solid var(--np-ink);
+  background: var(--np-paper-2);
+}
+
+.pc-swatch {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid var(--np-ink);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.pc-swatch:hover {
+  transform: translateY(-2px);
+}
+
+.pc-swatch.is-active {
+  box-shadow: 0 0 0 2px var(--np-paper-2), 0 0 0 3px var(--np-ink);
+}
+
+.pc-swatch-custom {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 50% / 10px 10px;
+}
+
+.pc-swatch-custom input[type="color"] {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ---- timeline transport ---- */
+.pc-timeline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-top: 3px double var(--np-ink);
+}
+
+.pc-play {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--np-paper);
+  background: var(--np-ink);
+  border: 1px solid var(--np-ink);
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.pc-play:hover,
+.pc-play.is-playing {
+  background: var(--np-accent);
+  border-color: var(--np-accent);
+}
+
+.pc-timeline input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1 1 auto;
+  height: 6px;
+  background: var(--np-hair);
+  cursor: pointer;
+}
+
+.pc-timeline input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--np-accent);
+  border: 1px solid var(--np-ink);
+  cursor: pointer;
+}
+
+.pc-timeline input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 0;
+  background: var(--np-accent);
+  border: 1px solid var(--np-ink);
+  cursor: pointer;
+}
+
+.pc-year {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--np-ink);
+  min-width: 3.4em;
+  text-align: center;
+}
+
+.pc-step {
+  font-family: var(--np-text);
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--np-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.pc-step select {
+  font-family: var(--np-text);
+  font-size: 1.05em;
+  text-transform: none;
+  color: var(--np-ink);
+  background: var(--np-paper);
+  border: 1px solid var(--np-ink);
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.pc-hint {
+  font-family: var(--np-text);
+  font-size: 0.8em;
+  color: var(--np-soft);
+  text-align: center;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+@media screen and (max-width: 760px) {
+  .pc-body {
+    flex-direction: column;
+  }
+
+  .pc-toolrail {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    border-right: 0;
+    border-bottom: 1px solid var(--np-ink);
+  }
+
+  .pc-tool {
+    width: auto;
+  }
+
+  .pc-rail-label,
+  .pc-rail-sep {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-spinner {
+    animation: none;
+  }
+}

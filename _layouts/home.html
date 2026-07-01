@@ -103,18 +103,29 @@ layout: default
                     <li><a href="/about">About</a></li>
                     <li><a href="/journals">Journal</a></li>
                     <li><a href="/contact">Contact</a></li>
-                    <li><a href="/privacy">Privacy</a></li>
-                    <li><a href="/tags">Tags</a></li>
-                    <li><a href="/archive">Archive</a></li>
                 </ul>
+                <details class="np-more-sections">
+                    <summary aria-label="Toggle more sections"><span class="np-more-caret">&#9662;</span></summary>
+                    <ul>
+                        <li><a href="/privacy">Privacy</a></li>
+                        <li><a href="/tags">Tags</a></li>
+                        <li><a href="/archive">Archive</a></li>
+                    </ul>
+                </details>
             </div>
 
-            <div class="np-index-box">
-                <h4>Playground</h4>
-                <ul>
-                    <li><a href="/face-projection">Map Projection Atlas</a></li>
-                    <li><a href="/spatial-playground">Spatial Index Playground</a></li>
-                </ul>
+            <div class="np-index-box np-almanac">
+                <h4>The Almanac</h4>
+                <a class="np-play-card" href="/face-projection">
+                    <canvas class="np-play-canvas" data-preview="globe" aria-hidden="true"></canvas>
+                    <span class="np-play-cap"><strong>Map Projection Atlas</strong><em>65 map projections of the globe</em></span>
+                </a>
+                <a class="np-play-card np-play-text" href="/population-cartogram">
+                    <span class="np-play-cap"><strong>World Population Cartogram</strong><em>country areas scaled to population</em></span>
+                </a>
+                <a class="np-play-card np-play-text" href="/spatial-playground">
+                    <span class="np-play-cap"><strong>Spatial Index Playground</strong><em>k-d trees, quadtrees and geohash</em></span>
+                </a>
             </div>
 
             {%- for post in posts limit:4 offset:6 -%}
@@ -128,17 +139,6 @@ layout: default
             </div>
             {%- endfor -%}
 
-            {%- assign tag_rank = "" | split: "" -%}
-            {%- for t in site.tags -%}
-            {%- assign padded = t[1].size | prepend: "0000" | slice: -4, 4 -%}
-            {%- capture entry -%}{{ padded }}|{{ t[0] }}{%- endcapture -%}
-            {%- assign tag_rank = tag_rank | push: entry -%}
-            {%- endfor -%}
-            {%- assign tag_rank = tag_rank | sort | reverse | slice: 0, 6 -%}
-            <div class="np-weather">
-                <span class="np-weather-head">The Beat</span>
-                {% for item in tag_rank %}{{ item | split: "|" | last }}{% unless forloop.last %}, {% endunless %}{% endfor %}
-            </div>
         </aside>
     </div>
 
@@ -149,6 +149,8 @@ layout: default
     {%- assign series_strip = "Spatial Index: " -%}
     {%- include np-series.html -%}
     {%- endif -%}
+
+    <script src="{{ '/assets/js/home-previews.js' | relative_url }}" defer></script>
 {%- endif -%}
 
     {{ content }}
