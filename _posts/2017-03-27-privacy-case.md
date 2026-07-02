@@ -86,6 +86,4 @@ Prototype V4 - 1          |  Prototype V4 - 2
 
 I have placed the prototype on the iPhone 8 for the sake of reference, and the actual placement would be on a phone case with an opening to place the upper step of the camera cover.
 
-Well, at the end of it, it was a fun project to work on, and more importantly, understanding the complexities in prototyping and factors to consider to launch it to an open market was worth the time spent
-
-Ohh yeah, I did sell a few back in 2019
+Well, at the end of it, it was a fun project to work on, and more importantly, understanding the complexities in prototyping.

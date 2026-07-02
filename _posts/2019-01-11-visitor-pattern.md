@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Avoid switch case for ENUMs – Visitor pattern"
+title: "Visitor Pattern: Avoid Switch Case for ENUMs"
 description: "Replacing sprawling switch statements over enums with the Visitor pattern in Java, for code that stays clean and easy to extend."
 date: 2019-01-11
 tags:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Myoelectric Prosthetic Arm — MYRO 2.0"
+title: "MYRO 2.0: Myoelectric Prosthetic Arm"
 description: "Building MYRO, a myoelectric prosthetic arm that reads muscle activity through EMG sensors and pattern recognition to drive a 3D printed hand."
 date: 2017-12-15
 tags:
