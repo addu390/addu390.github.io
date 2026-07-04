@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hot Postgres, Cold Iceberg"
+title: "Modak: Hot Postgres, Cold Iceberg"
 description: "The landscape of transactional data meeting analytics: scaling Postgres itself, HTAP engines, separate OLAP stores, open table formats, zero-ETL, and why I built Modak."
 date: 2026-07-02
 tags:
@@ -8,10 +8,10 @@ tags:
   - Distributed Systems
 author: Adesh Nalpet Adimurthy
 highlight: green
-deck: "The options for analytics on Postgres data, what each one costs to run, and where Modak fits: recent data stays in Postgres, history moves to Iceberg, and both read as one table."
+deck: "The options for analytics on Postgres data, what each one costs to run, and where Modak fits: tier-aware data federation where recent data stays in Postgres, history moves to Iceberg, and every query reads one consistent table."
 ---
 
-<p>Postgres handles more analytics than it gets credit for. With partitioning, the right indexes, and rollup tables, a single instance serves dashboards over hundreds of gigabytes without drama. The breaking point is specific rather than general: the working set outgrows memory, scans read years of history from disk, the row layout fetches every column to aggregate one, and the same buffers and IO that serve those scans also serve OLTP traffic. Past that point the analytical copy of the data moves somewhere else, and the question becomes where, and through what pipe.</p>
+<p>Postgres handles more analytics than it gets credit for. With partitioning, the right indexes, and rollup tables, a single instance serves workloads over hundreds of gigabytes without trouble. The breaking point is specific rather than general: the working set outgrows memory, scans read years of history from disk, the row layout fetches every column to aggregate one, and the same buffers and IO that serve those scans also serve OLTP traffic. Past that point the analytical copy of the data moves somewhere else, and the question becomes where, and through what pipe.</p>
 
 <p>Disclosure up front: this post ends at <a href="https://github.com/addu390/modak" target="_blank" rel="noopener noreferrer">Modak</a>, a project I built. The rest of the landscape comes first, because its gaps are the reason Modak exists.</p>
 
@@ -37,7 +37,9 @@ deck: "The options for analytics on Postgres data, what each one costs to run, a
 
 <p>This covers both real-time OLAP stores (ClickHouse, Doris, StarRocks, Pinot) and cloud warehouses (Snowflake, BigQuery, Redshift). Columnar storage and vectorized execution put them one to two orders of magnitude ahead of a row store on scans. Warehouses add governed, elastic BI at per-query prices. The real-time stores serve sub-second aggregations over fresh events.</p>
 
-<p>Self-hosting one is operating a distributed system: its own storage model, replication, upgrades, capacity planning, and failure modes, commonly with a dedicated team past a certain scale. And each engine has edges that surface in production. ClickHouse implements updates as asynchronous mutations that rewrite whole data parts, so update-heavy or late-arriving data works against its storage model. Doris takes updates more seriously, its unique key tables with merge-on-write exist precisely for mutable data, and it can even run as a query and cache layer over Iceberg instead of its native format. The edges move rather than vanish: merge-on-write taxes ingestion, and constant backfills scattered across old partitions leave small rowsets everywhere and put compaction under pressure. These engines are at their best on append-mostly, recent-window workloads, and data that drifts from that shape pays somewhere.</p>
+<p>Self-hosting one is operating a distributed system: its own storage model, replication, upgrades, capacity planning, and failure modes, commonly with a dedicated team past a certain scale. And each engine has edges that surface in production.</p>
+
+<p>Most engines are at their best on append-mostly, recent-window workloads, and data that drifts from that shape pays somewhere.</p>
 
 <h3>3.2. An Open Table Format</h3>
 
@@ -49,29 +51,29 @@ deck: "The options for analytics on Postgres data, what each one costs to run, a
 
 <h3>3.3. The Pipes</h3>
 
-<p>Direct ingest writes events straight to the destination, into the store or as streaming commits to the lake (streaming-storage systems like Fluss are this pipe productized). Freshness is as good as it gets. The catch is where the fresh data actually lives: in the store's own memory structures, or in the streaming system's servers and format, with only the older portion landed in the open format behind it. The last few minutes are readable only through that system, so the "open" part of the data is the part that is no longer fresh. And when the same rows also matter transactionally, the application dual-writes, and dual writes drift, since no transaction spans both systems. Against a lake, frequent commits also mean small files from day one.</p>
-
-<p>CDC keeps Postgres as the single write path and replays the WAL into the destination, with Debezium or a managed equivalent. This is the right shape on paper and the costs are operational: the copy runs minutes to hours behind, streaming commits make the lake maintenance jobs load-bearing, and at any moment some rows exist only in Postgres while nothing records exactly where the copy ends. Query the copy and recent rows are missing. Query both and deduplication is your problem.</p>
-
-<p>Batch ETL loads on a schedule, a day behind by construction. It is the cheapest to operate and the easiest to reason about, and it stops being an option the moment anyone needs today's data.</p>
+<ul>
+<li><p><strong>Direct ingest</strong> writes events straight to the destination, into the store or as streaming commits to the lake (streaming-storage systems like Fluss are this pipe productized). Freshness is as good as it gets. The catch is where the fresh data actually lives: in the store's own memory structures, or in the streaming system's servers and format, so the "open" part of the data is the part that is no longer fresh. And when the same rows also matter transactionally, the application dual-writes, and dual writes drift, since no transaction spans both systems. Against a lake, frequent commits also mean small files from day one.</p></li>
+<li><p><strong>CDC</strong> keeps Postgres as the single write path and replays the WAL into the destination, with Debezium or a managed equivalent. This is the right shape on paper and the costs are operational: the copy runs minutes to hours behind, streaming commits make the lake maintenance jobs load-bearing, and at any moment some rows exist only in Postgres while nothing records exactly where the copy ends. Query the copy and recent rows are missing. Query both and deduplication is your problem.</p></li>
+<li><p><strong>Batch ETL</strong> loads on a schedule, a day behind by construction. It is the cheapest to operate and the easiest to reason about, and it stops being an option the moment anyone needs today's data.</p></li>
+</ul>
 
 <h3>4. Zero-ETL and Bundled Platforms</h3>
 
 <p>Cloud vendors sell the pipe problem away. Aurora zero-ETL replicates into Redshift, Datastream feeds BigQuery, and the managed pipeline replaces the Debezium deployment. The destinations and their quirks are unchanged, only the plumbing is somebody else's pager.</p>
 
-<p>Databricks went further, and the sequence deserves credit as strategy. Acquire Tabular and with it the creators of Iceberg. Pour years into Unity Catalog so the catalog, not the engine, becomes the center of gravity. Acquire Neon, a Postgres with storage decoupled onto object storage. Then ship Lakebase: managed Postgres sitting directly on lakehouse storage, transactional up front, analytical behind, one vendor end to end. Whether or not it was planned as one arc, it lands as one, and in practice it is a genuinely good solution to exactly the problem this post is about.</p>
+<p>Databricks went further, and the sequence deserves credit as strategy. Acquire Tabular and with it the creators of Iceberg. Pour years into Unity Catalog so the catalog, not the engine, becomes the center of gravity. Acquire Neon, a Postgres with storage decoupled onto object storage. Then ship Lakebase (+LTAP): managed Postgres sitting directly on lakehouse storage, transactional up front, analytical behind, one vendor end to end. Whether or not it was planned as one arc, it lands as one, and in practice it is a genuinely good solution.</p>
 
-<p>For a team already on Databricks, especially at enterprise scale, this is close to a no-brainer, and the product is still very early with plenty of room to grow into. The natural trade of the platform route is that the tiering, the freshness boundary, and the catalog run inside the platform.</p>
+<p>For an org already committed to a platform like this, it is the path of least resistance. The trade is that the tiering, the freshness boundary, and the catalog all run inside the platform.</p>
 
 <h3>5. The Ground Reality</h3>
 
 <p>A few observations cut across all of it.</p>
 
-<p>First, data platforms fail on operational surface more often than on query speed. Every added system brings its own ingestion, auth, monitoring, upgrades, capacity model, and on-call load. For most teams, fewer systems beats faster benchmarks.</p>
-
-<p>Second, Postgres itself is the gravity well. Half the systems above advertise Postgres wire compatibility as a feature, because the migration everyone wants is the one where nothing about the application changes. The pull is always toward the interface teams already know and the system they already run.</p>
-
-<p>Third, the boundary between fresh transactional data and the analytical copy is nobody's job by default. Engines do not track what has not arrived. Formats deliberately do not own it. Pipes move data across the boundary without recording where it sits. Every composed setup inherits this gap and papers over it with staleness tolerances.</p>
+<ul>
+<li><p><strong>Operational surface fails platforms before query speed does.</strong> Every added system brings its own ingestion, auth, monitoring, upgrades, capacity model, and on-call load. For most teams, fewer systems beats faster benchmarks.</p></li>
+<li><p><strong>Postgres itself is the gravity well.</strong> Half the systems above advertise Postgres wire compatibility as a feature, because the migration everyone wants is the one where nothing about the application changes. The pull is always toward the interface teams already know and the system they already run.</p></li>
+<li><p><strong>The boundary is nobody's job by default.</strong> Engines do not track what has not arrived. Formats deliberately do not own it. Pipes move data across the boundary without recording where it sits. Every composed setup inherits this gap and papers over it with staleness tolerances.</p></li>
+</ul>
 
 <p>And underneath all of it sits a question the options above answer only implicitly: how much of the table does Postgres actually need to hold? Everything, forever, as the system of record? Everything passing through, with copies fanning out behind? Or only the hot fraction, and if so, how hot is hot: a day, a month, a quarter? Most architectures inherit an answer from whatever pipe they picked. Very few let you choose it per table and change your mind later.</p>
 
@@ -79,18 +81,31 @@ deck: "The options for analytics on Postgres data, what each one costs to run, a
 
 <h3>6. One Table, Two Tiers</h3>
 
-<p>Modak is built against that wishlist, starting from the system already present. Postgres stays the transactional hot tier. History moves into Iceberg on object storage. It remains one logical table.</p>
+<p>Modak is built against that wishlist, starting from the system already present. It is tier-aware data federation between Postgres and Iceberg: Postgres stays the transactional hot tier, history moves into Iceberg on object storage, and it remains one logical table.</p>
 
 <p>The premise is simplicity and ownership. It is your Postgres, wherever it already runs, and your Iceberg tables on your object storage. Modak is the bridge between them, not a platform around them: a Postgres extension and a worker process, both of which you can remove while everything you own stays exactly where it is. There is no exit cost because there is nothing to exit.</p>
 
 <img class="center-image-0 center-image-95" src="./assets/img/posts/modak/modak-tiers.svg">
 
-<p>For a registered time-partitioned table, recent partitions live in the Postgres heap and behave exactly like Postgres: transactional writes, indexes, fast point reads. A worker moves partitions past a cut-line into Iceberg and drops them from the heap. Queries do not change. The extension plans each query across both tiers, serving the hot branch from the heap and the cold branch through DuckDB scanning Iceberg, and unions them into one answer. Tables that should keep a complete heap can instead be mirrored, where CDC maintains the Iceberg copy while Postgres holds everything. That is the dial from the wishlist, set per table: mirrored keeps everything in Postgres, tiered keeps only the hot window, and the cut-line policy decides how hot is hot.</p>
+<p>For a registered time-partitioned table, recent partitions live in the Postgres heap and behave exactly like Postgres: transactional writes, indexes, fast point reads. A worker moves partitions past a cut-line into Iceberg and drops them from the heap. Queries do not change: the extension plans each query across both tiers, serving the hot branch from the heap and the cold branch through DuckDB scanning Iceberg, and unions them into one answer.</p>
+
+<p>Writes do not change either. The planner routes <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> by tier and splits a statement that touches both, and a <code>EXPLAIN</code> function shows exactly how any statement will be routed before it runs. Tables that should keep a complete heap can instead be mirrored, where CDC maintains the Iceberg copy while Postgres holds everything.</p>
+
+<p>That is the dial from the wishlist, set per table as a mode. Tiered keeps only the hot window in Postgres and moves everything behind the cut-line into Iceberg. Mirrored keeps the full table in Postgres, fully writable, with the lake as a live copy. Mirrored with heap retention is the middle setting: the lake holds the complete history while the heap sheds old partitions it no longer needs hot, and reads still span both. The cut-line policy decides how hot is hot, and a table can change its answer later.</p>
+
+<img class="center-image-0 center-image-95" src="./assets/img/posts/modak/modak-modes.svg">
+
+<p>A two-minute walkthrough of the loop in the console: partitions tiering into Iceberg live, plain SQL reading and correcting rows across both tiers, and the worker folding the corrections back into the lake.</p>
+
+<video class="center-image-0 center-image-95" controls muted playsinline preload="metadata" style="display: block; margin: 0 auto;">
+  <source src="https://github.com/user-attachments/assets/09966acf-b3d7-4a29-bd57-12bad806772d" type="video/mp4">
+  <a href="https://github.com/user-attachments/assets/09966acf-b3d7-4a29-bd57-12bad806772d">Watch the demo</a>
+</video>
 
 <p>What the shape buys:</p>
 
 <ul>
-<li><p><strong>Updates work, including to history.</strong> The hot tier is plain Postgres, so OLTP semantics are untouched. Corrections to rows already in Iceberg are recorded as deltas, visible to readers immediately and folded into the lake by compaction. The update-heavy, backfill-prone workload that strains columnar stores is a plain UPDATE here.</p></li>
+<li><p><strong>Updates work, including to history.</strong> The hot tier is plain Postgres, so OLTP semantics are untouched. A plain UPDATE or DELETE of rows already in Iceberg is rewritten by the planner into a correction delta, visible to readers immediately and folded into the lake by compaction. The update-heavy, backfill-prone workload that strains columnar stores is an ordinary statement here.</p></li>
 <li><p><strong>History is cheap and open.</strong> Cold data is standard Iceberg on S3, at object-storage prices, with snapshot history, readable by any engine with no Modak in the path.</p></li>
 <li><p><strong>The hot path stays small.</strong> Postgres holds weeks instead of years, so the heap, its indexes, and its backups shrink accordingly. Hot queries never touch the small files and snapshot churn of ongoing ingestion, because live partitions are not in the lake at all.</p></li>
 </ul>
