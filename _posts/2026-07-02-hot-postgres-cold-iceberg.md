@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Modak: Hot Postgres, Cold Iceberg"
+title: "Modak: Tier-Aware Data Federation Between Postgres and Iceberg"
 description: "The landscape of transactional data meeting analytics: scaling Postgres itself, HTAP engines, separate OLAP stores, open table formats, zero-ETL, and why I built Modak."
 date: 2026-07-02
 tags:
@@ -13,7 +13,7 @@ deck: "The options for analytics on Postgres data, what each one costs to run, a
 
 <p>Postgres handles more analytics than it gets credit for. With partitioning, the right indexes, and rollup tables, a single instance serves workloads over hundreds of gigabytes without trouble. The breaking point is specific rather than general: the working set outgrows memory, scans read years of history from disk, the row layout fetches every column to aggregate one, and the same buffers and IO that serve those scans also serve OLTP traffic. Past that point the analytical copy of the data moves somewhere else, and the question becomes where, and through what pipe.</p>
 
-<p>Disclosure up front: this post ends at <a href="https://github.com/addu390/modak" target="_blank" rel="noopener noreferrer">Modak</a>, a project I built. The rest of the landscape comes first, because its gaps are the reason Modak exists.</p>
+<p>Disclosure up front: this post ends at <a href="https://github.com/Modak-Labs/modak" target="_blank" rel="noopener noreferrer">Modak</a>, a project I built. The rest of the landscape comes first, because its gaps are the reason Modak exists.</p>
 
 <h3>1. Staying in Postgres</h3>
 
@@ -95,11 +95,11 @@ deck: "The options for analytics on Postgres data, what each one costs to run, a
 
 <img class="center-image-0 center-image-95" src="./assets/img/posts/modak/modak-modes.svg">
 
-<p>A two-minute walkthrough of the loop in the console: partitions tiering into Iceberg live, plain SQL reading and correcting rows across both tiers, and the worker folding the corrections back into the lake.</p>
+<p>A two-minute walkthrough of the loop in the console: partitions tiering into Iceberg live, plain SQL reading and correcting rows across both tiers, the worker folding the corrections back into the lake, and an on-demand maintenance pass.</p>
 
 <video class="center-image-0 center-image-95" controls muted playsinline preload="metadata" style="display: block; margin: 0 auto;">
-  <source src="https://github.com/user-attachments/assets/09966acf-b3d7-4a29-bd57-12bad806772d" type="video/mp4">
-  <a href="https://github.com/user-attachments/assets/09966acf-b3d7-4a29-bd57-12bad806772d">Watch the demo</a>
+  <source src="https://github.com/user-attachments/assets/c4fc846d-03c8-4234-a307-6274eca34bad" type="video/mp4">
+  <a href="https://github.com/user-attachments/assets/c4fc846d-03c8-4234-a307-6274eca34bad">Watch the demo</a>
 </video>
 
 <p>What the shape buys:</p>
@@ -130,4 +130,4 @@ deck: "The options for analytics on Postgres data, what each one costs to run, a
 
 <p>If analytics can run a day behind, batch ETL stays underrated. If the workload is append-mostly and the team exists to run it, a dedicated OLAP store is unbeatable at what it does. If the organization is already inside a platform, zero-ETL or a bundled platform gets there fastest.</p>
 
-<p>Modak is for the case in between: a team that already runs Postgres, wants years of history in an open format without operating a second distributed system, and values one consistent table over the fastest possible scan. The code, docs, and the seam protocol spec are at <a href="https://github.com/addu390/modak" target="_blank" rel="noopener noreferrer">github.com/addu390/modak</a> and <a href="https://addu390.github.io/modak/" target="_blank" rel="noopener noreferrer">addu390.github.io/modak</a>.</p>
+<p>Modak is for the case in between: a team that already runs Postgres, wants years of history in an open format without operating a second distributed system, and values one consistent table over the fastest possible scan. The code, docs, and the seam protocol spec are at <a href="https://github.com/Modak-Labs/modak" target="_blank" rel="noopener noreferrer">github.com/Modak-Labs/modak</a> and <a href="https://modak-labs.github.io/modak/" target="_blank" rel="noopener noreferrer">modak-labs.github.io/modak</a>.</p>
