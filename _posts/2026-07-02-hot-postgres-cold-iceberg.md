@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Modak: Tier-Aware Data Federation Between Postgres and Iceberg"
+title: "Tier-Aware Data Federation Between Postgres and Iceberg"
 description: "The landscape of transactional data meeting analytics: scaling Postgres itself, HTAP engines, separate OLAP stores, open table formats, zero-ETL, and why I built Modak."
 date: 2026-07-02
 tags:
