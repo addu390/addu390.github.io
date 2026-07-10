@@ -637,6 +637,31 @@ body:has(.newspaper) .site-copyright {
   }
 }
 
+.np-almanac-scroll {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 2px 2px 6px;
+  margin: -2px -2px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--np-soft) transparent;
+}
+
+.np-almanac {
+  position: relative;
+}
+
+/* fade hint that more cards sit below the fold */
+.np-almanac::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  height: 22px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--np-paper-2));
+}
+
 .np-almanac .np-play-card {
   display: block;
   text-decoration: none;
@@ -659,6 +684,10 @@ body:has(.newspaper) .site-copyright {
   display: block;
   width: 100%;
   height: 96px;
+}
+
+.np-play-canvas-lava {
+  height: 150px;
 }
 
 .np-play-cap {

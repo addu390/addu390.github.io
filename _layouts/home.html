@@ -116,16 +116,21 @@ layout: default
 
             <div class="np-index-box np-almanac">
                 <h4>The Almanac</h4>
-                <a class="np-play-card" href="/face-projection">
-                    <canvas class="np-play-canvas" data-preview="globe" aria-hidden="true"></canvas>
-                    <span class="np-play-cap"><strong>Map Projection Atlas</strong><em>65 map projections of the globe</em></span>
-                </a>
-                <a class="np-play-card np-play-text" href="/population-cartograms">
-                    <span class="np-play-cap"><strong>World Population Cartogram</strong><em>country areas scaled to population</em></span>
-                </a>
-                <a class="np-play-card np-play-text" href="/spatial-playground">
-                    <span class="np-play-cap"><strong>Spatial Index Playground</strong><em>k-d trees, quadtrees and geohash</em></span>
-                </a>
+                <div class="np-almanac-scroll">
+                    <a class="np-play-card" href="/lavarand/">
+                        <canvas class="np-play-canvas np-play-canvas-lava" data-preview="lava" aria-hidden="true"></canvas>
+                        <span class="np-play-cap"><strong>LavaRand Entropy Wall</strong><em>randomness from simulated lava lamps</em></span>
+                    </a>
+                    <a class="np-play-card np-play-text" href="/face-projection">
+                        <span class="np-play-cap"><strong>Map Projection Atlas</strong><em>65 map projections of the globe</em></span>
+                    </a>
+                    <a class="np-play-card np-play-text" href="/population-cartograms">
+                        <span class="np-play-cap"><strong>World Population Cartogram</strong><em>country areas scaled to population</em></span>
+                    </a>
+                    <a class="np-play-card np-play-text" href="/spatial-playground">
+                        <span class="np-play-cap"><strong>Spatial Index Playground</strong><em>k-d trees, quadtrees and geohash</em></span>
+                    </a>
+                </div>
             </div>
 
             {%- for post in posts limit:4 offset:6 -%}
@@ -150,7 +155,7 @@ layout: default
     {%- include np-series.html -%}
     {%- endif -%}
 
-    <script src="{{ '/assets/js/home-previews.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/lava-preview.js' | relative_url }}" defer></script>
 {%- endif -%}
 
     {{ content }}
