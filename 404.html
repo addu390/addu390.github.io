@@ -1,33 +1,53 @@
 ---
 permalink: /404.html
 layout: default
+title: "Page Not Found"
 ---
 
-<style>
-    body {
-        overflow: hidden;
-        margin: 0;   
-    }
+<div class="newspaper">
 
-    .screen {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: margin 0.5s ease-out;
-        vertical-align: middle;
-        margin-top: 10%;
-    }
+    {%- include np-colorbar.html -%}
+    {%- include masthead.html -%}
 
-    .text {
-        text-align: center;
-        padding-left: 2.5em;
-        position: relative;
-        font-size: 1.2em;
-    }
-</style>
+    <div class="np-frontpage">
+        <article class="np-col np-lead">
+            <div class="np-kicker">Error 404</div>
+            <h2 class="np-lead-head">Page Not Found</h2>
+            <p class="np-deck">The page you're looking for doesn't exist. The link may be broken, or the
+                page may have been moved or removed.</p>
 
-<div class="screen">
-    <img style="height: 25em;" src="{{ './assets/img/games/buffed-doge.png' | relative_url }}" alt="buff doge" />
-    <small class="text">Oops! Page not found</small>
+            <div class="np-body">
+                <p>There's nothing at <code class="np-404-path" id="np-404-path">this address</code>.
+                    Try the search, browse the recent posts, or head back to the front page. If you think
+                    this is a broken link on my end, <a href="/contact">let me know</a>.</p>
+            </div>
+            <p class="np-readon"><a href="/">Back to the Front Page &rarr;</a></p>
+        </article>
+
+        <section class="np-col">
+            <div class="np-section-title">From the Archives</div>
+            {%- assign briefs = site.posts | slice: 0, 3 -%}
+            {%- include np-brief-list.html briefs=briefs -%}
+        </section>
+
+        <aside class="np-col np-aside">
+            {%- include np-search.html -%}
+
+            {%- include np-sections.html -%}
+
+            {%- include np-almanac.html -%}
+        </aside>
+    </div>
+
+    {%- include np-foot-rule.html -%}
+
+    <script src="{{ '/assets/js/lava-preview.js' | relative_url }}" defer></script>
+    <script>
+        (function () {
+            var el = document.getElementById("np-404-path");
+            if (el && window.location.pathname !== "/404.html") {
+                el.textContent = window.location.pathname;
+            }
+        })();
+    </script>
 </div>

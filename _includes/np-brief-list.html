@@ -1,0 +1,13 @@
+{%- for post in include.briefs -%}
+{%- assign words = post.content | number_of_words -%}
+{%- assign mins = words | divided_by: 275 -%}
+{%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
+<div class="np-brief">
+    <span class="np-b-kicker">{{ post.tags | first | default: "Dispatch" }}</span>
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="np-go" aria-hidden="true">&rsaquo;</span></h3>
+    <div class="np-b-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ mins }} min</div>
+    {%- unless include.hide_excerpt -%}
+    <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 22 }}</p>
+    {%- endunless -%}
+</div>
+{%- endfor -%}

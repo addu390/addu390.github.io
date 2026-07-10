@@ -9,7 +9,7 @@ tags:
   - Distributed Systems
 author: Adesh Nalpet Adimurthy
 highlight: green
-deck: "A detailed breakdown of the storage engine, meta service, backend, and frontend, going deeper than the official manual."
+deck: "A detailed breakdown of the deployment modes, storage engine, meta service, backend, and frontend."
 ---
 
 <p>Apache Doris is an MPP-based real-time data warehouse known for its high query speeds, handling high concurrency and throughput, and speaking the MySQL protocol. Commonly used for real-time analytics, lakehouse analytics that federate queries over data lakes such as Iceberg and Hive, and hybrid search that runs text and vector search alongside aggregation.</p>

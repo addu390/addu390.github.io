@@ -80,69 +80,19 @@ layout: default
 
         <section class="np-col">
             <div class="np-section-title">From the Archives</div>
-            {%- for post in posts limit:5 offset:1 -%}
-            {%- assign words = post.content | number_of_words -%}
-            {%- assign mins = words | divided_by: 275 -%}
-            {%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
-            <div class="np-brief">
-                <span class="np-b-kicker">{{ post.tags | first | default: "Dispatch" }}</span>
-                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="np-go" aria-hidden="true">&rsaquo;</span></h3>
-                <div class="np-b-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ mins }} min</div>
-                <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 22 }}</p>
-            </div>
-            {%- endfor -%}
+            {%- assign briefs = posts | slice: 1, 5 -%}
+            {%- include np-brief-list.html briefs=briefs -%}
         </section>
 
         <aside class="np-col np-aside">
             {%- include np-search.html -%}
 
-            <div class="np-index-box">
-                <h4>Sections</h4>
-                <ul>
-                    <li><a href="/">Front Page</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/journals">Journal</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-                <details class="np-more-sections">
-                    <summary aria-label="Toggle more sections"><span class="np-more-caret">&#9662;</span></summary>
-                    <ul>
-                        <li><a href="/privacy">Privacy</a></li>
-                        <li><a href="/tags">Tags</a></li>
-                        <li><a href="/archive">Archive</a></li>
-                    </ul>
-                </details>
-            </div>
+            {%- include np-sections.html -%}
 
-            <div class="np-index-box np-almanac">
-                <h4>The Almanac</h4>
-                <div class="np-almanac-scroll">
-                    <a class="np-play-card" href="/lavarand/">
-                        <canvas class="np-play-canvas np-play-canvas-lava" data-preview="lava" aria-hidden="true"></canvas>
-                        <span class="np-play-cap"><strong>LavaRand Entropy Wall</strong><em>randomness from simulated lava lamps</em></span>
-                    </a>
-                    <a class="np-play-card np-play-text" href="/face-projection">
-                        <span class="np-play-cap"><strong>Map Projection Atlas</strong><em>65 map projections of the globe</em></span>
-                    </a>
-                    <a class="np-play-card np-play-text" href="/population-cartograms">
-                        <span class="np-play-cap"><strong>World Population Cartogram</strong><em>country areas scaled to population</em></span>
-                    </a>
-                    <a class="np-play-card np-play-text" href="/spatial-playground">
-                        <span class="np-play-cap"><strong>Spatial Index Playground</strong><em>k-d trees, quadtrees and geohash</em></span>
-                    </a>
-                </div>
-            </div>
+            {%- include np-almanac.html -%}
 
-            {%- for post in posts limit:4 offset:6 -%}
-            {%- assign words = post.content | number_of_words -%}
-            {%- assign mins = words | divided_by: 275 -%}
-            {%- if mins == 0 %}{% assign mins = 1 %}{% endif -%}
-            <div class="np-brief">
-                <span class="np-b-kicker">{{ post.tags | first | default: "Dispatch" }}</span>
-                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="np-go" aria-hidden="true">&rsaquo;</span></h3>
-                <div class="np-b-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ mins }} min</div>
-            </div>
-            {%- endfor -%}
+            {%- assign briefs = posts | slice: 6, 4 -%}
+            {%- include np-brief-list.html briefs=briefs hide_excerpt=true -%}
 
         </aside>
     </div>
